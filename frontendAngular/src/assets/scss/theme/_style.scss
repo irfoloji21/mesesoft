@@ -7606,24 +7606,20 @@ ngx-loading-bar {
 .rating {
     margin-top: 0;
     i {
-        padding-right: 5px;
-        &:nth-child(-n+4) {
-            color: $star-yellow;
-        }
-        &:last-child {
-            color: $round-border;
-        }
+      padding-right: 5px;
+      color: #acacac; 
+      cursor: pointer;
+      &:hover {
+        color: $star-yellow; 
+      }
     }
-    .three-star {
-        padding-bottom: 5px;
-        i {
-            color: #acacac;
-            &:nth-child(-n+3) {
-                color: #ffd200;
-            }
-        }
+  
+    i.active {
+      color: $star-yellow; 
     }
-}
+  }
+  
+  
 
 .tab-border {
     border: 1px solid $round-border;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, startWith, delay, catchError } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../classes/product';
 
@@ -44,22 +44,14 @@ export class ProductService {
     return this.products
   }
 
- 
-
-
    // Get Products By Slug
    public getProductBySlug(slug: string): Observable<Product> {
     return this.http.get(`${this.apiUrl}/product/${slug}`).pipe(map(data => data))
   }
-
-  // public getProductBySlug(slug: string): Observable<Product> {
-  //   const x = this.http.get<Product>(`${this.apiUrl}/product/${slug}`).pipe(map(data => data));
-  //   console.log(x, "irfobrand-kahveleri"); 
-  
-  //   return x;
-  // }
-
-
+  //creaateNewReview
+  createNewReview(comment: Comment): Observable<any> {
+    return this.http.post(`${this.apiUrl}/product/create-new-review`, comment);
+  }
 
   /*
     ---------------------------------------------
