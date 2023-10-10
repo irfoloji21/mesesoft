@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,11 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm: UntypedFormGroup;
-  public registerForm: UntypedFormGroup;
+  public loginForm: FormGroup;
+  public registerForm: FormGroup;
   public active = 1;
 
-  constructor(private formBuilder: UntypedFormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder,  private authService: AuthService) {
     this.createLoginForm();
     this.createRegisterForm();
   }
@@ -39,13 +40,15 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      userName: [''],
-      password: [''],
-    })
+      email: ['', [Validators.required, Validators.email]], // E-posta alanı
+      password: ['', Validators.required], // Şifre alanı
+    });
+  
+    console.log(this.loginForm);
   }
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
-      userName: [''],
+      email: [''],
       password: [''],
       confirmPassword: [''],
     })
@@ -56,7 +59,21 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.loginForm.valid) {
+      const email = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
 
+      this.authService.loginUser(email, password).subscribe(
+        (response) => {
+
+          console.log('Auth response:', response);
+        },
+        (error) => {
+
+          console.error('Auth error:', error);
+        }
+      )
+    }
   }
 
 }

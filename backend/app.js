@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:4200'],
+  origin: ['http://localhost:3000', 'http://localhost:4200', 'http://localhost:56439'],
   credentials: true
 }));
 

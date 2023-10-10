@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from '@ag-grid-community/angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +24,7 @@ import { SettingModule } from './components/setting/setting.module';;
 import { ReportsModule } from './components/reports/reports.module';
 import { AuthModule } from './components/auth/auth.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,7 @@ import { AuthModule } from './components/auth/auth.module';
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    HttpClientModule,
     DashboardModule,
     InvoiceModule,
     SettingModule,
@@ -45,7 +49,8 @@ import { AuthModule } from './components/auth/auth.module';
     MediaModule,
     MenusModule,
     UsersModule,
-    AgGridModule
+    AgGridModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
