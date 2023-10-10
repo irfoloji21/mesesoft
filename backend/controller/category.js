@@ -58,7 +58,6 @@ router.get(
         success: true,
         categories,
       });
-      console.log(categories)
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }

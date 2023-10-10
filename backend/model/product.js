@@ -57,6 +57,15 @@ const productSchema = new mongoose.Schema({
       user: {
         type: Object,
       },
+      email: {
+        type: String,
+      },
+      name: {
+        type: String,
+      },
+      reviewTitle: {
+        type: String,
+      },
       rating: {
         type: Number,
       },

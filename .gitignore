@@ -4,6 +4,7 @@ frontendReact
 frontendAngular/node_modules
 frontendAngular/.angular/cache
 adminAngular/node_modules
+adminAngular/.angular/cache
 backend/node_modules
 socket/node_modules
 
