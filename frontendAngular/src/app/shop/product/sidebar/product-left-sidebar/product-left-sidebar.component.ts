@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../../shared/data/slider';
 import { Product } from '../../../../shared/classes/product';
 import { ProductService } from '../../../../shared/services/product.service';
+import { AuthService } from '../../../../shared/services/auth.service';
 import { SizeModalComponent } from "../../../../shared/components/modal/size-modal/size-modal.component";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-product-left-sidebar',
@@ -31,10 +33,10 @@ export class ProductLeftSidebarComponent implements OnInit {
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    public productService: ProductService , private formBuilder: FormBuilder, private toastr: ToastrService) {
+    public productService: ProductService , private formBuilder: FormBuilder, private toastr: ToastrService, public authService: AuthService) {
+      
     this.route.data.subscribe(response => {
       this.product = response.data.product;
-      console.log("dddd", this.product)
 
       this.reviewForm = this.formBuilder.group({
         rating: [ null , Validators.required],
@@ -50,10 +52,26 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.submitReview();
    }
    
+
+
+   // aynı kullanıcı birden fazla yorum yapınca "Cannot read properties of undefined (reading '_id')" hatası veriyor.
+   // onun yerine zaten yorumun var uyarısı versin ya da yorum yapılmışsa yorum kısmı uçsun. öpüldünüz...
    submitReview() {
     if (this.reviewForm.valid) {
-      console.log('Form Gönderildi:', this.reviewForm.value);
-      this.comment = this.reviewForm.value;
+      const user = this.authService.getUser();
+    console.log("User", user);
+
+      this.comment = {
+        productId: this.product._id, 
+        rating: this.reviewForm.value.rating, 
+        comment: this.reviewForm.value.comment,
+        name: this.reviewForm.value.name,
+        email: this.reviewForm.value.email,
+        reviewTitle: this.reviewForm.value.reviewTitle,
+        user: user
+      };
+      console.log("comment", this.comment);
+
       this.productService.createNewReview(this.comment).subscribe({
         next: (response) => {
           console.log('Backend Cevap', response);

@@ -21,7 +21,6 @@ export class FooterOneComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data: any) => {
-      console.log( "categories")
       if (data.success) {
         this.categories = data.categories;
       }

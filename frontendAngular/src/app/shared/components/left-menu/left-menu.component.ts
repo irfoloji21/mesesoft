@@ -17,7 +17,6 @@ export class LeftMenuComponent implements OnInit {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         this.menuItems = data.categories;
-        console.log(this.menuItems , "leftMenu")
         this.menuItems.forEach((category: Category) => {
           category.megaMenu = true 
           category.active=false;

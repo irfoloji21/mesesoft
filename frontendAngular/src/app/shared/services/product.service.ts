@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -50,7 +50,9 @@ export class ProductService {
   }
   //creaateNewReview
   createNewReview(comment: Comment): Observable<any> {
-    return this.http.post(`${this.apiUrl}/product/create-new-review`, comment);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const options = { headers, withCredentials: true };
+    return this.http.put(`${this.apiUrl}/product/create-new-review`, comment, options);
   }
 
   /*

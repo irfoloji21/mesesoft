@@ -16,7 +16,6 @@ export class FashionOneComponent implements OnInit {
   constructor(public productService: ProductService) {
   this.productService.getProducts.subscribe((response: any) => {
     this.products = response.products
-    console.log(this.products)
    
   });
 }

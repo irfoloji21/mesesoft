@@ -27,7 +27,6 @@ async resolve(route: ActivatedRouteSnapshot): Promise<any> {
         reject('Ürün bulunamadı');
       } else {
         this.product = product;
-        console.log(this.product, "resolver");
         resolve(this.product);
       }
     });
