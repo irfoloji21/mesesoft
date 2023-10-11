@@ -9,34 +9,36 @@ import { toast } from "react-toastify";
 
 const Singup = () => {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-  const [avatar, setAvatar] = useState(null);
+  // const [avatar, setAvatar] = useState(null);
 
-  const handleFileInputChange = (e) => {
-    const reader = new FileReader();
+  // const handleFileInputChange = (e) => {
+  //   const reader = new FileReader();
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatar(reader.result);
-      }
-    };
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setAvatar(reader.result);
+  //     }
+  //   };
 
-    reader.readAsDataURL(e.target.files[0]);
-  };
+  //   reader.readAsDataURL(e.target.files[0]);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     axios
-      .post(`${server}/user/create-user`, { name, email, password, avatar })
+      .post(`${server}/user/create-user`, { firstName, lastName, email, password })
       .then((res) => {
         toast.success(res.data.message);
-        setName("");
+        setfirstName("");
+        setlastName("");
         setEmail("");
         setPassword("");
-        setAvatar();
+        // setAvatar();
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -58,16 +60,33 @@ const Singup = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Full Name
+                First Name
               </label>
               <div className="mt-1">
                 <input
                   type="text"
                   name="text"
-                  autoComplete="name"
+                  autoComplete="firstName"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setfirstName(e.target.value)}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                last Name
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="text"
+                  autoComplete="lastName"
+                  required
+                  value={lastName}
+                  onChange={(e) => setlastName(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -126,7 +145,7 @@ const Singup = () => {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <label
                 htmlFor="avatar"
                 className="block text-sm font-medium text-gray-700"
@@ -158,7 +177,7 @@ const Singup = () => {
                   />
                 </label>
               </div>
-            </div>
+            </div> */}
 
             <div>
               <button

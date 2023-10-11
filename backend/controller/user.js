@@ -15,25 +15,26 @@ const { isAuthenticated } = require('../middleware/auth');
 
 router.post("/create-user", async (req, res, next) => {
     try {
-      const { name, email, password, avatar } = req.body;
+      const { firstName, lastName, email, password } = req.body;
       const userEmail = await User.findOne({ email });
   
       if (userEmail) {
         return next(new ErrorHandler("User already exists", 400));
       }
   
-      const myCloud = await cloudinary.v2.uploader.upload(avatar, {
-        folder: "avatars",
-      });
+    //   const myCloud = await cloudinary.v2.uploader.upload(avatar, {
+    //     folder: "avatars",
+    //   });
   
       const user = {
-        name: name,
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: password,
-        avatar: {
-          public_id: myCloud.public_id,
-          url: myCloud.secure_url,
-        },
+        // avatar: {
+        //   public_id: myCloud.public_id,
+        //   url: myCloud.secure_url,
+        // },
       };
   
       const activationToken = createActivationToken(user);
@@ -44,18 +45,16 @@ router.post("/create-user", async (req, res, next) => {
         await sendMail({
           email: user.email,
           subject: "Activate your account",
-          message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+          message: `Hello ${user.firstName}, please click on the link to activate your account: ${activationUrl}`,
         });
         res.status(201).json({
           success: true,
           message: `please check your email:- ${user.email} to activate your account!`,
         });
       } catch (error) {
-        console.log(error + "irfo")
         return next(new ErrorHandler(error, 500));
       }
     } catch (error) {
-        console.log(error)
       return next(new ErrorHandler(error, 400));
     }
   });
@@ -78,7 +77,7 @@ router.post("/activation", catchAsyncErrors(async(req,res,next) => {
             return next(new ErrorHandler("Invalid token or token has expired", 400));
         }
 
-            const { name, email, password, avatar } = newUser;
+            const { firstName, lastName, email, password } = newUser;
 
             let user = await User.findOne({email});
 
@@ -87,9 +86,9 @@ router.post("/activation", catchAsyncErrors(async(req,res,next) => {
             }
 
             user = await User.create({
-                name,
+                firstName,
+                lastName,
                 email,
-                avatar,
                 password
             });
             
