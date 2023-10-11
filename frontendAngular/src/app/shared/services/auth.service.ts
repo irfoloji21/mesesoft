@@ -9,7 +9,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:8000/api/v2'; 
   private userId: string | null = null;
   private user: any;
-
+  isLoggedIn: boolean = false;
   constructor(private http: HttpClient) { }
 
 
@@ -20,7 +20,20 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http.post<any>(`${this.apiUrl}/user/login-user`, body, { headers, withCredentials: true })
-    .pipe(tap(user => this.user = user));
+    .pipe(tap(user =>{
+       this.user = user
+       this.isLoggedIn = true;
+      }));
+  }
+
+  
+
+  register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
+    const body = { firstName, lastName, email, password };
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.post<any>(`${this.apiUrl}/user/register-user`, body, { headers, withCredentials: true })
+      .pipe(tap(user => this.user = user));
   }
 
   setUserId(userId: string) {
@@ -59,4 +72,9 @@ export class AuthService {
   getUser(): any {
     return this.user;
   }
+
+
+
+
+
 }

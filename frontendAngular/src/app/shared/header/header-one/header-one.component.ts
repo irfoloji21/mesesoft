@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header-one',
@@ -14,9 +15,12 @@ export class HeaderOneComponent implements OnInit {
   
   public stick: boolean = false;
 
-  constructor() { }
+  constructor(private serviceAuth : AuthService) { }
 
   ngOnInit(): void {
+    this.serviceAuth.getUser().subscribe(res => {
+      console.log(res , "user")
+    })
   }
 
   // @HostListener Decorator
