@@ -5,8 +5,11 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+// burada kullandığınız porta izin veriniz. 
+// Sadece test için kullanılmalıdır. 
+// ilerleyen zamanlarda değiştirilmelidir. öpüldünüz...
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:4200', 'http://localhost:56439'],
+  origin: ['http://localhost:3000', 'http://localhost:4200', 'http://localhost:56439', 'http://localhost:53443'],
   credentials: true
 }));
 
@@ -25,7 +28,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   });
 }
 
-// import routes
+// yeni model ve controller eklendikçe buradan route belirtilecek.
 const user = require("./controller/user");
 const shop = require("./controller/shop");
 const product = require("./controller/product");
@@ -54,7 +57,7 @@ app.use("/api/v2/withdraw", withdraw);
 app.use("/api/v2/collection", collection);
 app.use("/api/v2/blog", blog);
 
-// it's for ErrorHandling
+
 app.use(ErrorHandler);
 
 module.exports = app;

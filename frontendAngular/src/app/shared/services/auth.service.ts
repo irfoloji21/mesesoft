@@ -28,6 +28,8 @@ export class AuthService {
     console.log("user id setUserId", userId);
   }
 
+
+
   getUserId(): string | null {
     console.log("user id getUserId", this.userId);
     return this.userId;
@@ -48,6 +50,10 @@ export class AuthService {
       
       console.error('Kullanıcı bilgileri yüklenirken hata oluştu:', error);
     }
+  }
+
+  setUser(user: any): void {
+    this.user = user;
   }
 
   getUser(): any {
