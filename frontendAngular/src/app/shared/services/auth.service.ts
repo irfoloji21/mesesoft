@@ -76,6 +76,10 @@ export class AuthService {
   getUser(): any {
     return this.user;
   }
+
+  activateUser(activation_token: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/user/activation`, { activation_token });
+  }
 }
 
 
