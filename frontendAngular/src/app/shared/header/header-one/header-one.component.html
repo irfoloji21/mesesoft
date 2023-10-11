@@ -19,21 +19,33 @@
             <li class="mobile-wishlist">
               <a [routerLink]="['/shop/wishlist']"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
             </li>
-            <li class="onhover-dropdown mobile-account">
-              <i class="fa fa-user" aria-hidden="true"></i> My Account
+            <li class="onhover-dropdown mobile-account ">
+              <span  *ngIf="!isLoggedIn">
+                <i class="fa fa-user" aria-hidden="true"  ></i> My Account
+              </span>      
+              <span class="round-icon" *ngIf="isLoggedIn">
+                {{ userInf.firstName | slice:0:1 }}
+                {{ userInf.lastName | slice:0:1 }}
+              </span>
               <ul class="onhover-show-div">
-                <li >
-                  <a data-lng="en" [routerLink]="['/pages/login']">
-                    Login
-                  </a>
+                <li *ngIf="isLoggedIn; else loginLink">
+                  <a (click)="logout()" style="cursor: pointer">Log out</a>
                 </li>
-                <li>
-                  <a data-lng="es" [routerLink]="['/pages/register']" >
-                    Register 
-                  </a>
-                </li>
+                <ng-template #loginLink>
+                  <li>
+                    <a data-lng="en" [routerLink]="['/pages/login']">
+                      Login
+                    </a>
+                  </li>
+                  <li>
+                    <a data-lng="es" [routerLink]="['/pages/register']">
+                      Register
+                    </a>
+                  </li>
+                </ng-template>
               </ul>
             </li>
+            
           </ul>
         </div>
       </div>
