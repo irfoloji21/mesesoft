@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Sayfa yüklendiğinde kullanıcı kimliğini çerezlerden okuyun
     this.authService.loadUser().subscribe(
       (user) => {
         console.log(user);

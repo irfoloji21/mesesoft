@@ -23,6 +23,7 @@ import { InvoiceModule } from './components/invoice/invoice.module';
 import { SettingModule } from './components/setting/setting.module';;
 import { ReportsModule } from './components/reports/reports.module';
 import { AuthModule } from './components/auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { AuthModule } from './components/auth/auth.module';
     MenusModule,
     UsersModule,
     AgGridModule,
-    
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

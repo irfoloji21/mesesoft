@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
 
-      this.authService.loginUser(email, password).subscribe(
+      this.authService.loginShop(email, password).subscribe(
         (response) => {
 
           console.log('Auth response:', response);
