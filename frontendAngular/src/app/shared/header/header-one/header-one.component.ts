@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-header-one',
@@ -16,8 +17,9 @@ export class HeaderOneComponent implements OnInit {
   isLoggedIn : boolean;
   public stick: boolean = false;
   public userInf ;
+  wishlistCount: number ;
 
-  constructor(private serviceAuth: AuthService,private router: Router) { }
+  constructor(private serviceAuth: AuthService, private productService: ProductService ,private router: Router) { }
 
   ngOnInit(): void {
     this.serviceAuth.isLoggedIn$.subscribe((loggedIn) => {
@@ -29,6 +31,12 @@ export class HeaderOneComponent implements OnInit {
       console.log(res , "res")
      this.userInf  =res.user ; 
     })
+
+    this.productService.getWishlistCountObservable().subscribe((count) => {
+      console.log(count)
+      this.wishlistCount = count;
+    });
+    
   }
   
   logout(): void {

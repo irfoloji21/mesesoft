@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../classes/product';
@@ -20,6 +20,9 @@ export class ProductService {
   public Currency = { name: 'Dollar', currency: 'USD', price: 1 } // Default Currency
   public OpenCart: boolean = false;
   public Products
+
+  private wishlist: Product[] = state.wishlist;
+  private wishlistSubject: BehaviorSubject<number> = new BehaviorSubject(this.wishlist.length);
 
  public apiUrl = "http://localhost:8000/api/v2"
 
@@ -71,25 +74,38 @@ export class ProductService {
   }
 
   // Add to Wishlist
-  public addToWishlist(product): any {
-    const wishlistItem = state.wishlist.find(item => item._id === product._id)
+  public addToWishlist(product: Product) {
+    const wishlistItem = this.wishlist.find(item => item._id === product._id);
     if (!wishlistItem) {
-      state.wishlist.push({
-        ...product
-      })
-    
+      this.wishlist.push({ ...product });
+      this.updateWishlistCount();
+      this.updateLocalStorage();
     }
-    this.toastrService.success('Product has been added in wishlist.');
-    localStorage.setItem("wishlistItems", JSON.stringify(state.wishlist));
-    return true
+    this.toastrService.success('Product has been added in wishlist');
+    return true;
   }
 
   // Remove Wishlist items
-  public removeWishlistItem(product: Product): any {
-    const index = state.wishlist.indexOf(product);
-    state.wishlist.splice(index, 1);
-    localStorage.setItem("wishlistItems", JSON.stringify(state.wishlist));
-    return true
+  public removeWishlistItem(product: Product) {
+    const index = this.wishlist.indexOf(product);
+    if (index !== -1) {
+      this.wishlist.splice(index, 1);
+      this.updateWishlistCount();
+      this.updateLocalStorage();
+    }
+    return true;
+  }
+
+  private updateWishlistCount() {
+    this.wishlistSubject.next(this.wishlist.length);
+  }
+
+  private updateLocalStorage() {
+    localStorage.setItem("wishlistItems", JSON.stringify(this.wishlist));
+  }
+
+  getWishlistCountObservable() {
+    return this.wishlistSubject.asObservable();
   }
 
   /*
