@@ -18,6 +18,7 @@ export class HeaderOneComponent implements OnInit {
   public stick: boolean = false;
   public userInf ;
   wishlistCount: number ;
+  userInitials: string;
 
   constructor(private serviceAuth: AuthService, private productService: ProductService ,private router: Router) { }
 
@@ -28,8 +29,8 @@ export class HeaderOneComponent implements OnInit {
     });
 
     this.serviceAuth.loadUser().subscribe(res => {
-      console.log(res , "res")
      this.userInf  =res.user ; 
+     this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);
     })
 
     this.productService.getWishlistCountObservable().subscribe((count) => {
@@ -54,4 +55,7 @@ export class HeaderOneComponent implements OnInit {
   	}
   }
 
+  getInitials(firstName: string, lastName: string): string {
+    return (firstName.charAt(0) +lastName.charAt(0)).toUpperCase();
+  }
 }

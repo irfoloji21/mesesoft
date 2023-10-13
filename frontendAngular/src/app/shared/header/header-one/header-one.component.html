@@ -28,8 +28,7 @@
                 <i class="fa fa-user" aria-hidden="true"  ></i> My Account
               </span>      
               <span class="round-icon" *ngIf="isLoggedIn">
-                {{ userInf.firstName | slice:0:1 }}
-                {{ userInf.lastName | slice:0:1 }}
+               {{userInitials }}
               </span>
               <ul class="onhover-show-div">
                 <li *ngIf="isLoggedIn; else loginLink">
