@@ -24,6 +24,7 @@ import { SettingModule } from './components/setting/setting.module';;
 import { ReportsModule } from './components/reports/reports.module';
 import { AuthModule } from './components/auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { FormsModule } from '@angular/forms';
     MenusModule,
     UsersModule,
     AgGridModule,
-    FormsModule 
+    FormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

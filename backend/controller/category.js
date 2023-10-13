@@ -43,7 +43,8 @@ router.post(
         category,
       });
     } catch (error) {
-      return next(new ErrorHandler(error, 400));
+      console.log(error, "error")
+      return next(new ErrorHandler(error.message, 400));
     }
   }
 ));

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { DIGITALCATEGORY, DigitalCategoryDB } from 'src/app/shared/tables/digital-category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +7,9 @@ import { NgbdSortableHeader } from "src/app/shared/directives/NgbdSortableHeader
 import { TableService } from 'src/app/shared/service/table.service';
 import { Observable } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
+import { CategoryService } from 'src/app/shared/service/category.service';
+import { FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-digital-category',
@@ -14,13 +18,29 @@ import { DecimalPipe } from '@angular/common';
   providers: [TableService, DecimalPipe],
 })
 export class DigitalCategoryComponent implements OnInit {
+  myForm:FormGroup;
+  selectedItems = [];
+  dropdownSettings = {};
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
-  public digital_categories = []
+  public categories = []
+  public subcategories = []
 
-  constructor(public service: TableService, private modalService: NgbModal) {
+  constructor(
+    private router: Router,
+    public service: TableService, 
+    private modalService: NgbModal, 
+    private categoryService: CategoryService,
+    private fb: UntypedFormBuilder,
+    ) {
     this.tableItem$ = service.tableItem$;
     this.service.setUserData(DIGITALCATEGORY)
+    this.myForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      images: ['', Validators.required],
+      subcategories: [[]]
+    });
   }
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
@@ -56,7 +76,76 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
 
+
+  onSubmit() {
+    console.log("form submitted");
+    if (this.myForm.valid) {
+      const formData = this.myForm.value;
+     console.log(this.myForm.value);
+      formData.subcategories = this.subcategories;
+
+      console.log('formData:', formData);
+      this.categoryService.createCategory(formData).subscribe(
+        (response) => {
+          console.log('Kategori başarıyla oluşturuldu:', response);
+          this.router.navigate(['/digital/digital-category']);
+        },
+        (error) => {
+          console.error('Kategori oluşturulurken hata oluştu:', error);
+        }
+      );
+    }
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const files: FileList = event.target.files;
+  
+      const imageUrls = [];
+  
+      for (let j = 0; j < files.length; j++) {
+        const file = files[j];
+        const reader = new FileReader();
+  
+        reader.onload = (e: any) => {
+
+          imageUrls.push(e.target.result);
+          this.myForm.get('images').setValue(imageUrls);
+  
+          console.log('imageUrls:', imageUrls);
+          console.log(this.myForm.value.images);
+        };
+  
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+
   ngOnInit() {
+    this.categoryService.getCategory().subscribe(
+      (response) => {
+        console.log('Kategoriler', response);
+        this.categories = response.categories;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+    const dropdownSettings: IDropdownSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
+    
+    // Şimdi nesneyi kullanabilirsiniz
+    this.dropdownSettings = dropdownSettings;
+
+   
   }
 
 }

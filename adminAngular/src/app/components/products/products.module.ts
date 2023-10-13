@@ -21,6 +21,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 // search module
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     GalleryModule,
     CKEditorModule,
     NgxDropzoneModule,
-    SharedModule
+    SharedModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   exports: [SubCategoryComponent],
   bootstrap: [SubCategoryComponent],

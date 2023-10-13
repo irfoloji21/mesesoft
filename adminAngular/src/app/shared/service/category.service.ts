@@ -15,4 +15,8 @@ export class CategoryService {
     return this.http.get<any>(`${this.apiUrl}/category/get-all-categories`);
   }
 
+  createCategory(categoryData): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/category/create-category`, categoryData);
+  }
+
 }
