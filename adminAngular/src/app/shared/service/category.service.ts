@@ -19,4 +19,9 @@ export class CategoryService {
     return this.http.post<any>(`${this.apiUrl}/category/create-category`, categoryData);
   }
 
+  deleteCategory(id): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/category/delete-category/${id}`);
+  }
+  
+
 }

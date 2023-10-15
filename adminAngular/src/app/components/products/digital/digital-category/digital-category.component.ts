@@ -121,6 +121,18 @@ export class DigitalCategoryComponent implements OnInit {
     }
   }
 
+  deleteCategory(id: string) {
+    this.categoryService.deleteCategory(id).subscribe(
+      (response) => {
+        console.log('Kategori başarıyla silindi:', response);
+        this.router.navigate(['/digital/digital-category']);
+      },
+      (error) => {
+        console.error('Kategori silinirken hata oluştu:', error);
+      }
+    );
+  }
+
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
       (response) => {

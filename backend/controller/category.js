@@ -169,7 +169,8 @@ router.delete(
         }
   
         // Kategoriyi veya ürünü silin
-        await category.remove();
+        await category.deleteOne({ _id: categoryId });
+
   
         res.status(200).json({
           success: true,
