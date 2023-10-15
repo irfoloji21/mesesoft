@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { id } from '@swimlane/ngx-charts';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { ProductService } from 'src/app/shared/service/product.service';
 import { productDB } from 'src/app/shared/tables/product-list';
 
 @Component({
@@ -10,11 +13,51 @@ export class ProductListComponent implements OnInit {
 
   public product_list = []
 
-  constructor() {
-    this.product_list = productDB.product;
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService, 
+  ) {
+   
   }
 
-  ngOnInit() {}
+
+  deleteProduct(id) {
+    this.productService.deleteProduct(id).subscribe(
+      (response) => {
+        
+        this.ngOnInit()
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  ngOnInit() {
+    this.authService.loadShop().subscribe(
+      (shop) => {
+      
+        if (shop) {
+          const id = shop.seller._id
+          this.productService.getShopProduct(id).subscribe(
+            (response) => {
+              this.product_list = response.products
+           
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+        }
+      },
+      (error) => {
+        console.error('Kullanıcı kimliği belirleme hatası:', error);
+      }
+    );
+
+
+
+  }
 
 
 }

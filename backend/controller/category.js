@@ -5,7 +5,6 @@ const Category = require("../model/category");
 const ErrorHandler = require("../utils/ErrorHandler");
 const cloudinary = require("cloudinary");
 
-// Kategori oluşturma
 router.post(
   "/create-category",
   catchAsyncErrors(async (req, res, next) => {
@@ -49,7 +48,6 @@ router.post(
   }
 ));
 
-// Tüm kategorileri getir
 router.get(
   "/get-all-categories",
   async (req, res, next) => {
@@ -65,7 +63,6 @@ router.get(
   }
 );
 
-// Belirli bir kategoriyi getir
 router.get(
   "/get-category/:id",
   async (req, res, next) => {
@@ -86,7 +83,6 @@ router.get(
 
 
 
-// Kategori düzenleme
 router.put(
     "/update-category/:id",
     catchAsyncErrors(async (req, res, next) => {
@@ -95,25 +91,20 @@ router.put(
         const updatedData = req.body;
         const images = updatedData.images;
   
-        // Kategori kimliği ile mevcut kategoriyi bulun
         const existingCategory = await Category.findById(categoryId);
   
         if (!existingCategory) {
           return next(new ErrorHandler("Category not found", 404));
         }
   
-        // Güncellenmiş verileri kullanarak kategoriyi güncelleyin
         existingCategory.name = updatedData.name;
         existingCategory.description = updatedData.description;
   
-        // Yalnızca resimler güncellenmişse yeni resim URL'lerini dahil edin
         if (images && images.length > 0) {
-          // Cloudinary'den mevcut resimleri silin
           for (let i = 0; i < existingCategory.images.length; i++) {
             await cloudinary.v2.uploader.destroy(existingCategory.images[i].public_id);
           }
   
-          // Yeni resimleri yükleyin
           const imagesLinks = [];
   
           for (let i = 0; i < images.length; i++) {
@@ -127,7 +118,6 @@ router.put(
             });
           }
   
-          // Yeni resim URL'lerini kategoriye ekleyin
           existingCategory.images = imagesLinks;
         }
   
@@ -146,29 +136,24 @@ router.put(
   
   
 
-// Kategori silme
 router.delete(
     "/delete-category/:id",
     async (req, res, next) => {
       try {
         const categoryId = req.params.id;
   
-        // Kategori kimliği ile mevcut kategoriyi veya ürünü bulun
         const category = await Category.findById(categoryId);
   
         if (!category) {
           return next(new ErrorHandler("Category not found", 404));
         }
   
-        // Kategori veya ürünün resimlerini alın
         const imagesToDelete = category.images.map((image) => image.public_id);
   
-        // Cloudinary'den resimleri silin
         for (let i = 0; i < imagesToDelete.length; i++) {
           await cloudinary.v2.uploader.destroy(imagesToDelete[i]);
         }
   
-        // Kategoriyi veya ürünü silin
         await category.deleteOne({ _id: categoryId });
 
   
