@@ -102,4 +102,8 @@ const productSchema = new mongoose.Schema({
   },
 });
 
+//burayı search işlemi için ekledim. index kullanmanın faydalarını öğrenmek için iletişim: 05522596373
+productSchema.index({ name: 'text', description: 'text' }); 
+
+
 module.exports = mongoose.model("Product", productSchema);

@@ -229,4 +229,16 @@ router.get(
     }
   }
 );
+
+router.get('/search', async (req, res) => {
+  try {
+    const searchTerm = req.query.q;
+    const products = await Product.find({
+      $text: { $search: searchTerm },
+    });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ error: 'Arama sırasında bir hata oluştu' });
+  }
+});
 module.exports = router;

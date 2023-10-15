@@ -1,4 +1,4 @@
-<div class="icon-nav">
+<!-- <div class="icon-nav">
   <ul>
     <li class="onhover-div mobile-search search-widgets" id="search-widgets">
       <div (click)="searchToggle()">
@@ -11,14 +11,13 @@
             <div class="overlay-content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-12">
-                            <form [formGroup]="searchForm" (ngSubmit)="getSearch()">
-                                <div class="form-group">
-                                    <input formControlName="search" type="text" class="form-control" id="exampleInputPassword1" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
+                        <div class="col-xl-12"> -->
+                          <form (ngSubmit)="searchProducts()">
+                            <input type="text" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Ürün Ara">
+                            <button type="submit">Ara</button>
+                          </form>
+                          
+                        <!-- </div>
                         <br>
                         <h6 class=" d-flex justify-content-center">
                           Product.name için Multikart önerileri
@@ -34,7 +33,7 @@
                         </div>
                         <div class="col-xl-12 mt-4">
                           <div class="row">
-                            <!-- İlk Ürün -->
+                            
                             <div class="col-xl-3">
                               <div class="card">
                                 <img src="Ürün Resmi URL 1" class="card-img-top" alt="Ürün Resmi 1">
@@ -45,38 +44,7 @@
                               </div>
                             </div>
                         
-                            <!-- İkinci Ürün -->
-                            <div class="col-xl-3">
-                              <div class="card">
-                                <img src="Ürün Resmi URL 2" class="card-img-top" alt="Ürün Resmi 2">
-                                <div class="card-body">
-                                  <h5 class="card-title">Ürün Adı 2</h5>
-                                  <p class="card-text">Fiyat: 9877</p>
-                                </div>
-                              </div>
-                            </div>
-                        
-                            <!-- Üçüncü Ürün -->
-                            <div class="col-xl-3">
-                              <div class="card">
-                                <img src="Ürün Resmi URL 3" class="card-img-top" alt="Ürün Resmi 3">
-                                <div class="card-body">
-                                  <h5 class="card-title">Ürün Adı 3</h5>
-                                  <p class="card-text">Fiyat: 9877</p>
-                                </div>
-                              </div>
-                            </div>
-                        
-                            <!-- Dördüncü Ürün -->
-                            <div class="col-xl-3">
-                              <div class="card">
-                                <img src="Ürün Resmi URL 4" class="card-img-top" alt="Ürün Resmi 4">
-                                <div class="card-body">
-                                  <h5 class="card-title">Ürün Adı 4</h5>
-                                  <p class="card-text">Fiyat: 9877</p>
-                                </div>
-                              </div>
-                            </div>
+               
                           </div>
                         </div>
                         
@@ -151,4 +119,4 @@
       </ul>
     </li>
   </ul>
-</div>
+</div> -->
