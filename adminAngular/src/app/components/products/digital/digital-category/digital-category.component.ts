@@ -39,7 +39,8 @@ export class DigitalCategoryComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
-      subcategories: [[]]
+      subcategories: [[]],
+      isShow:[false]
     });
   }
 

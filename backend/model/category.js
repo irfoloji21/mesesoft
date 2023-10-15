@@ -27,6 +27,10 @@ const categorySchema = new mongoose.Schema({
       },
     },
   ],
+  isShow: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

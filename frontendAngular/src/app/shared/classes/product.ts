@@ -21,6 +21,7 @@ export interface Product {
     images?: Images[];
     originalPrice?:number;
     discountPrice? : number;
+    ratings?:any;
 }
 
 export interface Variants {

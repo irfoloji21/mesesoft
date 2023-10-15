@@ -237,20 +237,27 @@ export class ProductService {
 
   // Get Product Filter
   public filterProducts(filter: any): Observable<Product[]> {
-    return this.products.pipe(map(product => 
-      product.filter((item: Product) => {
-        if (!filter.length) return true
-        const Tags = filter.some((prev) => { // Match Tags
-          if (item.tags) {
-            if (item.tags.includes(prev)) {
-              return prev
+    return this.products.pipe(
+      map((product) => {
+        // Check if product is an array, if not, convert it to an array
+        const productArray = Array.isArray(product) ? product : [product];
+  
+        return productArray.filter((item: Product) => {
+          console.log(item , "filter")
+          if (!filter.length) return true;
+          const Tags = filter.some((prev) => { // Match Tags
+            if (item.tags) {
+              if (item.tags.includes(prev)) {
+                return prev;
+              }
             }
-          }
-        })
-        return Tags
+          });
+          return Tags;
+        });
       })
-    ));
+    );
   }
+  
 
   // Sorting Filter
   public sortProducts(products: Product[], payload: string): any {

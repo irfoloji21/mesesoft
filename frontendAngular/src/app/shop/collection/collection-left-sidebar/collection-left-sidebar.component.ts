@@ -26,7 +26,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public sortBy: string; // Sorting Order
   public mobileSidebar: boolean = false;
   public loader: boolean = true;
-
+ deneme : any;
   constructor(private route: ActivatedRoute, private router: Router,
     private viewScroller: ViewportScroller, public productService: ProductService) {   
       // Get Query params..
@@ -44,7 +44,9 @@ export class CollectionLeftSidebarComponent implements OnInit {
         this.pageNo = params.page ? params.page : this.pageNo;
 
         // Get Filtered Products..
-        this.productService.filterProducts(this.tags).subscribe(response => {         
+        this.productService.filterProducts(this.tags).subscribe(response => { 
+          console.log(response[0].collection, "collection") 
+          this.deneme =  response;     
           // Sorting Filter
           this.products = this.productService.sortProducts(response, this.sortBy);
           // Category Filter

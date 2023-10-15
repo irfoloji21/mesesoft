@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../classes/product";
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -11,6 +12,8 @@ import { Product } from "../../classes/product";
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+
+  searchForm: FormGroup;
 
   public products: Product[] = [];
   public search: boolean = false;
@@ -41,13 +44,20 @@ export class SettingsComponent implements OnInit {
     price: 1 // price of usd
   }]
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,
-    private translate: TranslateService,
-    public productService: ProductService) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private translate: TranslateService, public productService: ProductService ,private  formBuilder : FormBuilder) {
+      this.searchForm = this.formBuilder.group({
+        search: [''], // Boş bir başlangıç değeri
+      });
     this.productService.cartItems.subscribe(response => this.products = response);
   }
 
   ngOnInit(): void {
+    this.getSearch();
+  }
+ 
+  getSearch(){
+    const productSearch = this.searchForm.value.search;
+    console.log(productSearch)
   }
 
   searchToggle(){
