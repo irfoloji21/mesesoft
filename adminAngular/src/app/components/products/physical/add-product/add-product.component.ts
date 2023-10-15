@@ -98,8 +98,7 @@ export class AddProductComponent implements OnInit {
           // images alanını güncelleyin
           this.productForm.get('images').setValue(imageUrls);
   
-          console.log('imageUrls:', imageUrls);
-          console.log(this.productForm.value.images);
+      
         };
   
         reader.readAsDataURL(file);
@@ -115,12 +114,11 @@ export class AddProductComponent implements OnInit {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
       const shop = this.authService.getShop();
-     console.log(this.productForm.value);
+
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
-      console.log(this.selectedCategory);
-      console.log('formData:', formData);
+
       this.productService.createProduct(formData).subscribe(
         (response) => {
           console.log('Ürün başarıyla oluşturuldu:', response);

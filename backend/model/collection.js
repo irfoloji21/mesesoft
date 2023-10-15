@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const collectionSchema = new mongoose.Schema({
+  name: {
+    type: String,
+  },
     productIds:{
         type: Array,
         required: true,
@@ -17,9 +20,6 @@ const collectionSchema = new mongoose.Schema({
      },
     save: {
       type: Number,
-    },
-    name: {
-      type: String,
     },
     description: {
       type: String,

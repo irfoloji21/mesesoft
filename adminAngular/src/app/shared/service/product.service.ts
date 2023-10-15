@@ -13,4 +13,12 @@ export class ProductService {
   createProduct(productData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/product/create-product`, productData);
   }
+
+  getShopProduct(id): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/product/get-all-products-shop/${id}`);
+  }
+
+  deleteProduct(id): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/product/delete-shop-product/${id}`);
+  }
 }

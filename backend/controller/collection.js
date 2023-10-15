@@ -22,7 +22,6 @@ router.post(
               return next(new ErrorHandler("Shop Id is invalid!", 400));
             } else {
 
-
                 const myCloud = await cloudinary.v2.uploader.upload(image, {
                     folder: "collection",
                   });
@@ -39,8 +38,10 @@ router.post(
                     shopId: shopId,
                     shop: shop,
                   });
+
+                  console.log(collectionData + "data")
       
-              const collection = await Collection.create(collectionData);
+              const collection = await Collection.createCollection(collectionData);
       
               res.status(201).json({
                 success: true,

@@ -8,7 +8,6 @@ const Shop = require("../model/shop");
 const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 
-// create product
 router.post(
   "/create-product",
   catchAsyncErrors(async (req, res, next) => {
@@ -60,7 +59,6 @@ router.post(
   })
 );
 
-// get all products of a shop
 router.get(
   "/get-all-products-shop/:id",
   catchAsyncErrors(async (req, res, next) => {
@@ -77,10 +75,9 @@ router.get(
   })
 );
 
-// delete product of a shop
 router.delete(
   "/delete-shop-product/:id",
-  isSeller,
+  // isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const product = await Product.findById(req.params.id);
@@ -95,7 +92,7 @@ router.delete(
         );
       }
     
-      await product.remove();
+      await product.deleteOne({ _id: req.params.id });
 
       res.status(201).json({
         success: true,
@@ -107,7 +104,7 @@ router.delete(
   })
 );
 
-// get all products
+
 router.get(
   "/get-all-products",
   catchAsyncErrors(async (req, res, next) => {
@@ -124,7 +121,7 @@ router.get(
   })
 );
 
-// review for a product
+
 router.put(
   "/create-new-review",
   isAuthenticated,
@@ -184,7 +181,7 @@ router.put(
   })
 );
 
-// all products --- for admin
+
 router.get(
   "/admin-all-products",
   isAuthenticated,
@@ -204,7 +201,7 @@ router.get(
   })
 );
 
-// get product by slug
+
 router.get("/:slug", async (req, res) => {
   try {
     const product = await Product.findOne({ slug: req.params.slug });
@@ -216,4 +213,20 @@ router.get("/:slug", async (req, res) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+
+router.get(
+  "/get-products-by-category/:id",
+  async (req, res, next) => {
+    try {
+      const products = await Product.find({ category: req.params.id });
+      res.status(200).json({
+        success: true,
+        products,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  }
+);
 module.exports = router;
