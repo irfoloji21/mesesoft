@@ -364,8 +364,8 @@ export class ProductService {
 
 
   search(searchTerm: string): Observable<any[]> {
-    const url = `${this.apiUrl}/product/search?q=${searchTerm}`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.apiUrl}/product/search/${searchTerm}`);
+    
   }
   
 }

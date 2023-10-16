@@ -230,15 +230,20 @@ router.get(
   }
 );
 
-router.get('/search', async (req, res) => {
-  try {
-    const searchTerm = req.query.q;
-    const products = await Product.find({
-      $text: { $search: searchTerm },
-    });
-    res.status(200).json(products);
-  } catch (error) {
-    res.status(500).json({ error: 'Arama sırasında bir hata oluştu' });
-  }
+router.get('/search/:keyword', async (req, res) => {
+  const searchTerm = req.params.keyword;
+
+  console.log(searchTerm)
+
+
+  const products = await Product.find({
+    $or: [
+      { name: { $regex: searchTerm, $options: 'i' } }, 
+      { description: { $regex: searchTerm, $options: 'i' } }, 
+    ],
+  });
+
+  res.json(products);
+  console.log(products)
 });
 module.exports = router;
