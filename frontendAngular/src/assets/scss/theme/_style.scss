@@ -1186,13 +1186,10 @@ header {
                     a {
                         color: $font-color;
                     }
-                    &:hover {
-                        a {
-                            color: var(--theme-deafult);
-                        }
-                    }
+                    
                 }
             }
+            
         }
     }
     &.top-header-dark {

@@ -32,7 +32,36 @@
               </span>
               <ul class="onhover-show-div">
                 <li *ngIf="isLoggedIn; else loginLink">
-                  <a (click)="logout()" style="cursor: pointer">Log out</a>
+                  <ul>
+                    <li>
+                      <a >Account Info</a>
+                    </li>
+                    <li>
+                      <a>Address Book</a>
+                    </li>
+                    <li>
+                      <a >My Orders</a>
+                    </li>
+                    <li>
+                      <a  >My Wishlist</a>
+                    </li>
+                    <li>
+                      <a  >Newsletter</a>
+                    </li>
+                    <li>
+                      <a >My Account</a>
+                    </li>
+                    <li>
+                      <a >Change Password</a>
+                    </li>
+                    <li>
+                      <a  >Profile</a>
+                    </li>
+                    <hr>
+                    <li>
+                      <a (click)="logout()" style="cursor: pointer">Log out</a>
+                    </li>
+                  </ul>
                 </li>
                 <ng-template #loginLink>
                   <li>
@@ -43,7 +72,7 @@
                   <li>
                     <a data-lng="es" [routerLink]="['/pages/register']">
                       Register
-                    </a>
+                    </a> 
                   </li>
                 </ng-template>
               </ul>
