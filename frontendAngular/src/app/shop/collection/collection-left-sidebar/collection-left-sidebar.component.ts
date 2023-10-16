@@ -45,7 +45,6 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
         // Get Filtered Products..
         this.productService.filterProducts(this.tags).subscribe(response => { 
-          console.log(response[0].collection, "collection") 
           this.deneme =  response;     
           // Sorting Filter
           this.products = this.productService.sortProducts(response, this.sortBy);

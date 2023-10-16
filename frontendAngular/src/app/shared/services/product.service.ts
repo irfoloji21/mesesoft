@@ -224,7 +224,7 @@ export class ProductService {
         if(curr.discountPrice) {
           price = curr.originalPrice + (curr.originalPrice * curr.discountPrice / 100)
         }
-        return (prev + price * curr.quantity) * this.Currency.price;
+        return (prev + price * curr.quantity) ;
       }, 0);
     }));
   }

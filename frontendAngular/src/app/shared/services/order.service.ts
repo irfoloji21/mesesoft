@@ -11,6 +11,8 @@ const state = {
 })
 export class OrderService {
 
+  public apiUrl = "http://localhost:8000/api/v2"
+
   constructor(private router: Router) { }
 
   // Get Checkout Items
@@ -35,5 +37,21 @@ export class OrderService {
     localStorage.removeItem("cartItems");
     this.router.navigate(['/shop/checkout/success', orderId]);
   }
-  
+   
+  // state.checkoutItems = item;
+  // localStorage.setItem("checkoutItems", JSON.stringify(item));
+  // localStorage.removeItem("cartItems");
+
+
+  // this.http.post(`${this.apiUrl}/payment/process`, item).subscribe(
+  //   (response) => {
+  //     console.log(response, "checkout");
+  //     this.router.navigate(['/shop/checkout/success', orderId]);
+  //   },
+  //   (error) => {
+  //     console.error("Error while posting order data to the backend:", error);
+  //   }
+  // );
 }
+  
+
