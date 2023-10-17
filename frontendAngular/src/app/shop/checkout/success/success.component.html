@@ -61,19 +61,19 @@
                         <div class="col-3 order_detail">
                             <div>
                                 <h4>price</h4>
-                                <h5>{{ product?.originalPrice * productService?.Currency?.originalPrice| currency }}</h5>
+                                <h5>{{ product?.originalPrice | currency }}</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="total-sec">
+                    <div class="total-sec" >
                         <ul>
-                            <li>Subtotal <span>{{ orderDetails.totalAmount | currency}}</span></li>
+                            <li>Subtotal <span>{{ orderDetails.amount | currency}}</span></li>
                             <li>Shipping <span>$00.00</span></li>
                             <li>Tax <span>$00.00</span></li>
                         </ul>
                     </div>
                     <div class="final-total">
-                        <h3>total <span>{{ orderDetails.totalAmount | currency}}</span></h3>
+                        <h3>total <span>{{ orderDetails.amount | currency}}</span></h3>
                     </div>
                 </div>
             </div>
@@ -83,8 +83,8 @@
                         <h4>summery</h4>
                         <ul class="order-detail">
                             <li>order ID: {{ orderDetails.orderId }}</li>
-                            <li>Order Date: October 22, 2021</li>
-                            <li>Order Total: {{ orderDetails.totalAmount | currency }}</li>
+                            <li>Order Date: {{ orderDetails.orderDate | date:'longDate' }}</li>
+                            <li>Order Total: {{ orderDetails.amount | currency }}</li>
                         </ul>
                     </div>
                     <div class="col-sm-6">
@@ -104,7 +104,7 @@
                     <div class="col-md-12">
                         <div class="delivery-sec">
                             <h3>expected date of delivery</h3>
-                            <h2>March 21, 2021</h2>
+                            <h2>{{ orderDetails.orderDate | date:'longDate' }}</h2>
                         </div>
                     </div>
                 </div>

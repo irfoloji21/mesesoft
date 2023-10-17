@@ -27,7 +27,7 @@
                             <!-- İlk Ürün -->
                             <div class="col-xl-3" *ngFor="let item of products" >
                              
-                              <div class="card">
+                              <div class="card" [routerLink]="['/shop/product/left/sidebar/', item.name.replace(' ', '-')]">
                                 <img src={{item.images[0].url}} class="card-img-top" alt="Ürün Resmi 1">
                                 <div class="card-body">
                                   <h5 class="card-title">  {{ item.name }}</h5>

@@ -34,10 +34,7 @@ export class OrderService {
         orderId: orderId,
         amount: amount
     };
-    // state.checkoutItems = item;
-    // localStorage.setItem("checkoutItems", JSON.stringify(item));
-    // localStorage.removeItem("cartItems");
-    // this.router.navigate(['/shop/checkout/success', orderId]);
+
 
     state.checkoutItems = item;
   localStorage.setItem("checkoutItems", JSON.stringify(item));
