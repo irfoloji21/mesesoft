@@ -6,6 +6,7 @@ import { TypographyComponent } from '../../typography/typography.component';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { AccountInfoComponent } from '../account-info/account-info.component';
+import { AddressComponent } from '../address/address/address.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
 
   menuItems = [
     { label: 'Account Info', component: AccountInfoComponent },
-    { label: 'Address Book', component: ForgetPasswordComponent },
+    { label: 'Address Book', component: AddressComponent },
     { label: 'My Orders', component: ForgetPasswordComponent },
     { label: 'My Wishlist', component: WishlistComponent },
     { label: 'Newsletter', component: ForgetPasswordComponent },

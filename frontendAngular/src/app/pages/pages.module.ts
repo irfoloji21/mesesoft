@@ -45,6 +45,7 @@ import { MasonryGridFourComponent } from './portfolio/masonry-grid-four/masonry-
 import { MasonryFullWidthComponent } from './portfolio/masonry-full-width/masonry-full-width.component';
 import { ActivationComponent } from './account/activation/activation.component';
 import { AccountInfoComponent } from './account/account-info/account-info.component';
+import { AddressComponent } from './account/address/address/address.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { AccountInfoComponent } from './account/account-info/account-info.compon
     MasonryFullWidthComponent,
     ActivationComponent,
     AccountInfoComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AddressComponent
   ],
   imports: [
     CommonModule,
