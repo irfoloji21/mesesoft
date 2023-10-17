@@ -164,21 +164,16 @@ router.get("/logout", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
 // update user info
 router.put("/update-user-info", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
     try {
-        const {email,password,phoneNumber,name} = req.body;
+        const {email,phoneNumber,firstName,lastName} = req.body;
 
         const user = await User.findOne({email}).select("+password");
 
         if(!user) {
             return next(new ErrorHandler("User not found!", 404));
-        }
+        };
 
-        const isPasswordValid = await user.comparePassword(password);
-
-        if(!isPasswordValid){
-            return next(new ErrorHandler("şifreyi kontrol ediniz", 401));
-        }
-
-        user.name = name;
+        user.firstName = firstName;
+        user.lastName = lastName;
         user.email = email;
         user.phoneNumber = phoneNumber;
 

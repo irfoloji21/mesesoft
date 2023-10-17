@@ -39,6 +39,10 @@ export class HeaderOneComponent implements OnInit {
     });
     
   }
+
+  profile(): void {
+    this.router.navigate(['/pages/dashboard'])
+  }
   
   logout(): void {
     this.serviceAuth.logout();

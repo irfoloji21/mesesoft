@@ -7,6 +7,7 @@ import { DashboardComponent } from './account/dashboard/dashboard.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { ForgetPasswordComponent } from './account/forget-password/forget-password.component';
+import { ChangePasswordComponent } from './account/change-password/change-password.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { ContactComponent } from './account/contact/contact.component';
 import { CheckoutComponent } from './account/checkout/checkout.component';
@@ -58,6 +59,10 @@ const routes: Routes = [
   { 
     path: 'forget/password', 
     component: ForgetPasswordComponent 
+  },
+  {
+    path: 'change/password',
+    component: ChangePasswordComponent
   },
   { 
     path: 'profile', 

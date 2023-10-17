@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 // import { GalleryModule } from '@ks89/angular-modal-gallery';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
 
@@ -14,6 +14,7 @@ import { DashboardComponent } from './account/dashboard/dashboard.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { ForgetPasswordComponent } from './account/forget-password/forget-password.component';
+import { ChangePasswordComponent } from './account/change-password/change-password.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { ContactComponent } from './account/contact/contact.component';
 import { CheckoutComponent } from './account/checkout/checkout.component';
@@ -43,6 +44,7 @@ import { MasonryGridThreeComponent } from './portfolio/masonry-grid-three/masonr
 import { MasonryGridFourComponent } from './portfolio/masonry-grid-four/masonry-grid-four.component';
 import { MasonryFullWidthComponent } from './portfolio/masonry-full-width/masonry-full-width.component';
 import { ActivationComponent } from './account/activation/activation.component';
+import { AccountInfoComponent } from './account/account-info/account-info.component';
 
 @NgModule({
   declarations: [
@@ -78,14 +80,18 @@ import { ActivationComponent } from './account/activation/activation.component';
     MasonryGridThreeComponent,
     MasonryGridFourComponent,
     MasonryFullWidthComponent,
-    ActivationComponent
+    ActivationComponent,
+    AccountInfoComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
     GalleryModule,
     LightboxModule,
     SharedModule,
-    PagesRoutingModule
+    PagesRoutingModule, 
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class PagesModule { }

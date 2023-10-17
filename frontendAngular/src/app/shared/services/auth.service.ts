@@ -5,29 +5,29 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+
   private apiUrl = 'http://localhost:8000/api/v2';
   private userId: string | null = null;
   private user: any;
-  
-
-  
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) { 
-     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-     this.isLoggedInSubject.next(isLoggedIn);
-     window.addEventListener('beforeunload', () => {
+  constructor(private http: HttpClient) {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    this.isLoggedInSubject.next(isLoggedIn);
+    window.addEventListener('beforeunload', () => {
       localStorage.setItem('isLoggedIn', this.isLoggedInSubject.value ? 'true' : 'false');
     });
   }
+
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post<any>(`${this.apiUrl}/user/login-user`, body, { headers, withCredentials: true })
       .pipe(tap(user => {
         if (user.success) {
-          localStorage.setItem('isLoggedIn', 'true'); 
+          localStorage.setItem('isLoggedIn', 'true');
           this.isLoggedInSubject.next(true);
         } else {
           this.isLoggedInSubject.next(false);
@@ -40,27 +40,29 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
     this.user = null;
   }
+
   register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
-    const data = {firstName,lastName,email, password};
-  
+    const data = { firstName, lastName, email, password };
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post<any>(`${this.apiUrl}/user/create-user`, data, { headers, withCredentials: true })
       .pipe(tap(user => this.user = user));
   }
-  
 
   setUserId(userId: string) {
     this.userId = userId;
     console.log("user id setUserId", userId);
   }
+
   getUserId(): string | null {
     console.log("user id getUserId", this.userId);
     return this.userId;
   }
+
   loadUser(): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.get<any>(`${this.apiUrl}/user/getuser`, { headers, withCredentials: true });
   }
+
   async initUser(): Promise<void> {
     try {
       const response = await this.loadUser().toPromise();
@@ -70,15 +72,27 @@ export class AuthService {
       console.error('Kullanıcı bilgileri yüklenirken hata oluştu:', error);
     }
   }
+
   setUser(user: any): void {
     this.user = user;
   }
+  
   getUser(): any {
     return this.user;
   }
 
   activateUser(activation_token: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/user/activation`, { activation_token });
+  }
+
+  updateUserPassword(oldPassword: string, newPassword: string, confirmPassword: string) {
+    return this.http.put('/api/update-user-password', { oldPassword, newPassword, confirmPassword });
+  }
+
+  updateUser(userInfo: any, ): Observable<any> {
+    // Kullanıcı bilgilerini güncellemek için API'ye istek gönder
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put<any>(`${this.apiUrl}/user/update-user-info`, userInfo, { headers, withCredentials: true });
   }
 }
 
