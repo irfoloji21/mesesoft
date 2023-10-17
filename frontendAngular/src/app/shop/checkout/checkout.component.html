@@ -153,7 +153,7 @@
                                     <ul class="qty" *ngIf='products.length'>
                                         <li *ngFor="let product of products">
                                         	 {{ product.name }} × {{ product.quantity }}
-                                        	<span>
+                                        	<span [formControl]="checkoutForm.controls['amount']">
                                                 {{ product.originalPrice  | currency  }}
                                             </span>
                                         </li>

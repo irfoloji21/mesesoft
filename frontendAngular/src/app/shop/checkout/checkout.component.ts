@@ -33,7 +33,8 @@ export class CheckoutComponent implements OnInit {
       country: ['', Validators.required],
       town: ['', Validators.required],
       state: ['', Validators.required],
-      postalcode: ['', Validators.required]
+      postalcode: ['', Validators.required],
+      amount: [''],
     })
   }
 
@@ -68,7 +69,8 @@ stripeCheckout() {
         country: this.checkoutForm.get('country')?.value,
         town: this.checkoutForm.get('town')?.value,
         state: this.checkoutForm.get('state')?.value,
-        postalcode: this.checkoutForm.get('postalcode')?.value
+        postalcode: this.checkoutForm.get('postalcode')?.value,
+        amount: this.checkoutForm.get('amount')?.value,
       };
 
 
