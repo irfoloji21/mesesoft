@@ -16,11 +16,6 @@
                         </span>
                     </div>
                     <div class="block-content">
-                        <div class="welcome-msg" *ngIf="userInf">
-                            <img [src]="userInf.profilePicture" alt="Profile Picture" class="profile-picture">
-                            <p class="username">Hello,  {{ userInf.firstName }} {{ userInf.lastName }}!</p>
-                            <span class="email">{{ userInf.email }}</span>
-                        </div>
                         <ul>
                             <li *ngFor="let item of menuItems" class="nav-item">
                                 <a class="nav-link" (click)="selectMenuItem(item)" style="cursor: pointer">{{ item.label }}</a>

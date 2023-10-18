@@ -86,7 +86,8 @@ export class AuthService {
   }
 
   updateUserPassword(oldPassword: string, newPassword: string, confirmPassword: string) {
-    return this.http.put('/api/update-user-password', { oldPassword, newPassword, confirmPassword });
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put(`${this.apiUrl}/user/update-user-password`, { oldPassword, newPassword, confirmPassword }, { headers, withCredentials: true });
   }
 
   updateUser(userInfo: any, ): Observable<any> {

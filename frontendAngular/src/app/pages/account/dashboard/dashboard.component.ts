@@ -7,6 +7,7 @@ import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { AccountInfoComponent } from '../account-info/account-info.component';
 import { AddressComponent } from '../address/address/address.component';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
     { label: 'My Wishlist', component: WishlistComponent },
     { label: 'Newsletter', component: ForgetPasswordComponent },
     { label: 'My Account', component: ProfileComponent },
-    { label: 'Change Passwort', component: ForgetPasswordComponent },
+    { label: 'Change Passwort', component: ChangePasswordComponent },
   ];
 
   selectedMenuItem: any;
