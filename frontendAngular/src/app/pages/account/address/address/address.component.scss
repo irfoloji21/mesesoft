@@ -1,0 +1,89 @@
+.card-body {
+    flex: 1 1 auto;
+    
+    .top-sec {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      h3 {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+  
+      .btn {
+        font-size: 1rem;
+      }
+    }
+  
+    .address-book-section {
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+  
+        .select-box {
+          flex: 1 0 calc(50% - 1rem);
+          min-width: 0;
+  
+          .address-box {
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            padding: 1rem;
+  
+            .top {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+  
+              h6 {
+                font-size: 1.25rem;
+                margin: 0;
+                span {
+                  font-size: 1rem;
+                  color: #00a8e8; 
+                }
+              }
+            }
+  
+            .middle {
+              .address {
+                p {
+                  margin: 0;
+                }
+              }
+  
+              .number {
+                p {
+                  margin: 0;
+                  span {
+                    font-weight: bold;
+                  }
+                }
+              }
+            }
+  
+            .bottom {
+              display: flex;
+              justify-content: space-between;
+  
+              .bottom_btn {
+                text-decoration: none;
+                padding: 0.25rem 0.5rem;
+                border: 1px solid #888;
+                border-radius: 0.25rem;
+                color: #888;
+                font-size: 1rem;
+  
+                &:hover {
+                  background-color: #888;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

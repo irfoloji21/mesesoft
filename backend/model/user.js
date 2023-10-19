@@ -26,24 +26,27 @@ const userSchema = new mongoose.Schema({
   },
   addresses:[
     {
-      country: {
-        type: String,
+      flatPlot: {
+        type: Number,
       },
-      city:{
-        type: String,
-      },
-      address1:{
-        type: String,
-      },
-      address2:{
+      address:{
         type: String,
       },
       zipCode:{
         type: Number,
       },
-      addressType:{
+      country:{
         type: String,
       },
+      city:{
+        type: String,
+      },
+      regionState:{
+        type: String,
+      },
+      addressType:{
+        type: String,
+      }
     }
   ],
   role:{

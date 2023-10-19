@@ -35,6 +35,16 @@ export class AuthService {
       }));
   }
 
+  updateUserAddress(addressData: any): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put<any>(`${this.apiUrl}/user/update-user-addresses`,addressData,{ headers, withCredentials: true });
+  }
+  deleteUserAddress(addressId: string): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.delete<any>(`${this.apiUrl}/user/delete-user-address/${addressId}`, { headers, withCredentials: true });
+  }
+  
+
   logout(): void {
     localStorage.removeItem('isLoggedIn');
     this.isLoggedInSubject.next(false);
