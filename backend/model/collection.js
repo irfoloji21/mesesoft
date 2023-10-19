@@ -18,7 +18,7 @@ const collectionSchema = new mongoose.Schema({
           required: false,
         },
      },
-    save: {
+    saving: {
       type: Number,
     },
     description: {

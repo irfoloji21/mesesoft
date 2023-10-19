@@ -99,13 +99,10 @@ export class DigitalSubCategoryComponent implements OnInit {
             const supercategoryId = selectedSupercategory._id; // Üst kategori ID'si
             console.log('Üst Kategori ID:', supercategoryId);
   
-            this.categoryService.getCategoryById(supercategoryId).subscribe(
-              (superCategory) => {
-                
-  
                 // Subcategories'i güncelleyin
                 this.categoryService.addSubCategory(supercategoryId, irfan).subscribe(
-                  () => {
+                  (response) => {
+                    console.log(response)
                     console.log('Üst Kategori Subcategories Güncellendi');
                     // İşlem tamamlandığında yönlendirme yapın (bu her üst kategori için ayrı ayrı olabilir)
                     this.router.navigate(['/products/digital/digital-sub-category']);
@@ -114,19 +111,14 @@ export class DigitalSubCategoryComponent implements OnInit {
                     console.error('Üst Kategori Subcategories Güncellenirken Hata:', error);
                   }
                 );
-              },
-              (error) => {
-                console.error('Üst Kategori Alınamadı:', error);
-              }
-            );
+              })
           });
-        },
+        }
         (error) => {
           console.error('Yeni Kategori Oluşturulurken Hata:', error);
         }
-      );
     }
-  }
+  
   
   
 
