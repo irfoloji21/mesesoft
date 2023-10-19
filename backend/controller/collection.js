@@ -27,7 +27,7 @@ router.post(
         
           for (let i = 0; i < images.length; i++) {
             const result = await cloudinary.v2.uploader.upload(images[i], {
-              folder: "categories",
+              folder: "collections",
             });
         
             imagesLinks.push({
@@ -39,12 +39,12 @@ router.post(
       
           
           
-          const { name, save, description } = req.body;
+          const { name, saving, description } = req.body;
 
-          
+          console.log(req.body + "body")
 
 
-            console.log(typeof images + "images")
+            console.log(typeof images + "images") 
 
             const shopId = req.body.shopId;
             
@@ -53,15 +53,11 @@ router.post(
               return next(new ErrorHandler("Shop Id is invalid!", 400));
             }  else {
 
-                const myCloud = await cloudinary.v2.uploader.upload(s, {
-                    folder: "collection",
-                  });
-         
       
                   const collectionData = new Collection( {
                     name: name,
                     images: imagesLinks,
-                    save: save,
+                    saving: saving,
                     description: description,
                     shopId: shopId,
                     shop: shop,

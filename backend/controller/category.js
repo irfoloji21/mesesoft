@@ -140,29 +140,34 @@ router.put(
       try {
         const categoryId = req.params.id;
         const newSubCategories = Array.isArray(req.body) ? req.body : [req.body];
+        const superCategory = await Category.findById(categoryId);
   
-        const existingCategory = await Category.findById(categoryId);
-  
-        if (!existingCategory) {
+        if (!superCategory) {
           return next(new ErrorHandler("Category not found", 404));
         }
+        // console.log(newSubCategories, "newSubCategories")
+   
   
-        // Eğer existingCategory.subCategories bir dizi değilse veya boşsa, yeni subCategories'i mevcut dizinin yerine ata
-        if (!Array.isArray(existingCategory.subCategories) || existingCategory.subCategories.length === 0) {
-          existingCategory.subCategories = newSubCategories;
+        // Eğer superCategory.subcategories bir dizi değilse veya boşsa, yeni subcategories'i mevcut dizinin yerine ata
+        if (!Array.isArray(superCategory.subcategories) || superCategory.subcategories.length === 0) {
+          superCategory.subcategories = newSubCategories;
+          console.log("ife girdi")
         } else {
-          // Eğer existingCategory.subCategories bir dizi ise, yeni subCategories'i mevcut dizinin sonuna ekleyin
-          existingCategory.subCategories = existingCategory.subCategories.push(newSubCategories);
+          // Eğer superCategory.subcategories bir dizi ise, yeni subcategories'i mevcut dizinin sonuna ekleyin
+
+          const irfan = superCategory.subcategories.concat(newSubCategories);
+          superCategory.subcategories = irfan;
+          console.log("elseye girdi")
         }
 
-        console.log(existingCategory.subCategories)
+        console.log(superCategory.subcategories)
   
-        await existingCategory.save();
+        await superCategory.save();
   
         res.status(200).json({
           success: true,
           message: "Subcategories added successfully!",
-          category: existingCategory,
+          category: superCategory,
         });
       } catch (error) {
         return next(new ErrorHandler(error, 400));
