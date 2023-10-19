@@ -4,7 +4,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Digital Sub Category</h5>
+                    <h5>Sub Categories</h5>
                 </div>
                 <div class="card-body">
                     <div class="btn-popup pull-right">
@@ -12,30 +12,42 @@
                             data-target="#exampleModal" (click)="open(content)">Add Sub Category</button>
                         <ng-template #content let-modal>
                             <div class="modal-header">
-                                <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Digital Product</h5>
+                                <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Sub Category</h5>
                                 <button type="button" class="close" aria-label="Close"
                                     (click)="modal.dismiss('Cross click')">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="needs-validation">
+                                <form (ngSubmit)="onSubmit()" class="needs-validation"  [formGroup]="myForm">
                                     <div class="form">
-                                        <div class="form-group">
-                                            <label for="validationCustom01" class="mb-1">Sub Category Name :</label>
-                                            <input class="form-control" id="validationCustom01" type="text">
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            <label for="validationCustom02" class="mb-1">Sub Category Image :</label>
-                                            <input class="form-control" id="validationCustom02" type="file">
-                                        </div>
+                                      <div class="form-group">
+                                        <label for="validationCustom01" class="mb-1">Category Name :</label>
+                                        <input class="form-control" formControlName="name" id="validationCustom01" type="text">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="validationCustom01" class="mb-1">Category Text :</label>
+                                        <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="validationCustom02" class="mb-1">Category Image :</label>
+                                        <input class="form-control" formControlName="images" id="validationCustom02" type="file" (change)="onFileChange($event)">
+                                      </div>
+                                     
+                                        <ng-multiselect-dropdown
+                                      [settings]="dropdownSettings"
+                                      [data]="categories"
+                                      [(ngModel)]="supercategory"
+                                      formControlName="supercategory"
+                                    >
+                                    </ng-multiselect-dropdown>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" >Save</button>
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal"
-                                    (click)="modal.dismiss('Cross click')">Close</button>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" >Save</button>
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal"
+                                            (click)="modal.dismiss('Cross click')">Close</button>
+                                    </div>
+                                  </form>
                             </div>
                         </ng-template>
                     </div>
@@ -45,27 +57,21 @@
                                 <thead>
                                 <tr>
                                 <th scope="col">#</th>
-                                <th scope="col" sortable="img" (sort)="onSort($event)">Image</th>
-                                <th scope="col" sortable="product_name" (sort)="onSort($event)" >Name</th>
-                                <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
-                                <th scope="col" sortable="status" (sort)="onSort($event)">Status</th>
-                                <th scope="col" sortable="category" (sort)="onSort($event)">Category</th>
-                                <th scope="col" sortable="action" (sort)="onSort($event)">Actions</th>
+                                <th scope="col" sortable="img" (sort)="onSort($event)" >Image</th>
+                                <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+                                <th scope="col" sortable="action" (sort)="onSort($event)" >Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let catgory of tableItem$ | async">
-                                <th scope="row">{{ catgory.id }}</th>
+                                <tr *ngFor="let catgory of categories">
+                                <th scope="row">{{ catgory._id }}</th>
                                 <td>
-                                    <img [src]="catgory.img" class="imgTable" style="width: 20px">
+                                    <img [src]="catgory.images[0]" class="imgTable" style="width: 20px">
                                 </td>
-                                    <td>{{ catgory.product_name }}</td>
-                                <td>{{ catgory.price }}</td>
-                                <td><i class='fa fa-circle {{catgory.status}} f-12'></i></td>
-                                <td>{{ catgory.category}}</td>
+                                    <td>{{ catgory.name }}</td>
                                 <td>
                                     <a href="javascript:void(0)"><i class='fa fa-edit f-12'></i></a>&nbsp;
-                                    <a href="javascript:void(0)"><i class="fa fa-trash-o"></i></a>
+                                    <a href="javascript:void(0)" (click)="deleteCategory(catgory._id)"><i class="fa fa-trash-o"></i></a>
                                 </td>
                                 </tr>
                                 </tbody>

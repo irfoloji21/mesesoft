@@ -15,6 +15,14 @@ export class CategoryService {
     return this.http.get<any>(`${this.apiUrl}/category/get-all-categories`);
   }
 
+  getCategoryById(id): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/category/get-category/${id}`);
+  }
+
+  addSubCategory(id, subCategories): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/category/add-subcategories/${id}`, subCategories);
+  }
+
   createCategory(categoryData): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/category/create-category`, categoryData);
   }

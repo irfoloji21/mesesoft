@@ -89,7 +89,7 @@ export class DigitalCategoryComponent implements OnInit {
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
           console.log('Kategori başarıyla oluşturuldu:', response);
-          this.router.navigate(['/digital/digital-category']);
+          this.router.navigate(['/products/digital/digital-category']);
         },
         (error) => {
           console.error('Kategori oluşturulurken hata oluştu:', error);
@@ -126,7 +126,7 @@ export class DigitalCategoryComponent implements OnInit {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {
         console.log('Kategori başarıyla silindi:', response);
-        this.router.navigate(['/digital/digital-category']);
+        this.router.navigate(['/products/digital/digital-category']);
       },
       (error) => {
         console.error('Kategori silinirken hata oluştu:', error);

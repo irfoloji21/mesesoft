@@ -14,25 +14,53 @@ router.post(
     "/create-collection",
     catchAsyncErrors(async (req, res, next) => {
         try {
-            const { name, save, description, image } = req.body;
+
+          let images = [];
+
+          if (typeof req.body.images === "string") {
+            images.push(req.body.images);
+          } else {
+            images = req.body.images;
+          }
+        
+          const imagesLinks = [];
+        
+          for (let i = 0; i < images.length; i++) {
+            const result = await cloudinary.v2.uploader.upload(images[i], {
+              folder: "categories",
+            });
+        
+            imagesLinks.push({
+              public_id: result.public_id,
+              url: result.secure_url,
+            });
+          }
+        
+      
+          
+          
+          const { name, save, description } = req.body;
+
+          
+
+
+            console.log(typeof images + "images")
 
             const shopId = req.body.shopId;
+            
             const shop = await Shop.findById(shopId);
             if (!shop) {
               return next(new ErrorHandler("Shop Id is invalid!", 400));
-            } else {
+            }  else {
 
-                const myCloud = await cloudinary.v2.uploader.upload(image, {
+                const myCloud = await cloudinary.v2.uploader.upload(s, {
                     folder: "collection",
                   });
          
       
                   const collectionData = new Collection( {
                     name: name,
-                    image: {
-                      public_id: myCloud.public_id,
-                      url: myCloud.secure_url,
-                    },
+                    images: imagesLinks,
                     save: save,
                     description: description,
                     shopId: shopId,
@@ -51,7 +79,7 @@ router.post(
           } catch (error) {
             
             error = JSON.stringify(error);
-            return next(new ErrorHandler(error, 404));
+            return next(new ErrorHandler(error, 400));
           }
     })
   );

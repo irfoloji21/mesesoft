@@ -6,6 +6,10 @@ import { DecimalPipe } from '@angular/common';
 import { TableService } from 'src/app/shared/service/table.service';
 import { SortEvent } from 'src/app/shared/directives/shorting.directive';
 import { NgbdSortableHeader } from "src/app/shared/directives/NgbdSortableHeader";
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { CollectionService } from 'src/app/shared/service/collection.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
   selector: 'app-category',
@@ -16,6 +20,8 @@ import { NgbdSortableHeader } from "src/app/shared/directives/NgbdSortableHeader
 
 
 export class CategoryComponent implements OnInit {
+  myForm:FormGroup;
+  
   public closeResult: string;
 
   searchText;
@@ -24,10 +30,24 @@ export class CategoryComponent implements OnInit {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: TableService, private modalService: NgbModal) {
+  constructor(
+    private router: Router,
+    public service: TableService, 
+    private modalService: NgbModal,
+    public collectionService: CollectionService,
+    public authService: AuthService,
+    private fb: UntypedFormBuilder,
+    ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(CATEGORY)
+
+    this.myForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      save: ['', Validators.required],
+      images: ['', Validators.required],
+    });
   }
 
   onSort({ column, direction }) {
@@ -60,6 +80,59 @@ export class CategoryComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  onSubmit() {
+
+    const shop = this.authService.getShop();
+
+      
+    console.log("form submitted");
+    if (this.myForm.valid) {
+      const formData = this.myForm.value;
+    
+      formData.shopId = shop.seller._id;
+      formData.shop = shop;
+     console.log(this.myForm.value);
+      
+
+      console.log('formData:', formData);
+      this.collectionService.createCollection(formData).subscribe(
+        (response) => {
+          console.log('Koleksiyon başarıyla oluşturuldu:', response);
+          this.router.navigate(['/physical/category']);
+        },
+        (error) => {
+          console.error('Kategori oluşturulurken hata oluştu:', error);
+        }
+      );
+    }
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      const files: FileList = event.target.files;
+    
+      const imageUrls = [];
+    
+      for (let j = 0; j < files.length; j++) {
+        const file = files[j];
+        const reader = new FileReader();
+    
+        reader.onload = (e: any) => {
+          imageUrls.push(e.target.result);
+          // Dosyanın adı için
+          const fileName = file.name;
+          // imageUrls ve fileName'i kullanabilirsiniz.
+          console.log('imageUrls:', imageUrls);
+          console.log('Dosya Adı:', fileName);
+        };
+    
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+  
+  
 
 
   ngOnInit() {

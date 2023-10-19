@@ -209,21 +209,23 @@ router.put("/update-avatar", isAuthenticated, upload.single("image"), catchAsync
     }
 }));
 
-// update user addresses
-router.put("/update-user-addresses", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
+// update user addresses. isAuthenticated sildim postman için, geri ekleyeceğimdir
+router.put("/update-user-addresses", catchAsyncErrors(async (req, res, next) => {
     try {
-        const user = await User.findById(req.user.id);
+        console.log(req.body.userId)
+        const user = await User.findById(req.body.userId);
+        console.log(user)
 
         const sameTypeAddress = user.addresses.find((address) => address.addressType === req.body.addressType);
-        if(sameTypeAddress){
+        if (sameTypeAddress) {
             return next(new ErrorHandler(`${req.body.addressType} Bu adres zaten var`, 400));
         }
 
-        const existsAddress = user.addresses.find((address) => address._id === req.body._id);
-
-        if(existsAddress){
-            Object.assign(existsAddress, req.body);
+        const existsAddress = user.addresses.id(req.body._id); 
+        if (existsAddress) {
+            existsAddress.set(req.body);
         } else {
+            console.log(req.body)
             user.addresses.push(req.body);
         }
 
@@ -237,6 +239,7 @@ router.put("/update-user-addresses", isAuthenticated, catchAsyncErrors(async(req
         return next(new ErrorHandler(error.message, 500));
     }
 }));
+
 
 // delete user address
 router.delete("/delete-user-address/:id", isAuthenticated, catchAsyncErrors(async(req,res,next) => {

@@ -134,6 +134,44 @@ router.put(
     })
   );
   
+  router.put(
+    "/add-subcategories/:id",
+    catchAsyncErrors(async (req, res, next) => {
+      try {
+        const categoryId = req.params.id;
+        const newSubCategories = Array.isArray(req.body) ? req.body : [req.body];
+  
+        const existingCategory = await Category.findById(categoryId);
+  
+        if (!existingCategory) {
+          return next(new ErrorHandler("Category not found", 404));
+        }
+  
+        // Eğer existingCategory.subCategories bir dizi değilse veya boşsa, yeni subCategories'i mevcut dizinin yerine ata
+        if (!Array.isArray(existingCategory.subCategories) || existingCategory.subCategories.length === 0) {
+          existingCategory.subCategories = newSubCategories;
+        } else {
+          // Eğer existingCategory.subCategories bir dizi ise, yeni subCategories'i mevcut dizinin sonuna ekleyin
+          existingCategory.subCategories = existingCategory.subCategories.push(newSubCategories);
+        }
+
+        console.log(existingCategory.subCategories)
+  
+        await existingCategory.save();
+  
+        res.status(200).json({
+          success: true,
+          message: "Subcategories added successfully!",
+          category: existingCategory,
+        });
+      } catch (error) {
+        return next(new ErrorHandler(error, 400));
+      }
+    })
+  );
+  
+  
+  
   
 
 router.delete(

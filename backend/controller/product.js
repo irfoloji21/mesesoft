@@ -233,17 +233,14 @@ router.get(
 router.get('/search/:keyword', async (req, res) => {
   const searchTerm = req.params.keyword;
 
-  console.log(searchTerm)
-
-
   const products = await Product.find({
     $or: [
+      // büyük küçük harf ayırt etmeksizin search yapar
       { name: { $regex: searchTerm, $options: 'i' } }, 
       { description: { $regex: searchTerm, $options: 'i' } }, 
     ],
   });
 
   res.json(products);
-  console.log(products)
 });
 module.exports = router;

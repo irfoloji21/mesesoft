@@ -6,16 +6,16 @@ const collectionSchema = new mongoose.Schema({
   },
     productIds:{
         type: Array,
-        required: true,
+        required: false,
     },
     image:{
         public_id: {
           type: String,
-          required: true,
+          required: false,
         },
         url: {
           type: String,
-          required: true,
+          required: false,
         },
      },
     save: {
