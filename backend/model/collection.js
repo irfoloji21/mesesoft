@@ -8,7 +8,8 @@ const collectionSchema = new mongoose.Schema({
         type: Array,
         required: false,
     },
-    image:{
+    images: [
+      {
         public_id: {
           type: String,
           required: false,
@@ -17,7 +18,8 @@ const collectionSchema = new mongoose.Schema({
           type: String,
           required: false,
         },
-     },
+      },
+    ],
     saving: {
       type: Number,
     },

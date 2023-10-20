@@ -16,7 +16,8 @@ export class CollectionService {
   // }
 
   createCollection(collectionData): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/collection/create-collection`, collectionData);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(`${this.apiUrl}/collection/create-collection`, collectionData, { headers, withCredentials: true });
   }
 
   // deleteCategory(id): Observable<any> {

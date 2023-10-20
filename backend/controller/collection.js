@@ -14,37 +14,43 @@ router.post(
     "/create-collection",
     catchAsyncErrors(async (req, res, next) => {
         try {
+          ///////// FAKEPATH YÜZÜNDEN RESİM YÜKLENMİYOR
+        // console.log("1")
+        //   let images = [];
+        //   console.log("2")
 
-          let images = [];
+        //   if (typeof req.body.images === "string") {
+        //     images.push(req.body.images);
+        //   } else {
+        //     images = req.body.images;
+        //   }
+        //   console.log("3")
 
-          if (typeof req.body.images === "string") {
-            images.push(req.body.images);
-          } else {
-            images = req.body.images;
-          }
+        //   const imagesLinks = [];
+        // console.log(req.body.images)
+       
+        //     const result = await cloudinary.v2.uploader.upload(images, {
+        //       folder: "collections",
+        //     });
+        //     console.log("5")
+
+        //     imagesLinks.push({
+        //       public_id: result.public_id, 
+        //       url: result.secure_url,
+        //     });
+        //     console.log("6")
+
         
-          const imagesLinks = [];
-        
-          for (let i = 0; i < images.length; i++) {
-            const result = await cloudinary.v2.uploader.upload(images[i], {
-              folder: "collections",
-            });
-        
-            imagesLinks.push({
-              public_id: result.public_id,
-              url: result.secure_url,
-            });
-          }
-        
-      
+        //   console.log("7")
+
           
           
-          const { name, saving, description } = req.body;
+          // const { name, saving, description } = req.body;
 
-          console.log(req.body + "body")
+       
 
 
-            console.log(typeof images + "images") 
+             console.log("8") 
 
             const shopId = req.body.shopId;
             
@@ -55,10 +61,10 @@ router.post(
 
       
                   const collectionData = new Collection( {
-                    name: name,
-                    images: imagesLinks,
-                    saving: saving,
-                    description: description,
+                    name: req.body.name,
+                    // images: imagesLinks,
+                    saving: req.body.saving,
+                    description: req.body.description,
                     shopId: shopId,
                     shop: shop,
                   });
@@ -87,6 +93,7 @@ router.post(
       try {
         const { collectionId } = req.params;
         const { productIds } = req.body;
+        console.log(productIds + "productIds")
   
         const collection = await Collection.findById(collectionId);
   
