@@ -20,17 +20,17 @@ export class DashboardComponent implements OnInit {
   userInitials: string;
   public openDashboard: boolean = false;
 
-  constructor(private serviceAuth: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private serviceAuth: AuthService, private router: Router) { }
 
   menuItems = [
-    { label: 'Account Info', componentName: 'account-info', component: AccountInfoComponent },
-    { label: 'Address Book', componentName: 'address', component: AddressComponent },
-    { label: 'My Orders', componentName: 'wishlist', component: ForgetPasswordComponent },
-    { label: 'My Wishlist', componentName: 'account/wishlist', component: WishlistComponent },
-    { label: 'Newsletter', componentName: 'forget/password', component: ForgetPasswordComponent },
-    { label: 'My Account', componentName: 'profile', component: ProfileComponent },
-    { label: 'Change Passwort', componentName: 'change/password', component: ChangePasswordComponent },
-  ];
+    { label: 'Account Info', component: AccountInfoComponent },
+    { label: 'Address Book', component: AddressComponent },
+    { label: 'My Orders', component: ForgetPasswordComponent },
+    { label: 'My Wishlist', component: WishlistComponent },
+    { label: 'Newsletter', component: ForgetPasswordComponent },
+    { label: 'My Account', component: ProfileComponent },
+    { label: 'Change Passwort', component: ChangePasswordComponent },
+  ]
 
   selectedMenuItem: any;
 
@@ -39,21 +39,11 @@ export class DashboardComponent implements OnInit {
       this.userInf  =res.user ; 
       this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);
      })
-
-     this.route.params.subscribe(params => {
-      const componentName = params['componentName'];
-
-      if (componentName) {
-        // Burada route parametresine göre uygun componenti seçin
-        this.selectedMenuItem = this.menuItems.find(item => item.componentName === componentName);
-      } else {
-        this.selectedMenuItem = this.menuItems[0];
-      }
-    });
+     this.selectedMenuItem = this.menuItems[0];
   }
 
   selectMenuItem(item: any): void {
-    this.router.navigate(['/pages/dashboard', { componentName: item.componentName }]);
+    this.selectedMenuItem = item;
   }
   
   logout(): void {

@@ -214,7 +214,7 @@ router.put("/update-user-addresses", catchAsyncErrors(async (req, res, next) => 
         const user = await User.findById(req.body.userId);
         console.log(user)
 
-        const sameTypeAddress = user.addresses.find((address) => address.addressType === req.body.addressType);
+        const sameTypeAddress = user.addresses.find((addresses) => addresses.addressType === req.body.addressType);
         if (sameTypeAddress) {
             return next(new ErrorHandler(`${req.body.addressType} Bu adres zaten var`, 400));
         }

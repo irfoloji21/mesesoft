@@ -14,13 +14,11 @@ export class AddressComponent implements OnInit {
   form: FormGroup;
   isAddingNew: boolean = false; 
   userAddresses: any[] = [];
-  editedAddress: any = null;
-
+  buttonText: string = 'Save Setting';
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService, 
-    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +34,7 @@ export class AddressComponent implements OnInit {
     this.authService.loadUser().subscribe(
       (res) => {
         this.userAddresses = res.user.addresses;
+        console.log(res.user , "res.user")
         console.log(this.userAddresses , "resddreses")
       },
       (error) => {
@@ -60,27 +59,26 @@ export class AddressComponent implements OnInit {
 
   addressSubmit() {
     if (this.form.valid) {
-       
-        const formData = this.form.value;
-        console.log(formData, "formData");
-        this.authService.updateUserAddress(formData).subscribe(
-          (response) => {
-            console.log(response, "User");
-            this.toastr.success('Address added successfully', 'Success');
-            this.form.reset();
-          },
-          (error) => {
-            console.error(error);
-            this.toastr.error('An error occurred', 'Error');
-          }
+      const formData = this.form.value;
+      this.authService.updateUserAddress(formData).subscribe(
+        (response) => {
+          this.toastr.success('Address added successfully', 'Success');
+          this.loadUserAddresses();
+          this.isAddingNew = false; 
+          this.form.reset();
+        },
+        (error) => {
+          console.error(error);
+          this.toastr.error('An error occurred', 'Error');
+          this.form.reset();
+        }
       );
     }
   }
 
+  
   editAddress(address: any) {
-    
     this.form.patchValue({
-      _id: address._id,
       addressType: address.addressType,
       flatPlot: address.flatPlot,
       address: address.address,
@@ -88,16 +86,14 @@ export class AddressComponent implements OnInit {
       country: address.country,
       city: address.city,
       regionState: address.regionState,
+      userId: address._id
     });
-    this.editedAddress = address;
-    this.isAddingNew = true;
-  }
 
-  cancelEditing() {
-    this.editedAddress = null;
-    this.form.reset(); // Formu sıfırlayın
-    this.location.back();
-  }
+    this.isAddingNew = true; 
+    this.buttonText = 'Edit Setting'; 
+}
+
+  
 
   deleteAddress(addressId: string) {
       this.authService.deleteUserAddress(addressId).subscribe(

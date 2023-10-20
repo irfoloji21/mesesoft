@@ -222,9 +222,9 @@ export class ProductService {
       return product.reduce((prev, curr: Product) => {
         let price = curr.originalPrice;
         if(curr.discountPrice) {
-          price = curr.originalPrice + (curr.originalPrice * curr.discountPrice / 100)
+          price = (curr.originalPrice + (curr.originalPrice * curr.discountPrice / 100))
         }
-        return (prev + price * curr.quantity) ;
+        return  Math.floor(prev + price * curr.quantity);
       }, 0);
     }));
   }

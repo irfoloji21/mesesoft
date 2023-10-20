@@ -51,90 +51,95 @@ export class CheckoutComponent implements OnInit {
   }
 
   // Stripe Payment Gateway
-stripeCheckout() {
-  var handler = (<any>window).StripeCheckout.configure({
-    key: environment.stripe_token, 
-    locale: 'auto', 
-
-    token: (token: any) => {
-      var stripeToken = token.id;
-
-
-      var order = {
-        firstname: this.checkoutForm.get('firstname')?.value,
-        lastname: this.checkoutForm.get('lastname')?.value,
-        phone: this.checkoutForm.get('phone')?.value,
-        email: this.checkoutForm.get('email')?.value,
-        address: this.checkoutForm.get('address')?.value,
-        country: this.checkoutForm.get('country')?.value,
-        town: this.checkoutForm.get('town')?.value,
-        state: this.checkoutForm.get('state')?.value,
-        postalcode: this.checkoutForm.get('postalcode')?.value,
-        amount: this.checkoutForm.get('amount')?.value,
-      };
-
-
-      this.orderService.createOrder(this.products, order, token.id, this.amount);
-      this.toasts.success('The payoff is successful')
-    }
-  });
-
-  // Ödeme penceresini aç
-  handler.open({
-    name: 'Mese soft', 
-    description: 'Mese Store', 
-    amount: this.amount  
-  });
-}
+  stripeCheckout() {
+    var handler = (<any>window).StripeCheckout.configure({
+      key: environment.stripe_token,
+      locale: 'auto',
+      token: (token: any) => {
+        var stripeToken = token.id;
+  
+        var order = {
+          firstname: this.checkoutForm.get('firstname')?.value,
+          lastname: this.checkoutForm.get('lastname')?.value,
+          phone: this.checkoutForm.get('phone')?.value,
+          email: this.checkoutForm.get('email')?.value,
+          address: this.checkoutForm.get('address')?.value,
+          country: this.checkoutForm.get('country')?.value,
+          town: this.checkoutForm.get('town')?.value,
+          state: this.checkoutForm.get('state')?.value,
+          postalcode: this.checkoutForm.get('postalcode')?.value,
+          amount: this.checkoutForm.get('amount')?.value,
+        };
+  
+        this.orderService.createOrder(this.products, order, token.id, this.amount, this.checkoutForm.get('email')?.value); 
+        this.toasts.success('The payoff is successful');
+      }
+    });
+    // Ödeme penceresini aç
+    handler.open({
+      name: 'Mese soft',
+      description: 'Mese Store',
+      amount: this.amount,
+      email: this.checkoutForm.get('email')?.value
+    });
+  }
+  
+  
 
   // Paypal Payment Gateway
   private initConfig(): void {
     this.payPalConfig = {
-        currency: this.productService.Currency.currency,
-        clientId: environment.paypal_token,
-        createOrderOnClient: (data) => < Product > {
+      currency: this.productService.Currency.currency,
+      clientId: environment.paypal_token,
+      createOrderOnClient: (data) => {
+        return {
           intent: 'CAPTURE',
           purchase_units: [{
-              amount: {
-                currency_code: this.productService.Currency.currency,
-                value: this.amount,
-                breakdown: {
-                    item_total: {
-                        currency_code: this.productService.Currency.currency,
-                        value: this.amount
-                    }
+            amount: {
+              currency_code: this.productService.Currency.currency,
+              value: this.amount,
+              breakdown: {
+                item_total: {
+                  currency_code: this.productService.Currency.currency,
+                  value: this.amount
                 }
               }
-          }]
+            }
+          }],
+          payer: {
+            email_address: this.checkoutForm.get('email')?.value 
+          }
+        };
       },
-        advanced: {
-            commit: 'true'
-        },
-        style: {
-            label: 'paypal',
-            size:  'small', // small | medium | large | responsive
-            shape: 'rect', // pill | rect
-        },
-        onApprove: (data, actions) => {
-            this.orderService.createOrder(this.products, this.checkoutForm.value, data.orderID, this.getTotal);
-            console.log('onApprove - transaction was approved, but not authorized', data, actions);
-            actions.order.get().then(details => {
-                console.log('onApprove - you can get full order details inside onApprove: ', details);
-            });
-        },
-        onClientAuthorization: (data) => {
-            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        },
-        onCancel: (data, actions) => {
-            console.log('OnCancel', data, actions);
-        },
-        onError: err => {
-            console.log('OnError', err);
-        },
-        onClick: (data, actions) => {
-            console.log('onClick', data, actions);
-        }
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        size:  'small', // small | medium | large | responsive
+        shape: 'rect', // pill | rect
+      },
+      onApprove: (data, actions) => {
+        this.orderService.createOrder(this.products, this.checkoutForm.value, data.orderID, this.getTotal, this.checkoutForm.get('email')?.value);
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(details => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+      },
+      onError: err => {
+        console.log('OnError', err);
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+      }
     };
   }
+  
 
 }
