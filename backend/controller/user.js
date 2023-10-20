@@ -57,8 +57,7 @@ router.post("/create-user", async (req, res, next) => {
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }
-  });
-  
+});  
 
 //creaate activation token
 const createActivationToken = (user) => {
@@ -142,7 +141,6 @@ router.get("/getuser", isAuthenticated, catchAsyncErrors(async(req,res,next) => 
         return next(new ErrorHandler(error.message, 500))
     }
 }));
-
 
 //logout user
 router.get("/logout", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
@@ -239,7 +237,6 @@ router.put("/update-user-addresses", catchAsyncErrors(async (req, res, next) => 
         return next(new ErrorHandler(error.message, 500));
     }
 }));
-
 
 // delete user address
 router.delete("/delete-user-address/:id", isAuthenticated, catchAsyncErrors(async(req,res,next) => {

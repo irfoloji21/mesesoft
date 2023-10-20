@@ -35,10 +35,11 @@ import { MasonryGridThreeComponent } from './portfolio/masonry-grid-three/masonr
 import { MasonryGridFourComponent } from './portfolio/masonry-grid-four/masonry-grid-four.component';
 import { MasonryFullWidthComponent } from './portfolio/masonry-full-width/masonry-full-width.component';
 import { AddressComponent } from './account/address/address/address.component';
+import { AccountInfoComponent } from './account/account-info/account-info.component';
 
 const routes: Routes = [
   { 
-    path: 'wishlist', 
+    path: 'account/wishlist', 
     component: WishlistComponent 
   },
   { 
@@ -64,6 +65,10 @@ const routes: Routes = [
   { 
     path: 'address', 
     component: AddressComponent 
+  },
+  {
+    path: 'account-info',
+    component: AccountInfoComponent
   },
   {
     path: 'change/password',

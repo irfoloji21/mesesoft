@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -12,10 +13,15 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class AddressComponent implements OnInit {
   form: FormGroup;
   isAddingNew: boolean = false; 
-  userAddresses: any[] = []; 
+  userAddresses: any[] = [];
+  editedAddress: any = null;
 
-
-  constructor(private fb: FormBuilder, private authService: AuthService,private toastr: ToastrService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private toastr: ToastrService, 
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -61,6 +67,7 @@ export class AddressComponent implements OnInit {
           (response) => {
             console.log(response, "User");
             this.toastr.success('Address added successfully', 'Success');
+            this.form.reset();
           },
           (error) => {
             console.error(error);
@@ -69,6 +76,29 @@ export class AddressComponent implements OnInit {
       );
     }
   }
+
+  editAddress(address: any) {
+    
+    this.form.patchValue({
+      _id: address._id,
+      addressType: address.addressType,
+      flatPlot: address.flatPlot,
+      address: address.address,
+      zipCode: address.zipCode,
+      country: address.country,
+      city: address.city,
+      regionState: address.regionState,
+    });
+    this.editedAddress = address;
+    this.isAddingNew = true;
+  }
+
+  cancelEditing() {
+    this.editedAddress = null;
+    this.form.reset(); // Formu sıfırlayın
+    this.location.back();
+  }
+
   deleteAddress(addressId: string) {
       this.authService.deleteUserAddress(addressId).subscribe(
         (response) => {
@@ -84,5 +114,4 @@ export class AddressComponent implements OnInit {
 
   }
 
-  
 }
