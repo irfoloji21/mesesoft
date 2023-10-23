@@ -1,0 +1,159 @@
+  // kaydet ve devam et
+  .cta-area {
+    display: flex;
+    justify-content: flex-end;
+
+  
+      .complete-btn {
+        background-color: #3498db; // Daha açık bir ana renk kullan
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+  
+        &:hover {
+          background-color: darken(#3498db, 1%); // Hover için biraz daha koyu hale getir
+        }
+      }
+
+  }
+
+  /* Ana renkler */
+$ana-renk: #FF5733;  // Örnek: Turuncu renk
+$arkaplan-renk: #EDEDED;  // Örnek: Gri renk
+
+/* Sayfa arka planı */
+body {
+  background-color: $arkaplan-renk;
+}
+
+/* Genel tab menüsü stilleri */
+.checkout-tabs.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $arkaplan-renk; // Arka plan rengi kullanıldı
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Her bir sekme için stiller */
+.checkout-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &.active {
+    background-color: $ana-renk; // Ana renk kullanıldı
+    color: white;
+  }
+
+  &:hover {
+    background-color: darken($ana-renk, 1%);
+  }
+
+  /* Mobil görünüm için stiller */
+  .mobile-tab {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-tab {
+      display: none;
+    }
+    .mobile-tab {
+      display: block;
+    }
+  }
+}
+
+/* Ayırıcı çizgi stilleri */
+.visible-xs.divider {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    margin: 0 10px;
+  }
+}
+
+/* Genel form stilleri */
+.js-options-detail.options-detail {
+  background-color: $arkaplan-renk;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+/* Kargo seçenekleri başlığı için stiller */
+.address-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Kargo seçenekleri listesi için stiller */
+.checkout__cargos-list {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Kargo seçenekleri grup başlığı için stiller */
+.unified-group__title {
+  font-weight: bold;
+  margin-bottom: 10px;
+
+  span {
+    font-weight: normal;
+  }
+}
+
+/* Her bir kargo seçeneği kutusu için stiller */
+.checkout-cargo-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  /* Seçili kargo seçeneği için stiller */
+  &.js-checkout-cargo-item.checked {
+    background-color: $ana-renk; // Ana renk kullanıldı
+    color: white;
+  }
+
+  &:hover {
+    background-color: darken($ana-renk, 1%);
+  }
+
+  /* Kargo başlığı için stiller */
+  .checkout-cargo-title {
+    font-weight: bold;
+  }
+
+  /* Kargo açıklaması için stiller */
+  .checkout-cargo-desc {
+    margin-top: 5px;
+  }
+
+  /* Kargo fiyatı için stiller */
+  .checkout-cargo-amount {
+    margin-top: 10px;
+  }
+}
+
+/* Responsive stiller */
+@media (max-width: 768px) {
+  .checkout-cargo-wrapper {
+    padding: 15px;
+  }
+}
+
+  

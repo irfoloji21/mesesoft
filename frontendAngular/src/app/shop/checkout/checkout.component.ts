@@ -142,4 +142,36 @@ export class CheckoutComponent implements OnInit {
   }
   
 
+  paymentInfoVisible: boolean = false; // Başlangıçta ödeme bilgileri gizlenmiş
+
+  paymentOptions: any[] = [  // Örnek ödeme seçenekleri
+    { name: 'Kredi Kartı', price: 0 },
+    { name: 'PayPal', price: 2.99 },
+  ];
+
+  cartItems: any[] = [  // Örnek sepet bilgileri
+    { productName: 'Ürün 1', quantity: 2, totalPrice: 49.99 },
+    { productName: 'Ürün 2', quantity: 1, totalPrice: 29.99 },
+  ];
+
+  showPaymentInfo() {
+    this.paymentInfoVisible = true; // Tab'a tıklandığında ödeme bilgilerini göster
+  }
+
+
+
+  currentStep: string = 'adres';
+
+  proceedToNextStep() {
+    if (this.currentStep === 'adres') {
+      this.currentStep = 'odeme';
+    } else if (this.currentStep === 'odeme') {
+      this.currentStep = 'onay';
+    } else if (this.currentStep === 'onay') {
+      this.currentStep = 'confirmation';
+    }
+  }
+  
+  
+
 }

@@ -42,6 +42,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 
 import {RouterModule} from '@angular/router';
+import { AddressComponent } from './checkout/address/address/address.component';
+import { ConfirmationComponent } from './checkout/confirmation/confirmation/confirmation.component';
+import { PaymentComponent } from './checkout/payment/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +74,10 @@ import {RouterModule} from '@angular/router';
     WishlistComponent,
     CompareComponent,
     CheckoutComponent,
-    SuccessComponent
+    SuccessComponent,
+    AddressComponent,
+    ConfirmationComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
