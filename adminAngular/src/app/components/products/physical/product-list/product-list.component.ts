@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { id } from '@swimlane/ngx-charts';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { ProductService } from 'src/app/shared/service/product.service';
@@ -16,6 +17,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private authService: AuthService, 
+    private router: Router
   ) {
    
   }
@@ -31,6 +33,11 @@ export class ProductListComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  editProduct(id) {
+    console.log(id)
+    this.router.navigate(['/physical/edit-product', id]);
   }
 
   ngOnInit() {

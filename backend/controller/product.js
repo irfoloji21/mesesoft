@@ -86,10 +86,10 @@ router.delete(
         return next(new ErrorHandler("Product is not found with this id", 404));
       }    
 
-      for (let i = 0; 1 < product.images.length; i++) {
-        const result = await cloudinary.v2.uploader.destroy(
-          product.images[i].public_id
-        );
+      const imagesToDelete = product.images.map((image) => image.public_id);
+  
+      for (let i = 0; i < imagesToDelete.length; i++) {
+        await cloudinary.v2.uploader.destroy(imagesToDelete[i]);
       }
     
       await product.deleteOne({ _id: req.params.id });
@@ -243,4 +243,77 @@ router.get('/search/:keyword', async (req, res) => {
 
   res.json(products);
 });
+
+router.get("/get-product-by-id/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+}
+);
+
+router.put(
+  "/update-product/:productId",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const productId = req.params.productId;
+      const updatedProductData = req.body;
+
+      const existingProduct = await Product.findById(productId);
+      if (!existingProduct) {
+        return next(new ErrorHandler("Product not found", 404));
+      }
+
+      existingProduct.name = updatedProductData.name;
+      existingProduct.description = updatedProductData.description;
+      existingProduct.originalPrice = updatedProductData.originalPrice;
+      existingProduct.discountPrice = updatedProductData.discountPrice;
+      existingProduct.category = updatedProductData.category;
+      existingProduct.slug = updatedProductData.slug;
+      existingProduct.tags = updatedProductData.tags;
+      existingProduct.stock = updatedProductData.stock;
+
+
+    //   if (typeof updatedProductData.images === "object") {
+    //     updatedProductData.images = JSON.stringify(updatedProductData.images);
+      
+    //   if (updatedProductData.images && updatedProductData.images.length > 0) {
+    //     const updatedImagesLinks = [];
+
+    //     console.log(typeof updatedProductData.images, "updatedProductData.images")
+
+    //     for (let i = 0; i < updatedProductData.images.length; i++) {
+    //       const result = await cloudinary.v2.uploader.upload(updatedProductData.images[i], {
+    //         folder: "products",
+    //       });
+
+    //       updatedImagesLinks.push({
+    //         public_id: result.public_id,
+    //         url: result.secure_url,
+    //       });
+    //     }
+
+    //     existingProduct.images = updatedImagesLinks;
+    //   }
+    // }
+
+      console.log(typeof existingProduct)
+
+      await existingProduct.save();
+
+      res.status(200).json({
+        success: true,
+        product: existingProduct,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 400));
+    }
+  })
+);
+
 module.exports = router;

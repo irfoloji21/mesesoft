@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const collectionSchema = new mongoose.Schema({
+const koleksiyonSchema = new mongoose.Schema({
   name: {
     type: String,
   },
@@ -38,7 +38,7 @@ const collectionSchema = new mongoose.Schema({
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Collection", collectionSchema);
+module.exports = mongoose.model("Koleksiyon", koleksiyonSchema);
 
 
 

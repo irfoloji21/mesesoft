@@ -7,9 +7,10 @@ import { TableService } from 'src/app/shared/service/table.service';
 import { SortEvent } from 'src/app/shared/directives/shorting.directive';
 import { NgbdSortableHeader } from "src/app/shared/directives/NgbdSortableHeader";
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { CollectionService } from 'src/app/shared/service/collection.service';
+import { KoleksiyonService } from 'src/app/shared/service/koleksiyon.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { CategoryService } from 'src/app/shared/service/category.service';
 
 @Component({
   selector: 'app-category',
@@ -20,7 +21,9 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 
 
 export class CategoryComponent implements OnInit {
+  buttonText: string = 'Add';
   myForm:FormGroup;
+  categories: any[] = [];
   
   public closeResult: string;
 
@@ -34,9 +37,10 @@ export class CategoryComponent implements OnInit {
     private router: Router,
     public service: TableService, 
     private modalService: NgbModal,
-    public collectionService: CollectionService,
+    public koleksiyonService: KoleksiyonService,
     public authService: AuthService,
     private fb: UntypedFormBuilder,
+    private categoryService: CategoryService,
     ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
@@ -81,6 +85,17 @@ export class CategoryComponent implements OnInit {
     }
   }
 
+  performAction() {
+    if (this.buttonText === 'Add') {
+      
+      this.onSubmit();
+    } else if (this.buttonText === 'Edit') {
+      
+      // this.editCategory(_id); 
+    }
+  }
+  
+
   onSubmit() {
 
     const shop = this.authService.getShop();
@@ -90,13 +105,14 @@ export class CategoryComponent implements OnInit {
     if (this.myForm.valid) {
       const formData = this.myForm.value;
     
+      console.log(shop, "shop")
       formData.shopId = shop.seller._id;
       formData.shop = shop;
      console.log(this.myForm.value);
       
 
       console.log('formData:', formData);
-      this.collectionService.createCollection(formData).subscribe(
+      this.koleksiyonService.createKoleksiyon(formData).subscribe(
         (response) => {
           console.log('Koleksiyon başarıyla oluşturuldu:', response);
           this.router.navigate(['/physical/category']);
@@ -131,11 +147,29 @@ export class CategoryComponent implements OnInit {
       }
     }
   }
+
+  editCategory(_id){
+    console.log(_id)
+  }
+
+  deleteCategory(_id){
+    console.log("deleteCategory")
+  }
   
   
 
 
   ngOnInit() {
+    this.categoryService.getCategory().subscribe(
+      (response) => {
+        console.log('Kategoriler', response);
+        this.categories = response.categories;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
   }
 
 }
