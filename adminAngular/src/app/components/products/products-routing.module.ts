@@ -55,8 +55,24 @@ const routes: Routes = [
         }
       },
       {
+        path: 'physical/edit-product/:id',
+        component: AddProductComponent,
+        data: {
+          title: "Edit Products",
+          breadcrumb: "Edit Product"
+        }
+      },
+      {
         path: 'digital/digital-category',
         component: DigitalCategoryComponent,
+        data: {
+          title: "Category",
+          breadcrumb: "Category"
+        }
+      },
+      {
+        path: 'digital/edit-category/:id',
+        component: DigitalAddComponent,
         data: {
           title: "Category",
           breadcrumb: "Category"

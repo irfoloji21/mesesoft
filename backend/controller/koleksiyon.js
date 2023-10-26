@@ -1,20 +1,21 @@
 const express = require("express");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const router = express.Router();
-const Collection = require("../model/collection");
+const Koleksiyon = require("../model/koleksiyon");
 const Shop = require("../model/shop");
 const Product = require("../model/product");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const cloudinary = require("cloudinary");
 const { isSeller } = require("../middleware/auth");
 const ErrorHandler = require("../utils/ErrorHandler");
 
+
  
 
 router.post(
-    "/create-collection",
+    "/create-koleksiyon",
     catchAsyncErrors(async (req, res, next) => {
         try {
-          ///////// FAKEPATH YÜZÜNDEN RESİM YÜKLENMİYOR
+          ///////// FAKEPATH YÜZÜNDEN RESİM YÜKLENMİYOR 
         // console.log("1")
         //   let images = [];
         //   console.log("2")
@@ -30,7 +31,7 @@ router.post(
         // console.log(req.body.images)
        
         //     const result = await cloudinary.v2.uploader.upload(images, {
-        //       folder: "collections",
+        //       folder: "koleksiyons",
         //     });
         //     console.log("5")
 
@@ -60,7 +61,7 @@ router.post(
             }  else {
 
       
-                  const collectionData = new Collection( {
+                  const koleksiyonData = new Koleksiyon( {
                     name: req.body.name,
                     // images: imagesLinks,
                     saving: req.body.saving,
@@ -69,13 +70,13 @@ router.post(
                     shop: shop,
                   });
 
-                  console.log(collectionData + "data")
+                  console.log(koleksiyonData + "data")
       
-              const collection = await Collection.createCollection(collectionData);
+              const koleksiyon = await Koleksiyon.createCollection(koleksiyonData);
       
               res.status(201).json({
                 success: true,
-                collection,
+                koleksiyon,
               });
             }
           } catch (error) {
@@ -88,17 +89,17 @@ router.post(
 
   // Çoklu ürün ekleme
   router.post(
-    "/add-products/:collectionId",
+    "/add-products/:koleksiyonId",
     async (req, res) => {
       try {
-        const { collectionId } = req.params;
+        const { koleksiyonId } = req.params;
         const { productIds } = req.body;
         console.log(productIds + "productIds")
   
-        const collection = await Collection.findById(collectionId);
+        const koleksiyon = await Koleksiyon.findById(koleksiyonId);
   
 
-        if (!collection) {
+        if (!koleksiyon) {
           return res.status(404).json({
             success: false,
             message: "Koleksiyon bulunamadı",
@@ -108,16 +109,16 @@ router.post(
         for (const productId of productIds) {
           const product = await Product.findById(productId);
           if (product) {
-            collection.productIds.push(productId);
+            koleksiyon.productIds.push(productId);
           }
         }
-            console.log(collection + "irfo");
-        const collectionSave = await Collection.save();
-        console.log(collectionSave + "loji");
+            console.log(koleksiyon + "irfo");
+        const koleksiyonSave = await Koleksiyon.save();
+        console.log(koleksiyonSave + "loji");
   
         res.status(200).json({
           success: true,
-          collectionSave
+          koleksiyonSave
         });
       } catch (error) {
         res.status(400).json({
@@ -130,12 +131,12 @@ router.post(
   
 
 // Tüm koleksiyonları getirme
-router.get("/collections", async (req, res) => {
+router.get("/koleksiyons", async (req, res) => {
   try {
-    const collections = await Collection.find();
+    const koleksiyons = await Koleksiyon.find();
     res.status(200).json({
         success: true,
-        collections,
+        koleksiyons,
       });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -143,15 +144,15 @@ router.get("/collections", async (req, res) => {
 });
 
 // Belirli bir koleksiyonu getirme
-router.get("/collections/:id", async (req, res) => {
+router.get("/koleksiyons/:id", async (req, res) => {
   try {
-    const collection = await Collection.findById(req.params.id);
-    if (!collection) {
+    const koleksiyon = await Koleksiyon.findById(req.params.id);
+    if (!koleksiyon) {
       return res.status(404).json({ error: "Koleksiyon bulunamadı." });
     }
     res.status(200).json({
         success: true,
-        collection,
+        koleksiyon,
       });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -159,29 +160,29 @@ router.get("/collections/:id", async (req, res) => {
 });
 
 //güncelleme 
-router.put("/collections/:id", async (req, res) => {
+router.put("/koleksiyons/:id", async (req, res) => {
   try {
-    const collection = await Collection.findByIdAndUpdate(
+    const koleksiyon = await Koleksiyon.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
     );
-    if (!collection) {
+    if (!koleksiyon) {
       return res.status(404).json({ error: "Koleksiyon bulunamadı." });
     }
     res.status(200).json({
         success: true,
-        collection,
+        koleksiyon,
       });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-router.delete("/collections/:id", async (req, res) => {
+router.delete("/koleksiyons/:id", async (req, res) => {
   try {
-    const collection = await Collection.findByIdAndRemove(req.params.id);
-    if (!collection) {
+    const koleksiyon = await Koleksiyon.findByIdAndRemove(req.params.id);
+    if (!koleksiyon) {
       return res.status(404).json({ error: "Koleksiyon bulunamadı." });
     }
     res.status(200).json({ message: "Koleksiyon başarıyla silindi." });

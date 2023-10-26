@@ -66,22 +66,31 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                <th scope="col">#</th>
-                                <th scope="col" sortable="img" (sort)="onSort($event)" >Image</th>
-                                <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
-                                <th scope="col" sortable="action" (sort)="onSort($event)" >Actions</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col" sortable="img"  (sort)="onSort($event)">Image</th>
+                                    <th scope="col" sortable="product_name" (sort)="onSort($event)">Name</th>
+                                    <th scope="col" sortable="status" (sort)="onSort($event)">isShow</th>
+                                    <th scope="col" sortable="category" (sort)="onSort($event)">SubCategory</th>
+                                    <th scope="col" sortable="population" (sort)="onSort($event)">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let catgory of categories">
+                                <tr  *ngFor="let catgory of categories">
                                 <th scope="row">{{ catgory._id }}</th>
                                 <td>
+                                    <!-- .url sildim ekleyeceğim -->
                                     <img [src]="catgory.images[0]" class="imgTable" style="width: 20px">
                                 </td>
                                     <td>{{ catgory.name }}</td>
+                                <td>{{catgory.isShow}}</td>
                                 <td>
-                                    <a href="javascript:void(0)"><i class='fa fa-edit f-12'></i></a>&nbsp;
-                                    <a  (click)="deleteCategory(catgory._id)"><i class="fa fa-trash-o"></i></a>
+                                    <ul>
+                                        <li *ngFor="let subcategory of catgory.subcategories">{{ subcategory.name }}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <button href="javascript:void(0)" (click)="editCategory(catgory._id)"><i class='fa fa-edit f-12'></i></button>&nbsp;
+                                    <a href="javascript:void(0)" (click)="deleteCategory(catgory._id)"><i class="fa fa-trash-o"></i></a>
                                 </td>
                                 </tr>
                                 </tbody>

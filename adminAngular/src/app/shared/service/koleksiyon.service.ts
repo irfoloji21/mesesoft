@@ -5,7 +5,7 @@ import { Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CollectionService {
+export class KoleksiyonService {
   private apiUrl = 'http://localhost:8000/api/v2';
 
   constructor(private http: HttpClient) { }
@@ -15,9 +15,9 @@ export class CollectionService {
   //   return this.http.get<any>(`${this.apiUrl}/category/get-all-categories`);
   // }
 
-  createCollection(collectionData): Observable<any> {
+  createKoleksiyon(koleksiyonData): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>(`${this.apiUrl}/collection/create-collection`, collectionData, { headers, withCredentials: true });
+    return this.http.post<any>(`${this.apiUrl}/koleksiyon/create-koleksiyon`, koleksiyonData, { headers, withCredentials: true });
   }
 
   // deleteCategory(id): Observable<any> {

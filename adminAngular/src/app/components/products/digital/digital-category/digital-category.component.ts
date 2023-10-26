@@ -122,6 +122,13 @@ export class DigitalCategoryComponent implements OnInit {
     }
   }
 
+  editCategory(_id){
+    this.router.navigate(['digital/edit-category', _id]);
+  }
+
+
+  
+
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {

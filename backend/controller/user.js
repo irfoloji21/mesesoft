@@ -210,9 +210,9 @@ router.put("/update-avatar", isAuthenticated, upload.single("image"), catchAsync
 // update user addresses. isAuthenticated sildim postman için, geri ekleyeceğimdir
 router.put("/update-user-addresses/:id", catchAsyncErrors(async (req, res, next) => {
     try {
-        console.log(req.body.userId)
+        console.log(req.body, "body")
         const user = await User.findById(req.body.userId);
-        console.log(user)
+        console.log(user, "user")
 
         const sameTypeAddress = user.addresses.find((addresses) => addresses.addressType === req.body.addressType);
         if (sameTypeAddress) {
@@ -223,7 +223,7 @@ router.put("/update-user-addresses/:id", catchAsyncErrors(async (req, res, next)
         if (existsAddress) {
             existsAddress.set(req.body);
         } else {
-            console.log(req.body)
+           
             user.addresses.push(req.body);
         }
 

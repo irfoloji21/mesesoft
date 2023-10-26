@@ -9,7 +9,7 @@ const cors = require("cors");
 // Sadece test için kullanılmalıdır. 
 // ilerleyen zamanlarda değiştirilmelidir. öpüldünüz...
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:4200' ,'http://localhost:55086'],
+  origin: ['http://localhost:3000', 'http://localhost:4200' ,'http://localhost:55998'],
   credentials: true
 }));
 
@@ -40,7 +40,7 @@ const order = require("./controller/order");
 const conversation = require("./controller/conversation");
 const message = require("./controller/message");
 const withdraw = require("./controller/withdraw");
-const collection = require("./controller/collection");
+const koleksiyon = require("./controller/koleksiyon");
 const blog = require("./controller/blog");
 
 app.use("/api/v2/user", user);
@@ -54,7 +54,7 @@ app.use("/api/v2/event", event);
 app.use("/api/v2/coupon", coupon);
 app.use("/api/v2/payment", payment);
 app.use("/api/v2/withdraw", withdraw);
-app.use("/api/v2/collection", collection);
+app.use("/api/v2/koleksiyon", koleksiyon);
 app.use("/api/v2/blog", blog);
 
 

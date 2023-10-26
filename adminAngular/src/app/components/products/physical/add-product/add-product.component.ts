@@ -4,6 +4,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ProductService } from '../../../../shared/service/product.service';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CategoryService } from 'src/app/shared/service/category.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -14,8 +15,10 @@ import { CategoryService } from 'src/app/shared/service/category.service';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
+  id: string;
   categories: any[] = [];
   selectedCategory: string = '';
+  buttonText: string = 'Add';
 
   public productForm: UntypedFormGroup;
   public Editor = ClassicEditor;
@@ -40,7 +43,8 @@ export class AddProductComponent implements OnInit {
   constructor(private fb: UntypedFormBuilder,  
     private productService: ProductService, 
     private authService: AuthService, 
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    private route: ActivatedRoute) {
 
 
     this.productForm = this.fb.group({
@@ -105,6 +109,16 @@ export class AddProductComponent implements OnInit {
       }
     }
   }
+
+  performAction() {
+    if (this.buttonText === 'Add') {
+      
+      this.submitForm();
+    } else if (this.buttonText === 'Edit') {
+      
+      this.editProduct(); 
+    }
+  }
   
   
 
@@ -130,6 +144,27 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  editProduct() {
+    if (this.productForm.valid) {
+      const formData = this.productForm.value;
+      const shop = this.authService.getShop();
+
+      formData.shopId = shop.seller._id;
+      formData.shop = shop;
+      formData.category = this.selectedCategory;
+
+      console.log(this.id, "id")
+      this.productService.updateProduct(this.id, formData).subscribe(
+        (response) => {
+          console.log('Ürün başarıyla güncellendi:', response);
+        },
+        (error) => {
+          console.error('Ürün güncellenirken hata oluştu:', error);
+        }
+      );
+    }
+  }
+
 
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
@@ -142,7 +177,20 @@ export class AddProductComponent implements OnInit {
       }
     );
 
-    ;
+    this.route.params.subscribe(params => {
+      this.buttonText = 'Edit';
+      this.id = params['id'];
+      this.productService.getProductById(this.id).subscribe(
+        (response) => {
+          console.log('Ürün', response);
+          this.productForm.patchValue(response.product);
+          this.selectedCategory = response.product.category;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    });
   }
 
 }

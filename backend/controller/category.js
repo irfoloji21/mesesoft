@@ -145,15 +145,10 @@ router.put(
         if (!superCategory) {
           return next(new ErrorHandler("Category not found", 404));
         }
-        // console.log(newSubCategories, "newSubCategories")
-   
-  
-        // Eğer superCategory.subcategories bir dizi değilse veya boşsa, yeni subcategories'i mevcut dizinin yerine ata
         if (!Array.isArray(superCategory.subcategories) || superCategory.subcategories.length === 0) {
           superCategory.subcategories = newSubCategories;
           console.log("ife girdi")
         } else {
-          // Eğer superCategory.subcategories bir dizi ise, yeni subcategories'i mevcut dizinin sonuna ekleyin
 
           const irfan = superCategory.subcategories.concat(newSubCategories);
           superCategory.subcategories = irfan;

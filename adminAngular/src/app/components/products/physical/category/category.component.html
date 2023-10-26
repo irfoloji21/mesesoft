@@ -39,7 +39,7 @@
                                           </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary" (click)="performAction()" >{{buttonText}}</button>
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal"
                                             (click)="modal.dismiss('Cross click')">Close</button>
                                     </div>
@@ -63,25 +63,27 @@
                                     <th scope="col">#</th>
                                     <th scope="col" sortable="img"  (sort)="onSort($event)">Image</th>
                                     <th scope="col" sortable="product_name" (sort)="onSort($event)">Name</th>
-                                    <th scope="col" sortable="price" (sort)="onSort($event)" >Price</th>
-                                    <th scope="col" sortable="status" (sort)="onSort($event)">Status</th>
-                                    <th scope="col" sortable="category" (sort)="onSort($event)">Category</th>
+                                    <th scope="col" sortable="status" (sort)="onSort($event)">isShow</th>
+                                    <th scope="col" sortable="category" (sort)="onSort($event)">SubCategory</th>
                                     <th scope="col" sortable="population" (sort)="onSort($event)">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor = 'let catgory of tableItem$ | async'>
-                                <th scope="row">{{ catgory.id }}</th>
+                                <tr  *ngFor="let catgory of categories">
+                                <th scope="row">{{ catgory._id }}</th>
                                 <td>
-                                    <img [src]="catgory.img" class="imgTable" style="width: 20px">
+                                    <img [src]="catgory.images[0].url" class="imgTable" style="width: 20px">
                                 </td>
-                                    <td>{{ catgory.product_name }}</td>
-                                <td>{{ catgory.price }}</td>
-                                <td><i class='fa fa-circle {{catgory.status}} f-12'></i></td>
-                                <td>{{ catgory.category}}</td>
+                                    <td>{{ catgory.name }}</td>
+                                <td>{{catgory.isShow}}</td>
                                 <td>
-                                    <a href="javascript:void(0)"><i class='fa fa-edit f-12'></i></a>&nbsp;
-                                    <a href="javascript:void(0)"><i class="fa fa-trash-o"></i></a>
+                                    <ul>
+                                        <li *ngFor="let subcategory of catgory.subcategories">{{ subcategory.name }}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <button href="javascript:void(0)" (click)="editCategory(catgory._id)"><i class='fa fa-edit f-12'></i></button>&nbsp;
+                                    <a href="javascript:void(0)" (click)="deleteCategory(catgory._id)"><i class="fa fa-trash-o"></i></a>
                                 </td>
                                 </tr>
                                 </tbody>
