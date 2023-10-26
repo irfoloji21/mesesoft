@@ -1,10 +1,13 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/shared/classes/product';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { environment } from 'src/environments/environment';
+import Stripe from 'stripe';
 
 @Component({
   selector: 'app-payment',
@@ -12,117 +15,119 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  public checkoutForm: FormGroup;
+  public checkoutForm:  UntypedFormGroup;
   public products: Product[] = [];
+   public payPalConfig ? : any;
   public payment: string = 'Stripe';
-  public amount: any;
-  userAddresses: any[];
-  public orderId: any;
-  public customerEmail : any;
+  public amount:  any;
+  orderDetails: any;
 
-  
-  constructor(
-    private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
     public productService: ProductService,
-    private orderService: OrderService
-  ) { 
-    this.checkoutForm = this.fb.group({
-      cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
-      expirationMonth: ['', Validators.required],
-      expirationYear: ['', Validators.required],
-      cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
-      termsCheckbox: [false, Validators.requiredTrue]
-    });
+    private orderService: OrderService , private toasts : ToastrService) { 
+      this.checkoutForm = this.fb.group({
+        cardNumber: ['', Validators.required], 
+        expirationMonth: ['', Validators.required], 
+        expirationYear: ['', Validators.required], 
+        cvv: ['', Validators.required], 
+        termsCheckbox: [false, Validators.requiredTrue], 
+      });
+      
   }
-
   ngOnInit(): void {
-    this.productService.cartItems.subscribe(response => {
+    this.productService.cartItems.subscribe((response) => {
       console.log(response, "checkout");
       this.products = response;
     });
-    this.getTotal.subscribe(amount => this.amount = amount);
+    const selectedAddress = this.orderService.getSelectedAddress();
+    console.log('Seçilen Adres Payment:', selectedAddress);
+
   }
+  
+
 
   public get getTotal(): Observable<number> {
     return this.productService.cartTotalAmount();
   }
 
+
  
 
-  // Stripe Payment Gateway
-  stripeCheckout(orderId: any, customerEmail: any) {
+  stripeCheckout() {
+    if (this.checkoutForm.valid) {
+      const cardNumber = this.checkoutForm.get('cardNumber')?.value;
+      const expirationMonth = this.checkoutForm.get('expirationMonth')?.value;
+      const expirationYear = this.checkoutForm.get('expirationYear')?.value;
+      const cvv = this.checkoutForm.get('cvv')?.value;
+  
+      const cardDetails = {
+        number: cardNumber,
+        exp_month: expirationMonth,
+        exp_year: expirationYear,
+        cvc: cvv,
+      };
+  
+      const stripeApiKey = environment.stripe_token;
+      const stripe = new Stripe(stripeApiKey);
+  
+      const tokenizeCard = async () => {
+        try {
+          const result = await stripe.tokens.create({ card: cardDetails });
+          console.log('Stripe api isteği ve Yanıt:', cardDetails, result);
+          this.toasts.success("Stripe api isteği başarılı ")
+        //  this.processPayment();
+        } catch (error) {
+          console.error('Token oluşturulurken hata oluştu', error);
+          console.error('Stripe hatta detayları:', error.message);
+        }
+      };
+  
+      tokenizeCard();
+    } else {
+      console.error('Form geçerli değil, ödeme işlemi yapılamaz.');
+    }
+  }
+  
+  processPayment(token: string, amount: number, product: any, details: any, orderId: any, customerEmail: any) {
     const paymentData = {
-      amount: this.amount,
-      cardNumber: this.checkoutForm.value.cardNumber,
-      expirationMonth: this.checkoutForm.value.expirationMonth,
-      expirationYear: this.checkoutForm.value.expirationYear,
-      cvv: this.checkoutForm.value.cvv,
-      userAddresses: this.userAddresses 
+      token: token,
+      amount: amount,
+      product: product,
+       details: details,
+        orderId: orderId,
+       customerEmail: customerEmail
     };
-    
-    this.orderService.createOrder(this.products, this.checkoutForm.value, orderId, this.amount, customerEmail).subscribe(
+  
+    this.orderService.createOrder(paymentData).subscribe(
       (response) => {
-        console.log('Payment successful');
-        console.log(response, "responsePayment")
+        console.log('Ödeme başarılı:', response);
       },
       (error) => {
-        console.error('Payment failed:', error);
+        console.error('Ödeme işlemi sırasında hata oluştu:', error);
       }
     );
   }
-
   
   
 
-  // Paypal Payment Gateway
-  private initConfig(): void {
-    // this.payPalConfig = {
-    //     currency: this.productService.Currency.currency,
-    //     clientId: environment.paypal_token,
-    //     createOrderOnClient: (data) => < ICreateOrderRequest > {
-    //       intent: 'CAPTURE',
-    //       purchase_units: [{
-    //           amount: {
-    //             currency_code: this.productService.Currency.currency,
-    //             value: this.amount,
-    //             breakdown: {
-    //                 item_total: {
-    //                     currency_code: this.productService.Currency.currency,
-    //                     value: this.amount
-    //                 }
-    //             }
-    //           }
-    //       }]
-    //   },
-    //     advanced: {
-    //         commit: 'true'
-    //     },
-    //     style: {
-    //         label: 'paypal',
-    //         size:  'small', // small | medium | large | responsive
-    //         shape: 'rect', // pill | rect
-    //     },
-    //     onApprove: (data, actions) => {
-    //         this.orderService.createOrder(this.products, this.checkoutForm.value, data.orderID, this.getTotal);
-    //         console.log('onApprove - transaction was approved, but not authorized', data, actions);
-    //         actions.order.get().then(details => {
-    //             console.log('onApprove - you can get full order details inside onApprove: ', details);
-    //         });
-    //     },
-    //     onClientAuthorization: (data) => {
-    //         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-    //     },
-    //     onCancel: (data, actions) => {
-    //         console.log('OnCancel', data, actions);
-    //     },
-    //     onError: err => {
-    //         console.log('OnError', err);
-    //     },
-    //     onClick: (data, actions) => {
-    //         console.log('onClick', data, actions);
-    //     }
-    // };
+  
+  
+  
+
+
+  currentStep: string = 'adres';
+
+  proceedToNextStep() {
+    if (this.currentStep === 'adres') {
+      this.currentStep = 'odeme';
+    } else if (this.currentStep === 'odeme') {
+      this.currentStep = 'onay';
+    } else if (this.currentStep === 'onay') {
+      this.currentStep = 'confirmation';
+    }
   }
-
+  
 
 }
+
+

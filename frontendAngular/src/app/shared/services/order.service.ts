@@ -11,7 +11,7 @@ const state = {
   providedIn: 'root'
 })
 export class OrderService {
-
+  selectedAddress: any;
   public apiUrl = "http://localhost:8000/api/v2"
 
   constructor(private router: Router, private http: HttpClient) { }
@@ -26,25 +26,19 @@ export class OrderService {
   }
 
   // Create order
-  public createOrder(product: any, details: any, orderId: any, amount: any, customerEmail: any): Observable<any> {
+  public createOrder(paymentData: {product: any, details: any, orderId: any, amount: any, customerEmail: any }): Observable<any> {
     return new Observable((observer) => {
       const headers = new HttpHeaders().set('Content-Type', 'application/json');
-      var item = {
-        shippingDetails: details,
-        product: product,
-        orderId: orderId,
-        amount: amount,
-        customerEmail: customerEmail 
-      };
+
   
-      state.checkoutItems = item;
-      localStorage.setItem("checkoutItems", JSON.stringify(item));
+      state.checkoutItems = paymentData;
+      localStorage.setItem("checkoutItems", JSON.stringify(paymentData));
       localStorage.removeItem("cartItems");
   
-      this.http.post(`${this.apiUrl}/payment/process`, item, { headers, withCredentials: true }).subscribe(
+      this.http.post(`${this.apiUrl}/payment/process`, paymentData, { headers, withCredentials: true }).subscribe(
         (response) => {
           console.log(response, "checkoutCart");
-          this.router.navigate(['/shop/checkout/success', orderId]);
+          this.router.navigate(['/shop/checkout/success']);
           observer.next(response);
           observer.complete();
         },
@@ -56,8 +50,17 @@ export class OrderService {
     });
   }
   
-   
   
+
+  
+  setSelectedAddress(address: any) {
+    this.selectedAddress = address;
+  }
+  
+  getSelectedAddress() {
+    return this.selectedAddress;
+  }
+
 }
   
 

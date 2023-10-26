@@ -15,8 +15,11 @@ export class AddressComponent implements OnInit {
   public orderDetails: Order = { orderDate: new Date() };
   form: FormGroup;
   isAddingNew: boolean = false; 
+  userAddresses: any[] = [];
+
+  isEditing: boolean = false;
+  editedAddresses: any[] = [];
   buttonText: string = 'Save Setting';
-  @Input() userAddresses: any[];
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -68,23 +71,23 @@ export class AddressComponent implements OnInit {
   }
 
   addressSubmit() {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      this.authService.updateUserAddress(formData).subscribe(
-        (response) => {
-          this.toastr.success('Address added successfully', 'Success');
-          this.loadUserAddresses();
-          this.isAddingNew = false; 
-          this.form.reset();
-          this.userAddresses = response.user.addresses;
-        },
-        (error) => {
-          console.error(error);
-          this.toastr.error('An error occurred', 'Error');
-          this.form.reset();
-        }
-      );
-    }
+    // if (this.form.valid) {
+    //   const formData = this.form.value;
+    //   this.authService.updateUserAddress(formData).subscribe(
+    //     (response) => {
+    //       this.toastr.success('Address added successfully', 'Success');
+    //       this.loadUserAddresses();
+    //       this.isAddingNew = false; 
+    //       this.form.reset();
+    //       this.userAddresses = response.user.addresses;
+    //     },
+    //     (error) => {
+    //       console.error(error);
+    //       this.toastr.error('An error occurred', 'Error');
+    //       this.form.reset();
+    //     }
+    //   );
+    // }
   }
 
   
@@ -130,6 +133,12 @@ export class AddressComponent implements OnInit {
   closeModal() {
     this.isModalOpen = false;
   }
+
+  selectAddress(selectedAddress: any) {
+    this.orderService.setSelectedAddress(selectedAddress);
+    console.log('Seçilen adres:', selectedAddress);
+  }
+  
  
 }
 

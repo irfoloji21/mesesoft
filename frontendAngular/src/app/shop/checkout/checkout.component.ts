@@ -59,29 +59,29 @@ export class CheckoutComponent implements OnInit {
         var stripeToken = token.id;
   
         var order = {
-          firstname: this.checkoutForm.get('firstname')?.value,
-          lastname: this.checkoutForm.get('lastname')?.value,
-          phone: this.checkoutForm.get('phone')?.value,
-          email: this.checkoutForm.get('email')?.value,
-          address: this.checkoutForm.get('address')?.value,
-          country: this.checkoutForm.get('country')?.value,
-          town: this.checkoutForm.get('town')?.value,
-          state: this.checkoutForm.get('state')?.value,
-          postalcode: this.checkoutForm.get('postalcode')?.value,
-          amount: this.checkoutForm.get('amount')?.value,
+          // firstname: this.checkoutForm.get('firstname')?.value,
+          // lastname: this.checkoutForm.get('lastname')?.value,
+          // phone: this.checkoutForm.get('phone')?.value,
+          // email: this.checkoutForm.get('email')?.value,
+          // address: this.checkoutForm.get('address')?.value,
+          // country: this.checkoutForm.get('country')?.value,
+          // town: this.checkoutForm.get('town')?.value,
+          // state: this.checkoutForm.get('state')?.value,
+          // postalcode: this.checkoutForm.get('postalcode')?.value,
+          // amount: this.checkoutForm.get('amount')?.value,
         };
   
-        this.orderService.createOrder(this.products, order, token.id, this.amount, this.checkoutForm.get('email')?.value); 
+       
         this.toasts.success('The payoff is successful');
       }
     });
     // Ödeme penceresini aç
-    handler.open({
-      name: 'Mese soft',
-      description: 'Mese Store',
-      amount: this.amount,
-      email: this.checkoutForm.get('email')?.value
-    });
+    // handler.open({
+    //   name: 'Mese soft',
+    //   description: 'Mese Store',
+    //   amount: this.amount,
+    //   email: this.checkoutForm.get('email')?.value
+    // });
   }
   
   
@@ -119,13 +119,13 @@ export class CheckoutComponent implements OnInit {
         size:  'small', // small | medium | large | responsive
         shape: 'rect', // pill | rect
       },
-      onApprove: (data, actions) => {
-        this.orderService.createOrder(this.products, this.checkoutForm.value, data.orderID, this.getTotal, this.checkoutForm.get('email')?.value);
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
-        actions.order.get().then(details => {
-          console.log('onApprove - you can get full order details inside onApprove: ', details);
-        });
-      },
+      // onApprove: (data, actions) => {
+      //   this.orderService.createOrder(this.products, this.checkoutForm.value, data.orderID, this.getTotal, this.checkoutForm.get('email')?.value);
+      //   console.log('onApprove - transaction was approved, but not authorized', data, actions);
+      //   actions.order.get().then(details => {
+      //     console.log('onApprove - you can get full order details inside onApprove: ', details);
+      //   });
+      // },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
       },

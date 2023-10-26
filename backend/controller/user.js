@@ -208,7 +208,7 @@ router.put("/update-avatar", isAuthenticated, upload.single("image"), catchAsync
 }));
 
 // update user addresses. isAuthenticated sildim postman için, geri ekleyeceğimdir
-router.put("/update-user-addresses", catchAsyncErrors(async (req, res, next) => {
+router.put("/update-user-addresses/:id", catchAsyncErrors(async (req, res, next) => {
     try {
         console.log(req.body.userId)
         const user = await User.findById(req.body.userId);

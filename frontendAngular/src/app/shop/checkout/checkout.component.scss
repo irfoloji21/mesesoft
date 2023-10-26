@@ -22,8 +22,9 @@
   }
 
   /* Ana renkler */
-$ana-renk: #FF5733;  // Örnek: Turuncu renk
-$arkaplan-renk: #EDEDED;  // Örnek: Gri renk
+$ana-renk: #FF5733;  
+$arkaplan-renk: #EDEDED;  
+$ana-renk2 : rgb(4, 70, 4);
 
 /* Sayfa arka planı */
 body {
@@ -35,7 +36,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $arkaplan-renk; // Arka plan rengi kullanıldı
+  background-color: $arkaplan-renk; 
   padding: 10px;
   border-radius: 5px;
 }
@@ -43,18 +44,21 @@ body {
 /* Her bir sekme için stiller */
 .checkout-tab {
   flex: 1;
-  padding: 10px;
+  padding: 7px;
+  margin: 10px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  border-radius: 5px ;
 
   &.active {
-    background-color: $ana-renk; // Ana renk kullanıldı
+    background-color: green; 
     color: white;
   }
 
   &:hover {
-    background-color: darken($ana-renk, 1%);
+    background-color: green; 
+    color: white;
   }
 
   /* Mobil görünüm için stiller */

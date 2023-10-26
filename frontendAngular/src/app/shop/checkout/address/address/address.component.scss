@@ -1,6 +1,6 @@
-// Ana renkler
-$ana-renk: #FF5733;  // Örnek: Turuncu renk
-$arkaplan-renk: #EDEDED;  // Örnek: Gri renk
+
+$ana-renk: #FF5733; 
+$arkaplan-renk: #EDEDED;  
 
 // Başlık stilleri
 .başlık {
@@ -27,59 +27,59 @@ body {
   background-color: $arkaplan-renk;
 }
 
-// Teslimat adresi başlığı için stil
+// Teslimat adresi başlığı 
 .address-title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-// Fatura adresi kutusu için stil
+// Fatura adresi kutusu 
 .same-address {
   margin-top: 10px;
 
-  // Fatura adresi kutusunun metni için stil
+  // Fatura adresi kutusunun metni 
   span {
     font-weight: bold;
   }
 }
 
-// Adres seçeneklerinin kutuları için stil
+// Adres seçeneklerinin kutuları 
 .c-address-grid {
   border: 1px solid #ccc;
   margin: 10px 0;
   padding: 10px;
-  background-color: #FFF; // Beyaz renk
+  background-color: #FFF; 
   border-radius: 5px;
 
-  // Seçili adresin stilini belirtmek için stil
+  // Seçili adresin stilini belirtmek 
   .selected-address {
     font-weight: bold;
     color: $ana-renk; // Ana renk kullanıldı
   }
 
-  // Adres metni için stil
+  // Adres metni 
   .c-address-text {
     margin-top: 5px;
 
-    // Adres başlığı için stil
+    // Adres başlığı 
     .c-address-title {
       font-weight: bold;
     }
 
-    // Adres bilgileri için stil
+    // Adres bilgileri 
     div {
       margin-top: 5px;
 
-      // Telefon numarası için stil
+      // Telefon numarası 
       b {
         font-weight: bold;
-        color: #555; // Gri renk
+        color: #555; 
       }
     }
   }
 
-  // Düzenle ve Sil bağlantıları için stil
+  // Düzenle ve Sil bağlantıları 
   .c-address-footer {
     margin-top: 10px;
     display: flex;
@@ -122,28 +122,28 @@ body {
   
 }
 
-// Yeni adres oluştur kutusu için stil
+// Yeni adres oluştur kutusu 
 .new-address {
   cursor: pointer;
-  color: $ana-renk; // Ana renk kullanıldı
+  color: $ana-renk;
 
-  // Artı işareti için stil
+  // Artı işareti 
   .icon-plus {
     margin-right: 5px;
   }
 }
 
-// Genel tab menüsü stilleri
+// Genel tab menüsü
 .checkout-tabs.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $arkaplan-renk; // Arka plan rengi kullanıldı
+  background-color: $arkaplan-renk; 
   padding: 10px;
   border-radius: 5px;
 }
 
-// Her bir sekme için stiller
+// Her bir sekme 
 .checkout-tab {
   flex: 1;
   padding: 10px;
@@ -152,7 +152,7 @@ body {
   transition: background-color 0.3s ease;
 
   &.active {
-    background-color: $ana-renk; // Ana renk kullanıldı
+    background-color: $ana-renk; 
     color: white;
   }
 
@@ -160,7 +160,7 @@ body {
     background-color: darken($ana-renk, 1%);
   }
 
-  // Mobil görünüm için stiller
+  // Mobil görünümm
   .mobile-tab {
     display: none;
   }
@@ -193,20 +193,20 @@ body {
   padding: 20px;
 }
 
-// Kargo seçenekleri başlığı için stiller
+// Kargo seçenekleri başlığı 
 .address-title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-// Kargo seçenekleri listesi için stiller
+// Kargo seçenekleri listesi 
 .checkout__cargos-list {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
 }
-// Kargo seçenekleri grup başlığı için stiller
+// Kargo seçenekleri grup başlığı 
 .unified-group__title {
     font-weight: bold;
     margin-bottom: 10px;
@@ -216,7 +216,7 @@ body {
     }
   }
   
-  // Her bir kargo seçeneği kutusu için stiller
+  // Her bir kargo seçeneği kutusu 
   .checkout-cargo-wrapper {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -225,9 +225,9 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
   
-    // Seçili kargo seçeneği için stiller
+    // Seçili kargo seçeneği 
     &.js-checkout-cargo-item.checked {
-      background-color: $ana-renk; // Ana renk kullanıldı
+      background-color: $ana-renk; 
       color: white;
     }
   
@@ -235,17 +235,17 @@ body {
       background-color: darken($ana-renk, 1%);
     }
   
-    // Kargo başlığı için stiller
+    // Kargo başlığı 
     .checkout-cargo-title {
       font-weight: bold;
     }
   
-    // Kargo açıklaması için stiller
+    // Kargo açıklaması 
     .checkout-cargo-desc {
       margin-top: 5px;
     }
   
-    // Kargo fiyatı için stiller
+    // Kargo fiyatı 
     .checkout-cargo-amount {
       margin-top: 10px;
     }
@@ -304,7 +304,7 @@ body {
                 width: 100%;
   
                 thead {
-                  background-color: $arkaplan-renk; // Arka plan rengi kullanıldı
+                  background-color: $arkaplan-renk; 
                   font-weight: bold;
                 }
   
@@ -317,7 +317,7 @@ body {
                 tbody {
                   tr {
                     &:nth-child(even) {
-                      background-color: #FFF; // Beyaz renk
+                      background-color: #FFF; 
                     }
   
                     td {
@@ -329,7 +329,7 @@ body {
                 tfoot {
                   tr {
                     th {
-                      background-color: $arkaplan-renk; // Arka plan rengi kullanıldı
+                      background-color: $arkaplan-renk; 
                     }
                   }
                 }
@@ -427,10 +427,10 @@ body {
     border-radius: 5px;
     padding: 10px;
     display: flex;
-    flex-direction: column;  // Mobilde sütunlar alt alta gelecek
+    flex-direction: column;  
     
     .checkout-unified-list {
-      flex: 1;  // Her iki kargo seçeneği arasındaki boşluğu doldurur
+      flex: 1; 
     }
   
     .checkout-cargo-list {
@@ -547,7 +547,13 @@ body {
       top: 10px;
       right: 10px;
       cursor: pointer;
+      background-color: darken($ana-renk, 1%);
+      color: #ffffff;
+      border: none; 
+      padding: 5px 10px;
+      border-radius: 5px; 
     }
+    
   
     form {
       display: flex;
