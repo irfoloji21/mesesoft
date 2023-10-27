@@ -6,22 +6,74 @@ const coupounCodeSchema = new mongoose.Schema({
         required:[true,"Please enter your coupoun code name!"],
         unique: true,
     },
-    value:{
+    code:{
+        type: String,
+        required:[true,"Please enter your coupoun code!"],
+        unique: true,
+    },
+    start_date: {
+        year: {
+            type: Number,
+            required: true
+        },
+        month: {
+            type: Number,
+            required: true
+        }
+    },
+    end_date: {
+        year: {
+            type: Number,
+            required: true
+        },
+        month: {
+            type: Number,
+            required: true
+        }
+    },
+    free_shipping:{
+        type: Boolean,
+        default: false,
+    },
+    quantity:{
         type: Number,
         required: true,
     },
-    minAmount:{
+    discount_type:{
+        type: String,
+        enum: ["percentage","fixed"],
+        default: "percentage",
+    },
+    status:{
+        type: Boolean,
+    },
+    category:[{
+        type: String,
+    }],
+    min:{
         type: Number,
     },
-    maxAmount:{
+    max:{
         type: Number,
     },
     shopId:{
      type: String,
      required: true,
     },
-    selectedProduct:{
-     type: String,
+    products: [{
+        type: String  
+    }],
+    limit:{
+        type: Number,
+        required: false,
+    },
+    customer:{
+        type: Number,
+        required: false,
+    },
+    value:{
+        type: Number,
+        required: false,
     },
     createdAt:{
         type: Date,

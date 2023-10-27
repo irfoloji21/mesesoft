@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { CategoryService } from 'src/app/shared/service/category.service';
+import { CouponService } from 'src/app/shared/service/coupon.service';
+import { ProductService } from 'src/app/shared/service/product.service';
 
 @Component({
   selector: 'app-create-coupon',
@@ -8,18 +13,27 @@ import { NgbDateStruct, NgbDate, NgbCalendar, NgbDatepickerConfig } from '@ng-bo
   styleUrls: ['./create-coupon.component.scss']
 })
 export class CreateCouponComponent implements OnInit {
-  public generalForm: UntypedFormGroup;
-  public restrictionForm: UntypedFormGroup;
-  public usageForm: UntypedFormGroup;
+  categories: any[] = [];
+  products: any[] = [];
+
+
+
+  public combinedForm: UntypedFormGroup;
   public model: NgbDateStruct;
   public date: { year: number, month: number };
   public modelFooter: NgbDateStruct;
   public active = 1;
 
-  constructor(private formBuilder: UntypedFormBuilder, private calendar: NgbCalendar) {
+  constructor(
+    private formBuilder: UntypedFormBuilder, 
+    private calendar: NgbCalendar,
+    private productService: ProductService, 
+    private authService: AuthService, 
+    private categoryService: CategoryService,
+    private couponService: CouponService,
+    private router: Router
+    ) {
     this.createGeneralForm();
-    this.createRestrictionForm();
-    this.createUsageForm();
   }
 
   selectToday() {
@@ -27,35 +41,88 @@ export class CreateCouponComponent implements OnInit {
   }
 
   createGeneralForm() {
-    this.generalForm = this.formBuilder.group({
+    this.combinedForm = this.formBuilder.group({
       name: [''],
       code: [''],
       start_date: [''],
       end_date: [''],
-      free_shipping: [''],
+      free_shipping: [false],
       quantity: [''],
       discount_type: [''],
-      status: [''],
-    });
-  }
-
-  createRestrictionForm() {
-    this.restrictionForm = this.formBuilder.group({
+      status: [false],
       products: [''],
       category: [''],
       min: [''],
-      max: ['']
-    })
-  }
-
-  createUsageForm() {
-    this.usageForm = this.formBuilder.group({
+      max: [''],
       limit: [''],
       customer: ['']
-    })
+    });
   }
+
+
+
+
+
+  submitCombinedForm() {
+    
+    if (this.combinedForm.valid) {
+      const formData = this.combinedForm.value;
+      const shop = this.authService.getShop();
+
+      console.log(shop, "shopirfo")
+      formData.shopId = shop.seller._id;
+      formData.shop = shop;
+      console.log('Form değerleri:', this.combinedForm.value)
+      this.couponService.createCoupoun(formData).subscribe(
+        (response) => {
+          console.log('Ürün başarıyla oluşturuldu:', response);
+          this.router.navigate(['/coupons/list-coupons']);
+        },
+        (error) => {
+          console.error('Ürün oluşturulurken hata oluştu:', error);
+        }
+      );
+    }
+  }
+
+
+
   ngOnInit() {
 
+  
+
+    
+    this.categoryService.getCategory().subscribe(
+      (response) => {
+        this.categories = response.categories;
+
+        const shop = this.authService.getShop();
+        console.log(shop, "shop")
+        this.productService.getShopProduct(shop.seller._id).subscribe(
+          (response) => {
+            this.products = response.products;
+            console.log('Ürünler:', response);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+
+
+
+
+
+
   }
+
+
+
 
 }

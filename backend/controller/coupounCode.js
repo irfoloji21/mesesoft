@@ -6,10 +6,9 @@ const { isSeller } = require("../middleware/auth");
 const CoupounCode = require("../model/coupounCode");
 const router = express.Router();
 
-// create coupoun code
+//isSeller eklenecek
 router.post(
   "/create-coupon-code",
-  isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const isCoupounCodeExists = await CoupounCode.find({
@@ -32,13 +31,12 @@ router.post(
   })
 );
 
-// get all coupons of a shop
+//isSeller eklenecek
 router.get(
   "/get-coupon/:id",
-  isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const couponCodes = await CoupounCode.find({ shopId: req.seller.id });
+      const couponCodes = await CoupounCode.find({ shopId: req.params.id });
       res.status(201).json({
         success: true,
         couponCodes,
@@ -49,10 +47,9 @@ router.get(
   })
 );
 
-// delete coupoun code of a shop
+//isSeller eklenecek
 router.delete(
   "/delete-coupon/:id",
-  isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const couponCode = await CoupounCode.findByIdAndDelete(req.params.id);
@@ -70,7 +67,7 @@ router.delete(
   })
 );
 
-// get coupon code value by its name
+
 router.get(
   "/get-coupon-value/:name",
   catchAsyncErrors(async (req, res, next) => {
