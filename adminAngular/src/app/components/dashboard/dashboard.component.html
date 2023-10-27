@@ -11,7 +11,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Earnings</span>
-                            <h3 class="mb-0">$ <span class="counter">6659</span><small> This Month</small></h3>
+                            <h3 class="mb-0">$ <span class="counter">{{shop.availableBalance}}</span><small> This Month</small></h3>
                         </div>
                     </div>
                 </div>
@@ -27,13 +27,13 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Products</span>
-                            <h3 class="mb-0">$ <span class="counter">9856</span><small> This Month</small></h3>
+                            <h3 class="mb-0"> <span class="counter">{{productCount}}</span><small> </small></h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 xl-50">
+        <!-- <div class="col-xl-3 col-md-6 xl-50">
             <div class="card o-hidden widget-cards">
                 <div class="bg-primary card-body">
                     <div class="media static-top-widget row">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-xl-3 col-md-6 xl-50">
             <div class="card o-hidden widget-cards">
                 <div class="bg-danger card-body">
@@ -58,14 +58,14 @@
                                 <app-feather-icons [icon]="'users'" class="font-danger"></app-feather-icons>
                             </div>
                         </div>
-                        <div class="media-body col-8"><span class="m-0">New Vendors</span>
-                            <h3 class="mb-0">$ <span class="counter">45631</span><small> This Month</small></h3>
+                        <div class="media-body col-8"><span class="m-0">All Orders</span>
+                            <h3 class="mb-0"><span class="counter">{{orders.length}}</span><small></small></h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 xl-100">
+        <!-- <div class="col-xl-6 xl-100">
             <div class="card height-equal">
                 <div class="card-header">
                     <h5>Market Value</h5>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-xl-6 xl-100">
             <div class="card height-equal">
                 <div class="card-header">
@@ -90,40 +90,16 @@
                                 <tr>
                                     <th scope="col">Order ID</th>
                                     <th scope="col">Order Total</th>
-                                    <th scope="col">Payment Method</th>
+                                    <th scope="col">Payment Date</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td class="digits">$120.00</td>
-                                    <td class="font-danger">Bank Transfers</td>
-                                    <td class="digits">On Way</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="digits">$90.00</td>
-                                    <td class="font-secondary">Ewallets</td>
-                                    <td class="digits">Delivered</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="digits">$240.00</td>
-                                    <td class="font-warning">Cash</td>
-                                    <td class="digits">Delivered</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td class="digits">$120.00</td>
-                                    <td class="font-primary">Direct Deposit</td>
-                                    <td class="digits">$6523</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td class="digits">$50.00</td>
-                                    <td class="font-primary">Bank Transfers</td>
-                                    <td class="digits">Delivered</td>
+                                <tr *ngFor="let order of orders">
+                                    <td>{{ order._id }}</td>
+                                    <td class="digits">{{order.totalPrice}}</td>
+                                    <td class="font-danger">{{order.paidAt}}</td>
+                                    <td class="digits">{{order.status}}</td>
                                 </tr>
                             </tbody>
                         </table>

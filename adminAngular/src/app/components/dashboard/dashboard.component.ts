@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as chartData from '../../shared/data/chart';
 import { doughnutData, pieData } from '../../shared/data/chart';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { ProductService } from 'src/app/shared/service/product.service';
+import { OrderService } from 'src/app/shared/service/order.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +11,23 @@ import { doughnutData, pieData } from '../../shared/data/chart';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  public shop: any;
+  public products: any[] = [];
+  public productCount: number = 0;
+  public orders: any[] = [];
+
+
+
   public doughnutData = doughnutData;
   public pieData = pieData;
-  constructor() {
+
+
+  constructor(
+    private authService: AuthService,
+    private productService: ProductService,
+    private orderService: OrderService
+  ) {
     Object.assign(this, { doughnutData, pieData })
   }
 
@@ -72,6 +89,51 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth();
+   
+
+  }
+
+  auth() {
+    this.authService.loadShop().subscribe(
+      (shop) => {
+        this.shop = shop.seller;
+        console.log(this.shop);
+        this.getShopProducts();
+        this.getShopOrders();
+      },
+      (error) => {
+        console.error('Kullanıcı kimliği belirleme hatası:', error);
+      }
+    );
+  }
+
+  getShopProducts() {
+    console.log(this.shop._id)
+    this.productService.getShopProduct(this.shop._id).subscribe(
+      (res) => {
+        this.products = res.products;
+        this.productCount = this.products.length;
+        console.log(this.productCount);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getShopOrders() {
+    console.log(this.shop._id)
+    this.orderService.getShopOrders(this.shop._id).subscribe(
+      (res) => {
+        console.log(res);
+        this.orders = res.orders;
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }

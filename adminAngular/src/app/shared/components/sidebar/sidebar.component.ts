@@ -1,6 +1,7 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { NavService, Menu } from '../../service/nav.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,13 +9,17 @@ import { NavService, Menu } from '../../service/nav.service';
   styleUrls: ['./sidebar.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SidebarComponent {
-
+export class SidebarComponent implements OnInit {
+  public shop: any;
   public menuItems: Menu[];
   public url: any;
   public fileurl: any;
 
-  constructor(private router: Router, public navServices: NavService) {
+  constructor(
+    private router: Router,
+     public navServices: NavService,
+     private authService: AuthService
+    ) {
     this.navServices.items.subscribe(menuItems => {
       this.menuItems = menuItems
       this.router.events.subscribe((event) => {
@@ -36,6 +41,17 @@ export class SidebarComponent {
         }
       })
     })
+  }
+
+  ngOnInit() {
+    this.authService.loadShop().subscribe(
+      (shop) => {
+        this.shop = shop.seller;
+      },
+      (error) => {
+        console.error('Kullanıcı kimliği belirleme hatası:', error);
+      }
+    );
   }
 
   // Active Nave state

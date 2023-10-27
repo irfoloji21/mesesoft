@@ -5,10 +5,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="profile-details text-center">
-                        <img src="assets/images/dashboard/designer.jpg" alt=""
+                        <img [src]="shop.avatar.url" alt=""
                             class="img-fluid img-90 rounded-circle blur-up lazyloaded">
-                        <h5 class="f-w-600 mb-0">John deo</h5>
-                        <span>johndeo@gmail.com</span>
+                        <h5 class="f-w-600 mb-0">{{shop.name}}</h5>
+                        <span>{{shop.email}}</span>
                         <div class="social">
                             <div class="form-group btn-showcase">
                                 <button class="btn social-btn btn-fb d-inline-block">
@@ -68,32 +68,24 @@
                                 <table class="table table-responsive">
                                     <tbody>
                                         <tr>
-                                            <td>First Name:</td>
-                                            <td>Johan</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Last Name:</td>
-                                            <td>Deo</td>
+                                            <td>Name:</td>
+                                            <td>{{shop.name}}</td>
                                         </tr>
                                         <tr>
                                             <td>Email:</td>
-                                            <td>johndeo@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gender:</td>
-                                            <td>Male</td>
+                                            <td>{{shop.email}}</td>
                                         </tr>
                                         <tr>
                                             <td>Mobile Number:</td>
-                                            <td>2124821463</td>
+                                            <td>{{shop.phoneNumber}}</td>
                                         </tr>
                                         <tr>
-                                            <td>DOB:</td>
-                                            <td>Dec, 15 1993</td>
+                                            <td>Description:</td>
+                                            <td>{{shop.description}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Location:</td>
-                                            <td>USA</td>
+                                            <td>Address</td>
+                                            <td>{{shop.address}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
