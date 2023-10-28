@@ -27,6 +27,13 @@ const blogSchema = new mongoose.Schema({
     shortDescription: {
         type: String,
     },
+    category: {
+        type: String,
+        required: [true, "Please enter your product category!"],
+      },
+      tags: {
+        type: String,
+      },
     shopId: {
         type: String,
         required: true,

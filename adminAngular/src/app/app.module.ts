@@ -26,6 +26,7 @@ import { AuthModule } from './components/auth/auth.module';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { InboxComponent } from './components/inbox/inbox.component';
+import { BlogModule } from './components/blog/blog.module';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { InboxComponent } from './components/inbox/inbox.component';
     SalesModule,
     VendorsModule,
     CouponsModule,
+    BlogModule,
     PagesModule,
     MediaModule,
     MenusModule,
