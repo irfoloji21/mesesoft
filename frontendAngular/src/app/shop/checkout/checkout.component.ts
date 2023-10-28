@@ -162,15 +162,37 @@ export class CheckoutComponent implements OnInit {
 
   currentStep: string = 'adres';
 
-  proceedToNextStep() {
-    if (this.currentStep === 'adres') {
-      this.currentStep = 'odeme';
-    } else if (this.currentStep === 'odeme') {
-      this.currentStep = 'onay';
-    } else if (this.currentStep === 'onay') {
-      this.currentStep = 'confirmation';
+proceedToNextStep() {
+  if (this.currentStep === 'adres') {
+    // Burada "Delivery" başarılı bir şekilde kaydedildiğini kontrol edebilirsiniz.
+    const deliverySuccess = true; // Başarılı ise true olarak ayarlanır
+
+    if (deliverySuccess) {
+      this.currentStep = 'odeme'; // Başarılıysa, bir sonraki adıma geçin
+      // Bu adımda önceki adımın rengini yeşil yapmak için JavaScript kullanın
+      const addressTab = document.querySelector('.checkout-tab[data-type="checkout-address"]');
+      addressTab.classList.add('completed');
+    } else {
+      // Başarısızsa, hata mesajı veya başka bir işlem yapabilirsiniz
+      alert('Adres kaydedilemedi! Lütfen tekrar deneyin.');
+    }
+  } else if (this.currentStep === 'odeme') {
+    // Burada "Payment" başarılı bir şekilde kaydedildiğini kontrol edebilirsiniz.
+    const paymentSuccess = true; // Başarılı ise true olarak ayarlanır
+
+    if (paymentSuccess) {
+      this.currentStep = 'onay'; // Başarılıysa, bir sonraki adıma geçin
+      // Bu adımda önceki adımın rengini yeşil yapmak için JavaScript kullanın
+      const paymentTab = document.querySelector('.checkout-tab[data-type="checkout-payment"]');
+      paymentTab.classList.add('completed');
+    } else {
+      // Başarısızsa, hata mesajı veya başka bir işlem yapabilirsiniz
+      alert('Ödeme yapılamadı! Lütfen tekrar deneyin.');
     }
   }
+  // Diğer adımlar için benzer kontroller ekleyebilirsiniz.
+}
+
   
   
 

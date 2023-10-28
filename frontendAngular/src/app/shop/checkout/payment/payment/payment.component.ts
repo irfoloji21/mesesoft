@@ -59,6 +59,7 @@ export class PaymentComponent implements OnInit {
       const expirationMonth = this.checkoutForm.get('expirationMonth')?.value;
       const expirationYear = this.checkoutForm.get('expirationYear')?.value;
       const cvv = this.checkoutForm.get('cvv')?.value;
+      this.amount = this.amount;
   
       const cardDetails = {
         number: cardNumber,
@@ -74,8 +75,8 @@ export class PaymentComponent implements OnInit {
         try {
           const result = await stripe.tokens.create({ card: cardDetails });
           console.log('Stripe api isteği ve Yanıt:', cardDetails, result);
-          this.toasts.success("Stripe api isteği başarılı ")
-        //  this.processPayment();
+          this.toasts.success('Stripe api isteği başarılı');
+          // this.processPayment(result.id, this.amount);
         } catch (error) {
           console.error('Token oluşturulurken hata oluştu', error);
           console.error('Stripe hatta detayları:', error.message);
@@ -88,25 +89,25 @@ export class PaymentComponent implements OnInit {
     }
   }
   
-  processPayment(token: string, amount: number, product: any, details: any, orderId: any, customerEmail: any) {
-    const paymentData = {
-      token: token,
-      amount: amount,
-      product: product,
-       details: details,
-        orderId: orderId,
-       customerEmail: customerEmail
-    };
+  // processPayment(token: string, amount: any) {
+  //   const paymentData = {
+  //     product:this.products,
+  //     amount: amount,
+  //   };
   
-    this.orderService.createOrder(paymentData).subscribe(
-      (response) => {
-        console.log('Ödeme başarılı:', response);
-      },
-      (error) => {
-        console.error('Ödeme işlemi sırasında hata oluştu:', error);
-      }
-    );
-  }
+  //   this.orderService.createOrder(paymentData).subscribe(
+  //     (response) => {
+  //       console.log('Ödeme başarılı:', response);
+
+  //     },
+  //     (error) => {
+  //       console.error('Ödeme işlemi sırasında hata oluştu:', error);
+
+  //     }
+  //   );
+  // }
+  
+  
   
   
 

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Order } from 'src/app/shared/classes/order';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-address',
@@ -12,7 +13,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
   })
   
 export class AddressComponent implements OnInit {
-  public orderDetails: Order = { orderDate: new Date() };
+  public orderDetails = [] 
   form: FormGroup;
   isAddingNew: boolean = false; 
   userAddresses: any[] = [];
@@ -20,21 +21,26 @@ export class AddressComponent implements OnInit {
   isEditing: boolean = false;
   editedAddresses: any[] = [];
   buttonText: string = 'Save Setting';
+  isBillingAddressSame: boolean = true;
+  
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService, 
-    private orderService :OrderService
+    private orderService :OrderService,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
 
      this.loadUserAddresses();
 
-
+     this.productService.cartItems.subscribe(res => {
+      this.orderDetails = res;
+     })
      this.orderService.checkoutItems.subscribe(response => {
-      this.orderDetails = response;
-      this.orderDetails.orderDate = new Date(); 
+      console.log(response)
+
     });
   }
   

@@ -26,7 +26,7 @@ export class OrderService {
   }
 
   // Create order
-  public createOrder(paymentData: {product: any, details: any, orderId: any, amount: any, customerEmail: any }): Observable<any> {
+  public createOrder(paymentData: {product: any ,  amount:any }): Observable<any> {
     return new Observable((observer) => {
       const headers = new HttpHeaders().set('Content-Type', 'application/json');
 

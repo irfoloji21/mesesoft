@@ -364,16 +364,19 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-right: 1rem;
+    margin-left: 1rem;
   }
   
   .summary-area {
-    width: 93%;
-    padding: 20px;
+    width: 100%;
+    padding: 10px;
     background: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 5px;
- 
+    height: 100vh;
     overflow: hidden;
+    overflow-y: auto;
   }
   
   .product-img-link-wrapper img {
@@ -415,7 +418,44 @@ body {
     justify-content: space-between;
     margin-top: 10px;
     font-weight: bold;
+    background-color: #f9f9f9; 
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    border-radius: 5px;
+  
+    .subtotal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .product-price,
+      .campaign {
+        padding: 5px;
+        border-radius: 5px; 
+      }
+  
+      .campaign {
+        background-color: #F5A623; 
+        color: white; 
+      }
+  
+      div {
+        margin: 5px 0; 
+      }
+      
+    }
+    .total {
+
+      .totalPrice {
+        font-weight: bold;
+        color: #4CAF50;
+        margin-left: auto;
+        padding-right: 10px;
+      }
+    }
   }
+  
+  
  
 
   
@@ -508,7 +548,6 @@ body {
   
   /* Responsive stiller */
   @media (max-width: 768px) {
-    /* Burada istediğiniz özel stilleri ekleyebilirsiniz */
   }
   
 
@@ -580,3 +619,33 @@ body {
     }
   }
   
+
+  .js-bill-address-list.address-list {
+    border: 1px solid #ccc; 
+    padding: 10px;
+    font-weight: bold; 
+    margin: 10px 0; 
+    background-color: $arkaplan-renk; 
+  }
+  
+  .alert-message {
+    p.js-message-bill-address.checkout-message-alert {
+      font-weight: bold; 
+    }
+  }
+  
+  .selected-address {
+    font-weight: bold; 
+    color: #FF5733; 
+  }
+  
+  .c-address-footer {
+    a.c-address-edit.js-address-edit,
+    a.c-address-remove.js-address-remove {
+      font-weight: bold; 
+    }
+  }
+  
+  .clear {
+    clear: both;
+  }

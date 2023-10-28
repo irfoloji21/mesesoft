@@ -17,7 +17,7 @@ export class ConfirmationComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void {	
     this.orderService.checkoutItems.subscribe(response => {
-      console.log(response , "order")
+      console.log(response, "orderDetails")
       this.orderDetails = response;
       this.orderDetails.orderDate = new Date(); 
     });

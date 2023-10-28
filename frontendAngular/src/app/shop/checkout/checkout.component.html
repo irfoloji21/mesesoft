@@ -3,7 +3,7 @@
   <div class="js-tab-box">
   <div class="checkout-tabs container">
   <img loading="lazy" class="tick js-address-step-address" src="https://39b3a056.cdn.akinoncloud.com/static_omnishop/occ542/assets/img/tick.png" alt="">
-  <div class="checkout-tab js-tab active" data-type="checkout-address">
+  <div class="checkout-tab js-tab" [ngClass]="{'active': currentStep === 'adres'}" data-type="checkout-address">
     <div class="checkout-tab-title">
       <span class="desktop-tab">
         1. ADDRESS & SHIPPING INFORMATION
@@ -17,7 +17,7 @@
   </div>
   <div class="visible-xs divider"></div>
   <img loading="lazy" class="tick js-payment-step-payment" src="https://39b3a056.cdn.akinoncloud.com/static_omnishop/occ542/assets/img/tick.png" alt="">
-  <div class="checkout-tab js-tab disabled-action" data-type="checkout-payment">
+  <div class="checkout-tab js-tab" [ngClass]="{'active': currentStep === 'odeme'}" data-type="checkout-payment">
     <div class="checkout-tab-title">
       <span class="desktop-tab">
         2. PAYMENT OPTIONS
@@ -31,7 +31,7 @@
   </div>
   <div class=" visible-xs divider"></div>
   <img loading="lazy" class="tick js-all-step-completed" src="https://39b3a056.cdn.akinoncloud.com/static_omnishop/occ542/assets/img/tick.png" alt="">
-  <div class="checkout-tab" data-type="checkout-completed">
+  <div class="checkout-tab" [ngClass]="{'active': currentStep === 'onay'}" data-type="checkout-completed">
     <div class="checkout-tab-title">
       <span class="desktop-tab">
         3. CONFIRMATION

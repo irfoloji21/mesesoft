@@ -14,7 +14,7 @@
                       DELIVERY ADDRESS
                     </div>
                     <div class="same-address">
-                      <input class="same-checkbox js-show-bill-address" id="same-address" checked="" type="checkbox">
+                      <input  [(ngModel)]="isBillingAddressSame" class="same-checkbox js-show-bill-address" id="same-address" checked="" type="checkbox">
                       <label class="same-check-lb js-show-bill-address-check" for="same-address">
                         <span>My billing address is the same</span>
                       </label>
@@ -111,6 +111,46 @@
                     </div>
                   </div>
 
+
+                  <div class="js-bill-address-list address-list" *ngIf="!isBillingAddressSame">
+                    <div class="alert-message">
+                      <p class="js-message-bill-address checkout-message-alert">Please select a billing address.</p>
+                    </div>
+                    <div class="js-address-grid c-address-grid" data-type="bill_address">
+                      <input type="radio" id="js-bill-address-radio-occ-585774" name="js-bill-address-radio-occ" class="radiobutton c-address-radio js-bill-address-radio-occ" value="585774">
+                      <label for="js-bill-address-radio-occ-585774" class="c-address-content js-address-content">
+                        <span class="selected-address">SELECTED ADDRESS</span>
+                        <div class="c-address-text">
+                          <div class="c-address-title">
+                            John
+                          </div>
+                          Springfield 21070 Springfield<div>Phone: <b>05325241712</b></div>
+                        </div>
+                        <div class="c-address-footer">
+                          <a href="javascript:;" class="c-address-edit js-address-edit" data-pk="585774" data-type="bill_address">
+                            edit
+                          </a>
+                          <a href="javascript:;" class="c-address-remove js-address-remove" data-pk="585774" data-type="bill_address">
+                            delete
+                          </a>
+                        </div>
+                      </label>
+                      <div class="clear"></div>
+                    </div>
+                    <div class="c-address-grid">
+                      <div class="c-address-content js-new-address-occ">
+                        <div class="new-address">
+                          <span class="icon-plus"></span>
+                          CREATE NEW ADDRESS
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+
+
+
+
                   <div class="js-options-detail options-detail js-shipping-list-form">
                     <form method="post">
                       <div class="address-title">
@@ -161,7 +201,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-sm-12">
+        <div class="col-lg-3 col-sm-12">
             <br><br><br>
             <div class="checkout-summary">
               <div class="summary-area js-checkout-sum" >
@@ -169,7 +209,7 @@
                   <div class="summary-header">
                     ORDER SUMMARY
                   </div>
-                  <div class="item-area" *ngFor="let product of orderDetails.product">
+                  <div class="item-area" *ngFor="let product of orderDetails">
                     <div class="summary-item">
                       <div class="item-header">
                         <a class="product-img-link-wrapper" href="/product/129861">
@@ -201,20 +241,20 @@
                       <div class="subtotal campaign hide"></div>
                       <div class="subtotal campaign ">
                         <div>Shipping Fee (Standard Shipping)</div>
-                        <div>+34.90 TL</div>
+                        <div class="cargoPrice" >+34.90 TL</div>
                       </div>
                     </div>
                     <div class="subtotal-area">
                       <div class="subtotal total">
-                        <div>Total</div>
-                        <div>$733.90</div>
+                        <div >Total:</div>
+                        <div class="totalPrice px-1">$733.90</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </div>
