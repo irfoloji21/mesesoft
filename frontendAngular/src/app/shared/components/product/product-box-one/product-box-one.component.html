@@ -5,7 +5,7 @@
       <span class="lable4" *ngIf="product.sale">on sale</span> -->
     </div>
     <div class="front">
-      <a [routerLink]="['/shop/product/left/sidebar/', product.name.replace(' ', '-')]">
+      <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
         <img 
           [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'" 
           [lazyLoad]="ImageSrc ? ImageSrc : product.images[0].url" 
@@ -14,7 +14,7 @@
       </a>
     </div>
     <div class="back" *ngIf="onHowerChangeImage">
-      <a [routerLink]="['/shop/product/left/sidebar/', product.name.replace(' ', '-')]">
+      <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
         <img [src]="ImageSrc ? ImageSrc : product.images[1].url" class="img-fluid lazy-loading" alt="resim">
       </a>
     </div>
@@ -48,7 +48,7 @@
   <div class="product-detail">
     <div>
       <bar-rating [rate]="product.ratings" [readOnly]="true"></bar-rating>
-      <a [routerLink]="['/shop/product/left/sidebar/', product?.name.replace(' ', '-')]">
+      <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
         <h6>{{ product?.name | titlecase }} </h6>
       </a>
       <p>{{ product?.description  }}</p>

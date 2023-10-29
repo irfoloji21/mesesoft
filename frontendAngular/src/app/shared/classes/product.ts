@@ -22,8 +22,25 @@ export interface Product {
     originalPrice?:number;
     discountPrice? : number;
     ratings?:any;
+    reviews?:any;
+    shop?:Shop;
 }
 
+export interface Shop {
+    address: string;
+    availableBalance: number;
+    avatar: {
+      public_id: string;
+      url: string;
+    };
+    createdAt: string;
+    description: string;
+    email: string;
+    name: string;
+    resetPasswordTime: string | null;
+    resetPasswordToken: string | null;
+    role: string;
+  }
 export interface Variants {
     variant_id?: number;
     id?: number;

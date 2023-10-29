@@ -24,6 +24,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   public selectedSize: any;
   public mobileSidebar: boolean = false;
   public active = 1;
+  visibleReviews: number = 2;
   reviewForm: FormGroup;
   selectedRating: number ;
   comment:any = {}
@@ -37,7 +38,7 @@ export class ProductLeftSidebarComponent implements OnInit {
       
     this.route.data.subscribe(response => {
       this.product = response.data.product;
-
+        console.log(this.product, "comentArea")
       this.reviewForm = this.formBuilder.group({
         rating: [ null , Validators.required],
         name: ['', Validators.required],
@@ -50,16 +51,26 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   ngOnInit(): void { 
     this.submitReview();
-   }
-   
 
+   }
+
+
+   
+   hideMoreReviews() {
+    this.visibleReviews = 2; 
+  }
+   showMoreReviews() {
+  this.visibleReviews += 3;
+    console.log(this.visibleReviews, "visibleReviews")
+  }
+  
 
    // aynı kullanıcı birden fazla yorum yapınca "Cannot read properties of undefined (reading '_id')" hatası veriyor.
    // onun yerine zaten yorumun var uyarısı versin ya da yorum yapılmışsa yorum kısmı uçsun. öpüldünüz...
    submitReview() {
     if (this.reviewForm.valid) {
       const user = this.authService.getUser();
-    console.log("User", user);
+      console.log("writeRewiev", user);
 
       this.comment = {
         productId: this.product._id, 

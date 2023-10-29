@@ -17,7 +17,7 @@ export class SettingsComponent implements OnInit {
 
   public products: Product[] = [];
   public search: boolean = false;
-  
+  public noProductsFound: boolean = false;
   public languages = [{ 
     name: 'English',
     code: 'en'
@@ -46,9 +46,11 @@ export class SettingsComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,private translate: TranslateService, public productService: ProductService ,private  formBuilder : FormBuilder) {
       this.searchForm = this.formBuilder.group({
-        search: [''], // Boş bir başlangıç değeri
+        search: [''], 
       });
-    this.productService.cartItems.subscribe(response => this.products = response);
+    this.productService.cartItems.subscribe(response => {
+      console.log(response, "search")
+      this.products = response});
   }
 
   ngOnInit(): void {
@@ -65,9 +67,12 @@ export class SettingsComponent implements OnInit {
   }
 
   searchProduct() {
-   this.productService.search(this.searchForm.value.search).subscribe(response => this.products = response);
-
+    this.productService.search(this.searchForm.value.search).subscribe(response => {
+      this.products = response;
+      this.noProductsFound = response.length === 0;
+    });
   }
+  
 
   changeLanguage(code){
     if (isPlatformBrowser(this.platformId)) {

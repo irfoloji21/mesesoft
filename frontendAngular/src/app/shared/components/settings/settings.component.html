@@ -22,11 +22,9 @@
                         <br>
                         
                        
-                        <div class="col-xl-12 mt-4" *ngIf="products">
-                          <div class="row">
-                            <!-- İlk Ürün -->
-                            <div class="col-xl-3" *ngFor="let item of products" >
-                             
+                        <div class="col-xl-12 mt-4">
+                          <div class="row" *ngIf="!noProductsFound && products">
+                            <div class="col-xl-3" *ngFor="let item of products">
                               <div class="card" [routerLink]="['/shop/product/left/sidebar/', item.slug]">
                                 <img src={{item.images[0].url}} class="card-img-top" alt="Ürün Resmi 1">
                                 <div class="card-body">
@@ -34,11 +32,11 @@
                                   <p class="card-text">Fiyat: {{item.discountPrice}}</p>
                                 </div>
                               </div>
-                          
                             </div>
-                        
                           </div>
+                          <div *ngIf="noProductsFound">Ürün bulunamadı</div>
                         </div>
+                        
                         
                     </div>
                 </div>
