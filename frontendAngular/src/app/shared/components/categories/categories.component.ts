@@ -12,11 +12,13 @@ export class CategoriesComponent implements OnInit {
 
   public categories: Category[] = [];
   public collapse: boolean = true;
-  @Output() categorySelected: EventEmitter<string> = new EventEmitter<string>(); 
+  // @Output() categorySelected: EventEmitter<string> = new EventEmitter<string>(); 
   constructor(public categoryService: CategoryService) { 
     this.categoryService.getCategories().subscribe((data: any) => {
+      console.log(data , "sortByControl1")
       if (data.success) {
         this.categories = data.categories;
+        console.log(this.categories, "sortByControl2")
       }
     });
   }

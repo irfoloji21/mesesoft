@@ -29,47 +29,53 @@ export class CollectionLeftSidebarComponent implements OnInit {
   selectedCategoryId: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private viewScroller: ViewportScroller, public productService: ProductService) {   
-      // Get Query params..
-      this.route.queryParams.subscribe(params => {
-
-        // this.brands = params.brand ? params.brand.split(",") : [];
-        // this.colors = params.color ? params.color.split(",") : [];
-        // this.size  = params.size ? params.size.split(",")  : [];
-        this.minPrice = params.discountPrice ? params.discountPrice : this.minPrice;
-        this.maxPrice = params.originalPrice ? params.originalPrice : this.maxPrice;
-        this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
-        
-        this.sortBy = params.sortBy ? params.sortBy : 'ascending';
-        this.category = params.category._id ? params.category._id : null;
-        this.pageNo = params.page ? params.page : this.pageNo;
-
-        this.productService.filterProducts(this.tags).subscribe((response: any) => { 
-          this.products = response[0].products;
-        
-          if (Array.isArray(this.products)) {
-            // Sıralama işlemi
-            this.products = this.productService.sortProducts(this.products, this.sortBy);
-          
-            // Kategori filtresi
-             if (this.category) {
-               this.products = this.products.filter(item => item.type == this.category._id);
-             }
-            
-            // Fiyat filtresi
-             this.products = this.products.filter(item => item.originalPrice >= this.minPrice && item.discountPrice <= this.maxPrice);
-        
-            // Sayfalama işlemi
-             this.paginate = this.productService.getPager(this.products.length, +this.pageNo);
-             this.products = this.products.slice(this.paginate.startIndex, this.paginate.endIndex + 1);
-          }
-        });
-        
-        
-        
-      })
+    private viewScroller: ViewportScroller, public productService: ProductService) {
+    // Get Query params..
+    this.route.queryParams.subscribe(params => {
+      this.brands = params.brand ? params.brand.split(",") : [];
+      this.colors = params.color ? params.color.split(",") : [];
+      this.size = params.size ? params.size.split(",") : [];
+      this.minPrice = params.minPrice ? params.minPrice : this.minPrice;
+        this.maxPrice = params.maxPrice ? params.maxPrice : this.maxPrice;
+      this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
+  
+      this.category = params.category ? params.category : null;
+      this.sortBy = params.sortBy ? params.sortBy : 'ascending';
+      this.pageNo = params.page ? params.page : this.pageNo;
+  
+      this.productService.filterProducts(this.tags).subscribe((response:any) => {
+     
+        this.products = this.parseResponse(response);
+        console.log(response[0].products)
       
+        this.products = this.productService.sortProducts(this.products, this.sortBy);
+  
+        
+        if(params.category)
+        this.products = this.products.filter(item => item.category == this.category);
+
+  
+      
+        this.products = this.products.filter(item => item.discountPrice >= this.minPrice && item.originalPrice <= this.maxPrice);
+
+  
+        
+        this.paginate = this.productService.getPager(this.products.length, +this.pageNo); // get paginate object from service
+        this.products = this.products.slice(this.paginate.startIndex, this.paginate.endIndex + 1); // get current page of items
+      });
+    });
   }
+  
+ 
+  parseResponse(response: any): any {
+    if (Array.isArray(response) && response.length > 0 && response[0].products) {
+      return response[0].products;
+    } else {
+      return [];
+    }
+  }
+  
+
 
   ngOnInit(): void {
   }

@@ -264,45 +264,45 @@ export class ProductService {
 
     if(payload === 'ascending') {
       return products.sort((a, b) => {
-        if (a.id < b.id) {
+        if (a._id < b._id) {
           return -1;
-        } else if (a.id > b.id) {
+        } else if (a._id > b._id) {
           return 1;
         }
         return 0;
       })
     } else if (payload === 'a-z') {
       return products.sort((a, b) => {
-        if (a.title < b.title) {
+        if (a.name < b.name) {
           return -1;
-        } else if (a.title > b.title) {
+        } else if (a.name > b.name) {
           return 1;
         }
         return 0;
       })
     } else if (payload === 'z-a') {
       return products.sort((a, b) => {
-        if (a.title > b.title) {
+        if (a.name > b.name) {
           return -1;
-        } else if (a.title < b.title) {
+        } else if (a.name < b.name) {
           return 1;
         }
         return 0;
       })
     } else if (payload === 'low') {
       return products.sort((a, b) => {
-        if (a.price < b.price) {
+        if (a.originalPrice < b.originalPrice) {
           return -1;
-        } else if (a.price > b.price) {
+        } else if (a.originalPrice > b.originalPrice) {
           return 1;
         }
         return 0;
       })
     } else if (payload === 'high') {
       return products.sort((a, b) => {
-        if (a.price > b.price) {
+        if (a.discountPrice > b.discountPrice) {
           return -1;
-        } else if (a.price < b.price) {
+        } else if (a.discountPrice < b.discountPrice) {
           return 1;
         }
         return 0;
