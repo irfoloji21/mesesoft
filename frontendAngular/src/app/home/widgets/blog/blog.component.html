@@ -20,3 +20,28 @@
     </ng-template>
   </ng-container>
 </owl-carousel-o>
+
+
+
+
+<!-- <owl-carousel-o [options]="BlogSliderConfig" class="no-arrow">
+  <ng-container *ngFor="let blog of blogs">
+    <ng-template carouselSlide>
+      <div class="col-md-12">
+        <a [routerLink]="'/pages/blog/details/' + blog.slug">
+          <div class="classic-effect">
+            <img [src]="blog.image" class="img-fluid" alt="blog">
+            <span></span>
+          </div>
+        </a>
+        <div class="blog-details">
+          <h4>{{ blog.date }}</h4>
+          <a [routerLink]="'/pages/blog/details/' + blog.slug">{{ blog.title }}</a>
+          <hr class="style1">
+          <h6> by: {{ blog.by }}, {{ blog.comments }} Comment(s) </h6>
+          <h6> by: {{ blog.by }}, {{ blog.comments.length }} Comment(s) </h6> //
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o> -->

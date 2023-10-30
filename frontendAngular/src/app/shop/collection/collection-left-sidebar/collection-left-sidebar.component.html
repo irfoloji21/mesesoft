@@ -20,22 +20,22 @@
                         <!-- side-bar colleps block stat -->
                         <div class="collection-filter-block">
                             <!-- brand filter start -->
-                            <app-brands [products]="products" [brands]="brands" (brandsFilter)="updateFilter($event)">
-                            </app-brands>
+                            <!-- <app-brands [products]="products" [brands]="brands" (brandsFilter)="updateFilter($event)">
+                            </app-brands> -->
                             <!-- color filter start here -->
-                            <app-colors [products]="products" [colors]="colors" (colorsFilter)="updateFilter($event)">
-                            </app-colors>
+                            <!-- <app-colors [products]="products" [colors]="colors" (colorsFilter)="updateFilter($event)">
+                            </app-colors> -->
                             <!-- size filter start here -->
-                            <app-size [products]="products" [size]="size" (sizeFilter)="updateFilter($event)">
-                            </app-size>
+                            <!-- <app-size [products]="products" [size]="size" (sizeFilter)="updateFilter($event)">
+                            </app-size> -->
                             <!-- price filter start here -->
                             <app-price [min]="minPrice" [max]="maxPrice" (priceFilter)="updateFilter($event)">
-                            </app-price>
+                            </app-price> 
                         </div>
                         <!-- silde-bar colleps block end here -->
                         <!-- side-bar single product slider start -->
-                        <app-product-box-vertical-slider [title]="'New Products'">
-                        </app-product-box-vertical-slider>
+                        <!-- <app-product-box-vertical-slider [title]="'New Products'">
+                        </app-product-box-vertical-slider> -->
                         <!-- side-bar single product slider end -->
                         <!-- side-bar banner start here -->
                         <div class="collection-sidebar-banner">
@@ -54,7 +54,7 @@
                                     <a [routerLink]="['/shop/collection/left/sidebar']">
                                         <img src="assets/images/collection-banner.jpg" class="img-fluid " alt="">
                                     </a>
-                                    <div class="top-banner-content small-section">
+                                    <div class="top-banner-content small-section" >
                                         <h4>fashion</h4>
                                         <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                         </h5>
@@ -87,8 +87,8 @@
                                     </li>
                                 </ul>
                                 <div class="collection-product-wrapper" id="products">
-                                    <!-- <app-grid [products]="products" [paginate]="paginate" [layoutView]="layoutView" [sortBy]="sortBy" (setGrid)="updateGridLayout($event)" (setLayout)="updateLayoutView($event)" (sortedBy)="sortByFilter($event)">
-                                    </app-grid> -->
+                                    <app-grid [products]="products" [paginate]="paginate" [layoutView]="layoutView" [sortBy]="sortBy" (setGrid)="updateGridLayout($event)" (setLayout)="updateLayoutView($event)" (sortedBy)="sortByFilter($event)">
+                                    </app-grid>
                                     <div class="product-wrapper-grid" [ngClass]="layoutView">
                                         <div class="row">
                                             <div class="col-grid-box" [ngClass]="grid" *ngFor="let product of products">

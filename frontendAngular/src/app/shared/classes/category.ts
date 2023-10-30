@@ -11,12 +11,15 @@ export interface Category {
   name?: string;
   description?: string;
   images?: Images[];
-  rating?:number;
+  rating?: number;
   subcategories?: Subcategory[];
+  showMegaMenu: boolean;
+  isShow?:boolean;
 }
 
 export interface Categories {
   categories?: Category[];
+
 }
 
 export interface Images {
@@ -30,4 +33,5 @@ export interface Subcategory {
   name?: string;
   description?: string;
   images?: Images[];
+  subcategories?: Subcategory[]; 
 }

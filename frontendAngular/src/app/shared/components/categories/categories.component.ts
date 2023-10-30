@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
@@ -12,7 +12,7 @@ export class CategoriesComponent implements OnInit {
 
   public categories: Category[] = [];
   public collapse: boolean = true;
-
+  @Output() categorySelected: EventEmitter<string> = new EventEmitter<string>(); 
   constructor(public categoryService: CategoryService) { 
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
@@ -25,9 +25,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   get filterbyCategory() {
-    // Tüm kategorilerin adını bir dizi olarak al
-    const categoryNames = this.categories.map(category => category.name);
-    // kategorılerden tekrarlananları kadlır
+    const categoryNames = this.categories
+      .filter(category => category.isShow === true) 
+      .map(category => category.name);
     return [...new Set(categoryNames)];
   }
+
+  // selectCategory(categoryId: string) {
+  //   this.categorySelected.emit(categoryId); 
+  // }
 }

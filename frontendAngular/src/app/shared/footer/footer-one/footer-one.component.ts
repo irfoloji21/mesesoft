@@ -20,11 +20,12 @@ export class FooterOneComponent implements OnInit {
   constructor(private categoryService : CategoryService) { }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe((data: any) => {
-      if (data.success) {
-        this.categories = data.categories;
-      }
-    });
+    // this.categoryService.getCategories().subscribe((data: any) => {
+    //   if (data.success) {
+    //     this.categories = data.categories;
+
+    //   }
+    // });
   }
 
 }

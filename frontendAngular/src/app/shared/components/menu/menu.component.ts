@@ -23,6 +23,14 @@ export class MenuComponent implements OnInit {
           category.megaMenu = true 
           category.active=false;
           category.megaMenu= true
+          if (category.subcategories) {
+            for (const subcategory of category.subcategories) {
+              if (subcategory.name) {
+                // console.log(subcategory.name , "subcategory 2");
+                // console.log(this.menuItems, "menuItems")
+              }
+            }
+          }
          
         });
       }
