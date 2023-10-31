@@ -7,7 +7,7 @@ const Order = require("../model/order");
 const Shop = require("../model/shop");
 const Product = require("../model/product");
 
-// create new order
+
 router.post(
   "/create-order",
   catchAsyncErrors(async (req, res, next) => {
@@ -48,7 +48,7 @@ router.post(
   })
 );
 
-// get all orders of user
+
 router.get(
   "/get-all-orders/:userId",
   catchAsyncErrors(async (req, res, next) => {
@@ -67,7 +67,7 @@ router.get(
   })
 );
 
-// get all orders of seller
+
 router.get(
   "/get-seller-all-orders/:shopId",
   catchAsyncErrors(async (req, res, next) => {
@@ -88,10 +88,10 @@ router.get(
   })
 );
 
-// update order status for seller
+
+//isSeller eklenecek
 router.put(
   "/update-order-status/:id",
-  isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const order = await Order.findById(req.params.id);
@@ -143,7 +143,7 @@ router.put(
   })
 );
 
-// give a refund ----- user
+
 router.put(
   "/order-refund/:id",
   catchAsyncErrors(async (req, res, next) => {
@@ -169,7 +169,7 @@ router.put(
   })
 );
 
-// accept the refund ---- seller
+
 router.put(
   "/order-refund-success/:id",
   isSeller,
@@ -210,7 +210,7 @@ router.put(
   })
 );
 
-// all orders --- for admin
+
 router.get(
   "/admin-all-orders",
   isAuthenticated,

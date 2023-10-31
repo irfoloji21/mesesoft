@@ -25,6 +25,7 @@ export class OrdersComponent implements OnInit {
   public searchText: string = '';
   public filteredOrders: any[] = [];
   public selectedOrder: any;
+  public selectedOrderStatus: string = '';
 
 
   public closeResult: string;
@@ -71,6 +72,25 @@ export class OrdersComponent implements OnInit {
     this.selectedOrder = item; 
     console.log(this.selectedOrder)
   }
+
+  updateOrderStatus(orderId: string, newStatus: string) {
+    console.log(orderId, newStatus)
+
+    this.orderService.updateOrderStatus(orderId, newStatus).subscribe(
+      (res) => {
+        this.getShopOrders();
+        this.modalService.dismissAll();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+
+
+
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

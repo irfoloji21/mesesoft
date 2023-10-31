@@ -10,15 +10,11 @@
 
           <div class="modal fade modal-lg" style="width: 1200px; ">
             <ng-template #content let-modal>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
+             
                       <h5 class="modal-title f-w-600" id="exampleModalLabel">Order Details</h5>
                       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                    </div>
                     <div class="modal-body">
                   <table class="table table-striped">
                     <thead>
@@ -31,6 +27,7 @@
                         <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
                         <th scope="col" sortable="total" (sort)="onSort($event)">Total</th>
                         <th scope="col" sortable="adress" (sort)="onSort($event)">Shipping Address</th>
+                        <th scope="col" sortable="update_status">Update Order Status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -42,7 +39,7 @@
                           </span>
                         </td>
                         <td><span class='badge badge-success'>{{ selectedOrder.paymentInfo?.status }}</span></td>
-                        <td>{{ selectedOrder.paymeny_method }}</td>
+                        <td>{{ selectedOrder.payment_method }}</td>
                         <td><span class='badge badge-secondary'>{{ selectedOrder.status }}</span></td>
                         <td>{{selectedOrder.paidAt}}</td>
                         <td>{{selectedOrder.totalPrice}}</td>
@@ -50,16 +47,25 @@
                           {{selectedOrder.shippingAddress.address1}},
                           {{selectedOrder.shippingAddress.address2}},
                           {{selectedOrder.shippingAddress.city}},
-                          {{selectedOrder.shippingAddress.postalCode}},
+                          {{selectedOrder.shippingAddress.zipCode}},
                           {{selectedOrder.shippingAddress.country}}
                         </td>
+                        <td>
+                          <select [(ngModel)]="selectedOrderStatus">
+                            <option value="Processing">Processing</option>
+                            <option value="Transferred to delivery partner">Transferred to delivery partner</option>
+                            <option value="Shipping">Shipping</option>
+                            <option value="Received">Received</option>
+                            <option value="On the way">On the way</option>
+                            <option value="Delivered">Delivered</option>
+                            <!-- Diğer durumları buraya ekleyin -->
+                          </select>
+                          <button (click)="updateOrderStatus(selectedOrder._id, selectedOrderStatus)">Update</button>
+                        </td>                                              
                       </tr>
                     </tbody>
                   </table>
-                </div>
-              </div>
-            </div>
-          </div>
+                  </div>
             </ng-template>
         </div>
 

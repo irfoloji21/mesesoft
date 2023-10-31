@@ -15,7 +15,9 @@ export class OrderService {
     return this.http.get<any>(`${this.apiUrl}/order/get-seller-all-orders/${id}`);
   }
 
-  
+  updateOrderStatus(id, status): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/order/update-order-status/${id}`, status);
+  }
 
 
  
