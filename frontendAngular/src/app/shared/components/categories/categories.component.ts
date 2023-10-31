@@ -12,13 +12,11 @@ export class CategoriesComponent implements OnInit {
 
   public categories: Category[] = [];
   public collapse: boolean = true;
-  // @Output() categorySelected: EventEmitter<string> = new EventEmitter<string>(); 
+  public SelectCategory: string | null = null;
   constructor(public categoryService: CategoryService) { 
     this.categoryService.getCategories().subscribe((data: any) => {
-      console.log(data , "sortByControl1")
       if (data.success) {
         this.categories = data.categories;
-        console.log(this.categories, "sortByControl2")
       }
     });
   }
@@ -28,12 +26,17 @@ export class CategoriesComponent implements OnInit {
 
   get filterbyCategory() {
     const categoryNames = this.categories
-      .filter(category => category.isShow === true) 
-      .map(category => category.name);
+    .filter(category => category.isShow === true) 
+    .map(category => ({
+       name: category.name, 
+        _id: category._id ,
+        description:category.description 
+
+        }));
     return [...new Set(categoryNames)];
   }
 
-  // selectCategory(categoryId: string) {
-  //   this.categorySelected.emit(categoryId); 
-  // }
+  selectCategory(category: Category) {
+    this.SelectCategory = category.description;
+  }
 }

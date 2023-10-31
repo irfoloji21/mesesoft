@@ -6,8 +6,8 @@
             <ul class="category-list">
                 <li *ngFor="let category of filterbyCategory">
                     <a [routerLink]="['/shop/collection/left/sidebar']"
-                       [queryParams]="{ category: category}"  >
-                        {{ category }} 
+                       [queryParams]="{ categoryId: category._id, categoryName: category.name }"  >
+                        {{ category.name }} 
                     </a>
                 </li>
             </ul>

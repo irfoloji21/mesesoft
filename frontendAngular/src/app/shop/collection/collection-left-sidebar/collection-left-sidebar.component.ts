@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { ProductService } from "../../../shared/services/product.service";
 import { Product } from '../../../shared/classes/product';
+import { Category } from 'src/app/shared/classes/category';
 
 @Component({
   selector: 'app-collection-left-sidebar',
@@ -26,6 +27,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public sortBy: string; // Sorting Order
   public mobileSidebar: boolean = false;
   public loader: boolean = true;
+  public categoryContent :Category[] = []
   selectedCategoryId: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
@@ -38,8 +40,9 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.minPrice = params.minPrice ? params.minPrice : this.minPrice;
         this.maxPrice = params.maxPrice ? params.maxPrice : this.maxPrice;
       this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
-  
-      this.category = params.category ? params.category : null;
+      
+      this.categoryContent = params.category ?  params.category : null
+      this.category = params.categoryId ? params.categoryId : null;
       this.sortBy = params.sortBy ? params.sortBy : 'ascending';
       this.pageNo = params.page ? params.page : this.pageNo;
   
@@ -51,8 +54,10 @@ export class CollectionLeftSidebarComponent implements OnInit {
         this.products = this.productService.sortProducts(this.products, this.sortBy);
   
         
-        if(params.category)
-        this.products = this.products.filter(item => item.category == this.category);
+        if (this.category) {
+          this.products = this.products.filter(item => item.category == this.category);
+        }
+        
 
   
       

@@ -300,9 +300,9 @@ export class ProductService {
       })
     } else if (payload === 'high') {
       return products.sort((a, b) => {
-        if (a.discountPrice > b.discountPrice) {
+        if (a.originalPrice > b.originalPrice) {
           return -1;
-        } else if (a.discountPrice < b.discountPrice) {
+        } else if (a.originalPrice < b.originalPrice) {
           return 1;
         }
         return 0;
