@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { HttpHeaders } from '@angular/common/http'; 
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -13,7 +14,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private toasts : ToastrService) { }
 
   loginForm: FormGroup;
 
@@ -42,9 +43,25 @@ export class LoginComponent implements OnInit {
         if (response.success) {
           console.log("success", response);
           this.authService.setUserId(response.user._id)
+          this.toasts.success('Giriş başarılı', '' ,
+          { 
+            positionClass: 'toast-top-right',
+            timeOut: 2500, 
+            closeButton: true,
+            newestOnTop: false,
+            progressBar: true,
+          })
           this.router.navigate(['/home/fashion'], { state: formData });
         } else {
           console.error("error");
+          this.toasts.error('Giriş başarısız', '' ,
+          { 
+            positionClass: 'toast-top-right',
+            timeOut: 2500, 
+            closeButton: true,
+            newestOnTop: false,
+            progressBar: true,
+          })
         }
       });
   }

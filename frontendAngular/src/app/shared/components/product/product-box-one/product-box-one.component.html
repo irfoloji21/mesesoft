@@ -56,6 +56,10 @@
         {{ product?.originalPrice | currency }}
         <del *ngIf="product?.discountPrice"><span class="money"> {{ product?.discountPrice | currency  }}</span></del>
       </h4>
+      <h5 class="sold">
+        {{ product?.sold_out }}
+        <span> sold</span>
+      </h5>
       <!-- <ul class="color-variant" *ngIf="Color(product?.variants).length">
         <li [class]="color" *ngFor="let color of Color(product?.variants)" [ngStyle]="{'background-color': color}"
           (click)="ChangeVariants(color, product)">

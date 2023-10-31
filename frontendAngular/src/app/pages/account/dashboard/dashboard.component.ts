@@ -23,12 +23,12 @@ export class DashboardComponent implements OnInit {
   constructor(private serviceAuth: AuthService, private router: Router) { }
 
   menuItems = [
-    { label: 'Account Info', component: AccountInfoComponent },
+    { label: 'My Account', component: ProfileComponent },
+    // { label: 'Account Info', component: AccountInfoComponent },
     { label: 'Address Book', component: AddressComponent },
     { label: 'My Orders', component: ForgetPasswordComponent },
     { label: 'My Wishlist', component: WishlistComponent },
     { label: 'Newsletter', component: ForgetPasswordComponent },
-    { label: 'My Account', component: ProfileComponent },
     { label: 'Change Passwort', component: ChangePasswordComponent },
   ]
 

@@ -34,9 +34,9 @@
                 <li *ngIf="isLoggedIn; else loginLink">
                   <ul>
                     <li>
-                      <a >Account Info</a>
+                      <a [routerLink]="['/pages/dashboard']">Account Info</a>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a>Address Book</a>
                     </li>
                     <li>
@@ -56,8 +56,8 @@
                     </li>
                     <li>
                       <a  >Profile</a>
-                    </li>
-                    <hr>
+                    </li> 
+                    <hr>-->
                     <li>
                       <a (click)="logout()" style="cursor: pointer">Log out</a>
                     </li>

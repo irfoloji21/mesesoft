@@ -19,6 +19,7 @@ export interface Product {
     tags?: any[];
     variants?: Variants[];
     images?: Images[];
+    sold_out?: string;
     originalPrice?:number;
     discountPrice? : number;
     ratings?:any;
