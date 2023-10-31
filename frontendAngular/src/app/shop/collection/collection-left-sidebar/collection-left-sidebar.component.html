@@ -23,8 +23,8 @@
                             <!-- <app-brands [products]="products" [brands]="brands" (brandsFilter)="updateFilter($event)">
                             </app-brands> -->
                             <!-- color filter start here -->
-                            <!-- <app-colors [products]="products" [colors]="colors" (colorsFilter)="updateFilter($event)">
-                            </app-colors> -->
+                            <!-- <app- [products]="products" [colors]="colors" (colorsFilter)="updateFilter($event)">
+                            </app-> -->
                             <!-- size filter start here -->
                             <!-- <app-size [products]="products" [size]="size" (sizeFilter)="updateFilter($event)">
                             </app-size> -->
@@ -52,10 +52,11 @@
                             <div class="col-sm-12">
                                 <div class="top-banner-wrapper">
                                     <a [routerLink]="['/shop/collection/left/sidebar']">
-                                        <img src="assets/images/collection-banner.jpg" class="img-fluid " alt="">
+                                        <img [src]="Image" class="img-fluid " alt="Category photo"  *ngIf="Image"> 
+                                       
                                     </a>
                                     <div class="top-banner-content small-section" >
-                                        <h4>fashion</h4>
+                                        <h4>{{categoryEs}}</h4>
                                         <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                         </h5>
                                         <p>

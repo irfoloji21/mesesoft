@@ -14,10 +14,10 @@ export class BlogComponent implements OnInit {
   constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
-    this.blogService.getBlogs().subscribe((data) => {
-      console.log(data ,"blog")
-      this.blogs = data;
-    });
+    // this.blogService.getBlogs().subscribe((data) => {
+    //   console.log(data ,"blog")
+    //   this.blogs = data;
+    // });
   }
 
   public BlogSliderConfig: any = BlogSlider;

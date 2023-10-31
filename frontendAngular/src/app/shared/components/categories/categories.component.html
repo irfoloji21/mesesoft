@@ -5,9 +5,8 @@
         <div class="collection-brand-filter">
             <ul class="category-list">
                 <li *ngFor="let category of filterbyCategory">
-                    <a [routerLink]="['/shop/collection/left/sidebar']"
-                       [queryParams]="{ categoryId: category._id, categoryName: category.name }"  >
-                        {{ category.name }} 
+                    <a (click)="navigateToCategory(category)">
+                        {{ category.name }}
                     </a>
                 </li>
             </ul>

@@ -4,6 +4,7 @@ import { ViewportScroller } from '@angular/common';
 import { ProductService } from "../../../shared/services/product.service";
 import { Product } from '../../../shared/classes/product';
 import { Category } from 'src/app/shared/classes/category';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'app-collection-left-sidebar',
@@ -22,16 +23,19 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public maxPrice: number = 1200;
   public tags: any[] = [];
   public category: any;
+  public categoryEs : any ; 
+  public  Image : any;
   public pageNo: number = 1;
   public paginate: any = {}; // Pagination use only
   public sortBy: string; // Sorting Order
   public mobileSidebar: boolean = false;
   public loader: boolean = true;
   public categoryContent :Category[] = []
-  selectedCategoryId: string;
+  public selectedCategoryDetails: any = [];
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private viewScroller: ViewportScroller, public productService: ProductService) {
+    private viewScroller: ViewportScroller, public productService: ProductService , private categoryService : CategoryService) {
+
     // Get Query params..
     this.route.queryParams.subscribe(params => {
       this.brands = params.brand ? params.brand.split(",") : [];
@@ -41,30 +45,24 @@ export class CollectionLeftSidebarComponent implements OnInit {
         this.maxPrice = params.maxPrice ? params.maxPrice : this.maxPrice;
       this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
       
-      this.categoryContent = params.category ?  params.category : null
+
+
       this.category = params.categoryId ? params.categoryId : null;
+      this.categoryEs = params.description ? params.description : null
+      this.Image = params.images ? params.images : null
       this.sortBy = params.sortBy ? params.sortBy : 'ascending';
       this.pageNo = params.page ? params.page : this.pageNo;
   
       this.productService.filterProducts(this.tags).subscribe((response:any) => {
      
         this.products = this.parseResponse(response);
-        console.log(response[0].products)
       
         this.products = this.productService.sortProducts(this.products, this.sortBy);
-  
-        
+
         if (this.category) {
           this.products = this.products.filter(item => item.category == this.category);
         }
-        
-
-  
-      
         this.products = this.products.filter(item => item.discountPrice >= this.minPrice && item.originalPrice <= this.maxPrice);
-
-  
-        
         this.paginate = this.productService.getPager(this.products.length, +this.pageNo); // get paginate object from service
         this.products = this.products.slice(this.paginate.startIndex, this.paginate.endIndex + 1); // get current page of items
       });
@@ -81,9 +79,10 @@ export class CollectionLeftSidebarComponent implements OnInit {
   }
   
 
-
   ngOnInit(): void {
+    
   }
+  
 
 
   // Append filter value to Url

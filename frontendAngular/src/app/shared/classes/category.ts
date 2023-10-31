@@ -10,7 +10,7 @@ export interface Category {
   _id?: number;
   name?: string;
   description?: string;
-  images?: Images[];
+  images?: Images;
   rating?: number;
   subcategories?: Subcategory[];
   showMegaMenu: boolean;
@@ -26,6 +26,7 @@ export interface Images {
   _id?: number;
   public_id?: number;
   url?: string;
+  length: number;
 }
 
 export interface Subcategory {
@@ -34,4 +35,8 @@ export interface Subcategory {
   description?: string;
   images?: Images[];
   subcategories?: Subcategory[]; 
+}
+export interface CategoryDetails {
+  description: string;
+  imageUrl: string;
 }
