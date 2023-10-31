@@ -7,13 +7,72 @@
           <h5>Manage Order</h5>
         </div>
         <div class="card-body">
-          <div class="custom-datatable">
-            <form>
-              <div class="mb-3">
-                <input type='text' class="filter-ngx form-control" placeholder='Search...' [(ngModel)]="searchText"
-                  autocomplete="off" />
+
+          <div class="modal fade modal-lg" style="width: 1200px; ">
+            <ng-template #content let-modal>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title f-w-600" id="exampleModalLabel">Order Details</h5>
+                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col" sortable="order_id" (sort)="onSort($event)" style="width: 150px">Order Id</th>
+                        <th scope="col" sortable="product" (sort)="onSort($event)" style="width: 200px">Image</th>
+                        <th scope="col" sortable="payment_status" (sort)="onSort($event)">Payment Status</th>
+                        <th scope="col" sortable="paymeny_method" (sort)="onSort($event)">Payment Mehod</th>
+                        <th scope="col" sortable="order_status" (sort)="onSort($event)">Order Status</th>
+                        <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
+                        <th scope="col" sortable="total" (sort)="onSort($event)">Total</th>
+                        <th scope="col" sortable="adress" (sort)="onSort($event)">Shipping Address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr >
+                        <th scope="row">{{ selectedOrder._id }}</th>
+                        <td>
+                          <span *ngFor="let image of selectedOrder.cart[0].images">
+                            <img [src]="image.url" class="img-30 me-2">
+                          </span>
+                        </td>
+                        <td><span class='badge badge-success'>{{ selectedOrder.paymentInfo?.status }}</span></td>
+                        <td>{{ selectedOrder.paymeny_method }}</td>
+                        <td><span class='badge badge-secondary'>{{ selectedOrder.status }}</span></td>
+                        <td>{{selectedOrder.paidAt}}</td>
+                        <td>{{selectedOrder.totalPrice}}</td>
+                        <td>
+                          {{selectedOrder.shippingAddress.address1}},
+                          {{selectedOrder.shippingAddress.address2}},
+                          {{selectedOrder.shippingAddress.city}},
+                          {{selectedOrder.shippingAddress.postalCode}},
+                          {{selectedOrder.shippingAddress.country}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </form>
+            </div>
+          </div>
+            </ng-template>
+        </div>
+
+
+
+
+
+          <div class="custom-datatable">
+              <div class="mb-3">
+                <input type='text'  class="filter-ngx form-control" placeholder='Search...' [(ngModel)]="searchText" />
+
+              </div>
+              <button type="submit" (click)="search()" class="btn btn-primary">Ara</button>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -24,21 +83,26 @@
                   <th scope="col" sortable="order_status" (sort)="onSort($event)">Order Status</th>
                   <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
                   <th scope="col" sortable="total" (sort)="onSort($event)">Total</th>
+                  <th scope="col" sortable="total" (sort)="onSort($event)">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of (tableItem$ | async)">
-                  <th scope="row">{{ item.order_id }}</th>
+                <tr *ngFor="let item of filteredOrders">
+                  <th scope="row">{{ item._id }}</th>
                   <td>
-                    <span *ngFor="let image of item.product">
-                      <img [src]="image" class="img-30 me-2">
+                    <span *ngFor="let image of item.cart[0].images">
+                      <img [src]="image.url" class="img-30 me-2">
                     </span>
                   </td>
-                  <td><span class='badge {{item.payment_class}}'>{{ item.payment_status }}</span></td>
+                  <td><span class='badge badge-success'>{{ item.paymentInfo?.status }}</span></td>
                   <td>{{ item.paymeny_method }}</td>
-                  <td><span class='badge {{item.order_class}}'>{{ item.order_status }}</span></td>
-                  <td>{{item.date}}</td>
-                  <td>{{item.total}}</td>
+                  <td><span class='badge badge-secondary'>{{ item.status }}</span></td>
+                  <td>{{item.paidAt}}</td>
+                  <td>{{item.totalPrice}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+                    data-target="#exampleModal" (click)="irfan(item)" (click)="open(content) ">go order</button>
+                  </td>
                 </tr>
               </tbody>
             </table>

@@ -27,6 +27,7 @@ const orderSchema = new mongoose.Schema({
         },
         status: {
             type: String,
+            default: "Processing",
         },
         type:{
             type: String,
@@ -35,6 +36,10 @@ const orderSchema = new mongoose.Schema({
     paidAt:{
         type: Date,
         default: Date.now(),
+    },
+    payment_method:{
+        type: String,
+        default: "Cash On Delivery",
     },
     deliveredAt: {
         type: Date,

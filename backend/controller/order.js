@@ -12,7 +12,7 @@ router.post(
   "/create-order",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const { cart, shippingAddress, user, totalPrice, paymentInfo } = req.body;
+      const { cart, shippingAddress, user, totalPrice, paymentInfo, payment_method } = req.body;
 
       const shopItemsMap = new Map();
 
@@ -33,6 +33,7 @@ router.post(
           user,
           totalPrice,
           paymentInfo,
+          payment_method
         });
         orders.push(order);
       }

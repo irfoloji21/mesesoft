@@ -6,6 +6,9 @@ import { TableService } from 'src/app/shared/service/table.service';
 import { Observable } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { OrderDB, ORDERDB } from 'src/app/shared/tables/order-list';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { OrderService } from 'src/app/shared/service/order.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-orders',
@@ -15,12 +18,26 @@ import { OrderDB, ORDERDB } from 'src/app/shared/tables/order-list';
 })
 
 export class OrdersComponent implements OnInit {
+
+
+  public shop: any;
+  public orders: any[] = [];
+  public searchText: string = '';
+  public filteredOrders: any[] = [];
+  public selectedOrder: any;
+
+
   public closeResult: string;
   public tableItem$: Observable<OrderDB[]>;
-  public searchText;
   total$: Observable<number>;
 
-  constructor(public service: TableService, private modalService: NgbModal) {
+  constructor(
+    public service: TableService, 
+    private modalService: NgbModal,
+    private authService: AuthService,
+    private orderService: OrderService,
+    ) {
+
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(ORDERDB)
@@ -41,14 +58,19 @@ export class OrdersComponent implements OnInit {
 
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+  open(item: any) {
+
+    this.modalService.open(item, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
+  irfan(item: any) {
+    this.selectedOrder = item; 
+    console.log(this.selectedOrder)
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -60,6 +82,49 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit() {
+  
+    this.authService.loadShop().subscribe(
+      (shop) => {
+        this.shop = shop.seller;
+        this.getShopOrders();
+        
+      },
+      (error) => {
+        console.error('Kullanıcı kimliği belirleme hatası:', error);
+      }
+    );
+
+   
   }
+
+
+  
+  getShopOrders() {
+    this.orderService.getShopOrders(this.shop._id).subscribe(
+      (res) => {
+        this.orders = res.orders;
+        this.search();
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
+
+  search() {
+     
+      if (!this.searchText) {
+        this.filteredOrders = this.orders;
+      } else {
+        this.filteredOrders = this.orders.filter(order => {
+          return order._id.toLowerCase().includes(this.searchText.toLowerCase());
+        });
+      }
+    
+  }
+
 
 }
