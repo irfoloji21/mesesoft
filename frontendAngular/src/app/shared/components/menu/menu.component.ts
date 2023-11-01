@@ -12,33 +12,34 @@ import { Category } from '../../classes/category';
 export class MenuComponent implements OnInit {
 
   public menuItems: Category[] = [];
-
-  constructor(private router: Router, public navServices: NavService , public categoryService:CategoryService) {
+  public subCategoryData: any[] = []; 
+  constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService) {
     this.categoryService.getCategories().subscribe((data: any) => {
-     
-      
       if (data.success) {
         this.menuItems = data.categories;
         this.menuItems.forEach((category: Category) => {
-          category.megaMenu = true 
-          category.active=false;
-          category.megaMenu= true
+          category.megaMenu = true;
+          category.active = false;
+          category.megaMenu = true;
+
           if (category.subcategories) {
             for (const subcategory of category.subcategories) {
-              if (subcategory.name) {
-                // console.log(subcategory.name , "subcategory 2");
-                // console.log(this.menuItems, "menuItems")
+              if (subcategory._id) {
+                const subcategoryId = subcategory._id;
+                this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
+                  console.log(subCategoryData.category, "subCategoryData");
+                  this.subCategoryData.push(subCategoryData.category);
+                });
               }
             }
           }
-         
         });
       }
-  
     });
     this.router.events.subscribe((event) => {
       this.navServices.mainMenuToggle = false;
     });
+
   }
 
   ngOnInit(): void {

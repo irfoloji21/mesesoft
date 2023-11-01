@@ -1,4 +1,5 @@
 export interface Category {
+  category: Subcategory;
   path?: string;
   title?: string;
   type?: string;

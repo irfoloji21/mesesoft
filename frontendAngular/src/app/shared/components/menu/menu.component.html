@@ -25,8 +25,8 @@
         <!-- 2nd Level Menu -->
       
 
-        <div class="mega-menu-container" *ngIf="menuItem.megaMenu && menuItem.subcategories.length > 0">
-          <div class="container">
+        <div class="mega-menu-container col-md-6">
+          <div class="container ">
             <div class="row">
               <div class="col mega-box" *ngFor="let childrenItem of menuItem.subcategories">
                 <div class="link-section">
@@ -37,8 +37,8 @@
                     </h5>
                   </div>
                   <div class="menu-content opensubmegamenu"  >
-                    <ul *ngIf="menuItem.subcategories && menuItem.subcategories.length > 0">
-                      <li  *ngFor="let childrenSubItem of menuItem.subcategories.subcategories">
+                    <ul >
+                      <li *ngFor="let childrenSubItem of subCategoryData">
                         <!-- Sub -->
                         <a href="javascript:void(0)">
                           {{ childrenSubItem.name | translate }}

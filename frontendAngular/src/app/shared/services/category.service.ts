@@ -31,7 +31,7 @@ export class CategoryService {
 
   
   getCategoryById(id: number): Observable<Category> {
-    return this.http.get<Category>(`${this.apiUrl}/get-category-by-id/${id}`);
+    return this.http.get<Category>(`${this.apiUrl}/get-category/${id}`);
   }
 
   // createCategory
