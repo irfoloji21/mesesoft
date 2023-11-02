@@ -160,38 +160,44 @@ export class CheckoutComponent implements OnInit {
 
 
 
+
+
   currentStep: string = 'adres';
 
-proceedToNextStep() {
-  if (this.currentStep === 'adres') {
-    // Burada "Delivery" başarılı bir şekilde kaydedildiğini kontrol edebilirsiniz.
-    const deliverySuccess = true; // Başarılı ise true olarak ayarlanır
-
-    if (deliverySuccess) {
-      this.currentStep = 'odeme'; // Başarılıysa, bir sonraki adıma geçin
-      // Bu adımda önceki adımın rengini yeşil yapmak için JavaScript kullanın
-      const addressTab = document.querySelector('.checkout-tab[data-type="checkout-address"]');
-      addressTab.classList.add('completed');
-    } else {
-      // Başarısızsa, hata mesajı veya başka bir işlem yapabilirsiniz
-      alert('Adres kaydedilemedi! Lütfen tekrar deneyin.');
-    }
-  } else if (this.currentStep === 'odeme') {
-    // Burada "Payment" başarılı bir şekilde kaydedildiğini kontrol edebilirsiniz.
-    const paymentSuccess = true; // Başarılı ise true olarak ayarlanır
-
-    if (paymentSuccess) {
-      this.currentStep = 'onay'; // Başarılıysa, bir sonraki adıma geçin
-      // Bu adımda önceki adımın rengini yeşil yapmak için JavaScript kullanın
-      const paymentTab = document.querySelector('.checkout-tab[data-type="checkout-payment"]');
-      paymentTab.classList.add('completed');
-    } else {
-      // Başarısızsa, hata mesajı veya başka bir işlem yapabilirsiniz
-      alert('Ödeme yapılamadı! Lütfen tekrar deneyin.');
+  proceedToNextStep() {
+    if (this.currentStep === 'adres') {
+      const deliverySuccess = true;
+  
+      if (deliverySuccess) {
+        this.currentStep = 'checkout'; 
+        const addressTab = document.querySelector('.checkout-tab[data-type="checkout-address"]');
+        addressTab.classList.add('completed');
+      } else {
+        alert('Adres kaydedilemedi! Lütfen tekrar deneyin.');
+      }
+    } else if (this.currentStep === 'checkout') {
+      const checkoutSuccess = true; 
+  
+      if (checkoutSuccess) {
+        this.currentStep = 'odeme'; 
+        const checkoutTab = document.querySelector('.checkout-tab[data-type="checkout-payment"]');
+        checkoutTab.classList.add('completed');
+      } else {
+        alert('Checkout başarılı olmadı! Lütfen tekrar deneyin.');
+      }
+    } else if (this.currentStep === 'odeme') {
+      const paymentSuccess = true;
+  
+      if (paymentSuccess) {
+        alert('Ödeme başarıyla tamamlandı!');
+      } else {
+        alert('Ödeme yapılamadı! Lütfen tekrar deneyin.');
+      }
     }
   }
-  // Diğer adımlar için benzer kontroller ekleyebilirsiniz.
-}
+  
+
+  
 
   
   

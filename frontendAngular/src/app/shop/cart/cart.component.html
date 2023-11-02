@@ -89,13 +89,36 @@
             <table class="table cart-table table-responsive-md">
                 <tfoot>
                     <tr>
-                        <td>total price :</td>
-                        <td>
-                            <h2> {{ getTotal | async | currency}}</h2>
-                        </td>
+                      <td>Toplam Fiyat:</td>
+                      <td>
+                        <h2>{{ getTotal | async | currency }}</h2>
+                      </td>
                     </tr>
-                </tfoot>
+                    <tr >
+                      <td>Coupon Code:</td>
+                      <td>
+                        <form [formGroup]="couponForm" class="coupon-form">
+                          <input type="text"formControlName="couponCode"placeholder="Coupon Code">
+                          <button type="submit"  >Apply</button>
+                        </form>
+                      </td>
+                    </tr>
+                    <tr *ngIf="showDiscountedTotal">
+                      <td >
+                        Discounted Price:
+                    </td>
+                    <td class="DiscountedPrice d-flex " >
+                      <div>
+                      %15  
+                      </div>  
+                      <div>
+                          {{ discountedTotal | currency }}
+                      </div>
+                    </td>
+                    </tr>
+                  </tfoot>
             </table>
+
         </div>
         </div>
         <div class="row cart-buttons" *ngIf='products.length'>

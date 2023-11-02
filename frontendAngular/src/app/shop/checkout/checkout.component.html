@@ -2,7 +2,7 @@
 <div class="page-checkout">
   <div class="js-tab-box">
   <div class="checkout-tabs container">
-  <img loading="lazy" class="tick js-address-step-address" src="https://39b3a056.cdn.akinoncloud.com/static_omnishop/occ542/assets/img/tick.png" alt="">
+  <img loading="lazy" class="tick js-address-step-address" src="" alt="">
   <div class="checkout-tab js-tab" [ngClass]="{'active': currentStep === 'adres'}" data-type="checkout-address">
     <div class="checkout-tab-title">
       <span class="desktop-tab">
@@ -16,29 +16,29 @@
     </div>
   </div>
   <div class="visible-xs divider"></div>
-  <img loading="lazy" class="tick js-payment-step-payment" src="https://39b3a056.cdn.akinoncloud.com/static_omnishop/occ542/assets/img/tick.png" alt="">
-  <div class="checkout-tab js-tab" [ngClass]="{'active': currentStep === 'odeme'}" data-type="checkout-payment">
+  <img loading="lazy" class="tick js-payment-step-payment" src="" alt="">
+  <div class="checkout-tab js-tab" [ngClass]="{'active': currentStep === 'checkout'}" data-type="checkout-payment">
     <div class="checkout-tab-title">
       <span class="desktop-tab">
-        2. PAYMENT OPTIONS
+        2. CHECK-OUT
         <i class="icon-arrow_right"></i>
       </span>
       <span class="mobile-tab">
         <div class="js-checkout-step"><span>2</span></div>
-        Payment
+        Check-out
       </span>      
     </div>
   </div>
   <div class=" visible-xs divider"></div>
   <img loading="lazy" class="tick js-all-step-completed" src="https://39b3a056.cdn.akinoncloud.com/static_omnishop/occ542/assets/img/tick.png" alt="">
-  <div class="checkout-tab" [ngClass]="{'active': currentStep === 'onay'}" data-type="checkout-completed">
+  <div class="checkout-tab" [ngClass]="{'active': currentStep === 'odeme'}" data-type="checkout-completed">
     <div class="checkout-tab-title">
       <span class="desktop-tab">
-        3. CONFIRMATION
+        3. PAYMENT OPTIONS
       </span>
       <span class="mobile-tab">
        <div class="js-checkout-step"><span>3</span></div>
-       Confirmation
+       Payment
       </span>      
     </div>
   </div>
@@ -47,8 +47,8 @@
 
 
     <app-address  *ngIf="currentStep === 'adres'"></app-address>
+    <app-cart *ngIf="currentStep === 'checkout'"></app-cart>
     <app-payment *ngIf="currentStep === 'odeme'"></app-payment>
-    <app-confirmation *ngIf="currentStep === 'onay'"></app-confirmation>
     
 <br>
 <div class="cta-area col-md-10 ml-auto text-right mx-3">
