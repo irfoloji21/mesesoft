@@ -13,19 +13,19 @@ export class CouponService {
   constructor(private http: HttpClient) {}
 
   createCouponCode(couponData: any): Observable<CouponCode> {
-    return this.http.post<CouponCode>(`${this.baseUrl}/create-coupon-code`, couponData);
+    return this.http.post<CouponCode>(`${this.baseUrl}/coupon/create-coupon-code`, couponData);
   }
 
   getCouponsByShopId(shopId: string): Observable<CouponCode> {
-    return this.http.get<CouponCode>(`${this.baseUrl}/get-coupon/${shopId}`);
+    return this.http.get<CouponCode>(`${this.baseUrl}/coupon/get-coupon/${shopId}`);
   }
 
   deleteCoupon(couponId: string): Observable<CouponCode> {
-    return this.http.delete<CouponCode>(`${this.baseUrl}/delete-coupon/${couponId}`);
+    return this.http.delete<CouponCode>(`${this.baseUrl}/coupon/delete-coupon/${couponId}`);
   }
 
   getCouponValueByName(couponName: any): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/get-coupon-value/${couponName}`);
+    return this.http.get<CouponCode>(`${this.baseUrl}/coupon/get-coupon-value/${couponName}`);
   }
 }
 

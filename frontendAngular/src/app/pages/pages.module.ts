@@ -46,6 +46,7 @@ import { MasonryFullWidthComponent } from './portfolio/masonry-full-width/masonr
 import { ActivationComponent } from './account/activation/activation.component';
 import { AccountInfoComponent } from './account/account-info/account-info.component';
 import { AddressComponent } from './account/address/address/address.component';
+import { CouponComponent } from './account/coupon/coupon/coupon.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { AddressComponent } from './account/address/address/address.component';
     ActivationComponent,
     AccountInfoComponent,
     ChangePasswordComponent,
-    AddressComponent
+    AddressComponent,
+    CouponComponent
   ],
   imports: [
     CommonModule,

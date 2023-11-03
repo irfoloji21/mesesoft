@@ -1,0 +1,47 @@
+.couponWrapper {
+    padding: 32px;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid #C7C7C7;
+    position: relative;
+    box-sizing: border-box;
+  
+    @media (max-width: 768px) {
+      padding: 16px;
+    }
+  }
+  
+  .couponListSection {
+    .couponCard.used {
+      margin-bottom: 1rem;
+  
+      .couponCard__positioning {
+        display: flex;
+        flex-direction: column;
+  
+        .coupon {
+          .couponCard__bg-gray {
+            padding: 1rem;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            margin: 1rem;
+  
+            p.title {
+              font-size: 18px;
+              color: #333;
+            }
+  
+            ul {
+              list-style: none;
+              padding: 0;
+  
+              li {
+                font-size: 16px;
+                color: #666;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

@@ -8,6 +8,7 @@ import { ProfileComponent } from '../profile/profile.component';
 import { AccountInfoComponent } from '../account-info/account-info.component';
 import { AddressComponent } from '../address/address/address.component';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { CouponComponent } from '../coupon/coupon/coupon.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
     { label: 'My Wishlist', component: WishlistComponent },
     { label: 'Newsletter', component: ForgetPasswordComponent },
     { label: 'Change Passwort', component: ChangePasswordComponent },
+    { label: 'Coupon' , component:CouponComponent}
   ]
 
   selectedMenuItem: any;
