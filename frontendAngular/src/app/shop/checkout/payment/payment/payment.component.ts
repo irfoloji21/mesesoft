@@ -1,5 +1,5 @@
 import { HttpHeaders } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -116,15 +116,8 @@ export class PaymentComponent implements OnInit {
     );
   }
 
-  currentStep: string = "adres";
 
-  proceedToNextStep() {
-    if (this.currentStep === "adres") {
-      this.currentStep = "odeme";
-    } else if (this.currentStep === "odeme") {
-      this.currentStep = "onay";
-    } else if (this.currentStep === "onay") {
-      this.currentStep = "confirmation";
-    }
-  }
+
+
+  
 }

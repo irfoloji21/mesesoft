@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-  max-width: 1140px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -211,4 +211,102 @@ body {
 
 .terms-and-conditions label {
   margin-left: 10px;
+}
+
+
+
+
+
+
+// Order Summary
+.summary-header {
+  font-weight: bold;
+  font-size: 24px;
+  color: #3498db;
+}
+
+.item-area {
+  margin-top: 20px;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-img-link-wrapper {
+  margin-right: 20px;
+}
+
+.product-name-link-wrapper p {
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.subtotal-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+
+  .subtotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .product-price,
+    .campaign {
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .campaign {
+      background-color: #F5A623;
+      color: white;
+    }
+
+    div {
+      margin: 5px 0;
+    }
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .totalPrice {
+      font-weight: bold;
+      color: #4CAF50;
+      margin-left: auto;
+      padding-right: 10px;
+    }
+  }
+}
+
+
+.order-image {
+ 
+  display: block; /* İmajı bir blok eleman olarak ayarla */
+  width:158px; /* Genişlik ayarla */
+  border: 2px solid #3498db; /* Kenarlık ekle */
+  border-radius: 5px; /* Köşeleri yuvarla */
+  padding: 2px; /* İçerik etrafına boşluk ekle */
+  height: auto; /* Yüksekliği otomatik olarak ayarla (kaldır) */
+  margin-bottom: -50px;
+}
+.order-image img {
+  display: block; /* Blok eleman olarak ayarla */
+  max-width: 150px; /* Maksimum genişlik ayarla */
+
 }
