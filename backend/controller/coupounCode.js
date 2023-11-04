@@ -20,11 +20,9 @@ router.post(
         return next(new ErrorHandler("Coupon code already exists!", 400));
       }
 
-      // Kupon oluşturma işlemi, gereksiz alanları içermemeli
-      // console.log(req.body)
       const newCouponCode = await CoupounCode.create(req.body);
 
-      // Kupon kodu başarıyla oluşturulduktan sonra, kullanıcılara kuponları ekleyin
+      
       const users = await User.find();
 
       for (const user of users) {
@@ -105,5 +103,50 @@ router.get(
     }
   })
 );
+
+
+router.post(
+  "/use-coupon-code",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      
+      const couponCode = await CoupounCode.findOne({
+        name: req.body.couponName,
+      });
+
+      if (!couponCode) {
+        return next(new ErrorHandler("Coupon code not found!", 404));
+      }
+
+
+      const user = await User.findById(req.body.user._id);
+
+      if (!user) {
+        return next(new ErrorHandler("User not found!", 404));
+      }
+
+      for (const userCoupon of user.coupons) {
+        if (userCoupon.couponID.toString() === couponCode._id.toString()) {
+          if (userCoupon.quantity > 0) {
+            userCoupon.quantity--; 
+          } else {
+            return next(new ErrorHandler("User has no remaining uses of this coupon!", 400));
+          }
+          break; 
+        }
+      }
+
+      await user.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Coupon code used successfully!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
 
 module.exports = router;
