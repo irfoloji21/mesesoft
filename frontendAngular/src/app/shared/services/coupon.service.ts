@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CouponCode } from '../classes/coupon';
 
 @Injectable({
@@ -26,6 +26,13 @@ export class CouponService {
 
   getCouponValueByName(couponName: any): Observable<any> {
     return this.http.get<CouponCode>(`${this.baseUrl}/coupon/get-coupon-value/${couponName}`);
+  }
+  
+  private appliedCouponSubject = new BehaviorSubject<any>(null);
+  appliedCoupon$ = this.appliedCouponSubject.asObservable();
+
+  applyCoupon(coupon: any) {
+    this.appliedCouponSubject.next(coupon);
   }
 }
 

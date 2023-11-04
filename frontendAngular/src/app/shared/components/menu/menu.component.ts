@@ -23,16 +23,16 @@ export class MenuComponent implements OnInit {
           category.megaMenu = true;
 
           if (category.subcategories) {
-            for (const subcategory of category.subcategories) {
-              if (subcategory._id) {
-                const subcategoryId = subcategory._id;
-                this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-                  console.log(subCategoryData.category, "subCategoryData");
-                  this.subCategoryData.push(subCategoryData.category);
-                });
-              }
-            }
-          }
+          //   for (const subcategory of category.subcategories) {
+          //     if (subcategory._id) {
+          //       const subcategoryId = subcategory._id;
+          //       this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
+          //         console.log(subCategoryData.category, "subCategoryData");
+          //         this.subCategoryData.push(subCategoryData.category);
+          //       });
+          //     }
+          //   }
+           }
         });
       }
     });
