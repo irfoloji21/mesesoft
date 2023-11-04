@@ -1,0 +1,7 @@
+<div *ngFor="let product of orderDetails.product">
+    <h2>{{ product.name }}</h2>
+    <img [src]="product.images[0].url" alt="{{ product.name }}">
+    <p>Description: {{ product.description }}</p>
+    <p>Price: {{ product.discountPrice }}</p>
+  </div>
+  

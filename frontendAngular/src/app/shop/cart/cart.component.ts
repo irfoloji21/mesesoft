@@ -66,6 +66,7 @@ export class CartComponent implements OnInit {
           this.couponForm.reset();
   
           if (this.totalAmount >= response.couponCode.min) {
+
             const appliedCoupon = {
               code: this.couponCode,
               discount: response.couponCode.quantity,

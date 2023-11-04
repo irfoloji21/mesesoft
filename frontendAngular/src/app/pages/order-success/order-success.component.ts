@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/shared/classes/order';
+import { OrderService } from 'src/app/shared/services/order.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-order-success',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  constructor() { }
+  public orderDetails: Order = { orderDate: new Date() };
+
+  constructor(public productService: ProductService,
+    private orderService: OrderService) { }
 
   ngOnInit(): void {
+    this.orderService.checkoutItems.subscribe(response => {
+      console.log(response , "order")
+      this.orderDetails = response;
+      console.log( "image")
+      this.orderDetails.orderDate = new Date(); 
+    });
   }
 
 }
