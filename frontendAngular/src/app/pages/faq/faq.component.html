@@ -4,7 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <ngb-accordion [closeOthers]="true" activeIds="static-1" class="accordion theme-accordion" id="accordionExample">
+                <ngb-accordion [closeOthers]="true" class="accordion theme-accordion" id="accordionExample">
+                    <ngb-panel *ngFor="let item of faqData" [id]="item.id" [title]="item.title">
+                      <ng-template ngbPanelContent>
+                        <p class="mb-0">{{ item.content }}</p>
+                      </ng-template>
+                    </ngb-panel>
+                  </ngb-accordion>
+                <!-- <ngb-accordion [closeOthers]="true" activeIds="static-1" class="accordion theme-accordion" id="accordionExample">
                     <ngb-panel id="static-1" title=" How can I downgrade to an earlier version of Dummy Content?">
                         <ng-template ngbPanelContent>
                             <p class="mb-0">it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years,All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures</p>
@@ -35,7 +42,7 @@
                             <p class="mb-0">it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years,All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures</p>
                         </ng-template>
                     </ngb-panel>
-                </ngb-accordion>
+                </ngb-accordion> -->
             </div>
         </div>
     </div>

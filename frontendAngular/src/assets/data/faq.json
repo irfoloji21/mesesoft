@@ -1,0 +1,32 @@
+[
+    {
+        "id": "static-1",
+        "title": "How can I downgrade to an earlier version of Dummy Content?",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ..."
+    },
+    {
+        "id": "static-2",
+        "title": "How can I upgrade from version?",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ..."
+    },
+    {
+        "id": "static-3",
+        "title": "Under what license are Regular Labs extensions released?",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ..."
+    },
+    {
+        "id": "static-4",
+        "title": "Can I turn on/off some blocks on the page?",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ..."
+    },
+    {
+        "id": "static-5",
+        "title": "What is included in the theme package?",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ..."
+    },
+    {
+        "id": "static-6",
+        "title": "How to install and run the project?",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ..."
+    }
+]
