@@ -1,6 +1,7 @@
 const express = require("express");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Shop = require("../model/shop");
+const User = require("../model/user");
 const ErrorHandler = require("../utils/ErrorHandler");
 const { isSeller } = require("../middleware/auth");
 const CoupounCode = require("../model/coupounCode");
@@ -11,25 +12,46 @@ router.post(
   "/create-coupon-code",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const isCoupounCodeExists = await CoupounCode.find({
+      const isCouponCodeExists = await CoupounCode.find({
         name: req.body.name,
       });
 
-      if (isCoupounCodeExists.length !== 0) {
-        return next(new ErrorHandler("Coupoun code already exists!", 400));
+      if (isCouponCodeExists.length !== 0) {
+        return next(new ErrorHandler("Coupon code already exists!", 400));
       }
 
-      const coupounCode = await CoupounCode.create(req.body);
+      // Kupon oluşturma işlemi, gereksiz alanları içermemeli
+      // console.log(req.body)
+      const newCouponCode = await CoupounCode.create(req.body);
+
+      // Kupon kodu başarıyla oluşturulduktan sonra, kullanıcılara kuponları ekleyin
+      const users = await User.find();
+
+      for (const user of users) {
+      console.log(user)
+        const couponToAdd = {
+          couponID: newCouponCode._id,
+          quantity: newCouponCode.customer,
+        }; 
+
+        
+
+        // Kullanıcı kupon eklemesi
+        user.coupons = user.coupons.concat(couponToAdd);
+        await user.save();
+      }
 
       res.status(201).json({
         success: true,
-        coupounCode,
+        couponCode: newCouponCode,
       });
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }
   })
 );
+
+
 
 //isSeller eklenecek
 router.get(

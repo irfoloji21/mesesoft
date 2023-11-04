@@ -16,6 +16,7 @@ import { CouponsModule } from './components/coupons/coupons.module';
 import { PagesModule } from './components/pages/pages.module';
 import { MediaModule } from './components/media/media.module';
 import { MenusModule } from './components/menus/menus.module';
+import { BlogModule } from './components/blog/blog.module';
 import { VendorsModule } from './components/vendors/vendors.module';
 import { UsersModule } from './components/users/users.module';
 import { LocalizationModule } from './components/localization/localization.module';
@@ -26,7 +27,6 @@ import { AuthModule } from './components/auth/auth.module';
 import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { InboxComponent } from './components/inbox/inbox.component';
-import { BlogModule } from './components/blog/blog.module';
 
 
 @NgModule({

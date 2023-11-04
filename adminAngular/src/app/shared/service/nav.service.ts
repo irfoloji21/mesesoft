@@ -120,7 +120,13 @@ export class NavService {
 		},
 		{
 			title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
-		}
+		},
+		{
+			title: 'Blogs', icon: 'align-left', type: 'sub', active: false, children: [
+				{ path: '/blog/list-blog', title: 'Blog Lists', type: 'link' },
+				{ path: '/blog/add-blog', title: 'Create Blog', type: 'link' },
+			]
+		},
 	]
 	// Array
 	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);

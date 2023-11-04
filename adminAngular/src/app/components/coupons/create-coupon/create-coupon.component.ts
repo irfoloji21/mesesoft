@@ -71,7 +71,6 @@ export class CreateCouponComponent implements OnInit {
 
       console.log(shop, "shopirfo")
       formData.shopId = shop.seller._id;
-      formData.shop = shop;
       console.log('Form değerleri:', this.combinedForm.value)
       this.couponService.createCoupoun(formData).subscribe(
         (response) => {

@@ -16,7 +16,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'create-blog',
+        path: 'add-blog',
         component: AddBlogComponent,
         data: {
           title: "Create Blog",

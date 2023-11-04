@@ -178,7 +178,7 @@ export class AddProductComponent implements OnInit {
     );
 
     this.route.params.subscribe(params => {
-      this.buttonText = 'Edit';
+      // this.buttonText = 'Edit';
       this.id = params['id'];
       this.productService.getProductById(this.id).subscribe(
         (response) => {

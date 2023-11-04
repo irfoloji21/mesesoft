@@ -63,6 +63,18 @@ const userSchema = new mongoose.Schema({
 //       required: true,
 //     },
 //  },
+coupons: [
+  {
+    couponID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'CoupounCode', 
+    },
+    quantity: {
+      type: Number,
+      default: 0, 
+    },
+  },
+],
  createdAt:{
   type: Date,
   default: Date.now(),

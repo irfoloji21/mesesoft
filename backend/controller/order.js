@@ -95,6 +95,7 @@ router.put(
   catchAsyncErrors(async (req, res, next) => {
     try {
       const order = await Order.findById(req.params.id);
+      console.log(req.body)
 
       if (!order) {
         return next(new ErrorHandler("Order not found with this id", 400));
