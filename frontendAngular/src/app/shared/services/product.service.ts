@@ -149,6 +149,13 @@ export class ProductService {
     -----------------  Cart  --------------------
     ---------------------------------------------
   */
+    // CartAll clear
+   public clearCart(): any {
+  state.cart = [];
+  localStorage.removeItem("cartItems");
+  return true
+   }
+
 
   // Get Cart Items
   public get cartItems(): Observable<Product[]> {

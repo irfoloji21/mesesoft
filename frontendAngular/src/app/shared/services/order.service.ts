@@ -26,7 +26,7 @@ export class OrderService {
   }
 
   // Create order
-  public createOrder(paymentData: {product: any ,  amount:any , }, ): Observable<any> {
+  public createOrder(paymentData: {  amount:any }, ): Observable<any> {
     return new Observable((observer) => {
       const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
@@ -38,7 +38,7 @@ export class OrderService {
       this.http.post(`${this.apiUrl}/payment/process`, paymentData, { headers, withCredentials: true }).subscribe(
         (response) => {
           console.log(response, "checkoutCart");
-          this.router.navigate(['/shop/checkout/success']);
+          this.router.navigate(['pages/order/success']);
           observer.next(response);
           observer.complete();
         },

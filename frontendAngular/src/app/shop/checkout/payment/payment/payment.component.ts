@@ -27,7 +27,7 @@ export class PaymentComponent implements OnInit {
   public payment: string = "Stripe";
   public amount: any;
   orderDetails: any;
-  totalAmount;
+  
   constructor(
     private fb: UntypedFormBuilder,
     public productService: ProductService,
@@ -51,7 +51,7 @@ export class PaymentComponent implements OnInit {
     console.log("Seçilen Adres Payment:", selectedAddress);
     this.getTotal.subscribe((total) => {
       console.log(total, "totalAmount");
-      this.amount = total; // Assign the correct total amount to 'this.amount'
+      this.amount = total; 
     });
   }
 
@@ -82,7 +82,7 @@ export class PaymentComponent implements OnInit {
           const result = await stripe.tokens.create({ card: cardDetails });
           console.log("Stripe API isteği ve Yanıt:", cardDetails, result);
           this.toasts.success("Stripe API isteği başarılı");
-          this.processPayment(result.id, this.totalAmount);
+          this.processPayment(result.id, this.amount);
         } catch (error) {
           console.error("Token oluşturulurken hata oluştu", error);
           console.error("Stripe hata detayları:", error.message);
@@ -98,13 +98,13 @@ export class PaymentComponent implements OnInit {
   processPayment(token: string, amount: any) {
     const paymentData = {
       product: this.products,
-      amount: amount,
-
+      amount: this.amount,
     };
-
     this.orderService.createOrder(paymentData).subscribe(
       (response) => {
         console.log("Ödeme başarılı:", response);
+        this.productService.clearCart();
+
       },
       (error) => {
         console.error("Ödeme işlemi sırasında hata oluştu:", error);

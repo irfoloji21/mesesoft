@@ -54,6 +54,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.pageNo = params.page ? params.page : this.pageNo;
   
       this.productService.filterProducts(this.tags).subscribe((response:any) => {
+        console.log(response[0].products , "Collection")
      
         this.products = this.parseResponse(response);
       
