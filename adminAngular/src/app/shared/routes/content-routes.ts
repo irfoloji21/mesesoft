@@ -45,6 +45,13 @@ export const content: Routes = [
     }
   },
   {
+    path: 'blog',
+    loadChildren: () => import('../../components/blog/blog.module').then(m => m.BlogModule),
+    data: {
+      breadcrumb: "Blog"
+    }
+  },
+  {
     path: 'users',
     loadChildren: () => import('../../components/users/users.module').then(m => m.UsersModule),
     data: {

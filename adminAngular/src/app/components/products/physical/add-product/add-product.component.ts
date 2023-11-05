@@ -4,7 +4,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ProductService } from '../../../../shared/service/product.service';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CategoryService } from 'src/app/shared/service/category.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -44,7 +44,8 @@ export class AddProductComponent implements OnInit {
     private productService: ProductService, 
     private authService: AuthService, 
     private categoryService: CategoryService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
 
 
     this.productForm = this.fb.group({
@@ -135,6 +136,7 @@ export class AddProductComponent implements OnInit {
 
       this.productService.createProduct(formData).subscribe(
         (response) => {
+          this.router.navigate(['/products/physical/product-list']);
           console.log('Ürün başarıyla oluşturuldu:', response);
         },
         (error) => {
@@ -156,6 +158,7 @@ export class AddProductComponent implements OnInit {
       console.log(this.id, "id")
       this.productService.updateProduct(this.id, formData).subscribe(
         (response) => {
+          this.router.navigate(['/products/physical/product-list']);
           console.log('Ürün başarıyla güncellendi:', response);
         },
         (error) => {
@@ -178,13 +181,13 @@ export class AddProductComponent implements OnInit {
     );
 
     this.route.params.subscribe(params => {
-      // this.buttonText = 'Edit';
       this.id = params['id'];
       this.productService.getProductById(this.id).subscribe(
         (response) => {
           console.log('Ürün', response);
           this.productForm.patchValue(response.product);
           this.selectedCategory = response.product.category;
+          this.buttonText = 'Edit';
         },
         (error) => {
           console.error(error);

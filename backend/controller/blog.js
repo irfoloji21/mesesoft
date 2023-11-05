@@ -7,7 +7,8 @@ const Shop = require("../model/shop");
 const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 
-// create blog
+// fakepath olduğu için resim betal edilmiştir.
+//fakepath olayı çoklu resim olan birçok yerde var.
 router.post(
   "/create-blog",
   catchAsyncErrors(async (req, res, next) => {
@@ -17,34 +18,36 @@ router.post(
       if (!shop) {
         return next(new ErrorHandler("Shop Id is invalid!", 400));
       } else {
-        let images = [];
-
-        if (typeof req.body.images === "string") {
-          images.push(req.body.images);
-        } else {
-          images = req.body.images;
-        }
-      
-        const imagesLinks = [];
-      
-        for (let i = 0; i < images.length; i++) {
-          const result = await cloudinary.v2.uploader.upload(images[i], {
-            folder: "blog",
-          });
-      
-          imagesLinks.push({
-            public_id: result.public_id,
-            url: result.secure_url,
-          });
-        }
-
+        // let images = [];
+        
+        // if (typeof req.body.images === "string") {
+        //   images.push(req.body.images);
+        // } else {
+        //   images = req.body.images;
+        // }
+        
+        // const imagesLinks = [];
+        
+        // for (let i = 0; i < images.length; i++) {
+        //   console.log(images[i])
+        //   const result = await cloudinary.v2.uploader.upload(images[i], {
+        //     folder: "blog",
+        //   });
+          
+        //   imagesLinks.push({
+        //     public_id: result.public_id,
+        //     url: result.secure_url,
+        //   });
+        // }
+        
         
 
            
         const blogData = req.body;
-        blogData.images = imagesLinks;
+        // blogData.images = imagesLinks;
         blogData.shop = shop;
 
+        console.log(blogData)
         const blog = await Blog.create(blogData);
 
         res.status(201).json({
@@ -54,7 +57,7 @@ router.post(
       
       }
     } catch (error) {
-      return next(new ErrorHandler(error, 400));
+      return next(new ErrorHandler(error.message, 400));
     }
   })
 );
@@ -123,21 +126,28 @@ router.get(
     })
   );
   
-  // review for a blog
+  // isAuthenticated eklenecek
   router.put(
     "/create-new-review",
-    isAuthenticated,
     catchAsyncErrors(async (req, res, next) => {
       try {
-        const { user, rating, comment, blogId } = req.body;
-  
+        const { user, rating, comment, blogId, reviewTitle, email, name } = req.body;
+
         const blog = await Blog.findById(blogId);
+        console.log(req.body)
+
+        if (!blog) {
+          return next(new Error("Belirtilen blogId ile eşleşen blog bulunamadı.", 404));
+        }
   
         const review = {
           user,
           rating,
           comment,
           blogId,
+          reviewTitle,
+          email,
+          name
         };
   
         const isReviewed = blog.reviews.find(
@@ -145,13 +155,13 @@ router.get(
         );
   
         if (isReviewed) {
-            blog.reviews.forEach((rev) => {
+          blog.reviews.forEach((rev) => {
             if (rev.user._id === req.user._id) {
               (rev.rating = rating), (rev.comment = comment), (rev.user = user);
             }
           });
         } else {
-            blog.reviews.push(review);
+          blog.reviews.push(review);
         }
   
         let avg = 0;

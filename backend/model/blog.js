@@ -44,24 +44,33 @@ const blogSchema = new mongoose.Schema({
     },
     reviews: [
         {
-            user: {
-                type: Object,
-            },
-            rating: {
-                type: Number,
-            },
-            comment: {
-                type: String,
-            },
-            blogId: {
-                type: String,
-            },
-            createdAt: {
-                type: Date,
-                default: Date.now(),
-            }
+          user: {
+            type: Object,
+          },
+          email: {
+            type: String,
+          },
+          name: {
+            type: String,
+          },
+          reviewTitle: {
+            type: String,
+          },
+          rating: {
+            type: Number,
+          },
+          comment: {
+            type: String,
+          },
+          blogId: {
+            type: String,
+          },
+          createdAt:{
+            type: Date,
+            default: Date.now(),
+          }
         },
-    ],
+      ],
     ratings: {
         type: Number,
     },

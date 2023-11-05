@@ -31,7 +31,7 @@ export class AddBlogComponent  implements OnInit {
       slug: ['', Validators.required],
       description: ['', Validators.required],
       shortDescription: ['', Validators.required],
-      images: ['', Validators.required],
+      // images: ['', Validators.required],
       category: [''],
       tags: [''],
     });
@@ -85,6 +85,7 @@ export class AddBlogComponent  implements OnInit {
 
       this.blogService.createBlog(formData).subscribe(
         (response) => {
+          this.router.navigate(['/blog/list-blog']);
           console.log('Ürün başarıyla oluşturuldu:', response);
         },
         (error) => {
@@ -107,6 +108,7 @@ export class AddBlogComponent  implements OnInit {
       console.log(this.id, "id")
       this.blogService.updateBlog(this.id, formData).subscribe(
         (response) => {
+          this.router.navigate(['/blog/list-blog']);
           console.log('Blog başarıyla güncellendi:', response);
         },
         (error) => {
@@ -142,7 +144,6 @@ export class AddBlogComponent  implements OnInit {
       this.id = params['id'];
       this.blogService.getBlogById(this.id).subscribe(
         (response) => {
-          console.log('Kategori', response);
           this.myForm.patchValue(response.blog);
           this.selectedCategory = response.product.category;
         },
