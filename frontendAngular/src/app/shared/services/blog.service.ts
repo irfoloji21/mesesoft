@@ -10,8 +10,8 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  getBlogs(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/get-all-blogs`); 
+  getBlogs(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/get-all-blogs`); 
   }
 
   getBlogDetails(slug: string): Observable<any> {

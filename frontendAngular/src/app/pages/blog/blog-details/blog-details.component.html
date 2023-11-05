@@ -83,19 +83,19 @@
         <div class="row blog-contact">
             <div class="col-sm-12">
                 <h2>Leave Your Comment</h2>
-                <form class="theme-form">
+                <form class="theme-form" [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="col-md-12">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter Your name" required="">
+                            <input type="text" class="form-control" id="name" placeholder="Enter Your name" required=""  formControlName="name">
                         </div>
                         <div class="col-md-12">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                            <input type="text" class="form-control" id="email" placeholder="Email" required=""  formControlName="email">
                         </div>
                         <div class="col-md-12">
                             <label for="exampleFormControlTextarea1">Comment</label>
-                            <textarea class="form-control" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <textarea class="form-control" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6"  formControlName="comment"></textarea>
                         </div>
                         <div class="col-md-12">
                             <button class="btn btn-solid" type="submit">Post Comment</button>
