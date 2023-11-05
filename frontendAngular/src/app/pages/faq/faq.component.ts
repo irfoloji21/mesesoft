@@ -14,11 +14,7 @@ export class FaqComponent implements OnInit {
 
   ngOnInit(): void {
     this.faqService.getFaqData().subscribe(data => {
-      console.log(data);
-      
       this.faqData = data;
-      console.log(this.faqData);
-      
     });
   }
 }

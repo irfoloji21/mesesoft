@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamSlider, TestimonialSlider } from '../../shared/data/slider';
+import { AboutUsService } from 'src/app/shared/services/aboutUs.service';
+import { AboutUsData } from 'src/app/shared/classes/about-us';
 
 @Component({
   selector: 'app-about-us',
@@ -8,9 +10,16 @@ import { TeamSlider, TestimonialSlider } from '../../shared/data/slider';
 })
 export class AboutUsComponent implements OnInit {
 
-  constructor() { }
+  aboutUsData: AboutUsData;
+
+  constructor(private aboutUsService: AboutUsService) { }
 
   ngOnInit(): void {
+    this.aboutUsService.getAboutUsData().subscribe(data => {
+      this.aboutUsData = data;
+      console.log(this.aboutUsData.aboutSection);
+      
+    });
   }
 
   public TeamSliderConfig: any = TeamSlider;
