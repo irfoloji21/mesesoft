@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Address } from 'cluster';
 import { Order } from 'src/app/shared/classes/order';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -10,7 +11,8 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  public orderDetails: Order = { orderDate: new Date() };
+  public orderDetails: Order = { orderDate: new Date()  };
+  selectedAddress: any 
 
   constructor(public productService: ProductService,
     private orderService: OrderService) { }
@@ -22,6 +24,9 @@ export class OrderSuccessComponent implements OnInit {
       console.log( "image")
       this.orderDetails.orderDate = new Date(); 
     });
+    this.selectedAddress = this.orderService.getSelectedAddress();
+
+    
   }
 
 }

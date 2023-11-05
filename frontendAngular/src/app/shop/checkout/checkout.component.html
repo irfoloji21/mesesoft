@@ -46,15 +46,24 @@
 </div>
 
 
-    <app-address  *ngIf="currentStep === 'adres'"></app-address>
-    <app-cart *ngIf="currentStep === 'checkout'"></app-cart>
-    <app-payment *ngIf="currentStep === 'odeme'"></app-payment>
-    
+<app-address *ngIf="currentStep === 'adres'"></app-address>
+<app-checkout-cart *ngIf="currentStep === 'checkout'"></app-checkout-cart>
+<app-payment *ngIf="currentStep === 'odeme'"></app-payment>
+
 <br>
+
 <div class="cta-area col-md-10 ml-auto text-right mx-3">
-    <form class="js-proceed-form" method="post">
-      <button (click)="proceedToNextStep()" class="complete-btn checkout-save-btn">KAYDET VE DEVAM ET</button>
-    </form>
-  </div>
-  <br><br><br>
+  <form class="js-proceed-form" method="post">
+    <button
+      (click)="proceedToNextStep()"
+      class="complete-btn checkout-save-btn"
+      *ngIf="showPaymentButton"
+    >
+      {{ buttonText }}
+    </button>
+  </form>
+</div>
+
+<br>
+
   

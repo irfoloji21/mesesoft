@@ -160,34 +160,38 @@ export class CheckoutComponent implements OnInit {
 
 
 
-
-
+  
   currentStep: string = 'adres';
-
+  buttonText: string = 'Save and Continue';
+  showPaymentButton: boolean = true;
+  
   proceedToNextStep() {
     if (this.currentStep === 'adres') {
+      // Adres işlemi başarılıysa bir sonraki adıma geç
       const deliverySuccess = true;
-  
       if (deliverySuccess) {
-        this.currentStep = 'checkout'; 
+        this.currentStep = 'checkout';
+        this.buttonText = 'Save and Continue';
         const addressTab = document.querySelector('.checkout-tab[data-type="checkout-address"]');
         addressTab.classList.add('completed');
       } else {
         alert('Adres kaydedilemedi! Lütfen tekrar deneyin.');
       }
     } else if (this.currentStep === 'checkout') {
-      const checkoutSuccess = true; 
-  
+      // Checkout işlemi başarılıysa bir sonraki adıma geç
+      const checkoutSuccess = true;
       if (checkoutSuccess) {
-        this.currentStep = 'odeme'; 
+        this.currentStep = 'odeme';
+        this.buttonText = 'Approve';
+        this.showPaymentButton = false;
         const checkoutTab = document.querySelector('.checkout-tab[data-type="checkout-payment"]');
         checkoutTab.classList.add('completed');
       } else {
         alert('Checkout başarılı olmadı! Lütfen tekrar deneyin.');
       }
     } else if (this.currentStep === 'odeme') {
+      // Ödeme işlemi başarılıysa bir sonraki adıma geç
       const paymentSuccess = true;
-  
       if (paymentSuccess) {
         alert('Ödeme başarıyla tamamlandı!');
       } else {
@@ -196,9 +200,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
   
-
   
-
   
   
 

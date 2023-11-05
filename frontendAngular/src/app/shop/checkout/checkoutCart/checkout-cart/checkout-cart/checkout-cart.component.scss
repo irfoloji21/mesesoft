@@ -1,0 +1,62 @@
+tfoot {
+    tr {
+      td {
+        &:first-child {
+          font-weight: bold;
+        }
+      }
+    }
+  
+    .coupon-form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      input[type="text"] {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 14px;
+        margin-right: 10px;
+        width: 60%;
+        transition: all 0.3s;
+  
+        &:focus {
+          width: 7rem;
+        }
+      }
+  
+      button {
+        background-color: #3498db;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+  
+        &:hover {
+          background-color: darken(#3498db, 10%);
+        }
+      }
+    }
+  
+    .DiscountedPrice {
+      font-size: 20px;
+      color: green;
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.02em;
+  
+      > div:first-child {
+        font-size: 16px;
+        color: #666;
+      }
+  
+      > div {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+  

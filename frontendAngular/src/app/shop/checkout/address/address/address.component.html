@@ -30,7 +30,7 @@
                       </div>
                       <div class="js-address-list address-list">
                         <div  *ngFor="let address of userAddresses"  class="js-address-grid c-address-grid " data-type="address">
-                          <input type="radio" name="selectedAddress" (click)="selectAddress(address)">
+                          <input type="radio" name="selectedAddress" (click)="selectAddress(address)" required>
                           <label for="js-address-radio-occ-585774" class="c-address-content js-address-content">
                             <span class="selected-address">{{address.addressType}}</span>
                             <div class="c-address-text">
@@ -260,6 +260,7 @@
     </div>
   </div>
 </div>
+
 
 
 <!-- //Form Area new Address Create -->
