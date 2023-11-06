@@ -130,6 +130,7 @@ router.get(
   router.put(
     "/create-new-review",
     catchAsyncErrors(async (req, res, next) => {
+      console.log(req.body)
       try {
         const { user, rating, comment, blogId, reviewTitle, email, name } = req.body;
 
