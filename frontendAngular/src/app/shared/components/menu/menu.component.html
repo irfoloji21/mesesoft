@@ -28,24 +28,25 @@
         <div class="mega-menu-container col-md-6">
           <div class="container ">
             <div class="row">
-              <div class="col mega-box" *ngFor="let childrenItem of menuItem.subcategories">
+              <div class="col mega-box" *ngFor="let childrenItem of subCategoryData">
                 <div class="link-section">
                   <div class="menu-title">
                     <h5>
-                      {{ childrenItem.name | translate }}
+                      
+                      {{ childrenItem.name | translate }}a
                       <span class="sub-arrow" *ngIf="childrenItem.subcategories"></span>
                     </h5>
                   </div>
-                  <!-- <div class="menu-content opensubmegamenu"  >
+                  <div class="menu-content opensubmegamenu"  >
                     <ul >
-                      <li *ngFor="let childrenSubItem of subCategoryData">
+                      <li *ngFor="let childrenSubItem of childrenItem.subcategories">
                         <a href="javascript:void(0)">
                           {{ childrenSubItem.name | translate }}
                           <span class="new-tag" *ngIf="childrenSubItem.badge">{{ childrenSubItem.badgeText | translate }}</span>
                         </a>
                       </li>
                     </ul>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>

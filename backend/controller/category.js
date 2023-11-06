@@ -141,6 +141,8 @@ router.put(
         const categoryId = req.params.id;
         const newSubCategories = Array.isArray(req.body) ? req.body : [req.body];
         const superCategory = await Category.findById(categoryId);
+        //get all categories
+        const categories = await Category.find();
   
         if (!superCategory) {
           return next(new ErrorHandler("Category not found", 404));
@@ -155,7 +157,9 @@ router.put(
           console.log("elseye girdi")
         }
 
-        console.log(superCategory.subcategories)
+const superCategoryId = superCategory._id;
+const matchingCategories = categories.filter(category => category.subcategories.some(sub => sub._id === superCategoryId));
+console.log(matchingCategories, "matchingCategories")
   
         await superCategory.save();
   

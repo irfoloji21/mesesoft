@@ -82,10 +82,10 @@ export class DigitalCategoryComponent implements OnInit {
     console.log("form submitted");
     if (this.myForm.valid) {
       const formData = this.myForm.value;
-     console.log(this.myForm.value);
+    //  console.log(this.myForm.value);
       formData.subcategories = this.subcategories;
 
-      console.log('formData:', formData);
+      // console.log('formData:', formData);
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
           console.log('Kategori başarıyla oluşturuldu:', response);
@@ -113,8 +113,8 @@ export class DigitalCategoryComponent implements OnInit {
           imageUrls.push(e.target.result);
           this.myForm.get('images').setValue(imageUrls);
   
-          console.log('imageUrls:', imageUrls);
-          console.log(this.myForm.value.images);
+          // console.log('imageUrls:', imageUrls);
+          // console.log(this.myForm.value.images);
         };
   
         reader.readAsDataURL(file);
@@ -144,7 +144,7 @@ export class DigitalCategoryComponent implements OnInit {
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
       (response) => {
-        console.log('Kategoriler', response);
+        // console.log('Kategoriler', response);
         this.categories = response.categories;
       },
       (error) => {
