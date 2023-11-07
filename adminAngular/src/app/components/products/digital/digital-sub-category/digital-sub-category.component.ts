@@ -91,7 +91,7 @@ export class DigitalSubCategoryComponent implements OnInit {
         (newCategory) => {
           console.log('Yeni Kategori Başarıyla Oluşturuldu:', newCategory);
 
-          const irfan = newCategory.category
+          const irfan = newCategory.category 
           console.log(irfan)
   
           // Her bir üst kategori için işlem yapın

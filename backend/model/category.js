@@ -11,6 +11,11 @@ const categorySchema = new mongoose.Schema({
       ref: "Category",
     },
   ],    
+  parentCategory: {
+    type: Object,
+    ref: "Category",
+    default: null,
+  },
   description: {
     type: String,
     required: [true, "Please enter the category description!"],

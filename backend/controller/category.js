@@ -30,11 +30,21 @@ router.post(
           });
         }
       
-        const categoryData = req.body;
+        const categoryData = req.body; 
         categoryData.images = imagesLinks;
 
+        if (req.body.supercategory) {
 
+          const supercategory = await Category.findById(req.body.supercategory);
+  
+          if (supercategory) {
 
+            categoryData.parentCategory = supercategory._id
+
+            supercategory.subcategories.push(categoryData);
+            await supercategory.save();
+          }
+        }
 
       const category = await Category.create(req.body);
       res.status(201).json({
@@ -141,31 +151,40 @@ router.put(
         const categoryId = req.params.id;
         const newSubCategories = Array.isArray(req.body) ? req.body : [req.body];
         const superCategory = await Category.findById(categoryId);
-        //get all categories
-        const categories = await Category.find();
   
         if (!superCategory) {
           return next(new ErrorHandler("Category not found", 404));
         }
+  
         if (!Array.isArray(superCategory.subcategories) || superCategory.subcategories.length === 0) {
           superCategory.subcategories = newSubCategories;
-          console.log("ife girdi")
+          console.log("ife girdi");
         } else {
-
-          const irfan = superCategory.subcategories.concat(newSubCategories);
-          superCategory.subcategories = irfan;
-          console.log("elseye girdi")
+          // Eğer alt kategori daha önce eklenmişse, güncelle veya ekle
+          newSubCategories.forEach((newSubCategory) => {
+            const index = superCategory.subcategories.findIndex((sub) => sub.name === newSubCategory.name);
+            if (index >= 0) {
+              // Eğer alt kategori zaten varsa, güncelle
+              superCategory.subcategories[index] = newSubCategory;
+            } else {
+              // Eğer alt kategori yoksa, ekle
+              superCategory.subcategories.push(newSubCategory);
+            }
+          });
+          console.log("elseye girdi");
         }
-
-const superCategoryId = superCategory._id;
-const matchingCategories = categories.filter(category => category.subcategories.some(sub => sub._id === superCategoryId));
-console.log(matchingCategories, "matchingCategories")
+  
+        // Eski alt kategorileri temizle
+        superCategory.subcategories = superCategory.subcategories.filter(
+          (sub, index, self) =>
+            index === self.findIndex((s) => s._id === sub._id)
+        );
   
         await superCategory.save();
   
         res.status(200).json({
           success: true,
-          message: "Subcategories added successfully!",
+          message: "Subcategories added or updated successfully!",
           category: superCategory,
         });
       } catch (error) {
@@ -173,9 +192,6 @@ console.log(matchingCategories, "matchingCategories")
       }
     })
   );
-  
-  
-  
   
 
 router.delete(

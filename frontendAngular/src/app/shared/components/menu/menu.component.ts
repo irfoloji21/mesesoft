@@ -18,64 +18,11 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
-        this.menuItems = data.categories;
-        // console.log(this.menuItems, "menuItems")
-        this.menuItems.forEach((category: Category) => {
-          category.megaMenu = true;
-          category.active = false;
-          category.megaMenu = true;
-          // console.log(category.subcategories, "category.subcategories")
-
-          if(category.isShow){
-            // console.log(category, "category")
-            this.gorunecekKategoriler.push(category);
-          }
-
-          if (category.subcategories) {
-            for (const subcategory of category.subcategories) {
-              if (subcategory._id) {
-                const subcategoryId = subcategory._id;
-
-                // console.log(subcategoryId, "subcategoryId")
-                this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-                  // console.log(subCategoryData.category, "subCategoryData");
-                  this.subCategoryData.push(subCategoryData.category);
-                  // 
-                    this.gorunecekKategoriler.forEach((gorunecekKategoriler: any) => {
-                      gorunecekKategoriler.subcategories.forEach((subcategory: any) => {
-                      // console.log(gorunecekKategoriler, "gorunecekKategoriler")
-                      // console.log(subCategoryData.category, "subCategoryData.category")
-                    if (subcategory._id === subCategoryData.category._id) {
-                      console.log(subCategoryData.category, "subCategoryData.category")
-                    }
-                  })
-                  })
-                  
-
-                  // this.menuItems.forEach((category: Category) => {
-                  //   category.subcategories.forEach((subcategory: any) => {
-                  //      console.log(subcategory, "subcategory")
-                  //     this.subCategoryData.forEach((subCategoryData: any) => {
-                  //       subCategoryData.subcategories.forEach((subcategory2: any) => {
-                  //         console.log(subcategory2, "subcategory2")
-                  //       if (subcategory._id === subcategory2._id) {
-                  //           // console.log(subcategory, "subcategory");
-                  //         }
-                        
-                  //     });
-                  //     });
-                      
-                  //     });
-                  // });
-                  
-
-
-
-                });
-              }
-            }
-           }
-        });
+        // Tüm kategorileri alın
+        const categories = data.categories;
+    
+        // Kategori listesini döngüye alarak alt kategorileri yükleyin
+        this.loadSubcategories(categories);
       }
     });
     this.router.events.subscribe((event) => {
@@ -83,6 +30,29 @@ export class MenuComponent implements OnInit {
     });
 
   }
+    
+    loadSubcategories(categories: any[]) {
+      for (const category of categories) {
+        if (category.subcategories) {
+          for (const subcategory of category.subcategories) {
+            if (subcategory._id) {
+              const subcategoryId = subcategory._id;
+    
+              this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
+                // Alt kategori ile yerini değiştirin
+                const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
+                if (index >= 0) {
+                  category.subcategories[index] = subCategoryData.category;
+                }
+              });
+            }
+          }
+        }
+      }
+      this.menuItems = categories;
+    }
+    
+ 
 
   ngOnInit() {
     this.menuItems.forEach((menuItem) => {
