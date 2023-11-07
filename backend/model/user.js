@@ -53,6 +53,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  likedBlogs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Blog',
+  }],
 //   avatar:{
 //     public_id: {
 //       type: String,

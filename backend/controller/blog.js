@@ -3,6 +3,7 @@ const { isSeller, isAuthenticated, isAdmin } = require("../middleware/auth");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const router = express.Router();
 const Blog = require("../model/blog");
+const User = require("../model/user");
 const Shop = require("../model/shop");
 const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
@@ -62,7 +63,6 @@ router.post(
   })
 );
 
-// get all blogs of a shop
 router.get(
     "/get-all-blogs-shop/:id",
     catchAsyncErrors(async (req, res, next) => {
@@ -79,7 +79,6 @@ router.get(
     })
   );
   
-  // delete blog of a shop
   router.delete(
     "/delete-shop-blog/:id",
     isSeller,
@@ -109,7 +108,6 @@ router.get(
     })
   );
   
-  // get all blogs
   router.get(
     "/get-all-blogs",
     catchAsyncErrors(async (req, res, next) => {
@@ -163,7 +161,6 @@ router.get(
   );
   
   
-  // all blogs --- for admin
   router.get(
     "/admin-all-blogs",
     isAuthenticated,
@@ -183,7 +180,6 @@ router.get(
     })
   );
   
-  // get blog by slug
   router.get("/:slug", async (req, res) => {
     try {
       const blog = await Blog.findOne({ slug: req.params.slug });
@@ -195,4 +191,87 @@ router.get(
       return next(new ErrorHandler(error.message, 500));
     }
   });
+
+
+  router.put(
+    '/like-blog/:id',
+    catchAsyncErrors(async (req, res, next) => {
+      const blogId = req.params.id;
+      const userId = req.body.user._id; 
+      console.log(blogId, userId)
+  
+      try {
+        const blog = await Blog.findById(blogId);
+  
+        if (!blog) {
+          return next(new Error('Belirtilen blogId ile eşleşen blog bulunamadı.', 404));
+        }
+  
+        const user = await User.findById(userId);
+  
+        if (user.likedBlogs.includes(blogId)) {
+          return next(new Error('Bu blog zaten beğenilmiş.', 400));
+        }
+  
+        blog.likes += 1;
+  
+        user.likedBlogs.push(blogId);
+  
+        await blog.save({ validateBeforeSave: false });
+        await user.save();
+  
+        res.status(200).json({
+          success: true,
+          message: 'Blog liked successfully!',
+          likes: blog.likes,
+        });
+      } catch (error) {
+        return next(new ErrorHandler(error, 400));
+      }
+    })
+  );
+  
+  
+  router.put(
+    '/unlike-blog/:id',
+    catchAsyncErrors(async (req, res, next) => {
+      const blogId = req.params.id;
+      const userId = req.body.user._id; 
+  
+      try {
+        const blog = await Blog.findById(blogId);
+  
+        if (!blog) {
+          return next(new Error('Belirtilen blogId ile eşleşen blog bulunamadı.', 404));
+        }
+  
+        const user = await User.findById(userId);
+  
+        if (!user.likedBlogs.includes(blogId)) {
+          return next(new Error('Bu blog beğenilmemiş, bu yüzden geri alınamaz.', 400));
+        }
+  
+        blog.likes -= 1;
+  
+        const index = user.likedBlogs.indexOf(blogId);
+        if (index > -1) {
+          user.likedBlogs.splice(index, 1);
+        }
+  
+        await blog.save({ validateBeforeSave: false });
+        await user.save();
+  
+        res.status(200).json({
+          success: true,
+          message: 'Blog unliked successfully!',
+          likes: blog.likes,
+        });
+      } catch (error) {
+        return next(new ErrorHandler(error, 400));
+      }
+    })
+  );
+  
+  
+  
   module.exports = router;
