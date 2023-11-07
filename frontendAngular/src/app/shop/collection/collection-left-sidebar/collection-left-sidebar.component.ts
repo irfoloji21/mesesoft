@@ -32,12 +32,13 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public loader: boolean = true;
   public categoryContent :Category[] = []
   public selectedCategoryDetails: any = [];
-
+  public searchQuery: string = '';
   constructor(private route: ActivatedRoute, private router: Router,
     private viewScroller: ViewportScroller, public productService: ProductService , private categoryService : CategoryService) {
 
     // Get Query params..
     this.route.queryParams.subscribe(params => {
+      this.searchQuery = params.search ? params.search : '';
       this.brands = params.brand ? params.brand.split(",") : [];
       this.colors = params.color ? params.color.split(",") : [];
       this.size = params.size ? params.size.split(",") : [];
@@ -52,14 +53,20 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.Image = params.images ? params.images : null
       this.sortBy = params.sortBy ? params.sortBy : 'ascending';
       this.pageNo = params.page ? params.page : this.pageNo;
-  
+
+     
       this.productService.filterProducts(this.tags).subscribe((response:any) => {
+        console.log(this.searchQuery,"searchQuery")
         console.log(response[0].products , "Collection")
      
         this.products = this.parseResponse(response);
       
         this.products = this.productService.sortProducts(this.products, this.sortBy);
-
+        if (this.searchQuery) {
+          this.products = this.products.filter(item => {
+            return item.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+          });
+        }
         if (this.category) {
           this.products = this.products.filter(item => item.category == this.category);
         }
@@ -79,6 +86,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
     }
   }
   
+
+
 
   ngOnInit(): void {
     
