@@ -14,6 +14,7 @@ export class BlogDetailsComponent implements OnInit {
   form: FormGroup;
   blog: any = [];
   BlogId: any;
+  user: any;
   constructor(private route: ActivatedRoute, private blogService: BlogService,private toastr :ToastrService, private formBuilder: FormBuilder , private authService :AuthService) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -32,11 +33,24 @@ export class BlogDetailsComponent implements OnInit {
         console.log(this.blog, "this.blogDetails")
       });
     });
+    this.loadUser();
+  }
+
+  loadUser() {
+    this.authService.loadUser().subscribe(
+      (res) => {
+        this.user = res;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   onSubmit() {
     if (this.form.valid) {
       const user = this.authService.getUser();
+      console.log(user, "user")
       const commentData = {
         name: this.form.value.name,
         email: this.form.value.email,

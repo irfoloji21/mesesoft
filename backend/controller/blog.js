@@ -130,20 +130,17 @@ router.get(
   router.put(
     "/create-new-review",
     catchAsyncErrors(async (req, res, next) => {
-      console.log(req.body)
       try {
-        const { user, rating, comment, blogId, reviewTitle, email, name } = req.body;
-
+        const { user, comment, blogId, reviewTitle, email, name } = req.body;
+  
         const blog = await Blog.findById(blogId);
-        console.log(req.body)
-
+  
         if (!blog) {
           return next(new Error("Belirtilen blogId ile eşleşen blog bulunamadı.", 404));
         }
   
         const review = {
           user,
-          rating,
           comment,
           blogId,
           reviewTitle,
@@ -151,40 +148,20 @@ router.get(
           name
         };
   
-        const isReviewed = blog.reviews.find(
-          (rev) => rev.user._id === req.user._id
-        );
-  
-        if (isReviewed) {
-          blog.reviews.forEach((rev) => {
-            if (rev.user._id === req.user._id) {
-              (rev.rating = rating), (rev.comment = comment), (rev.user = user);
-            }
-          });
-        } else {
-          blog.reviews.push(review);
-        }
-  
-        let avg = 0;
-  
-        blog.reviews.forEach((rev) => {
-          avg += rev.rating;
-        });
-  
-        blog.ratings = avg / blog.reviews.length;
+        blog.reviews.push(review);
   
         await blog.save({ validateBeforeSave: false });
   
-       
         res.status(200).json({
           success: true,
-          message: "Reviwed succesfully!",
+          message: "Review added successfully!",
         });
       } catch (error) {
         return next(new ErrorHandler(error, 400));
       }
     })
   );
+  
   
   // all blogs --- for admin
   router.get(

@@ -56,9 +56,6 @@ const blogSchema = new mongoose.Schema({
           reviewTitle: {
             type: String,
           },
-          rating: {
-            type: Number,
-          },
           comment: {
             type: String,
           },
