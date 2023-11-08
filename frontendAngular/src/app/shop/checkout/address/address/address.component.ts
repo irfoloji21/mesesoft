@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Order } from 'src/app/shared/classes/order';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -21,7 +20,6 @@ export class AddressComponent implements OnInit {
   userInfo: any[] = [];
   isEditing: boolean = false;
   editedAddresses: any[] = [];
-  buttonText: string = 'Save Setting';
   isBillingAddressSame: boolean = true;
   currentAddress: any;
   isModalOpen: boolean = false;
