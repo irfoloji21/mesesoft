@@ -17,12 +17,13 @@ export class AddressComponent implements OnInit {
   form: FormGroup;
   isAddingNew: boolean = false; 
   userAddresses: any[] = [];
-
+  userInfo: any[] = [];
   isEditing: boolean = false;
   editedAddresses: any[] = [];
   buttonText: string = 'Save Setting';
   isBillingAddressSame: boolean = true;
-  
+  currentAddress: any;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -32,7 +33,6 @@ export class AddressComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
      this.loadUserAddresses();
 
      this.productService.cartItems.subscribe(res => {
@@ -40,7 +40,6 @@ export class AddressComponent implements OnInit {
      })
      this.orderService.checkoutItems.subscribe(response => {
       console.log(response)
-
     });
   }
   
@@ -52,9 +51,10 @@ export class AddressComponent implements OnInit {
   loadUserAddresses() {
     this.authService.loadUser().subscribe(
       (res) => {
+        this.userInfo = res.user.phoneNumber;
         this.userAddresses = res.user.addresses;
-        console.log(res.user , "res.user")
-        console.log(this.userAddresses , "resddreses")
+        console.log(this.userAddresses);
+        
       },
       (error) => {
         console.error(error);
@@ -108,7 +108,7 @@ export class AddressComponent implements OnInit {
       regionState: address.regionState,
       userId: address._id
     });
-
+    this.isEditing = true
     this.isAddingNew = true; 
     this.buttonText = 'Edit Setting'; 
 }

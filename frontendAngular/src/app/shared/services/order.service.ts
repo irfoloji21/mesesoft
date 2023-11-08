@@ -26,15 +26,15 @@ export class OrderService {
   }
 
   // Create order
-  public createOrder(paymentData: {  amount:any }, ): Observable<any> {
+  public createOrder(paymentData: { amount: any },): Observable<any> {
     return new Observable((observer) => {
       const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  
+
       state.checkoutItems = paymentData;
       localStorage.setItem("checkoutItems", JSON.stringify(paymentData));
       // localStorage.removeItem("cartItems");
-  
+
       this.http.post(`${this.apiUrl}/payment/process`, paymentData, { headers, withCredentials: true }).subscribe(
         (response) => {
           console.log(response, "checkoutCart");
@@ -49,18 +49,15 @@ export class OrderService {
       );
     });
   }
-  
-  
 
-  
   setSelectedAddress(address: any) {
     this.selectedAddress = address;
   }
-  
+
   getSelectedAddress() {
     return this.selectedAddress;
   }
 
 }
-  
+
 

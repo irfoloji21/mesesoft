@@ -1,6 +1,5 @@
-
-$ana-renk: #FF5733; 
-$arkaplan-renk: #EDEDED;  
+$ana-renk: #ff5733;
+$arkaplan-renk: #ededed;
 
 // Başlık stilleri
 .başlık {
@@ -8,6 +7,11 @@ $arkaplan-renk: #EDEDED;
   font-weight: bold;
   color: $ana-renk;
 }
+
+a{
+  cursor: pointer;
+}
+
 
 // Buton stilleri
 .buton {
@@ -27,64 +31,68 @@ body {
   background-color: $arkaplan-renk;
 }
 
-// Teslimat adresi başlığı 
+// Teslimat adresi başlığı
 .address-title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-// Fatura adresi kutusu 
+// Fatura adresi kutusu
 .same-address {
   margin-top: 10px;
 
-  // Fatura adresi kutusunun metni 
+  // Fatura adresi kutusunun metni
   span {
     font-weight: bold;
   }
 }
 
-// Adres seçeneklerinin kutuları 
+// Adres seçeneklerinin kutuları
 .c-address-grid {
   border: 1px solid #ccc;
   margin: 10px 0;
   padding: 10px;
-  background-color: #FFF; 
+  background-color: #fff;
   border-radius: 5px;
 
-  // Seçili adresin stilini belirtmek 
+  input[type="radio"] {
+    cursor: pointer;
+  }
+
+  // Seçili adresin stilini belirtmek
   .selected-address {
     font-weight: bold;
     color: $ana-renk; // Ana renk kullanıldı
   }
 
-  // Adres metni 
+  // Adres metni
   .c-address-text {
     margin-top: 5px;
 
-    // Adres başlığı 
+    // Adres başlığı
     .c-address-title {
       font-weight: bold;
     }
 
-    // Adres bilgileri 
+    // Adres bilgileri
     div {
       margin-top: 5px;
 
-      // Telefon numarası 
+      // Telefon numarası
       b {
         font-weight: bold;
-        color: #555; 
+        color: #555;
       }
     }
   }
 
-  // Düzenle ve Sil bağlantıları 
+  // Düzenle ve Sil bağlantıları
   .c-address-footer {
     margin-top: 10px;
     display: flex;
     align-items: center;
-  
+
     .c-address-edit,
     .c-address-remove {
       text-decoration: none;
@@ -94,40 +102,39 @@ body {
       display: flex;
       align-items: center;
       transition: background-color 0.3s ease;
-  
+
       &:hover {
         text-decoration: none;
       }
-  
+
       &.c-address-edit {
         background-color: #3498db;
         color: #fff;
         margin-right: 10px;
-  
+
         &:hover {
           background-color: darken(#3498db, 10%);
         }
       }
-  
+
       &.c-address-remove {
         background-color: #e74c3c;
         color: #fff;
-  
+
         &:hover {
           background-color: darken(#e74c3c, 1%);
         }
       }
     }
   }
-  
 }
 
-// Yeni adres oluştur kutusu 
+// Yeni adres oluştur kutusu
 .new-address {
   cursor: pointer;
   color: $ana-renk;
 
-  // Artı işareti 
+  // Artı işareti
   .icon-plus {
     margin-right: 5px;
   }
@@ -138,12 +145,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $arkaplan-renk; 
+  background-color: $arkaplan-renk;
   padding: 10px;
   border-radius: 5px;
 }
 
-// Her bir sekme 
+// Her bir sekme
 .checkout-tab {
   flex: 1;
   padding: 10px;
@@ -152,7 +159,7 @@ body {
   transition: background-color 0.3s ease;
 
   &.active {
-    background-color: $ana-renk; 
+    background-color: $ana-renk;
     color: white;
   }
 
@@ -193,146 +200,165 @@ body {
   padding: 20px;
 }
 
-// Kargo seçenekleri başlığı 
+// Kargo seçenekleri başlığı
 .address-title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-// Kargo seçenekleri listesi 
+// Kargo seçenekleri listesi
 .checkout__cargos-list {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
 }
-// Kargo seçenekleri grup başlığı 
+// Kargo seçenekleri grup başlığı
 .unified-group__title {
+  font-weight: bold;
+  margin-bottom: 10px;
+
+  span {
+    font-weight: normal;
+  }
+}
+
+// Her bir kargo seçeneği kutusu
+.checkout-cargo-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  // Seçili kargo seçeneği
+  &.js-checkout-cargo-item.checked {
+    background-color: $ana-renk;
+    color: white;
+  }
+
+  &:hover {
+    background-color: darken($ana-renk, 1%);
+  }
+
+  // Kargo başlığı
+  .checkout-cargo-title {
     font-weight: bold;
-    margin-bottom: 10px;
-  
-    span {
-      font-weight: normal;
-    }
   }
-  
-  // Her bir kargo seçeneği kutusu 
+
+  // Kargo açıklaması
+  .checkout-cargo-desc {
+    margin-top: 5px;
+  }
+
+  // Kargo fiyatı
+  .checkout-cargo-amount {
+    margin-top: 10px;
+  }
+}
+
+// Responsive stiller
+@media (max-width: 768px) {
   .checkout-cargo-wrapper {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 10px 0;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  
-    // Seçili kargo seçeneği 
-    &.js-checkout-cargo-item.checked {
-      background-color: $ana-renk; 
-      color: white;
-    }
-  
-    &:hover {
-      background-color: darken($ana-renk, 1%);
-    }
-  
-    // Kargo başlığı 
-    .checkout-cargo-title {
-      font-weight: bold;
-    }
-  
-    // Kargo açıklaması 
-    .checkout-cargo-desc {
-      margin-top: 5px;
-    }
-  
-    // Kargo fiyatı 
-    .checkout-cargo-amount {
-      margin-top: 10px;
+    padding: 15px;
+  }
+}
+
+// Genel wrapper stil
+.js-wrapper.wrapper {
+  padding: 20px;
+  background-color: $arkaplan-renk;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+// İçerik stil
+.content {
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 20px;
+
+      // İkinci li öğesi için özel stil
+      &:nth-child(2) {
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+
+            // Etiket (label) için stil
+            strong {
+              flex-basis: 100%;
+            }
+
+            // Alıcı bilgileri için stil
+            span {
+              flex-basis: 50%;
+              margin-bottom: 10px;
+            }
+
+            // Responsive tabloyu sarmak için stil
+            table.order-information-table {
+              flex-basis: 100%;
+              border-collapse: collapse;
+              width: 100%;
+
+              thead {
+                background-color: $arkaplan-renk;
+                font-weight: bold;
+              }
+
+              th,
+              td {
+                padding: 8px;
+                text-align: left;
+              }
+
+              tbody {
+                tr {
+                  &:nth-child(even) {
+                    background-color: #fff;
+                  }
+
+                  td {
+                    border: 1px solid #ccc;
+                  }
+                }
+              }
+
+              tfoot {
+                tr {
+                  th {
+                    background-color: $arkaplan-renk;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
-  
-  // Responsive stiller
-  @media (max-width: 768px) {
-    .checkout-cargo-wrapper {
-      padding: 15px;
-    }
-  }
-  
-  // Genel wrapper stil
-  .js-wrapper.wrapper {
-    padding: 20px;
-    background-color: $arkaplan-renk;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  // İçerik stil
+}
+
+// Responsive stiller
+@media (max-width: 768px) {
   .content {
     ul {
-      list-style: none;
-      padding: 0;
-  
       li {
-        margin-bottom: 20px;
-  
         // İkinci li öğesi için özel stil
         &:nth-child(2) {
           ul {
-            list-style: none;
-            padding: 0;
-  
             li {
-              margin-bottom: 10px;
-              display: flex;
-              flex-wrap: wrap;
-  
-              // Etiket (label) için stil
-              strong {
-                flex-basis: 100%;
-              }
-  
-              // Alıcı bilgileri için stil
               span {
-                flex-basis: 50%;
-                margin-bottom: 10px;
-              }
-  
-              // Responsive tabloyu sarmak için stil
-              table.order-information-table {
                 flex-basis: 100%;
-                border-collapse: collapse;
-                width: 100%;
-  
-                thead {
-                  background-color: $arkaplan-renk; 
-                  font-weight: bold;
-                }
-  
-                th,
-                td {
-                  padding: 8px;
-                  text-align: left;
-                }
-  
-                tbody {
-                  tr {
-                    &:nth-child(even) {
-                      background-color: #FFF; 
-                    }
-  
-                    td {
-                      border: 1px solid #ccc;
-                    }
-                  }
-                }
-  
-                tfoot {
-                  tr {
-                    th {
-                      background-color: $arkaplan-renk; 
-                    }
-                  }
-                }
               }
             }
           }
@@ -340,312 +366,272 @@ body {
       }
     }
   }
-  
-  // Responsive stiller
-  @media (max-width: 768px) {
-    .content {
-      ul {
-        li {
-          // İkinci li öğesi için özel stil
-          &:nth-child(2) {
-            ul {
-              li {
-                span {
-                  flex-basis: 100%;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  .checkout-summary {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 1rem;
-    margin-left: 1rem;
-  }
-  
-  .summary-area {
-    width: 100%;
-    padding: 10px;
-    background: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    height: 100vh;
-    overflow: hidden;
-    overflow-y: auto;
-  }
-  
-  .product-img-link-wrapper img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .summary-header {
-    font-weight: bold;
-    font-size: 24px;
-    color: #3498db;
-  }
-  
-  .item-area {
-    margin-top: 20px;
-  }
-  
-  .item-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .product-img-link-wrapper {
-    margin-right: 20px;
-  }
-  
-  .product-name-link-wrapper p {
-    font-weight: bold;
-  }
-  
-  .price {
-    font-weight: bold;
-    color: #3498db;
-  }
-  
-  .subtotal-area {
+}
+.checkout-summary {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.summary-area {
+  width: 100%;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.product-img-link-wrapper img {
+  max-width: 100%;
+  height: auto;
+}
+
+.summary-header {
+  font-weight: bold;
+  font-size: 24px;
+  color: #3498db;
+}
+
+.item-area {
+  margin-top: 20px;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-img-link-wrapper {
+  margin-right: 20px;
+}
+
+.product-name-link-wrapper p {
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.subtotal-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+
+  .subtotal {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-    font-weight: bold;
-    background-color: #f9f9f9; 
-    border: 1px solid #ccc; 
-    padding: 10px; 
-    border-radius: 5px;
-  
-    .subtotal {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  
-      .product-price,
-      .campaign {
-        padding: 5px;
-        border-radius: 5px; 
-      }
-  
-      .campaign {
-        background-color: #F5A623; 
-        color: white; 
-      }
-  
-      div {
-        margin: 5px 0; 
-      }
-      
-    }
-    .total {
+    align-items: center;
 
-      .totalPrice {
-        font-weight: bold;
-        color: #4CAF50;
-        margin-left: auto;
-        padding-right: 10px;
-      }
+    .product-price,
+    .campaign {
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .campaign {
+      background-color: #f5a623;
+      color: white;
+    }
+
+    div {
+      margin: 5px 0;
     }
   }
-  
-  
- 
+  .total {
+    .totalPrice {
+      font-weight: bold;
+      color: #4caf50;
+      margin-left: auto;
+      padding-right: 10px;
+    }
+  }
+}
 
-  
-  
 //   KARGO SEÇENEKLERİ
 
 .checkout__cargos-list {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;  
-    
-    .checkout-unified-list {
-      flex: 1; 
-    }
-  
-    .checkout-cargo-list {
-      .checkout-shipping-list-wrapper {
-       
-        .checkout-cargo-wrapper {
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          padding: 10px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          margin: 5px 0; // Masaüstü görünümünde labelleri biraz uzaklaştır
-  
-          // Masaüstü görünümü
-          @media (min-width: 768px) {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 10px 0; // Labelleri daha fazla uzaklaştır
-            &:hover {
-              background-color: darken($ana-renk, 1%);
-            }
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .checkout-unified-list {
+    flex: 1;
+  }
+
+  .checkout-cargo-list {
+    .checkout-shipping-list-wrapper {
+      .checkout-cargo-wrapper {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 5px 0; // Masaüstü görünümünde labelleri biraz uzaklaştır
+
+        // Masaüstü görünümü
+        @media (min-width: 768px) {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 10px 0; // Labelleri daha fazla uzaklaştır
+          &:hover {
+            background-color: darken($ana-renk, 1%);
           }
-  
-          // Mobil görünüm
-          @media (max-width: 767px) {
-            &:hover {
-              background-color: transparent;
-            }
-  
-            .checkout-cargo-title {
-              font-weight: bold;
-            }
-  
-            .checkout-cargo-desc {
-              margin-top: 5px;
-            }
-  
-            .checkout-cargo-amount {
-              margin-top: 10px;
-            }
+        }
+
+        // Mobil görünüm
+        @media (max-width: 767px) {
+          &:hover {
+            background-color: transparent;
           }
-  
-  
+
+          .checkout-cargo-title {
+            font-weight: bold;
+          }
+
+          .checkout-cargo-desc {
+            margin-top: 5px;
+          }
+
+          .checkout-cargo-amount {
+            margin-top: 10px;
+          }
         }
       }
     }
   }
-  
+}
 
-  
-  
-
-
-  /* Kapat düğmesi için özel stil */
+/* Kapat düğmesi için özel stil */
 .close-form-btn {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
+}
+
+/* Form alanlarına stil eklemek için bootstrap kullanıyoruz */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Yeni adres ekle düğmesinin stilini düzenleme */
+.new-address {
+  cursor: pointer;
+}
+
+/* Formu gizlemek için */
+.new-address-form {
+  display: none;
+}
+
+/* Responsive stiller */
+@media (max-width: 768px) {
+}
+
+// Open modal Address
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  &.show {
+    display: flex;
   }
-  
-  /* Form alanlarına stil eklemek için bootstrap kullanıyoruz */
-  .form-group {
-    margin-bottom: 15px;
+
+  .modal-content {
+    width: 100%; /* Genişliği 100% yapın */
+    max-width: 800px; /* Maksimum genişlik ayarı */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Yeni adres ekle düğmesinin stilini düzenleme */
-  .new-address {
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
+    background-color: darken($ana-renk, 1%);
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
   }
-  
-  /* Formu gizlemek için */
-  .new-address-form {
-    display: none;
-  }
-  
-  /* Responsive stiller */
-  @media (max-width: 768px) {
-  }
-  
 
+  form {
+    display: flex;
+    flex-direction: column;
 
-
-  // Open modal Address 
- 
-  
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  
-    &.show {
-      display: flex;
+    label {
+      margin-bottom: 5px;
     }
-  
-    .modal-content {
-      width: 100%; /* Genişliği 100% yapın */
-      max-width: 800px; /* Maksimum genişlik ayarı */
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    input {
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
     }
-  
-    .close-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      border: none;
       cursor: pointer;
-      background-color: darken($ana-renk, 1%);
-      color: #ffffff;
-      border: none; 
-      padding: 5px 10px;
-      border-radius: 5px; 
-    }
-    
-  
-    form {
-      display: flex;
-      flex-direction: column;
-  
-      label {
-        margin-bottom: 5px;
-      }
-  
-      input {
-        margin-bottom: 10px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-      }
-  
-      button {
-        background-color: #007bff;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        cursor: pointer;
-      }
     }
   }
-  
+}
 
-  .js-bill-address-list.address-list {
-    border: 1px solid #ccc; 
-    padding: 10px;
-    font-weight: bold; 
-    margin: 10px 0; 
-    background-color: $arkaplan-renk; 
+.js-bill-address-list.address-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-weight: bold;
+  margin: 10px 0;
+  background-color: $arkaplan-renk;
+}
+
+.alert-message {
+  p.js-message-bill-address.checkout-message-alert {
+    font-weight: bold;
   }
-  
-  .alert-message {
-    p.js-message-bill-address.checkout-message-alert {
-      font-weight: bold; 
-    }
+}
+
+.selected-address {
+  font-weight: bold;
+  color: #ff5733;
+}
+
+.c-address-footer {
+  a.c-address-edit.js-address-edit,
+  a.c-address-remove.js-address-remove {
+    font-weight: bold;
   }
-  
-  .selected-address {
-    font-weight: bold; 
-    color: #FF5733; 
-  }
-  
-  .c-address-footer {
-    a.c-address-edit.js-address-edit,
-    a.c-address-remove.js-address-remove {
-      font-weight: bold; 
-    }
-  }
-  
-  .clear {
-    clear: both;
-  }
+}
+
+.clear {
+  clear: both;
+}

@@ -53,7 +53,7 @@
                         </td>
                         <td>
                             <h2>
-                                {{ (product.originalPrice | discount:product) * productService?.Currency.originalPrice | currency:productService?.Currency.currency:'symbol' }}
+                                {{ product.originalPrice | currency }}
                             </h2>
                         </td>
                         <td>

@@ -15,15 +15,30 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CheckoutComponent implements OnInit {
 
-  public checkoutForm:  UntypedFormGroup;
+  public checkoutForm: UntypedFormGroup;
   public products: Product[] = [];
-   public payPalConfig ? : any;
+  public payPalConfig?: any;
   public payment: string = 'Stripe';
-  public amount:  any;
+  public amount: any;
 
+  currentStep: string = 'adres';
+  buttonText: string = 'Save and Continue';
+  showPaymentButton: boolean = true;
+  paymentInfoVisible: boolean = false; // Başlangıçta ödeme bilgileri gizlenmiş
+
+  paymentOptions: any[] = [  // Örnek ödeme seçenekleri
+    { name: 'Kredi Kartı', price: 0 },
+    { name: 'PayPal', price: 2.99 },
+  ];
+
+  cartItems: any[] = [  // Örnek sepet bilgileri
+    { productName: 'Ürün 1', quantity: 2, totalPrice: 49.99 },
+    { productName: 'Ürün 2', quantity: 1, totalPrice: 29.99 },
+  ];
   constructor(private fb: UntypedFormBuilder,
     public productService: ProductService,
-    private orderService: OrderService , private toasts : ToastrService) { 
+    private orderService: OrderService,
+    private toasts: ToastrService) {
     this.checkoutForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
       lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
@@ -40,8 +55,10 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.cartItems.subscribe(response => {
-        console.log(response , "checkout")
-      this.products = response});
+      console.log(response, "checkout")
+      this.products = response
+    });
+    this.orderService.getSelectedAddress();    
     this.getTotal.subscribe(amount => this.amount = amount);
     this.initConfig();
   }
@@ -57,7 +74,7 @@ export class CheckoutComponent implements OnInit {
       locale: 'auto',
       token: (token: any) => {
         var stripeToken = token.id;
-  
+
         var order = {
           // firstname: this.checkoutForm.get('firstname')?.value,
           // lastname: this.checkoutForm.get('lastname')?.value,
@@ -70,8 +87,8 @@ export class CheckoutComponent implements OnInit {
           // postalcode: this.checkoutForm.get('postalcode')?.value,
           // amount: this.checkoutForm.get('amount')?.value,
         };
-  
-       
+
+
         this.toasts.success('The payoff is successful');
       }
     });
@@ -83,8 +100,6 @@ export class CheckoutComponent implements OnInit {
     //   email: this.checkoutForm.get('email')?.value
     // });
   }
-  
-  
 
   // Paypal Payment Gateway
   private initConfig(): void {
@@ -107,7 +122,7 @@ export class CheckoutComponent implements OnInit {
             }
           }],
           payer: {
-            email_address: this.checkoutForm.get('email')?.value 
+            email_address: this.checkoutForm.get('email')?.value
           }
         };
       },
@@ -116,7 +131,7 @@ export class CheckoutComponent implements OnInit {
       },
       style: {
         label: 'paypal',
-        size:  'small', // small | medium | large | responsive
+        size: 'small', // small | medium | large | responsive
         shape: 'rect', // pill | rect
       },
       // onApprove: (data, actions) => {
@@ -140,36 +155,20 @@ export class CheckoutComponent implements OnInit {
       }
     };
   }
-  
-
-  paymentInfoVisible: boolean = false; // Başlangıçta ödeme bilgileri gizlenmiş
-
-  paymentOptions: any[] = [  // Örnek ödeme seçenekleri
-    { name: 'Kredi Kartı', price: 0 },
-    { name: 'PayPal', price: 2.99 },
-  ];
-
-  cartItems: any[] = [  // Örnek sepet bilgileri
-    { productName: 'Ürün 1', quantity: 2, totalPrice: 49.99 },
-    { productName: 'Ürün 2', quantity: 1, totalPrice: 29.99 },
-  ];
 
   showPaymentInfo() {
     this.paymentInfoVisible = true; // Tab'a tıklandığında ödeme bilgilerini göster
   }
 
-
-
-  
-  currentStep: string = 'adres';
-  buttonText: string = 'Save and Continue';
-  showPaymentButton: boolean = true;
-  
   proceedToNextStep() {
     if (this.currentStep === 'adres') {
       // Adres işlemi başarılıysa bir sonraki adıma geç
       const deliverySuccess = true;
       if (deliverySuccess) {
+        if(!this.orderService.getSelectedAddress()){
+          this.toasts.error('Lütfen bir teslimat adresi seçin.');
+          return; // Uyarı verip işlemi durdur
+        }
         this.currentStep = 'checkout';
         this.buttonText = 'Save and Continue';
         const addressTab = document.querySelector('.checkout-tab[data-type="checkout-address"]');
@@ -199,9 +198,9 @@ export class CheckoutComponent implements OnInit {
       }
     }
   }
-  
-  
-  
-  
+
+
+
+
 
 }
