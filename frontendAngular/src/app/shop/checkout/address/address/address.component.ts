@@ -14,7 +14,8 @@ import { ProductService } from 'src/app/shared/services/product.service';
   
 export class AddressComponent implements OnInit {
   public orderDetails = [] 
-  form: FormGroup;
+  addForm: FormGroup;
+  editForm: FormGroup;
   isAddingNew: boolean = false; 
   userAddresses: any[] = [];
   userInfo: any[] = [];
@@ -23,7 +24,9 @@ export class AddressComponent implements OnInit {
   buttonText: string = 'Save Setting';
   isBillingAddressSame: boolean = true;
   currentAddress: any;
-
+  isModalOpen: boolean = false;
+  isCreateFormOpen: boolean = false;
+  isEditFormOpen: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -33,6 +36,8 @@ export class AddressComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initAddForm();
+    this.initEditForm();
      this.loadUserAddresses();
 
      this.productService.cartItems.subscribe(res => {
@@ -62,43 +67,63 @@ export class AddressComponent implements OnInit {
     );
   }
 
-  initForm(): void {
-    const user =  this.authService.getUser();
-    this.form = this.fb.group({
+
+  initEditForm(): void {
+    const user = this.authService.getUser();
+    this.editForm = this.fb.group({
       flatPlot: ['', Validators.required],
       address: ['', Validators.required],
       zipCode: ['', Validators.required],
       country: ['', Validators.required],
       city: ['', Validators.required],
       regionState: ['', Validators.required],
-      addressType: ['' , Validators.required],
+      addressType: ['', Validators.required],
       userId: user.user._id
     });
   }
-
-  addressSubmit() {
-    // if (this.form.valid) {
-    //   const formData = this.form.value;
-    //   this.authService.updateUserAddress(formData).subscribe(
-    //     (response) => {
-    //       this.toastr.success('Address added successfully', 'Success');
-    //       this.loadUserAddresses();
-    //       this.isAddingNew = false; 
-    //       this.form.reset();
-    //       this.userAddresses = response.user.addresses;
-    //     },
-    //     (error) => {
-    //       console.error(error);
-    //       this.toastr.error('An error occurred', 'Error');
-    //       this.form.reset();
-    //     }
-    //   );
-    // }
+  initAddForm(): void {
+    const user = this.authService.getUser();
+    this.addForm = this.fb.group({
+      flatPlot: ['', Validators.required],
+      address: ['', Validators.required],
+      zipCode: ['', Validators.required],
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      regionState: ['', Validators.required],
+      addressType: ['', Validators.required],
+      userId: user.user._id
+    });
   }
- 
-  
+  addressSubmit() {
+    if (this.addForm.valid) {
+      const formData = this.addForm.value;
+      const user = this.authService.getUser();
+      
+      if (user) {
+        const userId = user._id;
+        this.authService.updateUserAddress(userId, formData).subscribe(
+          (response) => {
+            this.toastr.success('Address added successfully', 'Success');
+            this.loadUserAddresses();
+            this.isAddingNew= false;
+            this.closeCreateForm();
+          },
+          (error) => {
+            console.error('Address add error', error);
+            this.toastr.error('An error occurred', 'Error');
+            this.addForm.reset();
+          }
+        );
+      } else {
+        console.error('Kullanıcı bilgileri alınamadı.');
+      }
+    }
+  }
   editAddress(address: any) {
-    this.form.patchValue({
+    console.log('Düzenlenecek adres bilgileri:', address);
+    this.editedAddresses.push(address);
+    const user = this.authService.getUser();
+    this.editForm.patchValue({
       addressType: address.addressType,
       flatPlot: address.flatPlot,
       address: address.address,
@@ -106,39 +131,73 @@ export class AddressComponent implements OnInit {
       country: address.country,
       city: address.city,
       regionState: address.regionState,
-      userId: address._id
+      userId: user.user._id
     });
-    this.isEditing = true
-    this.isAddingNew = true; 
-    this.buttonText = 'Edit Setting'; 
+    this.isEditing = true;
+  }
+  updateAddress() {
+    if (this.editedAddresses.length > 0) {
+      const addressIdToUpdate = this.editedAddresses[0]._id;
+      const user = this.authService.getUser();
+  
+      if (user) {
+        const userId = user.user._id;
+        console.log('Kullanıcı kimliği:', userId);
+  
+        const addressData = this.editForm.value;
+        addressData._id = addressIdToUpdate;
+  
+        this.authService.updateUserAddress(userId, addressData).subscribe(
+          (response) => {
+            this.toastr.success('Address update successfully', 'Success');
+            this.loadUserAddresses();
+            this.editForm.reset();
+            this.closeEditForm();
+            console.log('Adres güncellendi', response);
+            this.isEditing = false; 
+          },
+          (error) => {
+            console.error('Adres güncelleme hatası', error);
+            this.toastr.error('An error occurred', 'Error');
+          });
+      } else {
+        console.error('Kullanıcı bilgileri alınamadı.');
+      }
+    } else {
+      console.error('Düzenlenen adres bilgisi bulunamadı.');
+    }
+  }
+  deleteAddress(addressId: string) {
+    this.authService.deleteUserAddress(addressId).subscribe(
+      (response) => {
+        console.log(response, "delete")
+        this.toastr.success('Address deleted successfully', 'Success');
+        this.loadUserAddresses();
+      },
+      (error) => {
+        console.error(error);
+        this.toastr.error('An error occurred while deleting the address', 'Error');
+      }
+    );
+
 }
 
-  
 
-  deleteAddress(addressId: string) {
-      this.authService.deleteUserAddress(addressId).subscribe(
-        (response) => {
-          console.log(response, "delete")
-          this.toastr.success('Address deleted successfully', 'Success');
-          this.loadUserAddresses();
-        },
-        (error) => {
-          console.error(error);
-          this.toastr.error('An error occurred while deleting the address', 'Error');
-        }
-      );
+openCreateForm() {
+  this.isCreateFormOpen = true;
+}
 
-  }
+closeCreateForm() {
+  this.isCreateFormOpen = false;
+}
 
-  isModalOpen: boolean = false;
+openEditForm() {
+  this.isEditFormOpen = true;
+}
 
-  openModal() {
-    this.isModalOpen = true;
-  }
-
-  closeModal() {
-    this.isModalOpen = false;
-  }
+closeEditForm() {
+  this.isEditFormOpen = false;
+}
 
   selectAddress(selectedAddress: any) {
     this.orderService.setSelectedAddress(selectedAddress);

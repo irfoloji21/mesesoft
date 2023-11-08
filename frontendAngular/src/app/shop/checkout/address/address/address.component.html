@@ -7,24 +7,14 @@
         <div class="d-flex flex-wrap">
           <div class="col-md-12 col-sm-12">
             <div class="checkout-content">
-              <div
-                class="checkout-address c-content-area js-tab-content addresses cf active"
-              >
+              <div class="checkout-address c-content-area js-tab-content addresses cf active">
                 <div class="col-12 pd-0 address-options">
                   <div class="address-header">
                     <div class="address-title">DELIVERY ADDRESS</div>
                     <div class="same-address">
-                      <input
-                        [(ngModel)]="isBillingAddressSame"
-                        class="same-checkbox js-show-bill-address"
-                        id="same-address"
-                        checked=""
-                        type="checkbox"
-                      />
-                      <label
-                        class="same-check-lb js-show-bill-address-check"
-                        for="same-address"
-                      >
+                      <input [(ngModel)]="isBillingAddressSame" class="same-checkbox js-show-bill-address"
+                        id="same-address" checked="" type="checkbox" />
+                      <label class="same-check-lb js-show-bill-address-check" for="same-address">
                         <span>My billing address is the same</span>
                       </label>
                     </div>
@@ -32,36 +22,21 @@
                 </div>
 
                 <div class="col-12 pd-0 options-area js-set-options">
-                  <div
-                    class="js-options-detail options-detail js-default default js-default-option"
-                  >
+                  <div class="js-options-detail options-detail js-default default js-default-option">
                     <div class="checkout__address-list">
                       <div class="alert-message">
-                        <p
-                          class="js-message-delivery-option checkout-message-alert"
-                        >
+                        <p class="js-message-delivery-option checkout-message-alert">
                           Please select a delivery address.
                         </p>
                       </div>
                       <div class="js-address-list address-list">
-                        <div
-                          *ngFor="let address of userAddresses"
-                          class="js-address-grid c-address-grid"
-                          data-type="address"
-                        >
-                          <input
-                            type="radio"
-                            name="selectedAddress"
-                            (click)="selectAddress(address)"
-                            required
-                          />
-                          <label
-                            for="js-address-radio-occ-585774"
-                            class="c-address-content js-address-content"
-                          >
+                        <div *ngFor="let address of userAddresses" class="js-address-grid c-address-grid"
+                          data-type="address">
+                          <input type="radio" name="selectedAddress" (click)="selectAddress(address)" required />
+                          <label for="js-address-radio-occ-585774" class="c-address-content js-address-content">
                             <span class="selected-address">{{
                               address.addressType
-                            }}</span>
+                              }}</span>
                             <div class="c-address-text">
                               <div class="c-address-title">
                                 {{ address.country }}/{{ address.city }}
@@ -72,20 +47,12 @@
                               </div>
                             </div>
                             <div class="c-address-footer">
-                              <a
-                                (click)="openModal()"
-                                class="c-address-edit js-address-edit"
-                                data-pk="585774"
-                                data-type="address"
-                              >
+                              <a (click)="editAddress(address); openEditForm()" class="c-address-edit js-address-edit"
+                                data-pk="585774" data-type="address">
                                 edit
                               </a>
-                              <a
-                                (click)="deleteAddress(address._id)"
-                                class="c-address-remove js-address-remove"
-                                data-pk="585774"
-                                data-type="address"
-                              >
+                              <a (click)="deleteAddress(address._id)" class="c-address-remove js-address-remove"
+                                data-pk="585774" data-type="address">
                                 delete
                               </a>
                             </div>
@@ -94,7 +61,7 @@
                         </div>
                         <div class="c-address-grid">
                           <div class="c-address-content js-new-address-occ">
-                            <div class="new-address" (click)="openModal()">
+                            <div class="new-address" (click)="openCreateForm()">
                               <span class="icon-plus"></span>
                               CREATE NEW ADDRESS
                             </div>
@@ -105,11 +72,8 @@
                   </div>
 
                   <div class="js-options-detail options-detail js-today today">
-                    <i
-                      class="icon-close modal-close js-options-close options-close hidden-md hidden-lg"
-                      data-type="bill_address"
-                      aria-hidden="true"
-                    ></i>
+                    <i class="icon-close modal-close js-options-close options-close hidden-md hidden-lg"
+                      data-type="bill_address" aria-hidden="true"></i>
                     <div class="js-bill-addresses" style="display: none">
                       <div class="checkout__addresses">
                         <div class="address-header-bill">
@@ -119,51 +83,29 @@
                         </div>
                         <div class="checkout__address-list">
                           <div class="alert-message">
-                            <p
-                              class="js-message-bill-address checkout-message-alert"
-                            >
+                            <p class="js-message-bill-address checkout-message-alert">
                               Please select a billing address.
                             </p>
                           </div>
                           <div class="js-bill-address-list address-list">
-                            <div
-                              class="js-address-grid c-address-grid"
-                              data-type="bill_address"
-                            >
-                              <input
-                                type="radio"
-                                id="js-bill-address-radio-occ-585774"
-                                name="js-bill-address-radio-occ"
-                                class="radiobutton c-address-radio js-bill-address-radio-occ"
-                                value="585774"
-                              />
-                              <label
-                                for="js-bill-address-radio-occ-585774"
-                                class="c-address-content js-address-content"
-                              >
-                                <span class="selected-address"
-                                  >SELECTED ADDRESS</span
-                                >
+                            <div class="js-address-grid c-address-grid" data-type="bill_address">
+                              <input type="radio" id="js-bill-address-radio-occ-585774" name="js-bill-address-radio-occ"
+                                class="radiobutton c-address-radio js-bill-address-radio-occ" value="585774" />
+                              <label for="js-bill-address-radio-occ-585774"
+                                class="c-address-content js-address-content">
+                                <span class="selected-address">SELECTED ADDRESS</span>
                                 <div class="c-address-text">
                                   <div class="c-address-title">Eb</div>
                                   Diyarbakır KAYAPINAR 21070 DİYARBAKIR
                                   <div>Phone: <b>05325241712</b></div>
                                 </div>
                                 <div class="c-address-footer">
-                                  <a
-                                    href="javascript:;"
-                                    class="c-address-edit js-address-edit"
-                                    data-pk="585774"
-                                    data-type="bill_address"
-                                  >
+                                  <a href="javascript:;" class="c-address-edit js-address-edit" data-pk="585774"
+                                    data-type="bill_address">
                                     edit
                                   </a>
-                                  <a
-                                    href="javascript:;"
-                                    class="c-address-remove js-address-remove"
-                                    data-pk="585774"
-                                    data-type="bill_address"
-                                  >
+                                  <a href="javascript:;" class="c-address-remove js-address-remove" data-pk="585774"
+                                    data-type="bill_address">
                                     delete
                                   </a>
                                 </div>
@@ -184,30 +126,16 @@
                     </div>
                   </div>
 
-                  <div
-                    class="js-bill-address-list address-list"
-                    *ngIf="!isBillingAddressSame"
-                  >
+                  <div class="js-bill-address-list address-list" *ngIf="!isBillingAddressSame">
                     <div class="alert-message">
                       <p class="js-message-bill-address checkout-message-alert">
                         Please select a billing address.
                       </p>
                     </div>
-                    <div
-                      class="js-address-grid c-address-grid"
-                      data-type="bill_address"
-                    >
-                      <input
-                        type="radio"
-                        id="js-bill-address-radio-occ-585774"
-                        name="js-bill-address-radio-occ"
-                        class="radiobutton c-address-radio js-bill-address-radio-occ"
-                        value="585774"
-                      />
-                      <label
-                        for="js-bill-address-radio-occ-585774"
-                        class="c-address-content js-address-content"
-                      >
+                    <div class="js-address-grid c-address-grid" data-type="bill_address">
+                      <input type="radio" id="js-bill-address-radio-occ-585774" name="js-bill-address-radio-occ"
+                        class="radiobutton c-address-radio js-bill-address-radio-occ" value="585774" />
+                      <label for="js-bill-address-radio-occ-585774" class="c-address-content js-address-content">
                         <span class="selected-address">SELECTED ADDRESS</span>
                         <div class="c-address-text">
                           <div class="c-address-title">John</div>
@@ -215,20 +143,12 @@
                           <div>Phone: <b>05325241712</b></div>
                         </div>
                         <div class="c-address-footer">
-                          <a
-                            href="javascript:;"
-                            class="c-address-edit js-address-edit"
-                            data-pk="585774"
-                            data-type="bill_address"
-                          >
+                          <a href="javascript:;" class="c-address-edit js-address-edit" data-pk="585774"
+                            data-type="bill_address">
                             edit
                           </a>
-                          <a
-                            href="javascript:;"
-                            class="c-address-remove js-address-remove"
-                            data-pk="585774"
-                            data-type="bill_address"
-                          >
+                          <a href="javascript:;" class="c-address-remove js-address-remove" data-pk="585774"
+                            data-type="bill_address">
                             delete
                           </a>
                         </div>
@@ -245,22 +165,15 @@
                     </div>
                   </div>
 
-                  <div
-                    class="js-options-detail options-detail js-shipping-list-form"
-                  >
+                  <div class="js-options-detail options-detail js-shipping-list-form">
                     <form method="post">
                       <div class="address-title">SHIPPING OPTIONS</div>
                       <div class="checkout__cargos-list">
-                        <div
-                          class="checkout-unified-list js-unified-list"
-                        ></div>
+                        <div class="checkout-unified-list js-unified-list"></div>
                         <div class="checkout-cargo-list js-shipping-list">
                           <div class="checkout-shipping-list-wrapper">
-                            <label
-                              for="yurtici-1"
-                              class="checkout-cargo-wrapper js-checkout-cargo-item cf"
-                              data-slug="yurtici"
-                            >
+                            <label for="yurtici-1" class="checkout-cargo-wrapper js-checkout-cargo-item cf"
+                              data-slug="yurtici">
                               <div class="checkout-cargo-header">
                                 <div class="checkout-cargo-title">
                                   <b>Standard Shipping</b>
@@ -276,11 +189,8 @@
                                 </div>
                               </div>
                             </label>
-                            <label
-                              for="yurtici-1"
-                              class="checkout-cargo-wrapper js-checkout-cargo-item cf"
-                              data-slug="yurtici"
-                            >
+                            <label for="yurtici-1" class="checkout-cargo-wrapper js-checkout-cargo-item cf"
+                              data-slug="yurtici">
                               <div class="checkout-cargo-header">
                                 <div class="checkout-cargo-title">
                                   <b>Express Shipping</b>
@@ -368,56 +278,32 @@
 
 <!-- //Form Area new Address Create -->
 
-<div class="custom-container">
-  <div class="modal" [ngClass]="{ show: isModalOpen }">
+<div class="custom-container" *ngIf="isCreateFormOpen">
+  <div class="modal" [ngClass]="{ show: isCreateFormOpen }">
     <div class="modal-content col-12 col-md-8 col-lg-6">
-      <button class="close-button" (click)="closeModal()">X</button>
-      <form class="theme-form" [formGroup]="form" (ngSubmit)="addressSubmit()">
-        <h3 class="text-center">{{ isEditing ? 'Edit Address' : 'Create New Address' }}</h3>
+      <button class="close-button" (click)="closeCreateForm()">X</button>
+      <form class="theme-form" [formGroup]="addForm" (ngSubmit)="addressSubmit()">
+        <h3 class="text-center">Create New Address</h3>
         <div class="row">
           <div class="col-md-6">
             <label for="review">Address Type</label>
-            <input
-              formControlName="addressType"
-              type="text"
-              class="form-control"
-              id="addressType"
-              placeholder="Address Type"
-              required
-            />
+            <input formControlName="addressType" type="text" class="form-control" id="addressType"
+              placeholder="Address Type" required />
           </div>
           <div class="col-md-6">
             <label for="name">Flat / Plot</label>
-            <input
-              formControlName="flatPlot"
-              type="text"
-              class="form-control"
-              id="home-ploat"
-              placeholder="Flat / Plot"
-              required
-            />
+            <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat" placeholder="Flat / Plot"
+              required />
           </div>
           <div class="col-md-6">
             <label for="name">Address *</label>
-            <input
-              formControlName="address"
-              type="text"
-              class="form-control"
-              id="address-two"
-              placeholder="Address"
-              required
-            />
+            <input formControlName="address" type="text" class="form-control" id="address-two" placeholder="Address"
+              required />
           </div>
           <div class="col-md-6">
             <label for="email">Zip Code *</label>
-            <input
-              formControlName="zipCode"
-              type="text"
-              class="form-control"
-              id="zip-code"
-              placeholder="Zip Code"
-              required
-            />
+            <input formControlName="zipCode" type="text" class="form-control" id="zip-code" placeholder="Zip Code"
+              required />
           </div>
           <div class="col-md-6 select_input">
             <label for="country">Country *</label>
@@ -434,29 +320,76 @@
           </div>
           <div class="col-md-6">
             <label for="review">City *</label>
-            <input
-              formControlName="city"
-              type="text"
-              class="form-control"
-              id="city"
-              placeholder="City"
-              required
-            />
+            <input formControlName="city" type="text" class="form-control" id="city" placeholder="City" required />
           </div>
           <div class="col-md-6">
             <label for="review">Region/State *</label>
-            <input
-              formControlName="regionState"
-              type="text"
-              class="form-control"
-              id="region-state"
-              placeholder="Region/State"
-              required
-            />
+            <input formControlName="regionState" type="text" class="form-control" id="region-state"
+              placeholder="Region/State" required />
           </div>
           <div class="col-md-12">
             <button class="btn btn-sm btn-solid" type="submit">
-              {{ buttonText }}
+              Create Address
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="custom-container" *ngIf="isEditFormOpen">
+  <div class="modal" [ngClass]="{ show: isEditFormOpen }">
+    <div class="modal-content col-12 col-md-8 col-lg-6">
+      <button class="close-button" (click)="closeEditForm()">X</button>
+      <form class="theme-form" [formGroup]="editForm"(submit)="updateAddress()" >
+        <h3 class="text-center">Update Address</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="review">Address Type</label>
+            <input formControlName="addressType" type="text" class="form-control" id="addressType"
+              placeholder="Address Type" required />
+          </div>
+          <div class="col-md-6">
+            <label for="name">Flat / Plot</label>
+            <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat" placeholder="Flat / Plot"
+              required />
+          </div>
+          <div class="col-md-6">
+            <label for="name">Address *</label>
+            <input formControlName="address" type="text" class="form-control" id="address-two" placeholder="Address"
+              required />
+          </div>
+          <div class="col-md-6">
+            <label for="email">Zip Code *</label>
+            <input formControlName="zipCode" type="text" class="form-control" id="zip-code" placeholder="Zip Code"
+              required />
+          </div>
+          <div class="col-md-6 select_input">
+            <label for="country">Country *</label>
+            <select formControlName="country" class="form-control" size="1">
+              <option value="" disabled selected>Select a Country</option>
+              <option value="UK">United Kingdom</option>
+              <option value="US">United States</option>
+              <option value="India">India</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Germany">Germany</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="review">City *</label>
+            <input formControlName="city" type="text" class="form-control" id="city" placeholder="City" required />
+          </div>
+          <div class="col-md-6">
+            <label for="review">Region/State *</label>
+            <input formControlName="regionState" type="text" class="form-control" id="region-state"
+              placeholder="Region/State" required />
+          </div>
+          <div class="col-md-12">
+            <button class="btn btn-sm btn-solid" type="submit">
+              Update Address
             </button>
           </div>
         </div>
