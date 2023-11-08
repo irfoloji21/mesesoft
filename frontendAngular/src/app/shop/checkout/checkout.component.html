@@ -44,6 +44,7 @@
   </div>
   </div>
 </div>
+<button (click)="goToPreviousStep()" class="btn-solid btn" *ngIf="currentStep !== 'adres'"><i class="fa fa-angle-left"></i> &nbsp; Back</button>
 
 
 <app-address *ngIf="currentStep === 'adres'"></app-address>

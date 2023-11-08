@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
       console.log(response, "checkout")
       this.products = response
     });
-    this.orderService.getSelectedAddress();    
+    this.orderService.getSelectedAddress();
     this.getTotal.subscribe(amount => this.amount = amount);
     this.initConfig();
   }
@@ -165,7 +165,7 @@ export class CheckoutComponent implements OnInit {
       // Adres işlemi başarılıysa bir sonraki adıma geç
       const deliverySuccess = true;
       if (deliverySuccess) {
-        if(!this.orderService.getSelectedAddress()){
+        if (!this.orderService.getSelectedAddress()) {
           this.toasts.error('Lütfen bir teslimat adresi seçin.');
           return; // Uyarı verip işlemi durdur
         }
@@ -199,8 +199,16 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-
-
-
+  goToPreviousStep() {
+    if (this.currentStep === 'checkout') {
+      this.currentStep = 'adres';
+      this.buttonText = 'Save and Continue';
+    } else if (this.currentStep === 'odeme') {
+      this.currentStep = 'checkout';
+      this.buttonText = 'Save and Continue';
+      this.showPaymentButton = true;
+    }
+    // Diğer adımlar için gerekli kontrolleri ekleyebilirsiniz.
+  }
 
 }
