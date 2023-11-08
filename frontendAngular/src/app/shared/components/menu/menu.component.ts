@@ -15,31 +15,37 @@ export class MenuComponent implements OnInit {
   public menuItems: Category[] = [];
   public subCategoryData: any[] = []; 
   public irfosub: any[] = [];
+  megaMenu;
+  active:any
   constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         // Tüm kategorileri alın
         const categories = data.categories;
-    
         // Kategori listesini döngüye alarak alt kategorileri yükleyin
         this.loadSubcategories(categories);
       }
     });
-    this.router.events.subscribe((event) => {
-      this.navServices.mainMenuToggle = false;
-    });
+    // this.router.events.subscribe((event) => {
+    //   this.navServices.mainMenuToggle = false;
+    // });
 
   }
     
     loadSubcategories(categories: any[]) {
       for (const category of categories) {
+     
         if (category.subcategories) {
+          category.megaMenu = true ;
+          // category.active=false
           for (const subcategory of category.subcategories) {
             if (subcategory._id) {
               const subcategoryId = subcategory._id;
-    
+              
               this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
+                
                 // Alt kategori ile yerini değiştirin
+              
                 const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
                 if (index >= 0) {
                   category.subcategories[index] = subCategoryData.category;
@@ -50,6 +56,7 @@ export class MenuComponent implements OnInit {
         }
       }
       this.menuItems = categories;
+
     }
     
  
@@ -59,6 +66,7 @@ export class MenuComponent implements OnInit {
       if (menuItem.subcategories) {
         menuItem.subcategories.forEach((childrenItem) => {
           // console.log(childrenItem._id, "childrenItem._id")
+          
           if (childrenItem._id) {
             const subcategoryId = childrenItem._id;
             this.getSubcategoriesByItemId(subcategoryId, childrenItem);

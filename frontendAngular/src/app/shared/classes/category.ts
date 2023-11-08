@@ -36,6 +36,7 @@ export interface Subcategory {
   description?: string;
   images?: Images[];
   subcategories?: Subcategory[]; 
+  showMegaMenu: boolean;
 }
 export interface CategoryDetails {
   description: string;
