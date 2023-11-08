@@ -38,4 +38,14 @@ export class BlogService {
   getAdminBlogs(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/admin-all-blogs`);
   }
+  likeBlog(blogId: string, user: any): Observable<any> {
+    const url = `${this.apiUrl}/like-blog/${blogId}`;
+    return this.http.put<any>(url, { user });
+  }
+
+  unlikeBlog(blogId: string, user: any): Observable<any> {
+    const url = `${this.apiUrl}/unlike-blog/${blogId}`;
+    return this.http.put<any>(url, { user });
+  }
+  
 }

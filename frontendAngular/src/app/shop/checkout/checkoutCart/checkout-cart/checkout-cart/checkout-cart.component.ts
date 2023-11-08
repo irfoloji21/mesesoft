@@ -33,7 +33,11 @@ export class CheckoutCartComponent {
     private toastr: ToastrService,
     private authService: AuthService
   ) {
-    this.productService.cartItems.subscribe((response) => (this.products = response));
+    this.productService.cartItems.subscribe((response) => {
+      this.products = response
+      console.log(this.products , "checkoutCart")
+    
+    });
     this.couponForm = this.fb.group({
       couponCode: ['']
     });
