@@ -16,6 +16,10 @@ export class ShippingService {
   }
 
   setSelectedShipping(shipping: any) {
-    localStorage.setItem('selectedShipping', JSON.stringify(shipping));
+    if (shipping && Object.keys(shipping).length !== 0) {
+      localStorage.setItem('selectedShipping', JSON.stringify(shipping));
+    } else {
+      localStorage.removeItem('selectedShipping'); // ya da varsayılan bir değer atanabilir
+    }
   }
 }

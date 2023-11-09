@@ -169,6 +169,10 @@ export class CheckoutComponent implements OnInit {
           this.toasts.error('Lütfen bir teslimat adresi seçin.');
           return; // Uyarı verip işlemi durdur
         }
+        if (localStorage.getItem('selectedShipping') === null) {
+          this.toasts.error('Lütfen bir teslimat seçin.');
+          return; // Uyarı verip işlemi durdur
+        }
         this.currentStep = 'checkout';
         this.buttonText = 'Save and Continue';
         const addressTab = document.querySelector('.checkout-tab[data-type="checkout-address"]');

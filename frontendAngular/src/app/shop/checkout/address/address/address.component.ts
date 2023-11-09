@@ -28,6 +28,7 @@ export class AddressComponent implements OnInit {
   isEditFormOpen: boolean = false;
   shippingData: any[];
   selectedShippingIndex: number;
+  selectedAddressIndex: number;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -206,8 +207,9 @@ closeEditForm() {
   this.isEditFormOpen = false;
 }
 
-  selectAddress(selectedAddress: any) {
+  selectAddress(selectedAddress: any, index: number) {
     this.orderService.setSelectedAddress(selectedAddress);
+    this.selectedAddressIndex = index;
     console.log('Seçilen adres:', selectedAddress);
   }
 
