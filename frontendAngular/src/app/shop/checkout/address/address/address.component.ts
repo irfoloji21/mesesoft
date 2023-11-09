@@ -5,6 +5,7 @@ import { Order } from 'src/app/shared/classes/order';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ShippingService } from 'src/app/shared/services/shipping.service';
 
 @Component({
   selector: 'app-address',
@@ -27,12 +28,15 @@ export class AddressComponent implements OnInit {
   isModalOpen: boolean = false;
   isCreateFormOpen: boolean = false;
   isEditFormOpen: boolean = false;
+  shippingData: any[];
+  selectedShippingIndex: number;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService, 
     private orderService :OrderService,
-    private productService: ProductService
+    private productService: ProductService,
+    private shippingService: ShippingService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +50,11 @@ export class AddressComponent implements OnInit {
      this.orderService.checkoutItems.subscribe(response => {
       console.log(response)
     });
+    this.shippingService.getShipData().subscribe(data => {
+      this.shippingData = data;
+      console.log("shippingData", this.shippingData)
+    });
+    
   }
   
 
@@ -202,6 +211,12 @@ closeEditForm() {
   selectAddress(selectedAddress: any) {
     this.orderService.setSelectedAddress(selectedAddress);
     console.log('Seçilen adres:', selectedAddress);
+  }
+
+  selectShipping(selectedShipping: any, index: number) {
+    this.shippingService.setSelectedShipping(selectedShipping);
+    this.selectedShippingIndex = index;
+    console.log('Seçilen kargo:', selectedShipping);
   }
   
  
