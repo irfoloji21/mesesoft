@@ -225,16 +225,20 @@ export class ProductService {
 
   // Total amount 
   public cartTotalAmount(): Observable<number> {
-    return this.cartItems.pipe(map((product: Product[]) => {
-      return product.reduce((prev, curr: Product) => {
-        let price = curr.originalPrice;
-        if(curr.discountPrice) {
-          price = (curr.originalPrice + (curr.originalPrice * curr.discountPrice / 100))
-        }
-        return  Math.floor(prev + price * curr.quantity);
+    return this.cartItems.pipe(map((products: Product[]) => {
+      return products.reduce((totalAmount, product: Product) => {
+        let price = product.originalPrice;
+        
+        // if (product.discountPrice) {
+        //   price = product.originalPrice - (product.originalPrice * product.discountPrice / 100);
+        // }
+        
+        return (totalAmount + price * product.quantity) * this.Currency.price;
       }, 0);
     }));
   }
+  
+ 
 
   /*
     ---------------------------------------------

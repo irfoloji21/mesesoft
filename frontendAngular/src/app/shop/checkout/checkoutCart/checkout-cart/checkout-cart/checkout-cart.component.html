@@ -80,7 +80,7 @@
                         </td>
                         <td>
                             <h2 class="td-color">
-                                {{ (product.discountPrice * product.quantity) | currency  }}
+                                {{ (product.originalPrice * product.quantity) | currency  }}
                             </h2>
                         </td>
                     </tr>
@@ -97,32 +97,33 @@
                     <tr>
                       <td>Total Price:</td>
                       <td>
-                        <h2>{{ getTotal | async | currency }}</h2>
+                        <h2 [ngStyle]="{'text-decoration': showDiscountedTotal ? 'line-through' : 'none'}">
+                          {{ getTotal | async | currency }}
+                        </h2>
                       </td>
                     </tr>
-                    <tr >
+                    <tr> 
                       <td>Coupon Code:</td>
                       <td>
                         <form [formGroup]="couponForm" class="coupon-form" >
-                            <input type="text" formControlName="couponCode" placeholder="Coupon Code">
-                            <button (click)="applyCoupon()">Apply</button>
-                          </form>                          
+                          <input type="text" formControlName="couponCode" placeholder="Coupon Code">
+                          <button (click)="applyCoupon()">Apply</button>
+                        </form>                          
                       </td>
                     </tr>
                     <tr *ngIf="showDiscountedTotal">
-                        <td>Discounted Price:</td>
-                        <td class="DiscountedPrice d-flex">
-                          <div>
-                            {{ discountedTotalType }} 
-                          </div>
-                          <div>
-                            {{ discountedTotal | currency }}
-                          </div>
-                        </td>
-                      </tr>
-                      
-                      
+                      <td>Discounted Price:</td>
+                      <td class="DiscountedPrice" [ngClass]="{'discounted': discountedTotal !== totalAmount}">
+                        <div >
+                          {{ discountedTotalType }} 
+                        </div>
+                        <div>
+                          {{ discountedTotal | currency }}
+                        </div>
+                      </td>
+                    </tr>
                   </tfoot>
+                  
             </table>
  
         </div>

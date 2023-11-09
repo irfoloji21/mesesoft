@@ -44,31 +44,20 @@
                         </p>
                       </div>
                       <div class="js-address-list address-list">
-                        <div
-                          *ngFor="let address of userAddresses"
-                          class="js-address-grid c-address-grid"
-                          data-type="address"
-                        >
-                          <input
-                            type="radio"
-                            name="selectedAddress"
-                            (click)="selectAddress(address)"
-                            required
-                          />
-                          <label
-                            for="js-address-radio-occ-585774"
-                            class="c-address-content js-address-content"
-                          >
+                        <div *ngFor="let address of userAddresses" class="js-address-grid c-address-grid"
+                          data-type="address">
+                          <input type="radio" name="selectedAddress" (click)="selectAddress(address)" required />
+                          <label for="js-address-radio-occ-585774" class="c-address-content js-address-content">
                             <span class="selected-address">{{
                               address.addressType
-                            }}</span>
+                              }}</span>
                             <div class="c-address-text">
                               <div class="c-address-title">
                                 {{ address.country }}/{{ address.city }}
                               </div>
                               {{ address.address }}
                               <div>
-                                Phone: <b>{{ userInfo }}</b>
+                                 <b>{{ address.userInfo }}</b>
                               </div>
                             </div>
                             <div class="c-address-footer">
@@ -126,44 +115,24 @@
                             </p>
                           </div>
                           <div class="js-bill-address-list address-list">
-                            <div
-                              class="js-address-grid c-address-grid"
-                              data-type="bill_address"
-                            >
-                              <input
-                                type="radio"
-                                id="js-bill-address-radio-occ-585774"
-                                name="js-bill-address-radio-occ"
-                                class="radiobutton c-address-radio js-bill-address-radio-occ"
-                                value="585774"
-                              />
-                              <label
-                                for="js-bill-address-radio-occ-585774"
-                                class="c-address-content js-address-content"
-                              >
-                                <span class="selected-address"
-                                  >SELECTED ADDRESS</span
-                                >
+                            <div class="js-address-grid c-address-grid" data-type="bill_address">
+                              <input type="radio" id="js-bill-address-radio-occ-585774" name="js-bill-address-radio-occ"
+                                class="radiobutton c-address-radio js-bill-address-radio-occ" value="585774" />
+                              <label for="js-bill-address-radio-occ-585774"
+                                class="c-address-content js-address-content">
+                                <span class="selected-address">SELECTED ADDRESS</span>
                                 <div class="c-address-text">
                                   <div class="c-address-title">Eb</div>
                                   Diyarbakır KAYAPINAR 21070 DİYARBAKIR
                                   <div>Phone: <b>05325241712</b></div>
                                 </div>
                                 <div class="c-address-footer">
-                                  <a
-                                    href="javascript:;"
-                                    class="c-address-edit js-address-edit"
-                                    data-pk="585774"
-                                    data-type="bill_address"
-                                  >
+                                  <a href="javascript:;" class="c-address-edit js-address-edit" data-pk="585774"
+                                    data-type="bill_address">
                                     edit
                                   </a>
-                                  <a
-                                    href="javascript:;"
-                                    class="c-address-remove js-address-remove"
-                                    data-pk="585774"
-                                    data-type="bill_address"
-                                  >
+                                  <a href="javascript:;" class="c-address-remove js-address-remove" data-pk="585774"
+                                    data-type="bill_address">
                                     delete
                                   </a>
                                 </div>
@@ -193,51 +162,23 @@
                         Please select a billing address.
                       </p>
                     </div>
-                    <div
-                      class="js-address-grid c-address-grid"
-                      data-type="bill_address"
-                      *ngFor="let address of userAddresses"
-                    >
-                      <input
-                        type="radio"
-                        id="js-bill-address-radio-occ-585774"
-                        name="js-bill-address-radio-occ"
-                        class="radiobutton c-address-radio js-bill-address-radio-occ"
-                        value="585774"
-                        (click)="selectAddress(address)"
-                      />
-                      <label
-                        for="js-bill-address-radio-occ"
-                        class="c-address-content js-address-content"
-                      >
+                    <div class="js-address-grid c-address-grid" data-type="bill_address">
+                      <input type="radio" id="js-bill-address-radio-occ-585774" name="js-bill-address-radio-occ"
+                        class="radiobutton c-address-radio js-bill-address-radio-occ" value="585774" />
+                      <label for="js-bill-address-radio-occ-585774" class="c-address-content js-address-content">
                         <span class="selected-address">SELECTED ADDRESS</span>
-                        <span class="selected-address">{{
-                          address.addressType
-                        }}</span>
                         <div class="c-address-text">
-                          <div class="c-address-title">
-                            {{ address.country }}/{{ address.city }}
-                          </div>
-                          {{ address.address }}
-                          <div>
-                            Phone: <b>{{ userInfo }}</b>
-                          </div>
+                          <div class="c-address-title">John</div>
+                          Springfield 21070 Springfield
+                          <div>Phone: <b>05325241712</b></div>
                         </div>
                         <div class="c-address-footer">
-                          <a
-                            (click)="editAddress(address); openEditForm()"
-                            class="c-address-edit js-address-edit"
-                            data-pk="585774"
-                            data-type="bill_address"
-                          >
+                          <a href="javascript:;" class="c-address-edit js-address-edit" data-pk="585774"
+                            data-type="bill_address">
                             edit
                           </a>
-                          <a
-                            (click)="deleteAddress(address._id)"
-                            class="c-address-remove js-address-remove"
-                            data-pk="585774"
-                            data-type="bill_address"
-                          >
+                          <a href="javascript:;" class="c-address-remove js-address-remove" data-pk="585774"
+                            data-type="bill_address">
                             delete
                           </a>
                         </div>
@@ -361,6 +302,7 @@
 </div>
 
 <!-- //Form Area new Address Create -->
+
 <div class="custom-container" *ngIf="isCreateFormOpen">
   <div class="modal" [ngClass]="{ show: isCreateFormOpen }">
     <div class="modal-content col-12 col-md-8 col-lg-6">
@@ -461,6 +403,8 @@
     </div>
   </div>
 </div>
+
+<!-- Update Addres -->
 
 <!-- Update address -->
 <div class="custom-container" *ngIf="isEditFormOpen">
