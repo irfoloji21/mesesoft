@@ -26,10 +26,20 @@ export class OrderSuccessComponent implements OnInit {
       this.orderDetails = response;
       console.log( "image")
       this.orderDetails.orderDate = new Date(); 
+      console.log(this.orderDetails.shippingDetails.address)
+      console.log('Order ID:', this.orderDetails.orderId);
+      
+
     });
     this.selectedAddress = this.orderService.getSelectedAddress();
 
-    
-  }
+    // ActivatedRoute'in paramMap'ını kullanarak 'orderId' parametresini dinle
+    this.route.paramMap.subscribe(params => {
+      // 'orderId' parametresini URL'den al ve decode et
+      this.orderId = decodeURIComponent(params.get('orderId'));
+      
+      // Şimdi 'orderId' değerini kullanabilirsiniz.
+      console.log('Decoded Order ID:', this.orderId);
+  })
 
-}
+  }}

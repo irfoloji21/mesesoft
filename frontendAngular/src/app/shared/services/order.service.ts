@@ -38,8 +38,12 @@ export class OrderService {
         state.checkoutItems = item;
         localStorage.setItem('checkoutItems', JSON.stringify(item));
         localStorage.removeItem('cartItems');
+        console.log(item.shippingDetails , "details PaymentData")
+        console.log(item.product , "amount PaymentData")
+        console.log(item.orderId , "details PaymentData")
+        console.log(item.totalAmount , "details PaymentData")
 
-        this.router.navigate(['/pages/order/success', item]);
+        this.router.navigate(['/pages/order/success', orderId]);
         return new Observable((observer) => {
             observer.next({ message: 'Ödeme başarılı' });
             observer.complete();
@@ -56,7 +60,10 @@ export class OrderService {
 
 
 
-
+public getOrderDetails(orderId: string): Observable<any> {
+  const url = `${this.apiUrl}/order-details/${orderId}`;
+  return this.http.get(url);
+}
 
   
 

@@ -89,7 +89,7 @@ export class PaymentComponent implements OnInit {
            this.result = await stripe.tokens.create({ card: cardDetails });
           const orderId = this.result.id;
           console.log("Stripe API isteği ve Yanıt:", cardDetails, this.result)
-          this.toasts.success("Stripe API isteği başarılı");
+          this.toasts.success("Ödeme başarılı");
 
           this.processPayment(orderId, this.amount, selectedAddress, selectedCargo);
         } catch (error) {
@@ -108,19 +108,19 @@ export class PaymentComponent implements OnInit {
     const paymentData = {
       product: this.products,
       amount: this.amount,
-      details: {}, 
-      orderId: {}, 
+      selectedAddress: {}, 
+      selectedCargo: {}, 
     };
     
 
-    paymentData.details = selectedAddress;
-    paymentData.orderId = selectedCargo;
+    paymentData.selectedAddress = selectedAddress;
+    paymentData.selectedCargo = selectedCargo;
   
 
     this.orderService.createOrder(
       paymentData.product,
-      paymentData.details,
-      paymentData.orderId,
+      paymentData.selectedAddress,
+      paymentData.selectedCargo,
       paymentData.amount,
       selectedAddress,
       selectedCargo
@@ -129,11 +129,10 @@ export class PaymentComponent implements OnInit {
         console.log("Ödeme başarılı:", response);
         this.productService.clearCart();
 
-        console.log(paymentData.details , "details PaymentData")
         console.log(paymentData.amount , "amount PaymentData")
-        console.log(paymentData.orderId , "details PaymentData")
-        console.log(paymentData.product , "amount PaymentData")
-
+        console.log(paymentData.product , "product PaymentData")
+        console.log(selectedAddress , "selectedAddress")
+        console.log(selectedCargo , "selectedCargo")
       },
       (error) => {
         console.error("Ödeme işlemi sırasında hata oluştu:", error);
