@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Address } from 'cluster';
 import { Order } from 'src/app/shared/classes/order';
 import { OrderService } from 'src/app/shared/services/order.service';
@@ -13,9 +14,11 @@ export class OrderSuccessComponent implements OnInit {
 
   public orderDetails: Order = { orderDate: new Date()  };
   selectedAddress: any 
-
-  constructor(public productService: ProductService,
-    private orderService: OrderService) { }
+  orderId;
+  constructor(public productService: ProductService, private route: ActivatedRoute,
+    private orderService: OrderService) { 
+      this.orderId = this.route.snapshot.params['orderId'];
+    }
 
   ngOnInit(): void {
     this.orderService.checkoutItems.subscribe(response => {

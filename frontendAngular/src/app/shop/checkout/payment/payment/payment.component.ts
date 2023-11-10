@@ -1,8 +1,6 @@
-import { HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import {
-  FormBuilder,
-  FormGroup,
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
@@ -12,9 +10,10 @@ import { Observable } from "rxjs";
 import { Product } from "src/app/shared/classes/product";
 import { OrderService } from "src/app/shared/services/order.service";
 import { ProductService } from "src/app/shared/services/product.service";
+import { ShippingService } from "src/app/shared/services/shipping.service";
 import { environment } from "src/environments/environment";
 import Stripe from "stripe";
-
+import { Router } from '@angular/router';
 @Component({
   selector: "app-payment",
   templateUrl: "./payment.component.html",
@@ -27,12 +26,17 @@ export class PaymentComponent implements OnInit {
   public payment: string = "Stripe";
   public amount: any;
   orderDetails: any;
-  
+  selectedShippingIndex: number;
+  selectedAddressIndex: number;
+  public result :any ;
   constructor(
     private fb: UntypedFormBuilder,
     public productService: ProductService,
     private orderService: OrderService,
-    private toasts: ToastrService
+    private toasts: ToastrService,
+    private shippingService :ShippingService,
+    private router: Router,
+   private http: HttpClient
   ) {
     this.checkoutForm = this.fb.group({
       cardNumber: ["", Validators.required],
@@ -62,62 +66,88 @@ export class PaymentComponent implements OnInit {
  
   stripeCheckout() {
     if (this.checkoutForm.valid) {
+      const selectedAddress = this.orderService.getSelectedAddress();
+      const selectedCargo = this.shippingService.getShipData();
+  
       const cardNumber = this.checkoutForm.get("cardNumber")?.value;
       const expirationMonth = this.checkoutForm.get("expirationMonth")?.value;
       const expirationYear = this.checkoutForm.get("expirationYear")?.value;
       const cvv = this.checkoutForm.get("cvv")?.value;
-
+  
       const cardDetails = {
         number: cardNumber,
         exp_month: expirationMonth,
         exp_year: expirationYear,
         cvc: cvv,
       };
-
+  
       const stripeApiKey = environment.stripe_token;
       const stripe = new Stripe(stripeApiKey);
-
+  
       const tokenizeCard = async () => {
         try {
-          const result = await stripe.tokens.create({ card: cardDetails });
-          console.log("Stripe API isteği ve Yanıt:", cardDetails, result);
+           this.result = await stripe.tokens.create({ card: cardDetails });
+          const orderId = this.result.id;
+          console.log("Stripe API isteği ve Yanıt:", cardDetails, this.result)
           this.toasts.success("Stripe API isteği başarılı");
-          this.processPayment(result.id, this.amount);
+
+          this.processPayment(orderId, this.amount, selectedAddress, selectedCargo);
         } catch (error) {
           console.error("Token oluşturulurken hata oluştu", error);
           console.error("Stripe hata detayları:", error.message);
         }
       };
-
+  
       tokenizeCard();
     } else {
       console.error("Form geçerli değil, ödeme işlemi yapılamaz.");
     }
   }
-
-  processPayment(token: string, amount: any) {
+  
+  processPayment(token: string, amount: any, selectedAddress: any, selectedCargo: any) {
     const paymentData = {
       product: this.products,
       amount: this.amount,
+      details: {}, 
+      orderId: {}, 
     };
-    this.orderService.createOrder(paymentData).subscribe(
+    
+
+    paymentData.details = selectedAddress;
+    paymentData.orderId = selectedCargo;
+  
+
+    this.orderService.createOrder(
+      paymentData.product,
+      paymentData.details,
+      paymentData.orderId,
+      paymentData.amount,
+      selectedAddress,
+      selectedCargo
+    ).subscribe(
       (response) => {
         console.log("Ödeme başarılı:", response);
         this.productService.clearCart();
 
+        console.log(paymentData.details , "details PaymentData")
+        console.log(paymentData.amount , "amount PaymentData")
+        console.log(paymentData.orderId , "details PaymentData")
+        console.log(paymentData.product , "amount PaymentData")
+
       },
       (error) => {
         console.error("Ödeme işlemi sırasında hata oluştu:", error);
-
+  
         if (error.error) {
           console.error("Sunucu Hata Mesajı:", error.error);
         }
       }
     );
   }
-
-
-
-
   
+  
+  
+
+
+
 }

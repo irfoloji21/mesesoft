@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Order } from '../../../shared/classes/order';
 import { OrderService } from '../../../shared/services/order.service';
 import { ProductService } from '../../../shared/services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-success',
@@ -10,17 +11,17 @@ import { ProductService } from '../../../shared/services/product.service';
 })
 export class SuccessComponent implements OnInit, AfterViewInit{
 
-  public orderDetails: Order = { orderDate: new Date() };
-
-  constructor(public productService: ProductService,
-    private orderService: OrderService) { }
+  public orderDetails: Order = { orderDate: new Date()  };
+  orderId: string;
+  totalAmount: number;
+  selectedAddress: any;
+  selectedCargo: any;
+  constructor(public productService: ProductService,private route: ActivatedRoute,
+    private orderService: OrderService) { 
+      this.orderId = this.route.snapshot.params['orderId'];
+    }
 
   ngOnInit(): void {	
-    this.orderService.checkoutItems.subscribe(response => {
-      console.log(response , "order")
-      this.orderDetails = response;
-      this.orderDetails.orderDate = new Date(); 
-    });
   }
 
   ngAfterViewInit() {

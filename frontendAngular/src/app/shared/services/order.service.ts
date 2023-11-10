@@ -25,30 +25,40 @@ export class OrderService {
     return <Observable<any>>itemsStream;
   }
 
-  // Create order
-  public createOrder(paymentData: { amount: any },): Observable<any> {
-    return new Observable((observer) => {
-      const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  public createOrder(product: any, details: any, orderId: any, amount: any, selectedAddress: any, selectedCargo: any): Observable<any> {
+    if (orderId) {
+        var item = {
+            shippingDetails: details,
+            product: product,
+            orderId: orderId,
+            totalAmount: amount,
+            address: selectedAddress,
+            cargo: selectedCargo,
+        };
+        state.checkoutItems = item;
+        localStorage.setItem('checkoutItems', JSON.stringify(item));
+        localStorage.removeItem('cartItems');
+
+        this.router.navigate(['/pages/order/success', item]);
+        return new Observable((observer) => {
+            observer.next({ message: 'Ödeme başarılı' });
+            observer.complete();
+            console.log(orderId , "orderId")
+        });
+    } else {
+        console.error("orderId geçerli bir değere sahip değil.");
+
+    }
+    
+}
+ 
 
 
-      state.checkoutItems = paymentData;
-      localStorage.setItem("checkoutItems", JSON.stringify(paymentData));
-      // localStorage.removeItem("cartItems");
 
-      this.http.post(`${this.apiUrl}/payment/process`, paymentData, { headers, withCredentials: true }).subscribe(
-        (response) => {
-          console.log(response, "checkoutCart");
-          this.router.navigate(['pages/order/success']);
-          observer.next(response);
-          observer.complete();
-        },
-        (error) => {
-          console.error("Error while posting order data to the backend:", error);
-          observer.error(error);
-        }
-      );
-    });
-  }
+
+
+
+  
 
   setSelectedAddress(address: any) {
     this.selectedAddress = address;
@@ -58,6 +68,7 @@ export class OrderService {
     return this.selectedAddress;
   }
 
+
+  
+
 }
-
-

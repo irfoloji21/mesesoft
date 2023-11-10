@@ -71,7 +71,7 @@ export class CheckoutCartComponent {
     const isCouponAlreadyUsed = user.user.coupons.some(appliedCoupon => appliedCoupon.couponID === this.couponCode._id);
     if (isCouponAlreadyUsed) {
       this.toastr.error('Bu kupon daha önce kullanıldı', 'Hata');
-      this.isCouponValid = false;
+      this.isCouponValid = true;
       this.showDiscountedTotal = true; 
       this.couponForm.reset();
       return;
@@ -120,7 +120,7 @@ export class CheckoutCartComponent {
         } else {
           this.toastr.error('Kupon kodu geçerli değil', 'Hata');
           this.isCouponValid = false;
-          this.showDiscountedTotal = true;
+          this.showDiscountedTotal = false;
         }
   
         this.updateDiscountedTotal(response.couponCode);
@@ -171,10 +171,3 @@ export class CheckoutCartComponent {
   }
 }
 
-
-// Kullanıcının daha önce kullanılan kuponlarını kontrol etme //
-// Kullanıcının kimliği 
-// Kupon kullanımını kaydı
-// Kullanıcının kuponlar listesine ekleme
-// Kullanıcı bilgilerini güncelle (Sunucuya göndermek gerekebilir)
-// Daha önce kullanılan kuponlar arasında bu kupon var mı?
