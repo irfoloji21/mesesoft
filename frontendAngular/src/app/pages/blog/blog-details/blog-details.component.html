@@ -10,8 +10,12 @@
                     <li>{{ blog.createdAt | date: 'dd MMMM yyyy' }}</li>
                     <li>Posted By : {{ blog.shop.name }}</li>
                     <li>
-                      <i class="fa fa-heart" (click)="toggleLikeBlog(blog._id)"></i> {{ blog.likes || 0 }} Hits
-                    </li>
+                        <i class="fa fa-heart" 
+                           [ngClass]="{'liked': likedBlogs.includes(blog._id)}" 
+                           (click)="toggleLikeBlog(blog)">
+                        </i> 
+                        {{ blog.likes || 0 }} Hits
+                      </li>                      
                     <li>
                       <i class="fa fa-comments"></i> {{ blog.reviews.length || 0 }} Comment(s)
                     </li>

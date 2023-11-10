@@ -15,6 +15,7 @@ export class BlogDetailsComponent implements OnInit {
   blog: any = [];
   BlogId: any;
   user: any;
+  likedBlogs: string[] = [];
   constructor(private route: ActivatedRoute, private router: Router, private blogService: BlogService,private toastr :ToastrService, private formBuilder: FormBuilder , private authService :AuthService) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -30,8 +31,9 @@ export class BlogDetailsComponent implements OnInit {
       this.blogService.getBlogDetails(slug).subscribe((data) => {
         this.blog = data.blog;
         this.BlogId =data.blog
-        console.log(this.blog, "this.blogDetails")
         this.loadUser();
+        this.user = this.authService.getUser();
+        this.likedBlogs = this.user.user?.likedBlogs || [];
       });
     });
     this.loadUser();
@@ -42,7 +44,6 @@ export class BlogDetailsComponent implements OnInit {
     this.authService.loadUser().subscribe(
       (res) => {
         this.user = res;
-        this.toggleLikeBlog(this.blog._id);
       },
       (error) => {
         console.error(error);
@@ -79,26 +80,21 @@ export class BlogDetailsComponent implements OnInit {
     }
     }
 
-    toggleLikeBlog(blogId: string) {
-      if (this.user.user && this.user.user.likedBlogs) {
-        console.log(blogId, "blogId");
-        if (this.user.user.likedBlogs.includes(blogId)) {
-          this.unlikeBlog(blogId, this.user);
-        } else {
-          this.likeBlog(blogId, this.user.user);
-        }
+    toggleLikeBlog(blog: any) {
+      if (this.likedBlogs.includes(blog._id)) {
+        this.unlikeBlog(blog, this.user);
       } else {
-        console.error('Kullanıcı bilgileri sorunu');
+        this.likeBlog(blog, this.user.user);
       }
     }
     
-    
-    
-    likeBlog(blogId: string, user: any) {
-      this.blogService.likeBlog(blogId, user).subscribe({
+    likeBlog(blog: any, user: any) {
+      this.blogService.likeBlog(blog._id, user).subscribe({
         next: (response) => {
-          console.log(response,"likeBlog")
+          console.log(response, "likeBlog");
           this.toastr.success('You liked this blog', 'Successfully');
+          this.likedBlogs.push(blog._id);
+          blog.likes = (blog.likes || 0) + 1;
         },
         error: (error) => {
           console.error('Like Blog Error:', error);
@@ -106,11 +102,12 @@ export class BlogDetailsComponent implements OnInit {
       });
     }
     
-    unlikeBlog(blogId: string, user: any) {
-      this.blogService.unlikeBlog(blogId, user).subscribe({
+    unlikeBlog(blog: any, user: any) {
+      this.blogService.unlikeBlog(blog._id, user).subscribe({
         next: (response) => {
           this.toastr.success("you've stopped liking this blog", 'Successfully');
-          
+          this.likedBlogs = this.likedBlogs.filter(id => id !== blog._id);
+          blog.likes = (blog.likes || 0) - 1;
         },
         error: (error) => {
           console.error('Unlike Blog Error:', error);
@@ -118,5 +115,6 @@ export class BlogDetailsComponent implements OnInit {
       });
     }
     
+
 
 }
