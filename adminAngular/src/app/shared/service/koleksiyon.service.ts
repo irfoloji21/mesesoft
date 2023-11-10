@@ -11,13 +11,12 @@ export class KoleksiyonService {
   constructor(private http: HttpClient) { }
 
 
-  // getCategory(): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/category/get-all-categories`);
-  // }
+  getKoleksiyon(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/koleksiyon/koleksiyons`);
+  }
 
   createKoleksiyon(koleksiyonData): Observable<any> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>(`${this.apiUrl}/koleksiyon/create-koleksiyon`, koleksiyonData, { headers, withCredentials: true });
+    return this.http.post<any>(`${this.apiUrl}/koleksiyon/create-koleksiyon`, koleksiyonData);
   }
 
   // deleteCategory(id): Observable<any> {

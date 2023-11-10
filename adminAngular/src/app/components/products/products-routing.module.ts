@@ -15,11 +15,11 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'physical/category',
+        path: 'physical/collection',
         component: CategoryComponent,
         data: {
-          title: "Category",
-          breadcrumb: "Category"
+          title: "Collection",
+          breadcrumb: "Collection"
         }
       },
       {

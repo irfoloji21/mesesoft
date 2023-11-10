@@ -19,7 +19,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form class="needs-validation" (ngSubmit)="onSubmit()" [formGroup]="myForm">
+                                <form (ngSubmit)="onSubmit()" class="needs-validation"  [formGroup]="myForm1">
                                     <div class="form">
                                         <div class="form-group">
                                             <label for="validationCustom01" class="mb-1">Collection Name :</label>
@@ -34,12 +34,12 @@
                                             <textarea class="form-control" id="validationCustom01"  formControlName="description"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="validationCustom02" class="mb-1">Category Image :</label>
-                                            <input class="form-control" formControlName="images" id="validationCustom02" type="file" (change)="onFileChange($event)">
-                                          </div>
+                                            <label for="validationCustom02" class="mb-1">Collection Image :</label>
+                                            <input class="form-control" formControlName="images" id="validationCustom02" type="file" multiple  (change)="onFileChange($event)">
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary" (click)="performAction()" >{{buttonText}}</button>
+                                        <button type="submit" class="btn btn-primary" >{{buttonText}}</button>
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal"
                                             (click)="modal.dismiss('Cross click')">Close</button>
                                     </div>
@@ -63,31 +63,35 @@
                                     <th scope="col">#</th>
                                     <th scope="col" sortable="img"  (sort)="onSort($event)">Image</th>
                                     <th scope="col" sortable="product_name" (sort)="onSort($event)">Name</th>
-                                    <th scope="col" sortable="status" (sort)="onSort($event)">isShow</th>
-                                    <th scope="col" sortable="category" (sort)="onSort($event)">SubCategory</th>
+                                    <th scope="col" sortable="status" (sort)="onSort($event)">saving percentage</th>
+                                    <th scope="col" sortable="category" (sort)="onSort($event)">productIds</th>
                                     <th scope="col" sortable="population" (sort)="onSort($event)">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr  *ngFor="let catgory of categories">
-                                <th scope="row">{{ catgory._id }}</th>
+                                <tr  *ngFor="let koleksiyon of koleksiyons">
+                                <th scope="row">{{ koleksiyon._id }}</th>
                                 <td>
-                                    <img [src]="catgory.images[0].url" class="imgTable" style="width: 20px">
+                                    <!-- <img [src]="koleksiyon.images[0].url" class="imgTable" style="width: 20px"> -->
                                 </td>
-                                    <td>{{ catgory.name }}</td>
-                                <td>{{catgory.isShow}}</td>
+                                    <td>{{ koleksiyon.name }}</td>
+                                <td>{{koleksiyon.saving}}</td>
                                 <td>
                                     <ul>
-                                        <li *ngFor="let subcategory of catgory.subcategories">{{ subcategory.name }}</li>
+                                        <li *ngFor="let productId of koleksiyon.productIds">{{ productId }}</li>
                                     </ul>
                                 </td>
                                 <td>
-                                    <button href="javascript:void(0)" (click)="editCategory(catgory._id)"><i class='fa fa-edit f-12'></i></button>&nbsp;
-                                    <a href="javascript:void(0)" (click)="deleteCategory(catgory._id)"><i class="fa fa-trash-o"></i></a>
+                                    <button href="javascript:void(0)" (click)="editCategory(koleksiyon._id)"><i class='fa fa-edit f-12'></i></button>&nbsp;
+                                    <a href="javascript:void(0)" (click)="deleteCategory(koleksiyon._id)"><i class="fa fa-trash-o"></i></a>
                                 </td>
                                 </tr>
                                 </tbody>
                             </table>
+
+
+                             
+                          
                             <div class="d-flex justify-content-center p-2">
                                 <ngb-pagination
                                    [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">

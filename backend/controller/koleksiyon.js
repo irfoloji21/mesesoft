@@ -16,34 +16,33 @@ router.post(
     catchAsyncErrors(async (req, res, next) => {
         try {
           ///////// FAKEPATH YÜZÜNDEN RESİM YÜKLENMİYOR 
-        // console.log("1")
-        //   let images = [];
-        //   console.log("2")
+        console.log("1")
+          let images = [];
+          console.log("2") 
 
-        //   if (typeof req.body.images === "string") {
-        //     images.push(req.body.images);
-        //   } else {
-        //     images = req.body.images;
-        //   }
-        //   console.log("3")
+          if (typeof req.body.images === "string") {
+            images.push(req.body.images);
+          } else {
+            images = req.body.images;
+          }
+          console.log("3")
 
-        //   const imagesLinks = [];
-        // console.log(req.body.images)
+          const imagesLinks = [];
+        console.log(req.body.images)
        
-        //     const result = await cloudinary.v2.uploader.upload(images, {
-        //       folder: "koleksiyons",
-        //     });
-        //     console.log("5")
-
-        //     imagesLinks.push({
-        //       public_id: result.public_id, 
-        //       url: result.secure_url,
-        //     });
-        //     console.log("6")
+        for (let i = 0; i < images.length; i++) {
+          const result = await cloudinary.v2.uploader.upload(images[i], {
+            folder: "koleksiyons",
+          }); 
+      
+          imagesLinks.push({
+            public_id: result.public_id,
+            url: result.secure_url,
+          });
+        }
+            console.log("5")
 
         
-        //   console.log("7")
-
           
           
           // const { name, saving, description } = req.body;
@@ -51,7 +50,7 @@ router.post(
        
 
 
-             console.log("8") 
+           
 
             const shopId = req.body.shopId;
             
@@ -63,7 +62,7 @@ router.post(
       
                   const koleksiyonData = new Koleksiyon( {
                     name: req.body.name,
-                    // images: imagesLinks,
+                    images: imagesLinks,
                     saving: req.body.saving,
                     description: req.body.description,
                     shopId: shopId,
@@ -72,7 +71,7 @@ router.post(
 
                   console.log(koleksiyonData + "data")
       
-              const koleksiyon = await Koleksiyon.createCollection(koleksiyonData);
+              const koleksiyon = await Koleksiyon.create(koleksiyonData);
       
               res.status(201).json({
                 success: true,

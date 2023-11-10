@@ -198,7 +198,7 @@ router.get(
     catchAsyncErrors(async (req, res, next) => {
       const blogId = req.params.id;
       const userId = req.body.user._id; 
-      console.log(blogId, userId)
+      // console.log(blogId, userId)
   
       try {
         const blog = await Blog.findById(blogId);
@@ -236,7 +236,8 @@ router.get(
     '/unlike-blog/:id',
     catchAsyncErrors(async (req, res, next) => {
       const blogId = req.params.id;
-      const userId = req.body.user._id; 
+      const userId = req.body.user.user._id; 
+      console.log(userId)
   
       try {
         const blog = await Blog.findById(blogId);
@@ -246,7 +247,7 @@ router.get(
         }
   
         const user = await User.findById(userId);
-  
+
         if (!user.likedBlogs.includes(blogId)) {
           return next(new Error('Bu blog beğenilmemiş, bu yüzden geri alınamaz.', 400));
         }

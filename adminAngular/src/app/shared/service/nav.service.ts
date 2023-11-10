@@ -44,7 +44,7 @@ export class NavService {
 			title: 'Products', icon: 'box', type: 'sub', active: false, children: [
 				{
 					title: 'Physical', type: 'sub', children: [
-						{ path: '/products/physical/category', title: 'Category', type: 'link' },
+						// { path: '/products/physical/collection', title: 'Collection', type: 'link' },
 						{ path: '/products/physical/sub-category', title: 'Sub Category', type: 'link' },
 						{ path: '/products/physical/product-list', title: 'Product List', type: 'link' },
 						{ path: '/products/physical/product-detail', title: 'Product Detail', type: 'link' },
@@ -61,6 +61,7 @@ export class NavService {
 				},
 			]
 		},
+		{ path: '/products/physical/collection', title: 'Collection', type: 'link' },
 		{
 			title: 'Sales', icon: 'dollar-sign', type: 'sub', active: false, children: [
 				{ path: '/sales/orders', title: 'Orders', type: 'link' },

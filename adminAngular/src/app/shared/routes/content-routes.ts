@@ -37,6 +37,11 @@ export const content: Routes = [
     path: 'media',
     loadChildren: () => import('../../components/media/media.module').then(m => m.MediaModule),
   },
+  // Buraya collection klasörü ayrıldıktan sonra eklenecek. öpüldünüz
+  // {
+  //   path: 'collection',
+  //   loadChildren: () => import('../../components/collection/collection.module').then(m => m.CollectionModule),
+  // },
   {
     path: 'menus',
     loadChildren: () => import('../../components/menus/menus.module').then(m => m.MenusModule),

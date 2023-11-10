@@ -8,7 +8,7 @@ import { TableService } from 'src/app/shared/service/table.service';
 import { Observable } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { CategoryService } from 'src/app/shared/service/category.service';
-import { FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
@@ -19,6 +19,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class DigitalCategoryComponent implements OnInit {
   myForm:FormGroup;
+  myForm2:FormGroup;
   selectedItems = [];
   dropdownSettings = {};
   public closeResult: string;
@@ -36,6 +37,14 @@ export class DigitalCategoryComponent implements OnInit {
     this.tableItem$ = service.tableItem$;
     this.service.setUserData(DIGITALCATEGORY)
     this.myForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      images: ['', Validators.required],
+      subcategories: [[]],
+      isShow:[false]
+    });
+
+    this.myForm2 = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
@@ -85,7 +94,7 @@ export class DigitalCategoryComponent implements OnInit {
     //  console.log(this.myForm.value);
       formData.subcategories = this.subcategories;
 
-      // console.log('formData:', formData);
+      console.log('formData:', formData);
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
           console.log('Kategori başarıyla oluşturuldu:', response);
@@ -99,6 +108,7 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
   onFileChange(event: any) {
+    console.log('onFileChange', event.target.files)
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
   
@@ -111,6 +121,8 @@ export class DigitalCategoryComponent implements OnInit {
         reader.onload = (e: any) => {
 
           imageUrls.push(e.target.result);
+          console.log('imageUrls', imageUrls)
+
           this.myForm.get('images').setValue(imageUrls);
   
           // console.log('imageUrls:', imageUrls);

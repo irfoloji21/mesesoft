@@ -11,6 +11,7 @@ import { KoleksiyonService } from 'src/app/shared/service/koleksiyon.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CategoryService } from 'src/app/shared/service/category.service';
+import { ProductService } from 'src/app/shared/service/product.service';
 
 @Component({
   selector: 'app-category',
@@ -21,9 +22,11 @@ import { CategoryService } from 'src/app/shared/service/category.service';
 
 
 export class CategoryComponent implements OnInit {
+  products: any[] = [];
   buttonText: string = 'Add';
-  myForm:FormGroup;
-  categories: any[] = [];
+  myForm1:FormGroup;
+  myForm2:FormGroup;
+  koleksiyons: any[] = [];
   
   public closeResult: string;
 
@@ -39,6 +42,7 @@ export class CategoryComponent implements OnInit {
     private modalService: NgbModal,
     public koleksiyonService: KoleksiyonService,
     public authService: AuthService,
+    private productService: ProductService, 
     private fb: UntypedFormBuilder,
     private categoryService: CategoryService,
     ) {
@@ -46,16 +50,19 @@ export class CategoryComponent implements OnInit {
     this.total$ = service.total$;
     this.service.setUserData(CATEGORY)
 
-    this.myForm = this.fb.group({
+    this.myForm1 = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       saving: ['', Validators.required],
       images: ['', Validators.required],
+      products: [''],
     });
+
+     
   }
 
   onSort({ column, direction }) {
-    // resetting other headers
+
     this.headers.forEach((header) => {
       if (header.sortable !== column) {
         header.direction = '';
@@ -102,13 +109,12 @@ export class CategoryComponent implements OnInit {
 
       
     console.log("form submitted");
-    if (this.myForm.valid) {
-      const formData = this.myForm.value;
+    if (this.myForm1.valid) {
+      const formData = this.myForm1.value;
     
       console.log(shop, "shop")
       formData.shopId = shop.seller._id;
       formData.shop = shop;
-     console.log(this.myForm.value);
       
 
       console.log('formData:', formData);
@@ -125,28 +131,32 @@ export class CategoryComponent implements OnInit {
   }
 
   onFileChange(event: any) {
+    console.log('onFileChange', event.target.files)
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
-    
+  
       const imageUrls = [];
-    
+  
       for (let j = 0; j < files.length; j++) {
         const file = files[j];
         const reader = new FileReader();
-    
+  
         reader.onload = (e: any) => {
+
           imageUrls.push(e.target.result);
-          // Dosyanın adı için
-          const fileName = file.name;
-          // imageUrls ve fileName'i kullanabilirsiniz.
-          console.log('imageUrls:', imageUrls);
-          console.log('Dosya Adı:', fileName);
+          console.log('imageUrls', imageUrls)
+          this.myForm1.get('images').setValue(imageUrls);
+  
+          // console.log('imageUrls:', imageUrls);
+          // console.log(this.myForm.value.images);
         };
-    
+  
         reader.readAsDataURL(file);
       }
     }
   }
+  
+  
 
   editCategory(_id){
     console.log(_id)
@@ -160,15 +170,29 @@ export class CategoryComponent implements OnInit {
 
 
   ngOnInit() {
-    this.categoryService.getCategory().subscribe(
+    this.koleksiyonService.getKoleksiyon().subscribe(
       (response) => {
-        console.log('Kategoriler', response);
-        this.categories = response.categories;
+        this.koleksiyons = response.koleksiyons;
+        console.log('getKoleksiyon', this.koleksiyons);
+
+        const shop = this.authService.getShop();
+        console.log(shop, "shop")
+        this.productService.getShopProduct(shop.seller._id).subscribe(
+          (response) => {
+            this.products = response.products;
+            console.log('Ürünler:', response);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       },
       (error) => {
         console.error(error);
       }
     );
+    
+
 
   }
 
