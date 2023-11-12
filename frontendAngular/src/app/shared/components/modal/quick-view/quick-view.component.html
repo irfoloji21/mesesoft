@@ -13,8 +13,8 @@
                 <div class="col-lg-6 rtl-text">
                     <div class="product-right">
                         <h2>{{ product.name | titlecase }}</h2>
-                        <h3>{{ product.originalPrice  }}
-                            <del *ngIf="product?.discountPrice"><span class="money">{{ product.originalPrice}}</span></del>
+                        <h3>{{ product.discountPrice | currency }}
+                            <del *ngIf="product?.discountPrice"><span class="money">{{ product.originalPrice | currency }}</span></del>
                         </h3>
                         <!-- <ul class="color-variant" *ngIf="Color(product.variants).length">
                             <li [class]="color" *ngFor="let color of Color(product.variants)"
