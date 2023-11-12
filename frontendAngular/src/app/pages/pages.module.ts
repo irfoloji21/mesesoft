@@ -57,7 +57,7 @@ import { OrderComponent } from './account/order/order.component';
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,
-    ProfileComponent,
+    ProfileComponent, 
     ContactComponent,
     CheckoutComponent,
     AboutUsComponent,

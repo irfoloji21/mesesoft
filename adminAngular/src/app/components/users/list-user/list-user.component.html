@@ -18,12 +18,12 @@
                                 <th scope="col" sortable="fName" (sort)="onSort($event)">First Name</th>
                                 <th scope="col" sortable="lName" (sort)="onSort($event)">Last Name</th>
                                 <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
-                                <th scope="col" sortable="last_login" (sort)="onSort($event)">Last Login</th>
+                                <!-- <th scope="col" sortable="last_login" (sort)="onSort($event)">Last Login</th> -->
                                 <th scope="col" sortable="role" (sort)="onSort($event)">Role</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of tableItem$ | async ">
+                            <tr *ngFor="let item of user_list  ">
                                 <td>
                                     <a href="javascript:void(0)"><i class='fa fa-edit f-12'></i></a>&nbsp;
                                     <a href="javascript:void(0)"><i class="fa fa-trash-o"></i></a>
@@ -32,11 +32,11 @@
                                     <img [src]="item.avatar" class="imgTable" style="width: 20px">
                                 </td>
                                 <td>
-                                    {{item.fName}}
+                                    {{item.firstName}}
                                 </td>
-                                <td>{{item.lName}}</td>
+                                <td>{{item.lastName}}</td>
                                 <td>{{item.email}}</td>
-                                <td>{{item.last_login}}</td>
+                                <!-- <td>{{item.last_login}}</td> -->
                                 <td>{{item.role}}</td>
                             </tr>
                         </tbody>

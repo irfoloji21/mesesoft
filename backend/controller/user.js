@@ -59,13 +59,13 @@ router.post("/create-user", async (req, res, next) => {
     }
 });  
 
-//creaate activation token
+
 const createActivationToken = (user) => {
     return jwt.sign(user, process.env.ACTIVATION_SECRET, { expiresIn: '5m' });
 
 };
 
-//activate user
+
 router.post("/activation", catchAsyncErrors(async(req,res,next) => {
     try {
         const { activation_token } = req.body;
@@ -97,7 +97,7 @@ router.post("/activation", catchAsyncErrors(async(req,res,next) => {
     }
 }));
 
-//login user
+
 router.post("/login-user", catchAsyncErrors(async(req,res,next) => {
     try {
         const {email, password} = req.body;
@@ -124,7 +124,7 @@ router.post("/login-user", catchAsyncErrors(async(req,res,next) => {
     }
 }));
 
-//load user
+//loaduserda burası çalışıyor
 router.get("/getuser", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
     try{
         const user = await User.findById(req.user.id);
@@ -142,7 +142,7 @@ router.get("/getuser", isAuthenticated, catchAsyncErrors(async(req,res,next) => 
     }
 }));
 
-//logout user
+
 router.get("/logout", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
     try {
         res.cookie("token", null, {
@@ -159,7 +159,7 @@ router.get("/logout", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
     }
 }))
 
-// update user info
+
 router.put("/update-user-info", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
     try {
         const {email,phoneNumber,firstName,lastName} = req.body;
@@ -186,7 +186,7 @@ router.put("/update-user-info", isAuthenticated, catchAsyncErrors(async(req,res,
     }
 }));
 
-// update user avatar
+
 router.put("/update-avatar", isAuthenticated, upload.single("image"), catchAsyncErrors(async(req,res,next) => {
     try {
         const existsUser = await User.findById(req.user.id);
@@ -238,7 +238,7 @@ router.put("/update-user-addresses/:id", catchAsyncErrors(async (req, res, next)
     }
 }));
 
-// delete user address
+
 router.delete("/delete-user-address/:id", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
     try {
         const userId = req.user._id;
@@ -258,7 +258,7 @@ router.delete("/delete-user-address/:id", isAuthenticated, catchAsyncErrors(asyn
     }
 }));
 
-// update user password
+
 router.put("/update-user-password", isAuthenticated, catchAsyncErrors(async(req,res,next) => {
     try {
         const user = await User.findById(req.user.id).select("+password");
@@ -285,7 +285,7 @@ router.put("/update-user-password", isAuthenticated, catchAsyncErrors(async(req,
     }
 }));
 
-//find user info with userid
+
 router.get("/user-info/:id", catchAsyncErrors(async(req,res,next) => {
     try {
         const user = await User.findById(req.params.id);
@@ -297,6 +297,21 @@ router.get("/user-info/:id", catchAsyncErrors(async(req,res,next) => {
         res.status(200).json({
             success: true,
             user
+        });
+    } catch (error) {
+        return next(new ErrorHandler(error.message, 500));
+    }
+}));
+
+
+//get all users
+router.get("/get-all-users", catchAsyncErrors(async(req,res,next) => {
+    try {
+        const users = await User.find();
+
+        res.status(200).json({
+            success: true,
+            users
         });
     } catch (error) {
         return next(new ErrorHandler(error.message, 500));

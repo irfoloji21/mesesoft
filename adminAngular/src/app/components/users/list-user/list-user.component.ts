@@ -3,6 +3,7 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgbdSortableHeader, SortEvent } from 'src/app/shared/directives/NgbdSortableHeader';
 import { TableService } from 'src/app/shared/service/table.service';
+import { UserService } from 'src/app/shared/service/user.service';
 import { UserListDB, USERLISTDB } from 'src/app/shared/tables/list-users';
 
 @Component({
@@ -18,7 +19,10 @@ export class ListUserComponent implements OnInit {
   public searchText;
   total$: Observable<number>;
 
-  constructor(public service: TableService) {
+  constructor(
+    public service: TableService,
+    private userService: UserService
+    ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(USERLISTDB)
@@ -40,6 +44,15 @@ export class ListUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.getUsers().subscribe(
+      (response) => {
+        this.user_list = response.users;
+        console.log('userlist', this.user_list);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
 }
