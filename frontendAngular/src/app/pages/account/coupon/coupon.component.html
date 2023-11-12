@@ -4,8 +4,11 @@
       <div class="couponCard used">
         <div class="couponCard__positioning">
           <div class="coupon">
-            <div class="couponCard__bg-gray">
+            <div class="couponCard__bg-gray" *ngFor="let coupon of coupons">
               <p class="title">Sana Özel Kupon 1</p>
+              <p>{{coupon.couponID}}</p>
+              <p>{{coupon.quantity}}</p>
+              <p>{{coupon._id}}</p>
               <ul>
                 <li>Geçerlilik Tarihi: 01.11.2023 - 30.11.2023</li><br>
                 <li>Toplam Fiyat: 500,00 TL</li>

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
-import { TypographyComponent } from '../../typography/typography.component';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { AccountInfoComponent } from '../account-info/account-info.component';
 import { AddressComponent } from '../address/address/address.component';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
-import { CouponComponent } from '../coupon/coupon/coupon.component';
+import { CouponComponent } from '../coupon/coupon.component';
+import { OrderComponent } from '../order/order.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,9 +26,8 @@ export class DashboardComponent implements OnInit {
     { label: 'My Account', component: ProfileComponent },
     // { label: 'Account Info', component: AccountInfoComponent },
     { label: 'Address Book', component: AddressComponent },
-    { label: 'My Orders', component: ForgetPasswordComponent },
+    { label: 'My Orders', component: OrderComponent },
     { label: 'My Wishlist', component: WishlistComponent },
-    { label: 'Newsletter', component: ForgetPasswordComponent },
     { label: 'Change Passwort', component: ChangePasswordComponent },
     { label: 'Coupon' , component:CouponComponent}
   ]

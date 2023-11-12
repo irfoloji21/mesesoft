@@ -25,47 +25,57 @@ export class OrderService {
     return <Observable<any>>itemsStream;
   }
 
-  public createOrder(product: any, details: any, orderId: any, amount: any, selectedAddress: any, selectedCargo: any): Observable<any> {
+  public createOrder(
+    product: any,
+    details: any,
+    orderId: any,
+    amount: any,
+    selectedAddress: any,
+    selectedCargo: any
+  ): Observable<any> {
+
     if (orderId) {
-        var item = {
-            shippingDetails: details,
-            product: product,
-            orderId: orderId,
-            totalAmount: amount,
-            address: selectedAddress,
-            cargo: selectedCargo,
-        };
-        state.checkoutItems = item;
-        localStorage.setItem('checkoutItems', JSON.stringify(item));
-        localStorage.removeItem('cartItems');
-        console.log(item.shippingDetails , "details PaymentData")
-        console.log(item.product , "amount PaymentData")
-        console.log(item.orderId , "details PaymentData")
-        console.log(item.totalAmount , "details PaymentData")
+      var item = {
+        shippingDetails: details,
+        product: product,
+        orderId: orderId,
+        totalAmount: amount,
+        address: selectedAddress,
+        cargo: selectedCargo,
+      };
 
-        this.router.navigate(['/pages/order/success', orderId]);
-        return new Observable((observer) => {
-            observer.next({ message: 'Ödeme başarılı' });
-            observer.complete();
-            console.log(orderId , "orderId")
-        });
+      state.checkoutItems = item;
+
+      localStorage.setItem('checkoutItems', JSON.stringify(item));
+      localStorage.removeItem('cartItems');
+
+      console.log(item.shippingDetails, "details PaymentData")
+      console.log(item.product, "amount PaymentData")
+      console.log(item.orderId, "details PaymentData")
+      console.log(item.totalAmount, "details PaymentData")
+
+      this.router.navigate(['/pages/order/success', orderId]);
+
+      return new Observable((observer) => {
+        observer.next({ message: 'Ödeme başarılı' });
+        observer.complete();
+        console.log(orderId, "orderId")
+      });
+
     } else {
-        console.error("orderId geçerli bir değere sahip değil.");
-
+      console.error("orderId geçerli bir değere sahip değil.");
     }
-    
-}
- 
+  }
 
+  public getOrders(userId: string): Observable<any> {
+    const url = `${this.apiUrl}/order/get-all-orders/${userId}`;
+    return this.http.get(url);
+  }
 
-
-
-public getOrderDetails(orderId: string): Observable<any> {
-  const url = `${this.apiUrl}/order-details/${orderId}`;
-  return this.http.get(url);
-}
-
-  
+  public getOrderDetails(orderId: string): Observable<any> {
+    const url = `${this.apiUrl}/order-details/${orderId}`;
+    return this.http.get(url);
+  }
 
   setSelectedAddress(address: any) {
     this.selectedAddress = address;
@@ -74,8 +84,5 @@ public getOrderDetails(orderId: string): Observable<any> {
   getSelectedAddress() {
     return this.selectedAddress;
   }
-
-
-  
 
 }

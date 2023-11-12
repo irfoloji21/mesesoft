@@ -7,89 +7,185 @@
           <h5>Manage Order</h5>
         </div>
         <div class="card-body">
-
-          <div class="modal fade modal-lg" style="width: 1200px; ">
+          <div class="modal fade modal-lg" style="width: 1200px">
             <ng-template #content let-modal>
-             
-                      <h5 class="modal-title f-w-600" id="exampleModalLabel">Order Details</h5>
-                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    <div class="modal-body">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col" sortable="order_id" (sort)="onSort($event)" style="width: 150px">Order Id</th>
-                        <th scope="col" sortable="product" (sort)="onSort($event)" style="width: 200px">Image</th>
-                        <th scope="col" sortable="payment_status" (sort)="onSort($event)">Payment Status</th>
-                        <th scope="col" sortable="paymeny_method" (sort)="onSort($event)">Payment Mehod</th>
-                        <th scope="col" sortable="order_status" (sort)="onSort($event)">Order Status</th>
-                        <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
-                        <th scope="col" sortable="total" (sort)="onSort($event)">Total</th>
-                        <th scope="col" sortable="adress" (sort)="onSort($event)">Shipping Address</th>
-                        <th scope="col" sortable="update_status">Update Order Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr >
-                        <th scope="row">{{ selectedOrder._id }}</th>
-                        <td>
-                          <span *ngFor="let image of selectedOrder.cart[0].images">
-                            <img [src]="image.url" class="img-30 me-2">
-                          </span>
-                        </td>
-                        <td><span class='badge badge-success'>{{ selectedOrder.paymentInfo?.status }}</span></td>
-                        <td>{{ selectedOrder.payment_method }}</td>
-                        <td><span class='badge badge-secondary'>{{ selectedOrder.status }}</span></td>
-                        <td>{{selectedOrder.paidAt}}</td>
-                        <td>{{selectedOrder.totalPrice}}</td>
-                        <td>
-                          {{selectedOrder.shippingAddress.address1}},
-                          {{selectedOrder.shippingAddress.address2}},
-                          {{selectedOrder.shippingAddress.city}},
-                          {{selectedOrder.shippingAddress.zipCode}},
-                          {{selectedOrder.shippingAddress.country}}
-                        </td>
-                        <td>
-                          <select [(ngModel)]="selectedOrderStatus">
-                            <option value="Processing">Processing</option>
-                            <option value="Transferred to delivery partner">Transferred to delivery partner</option>
-                            <option value="Shipping">Shipping</option>
-                            <option value="Received">Received</option>
-                            <option value="On the way">On the way</option>
-                            <option value="Delivered">Delivered</option>
-                            <!-- Diğer durumları buraya ekleyin -->
-                          </select>
-                          <button (click)="updateOrderStatus(selectedOrder._id, selectedOrderStatus)">Update</button>
-                        </td>                                              
-                      </tr>
-                    </tbody>
-                  </table>
-                  </div>
+              <h5 class="modal-title f-w-600" id="exampleModalLabel">
+                Order Details
+              </h5>
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="modal-body">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th
+                        scope="col"
+                        sortable="order_id"
+                        (sort)="onSort($event)"
+                        style="width: 150px"
+                      >
+                        Order Id
+                      </th>
+                      <th
+                        scope="col"
+                        sortable="product"
+                        (sort)="onSort($event)"
+                        style="width: 200px"
+                      >
+                        Image
+                      </th>
+                      <th
+                        scope="col"
+                        sortable="payment_status"
+                        (sort)="onSort($event)"
+                      >
+                        Payment Status
+                      </th>
+                      <th
+                        scope="col"
+                        sortable="paymeny_method"
+                        (sort)="onSort($event)"
+                      >
+                        Payment Mehod
+                      </th>
+                      <th
+                        scope="col"
+                        sortable="order_status"
+                        (sort)="onSort($event)"
+                      >
+                        Order Status
+                      </th>
+                      <th scope="col" sortable="date" (sort)="onSort($event)">
+                        Date
+                      </th>
+                      <th scope="col" sortable="total" (sort)="onSort($event)">
+                        Total
+                      </th>
+                      <th scope="col" sortable="adress" (sort)="onSort($event)">
+                        Shipping Address
+                      </th>
+                      <th scope="col" sortable="update_status">
+                        Update Order Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">{{ selectedOrder._id }}</th>
+                      <td>
+                        <span
+                          *ngFor="let image of selectedOrder.cart[0].images"
+                        >
+                          <img [src]="image.url" class="img-30 me-2" />
+                        </span>
+                      </td>
+                      <td>
+                        <span class="badge badge-success">{{
+                          selectedOrder.paymentInfo?.status
+                        }}</span>
+                      </td>
+                      <td>{{ selectedOrder.payment_method }}</td>
+                      <td>
+                        <span class="badge badge-secondary">{{
+                          selectedOrder.status
+                        }}</span>
+                      </td>
+                      <td>{{ selectedOrder.paidAt }}</td>
+                      <td>{{ selectedOrder.totalPrice }}</td>
+                      <td>
+                        {{ selectedOrder.shippingAddress.address1 }},
+                        {{ selectedOrder.shippingAddress.address2 }},
+                        {{ selectedOrder.shippingAddress.city }},
+                        {{ selectedOrder.shippingAddress.zipCode }},
+                        {{ selectedOrder.shippingAddress.country }}
+                      </td>
+                      <td>
+                        <select [(ngModel)]="selectedOrderStatus">
+                          <option value="Processing">Processing</option>
+                          <option value="Transferred to delivery partner">
+                            Transferred to delivery partner
+                          </option>
+                          <option value="Shipping">Shipping</option>
+                          <option value="Received">Received</option>
+                          <option value="On the way">On the way</option>
+                          <option value="Delivered">Delivered</option>
+                          <!-- Diğer durumları buraya ekleyin -->
+                        </select>
+                        <button
+                          (click)="
+                            updateOrderStatus(
+                              selectedOrder._id,
+                              selectedOrderStatus
+                            )
+                          "
+                        >
+                          Update
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </ng-template>
-        </div>
-
-
-
-
+          </div>
 
           <div class="custom-datatable">
-              <div class="mb-3">
-                <input type='text'  class="filter-ngx form-control" placeholder='Search...' [(ngModel)]="searchText" />
-
-              </div>
-              <button type="submit" (click)="search()" class="btn btn-primary">Ara</button>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="filter-ngx form-control"
+                placeholder="Search..."
+                [(ngModel)]="searchText"
+              />
+            </div>
+            <button type="submit" (click)="search()" class="btn btn-primary">
+              Ara
+            </button>
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col" sortable="order_id" (sort)="onSort($event)">Order Id</th>
-                  <th scope="col" sortable="product" (sort)="onSort($event)">Payment</th>
-                  <th scope="col" sortable="payment_status" (sort)="onSort($event)">Payment Status</th>
-                  <th scope="col" sortable="paymeny_method" (sort)="onSort($event)">Payment Mehod</th>
-                  <th scope="col" sortable="order_status" (sort)="onSort($event)">Order Status</th>
-                  <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
-                  <th scope="col" sortable="total" (sort)="onSort($event)">Total</th>
-                  <th scope="col" sortable="total" (sort)="onSort($event)">Action</th>
+                  <th scope="col" sortable="order_id" (sort)="onSort($event)">
+                    Order Id
+                  </th>
+                  <th scope="col" sortable="product" (sort)="onSort($event)">
+                    Payment
+                  </th>
+                  <th
+                    scope="col"
+                    sortable="payment_status"
+                    (sort)="onSort($event)"
+                  >
+                    Payment Status
+                  </th>
+                  <th
+                    scope="col"
+                    sortable="paymeny_method"
+                    (sort)="onSort($event)"
+                  >
+                    Payment Mehod
+                  </th>
+                  <th
+                    scope="col"
+                    sortable="order_status"
+                    (sort)="onSort($event)"
+                  >
+                    Order Status
+                  </th>
+                  <th scope="col" sortable="date" (sort)="onSort($event)">
+                    Date
+                  </th>
+                  <th scope="col" sortable="total" (sort)="onSort($event)">
+                    Total
+                  </th>
+                  <th scope="col" sortable="total" (sort)="onSort($event)">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -97,27 +193,52 @@
                   <th scope="row">{{ item._id }}</th>
                   <td>
                     <span *ngFor="let image of item.cart[0].images">
-                      <img [src]="image.url" class="img-30 me-2">
+                      <img [src]="image.url" class="img-30 me-2" />
                     </span>
                   </td>
-                  <td><span class='badge badge-success'>{{ item.paymentInfo?.status }}</span></td>
-                  <td>{{ item.paymeny_method }}</td>
-                  <td><span class='badge badge-secondary'>{{ item.status }}</span></td>
-                  <td>{{item.paidAt}}</td>
-                  <td>{{item.totalPrice}}</td>
                   <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
-                    data-target="#exampleModal" (click)="irfan(item)" (click)="open(content) ">go order</button>
+                    <span class="badge badge-success">{{
+                      item.paymentInfo?.status
+                    }}</span>
+                  </td>
+                  <td>{{ item.paymeny_method }}</td>
+                  <td>
+                    <span class="badge badge-secondary">{{ item.status }}</span>
+                  </td>
+                  <td>{{ item.paidAt }}</td>
+                  <td>{{ item.totalPrice }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-original-title="test"
+                      data-target="#exampleModal"
+                      (click)="irfan(item)"
+                      (click)="open(content)"
+                    >
+                      go order
+                    </button>
                   </td>
                 </tr>
               </tbody>
             </table>
             <div class="d-flex justify-content-between p-2">
-              <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
-                [pageSize]="service.pageSize">
+              <ngb-pagination
+                [collectionSize]="(total$ | async)!"
+                [(page)]="service.page"
+                [pageSize]="service.pageSize"
+              >
               </ngb-pagination>
-              <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
-                <option [value]="10" [selected] ="true" [ngValue]="2">2 items per page</option>
+              <select
+                class="form-select"
+                style="width: auto"
+                name="pageSize"
+                [(ngModel)]="service.pageSize"
+              >
+                <option [value]="10" [selected]="true" [ngValue]="2">
+                  2 items per page
+                </option>
                 <option [ngValue]="4">4 items per page</option>
                 <option [ngValue]="6">6 items per page</option>
               </select>
@@ -128,3 +249,4 @@
     </div>
   </div>
   <!-- Container-fluid Ends-->
+</div>

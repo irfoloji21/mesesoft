@@ -29,6 +29,7 @@ export class AddressComponent implements OnInit {
   shippingData: any[];
   selectedShippingIndex: number;
   selectedAddressIndex: number;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -45,10 +46,12 @@ export class AddressComponent implements OnInit {
 
      this.productService.cartItems.subscribe(res => {
       this.orderDetails = res;
-     })
+     });
+
      this.orderService.checkoutItems.subscribe(response => {
       console.log(response)
     });
+
     this.shippingService.getShipData().subscribe(data => {
       this.shippingData = data;
       console.log("shippingData", this.shippingData)
@@ -89,6 +92,7 @@ export class AddressComponent implements OnInit {
       userId: user.user._id
     });
   }
+
   initAddForm(): void {
     const user = this.authService.getUser();
     this.addForm = this.fb.group({
@@ -102,6 +106,7 @@ export class AddressComponent implements OnInit {
       userId: user.user._id
     });
   }
+
   addressSubmit() {
     if (this.addForm.valid) {
       const formData = this.addForm.value;
@@ -127,6 +132,7 @@ export class AddressComponent implements OnInit {
       }
     }
   }
+
   editAddress(address: any) {
     console.log('Düzenlenecek adres bilgileri:', address);
     this.editedAddresses.push(address);
@@ -143,6 +149,7 @@ export class AddressComponent implements OnInit {
     });
     this.isEditing = true;
   }
+
   updateAddress() {
     if (this.editedAddresses.length > 0) {
       const addressIdToUpdate = this.editedAddresses[0]._id;
@@ -175,6 +182,7 @@ export class AddressComponent implements OnInit {
       console.error('Düzenlenen adres bilgisi bulunamadı.');
     }
   }
+
   deleteAddress(addressId: string) {
     this.authService.deleteUserAddress(addressId).subscribe(
       (response) => {
@@ -189,7 +197,6 @@ export class AddressComponent implements OnInit {
     );
 
 }
-
 
 openCreateForm() {
   this.isCreateFormOpen = true;
@@ -207,17 +214,17 @@ closeEditForm() {
   this.isEditFormOpen = false;
 }
 
-  selectAddress(selectedAddress: any, index: number) {
-    this.orderService.setSelectedAddress(selectedAddress);
-    this.selectedAddressIndex = index;
-    console.log('Seçilen adres:', selectedAddress);
-  }
+selectAddress(selectedAddress: any, index: number) {
+  this.orderService.setSelectedAddress(selectedAddress);
+  this.selectedAddressIndex = index;
+  console.log('Seçilen adres:', selectedAddress);
+}
 
-  selectShipping(selectedShipping: any, index: number) {
-    this.shippingService.setSelectedShipping(selectedShipping);
-    this.selectedShippingIndex = index;
-    console.log('Seçilen kargo:', selectedShipping);
-  }
+selectShipping(selectedShipping: any, index: number) {
+  this.shippingService.setSelectedShipping(selectedShipping);
+  this.selectedShippingIndex = index;
+  console.log('Seçilen kargo:', selectedShipping);
+}
   
  
 }

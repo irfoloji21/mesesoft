@@ -18,7 +18,6 @@ export class BlogService {
     return this.http.get<any>(`${this.apiUrl}/${slug}`);
   }
 
-
   createBlog(blogData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/create-blog`, blogData);
   }
@@ -38,6 +37,7 @@ export class BlogService {
   getAdminBlogs(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/admin-all-blogs`);
   }
+
   likeBlog(blogId: string, user: any): Observable<any> {
     const url = `${this.apiUrl}/like-blog/${blogId}`;
     return this.http.put<any>(url, { user });

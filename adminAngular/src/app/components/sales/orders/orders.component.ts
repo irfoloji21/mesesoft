@@ -19,14 +19,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class OrdersComponent implements OnInit {
 
-
   public shop: any;
   public orders: any[] = [];
   public searchText: string = '';
   public filteredOrders: any[] = [];
   public selectedOrder: any;
   public selectedOrderStatus: string = '';
-
 
   public closeResult: string;
   public tableItem$: Observable<OrderDB[]>;
@@ -38,7 +36,6 @@ export class OrdersComponent implements OnInit {
     private authService: AuthService,
     private orderService: OrderService,
     ) {
-
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(ORDERDB)
@@ -53,14 +50,11 @@ export class OrdersComponent implements OnInit {
         header.direction = '';
       }
     });
-
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-
   }
 
   open(item: any) {
-
     this.modalService.open(item, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -75,7 +69,6 @@ export class OrdersComponent implements OnInit {
 
   updateOrderStatus(orderId: string, newStatus: string) {
     console.log(orderId, newStatus)
-
     this.orderService.updateOrderStatus(orderId, newStatus).subscribe(
       (res) => {
         this.getShopOrders();
@@ -85,11 +78,7 @@ export class OrdersComponent implements OnInit {
         console.log(error);
       }
     );
-
   }
-
-
-
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -102,29 +91,22 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-  
     this.authService.loadShop().subscribe(
       (shop) => {
         this.shop = shop.seller;
         this.getShopOrders();
-        
       },
       (error) => {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
-
-   
   }
-
-
   
   getShopOrders() {
     this.orderService.getShopOrders(this.shop._id).subscribe(
       (res) => {
         this.orders = res.orders;
         this.search();
-
       },
       (error) => {
         console.log(error);
@@ -132,19 +114,14 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-
-
   search() {
-     
-      if (!this.searchText) {
-        this.filteredOrders = this.orders;
-      } else {
-        this.filteredOrders = this.orders.filter(order => {
-          return order._id.toLowerCase().includes(this.searchText.toLowerCase());
-        });
-      }
-    
+    if (!this.searchText) {
+      this.filteredOrders = this.orders;
+    } else {
+      this.filteredOrders = this.orders.filter(order => {
+        return order._id.toLowerCase().includes(this.searchText.toLowerCase());
+      });
+    }
   }
-
 
 }

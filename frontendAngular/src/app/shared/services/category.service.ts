@@ -28,7 +28,6 @@ export class CategoryService {
     getCategories(): Observable<Category[]> {
    return this.http.get<Category[]>(`${this.apiUrl}/get-all-categories`);
   }
-
   
   getCategoryById(id: number): Observable<Category> {
     return this.http.get<Category>(`${this.apiUrl}/get-category/${id}`);
@@ -48,7 +47,5 @@ export class CategoryService {
   deleteCategory(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete-category/${id}`);
   }
-
- 
 
 }
