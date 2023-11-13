@@ -1,0 +1,29 @@
+<ng-template class="theme-modal" #orderQuickView let-modal>
+    <div class="modal-content quick-view-modal">
+        <div class="modal-body">
+            <button type="button" class="close float-end border-0" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+                <div class="col-lg-6  col-xs-12">
+                    <div class="quick-view-img">
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6 rtl-text">
+                    <div class="product-right">
+                        <h2></h2>
+                        <h3>
+                            <del></del>
+                        </h3>
+                        <div class="border-product">
+                            <h6 class="product-title">product details</h6>
+                        </div>
+                        <div class="product-description border-product">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

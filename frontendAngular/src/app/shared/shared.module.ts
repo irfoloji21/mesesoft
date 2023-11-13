@@ -53,6 +53,7 @@ import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component'
 
 // Pipes
 import { DiscountPipe } from './pipes/discount.pipe';
+import { OrderQuickViewComponent } from './components/modal/order-quick-view/order-quick-view.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { DiscountPipe } from './pipes/discount.pipe';
     VideoModalComponent,
     SizeModalComponent,
     AgeVerificationComponent,
+    OrderQuickViewComponent,
     SkeletonProductBoxComponent,
     LayoutBoxComponent,
     TapToTopComponent,
@@ -134,6 +136,7 @@ import { DiscountPipe } from './pipes/discount.pipe';
     VideoModalComponent,
     SizeModalComponent,
     AgeVerificationComponent,
+    OrderQuickViewComponent,
     SkeletonProductBoxComponent,
     LayoutBoxComponent,
     TapToTopComponent,
