@@ -79,9 +79,9 @@ router.get(
     })
   );
   
+  //isSeller eklenecek
   router.delete(
-    "/delete-shop-blog/:id",
-    isSeller,
+    "/delete-blog/:id",
     catchAsyncErrors(async (req, res, next) => {
       try {
         const blog = await Blog.findById(req.params.id);
@@ -96,7 +96,7 @@ router.get(
           );
         }
       
-        await blog.remove();
+        await blog.deleteOne({ _id: req.params.id });
   
         res.status(201).json({
           success: true,
