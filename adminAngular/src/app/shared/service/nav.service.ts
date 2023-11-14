@@ -90,6 +90,12 @@ export class NavService {
 			]
 		},
 		{
+			title: 'About Us', icon: 'align-left', type: 'sub', active: false, children: [
+				{ path: '/about/list-about', title: 'About Lists', type: 'link' },
+				{ path: '/about/create-about', title: 'Create About', type: 'link' },
+			]
+		},
+		{
 			title: 'Users', icon: 'user-plus', type: 'sub', active: false, children: [
 				{ path: '/users/list-user', title: 'User List', type: 'link' },
 				{ path: '/users/create-user', title: 'Create User', type: 'link' },

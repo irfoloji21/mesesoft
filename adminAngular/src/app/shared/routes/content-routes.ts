@@ -50,6 +50,13 @@ export const content: Routes = [
     }
   },
   {
+    path: 'about',
+    loadChildren: () => import('../../components/about/about.module').then(m => m.AboutModule),
+    data: {
+      breadcrumb: "About"
+    }
+  },
+  {
     path: 'blog',
     loadChildren: () => import('../../components/blog/blog.module').then(m => m.BlogModule),
     data: {
