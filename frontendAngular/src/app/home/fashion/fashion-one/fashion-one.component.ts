@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProductSlider } from '../../../shared/data/slider';
 import { Product } from '../../../shared/classes/product';
 import { ProductService } from '../../../shared/services/product.service';
@@ -10,6 +10,7 @@ import { ProductService } from '../../../shared/services/product.service';
 })
 export class FashionOneComponent implements OnInit {
 
+  @Input() blog: any[] = [];
   public products: Product[] = [];
   public productCollections: any[] = [];
   public active;
@@ -19,9 +20,6 @@ export class FashionOneComponent implements OnInit {
    
   });
 }
-
-
-  
 
   public ProductSliderConfig: any = ProductSlider;
 
@@ -44,29 +42,6 @@ export class FashionOneComponent implements OnInit {
     image: 'assets/images/collection/fashion/2.jpg',
     save: 'save 50%',
     title: 'women'
-  }];
-
-  // Blog
-  public blog = [{
-    image: 'assets/images/blog/1.jpg',
-    date: '25 January 2018',
-    title: 'Lorem ipsum dolor sit consectetur adipiscing elit,',
-    by: 'John Dio'
-  }, {
-    image: 'assets/images/blog/2.jpg',
-    date: '26 January 2018',
-    title: 'Lorem ipsum dolor sit consectetur adipiscing elit,',
-    by: 'John Dio'
-  }, {
-    image: 'assets/images/blog/3.jpg',
-    date: '27 January 2018',
-    title: 'Lorem ipsum dolor sit consectetur adipiscing elit,',
-    by: 'John Dio'
-  }, {
-    image: 'assets/images/blog/4.jpg',
-    date: '28 January 2018',
-    title: 'Lorem ipsum dolor sit consectetur adipiscing elit,',
-    by: 'John Dio'
   }];
 
   // Logo
