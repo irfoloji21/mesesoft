@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="profile-details text-center">
-                        <img [src]="shop.avatar.url" alt=""
+                        <img [src]="shop?.avatar.url" alt=""
                             class="img-fluid img-90 rounded-circle blur-up lazyloaded">
                         <h5 class="f-w-600 mb-0">{{shop.name}}</h5>
                         <span>{{shop.email}}</span>
@@ -65,31 +65,35 @@
                             aria-labelledby="top-profile-tab">
                             <h5 class="f-w-600"> Profile</h5>
                             <div class="table-responsive profile-table">
-                                <table class="table table-responsive">
+                                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                                  <table class="table table-responsive">
                                     <tbody>
-                                        <tr>
-                                            <td>Name:</td>
-                                            <td>{{shop.name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email:</td>
-                                            <td>{{shop.email}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mobile Number:</td>
-                                            <td>{{shop.phoneNumber}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Description:</td>
-                                            <td>{{shop.description}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Address</td>
-                                            <td>{{shop.address}}</td>
-                                        </tr>
+                                      <tr>
+                                        <td>Name:</td>
+                                        <td><input type="text" id="name" formControlName="name"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>Email:</td>
+                                        <td><input type="email" id="email" formControlName="email"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>Mobile Number:</td>
+                                        <td><input type="text" id="phoneNumber" formControlName="phoneNumber"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>Description:</td>
+                                        <td><input type="text" id="description" formControlName="description"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>Address</td>
+                                        <td><input type="text" id="address" formControlName="address"></td>
+                                      </tr>
                                     </tbody>
-                                </table>
-                            </div>
+                                  </table>
+                                  <button type="submit">Güncelle</button>
+                                </form>
+                              </div>
+                              
                             </div>
                           </ng-template>
                         </li>

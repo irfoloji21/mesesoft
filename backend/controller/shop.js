@@ -233,15 +233,15 @@ router.put(
   })
 );
 
-// update seller info
+// isSeller eklenecek
 router.put(
   "/update-seller-info",
-  isSeller,
   catchAsyncErrors(async (req, res, next) => {
     try {
       const { name, description, address, phoneNumber, zipCode } = req.body;
+      console.log(req.body)
 
-      const shop = await Shop.findOne(req.seller._id);
+      const shop = await Shop.findOne({_id : req.body._id});
 
       if (!shop) {
         return next(new ErrorHandler("User not found", 400));
