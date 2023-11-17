@@ -15,21 +15,18 @@ router.post(
     "/create-koleksiyon",
     catchAsyncErrors(async (req, res, next) => {
         try {
-          ///////// FAKEPATH YÜZÜNDEN RESİM YÜKLENMİYOR 
-        console.log("1")
+         
           let images = [];
-          console.log("2") 
 
           if (typeof req.body.images === "string") {
             images.push(req.body.images);
           } else {
             images = req.body.images;
           }
-          console.log("3")
 
           const imagesLinks = [];
-        console.log(req.body.images)
-       
+
+          
         for (let i = 0; i < images.length; i++) {
           const result = await cloudinary.v2.uploader.upload(images[i], {
             folder: "koleksiyons",
@@ -40,16 +37,8 @@ router.post(
             url: result.secure_url,
           });
         }
-            console.log("5")
 
         
-          
-          
-          // const { name, saving, description } = req.body;
-
-       
-
-
            
 
             const shopId = req.body.shopId;
@@ -65,6 +54,7 @@ router.post(
                     images: imagesLinks,
                     saving: req.body.saving,
                     description: req.body.description,
+                    isShow: req.body.isShow,
                     shopId: shopId,
                     shop: shop,
                   });

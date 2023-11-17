@@ -34,6 +34,10 @@ const koleksiyonSchema = new mongoose.Schema({
         type: Object,
         required: true,
     },
+    isShow:{
+        type: Boolean,
+        default: false,
+    },
   },
   { timestamps: true }
 );

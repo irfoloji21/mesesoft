@@ -56,6 +56,7 @@ export class CategoryComponent implements OnInit {
       saving: ['', Validators.required],
       images: ['', Validators.required],
       products: [''],
+      isShow: [false],
     });
 
      
