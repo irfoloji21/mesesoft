@@ -2,6 +2,8 @@ import { DecimalPipe } from '@angular/common';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgbdSortableHeader, SortEvent } from 'src/app/shared/directives/NgbdSortableHeader';
+import { AboutService } from 'src/app/shared/service/about.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { TableService } from 'src/app/shared/service/table.service';
 import { ListPagesDB } from 'src/app/shared/tables/list-pages';
 import { MENUDB } from 'src/app/shared/tables/menu';
@@ -14,13 +16,19 @@ import { MENUDB } from 'src/app/shared/tables/menu';
 })
 export class ListAboutComponent implements OnInit {
 
+  public about_list = []
+
   public selected = [];
 
   public tableItem$: Observable<ListPagesDB[]>;
   public searchText;
   total$: Observable<number>;
 
-  constructor(public service: TableService) {
+  constructor(
+    public service: TableService,
+    private authService: AuthService,
+    private aboutService: AboutService,
+    ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(MENUDB)
@@ -46,6 +54,19 @@ export class ListAboutComponent implements OnInit {
     this.selected.push(...selected);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.aboutService.getAbout().subscribe(
+      (response) => {
+        this.about_list = response.abouts
+        console.log(this.about_list)
+     
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+
+  }
 
 }

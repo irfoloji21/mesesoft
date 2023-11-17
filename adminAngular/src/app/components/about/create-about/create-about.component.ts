@@ -29,7 +29,7 @@ export class CreateAboutComponent implements OnInit {
     this.aboutForm = this.fb.group({
       title: [''],
       description: [''],
-      images: [''],
+      // images: [''],
       status: true,
     })
   }

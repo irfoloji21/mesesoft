@@ -17,34 +17,35 @@ router.post(
         return next(new ErrorHandler("Shop Id is invalid!", 400));
       } else {
 
-        let images = [];
+        // FAKEPATH HATASI!!!
+        // let images = [];
 
         
-        if (typeof req.body.images === "string") {
-          images.push(req.body.images);
-        } else {
-          images = req.body.images;
-        }
+        // if (typeof req.body.images === "string") {
+        //   images.push(req.body.images);
+        // } else {
+        //   images = req.body.images;
+        // }
 
         
-        const imagesLinks = [];
-      console.log(req.body.images)
+        // const imagesLinks = [];
+      // console.log(req.body.images)
      
-      for (let i = 0; i < images.length; i++) {
-        const result = await cloudinary.v2.uploader.upload(images[i], {
-          folder: "koleksiyons",
-        }); 
+      // for (let i = 0; i < images.length; i++) {
+      //   const result = await cloudinary.v2.uploader.upload(images[i], {
+      //     folder: "abouts",
+      //   }); 
     
-        imagesLinks.push({
-          public_id: result.public_id,
-          url: result.secure_url,
-        });
-      }
+      //   imagesLinks.push({
+      //     public_id: result.public_id,
+      //     url: result.secure_url,
+      //   });
+      // }
 
       
 
         const aboutData = req.body;
-        aboutData.images = imagesLinks;
+        // aboutData.images = imagesLinks;
         aboutData.shop = shop;
 
         const about = await About.create(aboutData);
@@ -60,6 +61,21 @@ router.post(
   })
 );
 
+router.get(
+  "/get-all-abouts",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const abouts = await About.find().sort({ createdAt: -1 });
+
+      res.status(201).json({
+        success: true,
+        abouts,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
 
 
 module.exports = router;

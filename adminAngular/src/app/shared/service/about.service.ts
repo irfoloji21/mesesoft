@@ -14,4 +14,8 @@ export class AboutService {
   createAbout(aboutData): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/about/create-about`, aboutData);
   }
+
+  getAbout(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/about/get-all-abouts`);
+  }
 }
