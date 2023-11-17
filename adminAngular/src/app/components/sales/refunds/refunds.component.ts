@@ -7,25 +7,25 @@ import { Observable } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { OrderDB, ORDERDB } from 'src/app/shared/tables/order-list';
 import { AuthService } from 'src/app/shared/service/auth.service';
-import { OrderService } from 'src/app/shared/service/order.service';
+import { RefundService } from 'src/app/shared/service/refund.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss'],
+  selector: 'app-refunds',
+  templateUrl: './refunds.component.html',
+  styleUrls: ['./refunds.component.scss'],
   providers: [TableService, DecimalPipe],
 })
 
-export class OrdersComponent implements OnInit {
-  
+export class RefundsComponent implements OnInit {
+
   myForm:FormGroup;
   public shop: any;
-  public orders: any[] = [];
+  public refunds: any[] = [];
   public searchText: string = '';
-  public filteredOrders: any[] = [];
-  public selectedOrder: any;
-  public selectedOrderStatus: string = '';
+  public filteredRefunds: any[] = [];
+  public selectedRefund: any;
+  public selectedRefundStatus: string = '';
 
   public closeResult: string;
   public tableItem$: Observable<OrderDB[]>;
@@ -35,15 +35,16 @@ export class OrdersComponent implements OnInit {
     public service: TableService, 
     private modalService: NgbModal,
     private authService: AuthService,
-    private orderService: OrderService,
+    private refundService: RefundService,
     private fb: FormBuilder,
     ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(ORDERDB)
     this.myForm = this.fb.group({
-      status: ['Processing'] 
+      status: ['Processing Refund'] 
     });
+    
   }
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
@@ -68,18 +69,22 @@ export class OrdersComponent implements OnInit {
   }
 
   irfan(item: any) {
-    this.selectedOrder = item; 
-    console.log(this.selectedOrder)
+    this.selectedRefund = item; 
+    console.log(this.selectedRefund)
   }
 
-  updateOrderStatus(orderId: string) {
+  updateRefundStatus(refundId: string) {
+    // const newStatus = this.myForm.get('status').value;
 
     const formData = this.myForm.value;
-    console.log(orderId, formData)
-    this.orderService.updateOrderStatus(orderId, formData).subscribe(
+
+    console.log(refundId, formData);
+
+    this.refundService.updateRefundStatus(refundId, formData).subscribe(
       (res) => {
-        this.getShopOrders();
+        this.getShopRefunds();
         this.modalService.dismissAll();
+        console.log(res)
       },
       (error) => {
         console.log(error);
@@ -101,7 +106,7 @@ export class OrdersComponent implements OnInit {
     this.authService.loadShop().subscribe(
       (shop) => {
         this.shop = shop.seller;
-        this.getShopOrders();
+        this.getShopRefunds();
       },
       (error) => {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
@@ -109,14 +114,14 @@ export class OrdersComponent implements OnInit {
     );
   }
   
-  getShopOrders() {
-    this.orderService.getShopOrders(this.shop._id).subscribe(
+  getShopRefunds() {
+    this.refundService.getShopOrders(this.shop._id).subscribe(
       (res) => {
 
-        this.orders = res.orders.filter(order => {
-          return order.status !== "Processing Refund" && order.status !== "Refund Success";
+         console.log(res.orders)
+        this.refunds = res.orders.filter(order => {
+          return order.status === "Processing Refund" || order.status === "Refund Success" || order.status === "Processing";
         });
-  
         this.search();
       },
       (error) => {
@@ -124,14 +129,13 @@ export class OrdersComponent implements OnInit {
       }
     );
   }
-  
 
   search() {
     if (!this.searchText) {
-      this.filteredOrders = this.orders;
+      this.filteredRefunds = this.refunds;
     } else {
-      this.filteredOrders = this.orders.filter(order => {
-        return order._id.toLowerCase().includes(this.searchText.toLowerCase());
+      this.filteredRefunds = this.refunds.filter(refund => {
+        return refund._id.toLowerCase().includes(this.searchText.toLowerCase());
       });
     }
   }

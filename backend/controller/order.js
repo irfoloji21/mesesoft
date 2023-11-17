@@ -104,7 +104,7 @@ router.put(
         order.cart.forEach(async (o) => {
           await updateOrder(o._id, o.qty);
         });
-      }
+      } 
 
       order.status = req.body.status;
 
@@ -170,11 +170,12 @@ router.put(
   })
 );
 
-
+// isSeller eklenecek
 router.put(
   "/order-refund-success/:id",
-  isSeller,
   catchAsyncErrors(async (req, res, next) => {
+    console.log(req.params.id)
+    console.log(req.body)
     try {
       const order = await Order.findById(req.params.id);
 

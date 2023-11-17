@@ -21,6 +21,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <div class="modal-body">
+                <form class="needs-validation" [formGroup]="myForm"  novalidate>
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -106,7 +107,7 @@
                         {{ selectedOrder.shippingAddress.country }}
                       </td>
                       <td>
-                        <select [(ngModel)]="selectedOrderStatus">
+                        <select [formControl]="myForm.controls['status']">
                           <option value="Processing">Processing</option>
                           <option value="Transferred to delivery partner">
                             Transferred to delivery partner
@@ -117,20 +118,12 @@
                           <option value="Delivered">Delivered</option>
                           <!-- Diğer durumları buraya ekleyin -->
                         </select>
-                        <button
-                          (click)="
-                            updateOrderStatus(
-                              selectedOrder._id,
-                              selectedOrderStatus
-                            )
-                          "
-                        >
-                          Update
-                        </button>
+                        <button type="submit" (click)="updateOrderStatus(selectedOrder._id)">Update</button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+                </form>
               </div>
             </ng-template>
           </div>
