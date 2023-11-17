@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
 import { Router } from '@angular/router';
@@ -14,7 +13,7 @@ export class CategoriesComponent implements OnInit {
   public categories: Category[] = [];
   public collapse: boolean = true;
   public SelectCategory: string | null = null;
-  constructor(public categoryService: CategoryService , private router: Router) { 
+  constructor(public categoryService: CategoryService, private router: Router) { 
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         this.categories = data.categories;
