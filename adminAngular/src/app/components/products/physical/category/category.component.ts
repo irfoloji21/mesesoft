@@ -27,6 +27,8 @@ export class CategoryComponent implements OnInit {
   myForm1:FormGroup;
   myForm2:FormGroup;
   koleksiyons: any[] = [];
+  public filteredKoleksiyons: any[] = [];
+  public selectedKoleksiyon: any;
   
   public closeResult: string;
 
@@ -55,7 +57,7 @@ export class CategoryComponent implements OnInit {
       description: ['', Validators.required],
       saving: ['', Validators.required],
       images: ['', Validators.required],
-      products: [''],
+      // products: [''],
       isShow: [false],
     });
 
@@ -95,16 +97,37 @@ export class CategoryComponent implements OnInit {
 
   performAction() {
     if (this.buttonText === 'Add') {
-      
       this.onSubmit();
-    } else if (this.buttonText === 'Edit') {
-      
-      // this.editCategory(_id); 
+    } else if (this.buttonText === 'Update Collection') {
+      // Koleksiyonu güncelleme işlemi
+      this.updateCollection(this.selectedKoleksiyon._id);
+      console.log("updateCollection")
+    }
+  }
+
+  updateCollection(id: string) {
+    if (this.myForm1.valid) {
+      const formData = this.myForm1.value;
+  
+      this.koleksiyonService.updateKoleksiyon(id, formData).subscribe(
+        (response) => {
+          console.log('Koleksiyon başarıyla güncellendi:', response);
+          this.router.navigate(['/physical/collection']);
+        },
+        (error) => {
+          console.error('Koleksiyon güncellenirken hata oluştu:', error);
+        }
+      );
     }
   }
   
+  
+  
 
   onSubmit() {
+
+    if (this.buttonText === 'Add') {
+    
 
     const shop = this.authService.getShop();
 
@@ -129,6 +152,12 @@ export class CategoryComponent implements OnInit {
         }
       );
     }
+
+  } else if (this.buttonText === 'Update Collection') {
+    // Koleksiyonu güncelleme işlemi
+    this.updateCollection(this.selectedKoleksiyon.koleksiyon._id);
+    console.log("updateCollection")
+  }
   }
 
   onFileChange(event: any) {
@@ -159,9 +188,42 @@ export class CategoryComponent implements OnInit {
   
   
 
-  editCategory(_id){
-    console.log(_id)
+  editCategory(id: string, content) {
+    // Servis üzerinden koleksiyon bilgilerini getir
+    this.koleksiyonService.getCollectionById(id).subscribe(
+      (koleksiyon) => {
+        this.selectedKoleksiyon = koleksiyon;
+        
+  
+        // Formu resetle
+        this.myForm1.reset();
+
+        console.log(this.selectedKoleksiyon, "this.selectedKoleksiyon")
+  
+        // Formu doldur
+        this.myForm1.patchValue({
+          name: this.selectedKoleksiyon.koleksiyon.name,
+          saving: this.selectedKoleksiyon.koleksiyon.saving,
+          description: this.selectedKoleksiyon.koleksiyon.description,
+          images: this.selectedKoleksiyon.koleksiyon.images,
+          isShow: this.selectedKoleksiyon.koleksiyon.isShow,
+        });
+        console.log(this.myForm1, "this.myForm1")
+
+  
+        // Button text'i güncelle
+        this.buttonText = 'Update Collection';
+  
+        // Modal'ı aç
+        this.open(content);
+      },
+      (error) => {
+        console.error('Koleksiyon getirme hatası:', error);
+      }
+    );
   }
+  
+  
 
   deleteCategory(_id){
     console.log("deleteCategory")

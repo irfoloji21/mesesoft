@@ -19,6 +19,14 @@ export class KoleksiyonService {
     return this.http.post<any>(`${this.apiUrl}/koleksiyon/create-koleksiyon`, koleksiyonData);
   }
 
+  getCollectionById(id): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/koleksiyon/koleksiyons/${id}`);
+  }
+
+  updateKoleksiyon(id, formData): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/koleksiyon/koleksiyons/${id}`, formData);
+  }
+
   // deleteCategory(id): Observable<any> {
   //   return this.http.delete<any>(`${this.apiUrl}/category/delete-category/${id}`);
   // }
