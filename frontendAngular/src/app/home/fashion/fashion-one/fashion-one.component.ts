@@ -4,6 +4,8 @@ import { Product } from '../../../shared/classes/product';
 import { ProductService } from '../../../shared/services/product.service';
 import { Category } from 'src/app/shared/classes/category';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { KoleksiyonService } from 'src/app/shared/services/collection.service';
+import { Collection } from 'src/app/shared/classes/koleksiyon';
 
 @Component({
   selector: 'app-fashion-one',
@@ -16,25 +18,33 @@ export class FashionOneComponent implements OnInit {
   public products: Product[] = [];
   public productCollections: any[] = [];
   public categories: Category[] = [];
+  public collections: Collection[] = [];
   public sliders: any[] = [];
   public active;
-  constructor(public productService: ProductService, public categoryService: CategoryService) {
+  constructor(public productService: ProductService, public categoryService: CategoryService, public kolleksiyonService: KoleksiyonService) {
   this.productService.getProducts.subscribe((response: any) => {
     this.products = response.products
-    this.productCollections = this.products.map(product => product);    
-  });
-  this.categoryService.getCategories().subscribe((data: any) => {
-    if (data.success) {
-      this.categories = data.categories;
-      this.sliders = this.categories.map(category => {        
-        const image = Array.from(category.images as any[]).map(image => (image as any).url);
+    this.productCollections = this.products
+      .filter(product => product.sold_out > '0')  // Filtreleme işlemi
+      .map(product => {
+        const image = (product.images as any[]).map(image => image.url);
         return {
-          title: category.name,
-          subTitle: category.description,
+          title: product.name,
+          subTitle: product.description,
           image,
         };
       });
-    }
+  });
+
+  this.kolleksiyonService.getKoleksiyons().subscribe((response: any) => {
+    this.collections = response.koleksiyons;
+    this.sliders = this.collections.map(collection => {        
+      return {
+        title: collection.name,
+        subTitle: collection.description,
+        image: collection?.images[0]?.url,
+      };
+    });
   });
 }
 
@@ -51,7 +61,7 @@ export class FashionOneComponent implements OnInit {
   // }]
 
   // Collection banner
-  public collections = [{
+  public collectionss = [{
     image: 'assets/images/collection/fashion/1.jpg',
     save: 'save 50%',
     title: 'men'
@@ -86,12 +96,12 @@ export class FashionOneComponent implements OnInit {
   // Product Tab collection
     getCollectionProducts(collection) {
       return this.collections.filter((item) => {
-        // console.log(item.title);
+    //     console.log(item.title);
         
-        if (item.title === collection) {
-          // console.log(item);
-          return item
-        }
+    //     if (item.title === collection) {
+    //       console.log(item);
+    //       return item
+    //     }
       })
       // return this.products.filter((item) => {
         // if (item.collection.find(i => i === collection)) {

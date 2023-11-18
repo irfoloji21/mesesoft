@@ -29,6 +29,7 @@
                       <th scope="col">image</th>
                       <th scope="col">Order Id</th>
                       <th scope="col">Product Details</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Price</th>
                       <th scope="col">View</th>
                     </tr>
@@ -48,6 +49,9 @@
                         </td>
                         <td>
                           <span class="fs-6">{{ order.name }}</span>
+                        </td>
+                        <td>
+                          <span class="fs-6">{{ order.status }}</span>
                         </td>
                         <td>
                           <span class="theme-color fs-6">{{
