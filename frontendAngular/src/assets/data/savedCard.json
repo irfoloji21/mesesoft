@@ -1,0 +1,25 @@
+{
+  "cards": [
+    {
+      "cardNumber": "1234567890123456",
+      "cardName": "Visa",
+      "cardHolderName": "John Doe",
+      "expirationDate": "12/23",
+      "cvv": "123"
+    },
+    {
+      "cardNumber": "9876543210987654",
+      "cardName": "MasterCard",
+      "cardHolderName": "Jane Smith",
+      "expirationDate": "06/25",
+      "cvv": "456"
+    },
+    {
+      "cardNumber": "5678901234567890",
+      "cardName": "American Express",
+      "cardHolderName": "David Johnson",
+      "expirationDate": "09/24",
+      "cvv": "789"
+    }
+  ]
+}

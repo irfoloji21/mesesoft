@@ -37,7 +37,7 @@
                     <ng-container *ngFor="let order of filteredOrders">
                       <tr>
                         <td>
-                          <span class="fs-6">{{ order.createdAt }}</span>
+                          <span class="fs-6">{{ order.createdAt |  date:'longDate' }}</span>
                         </td>
                         <td>
                             <img

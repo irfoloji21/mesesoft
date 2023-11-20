@@ -8,6 +8,7 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 import { CouponComponent } from '../coupon/coupon.component';
 import { OrderComponent } from '../order/order.component';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { SavedCardComponent } from '../saved-card/saved-card.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,10 +25,10 @@ export class DashboardComponent implements OnInit {
 
   menuItems = [
     { label: 'My Account', component: ProfileComponent },
-    // { label: 'Account Info', component: AccountInfoComponent },
     { label: 'Address Book', component: AddressComponent },
     { label: 'My Orders', component: OrderComponent },
     { label: 'My Wishlist', component: WishlistComponent },
+    { label: 'Saved Card', component: SavedCardComponent },
     { label: 'Change Passwort', component: ChangePasswordComponent },
     { label: 'Coupon' , component:CouponComponent}
   ]

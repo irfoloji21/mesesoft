@@ -48,6 +48,7 @@ import { AccountInfoComponent } from './account/account-info/account-info.compon
 import { AddressComponent } from './account/address/address/address.component';
 import { CouponComponent } from './account/coupon/coupon.component';
 import { OrderComponent } from './account/order/order.component';
+import { SavedCardComponent } from './account/saved-card/saved-card.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { OrderComponent } from './account/order/order.component';
     ChangePasswordComponent,
     AddressComponent,
     CouponComponent,
-    OrderComponent
+    OrderComponent,
+    SavedCardComponent
   ],
   imports: [
     CommonModule,
