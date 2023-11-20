@@ -10,9 +10,9 @@ import { OrderService } from 'src/app/shared/services/order.service';
 export class OrderComponent implements OnInit {
 
     public userId: string;
+    public orderId: string;
     public filteredOrders: any[] = [];
-    public selectedOrder: any[] = [];
-    orderDetails: any; 
+    public orderDetails: any; 
     public ImageSrc: string;
     isModalOpen: boolean = false; 
 
@@ -24,17 +24,13 @@ export class OrderComponent implements OnInit {
     const user = this.authService.getUser();
     this.userId = user.user._id;
     this.loadUserOrders(this.userId);   
+    
   }
 
   loadUserOrders(userId: string) {
       this.orderService.getOrders(userId).subscribe(
           (res) => {
           this.filteredOrders = res.orders;
-          this.filteredOrders.forEach(order => {
-              order.cart.forEach(item => {
-                  this.selectedOrder.push(item);
-              });
-          });
           },
           (error) => {
           console.error(error);
@@ -42,8 +38,25 @@ export class OrderComponent implements OnInit {
       );
   }
 
+  refundOrder(orderId: string) {
+    this.orderService.refundOrder(orderId).subscribe(
+      (res) => {
+        console.log(res);
+        // İade işlemi başarılı olduğunda, isteğe bağlı olarak kullanıcıya bildirim veya başka bir geri bildirim sağlayabilirsiniz.
+        // Ardından siparişleri güncellemek için:
+        this.loadUserOrders(this.userId);
+      },
+      (error) => {
+        console.error(error);
+        // İade işlemi başarısız olduğunda kullanıcıya hata bildirimi veya başka bir geri bildirim sağlayabilirsiniz.
+      }
+    );
+  }
+
   openModal(order: any): void {
-    this.orderDetails = order;
+    this.orderDetails = order[0];
+    console.log(this.orderDetails, "orderDetails");
+    
     this.isModalOpen = true;
   }
 

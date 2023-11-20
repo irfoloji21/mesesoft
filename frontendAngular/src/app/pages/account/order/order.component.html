@@ -22,21 +22,49 @@
                 </h3>
                 <h4>Explore more shortlist some items.</h4>
               </div>
-              <div class="table-responsive-xl" *ngIf="filteredOrders.length">
+               <div class="table-responsive-xl" *ngIf="filteredOrders.length">
                 <table class="table cart-table order-table">
                   <thead>
                     <tr class="table-head">
-                      <th scope="col">image</th>
-                      <th scope="col">Order Id</th>
-                      <th scope="col">Product Details</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Image</th>
                       <th scope="col">Status</th>
                       <th scope="col">Price</th>
                       <th scope="col">View</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let order of selectedOrder">
+                    <ng-container *ngFor="let order of filteredOrders">
                       <tr>
+                        <td>
+                          <span class="fs-6">{{ order.createdAt }}</span>
+                        </td>
+                        <td>
+                            <img
+                              [src]="order.cart[0].images[0].url"
+                              class="blur-up lazyloaded"
+                              alt=""
+                            />
+                        </td>
+                        <td>
+                          <span class="fs-6">{{ order.status }}</span>
+                        </td>
+                        <td>
+                          <span class="theme-color fs-6">{{
+                            order.discountPrice | currency
+                          }}</span>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            title="Order Quick View"
+                            (click)="openModal(order.cart)"
+                          >
+                            <i class="fa fa-eye text-theme"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <!-- <tr>
                         <td>
                           <img
                             [src]="order.images[0].url"
@@ -59,6 +87,11 @@
                           }}</span>
                         </td>
                         <td>
+                          <button class="btn btn-info" (click)="refundOrder(order._id)">
+                            Refund
+                          </button>
+                        </td>
+                        <td>
                           <a
                             href="javascript:void(0)"
                             title="Order Quick View"
@@ -67,11 +100,12 @@
                             <i class="fa fa-eye text-theme"></i>
                           </a>
                         </td>
-                      </tr>
+                      </tr> -->
                     </ng-container>
                   </tbody>
                 </table>
               </div>
+
             </div>
           </div>
         </div>
@@ -120,6 +154,9 @@
                 <h6 class="product-title">Order details</h6>
                 <p>{{ orderDetails.description.substring(0, 150) + "..." }}</p>
               </div>
+              <button class="btn btn-info" (click)="refundOrder(orderDetails._id)">
+                Refund
+              </button>
             </div>
           </div>
         </div>

@@ -1,9 +1,17 @@
 $ana-renk: #FF5733;
 $arkaplan-renk: #EDEDED; 
 
+.order {
+  .order-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+}
+
 
 img.blur-up {
-  width: 50%;
+  width: 15%;
   height: auto;
   box-sizing: border-box;
 }

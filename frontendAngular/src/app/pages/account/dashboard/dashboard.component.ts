@@ -7,6 +7,7 @@ import { AddressComponent } from '../address/address/address.component';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { CouponComponent } from '../coupon/coupon.component';
 import { OrderComponent } from '../order/order.component';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit {
   userInitials: string;
   public openDashboard: boolean = false;
 
-  constructor(private serviceAuth: AuthService, private router: Router) { }
+  constructor(private serviceAuth: AuthService, private router: Router, private orderService: OrderService) { }
 
   menuItems = [
     { label: 'My Account', component: ProfileComponent },
@@ -35,7 +36,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceAuth.loadUser().subscribe(res => {
-      this.userInf  =res.user ; 
+      this.userInf  =res.user ;
       this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);
      })
      this.selectedMenuItem = this.menuItems[0];

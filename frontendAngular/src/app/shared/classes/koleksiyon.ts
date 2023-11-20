@@ -8,7 +8,7 @@ export interface Collection {
       shopId: string;
     shop?:Shop;
     isShop?:boolean;
-    
+    isShow?:boolean;
   }
 
 export interface Images {

@@ -38,7 +38,7 @@ export class FashionOneComponent implements OnInit {
 
   this.kolleksiyonService.getKoleksiyons().subscribe((response: any) => {
     this.collections = response.koleksiyons;
-    this.sliders = this.collections.map(collection => {        
+    this.sliders = this.collections.filter(collection => collection.isShow === true).map(collection => {
       return {
         title: collection.name,
         subTitle: collection.description,

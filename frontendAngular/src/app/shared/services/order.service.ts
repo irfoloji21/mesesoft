@@ -73,9 +73,15 @@ export class OrderService {
   }
 
   public getOrderDetails(orderId: string): Observable<any> {
-    const url = `${this.apiUrl}/order-details/${orderId}`;
+    const url = `${this.apiUrl}/order/order-details/${orderId}`;
     return this.http.get(url);
   }
+
+  public refundOrder(orderId: string): Observable<any> {
+    const refundData = { status: 'Refund Success' }; // İade başarılı olduğunda gönderilen durum
+    return this.http.put<any>(`${this.apiUrl}/order/order-refund-success/${orderId}`, refundData);
+  }
+  
 
   setSelectedAddress(address: any) {
     this.selectedAddress = address;
