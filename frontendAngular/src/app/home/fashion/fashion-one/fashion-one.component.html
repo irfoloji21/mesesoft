@@ -2,11 +2,12 @@
 
 <!-- Home slider start-->
 <section class="p-0">
-  <app-slider 
-    [sliders]="sliders" 
+  <app-slider
+    [sliders]="sliders"
     [textClass]="'text-center'"
     [category]="'fashion'"
-    [buttonText]="'shop now'"> 
+    [buttonText]="'shop now'"
+  >
   </app-slider>
 </section>
 <!-- Home slider End -->
@@ -17,13 +18,17 @@
     <div class="row partition2">
       <div class="col-md-6" *ngFor="let collection of collectionss">
         <!-- <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'fashion'}"> -->
-          <a>
+        <a>
           <div class="collection-banner p-right text-center">
-            <img [src]="collection.image" class="img-fluid" alt="collection-banner">
+            <img
+              [src]="collection.image"
+              class="img-fluid"
+              alt="collection-banner"
+            />
             <div class="contain-banner">
               <div>
-                <h4>{{collection.save}}</h4>
-                <h2>{{collection.title}}</h2>
+                <h4>{{ collection.save }}</h4>
+                <h2>{{ collection.title }}</h2>
               </div>
             </div>
           </div>
@@ -44,10 +49,9 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="product-para">
         <p class="text-center">
-          Xapên te hey yara derew
-          Dilê min dane xencerê!
-          Pêşî tu bû yara bedew
-          Îro xwezi bi ya berê!
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur
+          nostrum provident eos voluptates ducimus perspiciatis dolores
+          reiciendis architecto in. Nulla.
         </p>
       </div>
     </div>
@@ -57,16 +61,20 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <owl-carousel-o class="product-m no-arrow" [options]="ProductSliderConfig">
-          <ng-container *ngFor="let product of products | slice:0:16">
+        <owl-carousel-o
+          class="product-m no-arrow"
+          [options]="ProductSliderConfig"
+        >
+          <ng-container *ngFor="let product of products | slice : 0 : 16">
             <ng-template carouselSlide>
               <div class="product-box">
-                <app-product-box-one 
-                  [product]="product" 
+                <app-product-box-one
+                  [product]="product"
                   [loader]="true"
                   [currency]="productService?.Currency"
                   [thumbnail]="true"
-                  [cartModal]="true">
+                  [cartModal]="true"
+                >
                 </app-product-box-one>
               </div>
             </ng-template>
@@ -80,8 +88,10 @@
 
 <!-- Parallax banner start-->
 <section class="p-0">
-  <div class="full-banner parallax-banner1 parallax text-center p-left"
-    [ngStyle]="{'background-image': 'url(assets/images/parallax/1.jpg)'}">
+  <div
+    class="full-banner parallax-banner1 parallax text-center p-left"
+    [ngStyle]="{ 'background-image': 'url(assets/images/parallax/1.jpg)' }"
+  >
     <div class="container">
       <div class="row">
         <div class="col">
@@ -106,19 +116,35 @@
   <div class="container">
     <div class="row">
       <div class="col theme-tab">
-        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="tabs tab-title justify-content-center nav nav-pills" >
-          <li *ngFor="let collection of productCollections" [ngbNavItem]="collection">
+        <ul
+          ngbNav
+          #nav="ngbNav"
+          [(activeId)]="active"
+          class="tabs tab-title justify-content-center nav nav-pills"
+        >
+          <li
+            *ngFor="let collection of productCollections"
+            [ngbNavItem]="collection"
+          >
             <a ngbNavLink>
-               {{ collection }}
+              {{ collection }}
             </a>
             <ng-template ngbNavContent>
               <div class="no-slider row">
-                  <ng-container *ngFor="let product of getCollectionProducts(collection) | slice:0:8">
-                      <div class="product-box">
-                          <app-product-box-one [product]="product" [currency]="productService?.Currency">
-                          </app-product-box-one>
-                      </div>
-                  </ng-container>
+                <ng-container
+                  *ngFor="
+                    let product of getCollectionProducts(collection)
+                      | slice : 0 : 8
+                  "
+                >
+                  <div class="product-box">
+                    <app-product-box-one
+                      [product]="product"
+                      [currency]="productService?.Currency"
+                    >
+                    </app-product-box-one>
+                  </div>
+                </ng-container>
               </div>
             </ng-template>
           </li>
