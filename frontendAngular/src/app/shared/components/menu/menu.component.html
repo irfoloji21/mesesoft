@@ -12,7 +12,7 @@
         </div>
       </li>
 
-      <li *ngFor="let menuItem of menuItems" [class.mega-menu]="menuItem.megaMenu">
+      <li *ngFor="let menuItem of menuItems  | slice : 0 : 7" [class.mega-menu]="menuItem.megaMenu">
         <!-- Sub -->
         <a *ngIf="menuItem.isShow"  href="javascript:void(0)" class="nav-link" 
             (click)="toggletNavActive(menuItem)" >
