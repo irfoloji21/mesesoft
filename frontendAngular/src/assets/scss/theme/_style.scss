@@ -1358,6 +1358,7 @@ header {
     .menu-right {
         display: flex;
         float: right;
+        align-items: center;
         .icon-nav {
             display: inline-block;
             li {
