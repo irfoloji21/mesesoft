@@ -45,6 +45,9 @@ export class HeaderFourComponent implements OnInit {
       queryParamsHandling: 'merge' // Bu, mevcut sorgu parametreleri ile birleştirir
     });
   }
+  // resetForm() {
+  //   this.form.reset();
+  // }
   
 
   ngOnInit(): void {
