@@ -50,7 +50,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
       
 
       
-      this.Megamenu = params.subcategory ? params.subcategory : null;
+       this.Megamenu = params.childrenSubItem ? params.childrenSubItem : null;
       console.log(this.Megamenu, "megaMenu");
       this.category = params.categoryId ? params.categoryId : null;
       this.categoryEs = params.description ? params.description : null
@@ -70,18 +70,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
         
               // Megamenu Filter
               if (this.Megamenu) {
-                // MenuItems içinde this.Megamenu'ya göre filtreleme yap
-                const selectedSubcategory = this.menuItems
-                  .flatMap(category => category.subcategories || [])
-                  .find(subcategory => subcategory._id === this.Megamenu);
-              
-                if (selectedSubcategory) {
-                  // Alt kategorinin ürünlerini this.products'a ekle
-                  this.products = selectedSubcategory.products || [];
-                } else {
-                  // this.Megamenu'ya uygun alt kategori bulunamazsa, this.products'u boş bir dizi olarak ayarla
-                  this.products = [];
-                }
+                // Eğer Megamenu varsa, sadece Megamenu'deki ürünleri getir
+                this.products = this.products.filter(item => this.Megamenu.includes(item._id));
               }
               
               

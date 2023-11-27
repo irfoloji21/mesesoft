@@ -3,6 +3,7 @@ import { NavService, Menu } from '../../services/nav.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,9 +16,12 @@ export class MenuComponent implements OnInit {
   public menuItems: Category[] = [];
   public subCategoryData: any[] = []; 
   public irfosub: any[] = [];
+  public subCategoryy :any = []
   megaMenu;
   active:any
-  constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService,private route: ActivatedRoute) {
+  constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService,private route: ActivatedRoute
+    ,private product:ProductService
+    ) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         // Tüm kategorileri alın
@@ -100,20 +104,45 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  //MenuQueryParamsAlanı
 
-  navigateWithQueryParams(menuItem: string, subItem: string) {
+//MenuQueryParamsAlanı
+
+navigateWithQueryParams(menuItem: string, subItem: string, childrenSubItem: any) {
+  this.product.irfan(childrenSubItem._id).subscribe(res => {
+    this.handleSubCategoryResponse(menuItem, subItem, res);
+  });
+}
+
+handleSubCategoryResponse(menuItem: string, subItem: string, res: any) {
+  console.log(res, "emsal");
+
+  if (res.products && res.products.length > 0) {
+    const productIds = res.products.map(product => product._id);
+
     const queryParams = {
       category: menuItem,
-      subcategory: subItem
+      subcategory: subItem,
+      childrenSubItem: productIds
     };
-  
+
+    console.log(queryParams, "mehmet");
+
     this.router.navigate(['/shop/collection/left/sidebar'], {
       relativeTo: this.route,
       queryParams,
       queryParamsHandling: 'merge'
     });
+  } else {
+    console.error("Ürün bulunamadı.");
+    // Eğer ürün bulunamazsa, istediğiniz gibi bir hata işleme mekanizması ekleyebilirsiniz.
   }
+}
+
+
+
+
+  
+  
   
   
 }

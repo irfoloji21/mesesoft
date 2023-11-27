@@ -378,5 +378,11 @@ export class ProductService {
     return this.http.get<any[]>(`${this.apiUrl}/product/search/${searchTerm}`);
     
   }
-  
+  irfan(id:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/product/get-products-by-category/${id}`);
+    
+  }
+
+
+
 }

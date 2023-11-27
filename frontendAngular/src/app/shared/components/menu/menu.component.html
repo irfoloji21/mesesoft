@@ -12,7 +12,7 @@
         </div>
       </li>
  
-      <li *ngFor="let menuItem of menuItems  | slice : 0 : 7" [class.mega-menu]="menuItem.megaMenu"  >
+      <li *ngFor="let menuItem of menuItems  " [class.mega-menu]="menuItem.megaMenu"  >
         <!-- Sub -->
         <a *ngIf="menuItem.isShow"  href="javascript:void(0)" class="nav-link" 
             (click)="toggletNavActive(menuItem)" >
@@ -25,43 +25,36 @@
         <!-- External Link -->
       
         <!-- External Tab Link -->
-       
+        <!-- (click)="navigateWithQueryParams(menuItem.name, childrenItem.name)" -->
      
 
-        <div class="mega-menu-container"  *ngIf="menuItem.megaMenu && menuItem.subcategories">
-          <div class="container" style="margin: 0; padding: 0;">
+        <div class="mega-menu-container" *ngIf="menuItem.megaMenu && menuItem.subcategories" [class.mega-menu]="menuItem.megaMenu">
+          <div class="container">
             <div class="row">
-              <div class="mega-box"  *ngFor="let childrenItem of menuItem.subcategories">
-                <div class="link-section" >
-                  <div class="menu-title" >
+              <div class="col mega-box" *ngFor="let childrenItem of menuItem.subcategories">
+                <div class="link-section">
+                  <div class="menu-title">
                     <h5>
                         {{ childrenItem.name | translate }}
                         <span class="sub-arrow" *ngIf="childrenItem.subcategories"></span>
                     </h5>
                   </div>
-                  <div class="menu-content ">
+                  <div class="menu-content opensubmegamenu">
                     <ul *ngIf="childrenItem.subcategories">
                       <li *ngFor="let childrenSubItem of childrenItem.subcategories">
                         <!-- Sub -->
-                        <a href="javascript:void(0)" (click)="navigateWithQueryParams(menuItem.name, childrenItem.name)">
-                          {{ childrenItem.name | translate }}
-                          <span class="new-tag" *ngIf="childrenItem.badge">{{ childrenItem.badgeText | translate }}</span>
+                        <a href="javascript:void(0)" (click)="navigateWithQueryParams(menuItem.name, childrenItem.name, childrenSubItem)">
+                          {{ childrenSubItem.name | translate }}
+                          <span class="new-tag" *ngIf="childrenSubItem.badge">{{ childrenSubItem.badgeText | translate }}</span>
                         </a>
-                                                                    
-                          <!-- Link -->
-                          
-                          
-                          <!-- External Link -->
-                        <!-- External Link with Query Params -->
-
-
-
-                           
-                          <!-- External Tab Link -->
-                    
+                        <!-- Link -->
+                        <!-- External Link -->
+                        <!-- External Tab Link -->
                       </li>
                     </ul>
                   </div>
+                  
+                  
                 </div>
               </div>
             </div>
