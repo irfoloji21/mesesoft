@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavService, Menu } from '../../services/nav.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
 
@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
   public irfosub: any[] = [];
   megaMenu;
   active:any
-  constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService) {
+  constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService,private route: ActivatedRoute) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         // Tüm kategorileri alın
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
               const subcategoryId = subcategory._id;
               
               this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-                
+                console.log(subCategoryData , "subCategoryData")
                 // Alt kategori ile yerini değiştirin
               
                 const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
@@ -78,6 +78,7 @@ export class MenuComponent implements OnInit {
 
   getSubcategoriesByItemId(itemId: any, childrenItem: any) {
     this.categoryService.getCategoryById(itemId).subscribe((subcategories) => {
+      console.log(subcategories , "subcategoriesMenu")
       childrenItem.subcategories = subcategories; // Her alt kategoriye ait alt kategorileri güncelle
       // console.log(childrenItem.subcategories, "childrenItem.subcategories")
     });
@@ -99,6 +100,22 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  //MenuQueryParamsAlanı
+
+  navigateWithQueryParams(menuItem: string, subItem: string) {
+    const queryParams = {
+      category: menuItem,
+      subcategory: subItem
+    };
+  
+    this.router.navigate(['/shop/collection/left/sidebar'], {
+      relativeTo: this.route,
+      queryParams,
+      queryParamsHandling: 'merge'
+    });
+  }
+  
+  
 }
 
 

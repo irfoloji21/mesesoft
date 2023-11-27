@@ -23,6 +23,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public maxPrice: number = 1200;
   public tags: any[] = [];
   public category: any;
+  menuItems: any[] = []; 
+  public Megamenu: any;
   public categoryEs : any ; 
   public  Image : any;
   public pageNo: number = 1;
@@ -47,21 +49,45 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
       
 
-
+      
+      this.Megamenu = params.subcategory ? params.subcategory : null;
+      console.log(this.Megamenu, "megaMenu");
       this.category = params.categoryId ? params.categoryId : null;
       this.categoryEs = params.description ? params.description : null
       this.Image = params.images ? params.images : null
       this.sortBy = params.sortBy ? params.sortBy : 'ascending';
       this.pageNo = params.page ? params.page : this.pageNo;
-
+     
      
       this.productService.filterProducts(this.tags).subscribe((response:any) => {
-        console.log(this.searchQuery,"searchQuery")
-        console.log(response[0].products , "Collection")
+        console.log(this.Megamenu , "megaMenu")
+        // console.log(response[0].products , "Collection")
      
         this.products = this.parseResponse(response);
       
         this.products = this.productService.sortProducts(this.products, this.sortBy);
+
+        
+              // Megamenu Filter
+              if (this.Megamenu) {
+                // MenuItems içinde this.Megamenu'ya göre filtreleme yap
+                const selectedSubcategory = this.menuItems
+                  .flatMap(category => category.subcategories || [])
+                  .find(subcategory => subcategory._id === this.Megamenu);
+              
+                if (selectedSubcategory) {
+                  // Alt kategorinin ürünlerini this.products'a ekle
+                  this.products = selectedSubcategory.products || [];
+                } else {
+                  // this.Megamenu'ya uygun alt kategori bulunamazsa, this.products'u boş bir dizi olarak ayarla
+                  this.products = [];
+                }
+              }
+              
+              
+              
+              
+       
         if (this.searchQuery) {
           this.products = this.products.filter(item => {
             return item.name.toLowerCase().includes(this.searchQuery.toLowerCase());
