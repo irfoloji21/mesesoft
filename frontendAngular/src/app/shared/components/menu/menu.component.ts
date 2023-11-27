@@ -130,7 +130,7 @@ handleSubCategoryResponse(menuItem: string, subItem: string, res: any) {
     this.router.navigate(['/shop/collection/left/sidebar'], {
       relativeTo: this.route,
       queryParams,
-      queryParamsHandling: 'merge'
+
     });
   } else {
     console.error("Ürün bulunamadı.");

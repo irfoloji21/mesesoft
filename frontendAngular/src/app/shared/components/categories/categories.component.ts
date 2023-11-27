@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
 import { Router } from '@angular/router';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-categories',
@@ -13,7 +14,7 @@ export class CategoriesComponent implements OnInit {
   public categories: Category[] = [];
   public collapse: boolean = true;
   public SelectCategory: string | null = null;
-  constructor(public categoryService: CategoryService, private router: Router) { 
+  constructor(public categoryService: CategoryService, private router: Router, private product :ProductService) { 
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         this.categories = data.categories;
@@ -52,7 +53,11 @@ export class CategoriesComponent implements OnInit {
     this.router.navigate(['/shop/collection/left/sidebar'], { queryParams });
   }
   
-  
+  navigateWithQueryParams( childrenSubItem: any) {
+    this.product.irfan(childrenSubItem._id).subscribe(res => {
+       console.log(res , "besyo")
+    });
+  }
 }
 
 

@@ -70,12 +70,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
         
               // Megamenu Filter
               if (this.Megamenu) {
-                // Eğer Megamenu varsa, sadece Megamenu'deki ürünleri getir
                 this.products = this.products.filter(item => this.Megamenu.includes(item._id));
               }
-              
-              
-              
               
        
         if (this.searchQuery) {
