@@ -83,7 +83,7 @@
                                 <th scope="row">{{ catgory._id }}</th>
                                 <td>
                                     <!-- .url sildim ekleyeceğim -->
-                                    <img [src]="catgory.images[0]" class="imgTable" style="width: 20px">
+                                    <img [src]="[catgory.images[0].url]" class="imgTable" style="width: 20px">
                                 </td>
                                     <td>{{ catgory.name }}</td>
                                 <td>{{catgory.isShow}}</td>
