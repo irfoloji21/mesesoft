@@ -29,6 +29,8 @@ export class BlogDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const slug = params['slug'];
       this.blogService.getBlogDetails(slug).subscribe((data) => {
+        console.log("data", data.blog);
+        
         this.blog = data.blog;
         this.BlogId =data.blog
         this.loadUser();

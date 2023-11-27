@@ -5855,9 +5855,12 @@ background-color: $black;*/
                         margin-left: 0;
                     }
                 }
+                img {
+                    margin-right: 0;
+                }
             }
             .media {
-                display: inline-block;
+                display: block;
                 text-align: center;
             }
         }

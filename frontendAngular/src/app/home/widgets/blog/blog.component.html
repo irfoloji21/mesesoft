@@ -2,20 +2,27 @@
   <ng-container *ngFor="let blog of blogs">
     <ng-template carouselSlide>
       <div class="col-md-12">
-
         <a [routerLink]="'/pages/blog/details/' + blog.slug">
           <div class="classic-effect">
-            <img src="../../../../../assets/images/example2.jpg" class="img-fluid" alt="blog">
+            <img
+              [src]="
+                blog.images.length > 0
+                  ? blog.images[0]
+                  : '../../../../../assets/images/example2.jpg'
+              "
+              class="img-fluid"
+              alt="blog"
+            />
             <span></span>
           </div>
         </a>
         <div class="blog-details">
-          <h4>{{ blog.createdAt | date: 'dd MMMM yyyy' }}</h4>
+          <h4>{{ blog.createdAt | date : "dd MMMM yyyy" }}</h4>
 
           <a [routerLink]="'/pages/blog/details/' + blog.slug">
             <p>{{ blog.name }}</p>
           </a>
-          <hr class="style1">
+          <hr class="style1" />
           <h6>by: {{ blog.name }}, {{ "blog.comments" }}</h6>
         </div>
       </div>

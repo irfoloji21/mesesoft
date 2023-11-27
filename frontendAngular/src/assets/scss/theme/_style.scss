@@ -6998,6 +6998,7 @@ ngx-loading-bar {
     .comment-section {
         border-bottom: 1px solid $round-border;
         li {
+            width: 100%;
             padding-top: 60px;
             padding-bottom: 60px;
             border-top: 1px solid $round-border;
