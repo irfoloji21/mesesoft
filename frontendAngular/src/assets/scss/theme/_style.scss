@@ -1172,6 +1172,16 @@ header {
                     transition: all 0.5s ease;
                 }
             }
+            span.rounded-circle {
+                background-color: var(--theme-deafult);
+                font-size: 14px;
+                height: 23px;
+                width: 23px;
+                text-align: center;
+                line-height: 20px;
+                border-radius: 100%;
+                display: inline-block;
+            }
         }
         .onhover-dropdown {
             .onhover-show-div {
