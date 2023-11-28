@@ -7,6 +7,8 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 import { KoleksiyonService } from 'src/app/shared/services/collection.service';
 import { Collection } from 'src/app/shared/classes/koleksiyon';
 
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-fashion-one',
   templateUrl: './fashion-one.component.html',
@@ -21,7 +23,8 @@ export class FashionOneComponent implements OnInit {
   public collections: Collection[] = [];
   public sliders: any[] = [];
   public active;
-  constructor(public productService: ProductService, public categoryService: CategoryService, public kolleksiyonService: KoleksiyonService) {
+  constructor(public productService: ProductService, public categoryService: CategoryService, public kolleksiyonService: KoleksiyonService,
+    private router: Router,private route: ActivatedRoute) {
   this.productService.getProducts.subscribe((response: any) => {
     this.products = response.products
     this.productCollections = this.products
@@ -61,15 +64,16 @@ export class FashionOneComponent implements OnInit {
   // }]
 
   // Collection banner
-  public collectionss = [{
-    image: 'assets/images/collection/fashion/1.jpg',
-    save: 'save 50%',
-    title: 'men'
-  }, {
-    image: 'assets/images/collection/fashion/2.jpg',
-    save: 'save 50%',
-    title: 'women'
-  }];
+  // public collectionssMan = [{
+  //   image: 'assets/images/collection/fashion/1.jpg',
+  //   save: 'save 50%',
+  //   title: 'men'
+  // }];
+  // public collectionssWomen = [{
+  //   image: 'assets/images/collection/fashion/1.jpg',
+  //   save: 'save 50%',
+  //   title: 'men'
+  // }];
 
   // Logo
   public logo = [{
@@ -90,8 +94,48 @@ export class FashionOneComponent implements OnInit {
     image: 'assets/images/logos/8.png',
   }];
 
+
+
+
+
   ngOnInit(): void {
+   
   }
+
+
+  updateCollections(): void {
+    this.loadData();
+  }
+  private loadData(): void {
+    this.productService.getProducts.subscribe((products: any) => {
+      const productArray = Array.isArray(products.products) ? products.products : [];
+    
+      // Filtreleme işlemleri
+      const filteredProducts = productArray
+        // .filter(product => product.category === 'men')
+        .filter(product => product.discountPrice > 0)   
+        .filter(product => {
+          const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
+          console.log(discountPercentage, "discountPercentage"); 
+          return discountPercentage < 50;
+        });
+  
+      const productIds = filteredProducts.map(product => product._id);
+      
+      const queryParams = {
+        filteredIds: productIds.join(',')
+      };
+  
+      this.router.navigate(['/shop/collection/left/sidebar'], {
+        queryParams,
+        queryParamsHandling: 'merge' 
+      });
+    });
+  }
+
+
+
+
 
   // Product Tab collection
     getCollectionProducts(collection) {

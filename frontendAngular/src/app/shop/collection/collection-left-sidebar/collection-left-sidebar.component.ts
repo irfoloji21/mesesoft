@@ -33,6 +33,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public mobileSidebar: boolean = false;
   public loader: boolean = true;
   public categoryContent :Category[] = []
+  public filteredIds : any= []
   public selectedCategoryDetails: any = [];
   public searchQuery: string = '';
   constructor(private route: ActivatedRoute, private router: Router,
@@ -40,6 +41,9 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
     // Get Query params..
     this.route.queryParams.subscribe(params => {
+
+      this.filteredIds = params.filteredIds ? params.filteredIds.split(',') : [];
+      console.log(this.filteredIds, 'Filtered Product Ids')
       this.searchQuery = params.search ? params.search : '';
       this.brands = params.brand ? params.brand.split(",") : [];
       this.colors = params.color ? params.color.split(",") : [];
@@ -67,13 +71,18 @@ export class CollectionLeftSidebarComponent implements OnInit {
       
         this.products = this.productService.sortProducts(this.products, this.sortBy);
 
-        
+        //collection %50 filter
+         // collection %50 filter
+           if (this.filteredIds && this.filteredIds.length > 0) {
+          this.products = this.products.filter(item => this.filteredIds.includes(item._id));
+          }
+
+
               // Megamenu Filter
               if (this.Megamenu) {
                 this.products = this.products.filter(item => this.Megamenu.includes(item._id));
               }
               
-       
         if (this.searchQuery) {
           this.products = this.products.filter(item => {
             return item.name.toLowerCase().includes(this.searchQuery.toLowerCase());

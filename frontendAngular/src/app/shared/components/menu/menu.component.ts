@@ -47,7 +47,7 @@ export class MenuComponent implements OnInit {
               const subcategoryId = subcategory._id;
               
               this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-                console.log(subCategoryData , "subCategoryData")
+                // console.log(subCategoryData , "subCategoryData")
                 // Alt kategori ile yerini değiştirin
               
                 const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
@@ -134,7 +134,7 @@ handleSubCategoryResponse(menuItem: string, subItem: string, res: any) {
     });
   } else {
     console.error("Ürün bulunamadı.");
-    // Eğer ürün bulunamazsa, istediğiniz gibi bir hata işleme mekanizması ekleyebilirsiniz.
+    
   }
 }
 

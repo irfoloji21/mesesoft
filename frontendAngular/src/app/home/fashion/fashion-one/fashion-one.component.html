@@ -7,36 +7,61 @@
     [textClass]="'text-center'"
     [category]="'fashion'"
     [buttonText]="'shop now'"
+
   >
   </app-slider>
 </section>
 <!-- Home slider End -->
 
 <!-- collection banner start-->
-<section class="pb-0">
+<div class="col-md-12 d-flex" >
   <div class="container">
-    <div class="row partition2">
-      <div class="col-md-6" *ngFor="let collection of collectionss">
-        <!-- <a [routerLink]="['/shop/collection/left/sidebar']" [queryParams]="{ category: 'fashion'}"> -->
-        <a>
-          <div class="collection-banner p-right text-center">
-            <img
-              [src]="collection.image"
-              class="img-fluid"
-              alt="collection-banner"
-            />
-            <div class="contain-banner">
-              <div>
-                <h4>{{ collection.save }}</h4>
-                <h2>{{ collection.title }}</h2>
-              </div>
+    <div class="row">
+      <section class="pb-0" style="cursor: pointer;">
+        <div class="container">
+          <div class="row partition2 d-flex flex-wrap">
+            <div class="col-md-6 d-flex">
+              <a  (click)="updateCollections()">
+                <div class="collection-banner p-right text-center flex-grow-1">
+                  <img style="height: 351px; width: 664px;"
+                    src="../../../../assets/images/man0.webp"
+                    class="img-fluid"
+                    alt="collection-banner"
+                  />
+                  <div class="contain-banner">
+                    <div>
+                      <h4>save 50%</h4>
+                      <h2>Men</h2>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 d-flex">
+              <a  (click)="updateCollections()">
+                <div class="collection-banner p-right text-center flex-grow-1">
+                  <img style="height: 351px; width: 664px;"
+                    src="../../../../assets/images/Women0.jpg"
+                    class="img-fluid"
+                    alt="collection-banner"
+                  />
+                  <div class="contain-banner">
+                    <div>
+                      <h4>save 50%</h4>
+                      <h2>Women</h2>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
-        </a>
-      </div>
+        </div>
+      </section>
     </div>
   </div>
-</section>
+</div>
+
 <!-- collection banner End -->
 
 <!-- Product slider start-->

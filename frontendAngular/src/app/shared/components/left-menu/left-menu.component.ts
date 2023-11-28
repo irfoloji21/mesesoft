@@ -67,7 +67,7 @@ export class LeftMenuComponent implements OnInit {
             const subcategoryId = subcategory._id;
             
             this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-              console.log(subCategoryData , "subCategoryData")
+              // console.log(subCategoryData , "subCategoryData")
               // Alt kategori ile yerini değiştirin
             
               const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
