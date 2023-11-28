@@ -13,7 +13,7 @@
       <ul id="sub-menu" class="sidebar-menu">
         <li *ngFor="let menuItem of menuItems" (mouseover)="onHover(menuItem.subcategories ? true : false)">
             <!-- Sub -->
-            <a href="javascript:void(0)" 
+            <a *ngIf="menuItem.isShow" href="javascript:void(0)" 
                 (click)="toggletNavActive(menuItem)">
                {{menuItem.name}}
                <span class="sub-arrow"  *ngIf="menuItem.subcategories"></span>
@@ -36,26 +36,18 @@
               <!-- Simple Menu End-->
       
               <!-- Mega Menu Start-->
-              <ng-container *ngIf="menuItem.megaMenu">
+              <ng-container *ngIf="menuItem.megaMenu && menuItem.subcategories">
               <li>
                 <div class="row m-0">
-                  <div class="col-xl-4" *ngFor="let childrenItem of menuItem.children">
+                  <div class="col-xl-4"*ngFor="let childrenItem of menuItem.subcategories">
                     <div class="link-section">
-                      <h5>{{childrenItem.title}}</h5>
+                      <h5> {{ childrenItem.name | translate }}</h5>
                       <ul>
-                        <li *ngFor="let childrenSubItem of childrenItem.children">
-                           <!-- Link -->
-                            <a [routerLink]="childrenSubItem.path" *ngIf="childrenSubItem.type === 'link'">
-                               {{childrenSubItem.title}}
-                            </a>
-                            <!-- External Link -->
-                            <a href="{{ childrenSubItem.path }}" *ngIf="childrenSubItem.type === 'extLink'">
-                              {{childrenSubItem.title}}
-                            </a>
-                            <!-- External Tab Link -->
-                            <a href="{{ childrenSubItem.path }}" target="_blank" *ngIf="childrenSubItem.type === 'extTabLink'">
-                               {{childrenSubItem.title}}
-                            </a>
+                        <li *ngFor="let childrenSubItem of childrenItem.subcategories">
+                          <a href="javascript:void(0)" (click)="navigateWithQueryParams(menuItem.name, childrenItem.name, childrenSubItem)">
+                            {{ childrenSubItem.name | translate }}
+                            <span class="new-tag" *ngIf="childrenSubItem.badge">{{ childrenSubItem.badgeText | translate }}</span>
+                          </a>
                         </li>
                       </ul>    
                     </div>
