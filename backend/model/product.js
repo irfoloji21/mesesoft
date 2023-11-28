@@ -96,6 +96,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  gender: {
+    type: String,
+    required: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

@@ -54,7 +54,7 @@ router.post(
       
       }
     } catch (error) {
-      return next(new ErrorHandler(error, 400));
+      return next(new ErrorHandler(error.message, 400));
     }
   })
 );
@@ -277,6 +277,7 @@ router.put(
       existingProduct.slug = updatedProductData.slug;
       existingProduct.tags = updatedProductData.tags;
       existingProduct.stock = updatedProductData.stock;
+      existingProduct.gender = updatedProductData.gender;
 
 
     //   if (typeof updatedProductData.images === "object") {

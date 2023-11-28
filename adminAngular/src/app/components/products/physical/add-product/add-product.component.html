@@ -109,6 +109,21 @@
                         <option *ngFor="let category of categories" [value]="category._id" >{{ category.name }}</option>
                       </select>
                     </div>
+
+
+                    <div class="col-xl-3 col-sm-4">
+                      <label for="exampleFormControlSelect1" class="mb-0">Select
+                        Gender
+                        :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <select class="form-control digits" id="gender" name="gender"  [formControl]="productForm.controls['gender']">
+                        <option value="erkek" >Erkek</option>
+                        <option value="kadın" >Kadın</option>
+                        <option value="unisex" >Unisex</option>
+                        <option value="cocuk" >Çocuk</option>
+                      </select>
+                    </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">

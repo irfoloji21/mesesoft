@@ -58,6 +58,7 @@ export class AddProductComponent implements OnInit {
       description: [''],
       images: [''],
       category: [''],
+      gender: [''],
     })
   }
 
