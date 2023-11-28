@@ -71,7 +71,6 @@ export class CollectionLeftSidebarComponent implements OnInit {
       
         this.products = this.productService.sortProducts(this.products, this.sortBy);
 
-        //collection %50 filter
          // collection %50 filter
            if (this.filteredIds && this.filteredIds.length > 0) {
           this.products = this.products.filter(item => this.filteredIds.includes(item._id));

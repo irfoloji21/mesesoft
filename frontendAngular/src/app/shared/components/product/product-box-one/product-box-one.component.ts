@@ -17,7 +17,8 @@ export class ProductBoxOneComponent implements OnInit {
   @Input() onHowerChangeImage: boolean = false; // Default False
   @Input() cartModal: boolean = false; // Default False
   @Input() loader: boolean = false;
-  
+  filteredProducts : any =[]
+  discountPercentages: number[] = [];
   @ViewChild("quickView") QuickView: QuickViewComponent;
   @ViewChild("cartModal") CartModal: CartModalComponent;
 
@@ -29,7 +30,33 @@ export class ProductBoxOneComponent implements OnInit {
     if(this.loader) {
       setTimeout(() => { this.loader = false; }, 2000); // Skeleton Loader
     }
+     this.loadData();
+    
   }
+
+
+
+
+private loadData(): void {
+  let productsArray = Array.isArray(this.product) ? this.product : [this.product];
+  console.log(productsArray, "productsArray");
+
+  this.filteredProducts = productsArray
+    .filter(product => product.discountPrice > 0)
+    .filter(product => {
+      let discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
+      console.log(discountPercentage, "discountPercentage");
+      return discountPercentage 
+    })
+    .map(product => {
+      
+      this.discountPercentages.push(((product.originalPrice - product.discountPrice) / product.originalPrice) * 100);
+      return product._id;
+    });
+
+}
+
+
 
   // Get Product Color
   Color(variants) {

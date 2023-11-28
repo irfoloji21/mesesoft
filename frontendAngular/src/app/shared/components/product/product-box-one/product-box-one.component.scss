@@ -1,0 +1,17 @@
+.discount-label {
+    background-color: #ff4c3b; /* Yeni renk */
+    color: #fff;
+    padding: 5px 10px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .discount-label:hover {
+    transform: scale(1.1);
+  }
+  

@@ -112,12 +112,12 @@ export class FashionOneComponent implements OnInit {
     
       // Filtreleme işlemleri
       const filteredProducts = productArray
-        // .filter(product => product.category === 'men')
+          // .filter(product => product.gender === 'kadın')
         .filter(product => product.discountPrice > 0)   
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
           console.log(discountPercentage, "discountPercentage"); 
-          return discountPercentage < 50;
+          return discountPercentage < 0.2;
         });
   
       const productIds = filteredProducts.map(product => product._id);

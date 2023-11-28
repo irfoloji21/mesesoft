@@ -7,15 +7,18 @@
     <div class="front">
       <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
         <img
-          [defaultImage]="
-            ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'
-          "
+          [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'"
           [lazyLoad]="ImageSrc ? ImageSrc : product.images[0].url"
           class="img-fluid lazy-loading"
           alt="resim"
         />
+        <div *ngFor="let percentage of discountPercentages" class="discount-label">
+          %{{ percentage | number:'1.2-2' }} <br>
+          discount
+        </div>
       </a>
     </div>
+    
     <div class="back" *ngIf="onHowerChangeImage">
       <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
         <img
