@@ -108,11 +108,15 @@
       <p>{{ product?.description }}</p>
       <div>
         <h4>
-         <del>{{ product?.originalPrice | currency }}</del> 
-        
-            <span class="money"  *ngIf="product?.discountPrice">
-              {{ product?.discountPrice | currency }}</span>
+          <ng-container *ngIf="product?.discountPrice">
+            <del>{{ product?.originalPrice | currency }}</del>
+            <span class="money">{{ product?.discountPrice | currency }}</span>
+          </ng-container>
+          <ng-container *ngIf="!product?.discountPrice">
+            {{ product?.originalPrice | currency }}
+          </ng-container>
         </h4>
+        
       </div>
       <!-- <ul class="color-variant" *ngIf="Color(product?.variants).length">
         <li [class]="color" *ngFor="let color of Color(product?.variants)" [ngStyle]="{'background-color': color}"
