@@ -9,11 +9,12 @@
         <div style="position: relative; display: inline-block;">
           <!-- En çok satan etiketi -->
 
-            <div *ngFor="let item of showTopCollection" >
-              <div *ngIf="item ==true" >
-              <img loading="lazy" class="product-stamp ul ca" src="https://cdn.dsmcdn.com//marketing/datascience/automation/2020/12/9/EnCokSatan_202012091129.png">
+          <div *ngFor="let item of sortedProducts">
+            <div *ngIf="showTopCollection">
+              <img *ngIf="item._id == product._id" loading="lazy" class="product-stamp ul ca" src="https://cdn.dsmcdn.com//marketing/datascience/automation/2020/12/9/EnCokSatan_202012091129.png">
             </div>
-            </div>
+          </div>
+          
         
           <!-- Ürün resmi -->
           <img
