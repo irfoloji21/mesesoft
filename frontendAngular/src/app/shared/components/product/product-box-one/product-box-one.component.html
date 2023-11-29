@@ -90,12 +90,10 @@
       <p>{{ product?.description }}</p>
       <div>
         <h4>
-          {{ product?.originalPrice | currency }}
-          <del *ngIf="product?.discountPrice"
-            ><span class="money">
-              {{ product?.discountPrice | currency }}</span
-            ></del
-          >
+         <del>{{ product?.originalPrice | currency }}</del> 
+        
+            <span class="money"  *ngIf="product?.discountPrice">
+              {{ product?.discountPrice | currency }}</span>
         </h4>
       </div>
       <!-- <ul class="color-variant" *ngIf="Color(product?.variants).length">

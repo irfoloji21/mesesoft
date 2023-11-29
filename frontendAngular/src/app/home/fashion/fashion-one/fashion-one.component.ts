@@ -23,6 +23,7 @@ export class FashionOneComponent implements OnInit {
   public collections: Collection[] = [];
   public sliders: any[] = [];
   public active;
+  public sortedProducts :any = []
   constructor(public productService: ProductService, public categoryService: CategoryService, public kolleksiyonService: KoleksiyonService,
     private router: Router,private route: ActivatedRoute) {
   this.productService.getProducts.subscribe((response: any) => {
@@ -50,6 +51,9 @@ export class FashionOneComponent implements OnInit {
     });
   });
 }
+
+
+
 
   public ProductSliderConfig: any = ProductSlider;
 
@@ -99,7 +103,17 @@ export class FashionOneComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
+
+    this.productService.getProducts.subscribe((products: any) => {
+      const productArray = Array.isArray(products.products) ? products.products : []; 
+
+      this.sortedProducts = productArray
+        .filter(product => product.sold_out > 0) // sıfırdan büyük olanları filtrele
+        .sort((a, b) => b.sold_out - a.sold_out);
+    
+      console.log(this.sortedProducts)
+    });
+    
   }
 
 
@@ -109,7 +123,7 @@ export class FashionOneComponent implements OnInit {
       const productArray = Array.isArray(products.products) ? products.products : [];
     
       const filteredProducts = productArray
-         .filter(product => product.gender === 'cocuk')
+         .filter(product => product.gender === 'man')
         .filter(product => product.discountPrice > 0)   
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
@@ -135,7 +149,7 @@ export class FashionOneComponent implements OnInit {
       const productArray = Array.isArray(products.products) ? products.products : [];
     
       const filteredProducts = productArray
-         .filter(product => product.gender === 'cocuk')
+         .filter(product => product.gender === 'woman')
         .filter(product => product.discountPrice > 0)   
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;

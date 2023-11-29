@@ -90,7 +90,7 @@
           class="product-m no-arrow"
           [options]="ProductSliderConfig"
         >
-          <ng-container *ngFor="let product of products | slice : 0 : 16">
+          <ng-container *ngFor="let product of sortedProducts | slice : 0 : 10">
             <ng-template carouselSlide>
               <div class="product-box">
                 <app-product-box-one
@@ -113,11 +113,11 @@
 
 <!-- Parallax banner start-->
 <section class="p-0">
-  <div
+  <div style="cursor: pointer;"
     class="full-banner parallax-banner1 parallax text-center p-left"
-    [ngStyle]="{ 'background-image': 'url(assets/images/parallax/1.jpg)' }"
+    [ngStyle]="{ 'background-image': 'url(assets/images/TrendPhoto.jpeg)' }"
   >
-    <div class="container">
+    <div class="container"> 
       <div class="row">
         <div class="col">
           <div class="banner-contain">
@@ -133,7 +133,7 @@
 <!-- Parallax banner End -->
 
 <!-- Tab product start-->
-<div class="title1 section-t-space">
+<!-- <div class="title1 section-t-space">
   <h4>exclusive products</h4>
   <h2 class="title-inner1">special products</h2>
 </div>
@@ -141,35 +141,19 @@
   <div class="container">
     <div class="row">
       <div class="col theme-tab">
-        <ul
-          ngbNav
-          #nav="ngbNav"
-          [(activeId)]="active"
-          class="tabs tab-title justify-content-center nav nav-pills"
-        >
-          <li
-            *ngFor="let collection of productCollections"
-            [ngbNavItem]="collection"
-          >
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="tabs tab-title justify-content-center nav nav-pills" >
+          <li *ngFor="let collection of productCollections" [ngbNavItem]="collection">
             <a ngbNavLink>
-              {{ collection }}
+               {{ collection }}
             </a>
             <ng-template ngbNavContent>
               <div class="no-slider row">
-                <ng-container
-                  *ngFor="
-                    let product of getCollectionProducts(collection)
-                      | slice : 0 : 8
-                  "
-                >
-                  <div class="product-box">
-                    <app-product-box-one
-                      [product]="product"
-                      [currency]="productService?.Currency"
-                    >
-                    </app-product-box-one>
-                  </div>
-                </ng-container>
+                  <ng-container *ngFor="let product of getCollectionProducts(collection) | slice:0:8">
+                      <div class="product-box">
+                          <app-product-box-one [product]="product" [currency]="productService?.Currency">
+                          </app-product-box-one>
+                      </div>
+                  </ng-container>
               </div>
             </ng-template>
           </li>
@@ -178,7 +162,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- Tab product End -->
 
 <!-- services start-->
