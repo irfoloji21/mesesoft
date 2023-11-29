@@ -1,8 +1,11 @@
 <div class="pro_inventory" *ngIf="stock <= 5">
-    <p class="active">
-      Hurry! We have only {{ stock }} product in stock.
-    </p>
-    <div class="inventory-scroll nostripes active">
-      <span style="width: 95%;"></span>
-    </div>
+  <p class="active">
+    Hurry! We have only {{ stock }} product in stock.
+  </p>
+  <div class="inventory-scroll nostripes active">
+    <span [style.width.%]="(stock / 10) * 100"></span>
+  </div>
 </div>
+
+ <!-- backendten max stock gelince stok bulma oranını şunla değiş
+ <span [style.width.%]="stock / maxStock * 100"></span> -->

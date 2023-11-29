@@ -51,7 +51,7 @@ export class ProductBoxOneComponent implements OnInit {
         const topCollectionIds = this.sortedProducts.map(product => product._id);
 
         this.showTopCollection = productArray.map(product => topCollectionIds.includes(product._id));
-        console.log(this.showTopCollection , "topCollectionIds ençok satan")
+        // console.log(this.showTopCollection , "topCollectionIds ençok satan")
     });
     console.log(this.sortedProducts, "sortedProducts");
   }

@@ -24,7 +24,7 @@ export class FashionOneComponent implements OnInit {
   public sliders: any[] = [];
   public active;
   public sortedProducts :any = []
-  constructor(public productService: ProductService, public categoryService: CategoryService, public kolleksiyonService: KoleksiyonService,
+  constructor(public productService: ProductService, public categoryService: CategoryService, public collectionService: KoleksiyonService,
     private router: Router,private route: ActivatedRoute) {
   this.productService.getProducts.subscribe((response: any) => {
     this.products = response.products
@@ -40,7 +40,7 @@ export class FashionOneComponent implements OnInit {
       });
   });
 
-  this.kolleksiyonService.getKoleksiyons().subscribe((response: any) => {
+  this.collectionService.getKoleksiyons().subscribe((response: any) => {
     this.collections = response.koleksiyons;
     this.sliders = this.collections.filter(collection => collection.isShow === true).map(collection => {
       return {
@@ -129,7 +129,7 @@ export class FashionOneComponent implements OnInit {
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
           console.log(discountPercentage, "discountPercentage"); 
-          return discountPercentage <=  100;
+          return discountPercentage <=  50;
         });
   
       const productIds = filteredProducts.map(product => product._id);
@@ -155,7 +155,7 @@ export class FashionOneComponent implements OnInit {
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
           console.log(discountPercentage, "discountPercentage"); 
-          return discountPercentage <=  100;
+          return discountPercentage <=  50;
         });
   
       const productIds = filteredProducts.map(product => product._id);
