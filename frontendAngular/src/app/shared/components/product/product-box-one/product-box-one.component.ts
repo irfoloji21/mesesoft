@@ -37,24 +37,21 @@ export class ProductBoxOneComponent implements OnInit {
 
 
 
-private loadData(): void {
-  let productsArray = Array.isArray(this.product) ? this.product : [this.product];
-  console.log(productsArray, "productsArray");
+  private loadData(): void {
+    let productsArray = Array.isArray(this.product) ? this.product : [this.product];
+    console.log(productsArray, "productsArray");
 
-  this.filteredProducts = productsArray
-    .filter(product => product.discountPrice > 0)
-    .filter(product => {
-      let discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
-      console.log(discountPercentage, "discountPercentage");
-      return discountPercentage 
-    })
-    .map(product => {
-      
-      this.discountPercentages.push(((product.originalPrice - product.discountPrice) / product.originalPrice) * 100);
-      return product._id;
-    });
-
-}
+    this.filteredProducts = productsArray
+      .filter(product => product.discountPrice > 0)
+      .map(product => {
+        let discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
+        console.log(discountPercentage, "discountPercentage");
+        this.discountPercentages.push(discountPercentage);
+        return product._id;
+      });
+  }
+  
+  
 
 
 

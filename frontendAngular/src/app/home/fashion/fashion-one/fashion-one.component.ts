@@ -103,21 +103,18 @@ export class FashionOneComponent implements OnInit {
   }
 
 
-  updateCollections(): void {
-    this.loadData();
-  }
-  private loadData(): void {
+
+   loadDataMen(): void {
     this.productService.getProducts.subscribe((products: any) => {
       const productArray = Array.isArray(products.products) ? products.products : [];
     
-      // Filtreleme işlemleri
       const filteredProducts = productArray
-          // .filter(product => product.gender === 'kadın')
+         .filter(product => product.gender === 'cocuk')
         .filter(product => product.discountPrice > 0)   
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
           console.log(discountPercentage, "discountPercentage"); 
-          return discountPercentage < 0.2;
+          return discountPercentage <=  100;
         });
   
       const productIds = filteredProducts.map(product => product._id);
@@ -133,7 +130,31 @@ export class FashionOneComponent implements OnInit {
     });
   }
 
-
+   loadDataWoman(): void {
+    this.productService.getProducts.subscribe((products: any) => {
+      const productArray = Array.isArray(products.products) ? products.products : [];
+    
+      const filteredProducts = productArray
+         .filter(product => product.gender === 'cocuk')
+        .filter(product => product.discountPrice > 0)   
+        .filter(product => {
+          const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
+          console.log(discountPercentage, "discountPercentage"); 
+          return discountPercentage <=  100;
+        });
+  
+      const productIds = filteredProducts.map(product => product._id);
+      
+      const queryParams = {
+        filteredIds: productIds.join(',')
+      };
+  
+      this.router.navigate(['/shop/collection/left/sidebar'], {
+        queryParams,
+        queryParamsHandling: 'merge' 
+      });
+    });
+  }
 
 
 
