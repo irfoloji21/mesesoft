@@ -11,6 +11,7 @@ import { ProductService } from "../../../services/product.service";
 })
 export class ProductBoxOneComponent implements OnInit {
 
+
   @Input() product: Product;
   @Input() currency: any = this.productService.Currency; // Default Currency 
   @Input() thumbnail: boolean = false; // Default False 
@@ -18,7 +19,10 @@ export class ProductBoxOneComponent implements OnInit {
   @Input() cartModal: boolean = false; // Default False
   @Input() loader: boolean = false;
   filteredProducts : any =[]
+  isTopCollection:boolean=false;
+  public sortedProducts :any = []
   discountPercentages: number[] = [];
+  showTopCollection:boolean
   @ViewChild("quickView") QuickView: QuickViewComponent;
   @ViewChild("cartModal") CartModal: CartModalComponent;
 
@@ -31,10 +35,30 @@ export class ProductBoxOneComponent implements OnInit {
       setTimeout(() => { this.loader = false; }, 2000); // Skeleton Loader
     }
      this.loadData();
+     this.topCollection();
     
   }
 
+  topCollection() {
+    this.productService.getProducts.subscribe((products: any) => {
+      const productArray = Array.isArray(products.products) ? products.products : []; 
+  
 
+      const filteredProductsBest = productArray.filter(product => product.sold_out > 0);
+
+        this.sortedProducts = filteredProductsBest.sort((a, b) => b.sold_out - a.sold_out);
+
+        const topCollectionIds = this.sortedProducts.map(product => product._id);
+
+        this.showTopCollection = productArray.map(product => topCollectionIds.includes(product._id));
+        console.log(this.showTopCollection , "topCollectionIds ençok satan")
+    });
+    console.log(this.sortedProducts, "sortedProducts");
+  }
+  
+
+  
+  
 
 
   private loadData(): void {

@@ -104,19 +104,20 @@ export class FashionOneComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.productService.getProducts.subscribe((products: any) => {
-      const productArray = Array.isArray(products.products) ? products.products : []; 
-
-      this.sortedProducts = productArray
-        .filter(product => product.sold_out > 0) // sıfırdan büyük olanları filtrele
-        .sort((a, b) => b.sold_out - a.sold_out);
-    
-      console.log(this.sortedProducts)
-    });
-    
+    this.topCollection();
   }
-
-
+  
+  topCollection(){
+     this.productService.getProducts.subscribe((products: any) => {
+       const productArray = Array.isArray(products.products) ? products.products : []; 
+   
+       this.sortedProducts = productArray
+         .filter(product => product.sold_out > 0)
+         .sort((a, b) => b.sold_out - a.sold_out);
+     
+       console.log(this.sortedProducts)
+     });
+   }
 
    loadDataMen(): void {
     this.productService.getProducts.subscribe((products: any) => {
