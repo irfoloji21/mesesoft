@@ -1794,6 +1794,10 @@ header {
     left: 25%;
     transition-delay: 0.025s;
   }
+  .img-fluid {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
   span {
     &:before,
     &:after {
@@ -6991,6 +6995,8 @@ ngx-loading-bar {
     }
     img {
       margin-bottom: 40px;
+      object-fit: cover;
+      max-height: 450px;
     }
     h3 {
       color: $dark-font;
@@ -7106,6 +7112,20 @@ ngx-loading-bar {
 .blog {
   .title-inner1 {
     margin-bottom: 35px;
+  }
+  .post-social {
+    color: $grey;
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $round-border;
+    margin-bottom: 15px;
+    li {
+      & + li {
+        padding-left: 15px;
+        margin-left: 15px;
+        border-left: 1px solid $round-border;
+      }
+    }
   }
 }
 

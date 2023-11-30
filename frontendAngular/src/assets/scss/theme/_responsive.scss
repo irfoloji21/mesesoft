@@ -3823,6 +3823,19 @@ background-color: $black;*/
       }
     }
   }
+  .blog {
+    .post-social {
+      li {
+        display: block;
+        margin: 5px 0;
+        & + li {
+          padding-left: 0;
+          margin-left: 0;
+          border-left: none;
+        }
+      }
+    }
+  }
   .product-pagination {
     .pagination {
       justify-content: center;

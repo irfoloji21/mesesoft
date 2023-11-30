@@ -23,7 +23,17 @@
             <p>{{ blog.name }}</p>
           </a>
           <hr class="style1" />
-          <h6>by: {{ blog.name }}, {{ "blog.comments" }}</h6>
+          <ul class="post-social">
+            <li>Posted By : {{ blog.shop.name }}</li>
+            <li>
+              <i class="fa fa-heart"></i>
+              {{ blog.likes || 0 }} Hits
+            </li>
+            <li>
+              <i class="fa fa-comments"></i>
+              {{ blog.reviews.length || 0 }} Comment(s)
+            </li>
+          </ul>
         </div>
       </div>
     </ng-template>
