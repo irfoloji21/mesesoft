@@ -9,75 +9,65 @@ import { ProductService } from "../../../services/product.service";
   templateUrl: './product-box-one.component.html',
   styleUrls: ['./product-box-one.component.scss']
 })
+
 export class ProductBoxOneComponent implements OnInit {
-
-
   @Input() product: Product;
   @Input() currency: any = this.productService.Currency; // Default Currency 
   @Input() thumbnail: boolean = false; // Default False 
   @Input() onHowerChangeImage: boolean = false; // Default False
   @Input() cartModal: boolean = false; // Default False
   @Input() loader: boolean = false;
-  filteredProducts : any =[]
-  isTopCollection:boolean=false;
-  public sortedProducts :any = []
+  filteredProducts: any = []
+  isTopCollection: boolean = false;
+  public sortedProducts: any = []
+  public ImageSrc: string
   discountPercentages: number[] = [];
-  showTopCollection:boolean
+  showTopCollection: boolean
   @ViewChild("quickView") QuickView: QuickViewComponent;
   @ViewChild("cartModal") CartModal: CartModalComponent;
-
-  public ImageSrc : string
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    if(this.loader) {
+    if (this.loader) {
       setTimeout(() => { this.loader = false; }, 2000); // Skeleton Loader
     }
-     this.loadData();
-     this.topCollection();
-    
+    this.loadData();
+    this.topCollection();
   }
 
   topCollection() {
     this.productService.getProducts.subscribe((products: any) => {
-      const productArray = Array.isArray(products.products) ? products.products : []; 
-  
-
+      const productArray = Array.isArray(products.products) ? products.products : [];
       const filteredProductsBest = productArray.filter(product => product.sold_out > 0);
-
-        this.sortedProducts = filteredProductsBest.sort((a, b) => b.sold_out - a.sold_out);
-
-        const topCollectionIds = this.sortedProducts.map(product => product._id);
-
-        this.showTopCollection = productArray.map(product => topCollectionIds.includes(product._id));
-        // console.log(this.showTopCollection , "topCollectionIds ençok satan")
+      this.sortedProducts = filteredProductsBest.sort((a, b) => b.sold_out - a.sold_out);
+      const topCollectionIds = this.sortedProducts.map(product => product._id);
+      this.showTopCollection = productArray.map(product => topCollectionIds.includes(product._id));
+      // console.log(this.showTopCollection , "topCollectionIds ençok satan")
     });
-    console.log(this.sortedProducts, "sortedProducts");
+    // console.log(this.sortedProducts, "sortedProducts");
   }
-  
-
-  
-  
-
 
   private loadData(): void {
     let productsArray = Array.isArray(this.product) ? this.product : [this.product];
-    console.log(productsArray, "productsArray");
+    // console.log(productsArray, "productsArray");
 
     this.filteredProducts = productsArray
       .filter(product => product.discountPrice > 0)
       .map(product => {
         let discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
-        console.log(discountPercentage, "discountPercentage");
+        // console.log(discountPercentage, "discountPercentage");
         this.discountPercentages.push(discountPercentage);
         return product._id;
       });
   }
-  
-  
 
-
+  truncateProductName(name: string, maxLength: number): string {
+    if (name.length > maxLength) {
+      return name.substring(0, maxLength) + '...';
+    }
+    return name;
+  }
 
   // Get Product Color
   Color(variants) {

@@ -12,9 +12,10 @@
 
   .img-fluid {
     max-width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 0/1;
+    height: 400px;
     mix-blend-mode: normal;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .discount-label {
