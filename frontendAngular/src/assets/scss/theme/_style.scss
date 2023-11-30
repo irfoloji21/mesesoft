@@ -2556,7 +2556,7 @@ header {
   .img-wrapper {
     position: relative;
     overflow: hidden;
-    max-height: 400px;
+    max-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6299,6 +6299,7 @@ ngx-loading-bar {
             .img-fluid {
               aspect-ratio: 1/1;
               height: 300px;
+              object-fit: contain;
             }
           }
         }
@@ -6312,7 +6313,8 @@ ngx-loading-bar {
             .front {
                 .img-fluid {
                 aspect-ratio: 1/1;
-                height: 500px;
+                height: 400px;
+                object-fit: contain;
                 }
             }
             }
