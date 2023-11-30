@@ -20,19 +20,31 @@ export class SliderComponent implements OnInit {
   @Input() buttonText: string;
   @Input() buttonClass: string;
   @Input() products: any  =[]
+  slider : any =[]
   constructor(public productService: ProductService, public categoryService: CategoryService, public collectionService: KoleksiyonService,
     private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
   }
+
   shopNow(slider: any) {
+    this.collectionService.getKoleksiyons().subscribe(res => {
+      this.slider=res;
+    })
+    if (slider.subTitle==="The most liked products") {
+      this.shopNowMostLiked();
+    } else if (slider.subTitle==="Recently added products") {
+      this.shopNowNewProducts();
+    }
+  }
+
+  shopNowMostLiked() {
     this.productService.getProducts.subscribe((response: any) => {
       this.products = response.products;
     });
     const productsArray = Array.isArray(this.products) ? this.products : [this.products];
     const filteredProducts = productsArray.filter((product) => product.ratings >= 3 && product.ratings <= 5);
     const productIdss = filteredProducts.map((product) => product._id);
-    console.log(productIdss, "productIdss");
 
     const queryParams = {
       theMostLiked: productIdss,
@@ -43,6 +55,32 @@ export class SliderComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
   }
+  shopNowNewProducts() {
+    this.productService.getProducts.subscribe((response: any) => {
+      this.products = response.products;
+
+      const currentDate = new Date();
+      const tenDaysAgo = new Date(currentDate);
+      tenDaysAgo.setDate(currentDate.getDate() - 10);
+
+      const filteredProducts = this.products.filter((product) => {
+        const createdAtDate = new Date(product.createdAt);
+        return createdAtDate >= tenDaysAgo && createdAtDate <= currentDate;
+      });
+
+      const newProductsId = filteredProducts.map((product) => product._id);
+
+      const queryParams = {
+        theMostLiked: newProductsId,
+      };
+
+      this.router.navigate(['/shop/collection/left/sidebar'], {
+        queryParams,
+        queryParamsHandling: 'merge',
+      });
+    });
+  }
+
   public HomeSliderConfig: any = HomeSlider;
 
 }
