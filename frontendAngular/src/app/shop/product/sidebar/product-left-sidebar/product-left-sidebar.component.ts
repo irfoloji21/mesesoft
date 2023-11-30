@@ -7,17 +7,15 @@ import { AuthService } from '../../../../shared/services/auth.service';
 import { SizeModalComponent } from "../../../../shared/components/modal/size-modal/size-modal.component";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient } from '@angular/common/http';
-import { userInfo } from 'os';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-product-left-sidebar',
   templateUrl: './product-left-sidebar.component.html',
   styleUrls: ['./product-left-sidebar.component.scss']
 })
-export class ProductLeftSidebarComponent implements OnInit {
- 
 
+export class ProductLeftSidebarComponent implements OnInit {
   public product: Product = {};
   public counter: number = 1;
   public activeSlide: any = 0;
@@ -26,23 +24,25 @@ export class ProductLeftSidebarComponent implements OnInit {
   public active = 1;
   visibleReviews: number = 2;
   reviewForm: FormGroup;
-  selectedRating: number ;
-  comment:any = {}
-  @ViewChild("sizeChart") SizeChart: SizeModalComponent;
-
+  selectedRating: number;
+  comment: any = {}
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
+  @ViewChild("sizeChart") SizeChart: SizeModalComponent;
 
-  constructor(private route: ActivatedRoute, private router: Router,
-    public productService: ProductService , private formBuilder: FormBuilder, private toastr: ToastrService, public authService: AuthService,
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router,
+    public productService: ProductService, 
+    private formBuilder: FormBuilder, 
+    private toastr: ToastrService, 
+    public authService: AuthService,
     private sanitizer: DomSanitizer
-    ) {
-      
+  ) {
     this.route.data.subscribe(response => {
       this.product = response.data.product;
-        console.log(this.product, "comentArea")
       this.reviewForm = this.formBuilder.group({
-        rating: [ null , Validators.required],
+        rating: [null, Validators.required],
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         reviewTitle: ['', Validators.required],
@@ -51,44 +51,36 @@ export class ProductLeftSidebarComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.submitReview();
+  }
 
-   }
- 
-
-   sanitizeHtml(html: string): SafeHtml {
+  sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
-  
-   
-   hideMoreReviews() {
-    this.visibleReviews = 2; 
+
+  hideMoreReviews() {
+    this.visibleReviews = 2;
   }
-   showMoreReviews() {
-  this.visibleReviews += 3;
+  showMoreReviews() {
+    this.visibleReviews += 3;
     console.log(this.visibleReviews, "visibleReviews")
   }
-  
 
-   // aynı kullanıcı birden fazla yorum yapınca "Cannot read properties of undefined (reading '_id')" hatası veriyor.
-   // onun yerine zaten yorumun var uyarısı versin ya da yorum yapılmışsa yorum kısmı uçsun. öpüldünüz...
-   submitReview() {
+  // aynı kullanıcı birden fazla yorum yapınca "Cannot read properties of undefined (reading '_id')" hatası veriyor.
+  // onun yerine zaten yorumun var uyarısı versin ya da yorum yapılmışsa yorum kısmı uçsun. öpüldünüz...
+  submitReview() {
     if (this.reviewForm.valid) {
       const user = this.authService.getUser();
-      console.log("writeRewiev", user);
-
       this.comment = {
-        productId: this.product._id, 
-        rating: this.reviewForm.value.rating, 
+        productId: this.product._id,
+        rating: this.reviewForm.value.rating,
         comment: this.reviewForm.value.comment,
         name: this.reviewForm.value.name,
         email: this.reviewForm.value.email,
         reviewTitle: this.reviewForm.value.reviewTitle,
         user: user
       };
-      console.log("comment", this.comment);
-
       this.productService.createNewReview(this.comment).subscribe({
         next: (response) => {
           console.log('Backend Cevap', response);
@@ -96,27 +88,23 @@ export class ProductLeftSidebarComponent implements OnInit {
         },
         error: (error) => {
           console.error('Backend Hata:', error);
-            this.toastr.error('An error occurred while sending the evaluation', 'Error');
+          this.toastr.error('An error occurred while sending the evaluation', 'Error');
         }
       });
       this.reviewForm.reset();
       this.selectedRating = 0;
     }
   }
-  
-  
 
   setRating(star: number) {
     if (star === this.selectedRating) {
       this.selectedRating = 0;
     } else {
       this.selectedRating = star;
-      this.reviewForm.get('rating').setValue(this.selectedRating); 
+      this.reviewForm.get('rating').setValue(this.selectedRating);
     }
-    
+
   }
-  
-  
 
   // Get Product Color 
   Color(variants) {
@@ -179,5 +167,4 @@ export class ProductLeftSidebarComponent implements OnInit {
   toggleMobileSidebar() {
     this.mobileSidebar = !this.mobileSidebar;
   }
-
 }
