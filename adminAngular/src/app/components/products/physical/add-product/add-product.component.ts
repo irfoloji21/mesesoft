@@ -6,48 +6,47 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { CategoryService } from 'src/app/shared/service/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-
-
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
+
   id: string;
   categories: any[] = [];
   selectedCategory: string = '';
   buttonText: string = 'Add';
-
   public productForm: UntypedFormGroup;
   public Editor = ClassicEditor;
   public counter: number = 1;
-  public url = [{
-    img: "assets/images/user.png",
-  },
-  {
-    img: "assets/images/user.png",
-  },
-  {
-    img: "assets/images/user.png",
-  },
-  {
-    img: "assets/images/user.png",
-  },
-  {
-    img: "assets/images/user.png",
-  }
+
+  public url = [
+    {
+      img: "assets/images/user.png",
+    },
+    {
+      img: "assets/images/user.png",
+    },
+    {
+      img: "assets/images/user.png",
+    },
+    {
+      img: "assets/images/user.png",
+    },
+    {
+      img: "assets/images/user.png",
+    }
   ]
 
-  constructor(private fb: UntypedFormBuilder,  
-    private productService: ProductService, 
-    private authService: AuthService, 
+  constructor(
+    private fb: UntypedFormBuilder,
+    private productService: ProductService,
+    private authService: AuthService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router) {
-
-
+    private router: Router
+  ) {
     this.productForm = this.fb.group({
       name: [''],
       slug: [''],
@@ -90,23 +89,21 @@ export class AddProductComponent implements OnInit {
   onFileChange(event: any, i: number) {
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
-  
+
       // Dosya okuma işlemi
       for (let j = 0; j < files.length; j++) {
         const file = files[j];
         const reader = new FileReader();
-  
+
         reader.onload = (e: any) => {
           // Tek tek her dosyayı images dizisine ekleyin
           const imageUrls = this.productForm.get('images').value || [];
           imageUrls.push(e.target.result);
-  
+
           // images alanını güncelleyin
           this.productForm.get('images').setValue(imageUrls);
-  
-      
         };
-  
+
         reader.readAsDataURL(file);
       }
     }
@@ -114,19 +111,14 @@ export class AddProductComponent implements OnInit {
 
   performAction() {
     if (this.buttonText === 'Add') {
-      
       this.submitForm();
     } else if (this.buttonText === 'Edit') {
-      
-      this.editProduct(); 
+      this.editProduct();
     }
   }
-  
-  
 
   //Submit form
   submitForm() {
- 
     if (this.productForm.valid) {
       const formData = this.productForm.value;
       const shop = this.authService.getShop();
@@ -169,7 +161,6 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
       (response) => {
@@ -196,5 +187,4 @@ export class AddProductComponent implements OnInit {
       );
     });
   }
-
 }
