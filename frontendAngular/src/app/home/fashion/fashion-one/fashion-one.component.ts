@@ -20,38 +20,24 @@ export class FashionOneComponent implements OnInit {
   public products: Product[] = [];
   public productCollections: any[] = [];
   public categories: Category[] = [];
-  public collections: Collection[] = [];
+  public collections: any = [];
   public sliders: any[] = [];
   public active;
   public sortedProducts :any = []
   constructor(public productService: ProductService, public categoryService: CategoryService, public collectionService: KoleksiyonService,
     private router: Router,private route: ActivatedRoute) {
-  this.productService.getProducts.subscribe((response: any) => {
-    this.products = response.products
-    this.productCollections = this.products
-      .filter(product => product.sold_out > '0')  // Filtreleme işlemi
-      .map(product => {
-        const image = (product.images as any[]).map(image => image.url);
-        return {
-          title: product.name,
-          subTitle: product.description,
-          image,
-        };
-      });
-  });
-
-  this.collectionService.getKoleksiyons().subscribe((response: any) => {
-    this.collections = response.koleksiyons;
-    this.sliders = this.collections.filter(collection => collection.isShow === true).map(collection => {
-      return {
-        title: collection.name,
-        subTitle: collection.description,
-        image: collection?.images[0]?.url,
-      };
-    });
-  });
+      this.collectionService.getKoleksiyons().subscribe((response: any) => {
+        this.collections = response.koleksiyons;
+        this.sliders = this.collections
+        .filter(collection => collection.isShow === true)
+        .map(collection => ({
+          title: collection.name,
+          subTitle: collection.description,
+          image: collection?.images[0]?.url,
+        }));
+      
+      })
 }
-
 
 
 
@@ -104,6 +90,7 @@ export class FashionOneComponent implements OnInit {
 
   ngOnInit(): void {
 
+   
     this.topCollection();
   }
   
@@ -173,21 +160,5 @@ export class FashionOneComponent implements OnInit {
 
 
 
-  // Product Tab collection
-    getCollectionProducts(collection) {
-      return this.collections.filter((item) => {
-    //     console.log(item.title);
-        
-    //     if (item.title === collection) {
-    //       console.log(item);
-    //       return item
-    //     }
-      })
-      // return this.products.filter((item) => {
-        // if (item.collection.find(i => i === collection)) {
-        //   return item
-        // }
-      // })
-    }
 
 }

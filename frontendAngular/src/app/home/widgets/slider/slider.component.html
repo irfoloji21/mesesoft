@@ -9,11 +9,9 @@
 	              <div>
 	                <h4>{{slider.title}}</h4>
 	                <h1>{{slider.subTitle}}</h1>
-	                <a [routerLink]="['/shop/collection/left/sidebar']" 
-	                   [queryParams]="{ category: category, collection: slider.title}" 
-	                   class="btn btn-solid" [ngClass]="buttonClass">
-	                   {{buttonText}}
-	                </a>
+					<a (click)="shopNow(slider)" class="btn btn-solid" [ngClass]="buttonClass">
+						{{buttonText}}
+					  </a>					  
 	              </div>
 	            </div>
 	          </div>

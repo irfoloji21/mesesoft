@@ -34,6 +34,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public loader: boolean = true;
   public categoryContent :Category[] = []
   public filteredIds : any= []
+  public theMostLiked:any = []
   public selectedCategoryDetails: any = [];
   public searchQuery: string = '';
   constructor(private route: ActivatedRoute, private router: Router,
@@ -43,7 +44,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
 
       this.filteredIds = params.filteredIds ? params.filteredIds.split(',') : [];
-      console.log(this.filteredIds, 'Filtered Product Ids')
+       this.theMostLiked = params.theMostLiked ?params.theMostLiked : [];
+      console.log(this.theMostLiked,"theMostLiked")
       this.searchQuery = params.search ? params.search : '';
       this.brands = params.brand ? params.brand.split(",") : [];
       this.colors = params.color ? params.color.split(",") : [];
@@ -64,18 +66,19 @@ export class CollectionLeftSidebarComponent implements OnInit {
      
      
       this.productService.filterProducts(this.tags).subscribe((response:any) => {
-        console.log(this.Megamenu , "megaMenu")
         // console.log(response[0].products , "Collection")
      
         this.products = this.parseResponse(response);
-      
+        if (this.theMostLiked.length > 0) {
+          // theMostLiked
+          this.products = this.products.filter(item => this.theMostLiked.includes(item._id));
+        }
         this.products = this.productService.sortProducts(this.products, this.sortBy);
 
          // collection %50 filter
            if (this.filteredIds && this.filteredIds.length > 0) {
           this.products = this.products.filter(item => this.filteredIds.includes(item._id));
           }
-
 
               // Megamenu Filter
               if (this.Megamenu) {

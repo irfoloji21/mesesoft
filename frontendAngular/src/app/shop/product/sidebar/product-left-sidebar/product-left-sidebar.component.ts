@@ -53,6 +53,7 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.submitReview();
 
    }
+ 
 
 
    
