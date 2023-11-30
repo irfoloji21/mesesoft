@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { userInfo } from 'os';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-product-left-sidebar',
   templateUrl: './product-left-sidebar.component.html',
@@ -34,7 +34,9 @@ export class ProductLeftSidebarComponent implements OnInit {
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    public productService: ProductService , private formBuilder: FormBuilder, private toastr: ToastrService, public authService: AuthService) {
+    public productService: ProductService , private formBuilder: FormBuilder, private toastr: ToastrService, public authService: AuthService,
+    private sanitizer: DomSanitizer
+    ) {
       
     this.route.data.subscribe(response => {
       this.product = response.data.product;
@@ -55,7 +57,10 @@ export class ProductLeftSidebarComponent implements OnInit {
    }
  
 
-
+   sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+  
    
    hideMoreReviews() {
     this.visibleReviews = 2; 

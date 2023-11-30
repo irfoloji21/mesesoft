@@ -155,10 +155,10 @@
                 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
                   <li [ngbNavItem]="1">
                     <a ngbNavLink>Description</a>
-                        <ng-template ngbNavContent>
-                          <p>{{ product.description }}</p>
-                        </ng-template>
-                    </li>
+                    <ng-template ngbNavContent>
+                      <div [innerHTML]="sanitizeHtml(product.description)"></div>
+                    </ng-template>
+                  </li>
                     <li [ngbNavItem]="2">
                       <a ngbNavLink>Comments</a>
                       <ng-template ngbNavContent>
