@@ -70,7 +70,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
      
         this.products = this.parseResponse(response);
         if (this.theMostLiked.length > 0) {
-          // theMostLiked
+          // theMostLiked And Recently addedd products
           this.products = this.products.filter(item => this.theMostLiked.includes(item._id));
         }
         this.products = this.productService.sortProducts(this.products, this.sortBy);
