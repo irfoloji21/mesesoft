@@ -67,6 +67,22 @@ router.get(
   })
 );
 
+//get coupon by id
+router.get(
+  "/get-coupon-code/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const couponCode = await CoupounCode.findById(req.params.id);
+      res.status(201).json({
+        success: true,
+        couponCode,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
 //isSeller eklenecek
 router.delete(
   "/delete-coupon/:id",
