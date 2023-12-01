@@ -7110,8 +7110,7 @@ ngx-loading-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
+  }  
 }
 
 // blog-page //
@@ -7130,6 +7129,12 @@ ngx-loading-bar {
         padding-left: 15px;
         margin-left: 15px;
         border-left: 1px solid $round-border;
+      }
+      i.fa.fa-heart {
+        cursor: pointer;
+      }
+      .liked {
+        color: red;
       }
     }
   }

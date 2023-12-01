@@ -41,6 +41,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   ) {
     this.route.data.subscribe(response => {
       this.product = response.data.product;
+      this.product.ratings = this.roundToHalf(this.product.ratings);
       this.reviewForm = this.formBuilder.group({
         rating: [null, Validators.required],
         name: ['', Validators.required],
@@ -53,6 +54,17 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitReview();
+  }
+
+  roundToHalf(value: number): number {
+    const decimal = value - Math.floor(value);
+    if (decimal < 0.25) {
+      return Math.floor(value);
+    } else if (decimal < 0.75) {
+      return Math.floor(value) + 0.5;
+    } else {
+      return Math.ceil(value);
+    }
   }
 
   sanitizeHtml(html: string): SafeHtml {
