@@ -1,0 +1,36 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "phoneNumber": "123-456-7890",
+      "email": "john.doe@example.com",
+      "message": "This is a sample message."
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "phoneNumber": "987-654-3210",
+      "email": "jane.doe@example.com",
+      "message": "Another sample message."
+    },
+    {
+      "firstName": "asdasd",
+      "lastName": "asdasd",
+      "phoneNumber": "35435435",
+      "email": "asdas@asda.com",
+      "message": "asdasdasd",
+      "id": 3
+    },
+    {
+      "firstName": "Enver",
+      "lastName": "yiğit",
+      "phoneNumber": "532 524 17 12",
+      "email": "asdasd@asdas.com",
+      "message": "bu bir deneme mesajıdır.",
+      "id": 4
+    }
+  ]
+}
