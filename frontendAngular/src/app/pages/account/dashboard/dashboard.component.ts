@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
     { label: 'My Orders', component: OrderComponent },
     { label: 'My Wishlist', component: WishlistComponent },
     { label: 'Saved Card', component: SavedCardComponent },
-    { label: 'Change Passwort', component: ChangePasswordComponent },
+    { label: 'Change Password', component: ChangePasswordComponent },
     { label: 'Coupon' , component:CouponComponent}
   ]
 

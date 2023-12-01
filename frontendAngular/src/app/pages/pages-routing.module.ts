@@ -59,8 +59,9 @@ const routes: Routes = [
       { path: 'my-orders', component: OrderComponent },
       { path: 'my-wishlist', component: WishlistComponent },
       { path: 'saved-card', component: SavedCardComponent },
-      { path: 'change-passwort', component: ChangePasswordComponent },
+      { path: 'change-password', component: ChangePasswordComponent },
       { path: 'coupon', component: CouponComponent },
+      { path: '', redirectTo: 'my-account', pathMatch: 'full' }, 
     ],
   },
   { 
@@ -81,7 +82,7 @@ const routes: Routes = [
   // },
   {
     path: 'account-info',
-    component: AccountInfoComponent
+    component: AccountInfoComponent,
   },
   // {
   //   path: 'change/password',
