@@ -7,7 +7,7 @@ import { DashboardComponent } from './account/dashboard/dashboard.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { ForgetPasswordComponent } from './account/forget-password/forget-password.component';
-import { ChangePasswordComponent } from './account/change-password/change-password.component';
+
 import { ProfileComponent } from './account/profile/profile.component';
 import { ContactComponent } from './account/contact/contact.component';
 import { CheckoutComponent } from './account/checkout/checkout.component';
@@ -36,19 +36,32 @@ import { MasonryGridFourComponent } from './portfolio/masonry-grid-four/masonry-
 import { MasonryFullWidthComponent } from './portfolio/masonry-full-width/masonry-full-width.component';
 import { AddressComponent } from './account/address/address/address.component';
 import { AccountInfoComponent } from './account/account-info/account-info.component';
+import { OrderComponent } from './account/order/order.component';
+import { SavedCardComponent } from './account/saved-card/saved-card.component';
+import { CouponComponent } from './account/coupon/coupon.component';
+import { ChangePasswordComponent } from './account/change-password/change-password.component';
 
 const routes: Routes = [
-  { 
-    path: 'account/wishlist', 
-    component: WishlistComponent 
-  },
+  // { 
+  //   path: 'account/wishlist', 
+  //   component: WishlistComponent 
+  // },
   { 
     path: 'cart', 
     component: CartComponent 
   },
   { 
     path: 'dashboard', 
-    component: DashboardComponent 
+    component: DashboardComponent ,
+    children: [
+      { path: 'my-account', component: ProfileComponent },
+      { path: 'address-book', component: AddressComponent },
+      { path: 'my-orders', component: OrderComponent },
+      { path: 'my-wishlist', component: WishlistComponent },
+      { path: 'saved-card', component: SavedCardComponent },
+      { path: 'change-passwort', component: ChangePasswordComponent },
+      { path: 'coupon', component: CouponComponent },
+    ],
   },
   { 
     path: 'login', 
@@ -62,22 +75,22 @@ const routes: Routes = [
     path: 'forget/password', 
     component: ForgetPasswordComponent 
   },
-  { 
-    path: 'address', 
-    component: AddressComponent 
-  },
+  // { 
+  //   path: 'address', 
+  //   component: AddressComponent 
+  // },
   {
     path: 'account-info',
     component: AccountInfoComponent
   },
-  {
-    path: 'change/password',
-    component: ChangePasswordComponent
-  },
-  { 
-    path: 'profile', 
-    component: ProfileComponent 
-  },
+  // {
+  //   path: 'change/password',
+  //   component: ChangePasswordComponent
+  // },
+  // { 
+  //   path: 'profile', 
+  //   component: ProfileComponent 
+  // },
   { 
     path: 'contact', 
     component: ContactComponent 

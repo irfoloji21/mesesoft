@@ -4,11 +4,12 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { AddressComponent } from '../address/address/address.component';
-import { ChangePasswordComponent } from '../change-password/change-password.component';
+
 import { CouponComponent } from '../coupon/coupon.component';
 import { OrderComponent } from '../order/order.component';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { SavedCardComponent } from '../saved-card/saved-card.component';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-dashboard',
