@@ -23,6 +23,9 @@ export class CouponService {
   deleteCoupon(couponId: string): Observable<CouponCode> {
     return this.http.delete<CouponCode>(`${this.baseUrl}/coupon/delete-coupon/${couponId}`);
   }
+  getCouponById(couponId: string): Observable<CouponCode> {
+    return this.http.get<CouponCode>(`${this.baseUrl}/coupon/get-coupon-code/${couponId}`);
+  }
 
   getCouponValueByName(couponName: any): Observable<any> {
     return this.http.get<CouponCode>(`${this.baseUrl}/coupon/get-coupon-value/${couponName}`);

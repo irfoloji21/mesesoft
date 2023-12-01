@@ -1,37 +1,22 @@
-<h3>Kullanılan Kuponlar</h3>
+<h3 class="text-center">Used Coupons</h3>
 <section class="couponWrapper">
-    <div class="couponListSection">
-      <div class="couponCard used">
-        <div class="couponCard__positioning">
-          <div class="coupon">
-            <div class="couponCard__bg-gray" *ngFor="let coupon of coupons">
-              <p class="title">Sana Özel Kupon 1</p>
-              <p>{{coupon.couponID}}</p>
-              <p>{{coupon.quantity}}</p>
-              <p>{{coupon._id}}</p>
-              <ul>
-                <li>Geçerlilik Tarihi: 01.11.2023 - 30.11.2023</li><br>
-                <li>Toplam Fiyat: 500,00 TL</li>
-                <li>İndirim Tutarı: 50,00 TL</li>
-                <li>Kupon Başlangıç Tarihi: 01.11.2023 00:00</li>
-                <li>Kupon Bitiş Tarihi: 30.11.2023 23:59</li>
-                <li>Kar: 450,00 TL</li>
-              </ul>
-            </div>
-            <div class="couponCard__bg-gray">
-                <p class="title">Sana Özel Kupon 2</p>
-                <ul>
-                  <li>Geçerlilik Tarihi: 01.11.2023 - 30.11.2023</li><br>
-                  <li>Toplam Fiyat: 500,00 TL</li>
-                  <li>İndirim Tutarı: 50,00 TL</li>
-                  <li>Kupon Başlangıç Tarihi: 01.11.2023 00:00</li>
-                  <li>Kupon Bitiş Tarihi: 30.11.2023 23:59</li>
-                  <li>Kar: 450,00 TL</li>
-                </ul>
-              </div>
+  <div class="couponListSection">
+    <div class="couponCard used">
+      <div class="couponCard__positioning">
+        <div class="coupon">
+          <div class="couponCard__bg-gray" *ngFor="let coupon of coupons">
+            <p style="color: #ff4c3b;" class="title">{{coupon.name}}</p>
+            <p>{{coupon.couponID}}</p>
+            <ul>
+              <li style="color: green;">Discount: 
+                {{ coupon.discount_type === 'percentage' ? coupon.quantity + '%' : (coupon.quantity | currency:'USD':'symbol') }}
+              </li> <br>
+              <li>Coupon Start Date: <span style="font-size: larger; font-weight: bold;">{{coupon.createdAt | date}}</span></li> <br>
+              <li>CouponId: {{coupon._id}}</li> 
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

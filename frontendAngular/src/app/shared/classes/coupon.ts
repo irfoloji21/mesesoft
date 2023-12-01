@@ -1,4 +1,5 @@
 export interface CouponCode {
+  couponCode:any
     _id: string;
     name: string;
     code: string;
