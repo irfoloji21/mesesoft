@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../../../shared/classes/product';
+import { BrandsColorSizeService } from 'src/app/shared/services/brands-color-size.service';
 
 @Component({
   selector: 'app-brands',
@@ -15,10 +16,14 @@ export class BrandsComponent implements OnInit {
   
   public collapse: boolean = true;
 
-  constructor() { 
+  constructor(private serivce : BrandsColorSizeService) { 
   }
 
   ngOnInit(): void {
+    this.serivce.getBrands().subscribe(res =>{
+      console.log(res , "brandss")
+    })
+    this.filterbyBrand
   }
 
   get filterbyBrand() {
@@ -28,6 +33,7 @@ export class BrandsComponent implements OnInit {
         const index = uniqueBrands.indexOf(product.brand)
         if (index === -1) uniqueBrands.push(product.brand)
       }
+    console.log(this.brands , "this.brands")
     })
     return uniqueBrands
   }

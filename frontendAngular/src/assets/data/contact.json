@@ -31,6 +31,38 @@
       "email": "asdasd@asdas.com",
       "message": "bu bir deneme mesajıdır.",
       "id": 4
+    },
+    {
+      "firstName": "Enver",
+      "lastName": "yiğit",
+      "phoneNumber": "45342432",
+      "email": "asdasd@asdasd.com",
+      "message": "Bu bir deneme yorumudur.",
+      "id": 5
+    },
+    {
+      "firstName": "deneme",
+      "lastName": "yiğit",
+      "phoneNumber": "45342432",
+      "email": "asdasd@asdasd.com",
+      "message": "aasasdasdasdasdasd",
+      "id": 6
+    },
+    {
+      "firstName": "irfan",
+      "lastName": "müşteri",
+      "phoneNumber": "345345",
+      "email": "irfnms@gmail.com",
+      "message": "asdasdasdasdad",
+      "id": 7
+    },
+    {
+      "firstName": "deneme",
+      "lastName": "deneme",
+      "phoneNumber": "435346456",
+      "email": "asdas@asdas.com",
+      "message": "asdasdasdasd",
+      "id": 8
     }
   ]
 }

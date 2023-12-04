@@ -32,12 +32,12 @@ export class ContactComponent implements OnInit {
 
     this.contactService.addMessage(message).subscribe(
       updatedMessages => {
-        console.log('Message added successfully:', updatedMessages);
+        console.log('Message send successfully:', updatedMessages);
         this.contactForm.reset();
-        this.toastr.success('Address added successfully', 'Success');
+        this.toastr.success('Message send successfully', 'Success');
       },
       error => {
-        console.error('Error adding message:', error);
+        console.error('Error sending message:', error);
         this.toastr.error('An error occurred', 'Error');
       }
     );

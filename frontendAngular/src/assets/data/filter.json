@@ -1,0 +1,22 @@
+{
+    "colors": [
+      { "id": 1, "name": "Red" },
+      { "id": 2, "name": "Blue" },
+      { "id": 3, "name": "Green" },
+      { "id": 4, "name": "Yellow" },
+      { "id": 5, "name": "Black" }
+    ],
+    "sizes": [
+      { "id": 1, "name": "Small" },
+      { "id": 2, "name": "Medium" },
+      { "id": 3, "name": "Large" },
+      { "id": 4, "name": "XL" }
+    ],
+    "brands": [
+      { "id": 1, "name": "Brand A" },
+      { "id": 2, "name": "Brand B" },
+      { "id": 3, "name": "Brand C" },
+      { "id": 4, "name": "Brand D" }
+    ]
+  }
+  

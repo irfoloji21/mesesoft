@@ -26,6 +26,9 @@ export interface Product {
     reviews?:any;
     shop?:Shop;
     gender?:any;
+    brands?:any;
+    colors?:any;
+    sizes?:any;
 }
 
 export interface Shop {
