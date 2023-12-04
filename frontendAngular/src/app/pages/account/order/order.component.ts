@@ -9,33 +9,35 @@ import { OrderService } from 'src/app/shared/services/order.service';
 })
 export class OrderComponent implements OnInit {
 
-    public userId: string;
-    public orderId: string;
-    public filteredOrders: any[] = [];
-    public orderDetails: any; 
-    public ImageSrc: string;
-    isModalOpen: boolean = false; 
+  public userId: string;
+  public orderId: string;
+  public filteredOrders: any[] = [];
+  public orderDetails: any;
+  public ImageSrc: string;
+  isModalOpen: boolean = false;
 
-  constructor(    
+  constructor(
     private authService: AuthService,
-    private orderService: OrderService) { }
+    private orderService: OrderService
+  ) { }
 
   ngOnInit(): void {
     const user = this.authService.getUser();
     this.userId = user.user._id;
-    this.loadUserOrders(this.userId);   
-    
+    this.loadUserOrders(this.userId);
   }
 
   loadUserOrders(userId: string) {
-      this.orderService.getOrders(userId).subscribe(
-          (res) => {
-          this.filteredOrders = res.orders;
-          },
-          (error) => {
-          console.error(error);
-          }
-      );
+    this.orderService.getOrders(userId).subscribe(
+      (res) => {
+        this.filteredOrders = res.orders;
+        console.log(this.filteredOrders, "filteredOrders");
+        
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   refundOrder(orderId: string) {
@@ -56,7 +58,7 @@ export class OrderComponent implements OnInit {
   openModal(order: any): void {
     this.orderDetails = order[0];
     console.log(this.orderDetails, "orderDetails");
-    
+
     this.isModalOpen = true;
   }
 

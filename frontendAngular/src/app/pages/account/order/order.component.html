@@ -22,12 +22,12 @@
                 </h3>
                 <h4>Explore more shortlist some items.</h4>
               </div>
-               <div class="table-responsive-xl" *ngIf="filteredOrders.length">
+              <div class="table-responsive-xl" *ngIf="filteredOrders.length">
                 <table class="table cart-table order-table">
                   <thead>
                     <tr class="table-head">
-                      <th scope="col">Date</th>
                       <th scope="col">Image</th>
+                      <th scope="col">Date</th>
                       <th scope="col">Status</th>
                       <th scope="col">Price</th>
                       <th scope="col">View</th>
@@ -37,21 +37,23 @@
                     <ng-container *ngFor="let order of filteredOrders">
                       <tr>
                         <td>
-                          <span class="fs-6">{{ order.createdAt |  date:'longDate' }}</span>
+                          <img
+                            [src]="order.cart[0].images[0].url"
+                            class="blur-up lazyloaded"
+                            alt=""
+                          />
                         </td>
                         <td>
-                            <img
-                              [src]="order.cart[0].images[0].url"
-                              class="blur-up lazyloaded"
-                              alt=""
-                            />
+                          <span class="fs-6">{{
+                            order.createdAt | date : "longDate"
+                          }}</span>
                         </td>
                         <td>
                           <span class="fs-6">{{ order.status }}</span>
                         </td>
                         <td>
                           <span class="theme-color fs-6">{{
-                            order.discountPrice | currency
+                            order.totalPrice | currency
                           }}</span>
                         </td>
                         <td>
@@ -63,6 +65,14 @@
                             <i class="fa fa-eye text-theme"></i>
                           </a>
                         </td>
+
+                        <button
+                          class="btn btn-info"
+                          (click)="refundOrder(order._id)"
+                          *ngIf="order.status === 'Processing'"
+                        >
+                          Refund
+                        </button>
                       </tr>
                       <!-- <tr>
                         <td>
@@ -105,7 +115,6 @@
                   </tbody>
                 </table>
               </div>
-
             </div>
           </div>
         </div>
@@ -154,9 +163,6 @@
                 <h6 class="product-title">Order details</h6>
                 <p>{{ orderDetails.description.substring(0, 150) + "..." }}</p>
               </div>
-              <button class="btn btn-info" (click)="refundOrder(orderDetails._id)">
-                Refund
-              </button>
             </div>
           </div>
         </div>
