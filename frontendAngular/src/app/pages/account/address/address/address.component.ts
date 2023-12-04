@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class AddressComponent implements OnInit {
   addForm: FormGroup;
   editForm: FormGroup;
-  isAddingNew: boolean = false; 
+  isAddingNew: boolean = false;
   userAddresses: any[] = [];
   isModalOpen: boolean = false;
   isEditing: boolean = false;
@@ -20,8 +20,8 @@ export class AddressComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private toastr: ToastrService, 
-  ) {}
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit(): void {
     this.initAddForm();
@@ -30,7 +30,7 @@ export class AddressComponent implements OnInit {
   }
 
   toggleAddingNew() {
-    this.isAddingNew = !this.isAddingNew; 
+    this.isAddingNew = !this.isAddingNew;
   }
 
   loadUserAddresses() {
@@ -57,7 +57,7 @@ export class AddressComponent implements OnInit {
       userId: user.user._id
     });
   }
-  
+
   initEditForm(): void {
     const user = this.authService.getUser();
     this.editForm = this.fb.group({
@@ -76,14 +76,14 @@ export class AddressComponent implements OnInit {
     if (this.addForm.valid) {
       const formData = this.addForm.value;
       const user = this.authService.getUser();
-      
+
       if (user) {
         const userId = user._id;
         this.authService.updateUserAddress(userId, formData).subscribe(
           (response) => {
             this.toastr.success('Address added successfully', 'Success');
             this.loadUserAddresses();
-            this.isAddingNew= false;
+            this.isAddingNew = false;
           },
           (error) => {
             console.error('Address add error', error);
@@ -96,6 +96,7 @@ export class AddressComponent implements OnInit {
       }
     }
   }
+  
   openModal() {
     this.isModalOpen = true;
   }
@@ -120,19 +121,19 @@ export class AddressComponent implements OnInit {
     });
     this.isEditing = true;
   }
-  
+
   updateAddress() {
     if (this.editedAddresses.length > 0) {
       const addressIdToUpdate = this.editedAddresses[0]._id;
       const user = this.authService.getUser();
-  
+
       if (user) {
         const userId = user.user._id;
         console.log('Kullanıcı kimliği:', userId);
-  
+
         const addressData = this.editForm.value;
         addressData._id = addressIdToUpdate;
-  
+
         this.authService.updateUserAddress(userId, addressData).subscribe(
           (response) => {
             this.toastr.success('Address update successfully', 'Success');
@@ -140,7 +141,7 @@ export class AddressComponent implements OnInit {
             this.editForm.reset();
             this.closeModal();
             console.log('Adres güncellendi', response);
-            this.isEditing = false; 
+            this.isEditing = false;
           },
           (error) => {
             console.error('Adres güncelleme hatası', error);

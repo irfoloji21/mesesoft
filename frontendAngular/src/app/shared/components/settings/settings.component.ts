@@ -14,55 +14,65 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SettingsComponent implements OnInit {
 
   searchForm: FormGroup;
-
   public products: Product[] = [];
   public search: boolean = false;
   public noProductsFound: boolean = false;
-  public languages = [{ 
-    name: 'English',
-    code: 'en'
-  }, {
-    name: 'French',
-    code: 'fr'
-  }];
 
-  public currencies = [{
-    name: 'Euro',
-    currency: 'EUR',
-    price: 0.90 // price of euro
-  }, {
-    name: 'Rupees',
-    currency: 'INR',
-    price: 70.93 // price of inr
-  }, {
-    name: 'Pound',
-    currency: 'GBP',
-    price: 0.78 // price of euro
-  }, {
-    name: 'Dollar',
-    currency: 'USD',
-    price: 1 // price of usd
-  }]
+  public languages = [
+    {
+      name: 'English',
+      code: 'en'
+    }, {
+      name: 'French',
+      code: 'fr'
+    }
+  ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,private translate: TranslateService, public productService: ProductService ,private  formBuilder : FormBuilder) {
-      this.searchForm = this.formBuilder.group({
-        search: [''], 
-      });
+  public currencies = [
+    {
+      name: 'Euro',
+      currency: 'EUR',
+      price: 0.90 // price of euro
+    }, {
+      name: 'Rupees',
+      currency: 'INR',
+      price: 70.93 // price of inr
+    }, {
+      name: 'Pound',
+      currency: 'GBP',
+      price: 0.78 // price of euro
+    }, {
+      name: 'Dollar',
+      currency: 'USD',
+      price: 1 // price of usd
+    }
+  ]
+
+  constructor(
+    @Inject(PLATFORM_ID) 
+    private platformId: Object,
+    private translate: TranslateService,
+    public productService: ProductService,
+    private formBuilder: FormBuilder
+  ) {
+    this.searchForm = this.formBuilder.group({
+      search: [''],
+    });
     this.productService.cartItems.subscribe(response => {
-      console.log(response, "search")
+      // console.log(response, "search")
       this.products = response});
   }
 
   ngOnInit(): void {
     this.getSearch();
   }
- 
-  getSearch(){
+
+  getSearch() {
     const productSearch = this.searchForm.value.search;
-    console.log(productSearch)
+    // console.log(productSearch)
   }
 
-  searchToggle(){
+  searchToggle() {
     this.search = !this.search;
   }
 
@@ -72,9 +82,9 @@ export class SettingsComponent implements OnInit {
       this.noProductsFound = response.length === 0;
     });
   }
-  
 
-  changeLanguage(code){
+
+  changeLanguage(code) {
     if (isPlatformBrowser(this.platformId)) {
       this.translate.use(code)
     }

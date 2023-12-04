@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ShippingService {
-
+  selectedShipping: any;
   private apiUrl = 'assets/data/shipping.json'; // JSON dosyasının yolu
     
   constructor(private http: HttpClient) { }
@@ -16,10 +16,10 @@ export class ShippingService {
   }
 
   setSelectedShipping(shipping: any) {
-    if (shipping && Object.keys(shipping).length !== 0) {
-      localStorage.setItem('selectedShipping', JSON.stringify(shipping));
-    } else {
-      localStorage.removeItem('selectedShipping'); // ya da varsayılan bir değer atanabilir
-    }
+    this.selectedShipping = shipping;
+  }
+
+  getSelectedShipping() {
+    return this.selectedShipping;
   }
 }

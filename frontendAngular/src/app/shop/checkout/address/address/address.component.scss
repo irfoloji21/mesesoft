@@ -1,17 +1,9 @@
 $ana-renk: #ff5733;
 $arkaplan-renk: #ededed;
 
-// Başlık stilleri
-.başlık {
-  font-size: 24px;
-  font-weight: bold;
-  color: $ana-renk;
-}
-
-a{
+a {
   cursor: pointer;
 }
-
 
 // Buton stilleri
 .buton {
@@ -38,30 +30,23 @@ body {
   margin-bottom: 10px;
 }
 
-// Fatura adresi kutusu
-.same-address {
-  margin-top: 10px;
-
-  // Fatura adresi kutusunun metni
-  span {
-    font-weight: bold;
-  }
-}
 .selected {
-  background-color:  #ff5733;
+  background-color: #ff5733;
 }
 
 .selectedAddress {
   background-color: #c6c6c6 !important;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 
 // Adres seçeneklerinin kutuları
 .c-address-grid {
-  border: 1px solid #ccc;
+  // border: 1px solid #ccc;
   margin: 10px 0;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 5px;
+  padding: 10px 0;
+  // background-color: #fff;
+  // border-radius: 5px;
 
   input[type="radio"] {
     cursor: pointer;
@@ -147,98 +132,18 @@ body {
   }
 }
 
-// Genel tab menüsü
-.checkout-tabs.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: $arkaplan-renk;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-// Her bir sekme
-.checkout-tab {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &.active {
-    background-color: $ana-renk;
-    color: white;
-  }
-
-  &:hover {
-    background-color: darken($ana-renk, 1%);
-  }
-
-  // Mobil görünümm
-  .mobile-tab {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    .desktop-tab {
-      display: none;
-    }
-    .mobile-tab {
-      display: block;
-    }
-  }
-}
-
-// Ayırıcı çizgi stilleri
-.visible-xs.divider {
-  display: none;
-
-  @media (max-width: 768px) {
-    display: block;
-    margin: 0 10px;
-  }
-}
-
 // Genel form stilleri
 .js-options-detail.options-detail {
   background-color: $arkaplan-renk;
   border: 1px solid #ccc;
+  margin: 10px 0;
   border-radius: 5px;
   padding: 20px;
 }
 
-// Kargo seçenekleri başlığı
-.address-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-// Kargo seçenekleri listesi
-.checkout__cargos-list {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-}
-// Kargo seçenekleri grup başlığı
-.unified-group__title {
-  font-weight: bold;
-  margin-bottom: 10px;
-
-  span {
-    font-weight: normal;
-  }
-}
-
 // Her bir kargo seçeneği kutusu
 .checkout-cargo-wrapper {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 10px 0;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
+  
   // Seçili kargo seçeneği
   &.js-checkout-cargo-item.checked {
     background-color: $ana-renk;
@@ -272,252 +177,38 @@ body {
   }
 }
 
-// Genel wrapper stil
-.js-wrapper.wrapper {
-  padding: 20px;
-  background-color: $arkaplan-renk;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-// İçerik stil
-.content {
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      margin-bottom: 20px;
-
-      // İkinci li öğesi için özel stil
-      &:nth-child(2) {
-        ul {
-          list-style: none;
-          padding: 0;
-
-          li {
-            margin-bottom: 10px;
-            display: flex;
-            flex-wrap: wrap;
-
-            // Etiket (label) için stil
-            strong {
-              flex-basis: 100%;
-            }
-
-            // Alıcı bilgileri için stil
-            span {
-              flex-basis: 50%;
-              margin-bottom: 10px;
-            }
-
-            // Responsive tabloyu sarmak için stil
-            table.order-information-table {
-              flex-basis: 100%;
-              border-collapse: collapse;
-              width: 100%;
-
-              thead {
-                background-color: $arkaplan-renk;
-                font-weight: bold;
-              }
-
-              th,
-              td {
-                padding: 8px;
-                text-align: left;
-              }
-
-              tbody {
-                tr {
-                  &:nth-child(even) {
-                    background-color: #fff;
-                  }
-
-                  td {
-                    border: 1px solid #ccc;
-                  }
-                }
-              }
-
-              tfoot {
-                tr {
-                  th {
-                    background-color: $arkaplan-renk;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-// Responsive stiller
-@media (max-width: 768px) {
-  .content {
-    ul {
-      li {
-        // İkinci li öğesi için özel stil
-        &:nth-child(2) {
-          ul {
-            li {
-              span {
-                flex-basis: 100%;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-.checkout-summary {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 1rem;
-  margin-left: 1rem;
-}
-
-.summary-area {
-  width: 100%;
-  padding: 10px;
-  background: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 100vh;
-  overflow: hidden;
-  overflow-y: auto;
-}
-
-.product-img-link-wrapper img {
-  max-width: 100%;
-  height: auto;
-}
-
-.summary-header {
-  font-weight: bold;
-  font-size: 24px;
-  color: #3498db;
-}
-
-.item-area {
-  margin-top: 20px;
-}
-
-.item-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.product-img-link-wrapper {
-  margin-right: 20px;
-}
-
-.product-name-link-wrapper p {
-  font-weight: bold;
-}
-
-.price {
-  font-weight: bold;
-  color: #3498db;
-}
-
-.subtotal-area {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-weight: bold;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-
-  .subtotal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .product-price,
-    .campaign {
-      padding: 5px;
-      border-radius: 5px;
-    }
-
-    .campaign {
-      background-color: #f5a623;
-      color: white;
-    }
-
-    div {
-      margin: 5px 0;
-    }
-  }
-  .total {
-    .totalPrice {
-      font-weight: bold;
-      color: #4caf50;
-      margin-left: auto;
-      padding-right: 10px;
-    }
-  }
-}
-
 //   KARGO SEÇENEKLERİ
-
 .checkout__cargos-list {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
   display: flex;
   flex-direction: column;
 
-  .checkout-unified-list {
-    flex: 1;
-  }
+  .checkout-shipping-list-wrapper {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 0; // Labelleri daha fazla uzaklaştır
+    &:hover {
+      background-color: darken($ana-renk, 1%);
+    }
+    .checkout-cargo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  .checkout-cargo-list {
-    .checkout-shipping-list-wrapper {
-      .checkout-cargo-wrapper {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        margin: 5px 0; // Masaüstü görünümünde labelleri biraz uzaklaştır
-
-        // Masaüstü görünümü
-        @media (min-width: 768px) {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin: 10px 0; // Labelleri daha fazla uzaklaştır
-          &:hover {
-            background-color: darken($ana-renk, 1%);
-          }
+      // Mobil görünüm
+      @media (max-width: 767px) {
+        .checkout-cargo-title {
+          font-weight: bold;
         }
 
-        // Mobil görünüm
-        @media (max-width: 767px) {
-          &:hover {
-            background-color: transparent;
-          }
+        .checkout-cargo-desc {
+          margin-top: 5px;
+        }
 
-          .checkout-cargo-title {
-            font-weight: bold;
-          }
-
-          .checkout-cargo-desc {
-            margin-top: 5px;
-          }
-
-          .checkout-cargo-amount {
-            margin-top: 10px;
-          }
+        .checkout-cargo-amount {
+          margin-top: 10px;
         }
       }
     }
@@ -550,7 +241,6 @@ body {
 }
 
 // Open modal Address
-
 .modal {
   display: none;
   position: fixed;
@@ -614,17 +304,11 @@ body {
 }
 
 .js-bill-address-list.address-list {
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-weight: bold;
-  margin: 10px 0;
   background-color: $arkaplan-renk;
-}
-
-.alert-message {
-  p.js-message-bill-address.checkout-message-alert {
-    font-weight: bold;
-  }
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .selected-address {
@@ -641,4 +325,121 @@ body {
 
 .clear {
   clear: both;
+}
+
+.card-body {
+  flex: 1 1 auto;
+
+  .top-sec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    h3 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .btn {
+      font-size: 1rem;
+    }
+  }
+
+  .address-book-section {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .select-box {
+        flex: 1 0 calc(50% - 1rem);
+        min-width: 0;
+        @media (max-width: 768px) {
+          flex: 1 0 calc(100% - 1rem);
+        }
+
+        .address-box {
+          border: 1px solid rgba(0, 0, 0, 0.125);
+          border-radius: 0.25rem;
+          padding: 1rem;
+
+          .top {
+            // display: flex;
+            // justify-content: space-between;
+            // align-items: center;
+
+            h6 {
+              font-size: 1.25rem;
+              margin: 0;
+              text-transform: capitalize;
+              color: #222;
+              font-weight: 600;
+              span {
+                font-size: 1rem;
+                color: #00a8e8;
+                float: right;
+                background-color: #ff4c3b;
+                color: #fff;
+                padding: 2px 15px;
+                font-size: 80%;
+                border-radius: 3px;
+              }
+            }
+          }
+
+          .middle {
+            margin-top: 15px;
+            .address {
+              p {
+                margin: 0;
+              }
+            }
+
+            .number {
+              margin-top: 15px;
+              p {
+                margin: 0;
+                span {
+                  color: #00a8e8;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+
+          .bottom {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ddd;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            text-align: center;
+            padding-top: 14px;
+            margin-top: 10px;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+
+            .bottom_btn {
+              text-decoration: none;
+              cursor: pointer;
+              border: 1px solid #888;
+              border-radius: 0.25rem;
+              width: 40%;
+              text-transform: capitalize;
+              font-weight: 600;
+              padding: 8px 4px;
+              background-color: #f8f8f8;
+              color: #222;
+
+              &:hover {
+                background-color: #888;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

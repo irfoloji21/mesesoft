@@ -48,7 +48,6 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.delete<any>(`${this.apiUrl}/user/delete-user-address/${addressId}`, { headers, withCredentials: true });
   }
-  
 
   logout(): void {
     localStorage.removeItem('isLoggedIn');

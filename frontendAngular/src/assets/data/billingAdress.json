@@ -1,0 +1,53 @@
+[
+    {
+      "flatPlot": 27,
+      "address": "221B Baker Street",
+      "zipCode": "NW1 6XE",
+      "country": "United Kingdom",
+      "city": "London",
+      "regionState": "England",
+      "addressType": "Residence",
+      "_id": "653846d9aad595cf312c6b04"
+    },
+    {
+      "flatPlot": 15,
+      "address": "1600 Amphitheatre Parkway",
+      "zipCode": "94043",
+      "country": "United States",
+      "city": "Mountain View",
+      "regionState": "California",
+      "addressType": "Office",
+      "_id": "6541872a3a20e946501d48ce"
+    },
+    {
+      "flatPlot": 42,
+      "address": "Leidseplein 21",
+      "zipCode": "1017 PS",
+      "country": "Netherlands",
+      "city": "Amsterdam",
+      "regionState": "North Holland",
+      "addressType": "Apartment",
+      "_id": "654321abcdef1234567890ab"
+    },
+    {
+      "flatPlot": 7,
+      "address": "3 Abbey Road",
+      "zipCode": "NW8 9AY",
+      "country": "United Kingdom",
+      "city": "London",
+      "regionState": "England",
+      "addressType": "Studio",
+      "_id": "abcdef1234567890abcde321"
+    },
+    {
+      "flatPlot": 33,
+      "address": "Champs-Élysées",
+      "zipCode": "75008",
+      "country": "France",
+      "city": "Paris",
+      "regionState": "Île-de-France",
+      "addressType": "Luxury Apartment",
+      "_id": "987654abcdef543210abcde1"
+    }
+  ]
+  

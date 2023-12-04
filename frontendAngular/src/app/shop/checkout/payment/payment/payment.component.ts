@@ -1,5 +1,5 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -14,11 +14,13 @@ import { ShippingService } from "src/app/shared/services/shipping.service";
 import { environment } from "src/environments/environment";
 import Stripe from "stripe";
 import { Router } from '@angular/router';
+
 @Component({
   selector: "app-payment",
   templateUrl: "./payment.component.html",
   styleUrls: ["./payment.component.scss"],
 })
+
 export class PaymentComponent implements OnInit {
   public checkoutForm: UntypedFormGroup;
   public products: Product[] = [];
@@ -26,17 +28,14 @@ export class PaymentComponent implements OnInit {
   public payment: string = "Stripe";
   public amount: any;
   orderDetails: any;
-  selectedShippingIndex: number;
-  selectedAddressIndex: number;
-  public result :any ;
+  public result: any;
+
   constructor(
     private fb: UntypedFormBuilder,
     public productService: ProductService,
     private orderService: OrderService,
     private toasts: ToastrService,
-    private shippingService :ShippingService,
-    private router: Router,
-   private http: HttpClient
+    private shippingService: ShippingService
   ) {
     this.checkoutForm = this.fb.group({
       cardNumber: ["", Validators.required],
@@ -46,6 +45,7 @@ export class PaymentComponent implements OnInit {
       termsCheckbox: [false, Validators.requiredTrue],
     });
   }
+
   ngOnInit(): void {
     this.productService.cartItems.subscribe((response) => {
       console.log(response, "checkout");
@@ -53,9 +53,12 @@ export class PaymentComponent implements OnInit {
     });
     const selectedAddress = this.orderService.getSelectedAddress();
     console.log("Seçilen Adres Payment:", selectedAddress);
+    const selectedCargo = this.shippingService.getSelectedShipping();
+    console.log("Seçilen Kargo Payment:", selectedCargo);
+
     this.getTotal.subscribe((total) => {
       console.log(total, "totalAmount");
-      this.amount = total; 
+      this.amount = total;
     });
   }
 
@@ -63,30 +66,28 @@ export class PaymentComponent implements OnInit {
     return this.productService.cartTotalAmount();
   }
 
- 
   stripeCheckout() {
     if (this.checkoutForm.valid) {
       const selectedAddress = this.orderService.getSelectedAddress();
       const selectedCargo = this.shippingService.getShipData();
-  
       const cardNumber = this.checkoutForm.get("cardNumber")?.value;
       const expirationMonth = this.checkoutForm.get("expirationMonth")?.value;
       const expirationYear = this.checkoutForm.get("expirationYear")?.value;
       const cvv = this.checkoutForm.get("cvv")?.value;
-  
+
       const cardDetails = {
         number: cardNumber,
         exp_month: expirationMonth,
         exp_year: expirationYear,
         cvc: cvv,
       };
-  
+
       const stripeApiKey = environment.stripe_token;
       const stripe = new Stripe(stripeApiKey);
-  
+
       const tokenizeCard = async () => {
         try {
-           this.result = await stripe.tokens.create({ card: cardDetails });
+          this.result = await stripe.tokens.create({ card: cardDetails });
           const orderId = this.result.id;
           console.log("Stripe API isteği ve Yanıt:", cardDetails, this.result)
           this.toasts.success("Ödeme başarılı");
@@ -97,25 +98,29 @@ export class PaymentComponent implements OnInit {
           console.error("Stripe hata detayları:", error.message);
         }
       };
-  
+
       tokenizeCard();
+
     } else {
       console.error("Form geçerli değil, ödeme işlemi yapılamaz.");
     }
   }
-  
-  processPayment(token: string, amount: any, selectedAddress: any, selectedCargo: any) {
+
+  processPayment(
+    token: string,
+    amount: any,
+    selectedAddress: any,
+    selectedCargo: any
+  ) {
     const paymentData = {
       product: this.products,
       amount: this.amount,
-      selectedAddress: {}, 
-      selectedCargo: {}, 
+      selectedAddress: {},
+      selectedCargo: {},
     };
-    
 
     paymentData.selectedAddress = selectedAddress;
     paymentData.selectedCargo = selectedCargo;
-  
 
     this.orderService.createOrder(
       paymentData.product,
@@ -129,24 +134,18 @@ export class PaymentComponent implements OnInit {
         console.log("Ödeme başarılı:", response);
         this.productService.clearCart();
 
-        console.log(paymentData.amount , "amount PaymentData")
-        console.log(paymentData.product , "product PaymentData")
-        console.log(selectedAddress , "selectedAddress")
-        console.log(selectedCargo , "selectedCargo")
+        console.log(paymentData.amount, "amount PaymentData")
+        console.log(paymentData.product, "product PaymentData")
+        console.log(selectedAddress, "selectedAddress")
+        console.log(selectedCargo, "selectedCargo")
       },
       (error) => {
         console.error("Ödeme işlemi sırasında hata oluştu:", error);
-  
+
         if (error.error) {
           console.error("Sunucu Hata Mesajı:", error.error);
         }
       }
     );
   }
-  
-  
-  
-
-
-
 }

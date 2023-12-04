@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
+
 export class CheckoutComponent implements OnInit {
 
   public checkoutForm: UntypedFormGroup;
@@ -35,10 +36,13 @@ export class CheckoutComponent implements OnInit {
     { productName: 'Ürün 1', quantity: 2, totalPrice: 49.99 },
     { productName: 'Ürün 2', quantity: 1, totalPrice: 29.99 },
   ];
-  constructor(private fb: UntypedFormBuilder,
+  
+  constructor(
+    private fb: UntypedFormBuilder,
     public productService: ProductService,
     private orderService: OrderService,
-    private toasts: ToastrService) {
+    private toasts: ToastrService
+  ) {
     this.checkoutForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
       lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
@@ -170,7 +174,7 @@ export class CheckoutComponent implements OnInit {
           return; // Uyarı verip işlemi durdur
         }
         if (localStorage.getItem('selectedShipping') === null) {
-          this.toasts.error('Lütfen bir teslimat seçin.');
+          this.toasts.error('Lütfen bir teslimat yöntemi seçin.');
           return; // Uyarı verip işlemi durdur
         }
         this.currentStep = 'checkout';

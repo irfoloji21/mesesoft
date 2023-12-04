@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { BillingAddressService } from 'src/app/shared/services/billingAddress.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { ShippingService } from 'src/app/shared/services/shipping.service';
@@ -10,14 +11,15 @@ import { ShippingService } from 'src/app/shared/services/shipping.service';
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
-  })
-  
+})
+
 export class AddressComponent implements OnInit {
   public orderDetails = [] 
   addForm: FormGroup;
   editForm: FormGroup;
-  isAddingNew: boolean = false; 
+  isAddingNew: boolean = false;
   userAddresses: any[] = [];
+  billingAddresses: any[];
   userInfo: any[] = [];
   isEditing: boolean = false;
   editedAddresses: any[] = [];
@@ -29,48 +31,31 @@ export class AddressComponent implements OnInit {
   shippingData: any[];
   selectedShippingIndex: number;
   selectedAddressIndex: number;
+  selectedBillingIndex: number;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private toastr: ToastrService, 
-    private orderService :OrderService,
+    private toastr: ToastrService,
+    private orderService: OrderService,
+    private shippingService: ShippingService,
     private productService: ProductService,
-    private shippingService: ShippingService
-  ) {}
+    private billingAddressService: BillingAddressService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.loadUserAddresses();
+    this.loadShippingData();
+    this.loadBillingAddress();
+    this.productDetails();
     this.initAddForm();
     this.initEditForm();
-     this.loadUserAddresses();
-
-     this.productService.cartItems.subscribe(res => {
-      this.orderDetails = res;
-     });
-
-     this.orderService.checkoutItems.subscribe(response => {
-      console.log(response)
-    });
-
-    this.shippingService.getShipData().subscribe(data => {
-      this.shippingData = data;
-      console.log("shippingData", this.shippingData)
-    });
-    
-  }
-  
-
-  toggleAddingNew() {
-    this.isAddingNew = !this.isAddingNew; 
   }
 
-  loadUserAddresses() {
-    this.authService.loadUser().subscribe(
+  loadBillingAddress() {
+    this.billingAddressService.getBillingAddressData().subscribe(
       (res) => {
-        this.userInfo = res.user.phoneNumber;
-        this.userAddresses = res.user.addresses;
-        console.log(this.userAddresses);
-        
+        this.billingAddresses = res;
       },
       (error) => {
         console.error(error);
@@ -78,6 +63,39 @@ export class AddressComponent implements OnInit {
     );
   }
 
+  productDetails() {
+    this.productService.cartItems.subscribe(res => {
+      this.orderDetails = res;
+      // console.log('orderDetails', this.orderDetails);
+     });
+  }
+
+  toggleAddingNew() {
+    this.isAddingNew = !this.isAddingNew;
+  }
+
+  loadShippingData() {
+    this.shippingService.getShipData().subscribe(
+      (res) => {
+        this.shippingData = res;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  loadUserAddresses() {
+    this.authService.loadUser().subscribe(
+      (res) => {
+        this.userAddresses = res.user.addresses;
+        this.userInfo = res.user.phoneNumber;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
   initEditForm(): void {
     const user = this.authService.getUser();
@@ -111,14 +129,16 @@ export class AddressComponent implements OnInit {
     if (this.addForm.valid) {
       const formData = this.addForm.value;
       const user = this.authService.getUser();
-      
+
       if (user) {
         const userId = user._id;
         this.authService.updateUserAddress(userId, formData).subscribe(
           (response) => {
+            console.log('Address add response', response);
+            
             this.toastr.success('Address added successfully', 'Success');
             this.loadUserAddresses();
-            this.isAddingNew= false;
+            this.isAddingNew = false;
             this.closeCreateForm();
           },
           (error) => {
@@ -154,14 +174,14 @@ export class AddressComponent implements OnInit {
     if (this.editedAddresses.length > 0) {
       const addressIdToUpdate = this.editedAddresses[0]._id;
       const user = this.authService.getUser();
-  
+
       if (user) {
         const userId = user.user._id;
         console.log('Kullanıcı kimliği:', userId);
-  
+
         const addressData = this.editForm.value;
         addressData._id = addressIdToUpdate;
-  
+
         this.authService.updateUserAddress(userId, addressData).subscribe(
           (response) => {
             this.toastr.success('Address update successfully', 'Success');
@@ -169,7 +189,7 @@ export class AddressComponent implements OnInit {
             this.editForm.reset();
             this.closeEditForm();
             console.log('Adres güncellendi', response);
-            this.isEditing = false; 
+            this.isEditing = false;
           },
           (error) => {
             console.error('Adres güncelleme hatası', error);
@@ -196,36 +216,41 @@ export class AddressComponent implements OnInit {
       }
     );
 
-}
+  }
 
-openCreateForm() {
-  this.isCreateFormOpen = true;
-}
+  openCreateForm() {
+    this.isCreateFormOpen = true;
+  }
 
-closeCreateForm() {
-  this.isCreateFormOpen = false;
-}
+  closeCreateForm() {
+    this.isCreateFormOpen = false;
+  }
 
-openEditForm() {
-  this.isEditFormOpen = true;
-}
+  openEditForm() {
+    this.isEditFormOpen = true;
+  }
 
-closeEditForm() {
-  this.isEditFormOpen = false;
-}
+  closeEditForm() {
+    this.isEditFormOpen = false;
+  }
 
-selectAddress(selectedAddress: any, index: number) {
-  this.orderService.setSelectedAddress(selectedAddress);
-  this.selectedAddressIndex = index;
-  console.log('Seçilen adres:', selectedAddress);
-}
+  selectAddress(selectedAddress: any, index: number) {
+    this.orderService.setSelectedAddress(selectedAddress);
+    this.selectedAddressIndex = index;
+    console.log('Seçilen adres:', selectedAddress);
+  }
 
-selectShipping(selectedShipping: any, index: number) {
-  this.shippingService.setSelectedShipping(selectedShipping);
-  this.selectedShippingIndex = index;
-  console.log('Seçilen kargo:', selectedShipping);
-}
-  
- 
+  selectShipping(selectedShipping: any, index: number) {
+    this.shippingService.setSelectedShipping(selectedShipping);
+    this.selectedShippingIndex = index;
+    console.log('Seçilen kargo:', selectedShipping);
+  }
+
+  selectBillingAddress(billingAddress: any, index: number) {
+    this.billingAddressService.setSelectedBillingAddress(billingAddress);
+    this.selectedBillingIndex = index;
+    console.log('Seçilen fatura adresi:', billingAddress);
+    
+  }
 }
 

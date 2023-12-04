@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Address } from 'cluster';
 import { Order } from 'src/app/shared/classes/order';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ShippingService } from 'src/app/shared/services/shipping.service';
 
 @Component({
   selector: 'app-order-success',
@@ -15,8 +15,14 @@ export class OrderSuccessComponent implements OnInit {
   public orderDetails: Order = { orderDate: new Date()  };
   selectedAddress: any 
   orderId;
-  constructor(public productService: ProductService, private route: ActivatedRoute,
-    private orderService: OrderService) { 
+  selectedShipping: any;
+  
+  constructor(
+    public productService: ProductService, 
+    private route: ActivatedRoute,
+    private orderService: OrderService,
+    private shippingService: ShippingService
+  ) { 
       this.orderId = this.route.snapshot.params['orderId'];
     }
 
@@ -28,10 +34,9 @@ export class OrderSuccessComponent implements OnInit {
       this.orderDetails.orderDate = new Date(); 
       console.log(this.orderDetails.shippingDetails.address)
       console.log('Order ID:', this.orderDetails.orderId);
-      
-
     });
     this.selectedAddress = this.orderService.getSelectedAddress();
+    this.selectedShipping = this.shippingService.getSelectedShipping();
 
     // ActivatedRoute'in paramMap'ını kullanarak 'orderId' parametresini dinle
     this.route.paramMap.subscribe(params => {

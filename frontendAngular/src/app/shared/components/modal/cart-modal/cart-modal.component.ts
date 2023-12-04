@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input, AfterViewInit,
-  Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input, AfterViewInit, PLATFORM_ID, Inject
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from "../../../services/product.service";
@@ -13,40 +14,36 @@ import { Product } from "../../../classes/product";
 export class CartModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() product: Product;
-  @Input() currency : any;
-  
+  @Input() currency: any;
+
   @ViewChild("cartModal", { static: false }) CartModal: TemplateRef<any>;
 
   public closeResult: string;
   public modalOpen: boolean = false;
   public products: any[] = [];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+  constructor(
+    @Inject(PLATFORM_ID) 
+    private platformId: Object,
     private modalService: NgbModal,
-    private productService: ProductService) {
-  }
+    private productService: ProductService
+  ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void { }
 
-
-  
   async openModal(product) {
     this.productService.getProducts.subscribe(async (response) => {
-      console.log(response, "openModal");
       this.products = await response.filter(items => {
-        console.log(items, "openmodal2");
         items.category == product.category && items._id != product._id
       });
     });
     const status = await this.productService.addToCart(product);
-    if(status) {
+    if (status) {
       this.modalOpen = true;
       if (isPlatformBrowser(this.platformId)) { // For SSR 
-        this.modalService.open(this.CartModal, { 
+        this.modalService.open(this.CartModal, {
           size: 'lg',
           ariaLabelledBy: 'Cart-Modal',
           centered: true,
@@ -71,7 +68,7 @@ export class CartModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.modalOpen){
+    if (this.modalOpen) {
       this.modalService.dismissAll();
     }
   }

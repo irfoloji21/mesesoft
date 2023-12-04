@@ -1,350 +1,266 @@
 <div class="search__wrapper--overlay js-search-overlay"></div>
-
 <div class="js-content header-fix">
   <div class="container">
     <div class="col-md-12 pd-0 checkout-set-bg">
       <div class="col-lg-12 pd-0">
-        <div class="d-flex flex-wrap">
-          <div class="col-md-12 col-sm-12">
-            <div class="checkout-content">
-              <div
-                class="checkout-address c-content-area js-tab-content addresses cf active"
-              >
-                <div class="col-12 pd-0 address-options">
-                  <div class="address-header">
-                    <div class="address-title">DELIVERY ADDRESS</div>
-                    <div class="same-address">
-                      <input
-                        [(ngModel)]="isBillingAddressSame"
-                        class="same-checkbox js-show-bill-address"
-                        id="same-address"
-                        checked=""
-                        type="checkbox"
-                      />
-                      <label
-                        class="same-check-lb js-show-bill-address-check"
-                        for="same-address"
+        <div class="col-md-12 col-sm-12">
+          <div class="checkout-content">
+            <div
+              class="checkout-address c-content-area js-tab-content addresses cf active"
+            >
+              <div class="col-12 pd-0 address-options">
+                <div class="address-header">
+                  <div class="address-title">DELIVERY ADDRESS</div>
+                  <div class="form-check">
+                    <input
+                      [(ngModel)]="isBillingAddressSame"
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      My billing address is the same
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Adress cart -->
+              <div class="col-12 pd-0 options-area js-set-options">
+                <div
+                  class="js-options-detail options-detail js-default default js-default-option"
+                >
+                  <div class="checkout__address-list">
+                    <div class="alert-message">
+                      <p
+                        class="js-message-delivery-option checkout-message-alert"
                       >
-                        <span>My billing address is the same</span>
-                      </label>
+                        Please select a delivery address.
+                      </p>
+                    </div>
+                    <div class="js-address-list address-list">
+                      <div class="card-body">
+                        <div class="address-book-section">
+                          <div class="row g-4">
+                            <div
+                              *ngFor="
+                                let address of userAddresses;
+                                let i = index
+                              "
+                              class="select-box col-xl-4 col-md-6"
+                              data-type="address"
+                            >
+                              <div
+                                class="address-box"
+                                [class.selectedAddress]="
+                                  i === selectedAddressIndex
+                                "
+                              >
+                                <div class="top">
+                                  <h6
+                                    class="d-flex align-items-center justify-content-between"
+                                  >
+                                    {{ address.address }}
+                                    <span>{{ address.addressType }}</span>
+                                  </h6>
+                                </div>
+                                <div class="middle">
+                                  <div class="address">
+                                    <p>Zip Code: {{ address.zipCode }}</p>
+                                    <p>
+                                      Country/City: {{ address.country }},
+                                      {{ address.city }}
+                                    </p>
+                                    <p>
+                                      Region/State: {{ address.regionState }}
+                                    </p>
+                                  </div>
+                                  <div class="number">
+                                    <p>
+                                      Flat/Plot:
+                                      <span>{{ address.flatPlot }}</span>
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="bottom">
+                                  <input
+                                    type="radio"
+                                    name="selectedAddress"
+                                    (click)="selectAddress(address, i)"
+                                    required
+                                  />
+                                  <a
+                                    (click)="
+                                      editAddress(address); openEditForm()
+                                    "
+                                    data-bs-target="#edit-address"
+                                    data-bs-toggle="modal"
+                                    data-type="address"
+                                    class="bottom_btn"
+                                    >Edit
+                                  </a>
+                                  <a
+                                    (click)="deleteAddress(address._id)"
+                                    class="bottom_btn delete-button"
+                                    data-type="address"
+                                    >Delete</a
+                                  >
+                                </div>
+                                <div class="clear"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="c-address-grid">
+                        <div class="c-address-content js-new-address-occ">
+                          <button
+                            class="btn btn-sm btn-solid"
+                            (click)="openCreateForm()"
+                          >
+                            <span class="icon-plus"></span>
+                            CREATE NEW ADDRESS
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <!-- Adress cartf -->
-                <div class="col-12 pd-0 options-area js-set-options">
-                  <div
-                    class="js-options-detail options-detail js-default default js-default-option"
-                  >
-                    <div class="checkout__address-list">
-                      <div class="alert-message">
-                        <p
-                          class="js-message-delivery-option checkout-message-alert"
-                        >
-                          Please select a delivery address.
-                        </p>
-                      </div>
-                      <div class="js-address-list address-list">
-                        <div
-                          *ngFor="let address of userAddresses; let i = index"
-                          class="js-address-grid c-address-grid"
-                          [class.selectedAddress]="i === selectedAddressIndex"
-                          data-type="address"
-                        >
-                          <input
-                            type="radio"
-                            name="selectedAddress"
-                            (click)="selectAddress(address, i)"
-                            required
-                          />
-                          <label
-                            for="js-address-radio-occ-585774"
-                            class="c-address-content js-address-content"
-                          >
-                            <span class="selected-address">{{
-                              address.addressType
-                            }}</span>
-                            <div class="c-address-text">
-                              <div class="c-address-title">
-                                {{ address.country }}/{{ address.city }}
-                              </div>
-                              {{ address.address }}
-                              <div>
-                                <b>{{ address.userInfo }}</b>
-                              </div>
-                            </div>
-                            <div class="c-address-footer">
-                              <a
-                                (click)="editAddress(address); openEditForm()"
-                                class="c-address-edit js-address-edit"
-                                data-pk="585774"
-                                data-type="address"
-                              >
-                                edit
-                              </a>
-                              <a
-                                (click)="deleteAddress(address._id)"
-                                class="c-address-remove js-address-remove"
-                                data-pk="585774"
-                                data-type="address"
-                              >
-                                delete
-                              </a>
-                            </div>
-                          </label>
-                          <div class="clear"></div>
-                        </div>
-                        <div class="c-address-grid">
-                          <div class="c-address-content js-new-address-occ">
-                            <div class="new-address" (click)="openCreateForm()">
-                              <span class="icon-plus"></span>
-                              CREATE NEW ADDRESS
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div
+                  class="js-bill-address-list address-list"
+                  *ngIf="!isBillingAddressSame"
+                >
+                  <div class="alert-message">
+                    <p class="js-message-bill-address checkout-message-alert">
+                      Please select a billing address.
+                    </p>
                   </div>
-
-                  <div class="js-options-detail options-detail js-today today">
-                    <i
-                      class="icon-close modal-close js-options-close options-close hidden-md hidden-lg"
-                      data-type="bill_address"
-                      aria-hidden="true"
-                    ></i>
-                    <div class="js-bill-addresses" style="display: none">
-                      <div class="checkout__addresses">
-                        <div class="address-header-bill">
-                          <div class="address-title js-adress-title">
-                            BILLING ADDRESS
-                          </div>
-                        </div>
-                        <div class="checkout__address-list">
-                          <div class="alert-message">
-                            <p
-                              class="js-message-bill-address checkout-message-alert"
-                            >
-                              Please select a billing address.
-                            </p>
-                          </div>
-                          <div class="js-bill-address-list address-list">
-                            <div
-                              class="js-address-grid c-address-grid"
-                              data-type="bill_address"
-                            >
+                  <div class="card-body">
+                    <div class="address-book-section">
+                      <div class="row g-4">
+                        <div
+                          *ngFor="
+                            let billingAddress of billingAddresses;
+                            let i = index
+                          "
+                          class="select-box col-xl-4 col-md-6"
+                          data-type="billingAddress"
+                        >
+                          <div
+                            class="address-box"
+                            [class.selectedBillingAddress]="
+                              i === selectedBillingIndex
+                            "
+                          >
+                            <div class="top">
+                              <h6
+                                class="d-flex align-items-center justify-content-between"
+                              >
+                                {{ billingAddress.address }}
+                                <span>{{ billingAddress.addressType }}</span>
+                              </h6>
+                            </div>
+                            <div class="middle">
+                              <div class="address">
+                                <p>Zip Code: {{ billingAddress.zipCode }}</p>
+                                <p>
+                                  Country/City: {{ billingAddress.country }},
+                                  {{ billingAddress.city }}
+                                </p>
+                                <p>
+                                  Region/State: {{ billingAddress.regionState }}
+                                </p>
+                              </div>
+                              <div class="number">
+                                <p>
+                                  Flat/Plot:
+                                  <span>{{ billingAddress.flatPlot }}</span>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="bottom">
                               <input
                                 type="radio"
-                                id="js-bill-address-radio-occ-585774"
-                                name="js-bill-address-radio-occ"
-                                class="radiobutton c-address-radio js-bill-address-radio-occ"
-                                value="585774"
+                                name="selectedBillingAddress"
+                                (click)="
+                                  selectBillingAddress(billingAddress, i)
+                                "
+                                required
                               />
-                              <label
-                                for="js-bill-address-radio-occ-585774"
-                                class="c-address-content js-address-content"
+                              <a
+                                (click)="
+                                  editAddress(billingAddress); openEditForm()
+                                "
+                                data-bs-target="#edit-address"
+                                data-bs-toggle="modal"
+                                data-type="billingAddress"
+                                class="bottom_btn"
+                                >Edit
+                              </a>
+                              <a
+                                class="bottom_btn delete-button"
+                                data-type="billingAddress"
+                                >Delete</a
                               >
-                                <span class="selected-address"
-                                  >SELECTED ADDRESS</span
-                                >
-                                <div class="c-address-text">
-                                  <div class="c-address-title">Eb</div>
-                                  Diyarbakır KAYAPINAR 21070 DİYARBAKIR
-                                  <div>Phone: <b>05325241712</b></div>
-                                </div>
-                                <div class="c-address-footer">
-                                  <a
-                                    href="javascript:;"
-                                    class="c-address-edit js-address-edit"
-                                    data-pk="585774"
-                                    data-type="bill_address"
-                                  >
-                                    edit
-                                  </a>
-                                  <a
-                                    href="javascript:;"
-                                    class="c-address-remove js-address-remove"
-                                    data-pk="585774"
-                                    data-type="bill_address"
-                                  >
-                                    delete
-                                  </a>
-                                </div>
-                              </label>
-                              <div class="clear"></div>
                             </div>
-                            <div class="c-address-grid">
-                              <div class="c-address-content js-new-address-occ">
-                                <div class="new-address">
-                                  <span class="icon-plus"></span>
-                                  CREATE NEW ADDRESS
-                                </div>
-                              </div>
-                            </div>
+                            <div class="clear"></div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
-                  <div
-                    class="js-bill-address-list address-list"
-                    *ngIf="!isBillingAddressSame"
-                  >
-                    <div class="alert-message">
-                      <p class="js-message-bill-address checkout-message-alert">
-                        Please select a billing address.
-                      </p>
-                    </div>
-                    <div
-                      class="js-address-grid c-address-grid"
-                      data-type="bill_address"
-                    >
-                      <input
-                        type="radio"
-                        id="js-bill-address-radio-occ-585774"
-                        name="js-bill-address-radio-occ"
-                        class="radiobutton c-address-radio js-bill-address-radio-occ"
-                        value="585774"
-                      />
-                      <label
-                        for="js-bill-address-radio-occ-585774"
-                        class="c-address-content js-address-content"
+                  <!-- fatura adresi jsondan çekildiği için yeni fatura adresi eklenmedi  -->
+                  <div class="c-address-grid">
+                    <div class="c-address-content js-new-address-occ">
+                      <button
+                        class="btn btn-sm btn-solid"
+                        (click)="openCreateForm()"
                       >
-                        <span class="selected-address">SELECTED ADDRESS</span>
-                        <div class="c-address-text">
-                          <div class="c-address-title">John</div>
-                          Springfield 21070 Springfield
-                          <div>Phone: <b>05325241712</b></div>
-                        </div>
-                        <div class="c-address-footer">
-                          <a
-                            href="javascript:;"
-                            class="c-address-edit js-address-edit"
-                            data-pk="585774"
-                            data-type="bill_address"
-                          >
-                            edit
-                          </a>
-                          <a
-                            href="javascript:;"
-                            class="c-address-remove js-address-remove"
-                            data-pk="585774"
-                            data-type="bill_address"
-                          >
-                            delete
-                          </a>
-                        </div>
-                      </label>
-                      <div class="clear"></div>
-                    </div>
-                    <div class="c-address-grid">
-                      <div class="c-address-content js-new-address-occ">
-                        <div class="new-address" (click)="openCreateForm()">
-                          <span class="icon-plus"></span>
-                          CREATE NEW ADDRESS
-                        </div>
-                      </div>
+                        <span class="icon-plus"></span>
+                        CREATE NEW ADDRESS
+                      </button>
                     </div>
                   </div>
-
-                  <div
-                    class="js-options-detail options-detail js-shipping-list-form"
-                  >
-                    <form method="post">
-                      <div class="address-title">SHIPPING OPTIONS</div>
-                      <div class="checkout__cargos-list">
-                        <div
-                          class="checkout-unified-list js-unified-list"
-                        ></div>
-                        <div class="checkout-cargo-list js-shipping-list">
-                          <div
-                            class="checkout-shipping-list-wrapper"
-                            *ngFor="let shipping of shippingData; let i = index"
-                            [class.selected]="i === selectedShippingIndex"
-                          >
-                            <label
-                              for="shipping-{{ shipping.id }}"
-                              class="checkout-cargo-wrapper js-checkout-cargo-item cf"
-                              (click)="selectShipping(shipping, i)"
-                            >
-                              <div class="checkout-cargo-header">
-                                <div class="checkout-cargo-title">
-                                  <b>{{ shipping.title }}</b>
-                                  <p>{{ shipping.name }}</p>
-                                </div>
-                              </div>
-                              <div class="checkout-cargo-body">
-                                <div class="checkout-cargo-desc">
-                                  {{ shipping.description }}
-                                </div>
-                                <div class="checkout-cargo-amount">
-                                  {{ shipping.price | currency }}
-                                </div>
-                              </div>
-                            </label>
+                </div>
+                <!------------- SHIPPING OPTIONS ------------->
+                <div
+                  class="js-options-detail options-detail js-shipping-list-form"
+                >
+                  <form method="post">
+                    <div class="address-title">SHIPPING OPTIONS</div>
+                    <div class="checkout__cargos-list">
+                      <div
+                        class="checkout-shipping-list-wrapper"
+                        *ngFor="let shipping of shippingData; let i = index"
+                        [class.selected]="i === selectedShippingIndex"
+                      >
+                        <label
+                          for="shipping-{{ shipping.id }}"
+                          class="checkout-cargo-wrapper js-checkout-cargo-item cf"
+                          (click)="selectShipping(shipping, i)"
+                        >
+                          <div class="checkout-cargo-header">
+                            <div class="checkout-cargo-title">
+                              <b>{{ shipping.title }}</b>
+                              <p>{{ shipping.name }}</p>
+                            </div>
                           </div>
-                        </div>
+                          <div class="checkout-cargo-body">
+                            <div class="checkout-cargo-desc">
+                              {{ shipping.description }}
+                            </div>
+                            <div class="checkout-cargo-amount">
+                              {{ shipping.price | currency }}
+                            </div>
+                          </div>
+                        </label>
                       </div>
-                    </form>
-                  </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- <div class="col-lg-3 col-sm-12">
-            <br><br><br>
-            <div class="checkout-summary">
-              <div class="summary-area js-checkout-sum" >
-                <div >
-                  <div class="summary-header">
-                    ORDER SUMMARY
-                  </div>
-                  <div class="item-area" *ngFor="let product of orderDetails">
-                    <div class="summary-item">
-                      <div class="item-header">
-                        <a class="product-img-link-wrapper" href="/product/129861">
-                          <img [src]="product.images[0].url" alt="" class="img-fluid">
-                        </a>
-                        <a class="product-name-link-wrapper" href="/product/129861">
-                          <p>{{product.description}}</p>
-                          <span>Product Code: HF2479P</span>
-                          <span>Size: 26, Quantity: {{product.quantity}}</span>
-                        </a>
-                      </div>
-                      <div class="item-body">
-                        <span class="campaign"></span>
-                        <span class="retail_price"><s>{{product.originalPrice | currency}}</s></span>&nbsp;
-                        <span class="price">{{product.discountPrice | currency}}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="summary-tab hidden">
-                    <span><em class="icon-club"></em>Occasion Club</span>
-                    <em class="icon-plus"></em>
-                  </div>
-                  <div class="summary-content">
-                    <div class="subtotal-area">
-                      <div class="subtotal product-price">
-                        <div>Total for Products</div>
-                        <div>$699.00</div>
-                      </div>
-                      <div class="subtotal campaign hide"></div>
-                      <div class="subtotal campaign ">
-                        <div>Shipping Fee (Standard Shipping)</div>
-                        <div class="cargoPrice" >+34.90 TL</div>
-                      </div>
-                    </div>
-                    <div class="subtotal-area">
-                      <div class="subtotal total">
-                        <div >Total:</div>
-                        <div class="totalPrice px-1">$733.90</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>  -->
         </div>
       </div>
     </div>
@@ -352,7 +268,6 @@
 </div>
 
 <!-- //Form Area new Address Create -->
-
 <div class="custom-container" *ngIf="isCreateFormOpen">
   <div class="modal" [ngClass]="{ show: isCreateFormOpen }">
     <div class="modal-content col-12 col-md-8 col-lg-6">
@@ -414,11 +329,11 @@
               <option value="" disabled selected>Select a Country</option>
               <option value="UK">United Kingdom</option>
               <option value="US">United States</option>
-              <option value="India">India</option>
+              <option value="Netherlands">Netherlands</option>
               <option value="Turkey">Turkey</option>
               <option value="Canada">Canada</option>
               <option value="Australia">Australia</option>
-              <option value="Germany">Germany</option>
+              <option value="France">France</option>
             </select>
           </div>
           <div class="col-md-6">
@@ -453,8 +368,6 @@
     </div>
   </div>
 </div>
-
-<!-- Update Addres -->
 
 <!-- Update address -->
 <div class="custom-container" *ngIf="isEditFormOpen">
@@ -518,11 +431,11 @@
               <option value="" disabled selected>Select a Country</option>
               <option value="UK">United Kingdom</option>
               <option value="US">United States</option>
-              <option value="India">India</option>
+              <option value="Netherlands">Netherlands</option>
               <option value="Turkey">Turkey</option>
               <option value="Canada">Canada</option>
               <option value="Australia">Australia</option>
-              <option value="Germany">Germany</option>
+              <option value="France">France</option>
             </select>
           </div>
           <div class="col-md-6">

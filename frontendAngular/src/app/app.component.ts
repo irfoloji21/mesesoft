@@ -10,18 +10,23 @@ import { AuthService } from './shared/services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
-  
+
   // For Progressbar
   loaders = this.loader.progress$.pipe(
     delay(1000),
     withLatestFrom(this.loader.progress$),
     map(v => v[1]),
   );
-  
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,
-    private loader: LoadingBarService, translate: TranslateService,
-    private authService: AuthService) {
+
+  constructor(
+    @Inject(PLATFORM_ID)
+    private platformId: Object,
+    private loader: LoadingBarService,
+    translate: TranslateService,
+    private authService: AuthService
+  ) {
     if (isPlatformBrowser(this.platformId)) {
       translate.setDefaultLang('en');
       translate.addLangs(['en', 'fr']);
@@ -31,7 +36,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.loadUser().subscribe(
       (user) => {
-        console.log(user);
+        // console.log(user);
         if (user) {
           this.authService.setUser(user);
         }
