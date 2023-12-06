@@ -5,6 +5,8 @@ import { ProductService } from '../../../../shared/service/product.service';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { CategoryService } from 'src/app/shared/service/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/shared/tables/product';
+import { Category } from 'src/app/shared/tables/category';
 
 @Component({
   selector: 'app-add-product',
@@ -14,12 +16,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddProductComponent implements OnInit {
 
   id: string;
-  categories: any[] = [];
+  categories: Category[] = [];
   selectedCategory: string = '';
   buttonText: string = 'Add';
   public productForm: UntypedFormGroup;
   public Editor = ClassicEditor;
   public counter: number = 1;
+  selectedProduct: Product[] = [];
+  selectedProductImage: any;
 
   public url = [
     {
@@ -164,7 +168,6 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
       (response) => {
-        console.log('Kategoriler', response);
         this.categories = response.categories;
       },
       (error) => {
@@ -176,9 +179,11 @@ export class AddProductComponent implements OnInit {
       this.id = params['id'];
       this.productService.getProductById(this.id).subscribe(
         (response) => {
-          console.log('Ürün', response);
           this.productForm.patchValue(response.product);
           this.selectedCategory = response.product.category;
+          this.selectedProduct = response.product;
+          this.selectedProductImage = Object.keys(response.product.images).map(key => response.product.images[key]);
+          
           this.buttonText = 'Edit';
         },
         (error) => {
@@ -186,5 +191,9 @@ export class AddProductComponent implements OnInit {
         }
       );
     });
+  }
+
+  selectImage(image: any) {
+    this.selectedProductImage = image;
   }
 }
