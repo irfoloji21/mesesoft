@@ -1,45 +1,68 @@
 <div class="container-fluid">
-    <div class="row product-adding">
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5>General</h5>
-                </div>
-                <div class="card-body">
-                    <form (ngSubmit)="editCategory()" class="needs-validation"  [formGroup]="myForm">
-                        <div class="form">
-                          <div class="form-group">
-                            <label for="validationCustom01" class="mb-1">Category Name :</label>
-                            <input class="form-control" formControlName="name" id="validationCustom01" type="text">
-                          </div>
-                          <div class="form-group">
-                            <label for="validationCustom01" class="mb-1">Category Text :</label>
-                            <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="validationCustom02" class="mb-1">Category Image :</label>
-                            <input class="form-control" formControlName="images" id="validationCustom02" type="file" (change)="onFileChange($event)">
-                          </div>
-                          <div class="form-group">
-                            <label for="validationCustom02" class="mb-1">isShow :</label>
-                            <div>
-                              <input type="radio" id="isShowTrue" name="isShow" formControlName="isShow" [value]="true">
-                              <label for="isShowTrue">Yes</label>
-                            </div>
-                            <div>
-                              <input type="radio" id="isShowFalse" name="isShow" formControlName="isShow" [value]="false">
-                              <label for="isShowFalse">No</label>
-                            </div>
-                          </div>
-                      
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" >Save</button>
-                        </div>
-                      </form>
-                </div>
-            </div>
+  <div class="row product-adding">
+    <div class="col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h5>General</h5>
         </div>
-
+        <div class="card-body">
+          <form
+            (ngSubmit)="editCategory()"
+            class="needs-validation"
+            [formGroup]="myForm"
+          >
+            <div class="form">
+              <div class="form-group">
+                <label for="validationCustom01" class="mb-1"
+                  >Category Name :</label
+                >
+                <input
+                  class="form-control"
+                  formControlName="name"
+                  id="validationCustom01"
+                  type="text"
+                />
+              </div>
+              <div class="form-group">
+                <label for="validationCustom01" class="mb-1"
+                  >Category Text :</label
+                >
+                <textarea
+                  class="form-control"
+                  formControlName="description"
+                  id="validationCustom01"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="validationCustom02" class="mb-1"
+                  >Category Image :</label
+                >
+                <input
+                  class="form-control"
+                  formControlName="images"
+                  id="validationCustom02"
+                  type="file"
+                  (change)="onFileChange($event)"
+                />
+              </div>
+              <div class="form-group">
+                <label for="validationCustom02" class="mb-1">isShow :</label>
+                <select
+                  class="form-control"
+                  formControlName="isShow"
+                  id="validationCustom02"
+                >
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

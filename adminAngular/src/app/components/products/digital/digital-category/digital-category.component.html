@@ -1,112 +1,185 @@
 <!-- Container-fluid starts-->
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Categories</h5>
-                </div>
-                <div class="card-body">
-                    <div class="btn-popup pull-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
-                            data-target="#exampleModal" (click)="open(content)">Add Category</button>
-                        <ng-template #content let-modal>
-                            <div class="modal-header">
-                                <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Category</h5>
-                                <button type="button" class="close" aria-label="Close"
-                                    (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form (ngSubmit)="onSubmit()" class="needs-validation"  [formGroup]="myForm">
-                                    <div class="form">
-                                      <div class="form-group">
-                                        <label for="validationCustom01" class="mb-1">Category Name :</label>
-                                        <input class="form-control" formControlName="name" id="validationCustom01" type="text">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="validationCustom01" class="mb-1">Category Text :</label>
-                                        <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="validationCustom02" class="mb-1">Category Image :</label>
-                                        <input class="form-control" formControlName="images" id="validationCustom02" type="file" (change)="onFileChange($event)">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="validationCustom02" class="mb-1">isShow :</label>
-                                        <div>
-                                          <input type="radio" id="isShowTrue" name="isShow" formControlName="isShow" [value]="true">
-                                          <label for="isShowTrue">Yes</label>
-                                        </div>
-                                        <div>
-                                          <input type="radio" id="isShowFalse" name="isShow" formControlName="isShow" [value]="false">
-                                          <label for="isShowFalse">No</label>
-                                        </div>
-                                      </div>
-                                        <ng-multiselect-dropdown
-                                      [settings]="dropdownSettings"
-                                      [data]="categories"
-                                      [(ngModel)]="subcategories"
-                                      formControlName="subcategories"
-                                    >
-                                    </ng-multiselect-dropdown>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary" >Save</button>
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal"
-                                            (click)="modal.dismiss('Cross click')">Close</button>
-                                    </div>
-                                  </form>
-
-                                  
-                            </div>
-
-
-                        </ng-template>
-                    </div>
-                    <div id="batchDelete" class="category-table custom-datatable">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col" sortable="img"  (sort)="onSort($event)">Image</th>
-                                    <th scope="col" sortable="product_name" (sort)="onSort($event)">Name</th>
-                                    <th scope="col" sortable="status" (sort)="onSort($event)">isShow</th>
-                                    <th scope="col" sortable="category" (sort)="onSort($event)">SubCategory</th>
-                                    <th scope="col" sortable="population" (sort)="onSort($event)">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr  *ngFor="let catgory of categories">
-                                <th scope="row">{{ catgory._id }}</th>
-                                <td>
-                                    <!-- .url sildim ekleyeceğim -->
-                                    <img [src]="[catgory.images[0].url]" class="imgTable" style="width: 20px">
-                                </td>
-                                    <td>{{ catgory.name }}</td>
-                                <td>{{catgory.isShow}}</td>
-                                <td>
-                                    <ul>
-                                        <li *ngFor="let subcategory of catgory.subcategories">{{ subcategory.name }}</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <button href="javascript:void(0)" (click)="editCategory(catgory._id)"><i class='fa fa-edit f-12'></i></button>&nbsp;
-                                    <a href="javascript:void(0)" (click)="deleteCategory(catgory._id)"><i class="fa fa-trash-o"></i></a>
-                                </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Categories</h5>
         </div>
+        <div class="card-body">
+          <div class="btn-popup pull-right">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-original-title="test"
+              data-target="#exampleModal"
+              (click)="open(content)"
+            >
+              Add Category
+            </button>
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h5 class="modal-title f-w-600" id="exampleModalLabel">
+                  Add Category
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form
+                  (ngSubmit)="onSubmit()"
+                  class="needs-validation"
+                  [formGroup]="myForm"
+                >
+                  <div class="form">
+                    <div class="form-group">
+                      <label for="validationCustom01" class="mb-1"
+                        >Category Name :</label
+                      >
+                      <input
+                        class="form-control"
+                        formControlName="name"
+                        id="validationCustom01"
+                        type="text"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="validationCustom01" class="mb-1"
+                        >Category Text :</label
+                      >
+                      <textarea
+                        class="form-control"
+                        formControlName="description"
+                        id="validationCustom01"
+                      ></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="validationCustom02" class="mb-1"
+                        >Category Image :</label
+                      >
+                      <input
+                        class="form-control"
+                        formControlName="images"
+                        id="validationCustom02"
+                        type="file"
+                        (change)="onFileChange($event)"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="validationCustom02" class="mb-1"
+                        >isShow :</label
+                      >
+                      <select
+                        class="form-control"
+                        formControlName="isShow"
+                        id="validationCustom02"
+                      >
+                        <option [ngValue]="true">Yes</option>
+                        <option [ngValue]="false">No</option>
+                      </select>
+                    </div>
+                    <ng-multiselect-dropdown
+                      [settings]="dropdownSettings"
+                      [data]="categories"
+                      [(ngModel)]="subcategories"
+                      formControlName="subcategories"
+                    >
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button
+                      class="btn btn-secondary"
+                      type="button"
+                      data-dismiss="modal"
+                      (click)="modal.dismiss('Cross click')"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </ng-template>
+          </div>
+          <div id="batchDelete" class="category-table custom-datatable">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" sortable="img" (sort)="onSort($event)">
+                      Image
+                    </th>
+                    <th
+                      scope="col"
+                      sortable="product_name"
+                      (sort)="onSort($event)"
+                    >
+                      Name
+                    </th>
+                    <th scope="col" sortable="status" (sort)="onSort($event)">
+                      isShow
+                    </th>
+                    <th scope="col" sortable="category" (sort)="onSort($event)">
+                      SubCategory
+                    </th>
+                    <th
+                      scope="col"
+                      sortable="population"
+                      (sort)="onSort($event)"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let catgory of categories">
+                    <th scope="row">{{ catgory._id }}</th>
+                    <td>
+                      <!-- .url sildim ekleyeceğim -->
+                      <img
+                        [src]="[catgory.images[0].url]"
+                        class="imgTable"
+                        style="width: 20px"
+                      />
+                    </td>
+                    <td>{{ catgory.name }}</td>
+                    <td>{{ catgory.isShow }}</td>
+                    <td>
+                      <ul>
+                        <li *ngFor="let subcategory of catgory.subcategories">
+                          {{ subcategory.name }}
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      <button
+                        href="javascript:void(0)"
+                        (click)="editCategory(catgory._id)"
+                      >
+                        <i class="fa fa-edit f-12"></i></button
+                      >&nbsp;
+                      <a
+                        href="javascript:void(0)"
+                        (click)="deleteCategory(catgory._id)"
+                        ><i class="fa fa-trash-o"></i
+                      ></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- Container-fluid Ends-->
