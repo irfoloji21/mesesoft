@@ -65,6 +65,45 @@ export class AddProductComponent implements OnInit {
     })
   }
 
+  ngOnInit() {
+    this.categoryService.getCategory().subscribe(
+      (response) => {
+        this.categories = response.categories;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      if (this.id) {
+        this.productService.getProductById(this.id).subscribe(
+          (response) => {
+            this.productForm.patchValue(response.product);
+            this.selectedCategory = response.product.category;
+            this.selectedProduct = response.product;
+            this.selectedProductImage = Object.keys(response.product.images).map(key => response.product.images[key]);
+            this.buttonText = 'Edit';
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      } else {
+        this.selectedProductImage = [
+          { url: "assets/images/user.png" },
+          { url: "assets/images/user.png" },
+          { url: "assets/images/user.png" },
+          { url: "assets/images/user.png" },
+          { url: "assets/images/user.png" },
+        ];
+        this.buttonText = 'Add';
+      }
+    });
+
+  }
+
   increment() {
     this.counter += 1;
   }
@@ -147,12 +186,10 @@ export class AddProductComponent implements OnInit {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
       const shop = this.authService.getShop();
-
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
-
-      console.log(this.id, "id")
+      
       this.productService.updateProduct(this.id, formData).subscribe(
         (response) => {
           this.router.navigate(['/products/physical/product-list']);
@@ -163,34 +200,6 @@ export class AddProductComponent implements OnInit {
         }
       );
     }
-  }
-
-  ngOnInit() {
-    this.categoryService.getCategory().subscribe(
-      (response) => {
-        this.categories = response.categories;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-      this.productService.getProductById(this.id).subscribe(
-        (response) => {
-          this.productForm.patchValue(response.product);
-          this.selectedCategory = response.product.category;
-          this.selectedProduct = response.product;
-          this.selectedProductImage = Object.keys(response.product.images).map(key => response.product.images[key]);
-          
-          this.buttonText = 'Edit';
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    });
   }
 
   selectImage(image: any) {

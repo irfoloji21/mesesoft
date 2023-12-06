@@ -24,12 +24,12 @@
                       *ngFor="let image of selectedProductImage;  let i = index"
                       >
                         <div class="box-input-file">
-                          <!-- <input
+                          <input
                             
                             class="upload"
                             type="file"
                             (change)="onFileChange($event, i)"
-                          /> -->
+                          />
                           <img
                             class="imgUpload"
                             alt=""
@@ -210,8 +210,8 @@
                         name="gender"
                         [formControl]="productForm.controls['gender']"
                       >
-                        <option value="erkek">Erkek</option>
-                        <option value="kadın">Kadın</option>
+                        <option value="man">Erkek</option>
+                        <option value="woman">Kadın</option>
                         <option value="unisex">Unisex</option>
                         <option value="cocuk">Çocuk</option>
                       </select>

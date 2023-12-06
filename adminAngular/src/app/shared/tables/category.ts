@@ -4,6 +4,7 @@ export interface Category {
     price: string;
     status: string;
     category: string;
+    _id?: string;
 }
 
 export const CATEGORY: Category[] = [
