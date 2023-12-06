@@ -1,5 +1,8 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
@@ -13,9 +16,12 @@ export class LoginComponent implements OnInit {
   public registerForm: FormGroup;
   public active = 1;
 
-  constructor(private formBuilder: UntypedFormBuilder,  private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private toasts : ToastrService) { 
     this.createLoginForm();
-    this.createRegisterForm();
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
   owlcarousel = [
@@ -46,34 +52,52 @@ export class LoginComponent implements OnInit {
   
     console.log(this.loginForm);
   }
-  createRegisterForm() {
-    this.registerForm = this.formBuilder.group({
-      email: [''],
-      password: [''],
-      confirmPassword: [''],
-    })
-  }
+
 
 
   ngOnInit() {
   }
 
+
   onSubmit() {
-    if (this.loginForm.valid) {
-      const email = this.loginForm.value.email;
-      const password = this.loginForm.value.password;
+    const formData = this.loginForm.value;
 
-      this.authService.loginShop(email, password).subscribe(
-        (response) => {
+       const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
 
-          console.log('Auth response:', response);
-        },
-        (error) => {
+      const requestOptions = {
+        headers,
+        withCredentials: true, 
+      };
 
-          console.error('Auth error:', error);
+
+    this.authService.login(formData.email, formData.password)
+      .subscribe(response => {
+        if (response.success) {
+          console.log("success", response);
+          this.authService.setUserId(response.user._id)
+          this.toasts.success('Giriş başarılı', '' ,
+          { 
+            positionClass: 'toast-top-right',
+            timeOut: 2500, 
+            closeButton: true,
+            newestOnTop: false,
+            progressBar: true,
+          })
+          this.router.navigate(['/dashboard/default'], { state: formData });
+        } else {
+          console.error("error");
+          this.toasts.error('Giriş başarısız', '' ,
+          { 
+            positionClass: 'toast-top-right',
+            timeOut: 2500, 
+            closeButton: true,
+            newestOnTop: false,
+            progressBar: true,
+          })
         }
-      )
-    }
+      });
   }
 
 }

@@ -43,6 +43,15 @@ export class HeaderComponent implements OnInit {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
+
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      console.log('isLoggedIn$ değeri:', isLoggedIn);
+    });
+    
+  }
+  logout() {
+    this.authService.logout();
+    
   }
 
 }

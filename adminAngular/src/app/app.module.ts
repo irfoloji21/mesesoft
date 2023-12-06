@@ -28,12 +28,13 @@ import { FormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { AboutModule } from './components/about/about.module';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
     InboxComponent,
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -59,6 +60,11 @@ import { AboutModule } from './components/about/about.module';
     UsersModule,
     AgGridModule,
     FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      progressBar: false,
+      enableHtml: true,
+    }),
     NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
