@@ -2972,6 +2972,11 @@ $header-size: 80px;
   .onhover-dropdown {
     cursor: pointer;
     position: relative;
+    .media {
+      span {
+        font-size: 12px;
+      }
+    }
     &:before {
       display: none;
     }

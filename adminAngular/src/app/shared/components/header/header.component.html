@@ -153,15 +153,11 @@
             ><span class="dot"></span>
           </a>
         </li>
-        <li class="onhover-dropdown">
-          <div class="media align-items-center">
-            <img
-              [routerLink]="['/auth/login']"
-              class="align-self-center pull-right img-50 rounded-circle"
-              [src]="shop?.avatar.url"
-              alt="header-user"
-            />
-
+        <li class="onhover-dropdown" *ngIf="!isLoggedIn">
+          <div class="media align-items-center" >
+            <span class="round-icon rounded-circle" (click)="profile()">
+              {{userInitials }}
+             </span>
             <div class="dotted-animation">
               <span class="animate-circle"></span
               ><span class="main-circle"></span>
@@ -200,6 +196,22 @@
             </li>
           </ul>
         </li>
+        
+        <li class="onhover-dropdown" *ngIf="isLoggedIn">
+          <div class="media align-items-center">
+            <img
+              [routerLink]="['/auth/login']"
+              class="align-self-center pull-right img-50 rounded-circle"
+              src="assets/images/user.png"
+              alt="header-user"
+            />
+            <div class="dotted-animation">
+              <span class="animate-circle"></span
+              ><span class="main-circle"></span>
+            </div>
+          </div>
+        </li>
+
       </ul>
       <div class="d-lg-none mobile-toggle pull-right" (click)="openMobileNav()">
         <app-feather-icons [icon]="'more-horizontal'"></app-feather-icons>

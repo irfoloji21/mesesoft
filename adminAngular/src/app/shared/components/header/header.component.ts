@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NavService } from '../../service/nav.service';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,12 +17,14 @@ export class HeaderComponent implements OnInit {
   public openNav: boolean = false;
   public isOpenMobile: boolean;
   isLoggedIn: boolean;
+  userInitials: string;
 
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
   constructor(
     public navServices: NavService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
   collapseSidebar() {
@@ -44,6 +47,7 @@ export class HeaderComponent implements OnInit {
         console.log(shop);
         
         this.shop = shop.seller;
+        this.userInitials = this.getInitials(this.shop.name);
       },
       (error) => {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
@@ -55,9 +59,14 @@ export class HeaderComponent implements OnInit {
     });
     
   }
+  getInitials(name: string): string {
+    return (name).toUpperCase();
+  }
+  profile(): void {
+    this.router.navigate(['/pages/dashboard'])
+  }
   logout() {
     this.authService.logout();
-    
   }
 
 }
