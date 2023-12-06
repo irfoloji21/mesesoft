@@ -1,18 +1,14 @@
 <div class="page-wrapper">
-  <div class="authentication-box">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 p-0 card-left">
-          <div class="card bg-primary">
-            <div class="svg-icon">
-              <a [routerLink]="['/dashboard/default']">
-                <img
-                  class="blur-up lazyloaded"
-                  src="assets/images/dashboard/meseSoftLogo.jpg"
-                  alt=""
-                />
-              </a>
-              <!--  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+    <div class="authentication-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 p-0 card-left">
+                    <div class="card bg-primary">
+                        <div class="svg-icon">
+                            <a [routerLink]="['/dashboard/default']">
+                                <img class="blur-up lazyloaded" src="assets/images/dashboard/meseSoftLogo.jpg" alt="" />
+                            </a>
+                            <!--  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 468.52 468.52"
                                 style="enable-background:new 0 0 468.52 468.52;" xml:space="preserve">
                                 <g>
@@ -123,211 +119,140 @@
             c1.923,0,3.84-0.728,5.303-2.192l-83.142-83.142L393.695,417.909z" />
                                 </g>
                             </svg>-->
-            </div>
-            <div class="single-item">
-              <owl-carousel-o [options]="owlcarouselOptions">
-                <ng-container *ngFor="let data of owlcarousel">
-                  <ng-template carouselSlide class="item">
-                    <div>
-                      <h3>{{ data.title }}</h3>
-                      <p>{{ data.desc }}</p>
+                        </div>
+                        <div class="single-item">
+                            <owl-carousel-o [options]="owlcarouselOptions">
+                                <ng-container *ngFor="let data of owlcarousel">
+                                    <ng-template carouselSlide class="item">
+                                        <div>
+                                            <h3>{{ data.title }}</h3>
+                                            <p>{{ data.desc }}</p>
+                                        </div>
+                                    </ng-template>
+                                </ng-container>
+                            </owl-carousel-o>
+                        </div>
                     </div>
-                  </ng-template>
-                </ng-container>
-              </owl-carousel-o>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7 p-0 card-right">
-          <div class="card tab2-card">
-            <div class="card-body">
-              <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-                <li [ngbNavItem]="1">
-                  <a ngbNavLink>Login</a>
-                  <ng-template ngbNavContent>
-                    <div
-                      class="tab-pane fade active show"
-                      id="account"
-                      role="tabpanel"
-                      aria-labelledby="account-tab"
-                    >
-                      <form
-                        [formGroup]="loginForm"
-                        (ngSubmit)="onSubmit()"
-                        class="form-horizontal auth-form"
-                      >
-                        <div class="form-group">
-                          <input
-                            required
-                            name="email"
-                            type="email"
-                            placeholder="email"
-                            formControlName="email"
-                            class="form-control"
-                            id="exampleInputEmail1"
-                          />
+                </div>
+                <div class="col-md-7 p-0 card-right">
+                    <div class="card tab2-card">
+                        <div class="card-body">
+                            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                                <li [ngbNavItem]="1">
+                                    <a ngbNavLink>Login</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="tab-pane fade active show" id="account" role="tabpanel"
+                                            aria-labelledby="account-tab">
+                                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+                                                class="form-horizontal auth-form">
+                                                <div class="form-group">
+                                                    <input required name="email" type="email" placeholder="email"
+                                                        formControlName="email" class="form-control"
+                                                        id="exampleInputEmail1" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="password" type="password" placeholder="Password"
+                                                        formControlName="password" class="form-control" />
+                                                </div>
+                                                <div class="form-terms">
+                                                    <div
+                                                        class="custom-control custom-checkbox d-flex align-items-center flex-wrap">
+                                                        <input type="checkbox" class="custom-control-input me-2"
+                                                            id="customControlAutosizing" />
+                                                        <label class="custom-control-label"
+                                                            for="customControlAutosizing">Remember me</label>
+                                                        <a href="javascript:void(0)"
+                                                            class="btn btn-default forgot-pass ms-auto">Forgot
+                                                            password</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-button">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        Login
+                                                    </button>
+                                                </div>
+                                                <div class="form-footer">
+                                                    <span>Or Login up with social platforms</span>
+                                                    <ul class="social">
+                                                        <li>
+                                                            <a class="icon-facebook" href="javascript:void(0)"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="icon-twitter" href="javascript:void(0)"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="icon-instagram" href="javascript:void(0)"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="icon-pinterest" href="javascript:void(0)"></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2">
+                                    <a ngbNavLink>Register</a>
+                                    <ng-template ngbNavContent>
+                                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-horizontal auth-form">
+                                            <div class="d-flex">
+                                                <div class="form-group ">
+                                                  <label for="firstName">First Name</label>
+                                                  <input required name="firstName" type="text" placeholder="First Name" formControlName="firstName"
+                                                    class="form-control" id="firstName">
+                                                </div>
+                                                <div class="form-group mx-2">
+                                                  <label for="lastName">Last Name</label>
+                                                  <input required name="lastName" type="text" placeholder="Last Name" formControlName="lastName"
+                                                    class="form-control" id="lastName">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                              <label for="email">Email</label>
+                                              <input required name="email" type="email" placeholder="Email" formControlName="email"
+                                                class="form-control" id="email">
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="password">Password</label>
+                                              <input required name="password" type="password" placeholder="Password" formControlName="password"
+                                                class="form-control" id="password">
+                                            </div>
+                                            <div class="form-terms">
+                                              <div class="custom-control custom-checkbox d-flex">
+                                                <input type="checkbox" class="custom-control-input mt-1 me-2" id="customControlAutosizing1">
+                                                <label class="custom-control-label" for="customControlAutosizing1">
+                                                  <span>I agree all statements in <a href="javascript:void(0)">Terms &amp; Conditions</a></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-button">
+                                              <a [routerLink]="'/dashboard/default'">
+                                                <button class="btn btn-primary" type="submit">Register</button>
+                                              </a>
+                                            </div>
+                                             <!-- <div class="form-footer">
+                                              <span>Or Sign up with social platforms</span>
+                                              <ul class="social">
+                                                <li><a href="javascript:void(0)"><i class="icon-facebook"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i class="icon-twitter"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i class="icon-instagram"></i></a></li>
+                                                <li><a href="javascript:void(0)"><i class="icon-pinterest"></i></a></li>
+                                              </ul>
+                                            </div> -->
+                                          </form>
+                                          
+                                    </ng-template>
+                                </li>
+                            </ul>
+                            <div [ngbNavOutlet]="nav" class="mt-2"></div>
                         </div>
-                        <div class="form-group">
-                          <input
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            formControlName="password"
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="form-terms">
-                          <div
-                            class="custom-control custom-checkbox d-flex align-items-center flex-wrap"
-                          >
-                            <input
-                              type="checkbox"
-                              class="custom-control-input me-2"
-                              id="customControlAutosizing"
-                            />
-                            <label
-                              class="custom-control-label"
-                              for="customControlAutosizing"
-                              >Remember me</label
-                            >
-                            <a
-                              href="javascript:void(0)"
-                              class="btn btn-default forgot-pass ms-auto"
-                              >Forgot password</a
-                            >
-                          </div>
-                        </div>
-                        <div class="form-button">
-                          <button class="btn btn-primary" type="submit">
-                            Login
-                          </button>
-                        </div>
-                        <div class="form-footer">
-                          <span>Or Login up with social platforms</span>
-                          <ul class="social">
-                            <li>
-                              <a
-                                class="icon-facebook"
-                                href="javascript:void(0)"
-                              ></a>
-                            </li>
-                            <li>
-                              <a
-                                class="icon-twitter"
-                                href="javascript:void(0)"
-                              ></a>
-                            </li>
-                            <li>
-                              <a
-                                class="icon-instagram"
-                                href="javascript:void(0)"
-                              ></a>
-                            </li>
-                            <li>
-                              <a
-                                class="icon-pinterest"
-                                href="javascript:void(0)"
-                              ></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </form>
                     </div>
-                  </ng-template>
-                </li>
-                <li [ngbNavItem]="2">
-                  <a ngbNavLink>Register</a>
-                  <ng-template ngbNavContent>
-                    <form
-                      [formGroup]="registerForm"
-                      class="form-horizontal auth-form"
-                      novalidate
-                    >
-                      <div class="form-group">
-                        <input
-                          required=""
-                          name="login[username]"
-                          type="email"
-                          class="form-control"
-                          placeholder="Username"
-                          id="exampleInputEmail12"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <input
-                          required=""
-                          name="login[password]"
-                          type="password"
-                          class="form-control"
-                          placeholder="Password"
-                        />
-                      </div>
-                      <div class="form-terms">
-                        <div class="custom-control custom-checkbox d-flex">
-                          <input
-                            type="checkbox"
-                            class="custom-control-input mt-1 me-2"
-                            id="customControlAutosizing1"
-                          />
-                          <label
-                            class="custom-control-label"
-                            for="customControlAutosizing1"
-                            ><span
-                              >I agree all statements in
-                              <a href="javascript:void(0)"
-                                >Terms &amp; Conditions</a
-                              ></span
-                            ></label
-                          >
-                        </div>
-                      </div>
-                      <div class="form-button">
-                        <a [routerLink]="'/dashboard/default'">
-                          <button class="btn btn-primary" type="submit">
-                            Register
-                          </button></a
-                        >
-                      </div>
-                      <div class="form-footer">
-                        <span>Or Sign up with social platforms</span>
-                        <ul class="social">
-                          <li>
-                            <a href="javascript:void(0)"
-                              ><i class="icon-facebook"></i
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)"
-                              ><i class="icon-twitter"></i
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)"
-                              ><i class="icon-instagram"></i
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)"
-                              ><i class="icon-pinterest"></i
-                            ></a>
-                          </li>
-                        </ul>
-                      </div>
-                    </form>
-                  </ng-template>
-                </li>
-              </ul>
-              <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <a [routerLink]="'/dashboard/default'" class="btn btn-primary back-btn">
-        <app-feather-icons [icon]="'arrow-left'"></app-feather-icons>
-        back
-      </a>
     </div>
-  </div>
 </div>
 
 <!-- <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">

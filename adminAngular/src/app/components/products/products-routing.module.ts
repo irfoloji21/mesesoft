@@ -6,7 +6,6 @@ import { ProductListComponent } from './physical/product-list/product-list.compo
 import { AddProductComponent } from './physical/add-product/add-product.component';
 import { DigitalCategoryComponent } from './digital/digital-category/digital-category.component';
 import { DigitalSubCategoryComponent } from './digital/digital-sub-category/digital-sub-category.component';
-import { DigitalListComponent } from './digital/digital-list/digital-list.component';
 import { DigitalAddComponent } from './digital/digital-add/digital-add.component';
 import { ProductDetailComponent } from './physical/product-detail/product-detail.component';
 
@@ -86,14 +85,7 @@ const routes: Routes = [
           breadcrumb: "Sub Category"
         }
       },
-      {
-        path: 'digital/digital-product-list',
-        component: DigitalListComponent,
-        data: {
-          title: "Product List",
-          breadcrumb: "Product List"
-        }
-      },
+     
       {
         path: 'digital/digital-add-product',
         component: DigitalAddComponent,

@@ -54,10 +54,18 @@ export class LoginComponent implements OnInit {
     });
     console.log(this.loginForm);
   }
-
+  createRegisterForm() {
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.checkUserLoginStatus();
+    this.createRegisterForm();
   }
 
   private checkUserLoginStatus() {
