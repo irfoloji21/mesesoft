@@ -2,10 +2,10 @@
   <div class="main-header-right row">
     <div class="main-header-left d-lg-none col">
       <div class="logo-wrapper">
-        <a [routerLink]="'/dashboard/default'"
+        <a [routerLink]="['/dashboard/default']"
           ><img
             class="blur-up lazyloaded"
-            src="assets/images/dashboard/multikart-logo.png"
+            src="assets/images/dashboard/meseSoftLogo.jpg"
             alt=""
         /></a>
       </div>
@@ -156,7 +156,7 @@
         <li class="onhover-dropdown">
           <div class="media align-items-center">
             <img
-              [routerLink]="'/auth/login'"
+              [routerLink]="['/auth/login']"
               class="align-self-center pull-right img-50 rounded-circle"
               [src]="shop?.avatar.url"
               alt="header-user"
@@ -171,7 +171,7 @@
             class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover"
           >
             <li>
-              <a [routerLink]="'/settings/profile'">
+              <a [routerLink]="['/settings/profile']">
                 <app-feather-icons [icon]="'user'"></app-feather-icons>Edit
                 Profile
               </a>

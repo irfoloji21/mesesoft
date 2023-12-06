@@ -10,18 +10,15 @@ import { OrderService } from 'src/app/shared/service/order.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
 
   public shop: any;
   public products: any[] = [];
   public productCount: number = 0;
   public orders: any[] = [];
-
-
-
   public doughnutData = doughnutData;
   public pieData = pieData;
-
 
   constructor(
     private authService: AuthService,
@@ -37,9 +34,7 @@ export class DashboardComponent implements OnInit {
   public doughnutChartShowLabels = chartData.doughnutChartShowLabels;
   public doughnutChartGradient = chartData.doughnutChartGradient;
   public doughnutChartTooltip = chartData.doughnutChartTooltip;
-
   public chart5 = chartData.chart5;
-
 
   // lineChart
   public lineChartData = chartData.lineChartData;
@@ -80,8 +75,6 @@ export class DashboardComponent implements OnInit {
 
   public chart3 = chartData.chart3;
 
-
-
   // events
   public chartClicked(e: any): void {
   }
@@ -90,8 +83,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.auth();
-   
-
   }
 
   auth() {

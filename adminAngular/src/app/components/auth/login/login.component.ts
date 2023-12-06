@@ -10,34 +10,37 @@ import { AuthService } from 'src/app/shared/service/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
 
+export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public registerForm: FormGroup;
   public active = 1;
+  private isUserLoggedIn: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private toasts : ToastrService) { 
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private toasts: ToastrService
+  ) {
     this.createLoginForm();
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
   }
 
   owlcarousel = [
     {
-      title: "Welcome to Multikart",
+      title: "Welcome to MeseSoft",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
     },
     {
-      title: "Welcome to Multikart",
+      title: "Welcome to MeseSoft",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
     },
     {
-      title: "Welcome to Multikart",
+      title: "Welcome to MeseSoft",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
     }
   ]
+
   owlcarouselOptions = {
     loop: true,
     items: 1,
@@ -49,27 +52,43 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]], // E-posta alanı
       password: ['', Validators.required], // Şifre alanı
     });
-  
     console.log(this.loginForm);
   }
 
 
-
   ngOnInit() {
+    this.checkUserLoginStatus();
+  }
+
+  private checkUserLoginStatus() {
+    this.authService.loadShop().subscribe(
+      (response) => {
+        // Backend tarafından dönen cevaba göre kullanıcı giriş yapmışsa true, yapmamışsa false olacak
+        this.isUserLoggedIn = response.success;
+
+        // Eğer kullanıcı giriş yapmışsa, başka bir sayfaya yönlendir
+        if (this.isUserLoggedIn) {
+          this.router.navigate(['/dashboard/default']); // Örnek bir sayfa yönlendirmesi
+        }
+      },
+      (error) => {
+        console.error('Backend error:', error);
+      }
+    );
   }
 
 
   onSubmit() {
     const formData = this.loginForm.value;
 
-       const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
 
-      const requestOptions = {
-        headers,
-        withCredentials: true, 
-      };
+    const requestOptions = {
+      headers,
+      withCredentials: true,
+    };
 
 
     this.authService.login(formData.email, formData.password)
@@ -77,27 +96,26 @@ export class LoginComponent implements OnInit {
         if (response.success) {
           console.log("success", response);
           this.authService.setUserId(response.user._id)
-          this.toasts.success('Giriş başarılı', '' ,
-          { 
-            positionClass: 'toast-top-right',
-            timeOut: 2500, 
-            closeButton: true,
-            newestOnTop: false,
-            progressBar: true,
-          })
+          this.toasts.success('Giriş başarılı', '',
+            {
+              positionClass: 'toast-top-right',
+              timeOut: 2500,
+              closeButton: true,
+              newestOnTop: false,
+              progressBar: true,
+            })
           this.router.navigate(['/dashboard/default'], { state: formData });
         } else {
           console.error("error");
-          this.toasts.error('Giriş başarısız', '' ,
-          { 
-            positionClass: 'toast-top-right',
-            timeOut: 2500, 
-            closeButton: true,
-            newestOnTop: false,
-            progressBar: true,
-          })
+          this.toasts.error('Giriş başarısız', '',
+            {
+              positionClass: 'toast-top-right',
+              timeOut: 2500,
+              closeButton: true,
+              newestOnTop: false,
+              progressBar: true,
+            })
         }
       });
   }
-
 }

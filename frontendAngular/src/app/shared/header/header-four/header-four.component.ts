@@ -39,6 +39,7 @@ export class HeaderFourComponent implements OnInit {
     });
 
   }
+  
   submitSearch() {
     const searchValue = this.form.get('search').value;
     // console.log(searchValue , "searchValue")

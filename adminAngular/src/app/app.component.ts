@@ -6,24 +6,22 @@ import { AuthService } from './shared/service/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit  {
+export class AppComponent implements OnInit {
+
   title = 'multikart-backend';
+  constructor(private authService: AuthService) { }
 
-  constructor(private authService: AuthService) {
-
-}
-
-ngOnInit(): void {
-  this.authService.loadShop().subscribe(
-    (shop) => {
-      console.log(shop);
-      if (shop) {
-        this.authService.setShop(shop);
+  ngOnInit(): void {
+    this.authService.loadShop().subscribe(
+      (shop) => {
+        console.log(shop);
+        if (shop) {
+          this.authService.setShop(shop);
+        }
+      },
+      (error) => {
+        console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
-    },
-    (error) => {
-      console.error('Kullanıcı kimliği belirleme hatası:', error);
-    }
-  );
-}
+    );
+  }
 }
