@@ -20,12 +20,14 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class DigitalCategoryComponent implements OnInit {
   myForm:FormGroup;
   myForm2:FormGroup;
+  id: string;
   selectedItems = [];
   dropdownSettings = {};
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
   public categories = []
   public subcategories = []
+  public isModalOpen : boolean= false
 
   constructor(
     private router: Router,
@@ -55,6 +57,13 @@ export class DigitalCategoryComponent implements OnInit {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
     this.headers.forEach((header) => {
@@ -107,8 +116,25 @@ export class DigitalCategoryComponent implements OnInit {
     }
   }
 
+
+
+  editCategory() {
+    console.log("editform submitted")
+    if (this.myForm.valid) {
+      const formData = this.myForm.value;
+
+      console.log(this.id, "id")
+      this.categoryService.updateCategory(this.id, formData).subscribe(
+        (response) => {
+          console.log('kategori başarıyla güncellendi:', response);
+        },
+        (error) => {
+          console.error('kategori güncellenirken hata oluştu:', error);
+        }
+      );
+    }
+  }
   onFileChange(event: any) {
-    console.log('onFileChange', event.target.files)
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
   
@@ -121,23 +147,16 @@ export class DigitalCategoryComponent implements OnInit {
         reader.onload = (e: any) => {
 
           imageUrls.push(e.target.result);
-          console.log('imageUrls', imageUrls)
-
           this.myForm.get('images').setValue(imageUrls);
   
-          // console.log('imageUrls:', imageUrls);
-          // console.log(this.myForm.value.images);
+          console.log('imageUrls:', imageUrls);
+          console.log(this.myForm.value.images);
         };
   
         reader.readAsDataURL(file);
       }
     }
   }
-
-  editCategory(_id){
-    this.router.navigate(['digital/edit-category', _id]);
-  }
-
 
   
 
