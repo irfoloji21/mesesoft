@@ -14,22 +14,22 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   providers: [TableService, DecimalPipe],
 })
 
-
 export class SubCategoryComponent {
   public closeResult: string;
   searchText;
   tableItem$: Observable<Category[]>;
   total$: Observable<number>;
 
-
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: TableService, private modalService: NgbModal) {
+  constructor(
+    public service: TableService, 
+    private modalService: NgbModal
+  ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(CATEGORY)
   }
-
 
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
@@ -38,10 +38,8 @@ export class SubCategoryComponent {
         header.direction = '';
       }
     });
-
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-
   }
 
   open(content) {

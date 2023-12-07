@@ -18,6 +18,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./digital-category.component.scss'],
   providers: [TableService, DecimalPipe],
 })
+
 export class DigitalCategoryComponent implements OnInit {
   myForm: FormGroup;
   myFormEdit: FormGroup;
@@ -33,6 +34,7 @@ export class DigitalCategoryComponent implements OnInit {
   editMainCategory: any[] = [];
   isEditing: boolean = false;
   private modalRef: NgbModalRef | undefined;
+
   constructor(
     private router: Router,
     public service: TableService,
@@ -66,14 +68,6 @@ export class DigitalCategoryComponent implements OnInit {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-
-
-
-
-
-
-
-
   closeModal() {
     this.isModalOpen = false;
   }
@@ -101,11 +95,8 @@ export class DigitalCategoryComponent implements OnInit {
       description: selectedCategory.description,
       isShow: selectedCategory.isShow,
     });
-
     this.isEditing = true;
   }
-
-
 
   updateMainCategory() {
     const formValues = this.myFormEdit.value;
@@ -114,26 +105,15 @@ export class DigitalCategoryComponent implements OnInit {
     this.categoryService.updateCategory(categoryId, formValues).subscribe(
       (response) => {
         console.log('Kategori güncelendi:', response);
-
-
         this.isEditing = false;
         this.closeModal();
         this.getMainCategoryList();
-        
-
       },
       (error) => {
         console.error('Kategori güncelleme hatası:', error);
       }
     );
   }
-
-
-
-
-
-
-
 
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
@@ -177,8 +157,6 @@ export class DigitalCategoryComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  
-
 
   onSubmit() {
     console.log("form submitted");
@@ -195,7 +173,7 @@ export class DigitalCategoryComponent implements OnInit {
           this.getMainCategoryList();
           this.closeModalForAdd();
           this.myForm.reset();
-         
+
         },
         (error) => {
           console.error('Kategori oluşturulurken hata oluştu:', error);
@@ -203,7 +181,6 @@ export class DigitalCategoryComponent implements OnInit {
       );
     }
   }
-
 
   onSelect(event) {
     this.files.push(...event.addedFiles);
@@ -239,8 +216,6 @@ export class DigitalCategoryComponent implements OnInit {
     }
   }
 
-
-
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {
@@ -265,8 +240,6 @@ export class DigitalCategoryComponent implements OnInit {
     );
   }
 
-
-
   ngOnInit() {
     this.initEditForm();
     this.getMainCategoryList();
@@ -280,15 +253,9 @@ export class DigitalCategoryComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
-
     // Şimdi nesneyi kullanabilirsiniz
     this.dropdownSettings = dropdownSettings;
 
   }
-
-
-
-
-
 
 }

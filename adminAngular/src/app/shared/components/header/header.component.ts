@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     this.openNav = !this.openNav;
   }
 
-  ngOnInit() {
+  getAuth() {
     this.authService.loadShop().subscribe(
       (shop) => {
         this.shop = shop.seller;
@@ -51,12 +51,19 @@ export class HeaderComponent implements OnInit {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
+  }
 
+  getLogin() {
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       console.log('isLoggedIn$ değeri:', isLoggedIn);
     });
-
   }
+
+  ngOnInit() {
+    this.getAuth();
+    this.getLogin();
+  }
+
   getInitials(name: string): string {
     return (name).toUpperCase();
   }
@@ -64,7 +71,7 @@ export class HeaderComponent implements OnInit {
   profile(): void {
     this.router.navigate(['/pages/dashboard'])
   }
-  
+
   logout() {
     this.authService.logout();
   }
