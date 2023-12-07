@@ -32,5 +32,4 @@ export class BlogService {
     return this.http.put<any>(`${this.apiUrl}/blog/update-blog/${id}`, blogData);
   }
   
-
 }

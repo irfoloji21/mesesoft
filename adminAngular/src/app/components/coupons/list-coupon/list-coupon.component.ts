@@ -15,21 +15,20 @@ import { concatMap } from 'rxjs/operators';
   styleUrls: ['./list-coupon.component.scss'],
   providers: [TableService, DecimalPipe]
 })
+
 export class ListCouponComponent implements OnInit {
+
   coupons: any[] = [];
   selectedItems: string[] = [];
-
-  
   public tableItem$: Observable<ListCouponsDB[]>;
   public searchText;
   total$: any;
 
   constructor(
     public service: TableService,
-    
-    private authService: AuthService, 
+    private authService: AuthService,
     private couponService: CouponService,
-    ) {
+  ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = this.coupons.length;
     this.service.setUserData(LISTCOUPLEDB)
@@ -44,10 +43,8 @@ export class ListCouponComponent implements OnInit {
         header.direction = '';
       }
     });
-
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-
   }
 
   onSelect(itemId: string) {
@@ -58,11 +55,7 @@ export class ListCouponComponent implements OnInit {
       // Öğe seçilmedi, bu nedenle ekleyin
       this.selectedItems.push(itemId);
     }
-
-    console.log(this.selectedItems);
   }
-
-
 
   deleteSelectedItems() {
     forkJoin(
@@ -79,22 +72,15 @@ export class ListCouponComponent implements OnInit {
       location.reload();
     });
   }
-  
-  
-  
 
-  ngOnInit() { 
-    
+  ngOnInit() {
     this.authService.loadShop().subscribe(
       (shop) => {
-        
         const irfo = shop.seller._id;
         if (shop) {
           this.couponService.getCoupoun(irfo).subscribe(
             (res) => {
               this.coupons = res.couponCodes;
-              console.log(this.coupons)
-              console.log(typeof this.coupons);
             },
             (error) => {
               console.log(error);
@@ -106,8 +92,5 @@ export class ListCouponComponent implements OnInit {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
-
-    
   }
-
 }

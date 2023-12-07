@@ -38,13 +38,26 @@
                       <i class="icon-trash" (click)="deleteBlog(blog._id)"></i>
                     </button>
                   </li>
+                  <li>
+                    <button
+                      class="btn"
+                      type="button"
+                      data-toggle="modal"
+                      data-target="#exampleModalCenter"
+                      data-original-title=""
+                      title=""
+                    >
+                      <i class="fa fa-eye text-theme" (click)="editBlog(blog._id)"></i>
+                    </button>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="product-detail">
             <div class="rating">
-              <i class="fas fa-thumbs-up"></i> {{ blog.likes }} Likes
+              <i class="fas fa-thumbs-up"></i> 
+              {{ blog.likes }} Likes
             </div>
             <a href="javascript:void(0)">
               <h4>{{ blog.name }}</h4>

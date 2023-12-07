@@ -9,7 +9,7 @@ const cors = require("cors");
 // Sadece test için kullanılmalıdır. 
 // ilerleyen zamanlarda değiştirilmelidir. öpüldünüz...
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:4200' ,'http://localhost:62086'],
+  origin: ['http://localhost:3000', 'http://localhost:4200' ,'http://localhost:61651'],
   credentials: true
 }));
 
