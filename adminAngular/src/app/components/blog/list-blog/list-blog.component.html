@@ -47,7 +47,10 @@
                       data-original-title=""
                       title=""
                     >
-                      <i class="fa fa-eye text-theme" (click)="editBlog(blog._id)"></i>
+                      <i
+                        class="fa fa-eye text-theme"
+                        (click)="editBlog(blog._id)"
+                      ></i>
                     </button>
                   </li>
                 </ul>
@@ -56,11 +59,11 @@
           </div>
           <div class="product-detail">
             <div class="rating">
-              <i class="fas fa-thumbs-up"></i> 
+              <i class="fas fa-thumbs-up"></i>
               {{ blog.likes }} Likes
             </div>
             <a href="javascript:void(0)">
-              <h4>{{ blog.name }}</h4>
+              <h4>{{ truncateProductName(blog?.name, 50) | titlecase }}</h4>
             </a>
             <h6>{{ blog.shop.name }}</h6>
             <ul class="color-variant">

@@ -107,7 +107,7 @@
                             {{ selectedOrder.status }}
                           </span>
                         </td>
-                        <td>{{ selectedOrder.paidAt | date:'longDate' }}</td>
+                        <td>{{ selectedOrder.paidAt | date : "longDate" }}</td>
                         <td>{{ selectedOrder.totalPrice | currency }}</td>
                         <td>
                           {{ selectedOrder.shippingAddress.address1 }},
@@ -246,7 +246,7 @@
                 name="pageSize"
                 [(ngModel)]="service.pageSize"
               >
-                <option [value]="10" [selected]="true" [ngValue]="2">
+                <option [selected]="true" [ngValue]="2">
                   2 items per page
                 </option>
                 <option [ngValue]="4">4 items per page</option>

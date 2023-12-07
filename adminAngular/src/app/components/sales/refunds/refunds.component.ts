@@ -19,38 +19,35 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class RefundsComponent implements OnInit {
 
-  myForm:FormGroup;
+  myForm: FormGroup;
   public shop: any;
   public refunds: any[] = [];
   public searchText: string = '';
   public filteredRefunds: any[] = [];
   public selectedRefund: any;
   public selectedRefundStatus: string = '';
-
   public closeResult: string;
   public tableItem$: Observable<OrderDB[]>;
   total$: Observable<number>;
 
   constructor(
-    public service: TableService, 
+    public service: TableService,
     private modalService: NgbModal,
     private authService: AuthService,
     private refundService: RefundService,
     private fb: FormBuilder,
-    ) {
+  ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(ORDERDB)
     this.myForm = this.fb.group({
-      status: ['Processing Refund'] 
+      status: ['Processing Refund']
     });
-    
   }
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
   onSort({ column, direction }: SortEvent) {
-
     this.headers.forEach((header) => {
       if (header.sortable !== column) {
         header.direction = '';
@@ -69,17 +66,14 @@ export class RefundsComponent implements OnInit {
   }
 
   irfan(item: any) {
-    this.selectedRefund = item; 
-    console.log(this.selectedRefund)
+    this.selectedRefund = item;
+    console.log(this.selectedRefund.cart[0].images[0].url)
   }
 
   updateRefundStatus(refundId: string) {
     // const newStatus = this.myForm.get('status').value;
-
     const formData = this.myForm.value;
-
     console.log(refundId, formData);
-
     this.refundService.updateRefundStatus(refundId, formData).subscribe(
       (res) => {
         this.getShopRefunds();
@@ -113,12 +107,11 @@ export class RefundsComponent implements OnInit {
       }
     );
   }
-  
+
   getShopRefunds() {
     this.refundService.getShopOrders(this.shop._id).subscribe(
       (res) => {
-
-         console.log(res.orders)
+        console.log(res.orders)
         this.refunds = res.orders.filter(order => {
           return order.status === "Processing Refund" || order.status === "Refund Success" || order.status === "Processing";
         });

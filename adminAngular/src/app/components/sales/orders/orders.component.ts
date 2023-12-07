@@ -48,7 +48,6 @@ export class OrdersComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
   onSort({ column, direction }: SortEvent) {
-
     this.headers.forEach((header) => {
       if (header.sortable !== column) {
         header.direction = '';
@@ -72,7 +71,6 @@ export class OrdersComponent implements OnInit {
   }
 
   updateOrderStatus(orderId: string) {
-
     const formData = this.myForm.value;
     console.log(orderId, formData)
     this.orderService.updateOrderStatus(orderId, formData).subscribe(
@@ -106,16 +104,17 @@ export class OrdersComponent implements OnInit {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
+
+    // Varsayılan olarak seçilen durumu ayarla
+    this.myForm.get('status').setValue('Processing');
   }
 
   getShopOrders() {
     this.orderService.getShopOrders(this.shop._id).subscribe(
       (res) => {
-
         this.orders = res.orders.filter(order => {
           return order.status !== "Processing Refund" && order.status !== "Refund Success";
         });
-
         this.search();
       },
       (error) => {
@@ -123,7 +122,6 @@ export class OrdersComponent implements OnInit {
       }
     );
   }
-
 
   search() {
     if (!this.searchText) {
@@ -134,5 +132,4 @@ export class OrdersComponent implements OnInit {
       });
     }
   }
-
 }
