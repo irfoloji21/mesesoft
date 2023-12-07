@@ -125,9 +125,8 @@
                     </td>
                     <td>{{ catgory.name }}</td>
                     <td>
-                      <a href="javascript:void(0)"
-                        ><i class="fa fa-edit f-12"></i></a
-                      >&nbsp;
+                      <button href="javascript:void(0)" (click)=" editSubCategory(catgory);openModal();"><i
+                        class='fa fa-edit f-12'></i></button>&nbsp;
                       <a
                         href="javascript:void(0)"
                         (click)="deleteCategory(catgory._id)"
@@ -145,3 +144,35 @@
   </div>
 </div>
 <!-- Container-fluid Ends-->
+
+
+<!-- // SubCategory Opem Model -->
+
+<div class="custom-container">
+  <div class="modal" [ngClass]="{ show: isModalOpen }">
+      <div class="modal-content col-12 col-md-8 col-lg-6">
+          <button class="close-button" (click)="closeModal()">X</button>
+          <h3 class="text-center">Edit SubCategory</h3>
+          <form [formGroup]="myFormEdit" (submit)="updateSubCategory()"  class="needs-validation">
+              <div class="form">
+                <div class="form-group">
+                  <label for="validationCustom01" class="mb-1">Category Name :</label>
+                  <input class="form-control" formControlName="name" id="validationCustom01" type="text" />
+                </div>
+                <div class="form-group">
+                  <label for="validationCustom01" class="mb-1">Category Text :</label>
+                  <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="validationCustom02" class="mb-1">Category Image :</label>
+                  <input class="form-control" formControlName="images" id="validationCustom02" type="file"
+                    (change)="onFileChange($event)" />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </form>
+      </div>
+  </div>
+</div>

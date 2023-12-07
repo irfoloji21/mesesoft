@@ -26,7 +26,10 @@ export class DigitalSubCategoryComponent implements OnInit {
   tableItem$: Observable<DigitalCategoryDB[]>;
   public categories = []
   public supercategory = []
-
+  isModalOpen:boolean=false;
+  selectedSubCategoryId:any;
+  myFormEdit: FormGroup;
+  isEditing:boolean=false;
   constructor(
     private router: Router,
     public service: TableService, 
@@ -159,15 +162,8 @@ export class DigitalSubCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categoryService.getCategory().subscribe(
-      (response) => {
-        console.log('Kategoriler', response);
-        this.categories = response.categories;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.initEditForm();
+    this.getSubCategoryList();
 
     const dropdownSettings: IDropdownSettings = {
       singleSelection: false,
@@ -184,5 +180,68 @@ export class DigitalSubCategoryComponent implements OnInit {
 
    
   }
+  getSubCategoryList(){
+    this.categoryService.getCategory().subscribe(
+      (response) => {
+        console.log('Kategoriler Enver ', response);
+        this.categories = response.categories;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  openModal() {
+        this.isModalOpen = true;
+  }
+
+
+  initEditForm(): void {
+    const user =  this.categories
+    this.myFormEdit = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      images: ['', Validators.required],
+      isShow: [false],
+      userId: user
+    });
+  }
+
+  editSubCategory(selectedCategory: any) {
+    this.selectedSubCategoryId=selectedCategory
+    console.log(  this.selectedSubCategoryId, "emsall")
+    this.myFormEdit.patchValue({
+      name: selectedCategory.name,
+      description: selectedCategory.description,
+    });
+  
+    this.isEditing = true;
+  }
+  
+
+
+  updateSubCategory() {
+    const formValues = this.myFormEdit.value;
+    const categoryId = this.selectedSubCategoryId._id;
+
+    this.categoryService.updateCategory(categoryId, formValues).subscribe(
+      (response) => {
+        console.log('Kategori güncelendi:', response);
+  
+
+        this.isEditing = false;
+        this.closeModal();
+        this.getSubCategoryList();
+      },
+      (error) => {
+        console.error('Kategori güncelleme hatası:', error);
+      }
+    );
+  }
+  
 }

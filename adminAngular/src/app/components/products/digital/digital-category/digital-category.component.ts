@@ -115,6 +115,7 @@ export class DigitalCategoryComponent implements OnInit {
 
         this.isEditing = false;
         this.closeModal();
+        this.getMainCategoryList();
       },
       (error) => {
         console.error('Kategori güncelleme hatası:', error);
@@ -230,16 +231,22 @@ export class DigitalCategoryComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.initEditForm();
+  getMainCategoryList(){
     this.categoryService.getCategory().subscribe(
       (response) => {
-        this.categories = response.categories;
+        this.categories = this.categories = response.categories.filter(category => category.isShow === true);
       },
       (error) => {
         console.error(error);
       }
     );
+  }
+
+
+
+  ngOnInit() {
+    this.initEditForm();
+   this.getMainCategoryList();
 
     const dropdownSettings: IDropdownSettings = {
       singleSelection: false,
