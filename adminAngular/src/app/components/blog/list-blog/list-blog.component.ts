@@ -8,23 +8,20 @@ import { BlogService } from 'src/app/shared/service/blog.service';
   templateUrl: './list-blog.component.html',
   styleUrls: ['./list-blog.component.scss']
 })
-export class ListBlogComponent  implements OnInit {
+
+export class ListBlogComponent implements OnInit {
 
   public blog_list = []
 
   constructor(
     private blogService: BlogService,
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router
-  ) {
-   
-  }
-
+  ) { }
 
   deleteBlog(id) {
     this.blogService.deleteBlog(id).subscribe(
       (response) => {
-        
         this.ngOnInit()
       },
       (error) => {
@@ -34,20 +31,24 @@ export class ListBlogComponent  implements OnInit {
   }
 
   editBlog(id) {
-    console.log(id)
-    this.router.navigate(['/physical/edit-product', id]);
+    this.blogService.updateBlog(id, {}).subscribe(
+      (response) => {
+        this.ngOnInit()
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   ngOnInit() {
     this.authService.loadShop().subscribe(
       (shop) => {
-      
         if (shop) {
           const id = shop.seller._id
           this.blogService.getBlog().subscribe(
             (response) => {
               this.blog_list = response.blogs
-           
             },
             (error) => {
               console.error(error);
@@ -59,10 +60,5 @@ export class ListBlogComponent  implements OnInit {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
-
-
-
   }
-
-
 }

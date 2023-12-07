@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { id } from '@swimlane/ngx-charts';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { ProductService } from 'src/app/shared/service/product.service';
-import { productDB } from 'src/app/shared/tables/product-list';
 
 @Component({
   selector: 'app-product-list',
@@ -16,17 +14,13 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router
-  ) {
-   
-  }
-
+  ) { }
 
   deleteProduct(id) {
     this.productService.deleteProduct(id).subscribe(
       (response) => {
-        
         this.ngOnInit()
       },
       (error) => {
@@ -37,19 +31,24 @@ export class ProductListComponent implements OnInit {
 
   editProduct(id) {
     console.log(id)
-    this.router.navigate(['/physical/edit-product', id]);
+    this.router.navigate(['/products/physical/edit-product', id]);
+  }
+
+  detailProduct(id) {
+    console.log(id)
+    this.router.navigate(['/products/physical/product-detail', id]);
   }
 
   ngOnInit() {
     this.authService.loadShop().subscribe(
       (shop) => {
-      
         if (shop) {
           const id = shop.seller._id
           this.productService.getShopProduct(id).subscribe(
             (response) => {
               this.product_list = response.products
-           
+              console.log(this.product_list);
+              
             },
             (error) => {
               console.error(error);
@@ -61,9 +60,6 @@ export class ProductListComponent implements OnInit {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
-
-
-
   }
 
 

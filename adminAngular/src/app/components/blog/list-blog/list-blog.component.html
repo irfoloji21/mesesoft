@@ -1,42 +1,63 @@
 <div class="container-fluid">
-    <div class="row products-admin ratio_asos">
-        <div class="col-xl-3 col-sm-6" *ngFor="let blog of blog_list">
-            <div class="card">
-                <div class="card-body product-box">
-                    <div class="img-wrapper">
-                      
-                        <div class="front">
-                            <a href="javascript:void(0)"><img [src]="[blog.images[0]?.url]"
-                                    class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                            <div class="product-hover">
-                                <ul>
-                                    <li>
-                                        <button class="btn" type="button" data-original-title="" title=""><i
-                                                class="icon-pencil-alt" (click)="editBlog(blog._id)"></i></button>
-                                    </li>
-                                    <li>
-                                        <button class="btn" type="button" data-toggle="modal"
-                                            data-target="#exampleModalCenter" data-original-title="" title=""><i
-                                                class="icon-trash" (click)="deleteBlog(blog._id)"></i></button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-detail">
-                        <div class="rating"><i class="fas fa-thumbs-up"></i> {{blog.likes}} Likes </div>
-                        <a href="javascript:void(0)">
-                            <h4>{{blog.name}}</h4>
-                        </a>
-                        <h6>{{blog.shop.name}} </h6>
-                        <ul class="color-variant">
-                            <li class="bg-light0"></li>
-                            <li class="bg-light1"></li>
-                            <li class="bg-light2"></li>
-                        </ul>
-                    </div>
-                </div>
+  <div class="row products-admin ratio_asos">
+    <div class="col-xl-3 col-sm-6" *ngFor="let blog of blog_list">
+      <div class="card">
+        <div class="card-body product-box">
+          <div class="img-wrapper">
+            <div class="front">
+              <a href="javascript:void(0)"
+                ><img
+                  [src]="[blog.images[0]?.url]"
+                  class="img-fluid blur-up lazyload bg-img"
+                  alt=""
+              /></a>
+              <div class="product-hover">
+                <ul>
+                  <li>
+                    <button
+                      class="btn"
+                      type="button"
+                      data-original-title=""
+                      title=""
+                    >
+                      <i
+                        class="icon-pencil-alt"
+                        (click)="editBlog(blog._id)"
+                      ></i>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      class="btn"
+                      type="button"
+                      data-toggle="modal"
+                      data-target="#exampleModalCenter"
+                      data-original-title=""
+                      title=""
+                    >
+                      <i class="icon-trash" (click)="deleteBlog(blog._id)"></i>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
+          </div>
+          <div class="product-detail">
+            <div class="rating">
+              <i class="fas fa-thumbs-up"></i> {{ blog.likes }} Likes
+            </div>
+            <a href="javascript:void(0)">
+              <h4>{{ blog.name }}</h4>
+            </a>
+            <h6>{{ blog.shop.name }}</h6>
+            <ul class="color-variant">
+              <li class="bg-light0"></li>
+              <li class="bg-light1"></li>
+              <li class="bg-light2"></li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

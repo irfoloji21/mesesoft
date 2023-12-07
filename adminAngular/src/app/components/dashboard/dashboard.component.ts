@@ -72,14 +72,12 @@ export class DashboardComponent implements OnInit {
   public smallLine4ChartColors = chartData.smallLine4ChartColors;
   public smallLine4ChartLegend = chartData.smallLine4ChartLegend;
   public smallLine4ChartType = chartData.smallLine4ChartType;
-
   public chart3 = chartData.chart3;
 
   // events
-  public chartClicked(e: any): void {
-  }
-  public chartHovered(e: any): void {
-  }
+  public chartClicked(e: any): void { }
+
+  public chartHovered(e: any): void { }
 
   ngOnInit() {
     this.auth();
@@ -89,7 +87,6 @@ export class DashboardComponent implements OnInit {
     this.authService.loadShop().subscribe(
       (shop) => {
         this.shop = shop.seller;
-        console.log(this.shop);
         this.getShopProducts();
         this.getShopOrders();
       },
@@ -105,7 +102,6 @@ export class DashboardComponent implements OnInit {
       (res) => {
         this.products = res.products;
         this.productCount = this.products.length;
-        console.log(this.productCount);
       },
       (error) => {
         console.log(error);
@@ -114,12 +110,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getShopOrders() {
-    console.log(this.shop._id)
     this.orderService.getShopOrders(this.shop._id).subscribe(
       (res) => {
-        console.log(res);
         this.orders = res.orders;
-
       },
       (error) => {
         console.log(error);

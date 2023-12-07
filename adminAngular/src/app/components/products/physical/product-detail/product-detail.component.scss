@@ -1,7 +1,10 @@
 .star {
-    font-size: 18px;
-    color: #d7d7d7;
-  }
-  .filled.bad {
-    color: #ffc13b;
-  }
+  font-size: 18px;
+  color: #d7d7d7;
+}
+.filled.bad {
+  color: #ffc13b;
+}
+div.inside {
+  mix-blend-mode: difference !important;
+}

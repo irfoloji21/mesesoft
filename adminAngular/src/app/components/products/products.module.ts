@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { ProductsRoutingModule } from './products-routing.module';
 import { CategoryComponent } from './physical/category/category.component';
 import { SubCategoryComponent } from './physical/sub-category/sub-category.component';
@@ -23,10 +21,16 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
-
-
 @NgModule({
-  declarations: [CategoryComponent, SubCategoryComponent, ProductListComponent, AddProductComponent, DigitalCategoryComponent, DigitalSubCategoryComponent, DigitalAddComponent, ProductDetailComponent
+  declarations: [
+    CategoryComponent, 
+    SubCategoryComponent, 
+    ProductListComponent, 
+    AddProductComponent, 
+    DigitalCategoryComponent, 
+    DigitalSubCategoryComponent, 
+    DigitalAddComponent, 
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

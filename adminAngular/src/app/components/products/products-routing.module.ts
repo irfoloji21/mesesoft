@@ -38,7 +38,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'physical/product-detail',
+        path: 'physical/product-detail/:id',
         component: ProductDetailComponent,
         data: {
           title: "Product Detail",

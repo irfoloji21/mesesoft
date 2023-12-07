@@ -1,4 +1,5 @@
 export interface Product {
+    createdAt: string | number | Date;
     id?: number;
     _id?:number;
     title?: string;
