@@ -72,7 +72,7 @@ export class NavService {
 			title: 'Sales', icon: 'dollar-sign', type: 'sub', active: false, children: [
 				{ path: '/sales/orders', title: 'Orders', type: 'link' },
 				{ path: '/sales/refunds', title: 'Refunds', type: 'link' },
-				{ path: '/sales/transactions', title: 'Transactions', type: 'link' },
+				// { path: '/sales/transactions', title: 'Transactions', type: 'link' },
 			]
 		},
 		{
@@ -87,51 +87,51 @@ export class NavService {
 				{ path: '/pages/create-page', title: 'Create Page', type: 'link' },
 			]
 		},
-		{
-			title: 'Media', path: '/media', icon: 'camera', type: 'link', active: false
-		},
-		{
-			title: 'Menus', icon: 'align-left', type: 'sub', active: false, children: [
-				{ path: '/menus/list-menu', title: 'Menu Lists', type: 'link' },
-				{ path: '/menus/create-menu', title: 'Create Menu', type: 'link' },
-			]
-		},
-		{
-			title: 'About Us', icon: 'align-left', type: 'sub', active: false, children: [
-				{ path: '/about/list-about', title: 'About Lists', type: 'link' },
-				{ path: '/about/create-about', title: 'Create About', type: 'link' },
-			]
-		},
+		// {
+		// 	title: 'Media', path: '/media', icon: 'camera', type: 'link', active: false
+		// },
+		// {
+		// 	title: 'Menus', icon: 'align-left', type: 'sub', active: false, children: [
+		// 		{ path: '/menus/list-menu', title: 'Menu Lists', type: 'link' },
+		// 		{ path: '/menus/create-menu', title: 'Create Menu', type: 'link' },
+		// 	]
+		// },
+		// {
+		// 	title: 'About Us', icon: 'align-left', type: 'sub', active: false, children: [
+		// 		{ path: '/about/list-about', title: 'About Lists', type: 'link' },
+		// 		{ path: '/about/create-about', title: 'Create About', type: 'link' },
+		// 	]
+		// },
 		{
 			title: 'Users', icon: 'user-plus', type: 'sub', active: false, children: [
 				{ path: '/users/list-user', title: 'User List', type: 'link' },
 				{ path: '/users/create-user', title: 'Create User', type: 'link' },
 			]
 		},
-		{
-			title: 'Vendors', icon: 'users', type: 'sub', active: false, children: [
-				{ path: '/vendors/list-vendors', title: 'Vendor List', type: 'link' },
-				{ path: '/vendors/create-vendors', title: 'Create Vendor', type: 'link' },
-			]
-		},
-		{
-			title: 'Localization', icon: 'chrome', type: 'sub', children: [
-				{ path: '/localization/translations', title: 'Translations', type: 'link' },
-				{ path: '/localization/currency-rates', title: 'Currency Rates', type: 'link' },
-				{ path: '/localization/taxes', title: 'Taxes', type: 'link' },
-			]
-		},
-		{
-			title: 'Reports', path: '/reports', icon: 'bar-chart', type: 'link', active: false
-		},
+		// {
+		// 	title: 'Vendors', icon: 'users', type: 'sub', active: false, children: [
+		// 		{ path: '/vendors/list-vendors', title: 'Vendor List', type: 'link' },
+		// 		{ path: '/vendors/create-vendors', title: 'Create Vendor', type: 'link' },
+		// 	]
+		// },
+		// {
+		// 	title: 'Localization', icon: 'chrome', type: 'sub', children: [
+		// 		{ path: '/localization/translations', title: 'Translations', type: 'link' },
+		// 		{ path: '/localization/currency-rates', title: 'Currency Rates', type: 'link' },
+		// 		{ path: '/localization/taxes', title: 'Taxes', type: 'link' },
+		// 	]
+		// },
+		// {
+		// 	title: 'Reports', path: '/reports', icon: 'bar-chart', type: 'link', active: false
+		// },
 		{
 			title: 'Settings', icon: 'settings', type: 'sub', children: [
 				{ path: '/settings/profile', title: 'Profile', type: 'link' },
 			]
 		},
-		{
-			title: 'Invoice', path: '/invoice', icon: 'archive', type: 'link', active: false
-		},
+		// {
+		// 	title: 'Invoice', path: '/invoice', icon: 'archive', type: 'link', active: false
+		// },
 		{
 			title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
 		},
