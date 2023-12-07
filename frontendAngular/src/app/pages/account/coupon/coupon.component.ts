@@ -10,7 +10,7 @@ import { CouponService } from 'src/app/shared/services/coupon.service';
 export class CouponComponent {
 
   coupons: any[] = [];
-
+  public active = 1;
   constructor(private authService: AuthService, private couponService: CouponService) {}
 
   ngOnInit(): void {
