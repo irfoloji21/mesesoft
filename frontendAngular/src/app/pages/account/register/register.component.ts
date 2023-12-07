@@ -57,15 +57,16 @@ export class RegisterComponent implements OnInit {
           if(user.success) {
             console.log("register success", user);
             this.authService.setUserId(user._id);
-            this.toasts.success('Kayıt başarılı', '' ,
+            this.toasts.success(' mailinize gelen doğrulamayı yapın.', 'Kayıt başarılı' ,
+
             { 
               positionClass: 'toast-top-right',
-              timeOut: 2500, 
+              timeOut: 4500, 
               closeButton: true,
               newestOnTop: false,
               progressBar: true,
             })
-            this.router.navigate(['/login'], { state: formData });
+            this.router.navigate(['/pages/login'], { state: formData });
           }
           else {
             console.error("error");
