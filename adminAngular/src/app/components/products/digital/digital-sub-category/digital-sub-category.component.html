@@ -8,14 +8,8 @@
         </div>
         <div class="card-body">
           <div class="btn-popup pull-right">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-original-title="test"
-              data-target="#exampleModal"
-              (click)="open(content)"
-            >
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+              data-target="#exampleModal" (click)="open(content)">
               Add Sub Category
             </button>
             <ng-template #content let-modal>
@@ -23,72 +17,35 @@
                 <h5 class="modal-title f-w-600" id="exampleModalLabel">
                   Add Sub Category
                 </h5>
-                <button
-                  type="button"
-                  class="close"
-                  aria-label="Close"
-                  (click)="modal.dismiss('Cross click')"
-                >
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <form
-                  (ngSubmit)="onSubmit()"
-                  class="needs-validation"
-                  [formGroup]="myForm"
-                >
+                <form (ngSubmit)="onSubmit()" class="needs-validation" [formGroup]="myForm">
                   <div class="form">
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Category Name :</label
-                      >
-                      <input
-                        class="form-control"
-                        formControlName="name"
-                        id="validationCustom01"
-                        type="text"
-                      />
+                      <label for="validationCustom01" class="mb-1">Category Name :</label>
+                      <input class="form-control" formControlName="name" id="validationCustom01" type="text" />
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Category Text :</label
-                      >
-                      <textarea
-                        class="form-control"
-                        formControlName="description"
-                        id="validationCustom01"
-                      ></textarea>
+                      <label for="validationCustom01" class="mb-1">Category Text :</label>
+                      <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom02" class="mb-1"
-                        >Category Image :</label
-                      >
-                      <input
-                        class="form-control"
-                        formControlName="images"
-                        id="validationCustom02"
-                        type="file"
-                        (change)="onFileChange($event)"
-                      />
+                      <label for="validationCustom02" class="mb-1">Category Image :</label>
+                      <input class="form-control" formControlName="images" id="validationCustom02" type="file"
+                        (change)="onFileChange($event)" />
                     </div>
 
-                    <ng-multiselect-dropdown
-                      [settings]="dropdownSettings"
-                      [data]="categories"
-                      [(ngModel)]="supercategory"
-                      formControlName="supercategory"
-                    >
+                    <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="categories"
+                      [(ngModel)]="supercategory" formControlName="supercategory">
                     </ng-multiselect-dropdown>
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save</button>
-                    <button
-                      class="btn btn-secondary"
-                      type="button"
-                      data-dismiss="modal"
-                      (click)="modal.dismiss('Cross click')"
-                    >
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal"
+                      (click)="modal.dismiss('Cross click')">
                       Close
                     </button>
                   </div>
@@ -117,21 +74,14 @@
                   <tr *ngFor="let catgory of categories">
                     <th scope="row">{{ catgory._id }}</th>
                     <td>
-                      <img
-                        [src]="[catgory.images[0].url]"
-                        class="imgTable"
-                        style="width: 20px"
-                      />
+                      <img [src]="[catgory.images[0].url]" class="imgTable" style="width: 20px" />
                     </td>
                     <td>{{ catgory.name }}</td>
                     <td>
                       <button href="javascript:void(0)" (click)=" editSubCategory(catgory);openModal();"><i
-                        class='fa fa-edit f-12'></i></button>&nbsp;
-                      <a
-                        href="javascript:void(0)"
-                        (click)="deleteCategory(catgory._id)"
-                        ><i class="fa fa-trash-o"></i
-                      ></a>
+                          class='fa fa-edit f-12'></i></button>&nbsp;
+                      <a href="javascript:void(0)" (click)="deleteCategory(catgory._id)"><i
+                          class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
                 </tbody>
@@ -150,29 +100,29 @@
 
 <div class="custom-container">
   <div class="modal" [ngClass]="{ show: isModalOpen }">
-      <div class="modal-content col-12 col-md-8 col-lg-6">
-          <button class="close-button" (click)="closeModal()">X</button>
-          <h3 class="text-center">Edit SubCategory</h3>
-          <form [formGroup]="myFormEdit" (submit)="updateSubCategory()"  class="needs-validation">
-              <div class="form">
-                <div class="form-group">
-                  <label for="validationCustom01" class="mb-1">Category Name :</label>
-                  <input class="form-control" formControlName="name" id="validationCustom01" type="text" />
-                </div>
-                <div class="form-group">
-                  <label for="validationCustom01" class="mb-1">Category Text :</label>
-                  <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="validationCustom02" class="mb-1">Category Image :</label>
-                  <input class="form-control" formControlName="images" id="validationCustom02" type="file"
-                    (change)="onFileChange($event)" />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update</button>
-              </div>
-            </form>
-      </div>
+    <div class="modal-content col-12 col-md-8 col-lg-6">
+      <button class="close-button" (click)="closeModal()">X</button>
+      <h3 class="text-center">Edit SubCategory</h3>
+      <form [formGroup]="myFormEdit" (submit)="updateSubCategory()" class="needs-validation">
+        <div class="form">
+          <div class="form-group">
+            <label for="validationCustom01" class="mb-1">Category Name :</label>
+            <input class="form-control" formControlName="name" id="validationCustom01" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="validationCustom01" class="mb-1">Category Text :</label>
+            <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="validationCustom02" class="mb-1">Category Image :</label>
+            <input class="form-control" formControlName="images" id="validationCustom02" type="file"
+              (change)="onFileChange($event)" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

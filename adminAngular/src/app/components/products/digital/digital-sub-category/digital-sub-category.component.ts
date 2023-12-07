@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { DIGITALCATEGORY, DigitalCategoryDB } from 'src/app/shared/tables/digital-category';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SortEvent } from 'src/app/shared/directives/shorting.directive';
 import { NgbdSortableHeader } from "src/app/shared/directives/NgbdSortableHeader";
 import { TableService } from 'src/app/shared/service/table.service';
@@ -30,6 +30,7 @@ export class DigitalSubCategoryComponent implements OnInit {
   selectedSubCategoryId:any;
   myFormEdit: FormGroup;
   isEditing:boolean=false;
+  private modalRef: NgbModalRef | undefined;
   constructor(
     private router: Router,
     public service: TableService, 
@@ -62,12 +63,26 @@ export class DigitalSubCategoryComponent implements OnInit {
 
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+ 
+  open(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+    this.modalRef.result.then(
+      (result) => {
+        // Modal kapatıldığında yapılacak işlemler
+        console.log(`Closed with: ${result}`);
+      },
+      (reason) => {
+        // Modal reddedildiğinde yapılacak işlemler
+        console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      }
+    );
+  }
+
+  closeModalForAddSubCat() {
+    console.log('Modal will be closed.');
+    if (this.modalRef) {
+      this.modalRef.close(); 
+    }
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -107,8 +122,9 @@ export class DigitalSubCategoryComponent implements OnInit {
                   (response) => {
                     console.log(response)
                     console.log('Üst Kategori Subcategories Güncellendi');
-                    // İşlem tamamlandığında yönlendirme yapın (bu her üst kategori için ayrı ayrı olabilir)
-                    this.router.navigate(['/products/digital/digital-sub-category']);
+                    this.getSubCategoryList();
+                    this.closeModalForAddSubCat();
+                    this.myForm.reset();
                   },
                   (error) => {
                     console.error('Üst Kategori Subcategories Güncellenirken Hata:', error);
@@ -153,7 +169,7 @@ export class DigitalSubCategoryComponent implements OnInit {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {
         console.log('Kategori başarıyla silindi:', response);
-        this.router.navigate(['/products/digital/digital-sub-category']);
+        this.getSubCategoryList();
       },
       (error) => {
         console.error('Kategori silinirken hata oluştu:', error);

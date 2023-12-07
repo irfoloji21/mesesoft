@@ -8,14 +8,8 @@
         </div>
         <div class="card-body">
           <div class="btn-popup pull-right">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-original-title="test"
-              data-target="#exampleModal"
-              (click)="open(content)"
-            >
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+              data-target="#exampleModal" (click)="open(content)">
               Add Collection
             </button>
             <ng-template #content let-modal>
@@ -23,76 +17,34 @@
                 <h5 class="modal-title f-w-600" id="exampleModalLabel">
                   Add Collection
                 </h5>
-                <button
-                  type="button"
-                  class="close"
-                  aria-label="Close"
-                  (click)="modal.dismiss('Cross click')"
-                >
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <form
-                  (ngSubmit)="onSubmit()"
-                  class="needs-validation"
-                  [formGroup]="myForm1"
-                >
+                <form (ngSubmit)="onSubmit()" class="needs-validation" [formGroup]="myForm1">
                   <div class="form">
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Collection Name :</label
-                      >
-                      <input
-                        class="form-control"
-                        id="validationCustom01"
-                        type="text"
-                        formControlName="name"
-                      />
+                      <label for="validationCustom01" class="mb-1">Collection Name :</label>
+                      <input class="form-control" id="validationCustom01" type="text" formControlName="name" />
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Collection Save Percentage :</label
-                      >
-                      <input
-                        class="form-control"
-                        id="validationCustom01"
-                        type="number"
-                        formControlName="saving"
-                      />
+                      <label for="validationCustom01" class="mb-1">Collection Save Percentage :</label>
+                      <input class="form-control" id="validationCustom01" type="number" formControlName="saving" />
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Collection Description :</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="validationCustom01"
-                        formControlName="description"
-                      ></textarea>
+                      <label for="validationCustom01" class="mb-1">Collection Description :</label>
+                      <textarea class="form-control" id="validationCustom01" formControlName="description"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom02" class="mb-1"
-                        >Collection Image :</label
-                      >
-                      <input
-                        class="form-control"
-                        formControlName="images"
-                        id="validationCustom02"
-                        type="file"
-                        multiple
-                        (change)="onFileChange($event)"
-                      />
+                      <label for="validationCustom02" class="mb-1">Collection Image :</label>
+                      <input class="form-control" formControlName="images" id="validationCustom02" type="file" multiple
+                        (change)="onFileChange($event)" />
                     </div>
                     <div class="form-group">
                       <div class="checkbox checkbox-primary">
-                        <input
-                          id="checkbox-primary-2"
-                          formControlName="isShow"
-                          type="checkbox"
-                          data-original-title=""
-                          title=""
-                        />
+                        <input id="checkbox-primary-2" formControlName="isShow" type="checkbox" data-original-title=""
+                          title="" />
                         <label for="checkbox-primary-2">Add to Slider</label>
                       </div>
                     </div>
@@ -101,12 +53,8 @@
                     <button type="submit" class="btn btn-primary">
                       {{ buttonText }}
                     </button>
-                    <button
-                      class="btn btn-secondary"
-                      type="button"
-                      data-dismiss="modal"
-                      (click)="modal.dismiss('Cross click')"
-                    >
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal"
+                      (click)="modal.dismiss('Cross click')">
                       Close
                     </button>
                   </div>
@@ -131,11 +79,7 @@
                     <th scope="col" sortable="img" (sort)="onSort($event)">
                       Image
                     </th>
-                    <th
-                      scope="col"
-                      sortable="product_name"
-                      (sort)="onSort($event)"
-                    >
+                    <th scope="col" sortable="product_name" (sort)="onSort($event)">
                       Name
                     </th>
                     <th scope="col" sortable="status" (sort)="onSort($event)">
@@ -144,11 +88,7 @@
                     <th scope="col" sortable="category" (sort)="onSort($event)">
                       productIds
                     </th>
-                    <th
-                      scope="col"
-                      sortable="population"
-                      (sort)="onSort($event)"
-                    >
+                    <th scope="col" sortable="population" (sort)="onSort($event)">
                       Actions
                     </th>
                   </tr>
@@ -157,7 +97,7 @@
                   <tr *ngFor="let koleksiyon of koleksiyons">
                     <th scope="row">{{ koleksiyon._id }}</th>
                     <td>
-                      <img [src]="koleksiyon.images[0].url" class="imgTable" style="width: 20px">
+                      <img [src]="koleksiyon.images[0].url" class="imgTable" style="width: 20px" />
                     </td>
                     <td>{{ koleksiyon.name }}</td>
                     <td>{{ koleksiyon.saving }}</td>
@@ -169,30 +109,20 @@
                       </ul>
                     </td>
                     <td>
-                      <button
-                        href="javascript:void(0)"
-                        (click)="editCategory(koleksiyon._id, content)"
-                      >
-                        <i class="fa fa-edit f-12"></i></button
-                      >&nbsp;
-                      <a
-                        href="javascript:void(0)"
-                        (click)="deleteCategory(koleksiyon._id)"
-                        ><i class="fa fa-trash-o"></i
-                      ></a>
+                      <button href="javascript:void(0)" (click)="editCategory(koleksiyon._id, content)">
+                        <i class="fa fa-edit f-12"></i></button>&nbsp;
+                      <a href="javascript:void(0)" (click)="deleteCategory(koleksiyon._id)"><i
+                          class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
                 </tbody>
               </table>
 
-              <div class="d-flex justify-content-center p-2">
-                <ngb-pagination
-                  [collectionSize]="(total$ | async)!"
-                  [(page)]="service.page"
-                  [pageSize]="service.pageSize"
-                >
+              <!-- <div class="d-flex justify-content-center p-2">
+                <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
+                  [pageSize]="service.pageSize">
                 </ngb-pagination>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

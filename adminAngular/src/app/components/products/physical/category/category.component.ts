@@ -50,6 +50,7 @@ export class CategoryComponent implements OnInit {
     ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
+    console.log(service , "denemeEnver")
     this.service.setUserData(CATEGORY)
 
     this.myForm1 = this.fb.group({

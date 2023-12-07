@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { DIGITALCATEGORY, DigitalCategoryDB } from 'src/app/shared/tables/digital-category';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SortEvent } from 'src/app/shared/directives/shorting.directive';
 import { NgbdSortableHeader } from "src/app/shared/directives/NgbdSortableHeader";
 import { TableService } from 'src/app/shared/service/table.service';
@@ -32,6 +32,7 @@ export class DigitalCategoryComponent implements OnInit {
   selectedCategoryId: any;
   editMainCategory: any[] = [];
   isEditing: boolean = false;
+  private modalRef: NgbModalRef | undefined;
   constructor(
     private router: Router,
     public service: TableService,
@@ -118,7 +119,7 @@ export class DigitalCategoryComponent implements OnInit {
         this.isEditing = false;
         this.closeModal();
         this.getMainCategoryList();
-        this.toastr.success("update")
+        
 
       },
       (error) => {
@@ -147,12 +148,25 @@ export class DigitalCategoryComponent implements OnInit {
 
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  open(content: any) {
+    this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+    this.modalRef.result.then(
+      (result) => {
+        // Modal kapatıldığında yapılacak işlemler
+        console.log(`Closed with: ${result}`);
+      },
+      (reason) => {
+        // Modal reddedildiğinde yapılacak işlemler
+        console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      }
+    );
+  }
+
+  closeModalForAdd() {
+    console.log('Modal will be closed.');
+    if (this.modalRef) {
+      this.modalRef.close(); // Modal kapatma işlemi
+    }
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -163,7 +177,7 @@ export class DigitalCategoryComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
+  
 
 
   onSubmit() {
@@ -178,6 +192,10 @@ export class DigitalCategoryComponent implements OnInit {
         (response) => {
           console.log('Kategori başarıyla oluşturuldu:', response);
           this.router.navigate(['/products/digital/digital-category']);
+          this.getMainCategoryList();
+          this.closeModalForAdd();
+          this.myForm.reset();
+         
         },
         (error) => {
           console.error('Kategori oluşturulurken hata oluştu:', error);
@@ -228,6 +246,7 @@ export class DigitalCategoryComponent implements OnInit {
       (response) => {
         console.log('Kategori başarıyla silindi:', response);
         this.router.navigate(['/products/digital/digital-category']);
+        this.getMainCategoryList();
       },
       (error) => {
         console.error('Kategori silinirken hata oluştu:', error);
