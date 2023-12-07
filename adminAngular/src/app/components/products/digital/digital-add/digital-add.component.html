@@ -6,52 +6,24 @@
           <h5>General</h5>
         </div>
         <div class="card-body">
-          <form
-            (ngSubmit)="editCategory()"
-            class="needs-validation"
-            [formGroup]="myForm"
-          >
+          <form (ngSubmit)="editCategory()" class="needs-validation" [formGroup]="myForm">
             <div class="form">
               <div class="form-group">
-                <label for="validationCustom01" class="mb-1"
-                  >Category Name :</label
-                >
-                <input
-                  class="form-control"
-                  formControlName="name"
-                  id="validationCustom01"
-                  type="text"
-                />
+                <label for="validationCustom01" class="mb-1">Category Name :</label>
+                <input class="form-control" formControlName="name" id="validationCustom01" type="text" />
               </div>
               <div class="form-group">
-                <label for="validationCustom01" class="mb-1"
-                  >Category Text :</label
-                >
-                <textarea
-                  class="form-control"
-                  formControlName="description"
-                  id="validationCustom01"
-                ></textarea>
+                <label for="validationCustom01" class="mb-1">Category Text :</label>
+                <textarea class="form-control" formControlName="description" id="validationCustom01"></textarea>
               </div>
               <div class="form-group">
-                <label for="validationCustom02" class="mb-1"
-                  >Category Image :</label
-                >
-                <input
-                  class="form-control"
-                  formControlName="images"
-                  id="validationCustom02"
-                  type="file"
-                  (change)="onFileChange($event)"
-                />
+                <label for="validationCustom02" class="mb-1">Category Image :</label>
+                <input class="form-control" formControlName="images" id="validationCustom02" type="file"
+                  (change)="onFileChange($event)" />
               </div>
               <div class="form-group">
                 <label for="validationCustom02" class="mb-1">isShow :</label>
-                <select
-                  class="form-control"
-                  formControlName="isShow"
-                  id="validationCustom02"
-                >
+                <select class="form-control" formControlName="isShow" id="validationCustom02">
                   <option [ngValue]="true">Yes</option>
                   <option [ngValue]="false">No</option>
                 </select>
