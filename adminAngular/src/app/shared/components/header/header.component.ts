@@ -44,8 +44,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.loadShop().subscribe(
       (shop) => {
-        console.log(shop);
-        
         this.shop = shop.seller;
         this.userInitials = this.getInitials(this.shop.name);
       },
@@ -57,14 +55,16 @@ export class HeaderComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       console.log('isLoggedIn$ değeri:', isLoggedIn);
     });
-    
+
   }
   getInitials(name: string): string {
     return (name).toUpperCase();
   }
+
   profile(): void {
     this.router.navigate(['/pages/dashboard'])
   }
+  
   logout() {
     this.authService.logout();
   }

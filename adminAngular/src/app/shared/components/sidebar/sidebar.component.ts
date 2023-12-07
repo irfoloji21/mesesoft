@@ -14,12 +14,13 @@ export class SidebarComponent implements OnInit {
   public menuItems: Menu[];
   public url: any;
   public fileurl: any;
+  userInitials: string;
 
   constructor(
     private router: Router,
-     public navServices: NavService,
-     private authService: AuthService
-    ) {
+    public navServices: NavService,
+    private authService: AuthService
+  ) {
     this.navServices.items.subscribe(menuItems => {
       this.menuItems = menuItems
       this.router.events.subscribe((event) => {
@@ -47,6 +48,7 @@ export class SidebarComponent implements OnInit {
     this.authService.loadShop().subscribe(
       (shop) => {
         this.shop = shop.seller;
+        this.userInitials = this.getInitials(this.shop.name.split(' '));
       },
       (error) => {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
@@ -104,6 +106,10 @@ export class SidebarComponent implements OnInit {
     reader.onload = (_event) => {
       this.url = reader.result;
     }
+  }
+
+  getInitials(name: string): string {
+    return (name[0].charAt(0) + name[1].charAt(0)).toUpperCase();
   }
 
 }
