@@ -94,8 +94,8 @@
                                                     subcategory.name }}</li>
                                             </ul>
                                         </td>
-                                        <td>
-                                            <button href="javascript:void(0)" (click)="editCategory();openModal(catgory._id);"><i
+                                        <td >
+                                            <button href="javascript:void(0)" (click)=" editCategoryMain(catgory);openModal();"><i
                                                     class='fa fa-edit f-12'></i></button>&nbsp;
                                             <a href="javascript:void(0)" (click)="deleteCategory(catgory._id)"><i
                                                     class="fa fa-trash-o"></i></a>
@@ -121,7 +121,7 @@
         <div class="modal-content col-12 col-md-8 col-lg-6">
             <button class="close-button" (click)="closeModal()">X</button>
             <h3 class="text-center">Edit Category</h3>
-            <form  class="needs-validation" [formGroup]="myFormEdit">
+            <form  class="needs-validation" (submit)="updateMainCategory()" [formGroup]="myFormEdit">
                 <div class="form">
                   <div class="form-group">
                     <label for="validationCustom01" class="mb-1">Category Name :</label>
