@@ -10,6 +10,7 @@ import { DecimalPipe } from '@angular/common';
 import { CategoryService } from 'src/app/shared/service/category.service';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-digital-category',
@@ -21,14 +22,14 @@ export class DigitalCategoryComponent implements OnInit {
   myForm: FormGroup;
   myFormEdit: FormGroup;
   id: string;
-  selectedItems :any;
+  selectedItems: any;
   dropdownSettings = {};
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
-  categories: any[] = []; 
+  categories: any[] = [];
   public subcategories = []
   public isModalOpen: boolean = false
-  selectedCategoryId: any; 
+  selectedCategoryId: any;
   editMainCategory: any[] = [];
   isEditing: boolean = false;
   constructor(
@@ -37,6 +38,7 @@ export class DigitalCategoryComponent implements OnInit {
     private modalService: NgbModal,
     private categoryService: CategoryService,
     private fb: UntypedFormBuilder,
+    private toastr: ToastrService
   ) {
     this.tableItem$ = service.tableItem$;
     this.service.setUserData(DIGITALCATEGORY)
@@ -64,11 +66,11 @@ export class DigitalCategoryComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
 
-  
-  
 
 
-  
+
+
+
 
 
   closeModal() {
@@ -76,11 +78,11 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
   openModal() {
-        this.isModalOpen = true;
+    this.isModalOpen = true;
   }
 
   initEditForm(): void {
-    const user =  this.categories
+    const user = this.categories
     this.myFormEdit = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -92,16 +94,16 @@ export class DigitalCategoryComponent implements OnInit {
 
   editCategoryMain(selectedCategory: any) {
     console.log('Düzenlenecek id bilgileri Enver:', selectedCategory);
-      this.selectedCategoryId=selectedCategory
+    this.selectedCategoryId = selectedCategory
     this.myFormEdit.patchValue({
       name: selectedCategory.name,
       description: selectedCategory.description,
       isShow: selectedCategory.isShow,
     });
-  
+
     this.isEditing = true;
   }
-  
+
 
 
   updateMainCategory() {
@@ -111,25 +113,27 @@ export class DigitalCategoryComponent implements OnInit {
     this.categoryService.updateCategory(categoryId, formValues).subscribe(
       (response) => {
         console.log('Kategori güncelendi:', response);
-  
+
 
         this.isEditing = false;
         this.closeModal();
         this.getMainCategoryList();
+        this.toastr.success("update")
+
       },
       (error) => {
         console.error('Kategori güncelleme hatası:', error);
       }
     );
   }
-  
-  
 
 
 
 
 
-  
+
+
+
   onSort({ column, direction }: SortEvent) {
     // resetting other headers
     this.headers.forEach((header) => {
@@ -231,7 +235,7 @@ export class DigitalCategoryComponent implements OnInit {
     );
   }
 
-  getMainCategoryList(){
+  getMainCategoryList() {
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = this.categories = response.categories.filter(category => category.isShow === true);
@@ -246,7 +250,7 @@ export class DigitalCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.initEditForm();
-   this.getMainCategoryList();
+    this.getMainCategoryList();
 
     const dropdownSettings: IDropdownSettings = {
       singleSelection: false,

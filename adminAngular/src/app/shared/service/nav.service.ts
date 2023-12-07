@@ -124,22 +124,24 @@ export class NavService {
 		// {
 		// 	title: 'Reports', path: '/reports', icon: 'bar-chart', type: 'link', active: false
 		// },
-		{
-			title: 'Settings', icon: 'settings', type: 'sub', children: [
-				{ path: '/settings/profile', title: 'Profile', type: 'link' },
-			]
-		},
+		
 		// {
 		// 	title: 'Invoice', path: '/invoice', icon: 'archive', type: 'link', active: false
 		// },
-		{
-			title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
-		},
+		
 		{
 			title: 'Blogs', icon: 'align-left', type: 'sub', active: false, children: [
 				{ path: '/blog/list-blog', title: 'Blog Lists', type: 'link' },
 				{ path: '/blog/add-blog', title: 'Create Blog', type: 'link' },
 			]
+		},
+		{
+			title: 'Settings', icon: 'settings', type: 'sub', children: [
+				{ path: '/settings/profile', title: 'Profile', type: 'link' },
+			]
+		},
+		{
+			title: 'Login',path: '/auth/login', icon: 'log-in', type: 'link', active: false
 		},
 	]
 	// Array
