@@ -9,120 +9,135 @@
         <div class="card-body">
           <div class="modal fade modal-lg" style="width: 1200px">
             <ng-template #content let-modal>
-              <h5 class="modal-title f-w-600" id="exampleModalLabel">
-                Order Details
-              </h5>
-              <button
-                type="button"
-                class="close"
-                aria-label="Close"
-                (click)="modal.dismiss('Cross click')"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <div class="modal-header">
+                <h5 class="modal-title f-w-600" id="exampleModalLabel">
+                  Order Details
+                </h5>
+                <button
+                  type="button"
+                  class="close btn btn-primary w-fit-content align-self-end ml-auto"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
               <div class="modal-body">
-                <form class="needs-validation" [formGroup]="myForm"  novalidate>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        sortable="order_id"
-                        (sort)="onSort($event)"
-                        style="width: 150px"
-                      >
-                        Order Id
-                      </th>
-                      <th
-                        scope="col"
-                        sortable="product"
-                        (sort)="onSort($event)"
-                        style="width: 200px"
-                      >
-                        Image
-                      </th>
-                      <th
-                        scope="col"
-                        sortable="payment_status"
-                        (sort)="onSort($event)"
-                      >
-                        Payment Status
-                      </th>
-                      <th
-                        scope="col"
-                        sortable="paymeny_method"
-                        (sort)="onSort($event)"
-                      >
-                        Payment Mehod
-                      </th>
-                      <th
-                        scope="col"
-                        sortable="order_status"
-                        (sort)="onSort($event)"
-                      >
-                        Order Status
-                      </th>
-                      <th scope="col" sortable="date" (sort)="onSort($event)">
-                        Date
-                      </th>
-                      <th scope="col" sortable="total" (sort)="onSort($event)">
-                        Total
-                      </th>
-                      <th scope="col" sortable="adress" (sort)="onSort($event)">
-                        Shipping Address
-                      </th>
-                      <th scope="col" sortable="update_status">
-                        Update Order Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">{{ selectedOrder._id }}</th>
-                      <td>
-                        <span
-                          *ngFor="let image of selectedOrder.cart[0].images"
+                <form class="needs-validation" [formGroup]="myForm" novalidate>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                          sortable="order_id"
+                          (sort)="onSort($event)"
+                          style="width: 150px"
                         >
-                          <img [src]="image.url" class="img-30 me-2" />
-                        </span>
-                      </td>
-                      <td>
-                        <span class="badge badge-success">{{
-                          selectedOrder.paymentInfo?.status
-                        }}</span>
-                      </td>
-                      <td>{{ selectedOrder.payment_method }}</td>
-                      <td>
-                        <span class="badge badge-secondary">{{
-                          selectedOrder.status
-                        }}</span>
-                      </td>
-                      <td>{{ selectedOrder.paidAt }}</td>
-                      <td>{{ selectedOrder.totalPrice }}</td>
-                      <td>
-                        {{ selectedOrder.shippingAddress.address1 }},
-                        {{ selectedOrder.shippingAddress.address2 }},
-                        {{ selectedOrder.shippingAddress.city }},
-                        {{ selectedOrder.shippingAddress.zipCode }},
-                        {{ selectedOrder.shippingAddress.country }}
-                      </td>
-                      <td>
-                        <select [formControl]="myForm.controls['status']">
-                          <option value="Processing">Processing</option>
-                          <option value="Transferred to delivery partner">
-                            Transferred to delivery partner
-                          </option>
-                          <option value="Shipping">Shipping</option>
-                          <option value="Received">Received</option>
-                          <option value="On the way">On the way</option>
-                          <option value="Delivered">Delivered</option>
-                          <!-- Diğer durumları buraya ekleyin -->
-                        </select>
-                        <button type="submit" (click)="updateOrderStatus(selectedOrder._id)">Update</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                          Order Id
+                        </th>
+                        <th
+                          scope="col"
+                          sortable="product"
+                          (sort)="onSort($event)"
+                          style="width: 200px"
+                        >
+                          Image
+                        </th>
+                        <th
+                          scope="col"
+                          sortable="payment_status"
+                          (sort)="onSort($event)"
+                        >
+                          Payment Status
+                        </th>
+                        <th
+                          scope="col"
+                          sortable="paymeny_method"
+                          (sort)="onSort($event)"
+                        >
+                          Payment Mehod
+                        </th>
+                        <th
+                          scope="col"
+                          sortable="order_status"
+                          (sort)="onSort($event)"
+                        >
+                          Order Status
+                        </th>
+                        <th scope="col" sortable="date" (sort)="onSort($event)">
+                          Date
+                        </th>
+                        <th
+                          scope="col"
+                          sortable="total"
+                          (sort)="onSort($event)"
+                        >
+                          Total
+                        </th>
+                        <th
+                          scope="col"
+                          sortable="adress"
+                          (sort)="onSort($event)"
+                        >
+                          Shipping Address
+                        </th>
+                        <th scope="col" sortable="update_status">
+                          Update Order Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">{{ selectedOrder._id }}</th>
+                        <td>
+                          <span
+                            *ngFor="let image of selectedOrder.cart[0].images"
+                          >
+                            <img [src]="image.url" class="img-30 me-2" />
+                          </span>
+                        </td>
+                        <td>
+                          <span class="badge badge-success">{{
+                            selectedOrder.paymentInfo?.status
+                          }}</span>
+                        </td>
+                        <td>{{ selectedOrder.payment_method }}</td>
+                        <td>
+                          <span class="badge badge-secondary">
+                            {{ selectedOrder.status }}
+                          </span>
+                        </td>
+                        <td>{{ selectedOrder.paidAt | date:'longDate' }}</td>
+                        <td>{{ selectedOrder.totalPrice | currency }}</td>
+                        <td>
+                          {{ selectedOrder.shippingAddress.address1 }},
+                          {{ selectedOrder.shippingAddress.address2 }},
+                          {{ selectedOrder.shippingAddress.city }},
+                          {{ selectedOrder.shippingAddress.zipCode }},
+                          {{ selectedOrder.shippingAddress.country }}
+                        </td>
+                        <td>
+                          <select [formControl]="myForm.controls['status']">
+                            <option value="Processing">Processing</option>
+                            <option value="Transferred to delivery partner">
+                              Transferred to delivery partner
+                            </option>
+                            <option value="Shipping">Shipping</option>
+                            <option value="Received">Received</option>
+                            <option value="On the way">On the way</option>
+                            <option value="Delivered">Delivered</option>
+                            <!-- Diğer durumları buraya ekleyin -->
+                          </select>
+                          <button
+                            type="submit"
+                            (click)="updateOrderStatus(selectedOrder._id)"
+                          >
+                            Update
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </form>
               </div>
             </ng-template>
@@ -145,10 +160,12 @@
                 <tr>
                   <th scope="col" sortable="order_id" (sort)="onSort($event)">
                     Order Id
-                  </th>
+                    <!-- </th>
                   <th scope="col" sortable="product" (sort)="onSort($event)">
-                    Payment
+                    Image
+                  </th> -->
                   </th>
+
                   <th
                     scope="col"
                     sortable="payment_status"
@@ -184,22 +201,22 @@
               <tbody>
                 <tr *ngFor="let item of filteredOrders">
                   <th scope="row">{{ item._id }}</th>
-                  <td>
+                  <!-- <td>
                     <span *ngFor="let image of item.cart[0].images">
                       <img [src]="image.url" class="img-30 me-2" />
                     </span>
-                  </td>
+                  </td> -->
                   <td>
                     <span class="badge badge-success">{{
                       item.paymentInfo?.status
                     }}</span>
                   </td>
-                  <td>{{ item.paymeny_method }}</td>
+                  <td>{{ item.payment_method }}</td>
                   <td>
                     <span class="badge badge-secondary">{{ item.status }}</span>
                   </td>
-                  <td>{{ item.paidAt }}</td>
-                  <td>{{ item.totalPrice }}</td>
+                  <td>{{ item.paidAt | date : "longDate" }}</td>
+                  <td>{{ item.totalPrice | currency }}</td>
                   <td>
                     <button
                       type="button"

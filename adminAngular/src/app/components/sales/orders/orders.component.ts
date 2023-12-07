@@ -18,31 +18,30 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class OrdersComponent implements OnInit {
-  
-  myForm:FormGroup;
+
+  myForm: FormGroup;
   public shop: any;
   public orders: any[] = [];
   public searchText: string = '';
   public filteredOrders: any[] = [];
   public selectedOrder: any;
   public selectedOrderStatus: string = '';
-
   public closeResult: string;
   public tableItem$: Observable<OrderDB[]>;
   total$: Observable<number>;
 
   constructor(
-    public service: TableService, 
+    public service: TableService,
     private modalService: NgbModal,
     private authService: AuthService,
     private orderService: OrderService,
     private fb: FormBuilder,
-    ) {
+  ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(ORDERDB)
     this.myForm = this.fb.group({
-      status: ['Processing'] 
+      status: ['Processing']
     });
   }
 
@@ -68,8 +67,8 @@ export class OrdersComponent implements OnInit {
   }
 
   irfan(item: any) {
-    this.selectedOrder = item; 
-    console.log(this.selectedOrder)
+    this.selectedOrder = item;
+    console.log("slcted", this.selectedOrder)
   }
 
   updateOrderStatus(orderId: string) {
@@ -108,7 +107,7 @@ export class OrdersComponent implements OnInit {
       }
     );
   }
-  
+
   getShopOrders() {
     this.orderService.getShopOrders(this.shop._id).subscribe(
       (res) => {
@@ -116,7 +115,7 @@ export class OrdersComponent implements OnInit {
         this.orders = res.orders.filter(order => {
           return order.status !== "Processing Refund" && order.status !== "Refund Success";
         });
-  
+
         this.search();
       },
       (error) => {
@@ -124,7 +123,7 @@ export class OrdersComponent implements OnInit {
       }
     );
   }
-  
+
 
   search() {
     if (!this.searchText) {
