@@ -18,24 +18,24 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   providers: [TableService, DecimalPipe],
 })
 export class DigitalCategoryComponent implements OnInit {
-  myForm:FormGroup;
-  myForm2:FormGroup;
+  myForm: FormGroup;
+  myFormEdit: FormGroup;
   id: string;
-  selectedItems = [];
+  selectedItems :any;
   dropdownSettings = {};
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
-  public categories = []
+  categories: any[] = []; 
   public subcategories = []
-  public isModalOpen : boolean= false
-
+  public isModalOpen: boolean = false
+  selectedCategoryId: any; 
   constructor(
     private router: Router,
-    public service: TableService, 
-    private modalService: NgbModal, 
+    public service: TableService,
+    private modalService: NgbModal,
     private categoryService: CategoryService,
     private fb: UntypedFormBuilder,
-    ) {
+  ) {
     this.tableItem$ = service.tableItem$;
     this.service.setUserData(DIGITALCATEGORY)
     this.myForm = this.fb.group({
@@ -43,23 +43,56 @@ export class DigitalCategoryComponent implements OnInit {
       description: ['', Validators.required],
       images: ['', Validators.required],
       subcategories: [[]],
-      isShow:[false]
+      isShow: [false]
     });
-
-    this.myForm2 = this.fb.group({
+    this.myFormEdit = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
-      subcategories: [[]],
-      isShow:[false]
+      isShow: [false]
     });
+
+    // Kategorileri al
+    this.categoryService.getCategory().subscribe(
+      (response) => {
+        console.log(response, "Kategorileri al")
+        console.log(response.categories[0]._id, "Kategorilerin idsini al")
+        this.categories = [response.categories[0]];
+      },
+      (error) => {
+        console.error('Kategoriler alınamadı:', error);
+      }
+    );
   }
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  openModal() {
-    this.isModalOpen = true;
+  openModal(categoryId: any) {
+    
+
+    this.selectedCategoryId = this.categories; // Seçilen kategorinin id'sini sakla
+    console.log(categoryId, "deneme");
+  
+    // Seçilen kategori bilgilerini al ve formu doldur
+    this.categoryService.getCategoryById(categoryId).subscribe(
+      (category) => {
+      
+        this.myFormEdit.patchValue({
+          name: category.name,
+          description: category.description,
+          images: category.images,
+          isShow: category.isShow
+        });
+  
+        this.isModalOpen = true; // Modal'ı aç
+      },
+      (error) => {
+        console.error('Kategori bilgileri alınamadı:', error);
+      }
+    );
   }
+  
+
 
   closeModal() {
     this.isModalOpen = false;
@@ -100,7 +133,7 @@ export class DigitalCategoryComponent implements OnInit {
     console.log("form submitted");
     if (this.myForm.valid) {
       const formData = this.myForm.value;
-    //  console.log(this.myForm.value);
+      //  console.log(this.myForm.value);
       formData.subcategories = this.subcategories;
 
       console.log('formData:', formData);
@@ -118,47 +151,45 @@ export class DigitalCategoryComponent implements OnInit {
 
 
 
-  editCategory() {
-    console.log("editform submitted")
-    if (this.myForm.valid) {
-      const formData = this.myForm.value;
 
-      console.log(this.id, "id")
-      this.categoryService.updateCategory(this.id, formData).subscribe(
-        (response) => {
-          console.log('kategori başarıyla güncellendi:', response);
-        },
-        (error) => {
-          console.error('kategori güncellenirken hata oluştu:', error);
-        }
-      );
-    }
+
+
+
+  onSelect(event) {
+    this.files.push(...event.addedFiles);
   }
+
+  onRemove(event) {
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  files: File[] = [];
+
   onFileChange(event: any) {
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
-  
+
       const imageUrls = [];
-  
+
       for (let j = 0; j < files.length; j++) {
         const file = files[j];
         const reader = new FileReader();
-  
+
         reader.onload = (e: any) => {
 
           imageUrls.push(e.target.result);
           this.myForm.get('images').setValue(imageUrls);
-  
+
           console.log('imageUrls:', imageUrls);
           console.log(this.myForm.value.images);
         };
-  
+
         reader.readAsDataURL(file);
       }
     }
   }
 
-  
+
 
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id).subscribe(
@@ -175,7 +206,6 @@ export class DigitalCategoryComponent implements OnInit {
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
       (response) => {
-        // console.log('Kategoriler', response);
         this.categories = response.categories;
       },
       (error) => {
@@ -192,11 +222,30 @@ export class DigitalCategoryComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
-    
+
     // Şimdi nesneyi kullanabilirsiniz
     this.dropdownSettings = dropdownSettings;
 
-   
   }
+
+  editCategory() {
+    
+    console.log("editform submitted");
+    if (this.myFormEdit.valid) {
+      const formData = this.myFormEdit.value;
+      this.categoryService.updateCategory(this.selectedCategoryId, formData).subscribe(
+        (response) => {
+          console.log('kategori başarıyla güncellendi:', response);
+          
+        },
+        (error) => {
+          console.error('kategori güncellenirken hata oluştu:', error);
+        }
+      );
+    }
+  }
+
+
+
 
 }

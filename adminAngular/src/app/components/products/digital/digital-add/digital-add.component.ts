@@ -70,6 +70,8 @@ export class DigitalAddComponent implements OnInit {
     }
   }
 
+  
+
   onSubmit() {
     console.log("form submitted");
     if (this.myForm.valid) {
