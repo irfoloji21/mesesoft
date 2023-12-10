@@ -12,40 +12,40 @@ $arkaplan-renk: #ededed;
     }
   }
   
-  .couponListSection {
-    .couponCard.used {
-      margin-bottom: 1rem;
+//   .couponListSection {
+//     .couponCard.used {
+//       margin-bottom: 1rem;
   
-      .couponCard__positioning {
-        display: flex;
-        flex-direction: column;
+//       .couponCard__positioning {
+//         display: flex;
+//         flex-direction: column;
   
-        .coupon {
-          .couponCard__bg-gray {
-            padding: 1rem;
-            background-color: #f2f2f2;
-            border: 1px solid #ccc;
-            margin: 1rem;
+//         .coupon {
+//           .couponCard__bg-gray {
+//             padding: 1rem;
+//             background-color: #f2f2f2;
+//             border: 1px solid #ccc;
+//             margin: 1rem;
   
-            p.title {
-              font-size: 18px;
-              color: #333;
-            }
+//             p.title {
+//               font-size: 18px;
+//               color: #333;
+//             }
   
-            ul {
-              list-style: none;
-              padding: 0;
+//             ul {
+//               list-style: none;
+//               padding: 0;
   
-              li {
-                font-size: 16px;
-                color: #666;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+//               li {
+//                 font-size: 16px;
+//                 color: #666;
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
   
   .modal {
     display: none;

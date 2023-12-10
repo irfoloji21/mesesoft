@@ -10,7 +10,7 @@ import { CouponService } from 'src/app/shared/services/coupon.service';
 })
 export class CouponComponent {
   coupons: any = [];
-  public active = 2;
+  public active = 1;
   isModalOpen: boolean = false;
   selectedCoupon: any;
   constructor(
