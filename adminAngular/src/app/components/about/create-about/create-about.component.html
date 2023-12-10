@@ -1,54 +1,79 @@
 <!-- Container-fluid starts-->
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Add About Us</h5>
-                </div>
-                <div class="card-body">
-                    <form class="needs-validation" [formGroup]="aboutForm">
-                        <div class="form-group row">
-                            <div class="col-xl-3 col-sm-4"><label for="validationCustom0"><span>*</span> Title</label></div>
-                            <div class="col-md-8"><input class="form-control" id="validationCustom0" type="text" formControlName="title"></div>
-                          </div>
-                          <div class="form-group row">
-                            <div class="col-xl-3 col-sm-4"><label>Add Description :</label></div>
-                            <div class="col-xl-8 col-sm-7">
-                              <div class="ps-0 description-sm">
-
-                                <textarea class="form-control" rows="5" id="validationCustom0" [formControl]="aboutForm.controls['description']"></textarea>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="validationCustom02" class="mb-1">Collection Image :</label>
-                            <!-- <input class="form-control" formControlName="images" id="validationCustom02" type="file" multiple  (change)="onFileChange($event)"> -->
-                        </div>
-                          <div class="form-group row">
-                            <label class="col-xl-3 col-md-4">Status</label>
-                            <div class="col-xl-9 col-md-8">
-                              <div class="checkbox checkbox-primary">
-                                <!-- Aynı şekilde [formControl] kullanın -->
-                                <input id="checkbox-primary-2" type="checkbox" [formControl]="aboutForm.controls['status']">
-                                <label for="checkbox-primary-2">Enable</label>
-                              </div>
-                            </div>
-                          </div>
-                          
-                        
-                    </form>
-                    <div class="form-group row mb-0">
-                        <div class="col-sm-8 offset-xl-3 offset-sm-4">
-                          <div class="product-buttons">
-                              <button type="button" class="btn btn-primary me-1"  (click)="performAction()" >{{buttonText}}</button>
-                              <button type="button" class="btn btn-light">Discard</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Add About Us</h5>
         </div>
+        <div class="card-body">
+          <form class="needs-validation" [formGroup]="aboutForm">
+            <div class="form-group row">
+              <div class="col-xl-3 col-sm-4">
+                <label for="validationCustom0"><span>*</span> Title</label>
+              </div>
+              <div class="col-md-8">
+                <input
+                  class="form-control"
+                  id="validationCustom0"
+                  type="text"
+                  formControlName="title"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xl-3 col-sm-4">
+                <label>Add Description :</label>
+              </div>
+              <div class="col-xl-8 col-sm-7">
+                <div class="ps-0 description-sm">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    id="validationCustom0"
+                    [formControl]="aboutForm.controls['description']"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="validationCustom02" class="mb-1"
+                >Collection Image :</label
+              >
+              <!-- <input class="form-control" formControlName="images" id="validationCustom02" type="file" multiple  (change)="onFileChange($event)"> -->
+            </div>
+            <div class="form-group row">
+              <label class="col-xl-3 col-md-4">Status</label>
+              <div class="col-xl-9 col-md-8">
+                <div class="checkbox checkbox-primary">
+                  <!-- Aynı şekilde [formControl] kullanın -->
+                  <input
+                    id="checkbox-primary-2"
+                    type="checkbox"
+                    [formControl]="aboutForm.controls['status']"
+                  />
+                  <label for="checkbox-primary-2">Enable</label>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="form-group row mb-0">
+            <div class="col-sm-8 offset-xl-3 offset-sm-4">
+              <div class="product-buttons">
+                <button
+                  type="button"
+                  class="btn btn-primary me-1"
+                  (click)="performAction()"
+                >
+                  {{ buttonText }}
+                </button>
+                <button type="button" class="btn btn-light">Discard</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- Container-fluid Ends-->

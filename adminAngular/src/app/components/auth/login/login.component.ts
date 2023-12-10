@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
     });
     console.log(this.loginForm);
   }
+
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -85,7 +86,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
   onSubmit() {
     const formData = this.loginForm.value;
 
@@ -97,7 +97,6 @@ export class LoginComponent implements OnInit {
       headers,
       withCredentials: true,
     };
-
 
     this.authService.login(formData.email, formData.password)
       .subscribe(response => {

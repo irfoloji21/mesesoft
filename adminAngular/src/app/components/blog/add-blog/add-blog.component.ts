@@ -5,19 +5,21 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { BlogService } from 'src/app/shared/service/blog.service';
 import { CategoryService } from 'src/app/shared/service/category.service';
+
 @Component({
   selector: 'app-add-blog',
   templateUrl: './add-blog.component.html',
   styleUrls: ['./add-blog.component.scss']
 })
-export class AddBlogComponent  implements OnInit {
-  myForm:FormGroup;
+
+export class AddBlogComponent implements OnInit {
+  myForm: FormGroup;
   id: string;
   categories: any[] = [];
   selectedCategory: string = '';
   buttonText: string = 'Add';
-
   public Editor = ClassicEditor;
+
   constructor(
     private router: Router,
     private blogService: BlogService,
@@ -25,7 +27,7 @@ export class AddBlogComponent  implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private fb: UntypedFormBuilder,
-  ) { 
+  ) {
     this.myForm = this.fb.group({
       name: ['', Validators.required],
       slug: ['', Validators.required],
@@ -47,27 +49,22 @@ export class AddBlogComponent  implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  
-
   onFileChange(event: any) {
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
-  
       const imageUrls = [];
-  
       for (let j = 0; j < files.length; j++) {
         const file = files[j];
         const reader = new FileReader();
-  
-        reader.onload = (e: any) => {
 
+        reader.onload = (e: any) => {
           imageUrls.push(e.target.result);
           this.myForm.get('images').setValue(imageUrls);
-  
+
           console.log('imageUrls:', imageUrls);
           console.log(this.myForm.value.images);
         };
-  
+
         reader.readAsDataURL(file);
       }
     }
@@ -78,7 +75,6 @@ export class AddBlogComponent  implements OnInit {
     if (this.myForm.valid) {
       const formData = this.myForm.value;
       const shop = this.authService.getShop();
-
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
@@ -100,7 +96,6 @@ export class AddBlogComponent  implements OnInit {
     if (this.myForm.valid) {
       const formData = this.myForm.value;
       const shop = this.authService.getShop();
-
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
@@ -120,18 +115,15 @@ export class AddBlogComponent  implements OnInit {
 
   performAction() {
     if (this.buttonText === 'Add') {
-      
       this.submitForm();
     } else if (this.buttonText === 'Edit') {
-      
-      this.editBlog(); 
+      this.editBlog();
     }
   }
 
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
       (response) => {
-        console.log('Kategoriler', response);
         this.categories = response.categories;
       },
       (error) => {

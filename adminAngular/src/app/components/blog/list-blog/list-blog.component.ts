@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { BlogService } from 'src/app/shared/service/blog.service';
 
@@ -15,8 +14,7 @@ export class ListBlogComponent implements OnInit {
 
   constructor(
     private blogService: BlogService,
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) { }
 
   deleteBlog(id) {

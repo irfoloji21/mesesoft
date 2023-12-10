@@ -16,16 +16,13 @@ export class CreateAboutComponent implements OnInit {
   public aboutForm: UntypedFormGroup;
   buttonText: string = 'Add';
 
-
-
-
-  constructor(private fb: UntypedFormBuilder,  
-    private aboutService: AboutService, 
-    private authService: AuthService, 
+  constructor(
+    private fb: UntypedFormBuilder,
+    private aboutService: AboutService,
+    private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router) {
-
-
+    private router: Router
+  ) {
     this.aboutForm = this.fb.group({
       title: [''],
       description: [''],
@@ -41,26 +38,22 @@ export class CreateAboutComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
       const uploadedFiles = [];
-  
+
       for (let j = 0; j < files.length; j++) {
         const file = files[j];
         uploadedFiles.push(file);
-  
         const reader = new FileReader();
         reader.onload = (e: any) => {
           const imageUrls = this.aboutForm.get('images').value || [];
           imageUrls.push({ name: file.name, content: e.target.result });
           this.aboutForm.get('images').setValue(imageUrls);
         };
-  
         reader.readAsDataURL(file);
       }
     }
   }
 
-  
   submitForm() {
- 
     if (this.aboutForm.valid) {
       console.log('Form is valid:', this.aboutForm.value)
       const formData = this.aboutForm.value;
@@ -83,10 +76,8 @@ export class CreateAboutComponent implements OnInit {
 
   performAction() {
     if (this.buttonText === 'Add') {
-      
       this.submitForm();
     } else if (this.buttonText === 'Edit') {
-      
       console.log("else")
     }
   }
