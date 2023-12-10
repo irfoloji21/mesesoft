@@ -192,6 +192,18 @@ export class CategoryComponent implements OnInit {
     console.log("deleteCategory")
   }
 
+  search() {
+    if (!this.searchText) {
+      this.koleksiyons = this.koleksiyons;
+    } else {
+      this.koleksiyons = this.koleksiyons.filter(category => {
+        console.log(category);
+        
+        return category.name.toLowerCase().includes(this.searchText.toLowerCase());
+      });
+    }
+  }
+
   ngOnInit() {
     this.koleksiyonService.getKoleksiyon().subscribe(
       (response) => {

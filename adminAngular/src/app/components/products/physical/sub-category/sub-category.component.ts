@@ -59,4 +59,9 @@ export class SubCategoryComponent {
       return `with: ${reason}`;
     }
   }
+  search() {
+    if (!this.searchText) {
+      console.log(this.searchText);
+    }
+  }
 }

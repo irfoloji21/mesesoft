@@ -7,7 +7,18 @@
           <h5>Sub Categories</h5>
         </div>
         <div class="card-body">
-          <div class="btn-popup pull-right">
+          <div class="btn-popup">
+            <div class="searchArea">
+              <input
+                type="text"
+                class="filter-ngx form-control"
+                placeholder="Search..."
+                [(ngModel)]="searchText"
+              />
+              <button type="submit" (click)="search()" class="btn btn-primary">
+                Ara
+              </button>
+            </div>
             <button
               type="button"
               class="btn btn-primary"
@@ -17,17 +28,6 @@
               (click)="open(content)"
             >
               Add Sub Category
-            </button>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="filter-ngx form-control"
-                placeholder="Search..."
-                [(ngModel)]="searchText"
-              />
-            </div>
-            <button type="submit" (click)="search()" class="btn btn-primary">
-              Ara
             </button>
             <ng-template #content let-modal>
               <div class="modal-header">

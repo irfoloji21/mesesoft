@@ -7,7 +7,18 @@
           <h5>Products Sub Category</h5>
         </div>
         <div class="card-body">
-          <div class="btn-popup pull-right">
+          <div class="btn-popup">
+            <div class="searchArea">
+              <input
+                type="text"
+                class="filter-ngx form-control"
+                placeholder="Search..."
+                [(ngModel)]="searchText"
+              />
+              <button type="submit" (click)="search()" class="btn btn-primary">
+                Ara
+              </button>
+            </div>
             <button
               type="button"
               class="btn btn-primary"
