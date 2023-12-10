@@ -25,6 +25,7 @@ export class DigitalSubCategoryComponent implements OnInit {
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
   categories: Category[] = []
+  filteredCategories: Category[] = []
   public supercategory = []
   isModalOpen: boolean = false;
   selectedSubCategoryId: any;
@@ -150,7 +151,7 @@ export class DigitalSubCategoryComponent implements OnInit {
 
   search() {
     if (!this.searchText) {
-      this.categories = this.categories;
+      this.categories = this.filteredCategories;
       console.log(this.categories);
       
     } else {
@@ -192,6 +193,7 @@ export class DigitalSubCategoryComponent implements OnInit {
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = response.categories;
+        this.filteredCategories = response.categories;
       },
       (error) => {
         console.error(error);

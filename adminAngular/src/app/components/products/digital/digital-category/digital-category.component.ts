@@ -29,6 +29,7 @@ export class DigitalCategoryComponent implements OnInit {
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
   categories: Category[] = [];
+  filteredCategories: Category[] = [];
   public subcategories = []
   public isModalOpen: boolean = false
   selectedCategoryId: any;
@@ -36,7 +37,6 @@ export class DigitalCategoryComponent implements OnInit {
   isEditing: boolean = false;
   private modalRef: NgbModalRef | undefined;
   public searchText: string = '';
-  public filteredCategories: any[] = [];
 
   constructor(
     private router: Router,
@@ -252,6 +252,7 @@ export class DigitalCategoryComponent implements OnInit {
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = response.categories.filter(category => category.isShow === true);
+        this.filteredCategories = response.categories.filter(category => category.isShow === true);
         this.search();
       },
       (error) => {
@@ -262,7 +263,7 @@ export class DigitalCategoryComponent implements OnInit {
 
   search() {
     if (!this.searchText) {
-      this.categories = this.categories;
+      this.categories = this.filteredCategories;
     } else {
       this.categories = this.categories.filter((categorie: any) => { // Add type assertion 'any'
         console.log(categorie);

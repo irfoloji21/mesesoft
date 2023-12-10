@@ -127,25 +127,6 @@
           </div>
           <div id="batchDelete" class="category-table custom-datatable">
             <div class="table-responsive">
-              <!-- <form>
-                <div class="mb-3 row">
-                  <label
-                    for="table-complete-search"
-                    class="col-xs-3 col-sm-auto col-form-label"
-                    >Full text search:</label
-                  >
-                  <div class="col-xs-3 col-sm-auto">
-                    <input
-                      id="table-complete-search"
-                      type="text"
-                      class="form-control"
-                      name="searchTerm"
-                      [(ngModel)]="searchText"
-                      autocomplete="off"
-                    />
-                  </div>
-                </div>
-              </form> -->
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -176,7 +157,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let koleksiyon of koleksiyons">
+                  <tr *ngFor="let koleksiyon of collections">
                     <th scope="row">{{ koleksiyon._id }}</th>
                     <td>
                       <img

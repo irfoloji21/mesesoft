@@ -11,7 +11,6 @@ export class AuthService {
   private userId: string | null = null;
   private user: any;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {
@@ -21,6 +20,7 @@ export class AuthService {
       localStorage.setItem('isLoggedIn', this.isLoggedInSubject.value ? 'true' : 'false');
     });
   }
+
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -37,21 +37,20 @@ export class AuthService {
           console.log('isLoggedIn', 'false')
           this.isLoggedInSubject.next(false);
         }
-      }));
+      }
+      )
+      );
   }
 
 
   isLoggedIn(): boolean {
     return this.isLoggedInSubject.value;
   }
-  
+
   loadShop(): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.get<any>(`${this.apiUrl}/shop/getSeller`, { headers, withCredentials: true });
   }
-
-
- 
 
   async initShop(): Promise<void> {
     try {
@@ -59,7 +58,7 @@ export class AuthService {
       this.shop = response.shop;
       return this.shop;
     } catch (error) {
-      
+
       console.error('Kullanıcı bilgileri yüklenirken hata oluştu:', error);
     }
   }

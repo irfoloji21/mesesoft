@@ -23,7 +23,7 @@ export class CategoryComponent implements OnInit {
   buttonText: string = 'Add';
   myForm1: FormGroup;
   myForm2: FormGroup;
-  koleksiyons: any[] = [];
+  collections: any[] = [];
   public filteredKoleksiyons: any[] = [];
   public selectedKoleksiyon: any;
   public closeResult: string;
@@ -44,7 +44,6 @@ export class CategoryComponent implements OnInit {
   ) {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
-    console.log(service, "denemeEnver")
     this.service.setUserData(CATEGORY)
 
     this.myForm1 = this.fb.group({
@@ -55,6 +54,11 @@ export class CategoryComponent implements OnInit {
       // products: [''],
       isShow: [false],
     });
+  }
+
+  ngOnInit() {
+    this.getCollectionList();
+    this.getShop();
   }
 
   onSort({ column, direction }) {
@@ -83,6 +87,31 @@ export class CategoryComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  getCollectionList() {
+    this.koleksiyonService.getKoleksiyon().subscribe(
+      (response) => {
+        this.collections = response.koleksiyons;
+        this.filteredKoleksiyons = response.koleksiyons;
+        console.log('getKoleksiyon', this.collections);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getShop() {
+    const shop = this.authService.getShop();
+    this.productService.getShopProduct(shop.seller._id).subscribe(
+      (response) => {
+        this.products = response.products;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   performAction() {
@@ -194,37 +223,14 @@ export class CategoryComponent implements OnInit {
 
   search() {
     if (!this.searchText) {
-      this.koleksiyons = this.koleksiyons;
+      this.collections = this.filteredKoleksiyons;
     } else {
-      this.koleksiyons = this.koleksiyons.filter(category => {
+      this.collections = this.collections.filter(category => {
         console.log(category);
         
         return category.name.toLowerCase().includes(this.searchText.toLowerCase());
       });
     }
-  }
-
-  ngOnInit() {
-    this.koleksiyonService.getKoleksiyon().subscribe(
-      (response) => {
-        this.koleksiyons = response.koleksiyons;
-        console.log('getKoleksiyon', this.koleksiyons);
-        const shop = this.authService.getShop();
-        console.log(shop, "shop")
-        this.productService.getShopProduct(shop.seller._id).subscribe(
-          (response) => {
-            this.products = response.products;
-            console.log('Ürünler:', response);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 
 }
