@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class ActivationComponent implements OnInit {
   error: boolean = false;
 
-  constructor(private route: ActivatedRoute,  private authService: AuthService, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -29,5 +29,5 @@ export class ActivationComponent implements OnInit {
       }
     });
   }
-  }
+}
 

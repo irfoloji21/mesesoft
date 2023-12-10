@@ -1,44 +1,57 @@
-<app-breadcrumb [title]="'Dashboard'" [breadcrumb]="'Dashboard'"></app-breadcrumb>
+<app-breadcrumb
+  [title]="'Dashboard'"
+  [breadcrumb]="'Dashboard'"
+></app-breadcrumb>
 <!-- section start -->
 <section class="section-b-space">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="account-sidebar" (click)="ToggleDashboard()">
-                    <a class="popup-btn">
-                        my account
-                    </a>
-                </div>
-                <div class="dashboard-left" [class.open]="openDashboard">
-                    <div class="collection-mobile-back" (click)="ToggleDashboard()">
-                        <span class="filter-back">
-                            <i class="fa fa-angle-left" aria-hidden="true"></i> back
-                        </span>
-                    </div>
-                    <div class="block-content">
-                        <ul>
-                            <li *ngFor="let item of menuItems" class="nav-item">
-                                <a [routerLink]="[item.label.toLowerCase().replace(' ', '-')]" class="nav-link" (click)="selectMenuItem(item)" style="cursor: pointer">{{ item.label }}</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" (click)="logout()" style="cursor: pointer">Log Out</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> 
-            <div class="col-lg-9">
-                <div class="dashboard-right">
-                    <div class="dashboard">
-                        <div class="box-account box-info">
-                            <div class="box-content"> 
-                                <ng-container *ngIf="selectedMenuItem">
-                                    <ng-container *ngComponentOutlet="selectedMenuItem.component"></ng-container>
-                                </ng-container>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="account-sidebar" (click)="ToggleDashboard()">
+          <a class="popup-btn"> my account </a>
         </div>
+        <div class="dashboard-left" [class.open]="openDashboard">
+          <div class="collection-mobile-back" (click)="ToggleDashboard()">
+            <span class="filter-back">
+              <i class="fa fa-angle-left" aria-hidden="true"></i> back
+            </span>
+          </div>
+          <div class="block-content">
+            <ul>
+              <li *ngFor="let item of menuItems" class="nav-item">
+                <a
+                  [routerLink]="[item.label.toLowerCase().replace(' ', '-')]"
+                  class="nav-link"
+                  (click)="selectMenuItem(item)"
+                  style="cursor: pointer"
+                  >{{ item.label }}</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="logout()" style="cursor: pointer"
+                  >Log Out</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="dashboard-right">
+          <div class="dashboard">
+            <div class="box-account box-info">
+              <div class="box-content">
+                <ng-container *ngIf="selectedMenuItem">
+                  <ng-container
+                    *ngComponentOutlet="selectedMenuItem.component"
+                  ></ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 <!-- section end -->

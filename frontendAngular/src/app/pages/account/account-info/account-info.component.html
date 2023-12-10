@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="welcome-msg">
-        <h3>Hello, {{userInf?.firstName}} {{ userInf?.lastName}} !</h3>
+        <h3>Hello, {{ userInf?.firstName }} {{ userInf?.lastName }} !</h3>
         <p>
           From your My Account Dashboard you have the ability to view a snapshot
           of your recent account activity and update your account information.
@@ -26,9 +26,13 @@
                 <a [routerLink]="['/pages/profile']">Edit</a>
               </div>
               <div class="box-content">
-                <h6>{{userInf?.firstName}} {{ userInf?.lastName}}</h6>
-                <h6>{{userInf?.email}}</h6>
-                <h6><a [routerLink]="['/pages/change/password']">Change Password</a></h6>
+                <h6>{{ userInf?.firstName }} {{ userInf?.lastName }}</h6>
+                <h6>{{ userInf?.email }}</h6>
+                <h6>
+                  <a [routerLink]="['/pages/change/password']"
+                    >Change Password</a
+                  >
+                </h6>
               </div>
             </div>
           </div>

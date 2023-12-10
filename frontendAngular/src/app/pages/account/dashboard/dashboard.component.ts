@@ -16,6 +16,7 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
 
   public userInf;
@@ -31,23 +32,23 @@ export class DashboardComponent implements OnInit {
     { label: 'My Wishlist', component: WishlistComponent },
     { label: 'Saved Card', component: SavedCardComponent },
     { label: 'Change Password', component: ChangePasswordComponent },
-    { label: 'Coupon' , component:CouponComponent}
+    { label: 'Coupon', component: CouponComponent }
   ]
 
   selectedMenuItem: any;
 
   ngOnInit(): void {
     this.serviceAuth.loadUser().subscribe(res => {
-      this.userInf  =res.user ;
+      this.userInf = res.user;
       this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);
-     })
-     this.selectedMenuItem = this.menuItems[0];
+    })
+    this.selectedMenuItem = this.menuItems[0];
   }
 
   selectMenuItem(item: any): void {
     this.selectedMenuItem = item;
   }
-  
+
   logout(): void {
     this.serviceAuth.logout();
     this.router.navigate(['/pages/login']);

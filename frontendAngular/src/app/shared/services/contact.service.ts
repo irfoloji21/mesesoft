@@ -7,9 +7,7 @@ import { Observable, map, switchMap } from 'rxjs';
 })
 export class ContactService {
   private apiUrl = 'http://localhost:3000/messages';
-
-
-
+  
   constructor(private http: HttpClient) {}
 
   getMessages(): Observable<any> {

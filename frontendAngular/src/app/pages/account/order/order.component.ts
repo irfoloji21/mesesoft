@@ -7,6 +7,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
+
 export class OrderComponent implements OnInit {
 
   public userId: string;
@@ -32,7 +33,7 @@ export class OrderComponent implements OnInit {
       (res) => {
         this.filteredOrders = res.orders;
         console.log(this.filteredOrders, "filteredOrders");
-        
+
       },
       (error) => {
         console.error(error);

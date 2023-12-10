@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./account-info.component.scss']
 })
 export class AccountInfoComponent implements OnInit {
-  
+
   public userInf;
   userInitials: string;
 
@@ -16,9 +16,9 @@ export class AccountInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceAuth.loadUser().subscribe(res => {
-      this.userInf = res.user ; 
+      this.userInf = res.user;
       this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName, this.userInf.email, this.userInf.phoneNumber);
-     })
+    })
   }
 
   getInitials(firstName: string, lastName: string, email: string, phoneNumber: number): string {

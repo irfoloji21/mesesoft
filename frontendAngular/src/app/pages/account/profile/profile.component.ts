@@ -8,13 +8,17 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+
 export class ProfileComponent implements OnInit {
 
   public userInf;
   userInitials: string;
   updateForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private serviceAuth: AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private serviceAuth: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.serviceAuth.loadUser().subscribe(res => {

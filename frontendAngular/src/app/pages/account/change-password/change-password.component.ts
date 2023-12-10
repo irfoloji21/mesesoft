@@ -9,19 +9,25 @@ import { Router } from '@angular/router';
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
+
 export class ChangePasswordComponent implements OnInit {
 
   passwordForm: FormGroup;
-  
-  constructor(private authService: AuthService, private fb: FormBuilder, private toasts : ToastrService, private router: Router) {
+
+  constructor(
+    private authService: AuthService, 
+    private fb: FormBuilder, 
+    private toasts: ToastrService, 
+    private router: Router
+  ) {
     this.passwordForm = this.fb.group({
       oldPassword: ['', Validators.required],
       newPassword: ['', [Validators.required, Validators.minLength(8), this.customPasswordValidator()]],
       confirmPassword: ['', Validators.required],
     });
-   }
+  }
 
-   isUppercaseMissing(password: string): boolean {
+  isUppercaseMissing(password: string): boolean {
     return !/[A-Z]/.test(password);
   }
 
@@ -29,7 +35,7 @@ export class ChangePasswordComponent implements OnInit {
     return !/[!@#$%^&*()_+[\]{};':"\|,.<>/?-]/.test(password);
   }
 
-   customPasswordValidator() {
+  customPasswordValidator() {
     return (control: FormGroup) => {
       const newPassword = control.value;
       const hasUppercase = /[A-Z]/.test(newPassword);
@@ -53,20 +59,20 @@ export class ChangePasswordComponent implements OnInit {
         this.authService.updateUserPassword(oldPassword, newPassword, confirmPassword)
           .subscribe(
             (response) => {
-              this.toasts.success('Şifreniz başarıyla değiştirildi.', '' ,
-                { 
+              this.toasts.success('Şifreniz başarıyla değiştirildi.', '',
+                {
                   positionClass: 'toast-top-right',
-                  timeOut: 2500, 
+                  timeOut: 2500,
                   closeButton: true,
                   newestOnTop: false,
                   progressBar: true,
                 })
             },
             (error) => {
-              this.toasts.error('Şifreniz değiştirilemedi.',  '' ,
-                { 
-                  positionClass: 'toast-top-left', 
-                  timeOut: 2500, 
+              this.toasts.error('Şifreniz değiştirilemedi.', '',
+                {
+                  positionClass: 'toast-top-left',
+                  timeOut: 2500,
                   closeButton: true,
                   newestOnTop: false,
                   progressBar: true,
@@ -74,7 +80,7 @@ export class ChangePasswordComponent implements OnInit {
               )
             }
           );
-          this.router.navigate(['/pages/dashboard']);
+        this.router.navigate(['/pages/dashboard']);
       } else {
         this.passwordForm.setErrors({ passwordMismatch: true });
       }

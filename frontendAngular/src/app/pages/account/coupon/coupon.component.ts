@@ -8,16 +8,18 @@ import { CouponService } from 'src/app/shared/services/coupon.service';
   templateUrl: "./coupon.component.html",
   styleUrls: ["./coupon.component.scss"],
 })
+
 export class CouponComponent {
   coupons: any = [];
   public active = 1;
   isModalOpen: boolean = false;
   selectedCoupon: any;
+
   constructor(
     private authService: AuthService,
     private couponService: CouponService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getCouponss();
@@ -49,7 +51,7 @@ export class CouponComponent {
   copyCouponCode() {
     const couponCode = this.selectedCoupon?.name;
     const textarea = document.createElement("textarea");
-    textarea.value = couponCode || ""; 
+    textarea.value = couponCode || "";
     document.body.appendChild(textarea);
     textarea.select();
     document.execCommand("copy");
@@ -58,15 +60,28 @@ export class CouponComponent {
 
     setTimeout(() => {
       this.closeModal();
-    }, 1000); 
+    }, 1000);
   }
 
   getMonthName(monthNumber: number): string {
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  
+    const monthNames = [
+      'January', 
+      'February', 
+      'March', 
+      'April', 
+      'May', 
+      'June', 
+      'July', 
+      'August', 
+      'September', 
+      'October', 
+      'November', 
+      'December'
+    ];
+
     const monthName = monthNames[monthNumber - 1];
-  
+
     return monthName || '';
   }
-  
+
 }

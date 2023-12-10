@@ -96,7 +96,7 @@ export class AddressComponent implements OnInit {
       }
     }
   }
-  
+
   openModal() {
     this.isModalOpen = true;
   }

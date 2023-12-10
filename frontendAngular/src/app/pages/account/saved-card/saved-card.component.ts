@@ -8,7 +8,7 @@ import { SavedCardService } from 'src/app/shared/services/savedCard.service';
 })
 export class SavedCardComponent implements OnInit {
 
-  registeredCards = []; 
+  registeredCards = [];
   selectedCard: any;
 
   constructor(private savedCardService: SavedCardService) { }
@@ -21,7 +21,7 @@ export class SavedCardComponent implements OnInit {
       (error) => {
         console.error(error);
       }
-    );    
+    );
     const storedSelectedCard = localStorage.getItem('selectedCard');
     if (storedSelectedCard) {
       this.selectedCard = JSON.parse(storedSelectedCard);
