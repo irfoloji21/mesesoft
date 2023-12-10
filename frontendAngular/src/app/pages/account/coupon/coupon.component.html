@@ -15,7 +15,7 @@
                         <li style="color: green;">Discount: 
                           {{ coupon.discount_type === 'percentage' ? coupon.quantity + '%' : (coupon.quantity | currency:'USD':'symbol') }}
                         </li> <br>
-                        <li>Coupon Start Date: <span style="font-size: larger; font-weight: bold;">{{coupon.createdAt | date}}</span></li> <br>
+                        <li>Date of use <span style="font-size: larger; font-weight: bold;">{{coupon.createdAt | date}}</span></li> <br>
                         <li>CouponId: {{coupon._id}}</li> 
                       </ul>
                     </div>
@@ -30,29 +30,80 @@
       <li [ngbNavItem]="2">
         <a ngbNavLink> <h5>Available Coupons</h5></a>
         <ng-template ngbNavContent>
-          <section class="couponWrapper">
-            <div class="couponListSection">
-              <div class="couponCard used">
-                <div class="couponCard__positioning">
-                  <div class="coupon">
-                    <div class="couponCard__bg-gray" *ngFor="let coupon of coupons">
-                      <p style="color: #ff4c3b;" class="title">{{coupon.name}}</p>
-                      <p>{{coupon.couponID}}</p>
-                      <ul>
-                        <li style="color: green;">Discount: 
-                          {{ coupon.discount_type === 'percentage' ? coupon.quantity + '%' : (coupon.quantity | currency:'USD':'symbol') }}
-                        </li> <br>
-                        <li>Coupon Start Date: <span style="font-size: larger; font-weight: bold;">{{coupon.createdAt | date}}</span></li> <br>
-                        <li>CouponId: {{coupon._id}}</li> 
-                      </ul>
-                    </div>
+          <div class="coupon-box row no-gutters bg-white p-1 h-entry " *ngFor="let coupon of coupons">
+            <span style="display: flex; justify-content: flex-end; ">
+              
+              <h5>
+                Expiration date: 
+                <span style="font-size: 1.2rem;">
+                  {{ getMonthName(coupon.end_date.month) }} - {{ coupon.end_date.year }}  
+                </span>  
+              </h5>
+            </span>
+            <div class="col-4 col-md-3 align-self-center">
+            <div class="store-image border-right">
+            <a  >
+            <img style="border-radius: 20%;"   width="150" height="100" src="../../../../assets/images/icon/CoponLogo MeseSoft2.png" class="img-fluid" alt="logo"  decoding="async">
+            
+           </a>
+
+          
+         
+            </div>
+            </div>
+            <div class="col-8 col-md-6 align-self-center px-3 px-md-3">
+            <div class="coupon-desc">
+            <h3 class="h5 entry-title"><a  class="title-coupon-code-popup coupon-code-link text-dark">Special discounts for all products</a></h3>
+            <p class="small">Do you want to use discount coupons for all products ? Special discount for online order...</p>
+       
+            </div>
+            </div>
+            <div class="col-12 col-md-3 align-self-center text-right"  >
+             
+            <a  (click)=" openModal(coupon)" rel="nofollow" class="coupon-code-link btn promotion code btn-secondary tn btn-block coupon-button" title="Click to open the discount coupon" >
+              <span  class=" d-lg-inline" style="color: #fff;"> Show the coupon</span></a>
+            </div>
+            <hr>
+          </div> 
+        </ng-template>
+       
+      </li>
+  </ul>
+  <div [ngbNavOutlet]="nav" class="mt-2">
+</div>
+
+
+ 
+
+<!-- //open modal CouponAvailable -->
+
+
+        <div class="modal-content col-12 col-md-8 col-lg-6">
+          <div class="modal" [ngClass]="{ show: isModalOpen }">
+            <div class="modal-dialog modal-dialog-centered" >
+              <div class="modal-content col-12 col-md-8 col-lg-6"> 
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle"><a class="popup-store text-dark" rel="tag">MeseSoft</a> Discount Coupon</h5>
+                  <button class="close-button" (click)="closeModal()">X</button>
+                </div>
+                <div class="modal-body">
+                  <div class="text h3 font-weight-bold ">
+                    <input id="coupon_copy" class="coupon-code border-0 font-weight-bold"  [value]="selectedCoupon?.name" readonly="">
+                    <!-- <input id="coupon_copy" class="coupon-code border-0 font-weight-bold" [value]="formatDate(selectedCoupon?.end_date) | date:'shortDate'" readonly=""> -->
+
+
+                                                         
                   </div>
+                  <small class="form-text text-muted"> This discount code is free of charge and can be used by pasting it in the corresponding field on the cart page.</small>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="copy-button" class="btn btn-secondary" (click)="copyCouponCode()">Copy</button>
                 </div>
               </div>
             </div>
-          </section>
-        </ng-template>
-      </li>
-  </ul>
-  <div [ngbNavOutlet]="nav" class="mt-2"></div>
-</div>
+          </div>
+          </div>
+          </div>
+
+
+  

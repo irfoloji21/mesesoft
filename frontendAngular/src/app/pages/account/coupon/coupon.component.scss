@@ -1,3 +1,5 @@
+$ana-renk: #ff5733;
+$arkaplan-renk: #ededed;
 .couponWrapper {
     padding: 32px;
     border-radius: 0 0 4px 4px;
@@ -44,4 +46,43 @@
       }
     }
   }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  
+    &.show {
+      display: flex;
+    }
+  
+    .modal-content {
+      width: 100%;
+      max-width: 800px; 
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      background-color: darken($ana-renk, 1%);
+      color: #ffffff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  }
+  
   
