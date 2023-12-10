@@ -131,34 +131,25 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" sortable="img" (sort)="onSort($event)">
-                      Image
-                    </th>
                     <th
-                      scope="col"
-                      sortable="product_name"
-                      (sort)="onSort($event)"
+                    scope="col"
+                    sortable="product_name"
+                    (sort)="onSort($event)"
                     >
-                      Name
-                    </th>
-                    <th scope="col" sortable="status" (sort)="onSort($event)">
-                      saving percentage
-                    </th>
+                    Name
+                  </th>
+                  <th scope="col">Image</th>
+                    <th scope="col">saving percentage</th>
                     <th scope="col" sortable="category" (sort)="onSort($event)">
                       productIds
                     </th>
-                    <th
-                      scope="col"
-                      sortable="population"
-                      (sort)="onSort($event)"
-                    >
-                      Actions
-                    </th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let koleksiyon of collections">
                     <th scope="row">{{ koleksiyon._id }}</th>
+                    <td>{{ koleksiyon.name }}</td>
                     <td>
                       <img
                         [src]="koleksiyon.images[0].url"
@@ -166,7 +157,6 @@
                         style="width: 20px"
                       />
                     </td>
-                    <td>{{ koleksiyon.name }}</td>
                     <td>{{ koleksiyon.saving }}</td>
                     <td>
                       <ul>

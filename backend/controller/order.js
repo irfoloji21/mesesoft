@@ -7,12 +7,18 @@ const Order = require("../model/order");
 const Shop = require("../model/shop");
 const Product = require("../model/product");
 
-
 router.post(
   "/create-order",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const { cart, shippingAddress, user, totalPrice, paymentInfo, payment_method } = req.body;
+      const {
+        cart,
+        shippingAddress,
+        user,
+        totalPrice,
+        paymentInfo,
+        payment_method,
+      } = req.body;
 
       const shopItemsMap = new Map();
 
@@ -33,7 +39,7 @@ router.post(
           user,
           totalPrice,
           paymentInfo,
-          payment_method
+          payment_method,
         });
         orders.push(order);
       }
@@ -47,7 +53,6 @@ router.post(
     }
   })
 );
-
 
 router.get(
   "/get-all-orders/:userId",
@@ -66,7 +71,6 @@ router.get(
     }
   })
 );
-
 
 router.get(
   "/get-seller-all-orders/:shopId",
@@ -88,14 +92,13 @@ router.get(
   })
 );
 
-
 //isSeller eklenecek
 router.put(
   "/update-order-status/:id",
   catchAsyncErrors(async (req, res, next) => {
     try {
       const order = await Order.findById(req.params.id);
-      console.log(req.body)
+      console.log(req.body);
 
       if (!order) {
         return next(new ErrorHandler("Order not found with this id", 400));
@@ -104,14 +107,14 @@ router.put(
         order.cart.forEach(async (o) => {
           await updateOrder(o._id, o.qty);
         });
-      } 
+      }
 
       order.status = req.body.status;
 
       if (req.body.status === "Delivered") {
         order.deliveredAt = Date.now();
         order.paymentInfo.status = "Succeeded";
-        const serviceCharge = order.totalPrice * .10;
+        const serviceCharge = order.totalPrice * 0.1;
         await updateSellerInfo(order.totalPrice - serviceCharge);
       }
 
@@ -133,7 +136,7 @@ router.put(
 
       async function updateSellerInfo(amount) {
         const seller = await Shop.findById(req.seller.id);
-        
+
         seller.availableBalance = amount;
 
         await seller.save();
@@ -143,7 +146,6 @@ router.put(
     }
   })
 );
-
 
 router.put(
   "/order-refund/:id",
@@ -174,8 +176,8 @@ router.put(
 router.put(
   "/order-refund-success/:id",
   catchAsyncErrors(async (req, res, next) => {
-    console.log(req.params.id)
-    console.log(req.body)
+    console.log(req.params.id);
+    console.log(req.body);
     try {
       const order = await Order.findById(req.params.id);
 
@@ -211,7 +213,6 @@ router.put(
     }
   })
 );
-
 
 router.get(
   "/admin-all-orders",

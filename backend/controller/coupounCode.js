@@ -22,17 +22,14 @@ router.post(
 
       const newCouponCode = await CoupounCode.create(req.body);
 
-      
       const users = await User.find();
 
       for (const user of users) {
-      console.log(user)
+        console.log(user);
         const couponToAdd = {
           couponID: newCouponCode._id,
           quantity: newCouponCode.customer,
-        }; 
-
-        
+        };
 
         // Kullanıcı kupon eklemesi
         user.coupons = user.coupons.concat(couponToAdd);
@@ -48,8 +45,6 @@ router.post(
     }
   })
 );
-
-
 
 //isSeller eklenecek
 router.get(
@@ -103,7 +98,6 @@ router.delete(
   })
 );
 
-
 router.get(
   "/get-coupon-value/:name",
   catchAsyncErrors(async (req, res, next) => {
@@ -120,12 +114,10 @@ router.get(
   })
 );
 
-
 router.post(
   "/use-coupon-code",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      
       const couponCode = await CoupounCode.findOne({
         name: req.body.couponName,
       });
@@ -133,7 +125,6 @@ router.post(
       if (!couponCode) {
         return next(new ErrorHandler("Coupon code not found!", 404));
       }
-
 
       const user = await User.findById(req.body.user._id);
 
@@ -144,11 +135,16 @@ router.post(
       for (const userCoupon of user.coupons) {
         if (userCoupon.couponID.toString() === couponCode._id.toString()) {
           if (userCoupon.quantity > 0) {
-            userCoupon.quantity--; 
+            userCoupon.quantity--;
           } else {
-            return next(new ErrorHandler("User has no remaining uses of this coupon!", 400));
+            return next(
+              new ErrorHandler(
+                "User has no remaining uses of this coupon!",
+                400
+              )
+            );
           }
-          break; 
+          break;
         }
       }
 
@@ -163,6 +159,5 @@ router.post(
     }
   })
 );
-
 
 module.exports = router;

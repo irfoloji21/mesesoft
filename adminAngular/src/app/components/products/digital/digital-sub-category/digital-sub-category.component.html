@@ -113,20 +113,17 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" sortable="img" (sort)="onSort($event)">
-                      Image
-                    </th>
                     <th scope="col" sortable="name" (sort)="onSort($event)">
                       Name
                     </th>
-                    <th scope="col" sortable="action" (sort)="onSort($event)">
-                      Actions
-                    </th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let catgory of categories">
                     <th scope="row">{{ catgory._id }}</th>
+                    <td>{{ catgory.name }}</td>
                     <td>
                       <img
                         [src]="[catgory.images[0].url]"
@@ -134,7 +131,6 @@
                         style="width: 20px"
                       />
                     </td>
-                    <td>{{ catgory.name }}</td>
                     <td>
                       <button
                         href="javascript:void(0)"

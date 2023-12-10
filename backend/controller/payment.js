@@ -1,21 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
 
 router.post(
   "/process",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const amount = req.body.amount; 
+      const amount = req.body.amount;
       if (typeof amount !== "number" || amount <= 0) {
         throw new Error("Invalid amount");
       }
 
       const myPayment = await stripe.paymentIntents.create({
-        amount: amount, 
+        amount: amount,
         currency: "usd",
         metadata: {
           company: "MeseSoft",
@@ -42,6 +40,5 @@ router.get(
     res.status(200).json({ stripeApikey: process.env.STRIPE_API_KEY });
   })
 );
-
 
 module.exports = router;

@@ -24,23 +24,20 @@ router.post(
         } else {
           images = req.body.images;
         }
-      
+
         const imagesLinks = [];
-      
+
         for (let i = 0; i < images.length; i++) {
           const result = await cloudinary.v2.uploader.upload(images[i], {
             folder: "products",
           });
-      
+
           imagesLinks.push({
             public_id: result.public_id,
             url: result.secure_url,
           });
         }
 
-        
-
-           
         const productData = req.body;
         productData.images = imagesLinks;
         productData.shop = shop;
@@ -51,7 +48,6 @@ router.post(
           success: true,
           product,
         });
-      
       }
     } catch (error) {
       return next(new ErrorHandler(error.message, 400));
@@ -84,14 +80,14 @@ router.delete(
 
       if (!product) {
         return next(new ErrorHandler("Product is not found with this id", 404));
-      }    
+      }
 
       const imagesToDelete = product.images.map((image) => image.public_id);
-  
+
       for (let i = 0; i < imagesToDelete.length; i++) {
         await cloudinary.v2.uploader.destroy(imagesToDelete[i]);
       }
-    
+
       await product.deleteOne({ _id: req.params.id });
 
       res.status(201).json({
@@ -103,7 +99,6 @@ router.delete(
     }
   })
 );
-
 
 router.get(
   "/get-all-products",
@@ -121,13 +116,21 @@ router.get(
   })
 );
 
-
 router.put(
   "/create-new-review",
   isAuthenticated,
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const { user, rating, comment, productId, orderId, reviewTitle, email, name } = req.body;
+      const {
+        user,
+        rating,
+        comment,
+        productId,
+        orderId,
+        reviewTitle,
+        email,
+        name,
+      } = req.body;
 
       const product = await Product.findById(productId);
 
@@ -138,7 +141,7 @@ router.put(
         productId,
         reviewTitle,
         email,
-        name
+        name,
       };
 
       const isReviewed = product.reviews.find(
@@ -181,7 +184,6 @@ router.put(
   })
 );
 
-
 router.get(
   "/admin-all-products",
   isAuthenticated,
@@ -201,7 +203,6 @@ router.get(
   })
 );
 
-
 router.get("/:slug", async (req, res) => {
   try {
     const product = await Product.findOne({ slug: req.params.slug });
@@ -214,30 +215,26 @@ router.get("/:slug", async (req, res) => {
   }
 });
 
-
-router.get(
-  "/get-products-by-category/:id",
-  async (req, res, next) => {
-    try {
-      const products = await Product.find({ category: req.params.id });
-      res.status(200).json({
-        success: true,
-        products,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
+router.get("/get-products-by-category/:id", async (req, res, next) => {
+  try {
+    const products = await Product.find({ category: req.params.id });
+    res.status(200).json({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
   }
-);
+});
 
-router.get('/search/:keyword', async (req, res) => {
+router.get("/search/:keyword", async (req, res) => {
   const searchTerm = req.params.keyword;
 
   const products = await Product.find({
     $or: [
       // büyük küçük harf ayırt etmeksizin search yapar
-      { name: { $regex: searchTerm, $options: 'i' } }, 
-      { description: { $regex: searchTerm, $options: 'i' } }, 
+      { name: { $regex: searchTerm, $options: "i" } },
+      { description: { $regex: searchTerm, $options: "i" } },
     ],
   });
 
@@ -254,8 +251,7 @@ router.get("/get-product-by-id/:id", async (req, res) => {
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }
-}
-);
+});
 
 router.put(
   "/update-product/:productId",
@@ -279,31 +275,30 @@ router.put(
       existingProduct.stock = updatedProductData.stock;
       existingProduct.gender = updatedProductData.gender;
 
+      //   if (typeof updatedProductData.images === "object") {
+      //     updatedProductData.images = JSON.stringify(updatedProductData.images);
 
-    //   if (typeof updatedProductData.images === "object") {
-    //     updatedProductData.images = JSON.stringify(updatedProductData.images);
-      
-    //   if (updatedProductData.images && updatedProductData.images.length > 0) {
-    //     const updatedImagesLinks = [];
+      //   if (updatedProductData.images && updatedProductData.images.length > 0) {
+      //     const updatedImagesLinks = [];
 
-    //     console.log(typeof updatedProductData.images, "updatedProductData.images")
+      //     console.log(typeof updatedProductData.images, "updatedProductData.images")
 
-    //     for (let i = 0; i < updatedProductData.images.length; i++) {
-    //       const result = await cloudinary.v2.uploader.upload(updatedProductData.images[i], {
-    //         folder: "products",
-    //       });
+      //     for (let i = 0; i < updatedProductData.images.length; i++) {
+      //       const result = await cloudinary.v2.uploader.upload(updatedProductData.images[i], {
+      //         folder: "products",
+      //       });
 
-    //       updatedImagesLinks.push({
-    //         public_id: result.public_id,
-    //         url: result.secure_url,
-    //       });
-    //     }
+      //       updatedImagesLinks.push({
+      //         public_id: result.public_id,
+      //         url: result.secure_url,
+      //       });
+      //     }
 
-    //     existingProduct.images = updatedImagesLinks;
-    //   }
-    // }
+      //     existingProduct.images = updatedImagesLinks;
+      //   }
+      // }
 
-      console.log(typeof existingProduct)
+      console.log(typeof existingProduct);
 
       await existingProduct.save();
 
