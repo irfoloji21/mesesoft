@@ -97,7 +97,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getShopProducts() {
-    console.log(this.shop._id)
     this.productService.getShopProduct(this.shop._id).subscribe(
       (res) => {
         this.products = res.products;

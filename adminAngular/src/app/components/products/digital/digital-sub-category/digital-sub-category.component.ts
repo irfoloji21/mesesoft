@@ -9,6 +9,7 @@ import { DecimalPipe } from '@angular/common';
 import { CategoryService } from 'src/app/shared/service/category.service';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Category } from 'src/app/shared/tables/category';
 
 @Component({
   selector: 'app-digital-sub-category',
@@ -23,7 +24,7 @@ export class DigitalSubCategoryComponent implements OnInit {
   dropdownSettings = {};
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
-  public categories = []
+  categories: Category[] = []
   public supercategory = []
   isModalOpen: boolean = false;
   selectedSubCategoryId: any;
@@ -147,6 +148,18 @@ export class DigitalSubCategoryComponent implements OnInit {
     }
   }
 
+  search() {
+    if (!this.searchText) {
+      this.categories = this.categories;
+      console.log(this.categories);
+      
+    } else {
+      this.categories = this.categories.filter((category: any) => {
+        return (category.name as string).toLowerCase().includes(this.searchText.toLowerCase());
+      });
+    }
+  }
+
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {
@@ -178,7 +191,6 @@ export class DigitalSubCategoryComponent implements OnInit {
   getSubCategoryList() {
     this.categoryService.getCategory().subscribe(
       (response) => {
-        console.log('Kategoriler Enver ', response);
         this.categories = response.categories;
       },
       (error) => {
@@ -233,15 +245,4 @@ export class DigitalSubCategoryComponent implements OnInit {
     );
   }
 
-  search() {
-    if (!this.searchText) {
-      this.categories = this.categories;
-    } else {
-      this.categories = this.categories.filter(category => {
-        console.log(category);
-        
-        return category.name.toLowerCase().includes(this.searchText.toLowerCase());
-      });
-    }
-  }
 }

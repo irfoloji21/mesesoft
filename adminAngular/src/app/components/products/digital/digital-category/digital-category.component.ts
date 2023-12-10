@@ -70,6 +70,24 @@ export class DigitalCategoryComponent implements OnInit {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
+  ngOnInit() {
+    this.initEditForm();
+    this.getMainCategoryList();
+
+    const dropdownSettings: IDropdownSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
+    // Şimdi nesneyi kullanabilirsiniz
+    this.dropdownSettings = dropdownSettings;
+
+  }
+
   closeModal() {
     this.isModalOpen = false;
   }
@@ -242,35 +260,16 @@ export class DigitalCategoryComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.initEditForm();
-    this.getMainCategoryList();
-
-    const dropdownSettings: IDropdownSettings = {
-      singleSelection: false,
-      idField: '_id',
-      textField: 'name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 5,
-      allowSearchFilter: true
-    };
-    // Şimdi nesneyi kullanabilirsiniz
-    this.dropdownSettings = dropdownSettings;
-
-  }
-
   search() {
-    console.log(this.searchText);
-    
     if (!this.searchText) {
-      this.filteredCategories = this.categories;
+      this.categories = this.categories;
     } else {
-      this.filteredCategories = this.categories.filter(categorie => {
-        console.log(categorie._id);
+      this.categories = this.categories.filter((categorie: any) => { // Add type assertion 'any'
+        console.log(categorie);
         
-        return categorie._id.toLowerCase().includes(this.searchText.toLowerCase());
+        return (categorie.name as string).toLowerCase().includes(this.searchText.toLowerCase()); // Add type assertion 'as string'
       });
     }
   }
+
 }
