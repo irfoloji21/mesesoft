@@ -59,6 +59,13 @@ export class CheckoutCartComponent {
     });
   }
 
+  // 1 - Kuponun Daha Önce Kullanılıp Kullanılmadığını Kontrol Etme
+  // 2 - Kuponun Geçerli Olup Olmadığını Kontrol Etme
+  // 3 - Kuponun Tarih Aralığını Kontrol Etme
+  // 4 - Minimum Alışveriş Tutarını Kontrol Etme
+  // 5 - Kullanıcı ve Kupon Bilgilerini Güncelleme
+  // 6 - Kullanıcı ve Kupon Bilgilerini Güncelleme
+
   applyCoupon() {
     event.preventDefault();
     const user = this.authService.getUser();
