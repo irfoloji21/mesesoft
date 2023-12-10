@@ -8,6 +8,17 @@
         </div>
         <div class="card-body">
           <div class="btn-popup pull-right">
+            <div class="mb-3">
+                <input
+                  type="text"
+                  class="filter-ngx form-control"
+                  placeholder="Search..."
+                  [(ngModel)]="searchText"
+                />
+              </div>
+              <button type="submit" (click)="search()" class="btn btn-primary">
+                Ara
+              </button>
             <button
               type="button"
               class="btn btn-primary"

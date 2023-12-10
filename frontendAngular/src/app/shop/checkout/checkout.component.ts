@@ -7,6 +7,7 @@ import { Product } from "../../shared/classes/product";
 import { ProductService } from "../../shared/services/product.service";
 import { OrderService } from "../../shared/services/order.service";
 import { ToastrService } from 'ngx-toastr';
+import { ShippingService } from 'src/app/shared/services/shipping.service';
 
 @Component({
   selector: 'app-checkout',
@@ -41,6 +42,7 @@ export class CheckoutComponent implements OnInit {
     private fb: UntypedFormBuilder,
     public productService: ProductService,
     private orderService: OrderService,
+    private shippingService: ShippingService,
     private toasts: ToastrService
   ) {
     this.checkoutForm = this.fb.group({
@@ -173,7 +175,7 @@ export class CheckoutComponent implements OnInit {
           this.toasts.error('Lütfen bir teslimat adresi seçin.');
           return; // Uyarı verip işlemi durdur
         }
-        if (localStorage.getItem('selectedShipping') === null) {
+        if (!this.shippingService.getSelectedShipping()) {
           this.toasts.error('Lütfen bir teslimat yöntemi seçin.');
           return; // Uyarı verip işlemi durdur
         }
