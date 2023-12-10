@@ -11,6 +11,7 @@ import { CategoryService } from 'src/app/shared/service/category.service';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/shared/tables/category';
 
 @Component({
   selector: 'app-digital-category',
@@ -27,13 +28,15 @@ export class DigitalCategoryComponent implements OnInit {
   dropdownSettings = {};
   public closeResult: string;
   tableItem$: Observable<DigitalCategoryDB[]>;
-  categories: any[] = [];
+  categories: Category[] = [];
   public subcategories = []
   public isModalOpen: boolean = false
   selectedCategoryId: any;
   editMainCategory: any[] = [];
   isEditing: boolean = false;
   private modalRef: NgbModalRef | undefined;
+  public searchText: string = '';
+  public filteredCategories: any[] = [];
 
   constructor(
     private router: Router,
@@ -56,9 +59,8 @@ export class DigitalCategoryComponent implements OnInit {
     // Kategorileri al
     this.categoryService.getCategory().subscribe(
       (response) => {
-        console.log(response, "Kategorileri al")
-        console.log(response.categories[0]._id, "Kategorilerin idsini al")
         this.categories = [response.categories[0]];
+        this.getMainCategoryList();
       },
       (error) => {
         console.error('Kategoriler alınamadı:', error);
@@ -122,10 +124,8 @@ export class DigitalCategoryComponent implements OnInit {
         header.direction = '';
       }
     });
-
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-
   }
 
   open(content: any) {
@@ -148,6 +148,7 @@ export class DigitalCategoryComponent implements OnInit {
       this.modalRef.close(); // Modal kapatma işlemi
     }
   }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -232,7 +233,8 @@ export class DigitalCategoryComponent implements OnInit {
   getMainCategoryList() {
     this.categoryService.getCategory().subscribe(
       (response) => {
-        this.categories = this.categories = response.categories.filter(category => category.isShow === true);
+        this.categories = response.categories.filter(category => category.isShow === true);
+        this.search();
       },
       (error) => {
         console.error(error);
@@ -258,4 +260,17 @@ export class DigitalCategoryComponent implements OnInit {
 
   }
 
+  search() {
+    console.log(this.searchText);
+    
+    if (!this.searchText) {
+      this.filteredCategories = this.categories;
+    } else {
+      this.filteredCategories = this.categories.filter(categorie => {
+        console.log(categorie._id);
+        
+        return categorie._id.toLowerCase().includes(this.searchText.toLowerCase());
+      });
+    }
+  }
 }

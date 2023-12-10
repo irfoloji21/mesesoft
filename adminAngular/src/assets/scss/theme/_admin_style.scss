@@ -2344,6 +2344,15 @@ div {
         margin-bottom: 0;
       }
     }
+    .btn-popup {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .searchArea {
+        display: flex;
+        align-items: center;
+      }
+    }
   }
   .sub-title {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -5912,6 +5921,10 @@ $i: 1;
   }
   .btn-popup {
     margin-bottom: 15px;
+    flex-direction: column-reverse;
+    .searchArea {
+      margin-top: 1rem;
+    }
   }
   .static-top-widget {
     div {
