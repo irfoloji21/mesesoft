@@ -13,7 +13,8 @@ export class ListBlogComponent implements OnInit {
 
   public blog_list = [];
   public selectedBlogList: Blog | null = null;
-  isModalOpen: boolean = false;
+  public isModalOpen: boolean = false;
+  public isEditing: boolean = false;
 
   constructor(
     private blogService: BlogService,
@@ -34,7 +35,13 @@ export class ListBlogComponent implements OnInit {
   editBlog(id) {
     this.blogService.updateBlog(id, {}).subscribe(
       (response) => {
-        this.ngOnInit()
+        if (response.success) {
+          this.selectedBlogList = response.blog;
+          this.isEditing = true; // Düzenleme modunu aktif et
+          this.openModal();
+        } else {
+          console.error(response.message);
+        }
       },
       (error) => {
         console.error(error);
@@ -42,8 +49,14 @@ export class ListBlogComponent implements OnInit {
     );
   }
 
+  openModal() {
+    this.isModalOpen = true;
+  }
+
   closeModal() {
     this.isModalOpen = false;
+    this.isEditing = false; // Düzenleme modunu sıfırla
+    this.selectedBlogList = null; 
   }
 
   @HostListener('document:keydown.escape', ['$event']) 
