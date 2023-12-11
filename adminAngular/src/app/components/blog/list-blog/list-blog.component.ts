@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { BlogService } from 'src/app/shared/service/blog.service';
+import { Blog } from './blog';
 
 @Component({
   selector: 'app-list-blog',
@@ -10,11 +11,13 @@ import { BlogService } from 'src/app/shared/service/blog.service';
 
 export class ListBlogComponent implements OnInit {
 
-  public blog_list = []
+  public blog_list = [];
+  selectedBlogList: Blog | null = null;
+  isModalOpen: boolean = false;
 
   constructor(
     private blogService: BlogService,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
   deleteBlog(id) {
@@ -34,6 +37,30 @@ export class ListBlogComponent implements OnInit {
         this.ngOnInit()
       },
       (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  detailBlog(id: any) {
+    this.isModalOpen = true;
+    this.blogService.getBlogById(id).subscribe(
+      (response) => {
+        if (response.success) {
+          // Blog başarıyla alındı, işlemleri burada gerçekleştirin
+          this.selectedBlogList = response.blog
+          console.log(this.selectedBlogList);
+        } else {
+          // Hata durumu, gelen mesajı loglayabilir veya kullanıcıya bildirebilirsiniz
+          console.error(response.message);
+        }
+      },
+      (error) => {
+        // HTTP hatası, ağ hatası vb.
         console.error(error);
       }
     );

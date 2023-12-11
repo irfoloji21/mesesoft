@@ -189,6 +189,28 @@ router.get("/:slug", async (req, res) => {
   }
 });
 
+router.get("/get-blog/:id", async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) {
+      return res.status(404).json({
+        success: false,
+        message: "Blog not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      blog,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+});
+
 router.put(
   "/like-blog/:id",
   catchAsyncErrors(async (req, res, next) => {

@@ -71,6 +71,28 @@ export class CategoryComponent implements OnInit {
     this.service.sortDirection = direction;
   }
 
+  sortColumn: string = '';
+  sortDirection: string = 'asc';
+
+  sort(collection: any[]): any[] {
+    if (!this.sortColumn || this.sortDirection === '') {
+      return collection;
+    }
+
+    return collection.sort((a, b) => {
+      const valueA = a[this.sortColumn];
+      const valueB = b[this.sortColumn];
+
+      if (valueA < valueB) {
+        return this.sortDirection === 'asc' ? -1 : 1;
+      } else if (valueA > valueB) {
+        return this.sortDirection === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -94,7 +116,6 @@ export class CategoryComponent implements OnInit {
       (response) => {
         this.collections = response.koleksiyons;
         this.filteredKoleksiyons = response.koleksiyons;
-        console.log('getKoleksiyon', this.collections);
       },
       (error) => {
         console.error(error);
@@ -226,8 +247,6 @@ export class CategoryComponent implements OnInit {
       this.collections = this.filteredKoleksiyons;
     } else {
       this.collections = this.collections.filter(category => {
-        console.log(category);
-        
         return category.name.toLowerCase().includes(this.searchText.toLowerCase());
       });
     }

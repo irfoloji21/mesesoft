@@ -12,25 +12,23 @@ export interface SortEvent {
   direction: SortDirection;
 }
 
-
 @Directive({
-    selector: 'th[sortable]',
-    host: {
-        '[class.asc]': 'direction === "asc"',
-        '[class.desc]': 'direction === "desc"',
-    },
+  selector: 'th[sortable]',
+  host: {
+    '[class.asc]': 'direction === "asc"',
+    '[class.desc]': 'direction === "desc"',
+  },
 })
 
-
 export class NgbdSortableHeader {
-    @Input() sortable: SortColumn = '';
-    @Input() direction: SortDirection = '';
-    @Output() sort = new EventEmitter<SortEvent>();
+  @Input() sortable: SortColumn = '';
+  @Input() direction: SortDirection = '';
+  @Output() sort = new EventEmitter<SortEvent>();
 
-    @HostListener('click', ['$event']) rotate() {
-        console.info('clicked: ');
-        this.direction = rotate[this.direction];
-        this.sort.emit({ column: this.sortable, direction: this.direction });
-    }
+  @HostListener('click', ['$event']) rotate() {
+    console.info('clicked: ');
+    this.direction = rotate[this.direction];
+    this.sort.emit({ column: this.sortable, direction: this.direction });
+  }
 
 }
