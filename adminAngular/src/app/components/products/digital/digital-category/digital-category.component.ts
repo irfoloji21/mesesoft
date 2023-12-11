@@ -265,11 +265,19 @@ export class DigitalCategoryComponent implements OnInit {
     if (!this.searchText) {
       this.categories = this.filteredCategories;
     } else {
-      this.categories = this.categories.filter((categorie: any) => { // Add type assertion 'any'
-        console.log(categorie);
-        
+      this.categories = this.categories.filter((categorie: any) => { // Add type assertion 'any' 
         return (categorie.name as string).toLowerCase().includes(this.searchText.toLowerCase()); // Add type assertion 'as string'
       });
+    }
+  }
+
+  onSearchTextChange() {
+    if (!this.searchText) {
+      // Eğer searchText boş ise, tüm koleksiyonları göster
+      this.categories = this.filteredCategories;
+    } else {
+      // Eğer searchText dolu ise, filtreleme işlemini gerçekleştir
+      this.search();
     }
   }
 

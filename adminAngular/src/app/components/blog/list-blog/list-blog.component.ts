@@ -51,11 +51,9 @@ export class ListBlogComponent implements OnInit {
     this.blogService.getBlogById(id).subscribe(
       (response) => {
         if (response.success) {
-          // Blog başarıyla alındı, işlemleri burada gerçekleştirin
           this.selectedBlogList = response.blog
           console.log(this.selectedBlogList);
         } else {
-          // Hata durumu, gelen mesajı loglayabilir veya kullanıcıya bildirebilirsiniz
           console.error(response.message);
         }
       },

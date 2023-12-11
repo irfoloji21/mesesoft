@@ -33,7 +33,7 @@ export class DigitalSubCategoryComponent implements OnInit {
   isEditing: boolean = false;
   private modalRef: NgbModalRef | undefined;
   public searchText: string = '';
-  
+
   constructor(
     public service: TableService,
     private modalService: NgbModal,
@@ -152,12 +152,20 @@ export class DigitalSubCategoryComponent implements OnInit {
   search() {
     if (!this.searchText) {
       this.categories = this.filteredCategories;
-      console.log(this.categories);
-      
     } else {
       this.categories = this.categories.filter((category: any) => {
         return (category.name as string).toLowerCase().includes(this.searchText.toLowerCase());
       });
+    }
+  }
+
+  onSearchTextChange() {
+    if (!this.searchText) {
+      // Eğer searchText boş ise, tüm koleksiyonları göster
+      this.categories = this.filteredCategories;
+    } else {
+      // Eğer searchText dolu ise, filtreleme işlemini gerçekleştir
+      this.search();
     }
   }
 

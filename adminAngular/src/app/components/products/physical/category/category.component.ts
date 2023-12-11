@@ -252,4 +252,14 @@ export class CategoryComponent implements OnInit {
     }
   }
 
+  onSearchTextChange() {
+    if (!this.searchText) {
+      // Eğer searchText boş ise, tüm koleksiyonları göster
+      this.collections = this.filteredKoleksiyons;
+    } else {
+      // Eğer searchText dolu ise, filtreleme işlemini gerçekleştir
+      this.search();
+    }
+  }
+
 }
