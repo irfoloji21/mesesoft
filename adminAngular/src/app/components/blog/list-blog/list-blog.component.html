@@ -82,18 +82,25 @@
   <div class="modal" [ngClass]="{ show: isModalOpen }">
     <div class="modal-content col-12 col-md-8 col-lg-6">
       <div class="modal-header">
-        <h3 class="text-center">{{selectedBlogList?.name }}</h3>
-        <small>{{selectedBlogList?.createdAt | date : "longDate" }}</small>
-      <button class="close-button" (click)="closeModal()">X</button>
-    </div>
-    <div class="modal-body">
-      <div class="text h3 font-weight-bold">
-        <p>
-          {{ selectedBlogList?.description }}
-        </p>
+        <h3>{{ selectedBlogList?.name }}</h3>
+        <small>{{ selectedBlogList?.createdAt | date : "longDate" }}</small>
+        <button class="close-button" (click)="closeModal()">X</button>
       </div>
-    </div>
+      <div class="modal-body">
+        <div *ngFor="let image of selectedBlogList?.images">
+          <img
+            class="img-fluid blur-up lazyload bg-img"
+            [src]="image?.url"
+            alt=""
+          />
+        </div>
+        <div class="text font-weight-bold">
+          <p>
+            {{ selectedBlogList?.description }}
+          </p>
+          <span>likes: {{ selectedBlogList?.likes }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-

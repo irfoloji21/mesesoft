@@ -18,10 +18,8 @@ $arkaplan-renk: #ededed;
   }
 
   .modal-body {
-    .text {
-      max-height: 300px;
-      overflow-y: auto;
-    }
+    max-height: 300px;
+    overflow-y: auto;
   }
 
   .modal-content {

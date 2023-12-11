@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { BlogService } from 'src/app/shared/service/blog.service';
 import { Blog } from './blog';
@@ -12,7 +12,7 @@ import { Blog } from './blog';
 export class ListBlogComponent implements OnInit {
 
   public blog_list = [];
-  selectedBlogList: Blog | null = null;
+  public selectedBlogList: Blog | null = null;
   isModalOpen: boolean = false;
 
   constructor(
@@ -46,13 +46,17 @@ export class ListBlogComponent implements OnInit {
     this.isModalOpen = false;
   }
 
+  @HostListener('document:keydown.escape', ['$event']) 
+  handleEscape(event: KeyboardEvent) {
+    this.closeModal();
+  }
+
   detailBlog(id: any) {
     this.isModalOpen = true;
     this.blogService.getBlogById(id).subscribe(
       (response) => {
         if (response.success) {
           this.selectedBlogList = response.blog
-          console.log(this.selectedBlogList);
         } else {
           console.error(response.message);
         }
