@@ -27,6 +27,8 @@ export class ListCouponComponent implements OnInit {
   total$: any;
   public isModalOpen: boolean = false;
   public EditCouponForm: FormGroup;
+  selectedCouponId : any;
+  isEditing:boolean=false;
   constructor(
     private fb: FormBuilder,
     public service: TableService,
@@ -71,6 +73,23 @@ export class ListCouponComponent implements OnInit {
     });
   }
 
+  editListCoupon(SelectedCoupon:any) {
+   
+      console.log('Düzenlenecek Coupon bilgileri :', SelectedCoupon);
+      this.selectedCouponId = SelectedCoupon
+      const formattedEndDate = `${SelectedCoupon.end_date.year}-${SelectedCoupon.end_date.month}`;
+      this.EditCouponForm.patchValue({
+        name: SelectedCoupon.name,
+        code: SelectedCoupon.code,
+        end_date:formattedEndDate,
+        discount_type: SelectedCoupon.discount_type,
+        min:SelectedCoupon.min,
+        free_shipping:SelectedCoupon.free_shippings,
+        quantity:SelectedCoupon.quantity,
+        // discount_type: SelectedCoupon.discount_type
+      });
+      this.isEditing = true;
+  }
 
   onSelect(itemId: string) {
     if (this.selectedItems.includes(itemId)) {

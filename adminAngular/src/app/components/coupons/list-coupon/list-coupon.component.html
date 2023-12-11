@@ -53,7 +53,7 @@
                     </svg>
                   </td>
                   <td>
-                    <button href="javascript:void(0)" (click)=" openModal()">
+                    <button href="javascript:void(0)" (click)="editListCoupon(item) ;openModal()">
                       <i class="fa fa-edit f-12"></i></button>&nbsp;
                   </td>
                 </tr>
@@ -82,7 +82,7 @@
     <div class="modal-content col-12 col-md-8 col-lg-6">
       <button class="close-button" (click)="closeModal()">X</button>
       <h3 class="text-center">Edit Coupon</h3>
-      <form class="needs-validation" [formGroup]="EditCouponForm" >
+      <form class="needs-validation" [formGroup]="EditCouponForm">
         <div class="form">
           <div class="form-group">
             <label for="name" class="mb-1">Coupon Name :</label>
@@ -94,10 +94,11 @@
           </div>
           <div class="form-group">
             <label for="end_date" class="mb-1">End Date :</label>
-            <input class="form-control" formControlName="end_date" id="end_date" type="text" placeholder="yyyy-mm-dd" bsDatepicker />
+            <input class="form-control" formControlName="end_date" id="end_date" type="text" placeholder="yyyy-mm-dd"
+              bsDatepicker />
           </div>
           <div class="form-group">
-            <label class="mb-1 mx-1">Free Shipping:  </label>
+            <label class="mb-1 mx-1">Free Shipping: </label>
             <input class="form-check-input" formControlName="free_shipping" id="free_shipping" type="checkbox" />
           </div>
           <div class="form-group">
@@ -110,20 +111,20 @@
               <option value="Fixed">Fixed</option>
               <option value="Percentage">Percentage</option>
             </select>
-          </div>          
+          </div>
           <div class="form-group">
             <label for="min" class="mb-1">Min :</label>
             <input class="form-control" formControlName="min" id="min" type="text" />
           </div>
           <!-- Add similar form groups for other fields in your form -->
         </div>
-        
+
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </form>
-      
-      
+
+
     </div>
   </div>
 </div>
