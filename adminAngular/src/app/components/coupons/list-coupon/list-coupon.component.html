@@ -8,11 +8,7 @@
         </div>
         <div class="card-body">
           <div class="custom-datatable">
-            <button
-              class="btn btn-primary me-1 mb-3"
-              style="float: right"
-              (click)="deleteSelectedItems()"
-            >
+            <button class="btn btn-primary me-1 mb-3" style="float: right" (click)="deleteSelectedItems()">
               Delete
             </button>
             <div class="clearfix"></div>
@@ -31,16 +27,15 @@
                   <th scope="col" sortable="status" (sort)="onSort($event)">
                     Status
                   </th>
+                  <th scope="col">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of coupons">
                   <th scope="row">
-                    <input
-                      type="checkbox"
-                      name="title_select"
-                      (click)="onSelect(item._id)"
-                    />
+                    <input type="checkbox" name="title_select" (click)="onSelect(item._id)" />
                     {{ item.name }}
                   </th>
                   <td>
@@ -53,31 +48,20 @@
                   </td>
                   <td>
                     <svg height="20" width="20">
-                      <circle
-                        *ngIf="item.status"
-                        cx="10"
-                        cy="10"
-                        r="8"
-                        fill="green"
-                      />
-                      <circle
-                        *ngIf="!item.status"
-                        cx="10"
-                        cy="10"
-                        r="8"
-                        fill="red"
-                      />
+                      <circle *ngIf="item.status" cx="10" cy="10" r="8" fill="green" />
+                      <circle *ngIf="!item.status" cx="10" cy="10" r="8" fill="red" />
                     </svg>
+                  </td>
+                  <td>
+                    <button href="javascript:void(0)" (click)=" openModal()">
+                      <i class="fa fa-edit f-12"></i></button>&nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
             <div class="d-flex justify-content-center p-2">
-              <ngb-pagination
-                [collectionSize]="(total$ | async)!"
-                [(page)]="service.page"
-                [pageSize]="service.pageSize"
-              >
+              <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
+                [pageSize]="service.pageSize">
               </ngb-pagination>
             </div>
           </div>
@@ -87,3 +71,59 @@
   </div>
 </div>
 <!-- Container-fluid Ends-->
+
+
+
+<!-- //OpenModal CouponEdit -->
+
+
+<div class="custom-container">
+  <div class="modal" [ngClass]="{ show: isModalOpen }">
+    <div class="modal-content col-12 col-md-8 col-lg-6">
+      <button class="close-button" (click)="closeModal()">X</button>
+      <h3 class="text-center">Edit Coupon</h3>
+      <form class="needs-validation" [formGroup]="EditCouponForm" >
+        <div class="form">
+          <div class="form-group">
+            <label for="name" class="mb-1">Coupon Name :</label>
+            <input class="form-control" formControlName="name" id="name" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="code" class="mb-1">Coupon Code :</label>
+            <input class="form-control" formControlName="code" id="code" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="end_date" class="mb-1">End Date :</label>
+            <input class="form-control" formControlName="end_date" id="end_date" type="text" placeholder="yyyy-mm-dd" bsDatepicker />
+          </div>
+          <div class="form-group">
+            <label class="mb-1 mx-1">Free Shipping:  </label>
+            <input class="form-check-input" formControlName="free_shipping" id="free_shipping" type="checkbox" />
+          </div>
+          <div class="form-group">
+            <label for="quantity" class="mb-1">Quantity :</label>
+            <input class="form-control" formControlName="quantity" id="quantity" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="discount_type" class="mb-1">Discount Type :</label>
+            <select class="form-control" formControlName="discount_type" id="discount_type">
+              <option value="Fixed">Fixed</option>
+              <option value="Percentage">Percentage</option>
+            </select>
+          </div>          
+          <div class="form-group">
+            <label for="min" class="mb-1">Min :</label>
+            <input class="form-control" formControlName="min" id="min" type="text" />
+          </div>
+          <!-- Add similar form groups for other fields in your form -->
+        </div>
+        
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+      
+      
+    </div>
+  </div>
+</div>

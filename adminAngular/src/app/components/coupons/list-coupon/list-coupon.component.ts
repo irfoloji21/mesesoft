@@ -8,6 +8,8 @@ import { TableService } from 'src/app/shared/service/table.service';
 import { LISTCOUPLEDB, ListCouponsDB } from 'src/app/shared/tables/list-coupon';
 import { forkJoin } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
+import { FormGroup, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-list-coupon',
@@ -23,8 +25,10 @@ export class ListCouponComponent implements OnInit {
   public tableItem$: Observable<ListCouponsDB[]>;
   public searchText;
   total$: any;
-
+  public isModalOpen: boolean = false;
+  public EditCouponForm: FormGroup;
   constructor(
+    private fb: FormBuilder,
     public service: TableService,
     private authService: AuthService,
     private couponService: CouponService,
@@ -46,6 +50,27 @@ export class ListCouponComponent implements OnInit {
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
   }
+
+
+   editCouponsForm() {
+    this.EditCouponForm = this.fb.group({
+      name: [''],
+      code: [''],
+      start_date: [''],
+      end_date: [''],
+      free_shipping: [false],
+      quantity: [''],
+      discount_type: ['Fixed'],
+      status: [false],
+      products: [''],
+      category: [''],
+      min: [''],
+      max: [''],
+      limit: [''],
+      customer: ['']
+    });
+  }
+
 
   onSelect(itemId: string) {
     if (this.selectedItems.includes(itemId)) {
@@ -74,6 +99,7 @@ export class ListCouponComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editCouponsForm();
     this.authService.loadShop().subscribe(
       (shop) => {
         const irfo = shop.seller._id;
@@ -92,5 +118,13 @@ export class ListCouponComponent implements OnInit {
         console.error('Kullanıcı kimliği belirleme hatası:', error);
       }
     );
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  openModal() {
+    this.isModalOpen = true;
   }
 }

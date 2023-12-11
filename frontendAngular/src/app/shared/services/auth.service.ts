@@ -10,6 +10,7 @@ export class AuthService {
   private userId: string | null = null;
   private user: any;
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  private usedCoupons: Set<string> = new Set();
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -29,6 +30,18 @@ export class AuthService {
         if (user.success) {
           localStorage.setItem('isLoggedIn', 'true');
           this.isLoggedInSubject.next(true);
+
+          // Server'ın kullanıcının kupon bilgisini gönderdiğini varsayalım
+          const userCoupon = user.coupon;
+
+          if (userCoupon && !this.usedCoupons.has(userCoupon)) {
+            // Kullanıcı başarıyla giriş yaptı ve geçerli bir kuponu var
+            // Kuponun tekrar kullanılmasını önlemek için kullanılan kuponları set'e ekleyin
+            this.usedCoupons.add(userCoupon);
+          } else {
+            // Kullanıcının ya kuponu yok ya da kupon zaten kullanılmış
+            // Buna göre işlem yapabilirsiniz
+          }
         } else {
           this.isLoggedInSubject.next(false);
         }
