@@ -32,11 +32,13 @@ export class CouponComponent {
         this.couponService
           .getCouponById(res.user.coupons[a].couponID)
           .subscribe((res) => {
+            console.log(res , "enver1")
             this.coupons[a] = res.couponCode;
-            console.log(this.coupons[a], "Coupon");
           });
+          console.log(this.coupons , "enver2")
+
       }
-    });
+     });
   }
 
   openModal(coupon: any) {
