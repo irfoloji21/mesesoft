@@ -19,7 +19,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 
 export class ListCouponComponent implements OnInit {
-
   coupons: any[] = [];
   selectedItems: string[] = [];
   public tableItem$: Observable<ListCouponsDB[]>;
@@ -27,8 +26,9 @@ export class ListCouponComponent implements OnInit {
   total$: any;
   public isModalOpen: boolean = false;
   public EditCouponForm: FormGroup;
-  selectedCouponId : any;
-  isEditing:boolean=false;
+  selectedCouponId: any;
+  isEditing: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     public service: TableService,
@@ -53,8 +53,7 @@ export class ListCouponComponent implements OnInit {
     this.service.sortDirection = direction;
   }
 
-
-   editCouponsForm() {
+  editCouponsForm() {
     this.EditCouponForm = this.fb.group({
       name: [''],
       code: [''],
@@ -73,22 +72,21 @@ export class ListCouponComponent implements OnInit {
     });
   }
 
-  editListCoupon(SelectedCoupon:any) {
-   
-      console.log('Düzenlenecek Coupon bilgileri :', SelectedCoupon);
-      this.selectedCouponId = SelectedCoupon
-      const formattedEndDate = `${SelectedCoupon.end_date.year}-${SelectedCoupon.end_date.month}`;
-      this.EditCouponForm.patchValue({
-        name: SelectedCoupon.name,
-        code: SelectedCoupon.code,
-        end_date:formattedEndDate,
-        discount_type: SelectedCoupon.discount_type,
-        min:SelectedCoupon.min,
-        free_shipping:SelectedCoupon.free_shippings,
-        quantity:SelectedCoupon.quantity,
-        // discount_type: SelectedCoupon.discount_type
-      });
-      this.isEditing = true;
+  editListCoupon(SelectedCoupon: any) {
+    console.log('Düzenlenecek Coupon bilgileri :', SelectedCoupon);
+    this.selectedCouponId = SelectedCoupon
+    const formattedEndDate = `${SelectedCoupon.end_date.year}-${SelectedCoupon.end_date.month}`;
+    this.EditCouponForm.patchValue({
+      name: SelectedCoupon.name,
+      code: SelectedCoupon.code,
+      end_date: formattedEndDate,
+      discount_type: SelectedCoupon.discount_type,
+      min: SelectedCoupon.min,
+      free_shipping: SelectedCoupon.free_shippings,
+      quantity: SelectedCoupon.quantity,
+      // discount_type: SelectedCoupon.discount_type
+    });
+    this.isEditing = true;
   }
 
   onSelect(itemId: string) {
