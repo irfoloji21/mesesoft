@@ -16,7 +16,7 @@ import { CollectionInfinitescrollComponent } from './collection/collection-infin
 
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
-import { CompareComponent } from './compare/compare.component';
+// import { CompareComponent } from './compare/compare.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 
@@ -96,10 +96,10 @@ const routes: Routes = [
     path: 'wishlist',
     component: WishlistComponent
   },
-  {
-    path: 'compare',
-    component: CompareComponent
-  },
+  // {
+  //   path: 'compare',
+  //   component: CompareComponent
+  // },
   {
     path: 'checkout',
     component: CheckoutComponent
