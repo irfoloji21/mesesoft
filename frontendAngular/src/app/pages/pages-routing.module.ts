@@ -40,6 +40,7 @@ import { OrderComponent } from './account/order/order.component';
 import { SavedCardComponent } from './account/saved-card/saved-card.component';
 import { CouponComponent } from './account/coupon/coupon.component';
 import { ChangePasswordComponent } from './account/change-password/change-password.component';
+import { AuthGuard } from './route.guard';
 
 const routes: Routes = [
   // { 
@@ -66,11 +67,13 @@ const routes: Routes = [
   },
   { 
     path: 'login', 
-    component: LoginComponent 
+    component: LoginComponent,
+    canActivate: [AuthGuard],
   },
   { 
     path: 'register', 
-    component: RegisterComponent 
+    component: RegisterComponent,
+    canActivate: [AuthGuard],
   },
   { 
     path: 'forget/password', 
