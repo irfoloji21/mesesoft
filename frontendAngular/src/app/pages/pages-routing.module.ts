@@ -13,7 +13,7 @@ import { ContactComponent } from './account/contact/contact.component';
 import { CheckoutComponent } from './account/checkout/checkout.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SearchComponent } from './search/search.component';
-import { TypographyComponent } from './typography/typography.component';
+// import { TypographyComponent } from './typography/typography.component';
 import { ReviewComponent } from './review/review.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { CompareOneComponent } from './compare/compare-one/compare-one.component';
@@ -108,10 +108,10 @@ const routes: Routes = [
     path: 'search', 
     component: SearchComponent 
   },
-  { 
-    path: 'typography', 
-    component: TypographyComponent 
-  },
+  // { 
+  //   path: 'typography', 
+  //   component: TypographyComponent 
+  // },
   { 
     path: 'review', 
     component: ReviewComponent 
