@@ -1604,7 +1604,7 @@ header {
     h1 {
       margin-bottom: 0;
       margin-top: 10px;
-      color: $dark-font;
+      color: $white;
     }
     h4 {
       font-weight: 700;
@@ -3340,7 +3340,7 @@ header {
     h2 {
       font-size: 60px;
       font-weight: 700;
-      color: $dark-font;
+      color: $white;
       letter-spacing: 0.1em;
       margin-bottom: -7px;
     }
@@ -6280,7 +6280,7 @@ ngx-loading-bar {
           }
         }
         .img-wrapper {
-            max-height: 250px;
+          max-height: 250px;
           .lable-block {
             .lable3 {
               padding: 8px 4px;
@@ -6312,19 +6312,19 @@ ngx-loading-bar {
       }
     }
     .col-lg-6 {
-        .product-box,
-        .product-wrap {
-            .img-wrapper {
-            max-height: 500px;
-            .front {
-                .img-fluid {
-                aspect-ratio: 1/1;
-                height: 400px;
-                object-fit: contain;
-                }
+      .product-box,
+      .product-wrap {
+        .img-wrapper {
+          max-height: 500px;
+          .front {
+            .img-fluid {
+              aspect-ratio: 1/1;
+              height: 400px;
+              object-fit: contain;
             }
-            }
+          }
         }
+      }
     }
   }
 }
@@ -7112,7 +7112,7 @@ ngx-loading-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-  }  
+  }
 }
 
 // blog-page //
