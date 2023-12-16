@@ -9,25 +9,14 @@
         <div class="card-body">
           <div class="btn-popup">
             <div class="searchArea">
-              <input
-                type="text"
-                class="filter-ngx form-control"
-                placeholder="Search..."
-                [(ngModel)]="searchText"
-                (ngModelChange)="onSearchTextChange()"
-              />
+              <input type="text" class="filter-ngx form-control" placeholder="Search..." [(ngModel)]="searchText"
+                (ngModelChange)="onSearchTextChange()" />
               <button type="submit" (click)="search()" class="btn btn-primary">
                 Ara
               </button>
             </div>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-original-title="test"
-              data-target="#exampleModal"
-              (click)="open(content)"
-            >
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+              data-target="#exampleModal" (click)="open(content)">
               Add Collection
             </button>
             <ng-template #content let-modal>
@@ -35,76 +24,34 @@
                 <h5 class="modal-title f-w-600" id="exampleModalLabel">
                   Add Collection
                 </h5>
-                <button
-                  type="button"
-                  class="close"
-                  aria-label="Close"
-                  (click)="modal.dismiss('Cross click')"
-                >
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <form
-                  (ngSubmit)="onSubmit()"
-                  class="needs-validation"
-                  [formGroup]="myForm1"
-                >
+                <form (ngSubmit)="onSubmit()" class="needs-validation" [formGroup]="myForm1">
                   <div class="form">
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Collection Name :</label
-                      >
-                      <input
-                        class="form-control"
-                        id="validationCustom01"
-                        type="text"
-                        formControlName="name"
-                      />
+                      <label for="validationCustom01" class="mb-1">Collection Name :</label>
+                      <input class="form-control" id="validationCustom01" type="text" formControlName="name" />
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Collection Save Percentage :</label
-                      >
-                      <input
-                        class="form-control"
-                        id="validationCustom01"
-                        type="number"
-                        formControlName="saving"
-                      />
+                      <label for="validationCustom01" class="mb-1">Collection Save Percentage :</label>
+                      <input class="form-control" id="validationCustom01" type="number" formControlName="saving" />
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1"
-                        >Collection Description :</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="validationCustom01"
-                        formControlName="description"
-                      ></textarea>
+                      <label for="validationCustom01" class="mb-1">Collection Description :</label>
+                      <textarea class="form-control" id="validationCustom01" formControlName="description"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom02" class="mb-1"
-                        >Collection Image :</label
-                      >
-                      <input
-                        class="form-control"
-                        formControlName="images"
-                        id="validationCustom02"
-                        type="file"
-                        multiple
-                        (change)="onFileChange($event)"
-                      />
+                      <label for="validationCustom02" class="mb-1">Collection Image :</label>
+                      <input class="form-control" formControlName="images" id="validationCustom02" type="file" multiple
+                        (change)="onFileChange($event)" />
                     </div>
                     <div class="form-group">
                       <div class="checkbox checkbox-primary">
-                        <input
-                          id="checkbox-primary-2"
-                          formControlName="isShow"
-                          type="checkbox"
-                          data-original-title=""
-                          title=""
-                        />
+                        <input id="checkbox-primary-2" formControlName="isShow" type="checkbox" data-original-title=""
+                          title="" />
                         <label for="checkbox-primary-2">Add to Slider</label>
                       </div>
                     </div>
@@ -113,12 +60,8 @@
                     <button type="submit" class="btn btn-primary">
                       {{ buttonText }}
                     </button>
-                    <button
-                      class="btn btn-secondary"
-                      type="button"
-                      data-dismiss="modal"
-                      (click)="modal.dismiss('Cross click')"
-                    >
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal"
+                      (click)="modal.dismiss('Cross click')">
                       Close
                     </button>
                   </div>
@@ -131,19 +74,15 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th
-                    scope="col"
-                    sortable="product_name"
-                    (sort)="onSort($event)"
-                    >
-                    Name
-                  </th>
-                  <th scope="col">Image</th>
-                    <th scope="col">saving percentage</th>
-                    <th scope="col" sortable="category" (sort)="onSort($event)">
-                      productIds
+                    <th scope="col">Product Id</th>
+                    <th scope="col" sortable="product_name" (sort)="onSort($event)">
+                      Name
                     </th>
+                    <th scope="col">Image</th>
+                    <th scope="col">saving percentage</th>
+                    <!-- <th scope="col" sortable="category" (sort)="onSort($event)">
+                      productIds
+                    </th> -->
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -152,32 +91,21 @@
                     <th scope="row">{{ koleksiyon._id }}</th>
                     <td>{{ koleksiyon.name }}</td>
                     <td>
-                      <img
-                        [src]="koleksiyon.images[0].url"
-                        class="imgTable"
-                        style="width: 20px"
-                      />
+                      <img [src]="koleksiyon.images[0].url" class="imgTable" style="width: 20px" />
                     </td>
                     <td>{{ koleksiyon.saving }}</td>
-                    <td>
+                    <!-- <td>
                       <ul>
                         <li *ngFor="let productId of koleksiyon.productIds">
                           {{ productId }}
                         </li>
                       </ul>
-                    </td>
+                    </td> -->
                     <td>
-                      <button
-                        href="javascript:void(0)"
-                        (click)="editCategory(koleksiyon._id, content)"
-                      >
-                        <i class="fa fa-edit f-12"></i></button
-                      >&nbsp;
-                      <a
-                        href="javascript:void(0)"
-                        (click)="deleteCategory(koleksiyon._id)"
-                        ><i class="fa fa-trash-o"></i
-                      ></a>
+                      <button href="javascript:void(0)" (click)="editCategory(koleksiyon._id, content)">
+                        <i class="fa fa-edit f-12"></i></button>&nbsp;
+                      <a href="javascript:void(0)" (click)="deleteCategory(koleksiyon._id)"><i
+                          class="fa fa-trash-o"></i></a>
                     </td>
                   </tr>
                 </tbody>
