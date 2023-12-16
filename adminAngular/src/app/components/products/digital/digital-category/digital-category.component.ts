@@ -144,8 +144,8 @@ export class DigitalCategoryComponent implements OnInit {
     });
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-    console.log( this.service.sortColumn , "Enver")
-    console.log( this.service.sortDirection , "Enve2")
+    console.log( this.service.sortColumn )
+    console.log( this.service.sortDirection )
   }
 
   open(content: any) {

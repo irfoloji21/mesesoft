@@ -8,19 +8,10 @@
         </div>
         <div class="card-body">
           <div class="btn-popup">
-            <div class="searchArea">
-<<<<<<< Updated upstream
-              <input
-                type="text"
-                class="filter-ngx form-control"
-                placeholder="Search..."
-                [(ngModel)]="searchText"
-                (ngModelChange)="onSearchTextChange()"
-              />
-=======
-              <input type="text" class="filter-ngx form-control" placeholder="Search..." [(ngModel)]="searchText" />
->>>>>>> Stashed changes
-              <button type="submit" (click)="search()" class="btn btn-primary">
+            <div class="searchArea ">
+              <input type="text" class="filter-ngx form-control mx-2" placeholder="Search..." [(ngModel)]="searchText"
+                (ngModelChange)="onSearchTextChange()" />
+              <button type="submit " (click)="search()" class="btn btn-primary">
                 Ara
               </button>
             </div>

@@ -1,0 +1,20 @@
+.feather-icon-container {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem; 
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  
+  .feather {
+    animation: bounce 1s infinite alternate;
+  }
+  
+  

@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   public isOpenMobile: boolean;
   isLoggedIn: boolean;
   userInitials: string;
+  icon: string = 'user'
 
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
