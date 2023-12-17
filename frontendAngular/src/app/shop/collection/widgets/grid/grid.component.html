@@ -33,13 +33,21 @@
                 </div>
                 <div class="product-page-filter">
                     <select (change)="sorting($event)">
-                        <option value="">Sorting Items</option>
-                        <option value="a-z"  [selected]="sortBy == 'a-z'">Alphabetically A-Z</option>
-                        <option value="z-a"  [selected]="sortBy == 'z-a'">Alphabetically Z-A</option>
-                        <option value="low"  [selected]="sortBy == 'low'">Price Low to High</option>
-                        <option value="high" [selected]="sortBy == 'high'">Price High to Low</option>
+                        <option value="" [selected]="sortBy === ''" class="title-option">Sorting Items</option>
+
+                        <optgroup label="Alphabetical Order">
+                            <option value="a-z" [selected]="sortBy === 'a-z'">A-Z</option>
+                            <option value="z-a" [selected]="sortBy === 'z-a'">Z-A</option>
+                        </optgroup>
+
+                        <optgroup label="Price Order">
+                            <option value="low" [selected]="sortBy === 'low'">Low to High</option>
+                            <option value="high" [selected]="sortBy === 'high'">High to Low</option>
+                        </optgroup>
                     </select>
                 </div>
+
+
             </div>
         </div>
     </div>
