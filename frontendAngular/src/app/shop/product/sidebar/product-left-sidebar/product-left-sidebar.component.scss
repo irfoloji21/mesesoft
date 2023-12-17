@@ -95,3 +95,37 @@
     justify-content: center;
   }
 }
+
+
+// wishlist İcon 
+
+.product-icon {
+  .wishlist-btn {
+    background-color: transparent;
+    border: 2px solid #FF4C3B; 
+    margin-left: 1rem;
+    border-radius: 10px; 
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    
+    &:hover {
+      transform: scale(1.1);
+      background-color: #FF4C3B; 
+      border-color: #FF4C3B; 
+      
+      i {
+        color: white; 
+      }
+    }
+
+    &.is-in-wishlist {
+      background-color: #FF4C3B; 
+      border-color: #FF4C3B; 
+      
+      i {
+        color: white; 
+      }
+    }
+  }
+}

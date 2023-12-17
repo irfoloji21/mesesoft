@@ -12,7 +12,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-product-left-sidebar',
   templateUrl: './product-left-sidebar.component.html',
-  styleUrls: ['./product-left-sidebar.component.scss']
+  styleUrls: ['./product-left-sidebar.component.scss'],
+
 })
 
 export class ProductLeftSidebarComponent implements OnInit {
@@ -26,6 +27,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   reviewForm: FormGroup;
   selectedRating: number;
   comment: any = {}
+  isInWishlist: boolean = false; 
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
   @ViewChild("sizeChart") SizeChart: SizeModalComponent;
@@ -66,6 +68,8 @@ export class ProductLeftSidebarComponent implements OnInit {
       return Math.ceil(value);
     }
   }
+
+  
 
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
@@ -173,6 +177,8 @@ export class ProductLeftSidebarComponent implements OnInit {
   // Add to Wishlist
   addToWishlist(product: any) {
     this.productService.addToWishlist(product);
+    event.preventDefault();
+    this.isInWishlist = !this.isInWishlist;
   }
 
   // Toggle Mobile Sidebar
