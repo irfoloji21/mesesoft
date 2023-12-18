@@ -153,18 +153,19 @@ export class DigitalSubCategoryComponent implements OnInit {
     if (!this.searchText) {
       this.categories = this.filteredCategories;
     } else {
-      this.categories = this.categories.filter((category: any) => {
-        return (category.name as string).toLowerCase().includes(this.searchText.toLowerCase());
+      this.categories = this.filteredCategories.filter((categorie: any) => {
+        const nameMatch = (categorie.name as string).toLowerCase().includes(this.searchText.toLowerCase());
+        const idMatch = (categorie._id as string).toLowerCase().includes(this.searchText.toLowerCase());
+  
+        return nameMatch || idMatch;
       });
     }
   }
-
+  
   onSearchTextChange() {
     if (!this.searchText) {
-      // Eğer searchText boş ise, tüm koleksiyonları göster
       this.categories = this.filteredCategories;
     } else {
-      // Eğer searchText dolu ise, filtreleme işlemini gerçekleştir
       this.search();
     }
   }

@@ -12,12 +12,7 @@
               <h5 class="modal-title f-w-600" id="exampleModalLabel">
                 Refund Details
               </h5>
-              <button
-                type="button"
-                class="close"
-                aria-label="Close"
-                (click)="modal.dismiss('Cross click')"
-              >
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
               <div class="modal-body">
@@ -25,58 +20,28 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th
-                          scope="col"
-                          sortable="refund_id"
-                          (sort)="onSort($event)"
-                          style="width: 150px"
-                        >
+                        <th scope="col" sortable="refund_id" (sort)="onSort($event)" style="width: 150px">
                           Refund Id
                         </th>
-                        <th
-                          scope="col"
-                          sortable="product"
-                          (sort)="onSort($event)"
-                          style="width: 200px"
-                        >
+                        <th scope="col" sortable="product" (sort)="onSort($event)" style="width: 200px">
                           Image
                         </th>
-                        <th
-                          scope="col"
-                          sortable="payment_status"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="payment_status" (sort)="onSort($event)">
                           Payment Status
                         </th>
-                        <th
-                          scope="col"
-                          sortable="paymeny_method"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="paymeny_method" (sort)="onSort($event)">
                           Payment Mehod
                         </th>
-                        <th
-                          scope="col"
-                          sortable="refund_status"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="refund_status" (sort)="onSort($event)">
                           Refund Status
                         </th>
                         <th scope="col" sortable="date" (sort)="onSort($event)">
                           Date
                         </th>
-                        <th
-                          scope="col"
-                          sortable="total"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="total" (sort)="onSort($event)">
                           Total
                         </th>
-                        <th
-                          scope="col"
-                          sortable="adress"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="adress" (sort)="onSort($event)">
                           Shipping Address
                         </th>
                         <th scope="col" sortable="update_status">
@@ -89,25 +54,23 @@
                       <tr>
                         <th scope="row">{{ selectedRefund._id }}</th>
                         <td>
-                          <span
-                            *ngFor="let image of selectedRefund.cart[0].images"
-                          >
+                          <span *ngFor="let image of selectedRefund.cart[0].images">
                             <img [src]="image.url" class="img-30 me-2" />
                           </span>
                         </td>
                         <td>
                           <span class="badge badge-success">{{
                             selectedRefund.paymentInfo?.status
-                          }}</span>
+                            }}</span>
                         </td>
                         <td>{{ selectedRefund.payment_method }}</td>
                         <td>
                           <span class="badge badge-secondary">{{
                             selectedRefund.status
-                          }}</span>
+                            }}</span>
                         </td>
-                        <td>{{ selectedRefund.paidAt  | date : "longDate" }}</td>
-                        <td>{{ selectedRefund.totalPrice | currency}}</td>
+                        <td>{{ selectedRefund.paidAt | date : "longDate" }}</td>
+                        <td>{{ selectedRefund.totalPrice | currency }}</td>
                         <td>
                           {{ selectedRefund.shippingAddress.address1 }},
                           {{ selectedRefund.shippingAddress.address2 }},
@@ -124,10 +87,7 @@
                               Refund Success
                             </option>
                           </select>
-                          <button
-                            type="submit"
-                            (click)="updateRefundStatus(selectedRefund._id)"
-                          >
+                          <button type="submit" (click)="updateRefundStatus(selectedRefund._id)">
                             Update
                           </button>
                         </td>
@@ -140,17 +100,17 @@
           </div>
 
           <div class="custom-datatable">
-            <div class="mb-3">
-              <input
-                type="text"
-                class="filter-ngx form-control"
-                placeholder="Search..."
-                [(ngModel)]="searchText"
-              />
+            <div class="searchArea mx-2 d-flex">
+              <div>
+                <input type="text" class="filter-ngx form-control mx-2" placeholder="Search..." [(ngModel)]="searchText"
+                (ngModelChange)="onSearchTextChange()" />
+              </div>
+              <div>
+                <button type="submit" (click)="search()" class="btn btn-primary">
+                  Find
+                </button>
+              </div>
             </div>
-            <button type="submit" (click)="search()" class="btn btn-primary">
-              Ara
-            </button>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -160,25 +120,13 @@
                   <th scope="col" sortable="product" (sort)="onSort($event)">
                     Payment
                   </th>
-                  <th
-                    scope="col"
-                    sortable="payment_status"
-                    (sort)="onSort($event)"
-                  >
+                  <th scope="col" sortable="payment_status" (sort)="onSort($event)">
                     Payment Status
                   </th>
-                  <th
-                    scope="col"
-                    sortable="paymeny_method"
-                    (sort)="onSort($event)"
-                  >
+                  <th scope="col" sortable="paymeny_method" (sort)="onSort($event)">
                     Payment Mehod
                   </th>
-                  <th
-                    scope="col"
-                    sortable="refund_status"
-                    (sort)="onSort($event)"
-                  >
+                  <th scope="col" sortable="refund_status" (sort)="onSort($event)">
                     Refund Status
                   </th>
                   <th scope="col" sortable="date" (sort)="onSort($event)">
@@ -203,24 +151,17 @@
                   <td>
                     <span class="badge badge-success">{{
                       item.paymentInfo?.status
-                    }}</span>
+                      }}</span>
                   </td>
                   <td>{{ item.payment_method }}</td>
                   <td>
                     <span class="badge badge-secondary">{{ item.status }}</span>
                   </td>
                   <td>{{ item.paidAt | date : "longDate" }}</td>
-                  <td>{{ item.totalPrice | currency}}</td>
+                  <td>{{ item.totalPrice | currency }}</td>
                   <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-original-title="test"
-                      data-target="#exampleModal"
-                      (click)="irfan(item)"
-                      (click)="open(content)"
-                    >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+                      data-target="#exampleModal" (click)="irfan(item)" (click)="open(content)">
                       go refund
                     </button>
                   </td>
@@ -228,18 +169,10 @@
               </tbody>
             </table>
             <div class="d-flex justify-content-between p-2">
-              <ngb-pagination
-                [collectionSize]="(total$ | async)!"
-                [(page)]="service.page"
-                [pageSize]="service.pageSize"
-              >
+              <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
+                [pageSize]="service.pageSize">
               </ngb-pagination>
-              <select
-                class="form-select"
-                style="width: auto"
-                name="pageSize"
-                [(ngModel)]="service.pageSize"
-              >
+              <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
                 <option [value]="10" [selected]="true" [ngValue]="2">
                   2 items per page
                 </option>

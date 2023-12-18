@@ -8,9 +8,18 @@
         </div>
         <div class="card-body">
           <div class="custom-datatable">
-            <button class="btn btn-primary me-1 mb-3" style="float: right" (click)="deleteSelectedItems()">
-              Delete
-            </button>
+            <div class="searchArea mx-2 d-flex">
+              <div>
+                <input type="text" class="filter-ngx form-control mx-2" placeholder="Search..." [(ngModel)]="searchText"
+                (ngModelChange)="onSearchTextChange()" />
+              </div>
+              <div>
+                <button type="submit" (click)="search()" class="btn btn-primary">
+                  Find
+                </button>
+              </div>
+            </div>
+           
             <div class="clearfix"></div>
             <table class="table table-striped">
               <thead>
@@ -27,9 +36,7 @@
                   <th scope="col" sortable="status" (sort)="onSort($event)">
                     Status
                   </th>
-                  <th scope="col">
-                    Action
-                  </th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,8 +60,10 @@
                     </svg>
                   </td>
                   <td>
-                    <button href="javascript:void(0)" (click)="editListCoupon(item) ;openModal()">
+                    <button href="javascript:void(0)" (click)="editListCoupon(item); openModal()">
                       <i class="fa fa-edit f-12"></i></button>&nbsp;
+                      <a href="javascript:void(0)" (click)="deleteSelectedItems()"><i
+                        class="fa fa-trash-o"></i></a>
                   </td>
                 </tr>
               </tbody>
@@ -72,10 +81,7 @@
 </div>
 <!-- Container-fluid Ends-->
 
-
-
 <!-- //OpenModal CouponEdit -->
-
 
 <div class="custom-container">
   <div class="modal" [ngClass]="{ show: isModalOpen }">
@@ -123,8 +129,6 @@
           <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </form>
-
-
     </div>
   </div>
 </div>

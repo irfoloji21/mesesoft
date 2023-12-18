@@ -60,6 +60,7 @@ export class DigitalCategoryComponent implements OnInit {
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = [response.categories[0]];
+        console.log("catgory",  this.categories)
         this.getMainCategoryList();
       },
       (error) => {
@@ -71,6 +72,7 @@ export class DigitalCategoryComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
   ngOnInit() {
+  
     this.initEditForm();
     this.getMainCategoryList();
 
@@ -267,20 +269,22 @@ export class DigitalCategoryComponent implements OnInit {
     if (!this.searchText) {
       this.categories = this.filteredCategories;
     } else {
-      this.categories = this.categories.filter((categorie: any) => { // Add type assertion 'any' 
-        return (categorie.name as string).toLowerCase().includes(this.searchText.toLowerCase()); // Add type assertion 'as string'
+      this.categories = this.filteredCategories.filter((categorie: any) => {
+        const nameMatch = (categorie.name as string).toLowerCase().includes(this.searchText.toLowerCase());
+        const idMatch = (categorie._id as string).toLowerCase().includes(this.searchText.toLowerCase());
+  
+        return nameMatch || idMatch;
       });
     }
   }
-
+  
   onSearchTextChange() {
     if (!this.searchText) {
-      // Eğer searchText boş ise, tüm koleksiyonları göster
       this.categories = this.filteredCategories;
     } else {
-      // Eğer searchText dolu ise, filtreleme işlemini gerçekleştir
       this.search();
     }
   }
+  
 
 }

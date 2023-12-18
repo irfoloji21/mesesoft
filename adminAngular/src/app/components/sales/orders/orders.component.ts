@@ -132,4 +132,7 @@ export class OrdersComponent implements OnInit {
       });
     }
   }
+  onSearchTextChange(){
+    
+  }
 }

@@ -144,4 +144,7 @@ export class ListCouponComponent implements OnInit {
   openModal() {
     this.isModalOpen = true;
   }
+
+  search(){}
+  onSearchTextChange(){}
 }

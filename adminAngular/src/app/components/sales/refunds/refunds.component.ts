@@ -128,9 +128,20 @@ export class RefundsComponent implements OnInit {
       this.filteredRefunds = this.refunds;
     } else {
       this.filteredRefunds = this.refunds.filter(refund => {
-        return refund._id.toLowerCase().includes(this.searchText.toLowerCase());
+        return (refund._id as string).toLowerCase().includes(this.searchText.toLowerCase());
       });
     }
   }
+  
+  
+  onSearchTextChange() {
+    if (!this.searchText) {
+      this.filteredRefunds = this.refunds;
+    } else {
+      this.search();
+    }
+  }
+  
+  
 
 }

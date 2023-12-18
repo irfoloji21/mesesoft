@@ -247,19 +247,21 @@ export class CategoryComponent implements OnInit {
       this.collections = this.filteredKoleksiyons;
     } else {
       this.collections = this.collections.filter(category => {
-        return category.name.toLowerCase().includes(this.searchText.toLowerCase());
+        const nameMatch = (category.name as string).toLowerCase().includes(this.searchText.toLowerCase());
+        const idMatch = (category._id as string).toLowerCase().includes(this.searchText.toLowerCase());
+  
+        return nameMatch || idMatch;
       });
     }
   }
-
+  
   onSearchTextChange() {
     if (!this.searchText) {
-      // Eğer searchText boş ise, tüm koleksiyonları göster
       this.collections = this.filteredKoleksiyons;
     } else {
-      // Eğer searchText dolu ise, filtreleme işlemini gerçekleştir
       this.search();
     }
   }
+  
 
 }
