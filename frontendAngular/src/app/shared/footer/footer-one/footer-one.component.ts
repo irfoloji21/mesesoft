@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
+import { SocialMediaService } from '../../services/social-media.service';
 
 @Component({
   selector: 'app-footer-one',
@@ -14,17 +15,21 @@ export class FooterOneComponent implements OnInit {
   @Input() newsletter: boolean = true; // Default True
   
   categories:Category[] = []
-
+  socialMediaLinks: any;
   public today: number = Date.now();
 
-  constructor(private categoryService : CategoryService) { }
+  constructor(private categoryService : CategoryService, private socialMediaService: SocialMediaService) { }
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         this.categories = data.categories;
-
+        
       }
+    });
+    this.socialMediaService.getSocialMediaLinks().subscribe(links => {
+      this.socialMediaLinks = links;
+      console.log(this.socialMediaLinks, "socialMediaLinks");
     });
   }
 
