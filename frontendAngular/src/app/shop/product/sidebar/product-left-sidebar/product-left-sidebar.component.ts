@@ -8,12 +8,12 @@ import { SizeModalComponent } from "../../../../shared/components/modal/size-mod
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-product-left-sidebar',
   templateUrl: './product-left-sidebar.component.html',
   styleUrls: ['./product-left-sidebar.component.scss'],
-
 })
 
 export class ProductLeftSidebarComponent implements OnInit {
@@ -26,20 +26,24 @@ export class ProductLeftSidebarComponent implements OnInit {
   visibleReviews: number = 2;
   reviewForm: FormGroup;
   selectedRating: number;
+  public userId: string;
+  filteredOrders: any[] = [];
   comment: any = {}
-  isInWishlist: boolean = false; 
+  isInWishlist: boolean = false;
+  showReviewForm: boolean = false;
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
   @ViewChild("sizeChart") SizeChart: SizeModalComponent;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
-    public productService: ProductService, 
-    private formBuilder: FormBuilder, 
-    private toastr: ToastrService, 
+    public productService: ProductService,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService,
     public authService: AuthService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private orderService: OrderService
   ) {
     this.route.data.subscribe(response => {
       this.product = response.data.product;
@@ -55,7 +59,28 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const user = this.authService.getUser();
+    this.userId = user.user._id;
+    this.loadUserOrders(this.userId);
     this.submitReview();
+  }
+
+  loadUserOrders(userId: string) {
+    this.orderService.getOrders(userId).subscribe(
+      (res) => {
+        this.filteredOrders = res.orders;
+        for (const order of this.filteredOrders) {
+          for (const product of order.cart) {
+            if (product._id === this.product._id) {
+              this.showReviewForm = true;
+            }
+          }
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   roundToHalf(value: number): number {
@@ -69,8 +94,6 @@ export class ProductLeftSidebarComponent implements OnInit {
     }
   }
 
-  
-
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
@@ -78,6 +101,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   hideMoreReviews() {
     this.visibleReviews = 2;
   }
+
   showMoreReviews() {
     this.visibleReviews += 3;
     console.log(this.visibleReviews, "visibleReviews")
@@ -119,7 +143,6 @@ export class ProductLeftSidebarComponent implements OnInit {
       this.selectedRating = star;
       this.reviewForm.get('rating').setValue(this.selectedRating);
     }
-
   }
 
   // Get Product Color 

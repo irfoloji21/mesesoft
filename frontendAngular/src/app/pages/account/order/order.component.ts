@@ -32,8 +32,6 @@ export class OrderComponent implements OnInit {
     this.orderService.getOrders(userId).subscribe(
       (res) => {
         this.filteredOrders = res.orders;
-        console.log(this.filteredOrders, "filteredOrders");
-
       },
       (error) => {
         console.error(error);

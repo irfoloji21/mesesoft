@@ -29,7 +29,6 @@ export class FooterOneComponent implements OnInit {
     });
     this.socialMediaService.getSocialMediaLinks().subscribe(links => {
       this.socialMediaLinks = links;
-      console.log(this.socialMediaLinks, "socialMediaLinks");
     });
   }
 

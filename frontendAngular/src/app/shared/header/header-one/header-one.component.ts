@@ -25,7 +25,7 @@ export class HeaderOneComponent implements OnInit {
   ngOnInit(): void {
     this.serviceAuth.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
-      console.log('Oturum Durumu Değişti', loggedIn);
+      // console.log('Oturum Durumu Değişti', loggedIn);
     });
 
     this.serviceAuth.loadUser().subscribe(res => {

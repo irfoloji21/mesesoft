@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   private apiUrl = 'http://localhost:8000/api/v2';
@@ -56,7 +58,7 @@ export class AuthService {
       { headers, withCredentials: true }
     );
   }
-  
+
   deleteUserAddress(addressId: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.delete<any>(`${this.apiUrl}/user/delete-user-address/${addressId}`, { headers, withCredentials: true });
@@ -103,7 +105,7 @@ export class AuthService {
   setUser(user: any): void {
     this.user = user;
   }
-  
+
   getUser(): any {
     return this.user;
   }
@@ -117,7 +119,7 @@ export class AuthService {
     return this.http.put(`${this.apiUrl}/user/update-user-password`, { oldPassword, newPassword, confirmPassword }, { headers, withCredentials: true });
   }
 
-  updateUser(userInfo: any, ): Observable<any> {
+  updateUser(userInfo: any,): Observable<any> {
     // Kullanıcı bilgilerini güncellemek için API'ye istek gönder
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.put<any>(`${this.apiUrl}/user/update-user-info`, userInfo, { headers, withCredentials: true });
