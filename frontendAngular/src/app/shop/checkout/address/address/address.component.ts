@@ -32,7 +32,7 @@ export class AddressComponent implements OnInit {
   selectedShippingIndex: number;
   selectedAddressIndex: number;
   selectedBillingIndex: number;
-
+  selectedShippingMethodIndex: number | null = null;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -243,6 +243,7 @@ export class AddressComponent implements OnInit {
   selectShipping(selectedShipping: any, index: number) {
     this.shippingService.setSelectedShipping(selectedShipping);
     this.selectedShippingIndex = index;
+    this.selectedShippingMethodIndex = index;
     console.log('Seçilen kargo:', selectedShipping);
   }
 

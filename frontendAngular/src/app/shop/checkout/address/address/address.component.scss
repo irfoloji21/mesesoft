@@ -30,128 +30,31 @@ body {
   margin-bottom: 10px;
 }
 
-.selected {
-  background-color: #ff5733;
-}
-
 .selectedAddress {
-  background-color: #c6c6c6 !important;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: rgba($ana-renk, 0.1) !important;
+  border: 1px solid rgba($ana-renk, 0.3);
   border-radius: 0.25rem;
 }
 
 // Adres seçeneklerinin kutuları
 .c-address-grid {
-  // border: 1px solid #ccc;
   margin: 10px 0;
   padding: 10px 0;
+  // border: 1px solid #ccc;
   // background-color: #fff;
   // border-radius: 5px;
 
   input[type="radio"] {
     cursor: pointer;
   }
-
-  // Seçili adresin stilini belirtmek
-  .selected-address {
-    font-weight: bold;
-    color: $ana-renk; // Ana renk kullanıldı
-  }
-
-  // Adres metni
-  .c-address-text {
-    margin-top: 5px;
-
-    // Adres başlığı
-    .c-address-title {
-      font-weight: bold;
-    }
-
-    // Adres bilgileri
-    div {
-      margin-top: 5px;
-
-      // Telefon numarası
-      b {
-        font-weight: bold;
-        color: #555;
-      }
-    }
-  }
-
-  // Düzenle ve Sil bağlantıları
-  .c-address-footer {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-
-    .c-address-edit,
-    .c-address-remove {
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        text-decoration: none;
-      }
-
-      &.c-address-edit {
-        background-color: #3498db;
-        color: #fff;
-        margin-right: 10px;
-
-        &:hover {
-          background-color: darken(#3498db, 10%);
-        }
-      }
-
-      &.c-address-remove {
-        background-color: #e74c3c;
-        color: #fff;
-
-        &:hover {
-          background-color: darken(#e74c3c, 1%);
-        }
-      }
-    }
-  }
-}
-
-// Yeni adres oluştur kutusu
-.new-address {
-  cursor: pointer;
-  color: $ana-renk;
-
-  // Artı işareti
-  .icon-plus {
-    margin-right: 5px;
-  }
-}
-
-// Genel form stilleri
-.js-options-detail.options-detail {
-  background-color: $arkaplan-renk;
-  border: 1px solid #ccc;
-  margin: 10px 0;
-  border-radius: 5px;
-  padding: 20px;
 }
 
 // Her bir kargo seçeneği kutusu
 .checkout-cargo-wrapper {
-  
   // Seçili kargo seçeneği
   &.js-checkout-cargo-item.checked {
     background-color: $ana-renk;
     color: white;
-  }
-
-  &:hover {
-    background-color: darken($ana-renk, 1%);
   }
 
   // Kargo başlığı
@@ -181,6 +84,12 @@ body {
 .checkout__cargos-list {
   display: flex;
   flex-direction: column;
+  .selected-shipping {
+    background-color: rgba(
+      $ana-renk,
+      0.25
+    ); /* İstediğiniz arka plan rengini burada belirleyebilirsiniz */
+  }
 
   .checkout-shipping-list-wrapper {
     border: 1px solid #ccc;
@@ -190,7 +99,7 @@ body {
     transition: background-color 0.3s ease;
     margin: 10px 0; // Labelleri daha fazla uzaklaştır
     &:hover {
-      background-color: darken($ana-renk, 1%);
+      // background-color: darken($ana-renk, 1%);
     }
     .checkout-cargo-wrapper {
       display: flex;
@@ -213,31 +122,6 @@ body {
       }
     }
   }
-}
-
-/* Kapat düğmesi için özel stil */
-.close-form-btn {
-  background-color: red;
-  color: white;
-}
-
-/* Form alanlarına stil eklemek için bootstrap kullanıyoruz */
-.form-group {
-  margin-bottom: 15px;
-}
-
-/* Yeni adres ekle düğmesinin stilini düzenleme */
-.new-address {
-  cursor: pointer;
-}
-
-/* Formu gizlemek için */
-.new-address-form {
-  display: none;
-}
-
-/* Responsive stiller */
-@media (max-width: 768px) {
 }
 
 // Open modal Address
@@ -303,24 +187,9 @@ body {
   }
 }
 
-.js-bill-address-list.address-list {
-  background-color: $arkaplan-renk;
-  border: 1px solid #ccc;
-  margin: 10px 0;
-  border-radius: 5px;
-  padding: 20px;
-}
-
 .selected-address {
   font-weight: bold;
   color: #ff5733;
-}
-
-.c-address-footer {
-  a.c-address-edit.js-address-edit,
-  a.c-address-remove.js-address-remove {
-    font-weight: bold;
-  }
 }
 
 .clear {
@@ -329,22 +198,6 @@ body {
 
 .card-body {
   flex: 1 1 auto;
-
-  .top-sec {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-
-    h3 {
-      font-size: 1.5rem;
-      margin: 0;
-    }
-
-    .btn {
-      font-size: 1rem;
-    }
-  }
 
   .address-book-section {
     .row {
@@ -365,10 +218,6 @@ body {
           padding: 1rem;
 
           .top {
-            // display: flex;
-            // justify-content: space-between;
-            // align-items: center;
-
             h6 {
               font-size: 1.25rem;
               margin: 0;
@@ -436,6 +285,21 @@ body {
                 background-color: #888;
                 color: #fff;
               }
+            }
+
+            .form-check-input {
+              border-radius: 0; /* Köşeli hale getirir */
+            }
+
+            .form-check-input:checked {
+              background-color: $ana-renk; /* Seçiliyken farklı bir renk */
+              border-color: $ana-renk;
+            }
+
+            .form-check-input:focus {
+              border-color: $ana-renk;
+              outline: 0;
+              box-shadow: 0 0 0 0.2rem rgba($ana-renk, 0.25);
             }
           }
         }

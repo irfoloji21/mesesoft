@@ -23,47 +23,28 @@ export class FashionOneComponent implements OnInit {
   public collections: any = [];
   public sliders: any[] = [];
   public active;
-  public sortedProducts :any = []
-  constructor(public productService: ProductService, public categoryService: CategoryService, public collectionService: KoleksiyonService,
-    private router: Router,private route: ActivatedRoute) {
-      this.collectionService.getKoleksiyons().subscribe((response: any) => {
-        this.collections = response.koleksiyons;
-        this.sliders = this.collections
+  public sortedProducts: any = []
+  public ProductSliderConfig: any = ProductSlider;
+
+  constructor(
+    public productService: ProductService,
+    public categoryService: CategoryService,
+    public collectionService: KoleksiyonService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.collectionService.getKoleksiyons().subscribe((response: any) => {
+      this.collections = response.koleksiyons;
+      this.sliders = this.collections
         .filter(collection => collection.isShow === true)
         .map(collection => ({
           title: collection.name,
           subTitle: collection.description,
           image: collection?.images[0]?.url,
         }));
-      
-      })
-}
 
-
-
-  public ProductSliderConfig: any = ProductSlider;
-
-  // public sliders = [{
-  //   title: 'welcome to fashion',
-  //   subTitle: 'Men fashion',
-  //   image: 'assets/images/slider/1.jpg'
-  // }, {
-  //   title: 'welcome to fashion',
-  //   subTitle: 'Women fashion',
-  //   image: 'assets/images/slider/2.jpg'
-  // }]
-
-  // Collection banner
-  // public collectionssMan = [{
-  //   image: 'assets/images/collection/fashion/1.jpg',
-  //   save: 'save 50%',
-  //   title: 'men'
-  // }];
-  // public collectionssWomen = [{
-  //   image: 'assets/images/collection/fashion/1.jpg',
-  //   save: 'save 50%',
-  //   title: 'men'
-  // }];
+    })
+  }
 
   // Logo
   public logo = [{
@@ -84,81 +65,70 @@ export class FashionOneComponent implements OnInit {
     image: 'assets/images/logos/8.png',
   }];
 
-
-
-
-
   ngOnInit(): void {
-
-   
     this.topCollection();
   }
-  
-  topCollection(){
-     this.productService.getProducts.subscribe((products: any) => {
-       const productArray = Array.isArray(products.products) ? products.products : []; 
-   
-       this.sortedProducts = productArray
-         .filter(product => product.sold_out > 0)
-         .sort((a, b) => b.sold_out - a.sold_out);
-     
-       console.log(this.sortedProducts)
-     });
-   }
 
-   loadDataMen(): void {
+  topCollection() {
+    this.productService.getProducts.subscribe((products: any) => {
+      console.log("products.YORUM EKLENECEKİ BURADA GÖRECEKİZ", products.products);
+      
+      const productArray = Array.isArray(products.products) ? products.products : [];
+      this.sortedProducts = productArray
+        .filter(product => product.sold_out > 0)
+        .sort((a, b) => b.sold_out - a.sold_out);
+      console.log(this.sortedProducts)
+    });
+  }
+
+  loadDataMen(): void {
     this.productService.getProducts.subscribe((products: any) => {
       const productArray = Array.isArray(products.products) ? products.products : [];
-    
       const filteredProducts = productArray
-         .filter(product => product.gender === 'man')
-        .filter(product => product.discountPrice > 0)   
+        .filter(product => product.gender === 'man')
+        .filter(product => product.discountPrice > 0)
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
-          console.log(discountPercentage, "discountPercentage"); 
-          return discountPercentage <=  50;
+          console.log(discountPercentage, "discountPercentage");
+          return discountPercentage <= 50;
         });
-  
+
       const productIds = filteredProducts.map(product => product._id);
-      
+
       const queryParams = {
         filteredIds: productIds.join(',')
       };
-  
+
       this.router.navigate(['/shop/collection/left/sidebar'], {
         queryParams,
-        queryParamsHandling: 'merge' 
+        queryParamsHandling: 'merge'
       });
     });
   }
 
-   loadDataWoman(): void {
+  loadDataWoman(): void {
     this.productService.getProducts.subscribe((products: any) => {
       const productArray = Array.isArray(products.products) ? products.products : [];
-    
+
       const filteredProducts = productArray
-         .filter(product => product.gender === 'woman')
-        .filter(product => product.discountPrice > 0)   
+        .filter(product => product.gender === 'woman')
+        .filter(product => product.discountPrice > 0)
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
-          console.log(discountPercentage, "discountPercentage"); 
-          return discountPercentage <=  50;
+          console.log(discountPercentage, "discountPercentage");
+          return discountPercentage <= 50;
         });
-  
+
       const productIds = filteredProducts.map(product => product._id);
-      
+
       const queryParams = {
         filteredIds: productIds.join(',')
       };
-  
+
       this.router.navigate(['/shop/collection/left/sidebar'], {
         queryParams,
-        queryParamsHandling: 'merge' 
+        queryParamsHandling: 'merge'
       });
     });
   }
-
-
-
-
 }

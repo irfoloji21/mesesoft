@@ -84,6 +84,7 @@
                                 </div>
                                 <div class="bottom">
                                   <input
+                                    class="form-check-input"
                                     type="radio"
                                     name="selectedAddress"
                                     (click)="selectAddress(address, i)"
@@ -232,28 +233,37 @@
                       <div
                         class="checkout-shipping-list-wrapper"
                         *ngFor="let shipping of shippingData; let i = index"
-                        [class.selected]="i === selectedShippingIndex"
+                        [class.selected-shipping]="i === selectedShippingIndex"
                       >
-                        <label
-                          for="shipping-{{ shipping.id }}"
-                          class="checkout-cargo-wrapper js-checkout-cargo-item cf"
-                          (click)="selectShipping(shipping, i)"
-                        >
-                          <div class="checkout-cargo-header">
-                            <div class="checkout-cargo-title">
-                              <b>{{ shipping.title }}</b>
-                              <p>{{ shipping.name }}</p>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="shippingOption"
+                            [id]="'shipping-' + shipping.id"
+                            [checked]="i === selectedShippingIndex"
+                            (change)="selectShipping(shipping, i)"
+                          />
+                          <label
+                            class="form-check-label checkout-cargo-wrapper js-checkout-cargo-item cf"
+                            [for]="'shipping-' + shipping.id"
+                          >
+                            <div class="checkout-cargo-header">
+                              <div class="checkout-cargo-title">
+                                <b>{{ shipping.title }}</b>
+                                <p>{{ shipping.name }}</p>
+                              </div>
                             </div>
-                          </div>
-                          <div class="checkout-cargo-body">
-                            <div class="checkout-cargo-desc">
-                              {{ shipping.description }}
+                            <div class="checkout-cargo-body">
+                              <div class="checkout-cargo-desc">
+                                {{ shipping.description }}
+                              </div>
+                              <div class="checkout-cargo-amount">
+                                {{ shipping.price | currency }}
+                              </div>
                             </div>
-                            <div class="checkout-cargo-amount">
-                              {{ shipping.price | currency }}
-                            </div>
-                          </div>
-                        </label>
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </form>

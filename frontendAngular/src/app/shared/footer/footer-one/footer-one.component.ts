@@ -18,7 +18,10 @@ export class FooterOneComponent implements OnInit {
   socialMediaLinks: any;
   public today: number = Date.now();
 
-  constructor(private categoryService : CategoryService, private socialMediaService: SocialMediaService) { }
+  constructor(
+    private categoryService : CategoryService, 
+    private socialMediaService: SocialMediaService
+  ) { }
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data: any) => {
