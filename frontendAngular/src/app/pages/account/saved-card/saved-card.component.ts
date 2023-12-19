@@ -11,7 +11,9 @@ export class SavedCardComponent implements OnInit {
   registeredCards = [];
   selectedCard: any;
 
-  constructor(private savedCardService: SavedCardService) { }
+  constructor(
+    private savedCardService: SavedCardService
+  ) { }
 
   ngOnInit(): void {
     this.savedCardService.getSavedCards().subscribe(
@@ -31,6 +33,10 @@ export class SavedCardComponent implements OnInit {
   saveSelectedCard(card: any) {
     this.selectedCard = card;
     localStorage.setItem('selectedCard', JSON.stringify(card));
+  }
+
+  openAddCardModal() {
+
   }
 
 }

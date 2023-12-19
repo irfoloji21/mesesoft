@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { SocialMediaService } from 'src/app/shared/services/social-media.service';
 
 @Component({
   selector: 'app-product-left-sidebar',
@@ -31,6 +32,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   comment: any = {}
   isInWishlist: boolean = false;
   showReviewForm: boolean = false;
+  public socialMediaLinks: any;
   public ProductDetailsMainSliderConfig: any = ProductDetailsMainSlider;
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
   @ViewChild("sizeChart") SizeChart: SizeModalComponent;
@@ -43,7 +45,8 @@ export class ProductLeftSidebarComponent implements OnInit {
     private toastr: ToastrService,
     public authService: AuthService,
     private sanitizer: DomSanitizer,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private socialMediaService: SocialMediaService
   ) {
     this.route.data.subscribe(response => {
       this.product = response.data.product;
@@ -63,6 +66,19 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.userId = user.user._id;
     this.loadUserOrders(this.userId);
     this.submitReview();
+    this.socialMediaService.getSocialMediaLinks().subscribe(links => {
+      this.socialMediaLinks = links;
+    });
+  }
+
+  openSharePopup() {
+    const productUrl = encodeURIComponent(window.location.href);
+
+    const facebookShareLink = this.sanitizer.bypassSecurityTrustUrl(`https://www.facebook.com/sharer/sharer.php?u=${productUrl}`);
+    const twitterShareLink = this.sanitizer.bypassSecurityTrustUrl(`https://twitter.com/intent/tweet?url=${productUrl}`)
+    const whatsappMessage = encodeURIComponent(`Check out this product: ${productUrl}`);
+    const whatsappShareLink = this.sanitizer.bypassSecurityTrustUrl(`https://wa.me/${this.socialMediaLinks.whatsapp}/?text=${whatsappMessage}`);
+    console.log('WhatsApp Paylaşım Linki:', whatsappShareLink);
   }
 
   loadUserOrders(userId: string) {

@@ -40,7 +40,9 @@ import { OrderComponent } from './account/order/order.component';
 import { SavedCardComponent } from './account/saved-card/saved-card.component';
 import { CouponComponent } from './account/coupon/coupon.component';
 import { ChangePasswordComponent } from './account/change-password/change-password.component';
-import { AuthGuard } from './route.guard';
+// import { AuthGuard } from './route.guard';
+import { CheckoutCartComponent } from '../shop/checkout/checkoutCart/checkout-cart/checkout-cart/checkout-cart.component';
+import { PaymentComponent } from '../shop/checkout/payment/payment/payment.component';
 
 const routes: Routes = [
   // { 
@@ -68,12 +70,12 @@ const routes: Routes = [
   { 
     path: 'login', 
     component: LoginComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { 
     path: 'register', 
     component: RegisterComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { 
     path: 'forget/password', 
@@ -101,7 +103,13 @@ const routes: Routes = [
   },
   { 
     path: 'checkout', 
-    component: CheckoutComponent 
+    component: CheckoutComponent,
+    // children: [
+    //   { path: 'checkout/address', component: AddressComponent, data: { step: 'adres' } },
+    //   { path: 'checkout/checkout', component: CheckoutCartComponent, data: { step: 'checkout' } },
+    //   { path: 'checkout/payment', component: PaymentComponent, data: { step: 'odeme' } },
+    //   { path: '', redirectTo: 'checkout/address', pathMatch: 'full' },
+    // ],
   },
   { 
     path: 'aboutus', 
@@ -121,7 +129,8 @@ const routes: Routes = [
   },
   { 
     path: 'order/success', 
-    component: OrderSuccessComponent 
+    component: OrderSuccessComponent,
+    // canActivate: [AuthGuard],
   },
   { 
     path: 'compare/one', 
