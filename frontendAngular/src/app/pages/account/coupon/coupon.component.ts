@@ -23,7 +23,6 @@ export class CouponComponent {
 
   ngOnInit(): void {
     this.getCouponss();
-    console.log(this.coupons[0].end_date)
   }
 
   getCouponss() {
@@ -32,13 +31,12 @@ export class CouponComponent {
         this.couponService
           .getCouponById(res.user.coupons[a].couponID)
           .subscribe((res) => {
-            console.log(res , "enver1")
+            console.log(res, "enver1")
             this.coupons[a] = res.couponCode;
           });
-          console.log(this.coupons , "enver2")
-
+        console.log(this.coupons, "enver2")
       }
-     });
+    });
   }
 
   openModal(coupon: any) {
@@ -67,17 +65,17 @@ export class CouponComponent {
 
   getMonthName(monthNumber: number): string {
     const monthNames = [
-      'January', 
-      'February', 
-      'March', 
-      'April', 
-      'May', 
-      'June', 
-      'July', 
-      'August', 
-      'September', 
-      'October', 
-      'November', 
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
       'December'
     ];
 

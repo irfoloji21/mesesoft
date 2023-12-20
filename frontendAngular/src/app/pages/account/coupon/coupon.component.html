@@ -5,45 +5,68 @@
         <h5>Available Coupons</h5>
       </a>
       <ng-template ngbNavContent>
-        <div class="coupon-box row no-gutters bg-white p-1 h-entry" *ngFor="let coupon of coupons">
-          <span style="display: flex; justify-content: flex-end">
-            <h5>
-              Expiration date:
-              <span style="font-size: 1.2rem">
-                {{ getMonthName(coupon.end_date.month) }} -
-                {{ coupon.end_date.year }}
-              </span>
-            </h5>
-          </span>
-          <div class="col-4 col-md-3 align-self-center">
-            <div class="store-image border-right">
-              <a>
-                <img style="border-radius: 20%" width="150" height="100"
-                  src="../../../../assets/images/icon/CoponLogo MeseSoft2.png" class="img-fluid" alt="logo"
-                  decoding="async" />
-              </a>
+        <div *ngIf="coupons && coupons.length > 0">
+          <div
+            class="coupon-box row no-gutters bg-white p-1 h-entry"
+            *ngFor="let coupon of coupons"
+          >
+            <span style="display: flex; justify-content: flex-end">
+              <h5>
+                Expiration date:
+                <span style="font-size: 1.2rem">
+                  {{ getMonthName(coupon.end_date.month) }} -
+                  {{ coupon.end_date.year }}
+                </span>
+              </h5>
+            </span>
+            <div class="col-4 col-md-3 align-self-center">
+              <div class="store-image border-right">
+                <a>
+                  <img
+                    style="border-radius: 20%"
+                    width="150"
+                    height="100"
+                    src="../../../../assets/images/icon/CoponLogo MeseSoft2.png"
+                    class="img-fluid"
+                    alt="logo"
+                    decoding="async"
+                  />
+                </a>
+              </div>
             </div>
-          </div>
-          <div class="col-8 col-md-6 align-self-center px-3 px-md-3">
-            <div class="coupon-desc">
-              <h3 class="h5 entry-title">
-                <a class="title-coupon-code-popup coupon-code-link text-dark">Special discounts for all products</a>
-              </h3>
-              <p class="small">
-                Do you want to use discount coupons for all products ? Special
-                discount for online order...
-              </p>
+            <div class="col-8 col-md-6 align-self-center px-3 px-md-3">
+              <div class="coupon-desc">
+                <h3 class="h5 entry-title">
+                  <a class="title-coupon-code-popup coupon-code-link text-dark"
+                    >Special discounts for all products</a
+                  >
+                </h3>
+                <p class="small">
+                  Do you want to use discount coupons for all products ? Special
+                  discount for online order...
+                </p>
+              </div>
             </div>
+            <div class="col-12 col-md-3 align-self-center text-right">
+              <a
+                (click)="openModal(coupon)"
+                rel="nofollow"
+                class="coupon-code-link btn promotion code btn-secondary tn btn-block coupon-button"
+                title="Click to open the discount coupon"
+              >
+                <span class="d-lg-inline" style="color: #fff">
+                  Show the coupon</span
+                ></a
+              >
+            </div>
+            <hr />
           </div>
-          <div class="col-12 col-md-3 align-self-center text-right">
-            <a (click)="openModal(coupon)" rel="nofollow"
-              class="coupon-code-link btn promotion code btn-secondary tn btn-block coupon-button"
-              title="Click to open the discount coupon">
-              <span class="d-lg-inline" style="color: #fff">
-                Show the coupon</span></a>
-          </div>
-          <hr />
         </div>
+        <section class="couponWrapper" style="background-color: #f2f2f2">
+          <div *ngIf="!coupons || (coupons && coupons.length === 0)" >
+            <h5 style="text-align: center">No coupons available</h5>
+          </div>
+        </section>
       </ng-template>
     </li>
     <li [ngbNavItem]="2">
@@ -52,52 +75,71 @@
       </a>
       <ng-template ngbNavContent>
         <section class="couponWrapper" style="background-color: #f2f2f2">
-          <div class="coupon-box row no-gutters bg-white p-1 h-entry" *ngFor="let coupon of coupons">
-            <span style="display: flex; justify-content: flex-end">
-              <h5>
-                Coupon Name:
-                <span style="font-size: 1.2rem">
-                  {{ coupon.name }}
-                </span>
-              </h5>
-            </span>
-            <hr />
-            <span style="display: flex; justify-content: flex-end"> </span>
-            <div class="col-4 col-md-3 align-self-center">
-              <div class="store-image border-right">
-                <a>
-                  <img style="border-radius: 20%" width="150" height="100"
-                    src="../../../../assets/images/icon/CoponLogo MeseSoft2.png" class="img-fluid" alt="logo"
-                    decoding="async" />
-                </a>
-              </div>
-            </div>
-            <div class="col-8 col-md-6 align-self-center px-3 px-md-3">
-              <div class="coupon-desc">
-                <h3 class="h5 entry-title">
-                  <a class="title-coupon-code-popup coupon-code-link text-dark">Special discounts for all products</a>
-                </h3>
-                <p class="small">
-                  Do you want to use discount coupons for all products ? Special
-                  discount for online order...
-                </p>
-                <h5 style="
-                    background-color: #6c757d;
-                    color: #fff;
-                    padding: 5px;
-                    text-align: center;
-                    justify-content: center;
-                  ">
-                  Coupon usage date:
+          <div *ngIf="coupons && coupons.length > 0" >
+            <div
+              class="coupon-box row no-gutters bg-white p-1 h-entry"
+              *ngFor="let coupon of coupons"
+            >
+              <span style="display: flex; justify-content: flex-end">
+                <h5>
+                  Coupon Name:
                   <span style="font-size: 1.2rem">
-                    {{ getMonthName(coupon.end_date.month) }} -
-                    {{ coupon.end_date.year }}
+                    {{ coupon.name }}
                   </span>
                 </h5>
+              </span>
+              <hr />
+              <span style="display: flex; justify-content: flex-end"> </span>
+              <div class="col-4 col-md-3 align-self-center">
+                <div class="store-image border-right">
+                  <a>
+                    <img
+                      style="border-radius: 20%"
+                      width="150"
+                      height="100"
+                      src="../../../../assets/images/icon/CoponLogo MeseSoft2.png"
+                      class="img-fluid"
+                      alt="logo"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
               </div>
+              <div class="col-8 col-md-6 align-self-center px-3 px-md-3">
+                <div class="coupon-desc">
+                  <h3 class="h5 entry-title">
+                    <a
+                      class="title-coupon-code-popup coupon-code-link text-dark"
+                      >Special discounts for all products</a
+                    >
+                  </h3>
+                  <p class="small">
+                    Do you want to use discount coupons for all products ?
+                    Special discount for online order...
+                  </p>
+                  <h5
+                    style="
+                      background-color: #6c757d;
+                      color: #fff;
+                      padding: 5px;
+                      text-align: center;
+                      justify-content: center;
+                    "
+                  >
+                    Coupon usage date:
+                    <span style="font-size: 1.2rem">
+                      {{ getMonthName(coupon.end_date.month) }} -
+                      {{ coupon.end_date.year }}
+                    </span>
+                  </h5>
+                </div>
+              </div>
+              <div class="col-12 col-md-3 align-self-center text-right"></div>
+              <hr />
             </div>
-            <div class="col-12 col-md-3 align-self-center text-right"></div>
-            <hr />
+          </div>
+          <div *ngIf="!coupons || (coupons && coupons.length === 0)">
+            <h5 style="text-align: center">No Used Coupons</h5>
           </div>
         </section>
       </ng-template>
@@ -120,16 +162,26 @@
           </div>
           <div class="modal-body">
             <div class="text h3 font-weight-bold">
-              <input id="coupon_copy" class="coupon-code border-0 font-weight-bold" [value]="selectedCoupon?.name"
-                readonly="" />
+              <input
+                id="coupon_copy"
+                class="coupon-code border-0 font-weight-bold"
+                [value]="selectedCoupon?.name"
+                readonly=""
+              />
               <!-- <input id="coupon_copy" class="coupon-code border-0 font-weight-bold" [value]="formatDate(selectedCoupon?.end_date) | date:'shortDate'" readonly=""> -->
             </div>
             <small class="form-text text-muted">
               This discount code is free of charge and can be used by pasting it
-              in the corresponding field on the cart page.</small>
+              in the corresponding field on the cart page.</small
+            >
           </div>
           <div class="modal-footer">
-            <button type="button" id="copy-button" class="btn btn-secondary" (click)="copyCouponCode()">
+            <button
+              type="button"
+              id="copy-button"
+              class="btn btn-secondary"
+              (click)="copyCouponCode()"
+            >
               Copy
             </button>
           </div>
