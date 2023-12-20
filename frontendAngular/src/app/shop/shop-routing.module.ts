@@ -30,20 +30,20 @@ const routes: Routes = [
       data: Resolver
     }
   },
-  {
-    path: 'product/right/sidebar/:slug',
-    component: ProductRightSidebarComponent,
-    resolve: {
-      data: Resolver
-    }
-  },
-  {
-    path: 'product/no/sidebar/:slug',
-    component: ProductNoSidebarComponent,
-    resolve: {
-      data: Resolver
-    }
-  },
+  // {
+  //   path: 'product/right/sidebar/:slug',
+  //   component: ProductRightSidebarComponent,
+  //   resolve: {
+  //     data: Resolver
+  //   }
+  // },
+  // {
+  //   path: 'product/no/sidebar/:slug',
+  //   component: ProductNoSidebarComponent,
+  //   resolve: {
+  //     data: Resolver
+  //   }
+  // },
   {
     path: 'product/three/column/:slug',
     component: ThreeColumnComponent,
@@ -100,14 +100,14 @@ const routes: Routes = [
   //   path: 'compare',
   //   component: CompareComponent
   // },
-  {
-    path: 'checkout',
-    component: CheckoutComponent
-  },
-  {
-    path: 'checkout/success/:id',
-    component: SuccessComponent
-  }
+  // {
+  //   path: 'checkout',
+  //   component: CheckoutComponent
+  // },
+  // {
+  //   path: 'checkout/success/:id',
+  //   component: SuccessComponent
+  // }
 ];
 
 @NgModule({

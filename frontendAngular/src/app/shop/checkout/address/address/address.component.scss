@@ -98,9 +98,9 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 10px 0; // Labelleri daha fazla uzaklaştır
-    &:hover {
+    // &:hover {
       // background-color: darken($ana-renk, 1%);
-    }
+    // }
     .checkout-cargo-wrapper {
       display: flex;
       align-items: center;

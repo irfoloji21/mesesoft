@@ -7,11 +7,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SavedCardService {
-  private savedCardUrl = 'assets/data/savedCard.json';
+  private apiUrl = 'assets/data/savedCard.json';
 
   constructor(private http: HttpClient) { }
 
+  addNewCard(newCard: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/addNewCard`, newCard);
+  }
+  
   getSavedCards(): Observable<any> {
-    return this.http.get<any>(this.savedCardUrl);
+    return this.http.get<any>(this.apiUrl);
   }
 }
