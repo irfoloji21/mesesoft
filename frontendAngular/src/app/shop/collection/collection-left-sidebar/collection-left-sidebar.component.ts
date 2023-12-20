@@ -25,6 +25,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public category: any;
   menuItems: any[] = []; 
   public Megamenu: any;
+  public ParentCategory : any ;
   public categoryEs : any ; 
   public  Image : any;
   public pageNo: number = 1;
@@ -55,7 +56,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
       
 
-      
+      this.ParentCategory=params.MainMenu ? params.MainMenu : null;
+      console.log(this.ParentCategory, "main menu")
        this.Megamenu = params.childrenSubItem ? params.childrenSubItem : null;
       console.log(this.Megamenu, "megaMenu");
       this.category = params.categoryId ? params.categoryId : null;
@@ -68,6 +70,15 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.productService.filterProducts(this.tags).subscribe((response:any) => {
         // console.log(response[0].products , "Collection")
      
+        // Main Menu
+        if (this.ParentCategory) {
+        
+          
+        }
+        
+          
+        
+
         this.products = this.parseResponse(response);
         if (this.theMostLiked.length > 0) {
           // theMostLiked And Recently addedd products
@@ -79,6 +90,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
            if (this.filteredIds && this.filteredIds.length > 0) {
           this.products = this.products.filter(item => this.filteredIds.includes(item._id));
           }
+          
 
               // Megamenu Filter
               if (this.Megamenu) {

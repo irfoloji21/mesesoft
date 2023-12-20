@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit {
   public subCategoryData: any[] = []; 
   public irfosub: any[] = [];
   public subCategoryy :any = []
+  ParentCategory : any = []
   megaMenu;
   active:any
   constructor(private router: Router, public navServices: NavService, public categoryService: CategoryService,private route: ActivatedRoute
@@ -94,8 +95,27 @@ export class MenuComponent implements OnInit {
 
   // Click Toggle menu (Mobile)
   toggletNavActive(item) {
+    const MainMenu = item.subcategories.map(subcategory => {
+      
+      console.log(subcategory._id , "tıklandı2")
+      subcategory._id});
+  
+    // queryParams nesnesini oluştur
+    const queryParams = {
+      MainMenu: MainMenu.join(',') // Alt kategori _id'lerini virgülle ayırarak birleştir
+    };
+  
+    // Navigasyonu gerçekleştir
+    this.router.navigate(['/shop/collection/left/sidebar'], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    });
+  
     item.active = !item.active;
   }
+
+  
 
   getSubcategories(id) {
     this.categoryService.getCategoryById(id).subscribe((data) => {
@@ -122,7 +142,7 @@ handleSubCategoryResponse(menuItem: string, subItem: string, res: any) {
     const queryParams = {
       category: menuItem,
       subcategory: subItem,
-      childrenSubItem: productIds
+      childrenSubItem: productIds,
     };
 
     console.log(queryParams, "mehmet");
