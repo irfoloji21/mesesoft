@@ -156,12 +156,12 @@ export class DigitalSubCategoryComponent implements OnInit {
       this.categories = this.filteredCategories.filter((categorie: any) => {
         const nameMatch = (categorie.name as string).toLowerCase().includes(this.searchText.toLowerCase());
         const idMatch = (categorie._id as string).toLowerCase().includes(this.searchText.toLowerCase());
-  
+
         return nameMatch || idMatch;
       });
     }
   }
-  
+
   onSearchTextChange() {
     if (!this.searchText) {
       this.categories = this.filteredCategories;

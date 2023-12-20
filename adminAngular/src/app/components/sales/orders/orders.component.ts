@@ -132,7 +132,11 @@ export class OrdersComponent implements OnInit {
       });
     }
   }
-  onSearchTextChange(){
-    
+  onSearchTextChange() {
+    if (!this.searchText) {
+      this.filteredOrders = this.orders;
+    } else {
+      this.search();
+    }
   }
 }

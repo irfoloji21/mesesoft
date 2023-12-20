@@ -60,7 +60,7 @@ export class DigitalCategoryComponent implements OnInit {
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = [response.categories[0]];
-        console.log("catgory",  this.categories)
+        console.log("catgory", this.categories)
         this.getMainCategoryList();
       },
       (error) => {
@@ -72,7 +72,7 @@ export class DigitalCategoryComponent implements OnInit {
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
   ngOnInit() {
-  
+
     this.initEditForm();
     this.getMainCategoryList();
 
@@ -146,8 +146,8 @@ export class DigitalCategoryComponent implements OnInit {
     });
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-    console.log( this.service.sortColumn )
-    console.log( this.service.sortDirection )
+    console.log(this.service.sortColumn)
+    console.log(this.service.sortDirection)
   }
 
   open(content: any) {
@@ -272,12 +272,12 @@ export class DigitalCategoryComponent implements OnInit {
       this.categories = this.filteredCategories.filter((categorie: any) => {
         const nameMatch = (categorie.name as string).toLowerCase().includes(this.searchText.toLowerCase());
         const idMatch = (categorie._id as string).toLowerCase().includes(this.searchText.toLowerCase());
-  
+
         return nameMatch || idMatch;
       });
     }
   }
-  
+
   onSearchTextChange() {
     if (!this.searchText) {
       this.categories = this.filteredCategories;
@@ -285,6 +285,6 @@ export class DigitalCategoryComponent implements OnInit {
       this.search();
     }
   }
-  
+
 
 }

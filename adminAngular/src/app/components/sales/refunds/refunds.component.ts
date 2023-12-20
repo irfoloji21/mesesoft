@@ -132,8 +132,8 @@ export class RefundsComponent implements OnInit {
       });
     }
   }
-  
-  
+
+
   onSearchTextChange() {
     if (!this.searchText) {
       this.filteredRefunds = this.refunds;
@@ -141,7 +141,7 @@ export class RefundsComponent implements OnInit {
       this.search();
     }
   }
-  
-  
+
+
 
 }

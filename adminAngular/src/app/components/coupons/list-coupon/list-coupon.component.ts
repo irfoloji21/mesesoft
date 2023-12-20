@@ -20,6 +20,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 export class ListCouponComponent implements OnInit {
   coupons: any[] = [];
+  originalCoupons: any[] = [];
   selectedItems: string[] = [];
   public tableItem$: Observable<ListCouponsDB[]>;
   public searchText;
@@ -28,7 +29,7 @@ export class ListCouponComponent implements OnInit {
   public EditCouponForm: FormGroup;
   selectedCouponId: any;
   isEditing: boolean = false;
-
+  public filteredCoupons: any = [];
   constructor(
     private fb: FormBuilder,
     public service: TableService,
@@ -119,11 +120,13 @@ export class ListCouponComponent implements OnInit {
     this.editCouponsForm();
     this.authService.loadShop().subscribe(
       (shop) => {
-        const irfo = shop.seller._id;
         if (shop) {
+          const irfo = shop.seller._id;
           this.couponService.getCoupoun(irfo).subscribe(
             (res) => {
-              this.coupons = res.couponCodes;
+              this.originalCoupons = res.couponCodes.slice();
+              this.filteredCoupons = this.originalCoupons.slice();
+              this.coupons = this.filteredCoupons.slice();
             },
             (error) => {
               console.log(error);
@@ -136,6 +139,31 @@ export class ListCouponComponent implements OnInit {
       }
     );
   }
+  
+  search() {
+    if (!this.searchText) {
+      this.filteredCoupons = this.coupons;
+    } else {
+      this.filteredCoupons = this.coupons.filter((res: any) => {
+        return (res.code as string).toLowerCase().includes(this.searchText.toLowerCase());
+      });
+      this.coupons = this.filteredCoupons;
+    }
+  }
+  
+  onSearchTextChange() {
+    if (!this.searchText) {
+      this.coupons = this.originalCoupons.slice();
+      this.filteredCoupons = this.originalCoupons.slice();
+    } else {
+      this.search();
+    }
+  }
+  
+  
+  
+  
+  
 
   closeModal() {
     this.isModalOpen = false;
@@ -145,6 +173,5 @@ export class ListCouponComponent implements OnInit {
     this.isModalOpen = true;
   }
 
-  search(){}
-  onSearchTextChange(){}
+  
 }
