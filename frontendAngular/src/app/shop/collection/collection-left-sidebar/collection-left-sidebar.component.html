@@ -40,7 +40,7 @@
                         <!-- side-bar banner start here -->
                         <div class="collection-sidebar-banner">
                             <a [routerLink]="['/shop/collection/left/sidebar']">
-                                <img src="assets/images/collection-sidebar-banner.png" class="img-fluid" alt="banner">
+                                <img src="assets/images/collection-sidebar-banner.png" class="img-fluid" alt="banner" />
                             </a>
                         </div>
                         <!-- side-bar banner end here -->
@@ -52,8 +52,7 @@
                             <div class="col-sm-12">
                                 <div class="top-banner-wrapper">
                                     <a [routerLink]="['/shop/collection/left/sidebar']">
-                                        <img [src]="Image" class="img-fluid " alt="Category photo" *ngIf="Image">
-
+                                        <img [src]="Image" class="img-fluid" alt="Category photo" *ngIf="Image" />
                                     </a>
                                     <!-- <div class="top-banner-content small-section" >
                                         <h4>{{categoryEs}}</h4>
@@ -78,7 +77,8 @@
                                 <ul class="product-filter-tags">
                                     <li class="me-1" *ngFor="let tag of tags">
                                         <a href="javascript:void(0)" class="filter_tag">
-                                            {{tag}} <i class="ti-close" (click)="removeTag(tag)"></i>
+                                            {{ tag }}
+                                            <i class="ti-close" (click)="removeTag(tag)"></i>
                                         </a>
                                     </li>
                                     <li class="clear_filter" *ngIf="tags.length > 0">
@@ -104,10 +104,15 @@
                                             </div>
                                             <div class="col-sm-12 text-center section-b-space mt-5 no-found"
                                                 *ngIf="!products.length">
-                                                <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
-                                                <h3>Sorry! Couldn't find the product you were looking For!!! </h3>
-                                                <p>Please check if you have misspelt something or try searching with
-                                                    other words.</p>
+                                                <img src="assets/images/empty-search.jpg" class="img-fluid mb-4" />
+                                                <h3>
+                                                    Sorry! Couldn't find the product you were looking
+                                                    For!!!
+                                                </h3>
+                                                <p>
+                                                    Please check if you have misspelt something or try
+                                                    searching with other words.
+                                                </p>
                                                 <a [routerLink]="['/shop/collection/left/sidebar']"
                                                     class="btn btn-solid">continue shopping</a>
                                             </div>

@@ -11,9 +11,9 @@ export class PaginationComponent implements OnInit {
   @Input() products: Product[] = [];
   @Input() paginate: any = {};
 
-  @Output() setPage  : EventEmitter<any> = new EventEmitter<any>();
-    
-  constructor() { 
+  @Output() setPage: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor() {
   }
 
   ngOnInit(): void {

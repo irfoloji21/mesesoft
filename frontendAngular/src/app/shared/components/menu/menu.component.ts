@@ -12,7 +12,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class MenuComponent implements OnInit {
   public gorunecekKategoriler = [];
-
+  mainMenu:any = []
   public menuItems: Category[] = [];
   public subCategoryData: any[] = []; 
   public irfosub: any[] = [];
@@ -25,6 +25,7 @@ export class MenuComponent implements OnInit {
     ) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
+        console.log(data, "forMainMenu")
         // Tüm kategorileri alın
         const categories = data.categories;
         // Kategori listesini döngüye alarak alt kategorileri yükleyin
@@ -63,7 +64,28 @@ export class MenuComponent implements OnInit {
       this.menuItems = categories;
 
     }
-    
+
+
+
+  // Click Toggle menu (Mobile) (Main menu)
+toggletNavActive(item) {
+  const subCategoryIds = item.subcategories.map(subcategory => subcategory._id);
+
+  const queryParams = {
+    MainMenu: subCategoryIds.join(',') // Alt kategori ID'lerini virgülle birleştirip string olarak ekledik
+  };
+
+  // Navigasyonu gerçekleştir
+  this.router.navigate(['/shop/collection/left/sidebar'], {
+    relativeTo: this.route,
+    queryParams: queryParams,
+    queryParamsHandling: 'merge'
+  });
+
+  item.active = !item.active;
+}
+
+
  
 
   ngOnInit() {
@@ -93,27 +115,6 @@ export class MenuComponent implements OnInit {
     this.categoryService.mainMenuToggle = !this.categoryService.mainMenuToggle;
   }
 
-  // Click Toggle menu (Mobile)
-  toggletNavActive(item) {
-    const MainMenu = item.subcategories.map(subcategory => {
-      
-      console.log(subcategory._id , "tıklandı2")
-      subcategory._id});
-  
-    // queryParams nesnesini oluştur
-    const queryParams = {
-      MainMenu: MainMenu.join(',') // Alt kategori _id'lerini virgülle ayırarak birleştir
-    };
-  
-    // Navigasyonu gerçekleştir
-    this.router.navigate(['/shop/collection/left/sidebar'], {
-      relativeTo: this.route,
-      queryParams: queryParams,
-      queryParamsHandling: 'merge'
-    });
-  
-    item.active = !item.active;
-  }
 
   
 

@@ -12,7 +12,7 @@ import { CategoryService } from 'src/app/shared/services/category.service';
   styleUrls: ['./collection-left-sidebar.component.scss']
 })
 export class CollectionLeftSidebarComponent implements OnInit {
-  
+
   public grid: string = 'col-xl-3 col-md-6';
   public layoutView: string = 'grid-view';
   public products: Product[] = [];
@@ -23,61 +23,81 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public maxPrice: number = 1200;
   public tags: any[] = [];
   public category: any;
-  menuItems: any[] = []; 
+  menuItems: any[] = [];
   public Megamenu: any;
-  public ParentCategory : any ;
-  public categoryEs : any ; 
-  public  Image : any;
+  public ParentCategory: any = [];
+  public categoryEs: any;
+  public Image: any;
   public pageNo: number = 1;
   public paginate: any = {}; // Pagination use only
   public sortBy: string; // Sorting Order
   public mobileSidebar: boolean = false;
   public loader: boolean = true;
-  public categoryContent :Category[] = []
-  public filteredIds : any= []
-  public theMostLiked:any = []
+  public categoryContent: Category[] = []
+  public filteredIds: any = []
+  public theMostLiked: any = []
   public selectedCategoryDetails: any = [];
   public searchQuery: string = '';
   constructor(private route: ActivatedRoute, private router: Router,
-    private viewScroller: ViewportScroller, public productService: ProductService , private categoryService : CategoryService) {
+    private viewScroller: ViewportScroller, public productService: ProductService, private categoryService: CategoryService) {
 
     // Get Query params..
     this.route.queryParams.subscribe(params => {
 
       this.filteredIds = params.filteredIds ? params.filteredIds.split(',') : [];
-       this.theMostLiked = params.theMostLiked ?params.theMostLiked : [];
-      console.log(this.theMostLiked,"theMostLiked")
+      this.theMostLiked = params.theMostLiked ? params.theMostLiked : [];
+      console.log(this.theMostLiked, "theMostLiked")
       this.searchQuery = params.search ? params.search : '';
       this.brands = params.brand ? params.brand.split(",") : [];
       this.colors = params.color ? params.color.split(",") : [];
       this.size = params.size ? params.size.split(",") : [];
       this.minPrice = params.minPrice ? params.minPrice : this.minPrice;
-        this.maxPrice = params.maxPrice ? params.maxPrice : this.maxPrice;
+      this.maxPrice = params.maxPrice ? params.maxPrice : this.maxPrice;
       this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
-      
 
-      this.ParentCategory=params.MainMenu ? params.MainMenu : null;
-      console.log(this.ParentCategory, "main menu")
-       this.Megamenu = params.childrenSubItem ? params.childrenSubItem : null;
+
+      this.ParentCategory = params.MainMenu ? params.MainMenu : null;
+      console.log(params.MainMenu, "main menu")
+      this.Megamenu = params.childrenSubItem ? params.childrenSubItem : null;
       console.log(this.Megamenu, "megaMenu");
       this.category = params.categoryId ? params.categoryId : null;
       this.categoryEs = params.description ? params.description : null
       this.Image = params.images ? params.images : null
       this.sortBy = params.sortBy ? params.sortBy : 'ascending';
       this.pageNo = params.page ? params.page : this.pageNo;
-     
-     
-      this.productService.filterProducts(this.tags).subscribe((response:any) => {
+
+
+      this.productService.filterProducts(this.tags).subscribe((response: any) => {
         // console.log(response[0].products , "Collection")
-     
+
         // Main Menu
         if (this.ParentCategory) {
-        
-          
+          this.categoryService.getCategories().subscribe((data: any) => {
+            if (data.success) {
+              console.log(data, "ne oluyor burda 1");
+
+              const categoriesArray = Array.isArray(data.categories) ? data.categories : [data.categories];
+
+              this.products = categoriesArray.filter((item: any) => {
+                console.log(item._id, " ne oluyor burda 2");
+                return item._id == this.ParentCategory;
+              });
+
+              console.log(
+                categoriesArray.filter((item: any) => item._id == this.ParentCategory),
+                "NE OLUYOR BURDA 3 "
+              );
+            }
+          });
         }
-        
-          
-        
+
+
+
+
+
+
+
+
 
         this.products = this.parseResponse(response);
         if (this.theMostLiked.length > 0) {
@@ -86,17 +106,17 @@ export class CollectionLeftSidebarComponent implements OnInit {
         }
         this.products = this.productService.sortProducts(this.products, this.sortBy);
 
-         // collection %50 filter
-           if (this.filteredIds && this.filteredIds.length > 0) {
+        // collection %50 filter
+        if (this.filteredIds && this.filteredIds.length > 0) {
           this.products = this.products.filter(item => this.filteredIds.includes(item._id));
-          }
-          
+        }
 
-              // Megamenu Filter
-              if (this.Megamenu) {
-                this.products = this.products.filter(item => this.Megamenu.includes(item._id));
-              }
-              
+
+        // Megamenu Filter
+        if (this.Megamenu) {
+          this.products = this.products.filter(item => this.Megamenu.includes(item._id));
+        }
+
         if (this.searchQuery) {
           this.products = this.products.filter(item => {
             return item.name.toLowerCase().includes(this.searchQuery.toLowerCase());
@@ -111,8 +131,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
       });
     });
   }
-  
- 
+
+
   parseResponse(response: any): any {
     if (Array.isArray(response) && response.length > 0 && response[0].products) {
       return response[0].products;
@@ -120,20 +140,20 @@ export class CollectionLeftSidebarComponent implements OnInit {
       return [];
     }
   }
-  
+
 
 
 
   ngOnInit(): void {
-    
+
   }
-  
+
 
 
   // Append filter value to Url
   updateFilter(tags: any) {
     tags.page = null; // Reset Pagination
-    this.router.navigate([], { 
+    this.router.navigate([], {
       relativeTo: this.route,
       queryParams: tags,
       queryParamsHandling: 'merge', // preserve the existing query params in the route
@@ -146,9 +166,9 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
   // SortBy Filter
   sortByFilter(value) {
-    this.router.navigate([], { 
+    this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { sortBy: value ? value : null},
+      queryParams: { sortBy: value ? value : null },
       queryParamsHandling: 'merge', // preserve the existing query params in the route
       skipLocationChange: false  // do trigger navigation
     }).finally(() => {
@@ -159,18 +179,18 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
   // Remove Tag
   removeTag(tag) {
-  
+
     this.brands = this.brands.filter(val => val !== tag);
     this.colors = this.colors.filter(val => val !== tag);
-    this.size = this.size.filter(val => val !== tag );
+    this.size = this.size.filter(val => val !== tag);
 
-    let params = { 
-      brand: this.brands.length ? this.brands.join(",") : null, 
-      color: this.colors.length ? this.colors.join(",") : null, 
+    let params = {
+      brand: this.brands.length ? this.brands.join(",") : null,
+      color: this.colors.length ? this.colors.join(",") : null,
       size: this.size.length ? this.size.join(",") : null
     }
 
-    this.router.navigate([], { 
+    this.router.navigate([], {
       relativeTo: this.route,
       queryParams: params,
       queryParamsHandling: 'merge', // preserve the existing query params in the route
@@ -183,7 +203,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
   // Clear Tags
   removeAllTags() {
-    this.router.navigate([], { 
+    this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {},
       skipLocationChange: false  // do trigger navigation
@@ -195,7 +215,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
 
   // product Pagination
   setPage(page: number) {
-    this.router.navigate([], { 
+    this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { page: page },
       queryParamsHandling: 'merge', // preserve the existing query params in the route
@@ -214,7 +234,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   // Change Layout View
   updateLayoutView(value: string) {
     this.layoutView = value;
-    if(value == 'list-view')
+    if (value == 'list-view')
       this.grid = 'col-lg-12';
     else
       this.grid = 'col-xl-3 col-md-6';
