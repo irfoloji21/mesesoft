@@ -13,12 +13,12 @@ export class WishlistComponent implements OnInit {
   public products: Product[] = [];
 
   constructor(private router: Router, 
-    public productService: ProductService) {
+    public productService: ProductService
+  ) {
       this.productService.wishlistItems.subscribe(response => this.products = response);
      }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
   
   async addToCart(product: any) {
     const status = await this.productService.addToCart(product);

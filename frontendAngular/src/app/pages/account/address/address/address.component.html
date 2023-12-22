@@ -2,12 +2,20 @@
   <div class="top-sec">
     <h3>Address Book</h3>
     <a class="btn btn-sm btn-solid" (click)="toggleAddingNew()">
-      {{ isAddingNew ? "Back to List" : "New Address" }}</a
+      {{ isAddingNew ? "Back" : "New Address" }}</a
     >
   </div>
   <div class="address-book-section">
     <div class="row g-4">
       <ng-container *ngIf="!isAddingNew; else addingNewTemplate">
+        <div *ngIf="!userAddresses.length">
+          <div class="col-md-12 text-center">
+            <h3>
+              <strong>No Address Found</strong>
+            </h3>
+            <p>Add a new address from the new address button.</p>
+          </div>
+        </div>
         <div
           *ngFor="let address of userAddresses"
           class="select-box active col-xl-4 col-md-6"

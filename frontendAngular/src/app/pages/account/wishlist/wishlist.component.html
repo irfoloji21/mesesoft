@@ -1,16 +1,7 @@
 <!-- section start -->
 <section class="wishlist-section section-b-space">
   <div class="container">
-    <div class="col-md-12 empty-cart-cls text-center" *ngIf="!products.length">
-      <img
-        src="assets/images/empty-wishlist.png"
-        alt="Empty cart"
-        title="Emprt cart"
-      />
-      <h3 class="mt-4"><b>Wishlist is Empty</b></h3>
-      <h4>Explore more shortlist some items.</h4>
-    </div>
-    <div class="page-title">
+    <div class="page-title mb-5">
       <h2>My Wishlist</h2>
     </div>
     <div class="row" *ngIf="products.length">
@@ -51,7 +42,7 @@
                   </div>
                   <div class="col">
                     <h2 class="td-color">
-                      {{ product.originalPrice }}
+                      {{ product.originalPrice | currency }}
                     </h2>
                   </div>
                   <div class="col">
@@ -76,7 +67,7 @@
               </td>
               <td>
                 <h2>
-                  {{ product.originalPrice }}
+                  {{ product.originalPrice | currency }}
                 </h2>
               </td>
               <td>
@@ -112,6 +103,15 @@
         >
         <a [routerLink]="['/shop/checkout']" class="btn btn-solid">check out</a>
       </div>
+    </div>
+    <div class="col-md-12 empty-cart-cls text-center" *ngIf="!products.length">
+      <img
+        src="assets/images/empty-wishlist.png"
+        alt="Empty cart"
+        title="Emprt cart"
+      />
+      <h3 class="mt-4"><b>Wishlist is Empty</b></h3>
+      <h4>Explore more shortlist some items.</h4>
     </div>
   </div>
 </section>
