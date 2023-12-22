@@ -100,14 +100,14 @@ const routes: Routes = [
   //   path: 'compare',
   //   component: CompareComponent
   // },
-  // {
-  //   path: 'checkout',
-  //   component: CheckoutComponent
-  // },
-  // {
-  //   path: 'checkout/success/:id',
-  //   component: SuccessComponent
-  // }
+  {
+    path: 'checkout',
+    component: CheckoutComponent
+  },
+  {
+    path: 'checkout/success/:id',
+    component: SuccessComponent
+  }
 ];
 
 @NgModule({

@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
 
   logout(): void {
     this.serviceAuth.logout();
-    this.router.navigate(['/pages/login']);
+    this.router.navigate(['/login']);
   }
 
   ToggleDashboard() {

@@ -80,7 +80,7 @@ export class ChangePasswordComponent implements OnInit {
               )
             }
           );
-        this.router.navigate(['/pages/dashboard']);
+        this.router.navigate(['/dashboard']);
       } else {
         this.passwordForm.setErrors({ passwordMismatch: true });
       }

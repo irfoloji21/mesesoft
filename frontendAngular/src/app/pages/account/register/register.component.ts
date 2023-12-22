@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
                 newestOnTop: false,
                 progressBar: true,
               })
-            this.router.navigate(['/pages/login'], { state: formData });
+            this.router.navigate(['/login'], { state: formData });
           }
           else {
             console.error("error");

@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
   }
 
   profile(): void {
-    this.router.navigate(['/pages/dashboard'])
+    this.router.navigate(['/dashboard'])
   }
 
   logout() {

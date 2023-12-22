@@ -23,7 +23,7 @@ async resolve(route: ActivatedRouteSnapshot): Promise<any> {
   return new Promise((resolve, reject) => {
     this.productService.getProductBySlug(route.params.slug).subscribe(product => {
       if (!product) { // When product is empty redirect 404
-        this.router.navigateByUrl('/pages/404', { skipLocationChange: true });
+        this.router.navigateByUrl('/404', { skipLocationChange: true });
         reject('Ürün bulunamadı');
       } else {
         this.product = product;

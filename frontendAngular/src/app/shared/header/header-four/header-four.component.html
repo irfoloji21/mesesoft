@@ -36,7 +36,7 @@
                   <li *ngIf="isLoggedIn; else loginLink">
                     <ul>
                       <li>
-                        <a [routerLink]="['/pages/dashboard']">Account Info</a>
+                        <a [routerLink]="['/dashboard']">Account Info</a>
                       </li>
                       <!-- <li>
                         <a>Address Book</a>
@@ -67,12 +67,12 @@
                   </li>
                   <ng-template #loginLink>
                     <li>
-                      <a data-lng="en" [routerLink]="['/pages/login']">
+                      <a data-lng="en" [routerLink]="['/login']">
                         Login
                       </a>
                     </li>
                     <li>
-                      <a data-lng="es" [routerLink]="['/pages/register']">
+                      <a data-lng="es" [routerLink]="['/register']">
                         Register
                       </a> 
                     </li>

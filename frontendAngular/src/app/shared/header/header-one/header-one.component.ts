@@ -41,12 +41,12 @@ export class HeaderOneComponent implements OnInit {
   }
 
   profile(): void {
-    this.router.navigate(['/pages/dashboard'])
+    this.router.navigate(['/dashboard'])
   }
   
   logout(): void {
     this.serviceAuth.logout();
-    this.router.navigate(['/pages/login']);
+    this.router.navigate(['/login']);
   }
   // @HostListener Decorator
   @HostListener("window:scroll", [])

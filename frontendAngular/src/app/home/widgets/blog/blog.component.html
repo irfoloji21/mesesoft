@@ -2,7 +2,7 @@
   <ng-container *ngFor="let blog of blogs">
     <ng-template carouselSlide>
       <div class="col-md-12">
-        <a [routerLink]="'/pages/blog/details/' + blog.slug">
+        <a [routerLink]="'/blog/details/' + blog.slug">
           <div class="classic-effect">
             <img [src]="
                 blog.images.length > 0
@@ -15,7 +15,7 @@
         <div class="blog-details">
           <h4>{{ blog.createdAt | date : "dd MMMM yyyy" }}</h4>
 
-          <a [routerLink]="'/pages/blog/details/' + blog.slug">
+          <a [routerLink]="'/blog/details/' + blog.slug">
             <p>
               {{ blog.name.length > 20 ? blog.name.slice(0, 50) + '...' : blog.name }}
             </p>

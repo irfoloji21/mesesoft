@@ -36,7 +36,7 @@ const routes: Routes = [
     },
   {
     path: '**', // Navigate to Home Page if not found any page
-    redirectTo: 'home/fashion',
+    redirectTo: '404',
   },
  
 ];

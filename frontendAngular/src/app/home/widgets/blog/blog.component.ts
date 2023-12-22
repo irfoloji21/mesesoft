@@ -23,7 +23,7 @@ export class BlogComponent implements OnInit {
 
 
   onBlogClick(blog: any) {
-    this.router.navigate(['/pages/blog/details', blog.slug]);
+    this.router.navigate(['/blog/details', blog.slug]);
   }
 
   public BlogSliderConfig: any = BlogSlider;

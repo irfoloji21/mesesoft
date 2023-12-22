@@ -54,7 +54,7 @@ export class OrderService {
       console.log(item.orderId, "details PaymentData")
       console.log(item.totalAmount, "details PaymentData")
 
-      this.router.navigate(['/pages/order/success', orderId]);
+      this.router.navigate(['/order/success', orderId]);
 
       return new Observable((observer) => {
         observer.next({ message: 'Ödeme başarılı' });
