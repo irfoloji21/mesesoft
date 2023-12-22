@@ -25,7 +25,7 @@
                         <div class="col-xl-12 mt-4">
                           <div class="row" *ngIf="!noProductsFound && products">
                             <div class="col-xl-3" *ngFor="let item of products">
-                              <div class="card" [routerLink]="['/shop/product/left/sidebar/', item.slug]">
+                              <div class="card" [routerLink]="['/shop/product/', item.slug]">
                                 <img src={{item.images[0].url}} class="card-img-top" alt="Ürün Resmi 1">
                                 <div class="card-body">
                                   <h5 class="card-title">  {{ item.name }}</h5>
@@ -76,11 +76,11 @@
       <ul class="show-div shopping-cart" *ngIf='products.length'>
         <li *ngFor="let product of products">
           <div class="media">
-            <a [routerLink]="['/shop/product/left/sidebar/', product.name]">
+            <a [routerLink]="['/shop/product/', product.name]">
               <img class="me-3" [src]="product?.images[0].url" [alt]="product?.images[0].url">
             </a>
             <div class="media-body">
-              <a [routerLink]="['/shop/product/left/sidebar/', product.name]">
+              <a [routerLink]="['/shop/product/', product.name]">
                 <h4>{{ product?.name }}</h4>
               </a>
               <h4>

@@ -50,7 +50,7 @@ export class SliderComponent implements OnInit {
       theMostLiked: productIdss,
     };
 
-    this.router.navigate(['/shop/collection/left/sidebar'], {
+    this.router.navigate(['/shop/collection'], {
       queryParams,
       queryParamsHandling: 'merge',
     });
@@ -74,7 +74,7 @@ export class SliderComponent implements OnInit {
         theMostLiked: newProductsId,
       };
 
-      this.router.navigate(['/shop/collection/left/sidebar'], {
+      this.router.navigate(['/shop/collection'], {
         queryParams,
         queryParamsHandling: 'merge',
       });

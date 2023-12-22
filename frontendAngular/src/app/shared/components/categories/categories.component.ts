@@ -50,7 +50,7 @@ export class CategoriesComponent implements OnInit {
     if (category.images) { 
       queryParams['images'] = category.images ;
     }
-    this.router.navigate(['/shop/collection/left/sidebar'], { queryParams });
+    this.router.navigate(['/shop/collection'], { queryParams });
   }
   
   navigateWithQueryParams( childrenSubItem: any) {

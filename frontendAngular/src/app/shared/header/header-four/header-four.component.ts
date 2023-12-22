@@ -47,7 +47,7 @@ export class HeaderFourComponent implements OnInit {
       search: searchValue
     };
 
-    this.router.navigate(['/shop/collection/left/sidebar'], {
+    this.router.navigate(['/shop/collection'], {
       queryParams,
       queryParamsHandling: 'merge' // Bu, mevcut sorgu parametreleri ile birleştirir
     });

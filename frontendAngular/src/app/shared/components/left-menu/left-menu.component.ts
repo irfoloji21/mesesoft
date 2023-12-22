@@ -103,7 +103,7 @@ export class LeftMenuComponent implements OnInit {
         subcategory: subItem,
         childrenSubItem: productIds
       };
-      this.router.navigate(['/shop/collection/left/sidebar'], {
+      this.router.navigate(['/shop/collection'], {
         relativeTo: this.route,
         queryParams,
       });

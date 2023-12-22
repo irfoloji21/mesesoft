@@ -24,7 +24,7 @@ import { Resolver } from '../shared/services/resolver.service';
 
 const routes: Routes = [
   {
-    path: 'product/left/sidebar/:slug',
+    path: 'product/:slug',
     component: ProductLeftSidebarComponent,
     resolve: {
       data: Resolver
@@ -73,21 +73,21 @@ const routes: Routes = [
     }
   },
   {
-    path: 'collection/left/sidebar',
+    path: 'collection',
     component: CollectionLeftSidebarComponent
   },
-  {
-    path: 'collection/right/sidebar',
-    component: CollectionRightSidebarComponent
-  },
-  {
-    path: 'collection/no/sidebar',
-    component: CollectionNoSidebarComponent
-  },
-  {
-    path: 'collection/infinitescroll',
-    component: CollectionInfinitescrollComponent
-  },
+  // {
+  //   path: 'collection/right/sidebar',
+  //   component: CollectionRightSidebarComponent
+  // },
+  // {
+  //   path: 'collection/no/sidebar',
+  //   component: CollectionNoSidebarComponent
+  // },
+  // {
+  //   path: 'collection/infinitescroll',
+  //   component: CollectionInfinitescrollComponent
+  // },
   {
     path: 'cart',
     component: CartComponent

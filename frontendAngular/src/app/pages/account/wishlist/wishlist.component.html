@@ -21,7 +21,7 @@
               <td>
                 <a
                   [routerLink]="[
-                    '/shop/product/left/sidebar/',
+                    '/shop/product/',
                     product.name.replace(' ', '-')
                   ]"
                 >
@@ -31,7 +31,7 @@
               <td>
                 <a
                   [routerLink]="[
-                    '/shop/product/left/sidebar/',
+                    '/shop/product/',
                     product.name.replace(' ', '-')
                   ]"
                   >{{ product.name | titlecase }}</a
@@ -97,7 +97,7 @@
     <div class="row wishlist-buttons" *ngIf="products.length">
       <div class="col-12">
         <a
-          [routerLink]="['/shop/collection/left/sidebar']"
+          [routerLink]="['/shop/collection']"
           class="btn btn-solid"
           >continue shopping</a
         >

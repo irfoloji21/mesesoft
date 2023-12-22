@@ -76,7 +76,7 @@ toggletNavActive(item) {
   };
 
   // Navigasyonu gerçekleştir
-  this.router.navigate(['/shop/collection/left/sidebar'], {
+  this.router.navigate(['/shop/collection'], {
     relativeTo: this.route,
     queryParams: queryParams,
     queryParamsHandling: 'merge'
@@ -148,7 +148,7 @@ handleSubCategoryResponse(menuItem: string, subItem: string, res: any) {
 
     console.log(queryParams, "mehmet");
 
-    this.router.navigate(['/shop/collection/left/sidebar'], {
+    this.router.navigate(['/shop/collection'], {
       relativeTo: this.route,
       queryParams,
 

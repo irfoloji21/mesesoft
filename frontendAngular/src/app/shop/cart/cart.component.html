@@ -24,7 +24,7 @@
             <tr>
               <td>
                 <a
-                  [routerLink]="['/shop/product/left/sidebar/', product?.slug]"
+                  [routerLink]="['/shop/product/', product?.slug]"
                 >
                   <img
                     [src]="product.images[0].url"
@@ -34,7 +34,7 @@
               </td>
               <td>
                 <a
-                  [routerLink]="['/shop/product/left/sidebar/', product?.slug]"
+                  [routerLink]="['/shop/product/', product?.slug]"
                   >{{ product.name | titlecase }}</a
                 >
                 <div class="mobile-cart-content row">
@@ -157,7 +157,7 @@
     <div class="row cart-buttons" *ngIf="products.length">
       <div class="col-6">
         <a
-          [routerLink]="['/shop/collection/left/sidebar']"
+          [routerLink]="['/shop/collection']"
           class="btn btn-solid"
           >continue shopping</a
         >

@@ -5,7 +5,7 @@
       <span class="lable4" *ngIf="product.sale">on sale</span> -->
     </div>
     <div class="front">
-      <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
+      <a [routerLink]="['/shop/product/', product?.slug]">
         <div style="position: relative; display: inline-block">
           <!-- En çok satan etiketi -->
 
@@ -29,7 +29,7 @@
     </div>
 
     <div class="back" *ngIf="onHowerChangeImage">
-      <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
+      <a [routerLink]="['/shop/product/', product?.slug]">
         <img [src]="ImageSrc ? ImageSrc : product.images[1].url" class="img-fluid lazy-loading" alt="resim" />
       </a>
     </div>
@@ -61,7 +61,7 @@
   <div class="product-detail">
     <div>
       <bar-rating [rate]="product.ratings" [readOnly]="true"></bar-rating>
-      <a [routerLink]="['/shop/product/left/sidebar/', product?.slug]">
+      <a [routerLink]="['/shop/product/', product?.slug]">
         <h6>{{ truncateProductName(product?.name, 20) | titlecase }}</h6>
       </a>
       <p>{{ product?.description }}</p>

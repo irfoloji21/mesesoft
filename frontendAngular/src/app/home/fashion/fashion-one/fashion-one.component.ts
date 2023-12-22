@@ -99,7 +99,7 @@ export class FashionOneComponent implements OnInit {
         filteredIds: productIds.join(',')
       };
 
-      this.router.navigate(['/shop/collection/left/sidebar'], {
+      this.router.navigate(['/shop/collection'], {
         queryParams,
         queryParamsHandling: 'merge'
       });
@@ -125,7 +125,7 @@ export class FashionOneComponent implements OnInit {
         filteredIds: productIds.join(',')
       };
 
-      this.router.navigate(['/shop/collection/left/sidebar'], {
+      this.router.navigate(['/shop/collection'], {
         queryParams,
         queryParamsHandling: 'merge'
       });
