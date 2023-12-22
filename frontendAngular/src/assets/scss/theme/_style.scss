@@ -7328,6 +7328,10 @@ ngx-loading-bar {
     border: 1px solid $round-border;
     transition: all 0.5s ease;
     cursor: pointer;
+    .img-fluid {
+      height: 250px;
+      object-fit: cover;
+    }
   }
   > div.owl-thumb.active {
     border-color: $font-grey;
