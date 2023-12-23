@@ -81,7 +81,7 @@
             </div>
             <div class="footer-contant" *ngFor="let categorie of categories " style="cursor: pointer;">
               <ul *ngIf="categorie.isShow">
-                <li>{{ categorie.name }}</li>
+                <li  (click)="toggletNavActive(categorie)">{{ categorie.name }}</li>
               </ul>
             </div>
           </div>

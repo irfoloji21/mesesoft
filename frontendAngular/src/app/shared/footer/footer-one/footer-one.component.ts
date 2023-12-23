@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
 import { SocialMediaService } from '../../services/social-media.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer-one',
@@ -20,7 +21,8 @@ export class FooterOneComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private socialMediaService: SocialMediaService
+    private socialMediaService: SocialMediaService,
+    private router: Router, private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,22 @@ export class FooterOneComponent implements OnInit {
     this.socialMediaService.getSocialMediaLinks().subscribe(links => {
       this.socialMediaLinks = links;
     });
+  }
+
+  toggletNavActive(item) {
+    const subCategoryIds = item.subcategories.map(subcategory => subcategory._id);
+
+    const queryParams = {
+      MainMenu: subCategoryIds.join(',')
+    };
+
+    this.router.navigate(['/shop/collection'], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    });
+
+    item.active = !item.active;
   }
 
 }
