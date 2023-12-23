@@ -74,30 +74,12 @@ export class CollectionLeftSidebarComponent implements OnInit {
         if (this.ParentCategory) {
           this.categoryService.getCategories().subscribe((data: any) => {
             if (data.success) {
-              console.log(data, "ne oluyor burda 1");
-
               const categoriesArray = Array.isArray(data.categories) ? data.categories : [data.categories];
-
-              this.products = categoriesArray.filter((item: any) => {
-                console.log(item._id, " ne oluyor burda 2");
-                return item._id == this.ParentCategory;
-              });
-
-              console.log(
-                categoriesArray.filter((item: any) => item._id == this.ParentCategory),
-                "NE OLUYOR BURDA 3 "
-              );
+              const parentCategoryIds = this.ParentCategory.split(',');
+              this.products = categoriesArray.filter((item: any) => parentCategoryIds.includes(item._id));
             }
           });
         }
-
-
-
-
-
-
-
-
 
         this.products = this.parseResponse(response);
         if (this.theMostLiked.length > 0) {
