@@ -59,8 +59,7 @@
                   <a href="{{ socialMediaLinks?.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                  <a href="{{ socialMediaLinks?.instagram }}"><i class="fa fa-instagram"
-                      aria-hidden="true"></i></a>
+                  <a href="{{ socialMediaLinks?.instagram }}"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                 </li>
                 <li>
                   <a href="{{ socialMediaLinks?.rss }}"><i class="fa fa-rss" aria-hidden="true"></i></a>
@@ -80,8 +79,8 @@
             <div class="footer-title">
               <h4>Categories</h4>
             </div>
-            <div class="footer-contant">
-              <ul *ngFor="let categorie of categories | slice : 0 : 6">
+            <div class="footer-contant" *ngFor="let categorie of categories " style="cursor: pointer;">
+              <ul *ngIf="categorie.isShow">
                 <li>{{ categorie.name }}</li>
               </ul>
             </div>

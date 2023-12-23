@@ -13,13 +13,13 @@ export class FooterOneComponent implements OnInit {
   @Input() class: string = 'footer-light' // Default class 
   @Input() themeLogo: string = 'assets/images/icon/logo.png' // Default Logo
   @Input() newsletter: boolean = true; // Default True
-  
-  categories:Category[] = []
+
+  categories: Category[] = []
   socialMediaLinks: any;
   public today: number = Date.now();
 
   constructor(
-    private categoryService : CategoryService, 
+    private categoryService: CategoryService,
     private socialMediaService: SocialMediaService
   ) { }
 
@@ -27,7 +27,7 @@ export class FooterOneComponent implements OnInit {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         this.categories = data.categories;
-        
+
       }
     });
     this.socialMediaService.getSocialMediaLinks().subscribe(links => {
