@@ -16,7 +16,8 @@ export class SavedCardComponent implements OnInit {
     cardNumber: '',
     expirationMonth: '01',
     expirationYear: '2023',
-    cvv: ''
+    cvv: '',
+    termsCheckbox: true
   };
 
   constructor(

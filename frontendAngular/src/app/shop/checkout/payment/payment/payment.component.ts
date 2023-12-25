@@ -1,4 +1,3 @@
-import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import {
   UntypedFormBuilder,
@@ -13,7 +12,6 @@ import { ProductService } from "src/app/shared/services/product.service";
 import { ShippingService } from "src/app/shared/services/shipping.service";
 import { environment } from "src/environments/environment";
 import Stripe from "stripe";
-import { Router } from '@angular/router';
 
 @Component({
   selector: "app-payment",
@@ -55,12 +53,26 @@ export class PaymentComponent implements OnInit {
     console.log("Seçilen Adres Payment:", selectedAddress);
     const selectedCargo = this.shippingService.getSelectedShipping();
     console.log("Seçilen Kargo Payment:", selectedCargo);
+    const savedCart = localStorage.getItem('selectedCard');
+    if (savedCart) {
+      // savedCart varsa, JSON'dan çözümlenir
+      const cartData = JSON.parse(savedCart);
 
+      // Form değerleri yerleştirilir
+      this.checkoutForm.patchValue({
+        cardNumber: cartData.cardNumber || '',
+        expirationMonth: cartData.expirationMonth || '',
+        expirationYear: cartData.expirationYear || '',
+        cvv: cartData.cvv || '',
+        termsCheckbox: cartData.termsCheckbox || false
+      });
+    }
     this.getTotal.subscribe((total) => {
       console.log(total, "totalAmount");
       this.amount = total;
     });
   }
+  
 
   public get getTotal(): Observable<number> {
     return this.productService.cartTotalAmount();
