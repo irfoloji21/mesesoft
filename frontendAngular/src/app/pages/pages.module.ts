@@ -20,35 +20,37 @@ import { ContactComponent } from './account/contact/contact.component';
 import { CheckoutComponent } from './account/checkout/checkout.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SearchComponent } from './search/search.component';
-// import { TypographyComponent } from './typography/typography.component';
 import { ReviewComponent } from './review/review.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
-import { CompareOneComponent } from './compare/compare-one/compare-one.component';
-import { CompareTwoComponent } from './compare/compare-two/compare-two.component';
 import { CollectionComponent } from './collection/collection.component';
-import { LookbookComponent } from './lookbook/lookbook.component';
 import { ErrorComponent } from './error/error.component';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { FaqComponent } from './faq/faq.component';
+
 // Blog Components
 import { BlogLeftSidebarComponent } from './blog/blog-left-sidebar/blog-left-sidebar.component';
-import { BlogRightSidebarComponent } from './blog/blog-right-sidebar/blog-right-sidebar.component';
-import { BlogNoSidebarComponent } from './blog/blog-no-sidebar/blog-no-sidebar.component';
 import { BlogDetailsComponent } from './blog/blog-details/blog-details.component';
-// Portfolio Components
-import { GridTwoComponent } from './portfolio/grid-two/grid-two.component';
-import { GridThreeComponent } from './portfolio/grid-three/grid-three.component';
-import { GridFourComponent } from './portfolio/grid-four/grid-four.component';
-import { MasonryGridTwoComponent } from './portfolio/masonry-grid-two/masonry-grid-two.component';
-import { MasonryGridThreeComponent } from './portfolio/masonry-grid-three/masonry-grid-three.component';
-import { MasonryGridFourComponent } from './portfolio/masonry-grid-four/masonry-grid-four.component';
-import { MasonryFullWidthComponent } from './portfolio/masonry-full-width/masonry-full-width.component';
+// import { TypographyComponent } from './typography/typography.component';
+// import { CompareOneComponent } from './compare/compare-one/compare-one.component';
+// import { CompareTwoComponent } from './compare/compare-two/compare-two.component';
+// import { LookbookComponent } from './lookbook/lookbook.component';
+// import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+// import { BlogRightSidebarComponent } from './blog/blog-right-sidebar/blog-right-sidebar.component';
+// import { BlogNoSidebarComponent } from './blog/blog-no-sidebar/blog-no-sidebar.component';
+
+// // Portfolio Components
 import { ActivationComponent } from './account/activation/activation.component';
 import { AccountInfoComponent } from './account/account-info/account-info.component';
 import { AddressComponent } from './account/address/address/address.component';
 import { CouponComponent } from './account/coupon/coupon.component';
 import { OrderComponent } from './account/order/order.component';
 import { SavedCardComponent } from './account/saved-card/saved-card.component';
+// import { GridTwoComponent } from './portfolio/grid-two/grid-two.component';
+// import { GridThreeComponent } from './portfolio/grid-three/grid-three.component';
+// import { GridFourComponent } from './portfolio/grid-four/grid-four.component';
+// import { MasonryGridTwoComponent } from './portfolio/masonry-grid-two/masonry-grid-two.component';
+// import { MasonryGridThreeComponent } from './portfolio/masonry-grid-three/masonry-grid-three.component';
+// import { MasonryGridFourComponent } from './portfolio/masonry-grid-four/masonry-grid-four.component';
+// import { MasonryFullWidthComponent } from './portfolio/masonry-full-width/masonry-full-width.component';
 
 @NgModule({
   declarations: [
@@ -66,24 +68,24 @@ import { SavedCardComponent } from './account/saved-card/saved-card.component';
     // TypographyComponent,
     ReviewComponent,
     OrderSuccessComponent,
-    CompareOneComponent,
-    CompareTwoComponent,
+    // CompareOneComponent,
+    // CompareTwoComponent,
     CollectionComponent,
-    LookbookComponent,
+    // LookbookComponent,
     ErrorComponent,
-    ComingSoonComponent,
+    // ComingSoonComponent,
     FaqComponent,
     BlogLeftSidebarComponent,
-    BlogRightSidebarComponent,
-    BlogNoSidebarComponent,
+    // BlogRightSidebarComponent,
+    // BlogNoSidebarComponent,
     BlogDetailsComponent,
-    GridTwoComponent,
-    GridThreeComponent,
-    GridFourComponent,
-    MasonryGridTwoComponent,
-    MasonryGridThreeComponent,
-    MasonryGridFourComponent,
-    MasonryFullWidthComponent,
+    // GridTwoComponent,
+    // GridThreeComponent,
+    // GridFourComponent,
+    // MasonryGridTwoComponent,
+    // MasonryGridThreeComponent,
+    // MasonryGridFourComponent,
+    // MasonryFullWidthComponent,
     ActivationComponent,
     AccountInfoComponent,
     ChangePasswordComponent,

@@ -9,7 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [ListVendorsComponent, CreateVendorsComponent],
+  declarations: [
+    // ListVendorsComponent, 
+    // CreateVendorsComponent
+  ],
   imports: [
     CommonModule,
     VendorsRoutingModule,
