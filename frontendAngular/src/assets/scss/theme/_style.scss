@@ -7778,6 +7778,20 @@ ngx-loading-bar {
       }
     }
   }
+  .tab-content {
+    .tab-pane {
+      .review {
+        .media {
+          img.avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+  }
   .theme-form {
     input {
       border-color: $round-border;
