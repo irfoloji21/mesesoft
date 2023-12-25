@@ -73,12 +73,8 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   openSharePopup() {
     const productUrl = encodeURIComponent(window.location.href);
-
-    const facebookShareLink = this.sanitizer.bypassSecurityTrustUrl(`https://www.facebook.com/sharer/sharer.php?u=${productUrl}`);
-    const twitterShareLink = this.sanitizer.bypassSecurityTrustUrl(`https://twitter.com/intent/tweet?url=${productUrl}`)
-    const whatsappMessage = encodeURIComponent(`Check out this product: ${productUrl}`);
-    const whatsappShareLink = this.sanitizer.bypassSecurityTrustUrl(`https://wa.me/${this.socialMediaLinks.whatsapp}/?text=${whatsappMessage}`);
-    console.log('WhatsApp Paylaşım Linki:', whatsappShareLink);
+    // Burada bir popup veya paylaşım penceresi açabilir veya sadece URL'yi konsola yazdırabilirsiniz
+    console.log(productUrl);
   }
 
   loadUserOrders(userId: string) {
