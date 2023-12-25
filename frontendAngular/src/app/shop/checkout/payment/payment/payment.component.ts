@@ -27,7 +27,7 @@ export class PaymentComponent implements OnInit {
   public amount: any;
   orderDetails: any;
   public result: any;
-
+  
   constructor(
     private fb: UntypedFormBuilder,
     public productService: ProductService,
@@ -66,6 +66,8 @@ export class PaymentComponent implements OnInit {
         cvv: cartData.cvv || '',
         termsCheckbox: cartData.termsCheckbox || false
       });
+    } else {
+      this.toasts.warning('Seçili kartınız yok!', 'Uyarı', { positionClass: 'toast-top-right' });
     }
     this.getTotal.subscribe((total) => {
       console.log(total, "totalAmount");
