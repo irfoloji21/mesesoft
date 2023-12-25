@@ -7325,12 +7325,12 @@ ngx-loading-bar {
 .owl-item {
   > div.owl-thumb {
     margin: 5px 5px 0px 0px;
-    border: 1px solid $round-border;
+    // border: 1px solid $round-border;
     transition: all 0.5s ease;
     cursor: pointer;
     .img-fluid {
-      height: 250px;
-      object-fit: cover;
+      height: 215px;
+      object-fit: contain;
     }
   }
   > div.owl-thumb.active {
@@ -7347,7 +7347,7 @@ ngx-loading-bar {
     > div {
       //display: flex;
       margin: 0;
-      border: 1px solid $round-border;
+      // border: 1px solid $round-border;
       transition: all 0.5s ease;
     }
     &.slick-current {
