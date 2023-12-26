@@ -10,8 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    // ListVendorsComponent, 
-    // CreateVendorsComponent
+    ListVendorsComponent, 
+    CreateVendorsComponent
   ],
   imports: [
     CommonModule,
