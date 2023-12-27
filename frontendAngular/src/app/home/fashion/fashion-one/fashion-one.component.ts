@@ -71,13 +71,10 @@ export class FashionOneComponent implements OnInit {
 
   topCollection() {
     this.productService.getProducts.subscribe((products: any) => {
-      console.log("products.YORUM EKLENECEKİ BURADA GÖRECEKİZ", products.products);
-      
       const productArray = Array.isArray(products.products) ? products.products : [];
       this.sortedProducts = productArray
         .filter(product => product.sold_out > 0)
         .sort((a, b) => b.sold_out - a.sold_out);
-      console.log(this.sortedProducts)
     });
   }
 

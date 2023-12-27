@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     // Kullanıcının oturum durumunu kontrol et
     if (this.authService.getUser()) {
-      // Kullanıcı oturum açmışsa rotaya izin ver
+      
       return true;
     }
 
