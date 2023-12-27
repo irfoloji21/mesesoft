@@ -4,11 +4,15 @@
       <div class="col-md-12">
         <a [routerLink]="'/blog/details/' + blog.slug">
           <div class="classic-effect">
-            <img [src]="
+            <img
+              [src]="
                 blog.images.length > 0
                   ? blog.images[0].url
                   : '../../../../../assets/images/example2.jpg'
-              " class="img-fluid" alt="blog" />
+              "
+              class="img-fluid"
+              alt="blog"
+            />
             <span></span>
           </div>
         </a>
@@ -17,7 +21,11 @@
 
           <a [routerLink]="'/blog/details/' + blog.slug">
             <p>
-              {{ blog.name.length > 20 ? blog.name.slice(0, 50) + '...' : blog.name }}
+              {{
+                blog.name.length > 20
+                  ? blog.name.slice(0, 50) + "..."
+                  : blog.name
+              }}
             </p>
           </a>
           <hr class="style1" />

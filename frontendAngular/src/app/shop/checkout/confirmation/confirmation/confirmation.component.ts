@@ -8,22 +8,24 @@ import { ProductService } from 'src/app/shared/services/product.service';
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.scss']
 })
-export class ConfirmationComponent implements OnInit, AfterViewInit{
+
+export class ConfirmationComponent implements OnInit, AfterViewInit {
 
   public orderDetails: Order = { orderDate: new Date() };
 
-  constructor(public productService: ProductService,
-    private orderService: OrderService) { }
+  constructor(
+    public productService: ProductService,
+    private orderService: OrderService
+  ) { }
 
-  ngOnInit(): void {	
+  ngOnInit(): void {
     this.orderService.checkoutItems.subscribe(response => {
       console.log(response, "orderDetails")
       this.orderDetails = response;
-      this.orderDetails.orderDate = new Date(); 
+      this.orderDetails.orderDate = new Date();
     });
   }
 
-  ngAfterViewInit() {
-    
-  }
+  ngAfterViewInit() { }
+  
 }

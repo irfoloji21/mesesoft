@@ -12,14 +12,16 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
+
 export class CartComponent implements OnInit {
+
   public products: Product[] = [];
   couponForm: FormGroup;
   showDiscountedTotal: boolean = false;
   discountedTotal = 0;
   isCouponValid = false;
-  totalAmount: number; 
-  couponCode: string; 
+  totalAmount: number;
+  couponCode: string;
   discount_type;
   discountedTotalType: any;
 
@@ -37,14 +39,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTotal.subscribe((total) => {
-      console.log(total , "totalAmount")
+      console.log(total, "totalAmount")
       this.totalAmount = total;
-
     });
-   
   }
-
-  
 
   public get getTotal(): Observable<number> {
     return this.productService.cartTotalAmount();
@@ -63,19 +61,11 @@ export class CartComponent implements OnInit {
   }
 }
 
-
-
-
-
-
-
-
-  // 1-Kuponun Varlığını Kontrol Etme   +++
-  // 2-Kupon Kodunun Kullanım Durumunu Kontrol Etme  +++  percentage mi fixed mi?
-  // 3-Kupon Kodunun Geçerlilik Süresini Kontrol Etme +++ date kontrolü
-  // 4-Minimum alışveriş Tutarı +++
-  // 5-İndirim Hesaplama  +++
-  // 6-Kupon Kullanımını İşaretleme +++
-  // 7-Kullanıcıya İndirimli Fiyatı Gösterme +++
-  // 8-usera gönderme */ backendte yok
- 
+// 1-Kuponun Varlığını Kontrol Etme   +++
+// 2-Kupon Kodunun Kullanım Durumunu Kontrol Etme  +++  percentage mi fixed mi?
+// 3-Kupon Kodunun Geçerlilik Süresini Kontrol Etme +++ date kontrolü
+// 4-Minimum alışveriş Tutarı +++
+// 5-İndirim Hesaplama  +++
+// 6-Kupon Kullanımını İşaretleme +++
+// 7-Kullanıcıya İndirimli Fiyatı Gösterme +++
+// 8-usera gönderme */ backendte yok

@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'fashion',
     component: FashionOneComponent
   },
-  
+
 ];
 
 @NgModule({

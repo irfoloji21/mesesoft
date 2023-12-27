@@ -8,21 +8,21 @@ import { Product } from "../../shared/classes/product";
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss']
 })
+
 export class CompareComponent implements OnInit {
 
   public products: Product[] = [];
 
-  constructor(private router: Router, 
+  constructor(private router: Router,
     public productService: ProductService) {
     this.productService.compareItems.subscribe(response => this.products = response);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   async addToCart(product: any) {
     const status = await this.productService.addToCart(product);
-    if(status) {
+    if (status) {
       this.router.navigate(['/shop/cart']);
     }
   }

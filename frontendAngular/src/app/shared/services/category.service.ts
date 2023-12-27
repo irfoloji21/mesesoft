@@ -1,5 +1,5 @@
 // category.service.ts
-import { Injectable,HostListener } from '@angular/core';
+import { Injectable, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, startWith } from 'rxjs';
 import { Category } from '../classes/category';
@@ -8,27 +8,28 @@ import { Category } from '../classes/category';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoryService {
-  private apiUrl = 'http://localhost:8000/api/v2/category'; 
+  private apiUrl = 'http://localhost:8000/api/v2/category';
 
   constructor(private http: HttpClient) { }
 
   public screenWidth: any;
-	public leftMenuToggle: boolean = false;
-	public mainMenuToggle: boolean = false;
+  public leftMenuToggle: boolean = false;
+  public mainMenuToggle: boolean = false;
   private Categories: Observable<Category[]>;
-  
-	// Windows width
-	@HostListener('window:resize', ['$event'])
-	onResize(event?) {
-		this.screenWidth = window.innerWidth;
-	}
+
+  // Windows width
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    this.screenWidth = window.innerWidth;
+  }
 
   // getCategory
-    getCategories(): Observable<Category[]> {
-   return this.http.get<Category[]>(`${this.apiUrl}/get-all-categories`);
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.apiUrl}/get-all-categories`);
   }
-  
+
   getCategoryById(id: number): Observable<Category> {
     return this.http.get<Category>(`${this.apiUrl}/get-category/${id}`);
   }

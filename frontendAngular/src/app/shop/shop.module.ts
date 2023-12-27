@@ -41,7 +41,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AddressComponent } from './checkout/address/address/address.component';
 import { ConfirmationComponent } from './checkout/confirmation/confirmation/confirmation.component';
 import { PaymentComponent } from './checkout/payment/payment/payment.component';
@@ -49,7 +49,7 @@ import { CheckoutCartComponent } from './checkout/checkoutCart/checkout-cart/che
 
 @NgModule({
   declarations: [
-    ProductLeftSidebarComponent, 
+    ProductLeftSidebarComponent,
     // ProductRightSidebarComponent,
     // ProductNoSidebarComponent,
     // ThreeColumnComponent,

@@ -7,6 +7,7 @@ import { ProductService } from '../../../shared/services/product.service';
   templateUrl: './product-tabs.component.html',
   styleUrls: ['./product-tabs.component.scss']
 })
+
 export class ProductTabsComponent implements OnInit {
   public products: Product[] = [];
   public productCollections: any[] = [];
@@ -34,7 +35,6 @@ export class ProductTabsComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

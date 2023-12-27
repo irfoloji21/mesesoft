@@ -9,18 +9,21 @@ import { Router } from '@angular/router';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss']
 })
+
 export class BlogComponent implements OnInit {
-  
+
   @Input() blogs: any[] = [];
 
-  constructor(private blogService: BlogService, private router: Router) {}
+  constructor(
+    private blogService: BlogService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.blogService.getBlogs().subscribe((res) => {
       this.blogs = res.blogs;
     });
   }
-
 
   onBlogClick(blog: any) {
     this.router.navigate(['/blog/details', blog.slug]);

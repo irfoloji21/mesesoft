@@ -6,13 +6,13 @@ import { CategorySlider } from '../../../shared/data/slider';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
+
 export class CategoryComponent implements OnInit {
 
   constructor() { }
 
   public CategorySliderConfig: any = CategorySlider;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

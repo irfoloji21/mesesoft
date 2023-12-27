@@ -33,6 +33,7 @@ export class AddressComponent implements OnInit {
   selectedAddressIndex: number;
   selectedBillingIndex: number;
   selectedShippingMethodIndex: number | null = null;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -66,7 +67,6 @@ export class AddressComponent implements OnInit {
   productDetails() {
     this.productService.cartItems.subscribe(res => {
       this.orderDetails = res;
-      // console.log('orderDetails', this.orderDetails);
      });
   }
 
@@ -251,7 +251,6 @@ export class AddressComponent implements OnInit {
     this.billingAddressService.setSelectedBillingAddress(billingAddress);
     this.selectedBillingIndex = index;
     console.log('Seçilen fatura adresi:', billingAddress);
-    
   }
 }
 

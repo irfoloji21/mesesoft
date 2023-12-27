@@ -8,17 +8,16 @@ import { ProductService } from '../../../shared/services/product.service';
   templateUrl: './product-slider.component.html',
   styleUrls: ['./product-slider.component.scss']
 })
+
 export class ProductSliderComponent implements OnInit {
 
   public products: Product[] = [];
-
   public ProductSliderConfig: any = ProductSlider;
   
   constructor(public productService: ProductService) { 
     this.productService.getProducts.subscribe(response => this.products = response);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

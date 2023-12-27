@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './footer-one.component.html',
   styleUrls: ['./footer-one.component.scss']
 })
+
 export class FooterOneComponent implements OnInit {
 
   @Input() class: string = 'footer-light' // Default class 

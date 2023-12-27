@@ -21,24 +21,25 @@ const routes: Routes = [
     component: ShopComponent,
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
   },
-  { 
+  {
     path: '',
     component: PagesComponent,
-    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) 
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
   },
-  { 
-    path: 'elements', 
+  {
+    path: 'elements',
     component: ElementsComponent,
-    loadChildren: () => import('./elements/elements.module').then(m => m.ElementsModule) },
-    { 
-      path: 'activation/:activation_token', 
-      component: ActivationComponent 
-    },
+    loadChildren: () => import('./elements/elements.module').then(m => m.ElementsModule)
+  },
+  {
+    path: 'activation/:activation_token',
+    component: ActivationComponent
+  },
   {
     path: '**', // Navigate to Home Page if not found any page
     redirectTo: '404',
   },
- 
+
 ];
 
 @NgModule({
@@ -46,7 +47,7 @@ const routes: Routes = [
     useHash: false,
     anchorScrolling: 'enabled',
     scrollPositionRestoration: 'enabled'
-})],
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

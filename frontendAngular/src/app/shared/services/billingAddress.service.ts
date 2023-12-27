@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class BillingAddressService {
 
   private apiUrl = 'assets/data/billingAdress.json'; // JSON dosyasının yolu
-    
+
   constructor(private http: HttpClient) { }
 
   getBillingAddressData(): Observable<any[]> {

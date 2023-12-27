@@ -7,12 +7,16 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   templateUrl: './account-info.component.html',
   styleUrls: ['./account-info.component.scss']
 })
+
 export class AccountInfoComponent implements OnInit {
 
   public userInf;
   userInitials: string;
 
-  constructor(private serviceAuth: AuthService, private router: Router,) { }
+  constructor(
+    private serviceAuth: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.serviceAuth.loadUser().subscribe(res => {

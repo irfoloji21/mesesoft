@@ -6,8 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { ToastrModule } from 'ngx-toastr';
-import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import { TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,10 +16,9 @@ import { ShopComponent } from './shop/shop.component';
 import { PagesComponent } from './pages/pages.component';
 import { ElementsComponent } from './elements/elements.component';
 
-
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
 @NgModule({
@@ -42,11 +41,11 @@ export function HttpLoaderFactory(http: HttpClient) {
       enableHtml: true,
     }),
     TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
     }),
     SharedModule,
     AppRoutingModule

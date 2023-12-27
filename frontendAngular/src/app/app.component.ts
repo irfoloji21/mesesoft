@@ -12,7 +12,6 @@ import { AuthService } from './shared/services/auth.service';
 })
 
 export class AppComponent implements OnInit {
-
   // For Progressbar
   loaders = this.loader.progress$.pipe(
     delay(1000),
@@ -36,7 +35,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.loadUser().subscribe(
       (user) => {
-        // console.log(user);
         if (user) {
           this.authService.setUser(user);
         }

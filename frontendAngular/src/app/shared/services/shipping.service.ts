@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ShippingService {
   selectedShipping: any;
   private apiUrl = 'assets/data/shipping.json'; // JSON dosyasının yolu
-    
+
   constructor(private http: HttpClient) { }
 
   getShipData(): Observable<any[]> {

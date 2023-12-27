@@ -6,6 +6,7 @@ import { SavedCardService } from 'src/app/shared/services/savedCard.service';
   templateUrl: './saved-card.component.html',
   styleUrls: ['./saved-card.component.scss']
 })
+
 export class SavedCardComponent implements OnInit {
 
   registeredCards = [];
@@ -20,9 +21,7 @@ export class SavedCardComponent implements OnInit {
     termsCheckbox: true
   };
 
-  constructor(
-    private savedCardService: SavedCardService
-  ) { }
+  constructor(private savedCardService: SavedCardService) { }
 
   ngOnInit(): void {
     this.savedCardService.getSavedCards().subscribe(

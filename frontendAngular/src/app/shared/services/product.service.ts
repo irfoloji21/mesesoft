@@ -15,6 +15,7 @@ const state = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
 
   public Currency = { name: 'Dollar', currency: 'USD', price: 1 } // Default Currency
@@ -24,10 +25,12 @@ export class ProductService {
   private wishlist: Product[] = state.wishlist;
   private wishlistSubject: BehaviorSubject<number> = new BehaviorSubject(this.wishlist.length);
 
- public apiUrl = "http://localhost:8000/api/v2"
+  public apiUrl = "http://localhost:8000/api/v2"
 
-  constructor(private http: HttpClient,
-    private toastrService: ToastrService) { }
+  constructor(
+    private http: HttpClient,
+    private toastrService: ToastrService
+  ) { }
 
   /*
     ---------------------------------------------
@@ -43,12 +46,12 @@ export class ProductService {
   }
 
   // Get Products
-  public  get getProducts(): Observable<Product[]> {
+  public get getProducts(): Observable<Product[]> {
     return this.products
   }
 
-   // Get Products By Slug
-   public getProductBySlug(slug: string): Observable<Product> {
+  // Get Products By Slug
+  public getProductBySlug(slug: string): Observable<Product> {
     return this.http.get(`${this.apiUrl}/product/${slug}`).pipe(map(data => data))
   }
   //creaateNewReview
@@ -121,7 +124,7 @@ export class ProductService {
       observer.complete();
     });
     return <Observable<Product[]>>itemsStream;
-  }_
+  } _
 
   // Add to Compare
   public addToCompare(product): any {
@@ -149,13 +152,13 @@ export class ProductService {
     -----------------  Cart  --------------------
     ---------------------------------------------
   */
-    // CartAll clear
-   public clearCart(): any {
-  state.cart = [];
-  localStorage.removeItem("cartItems");
-  return true
-   }
 
+  // CartAll clear
+  public clearCart(): any {
+    state.cart = [];
+    localStorage.removeItem("cartItems");
+    return true
+  }
 
   // Get Cart Items
   public get cartItems(): Observable<Product[]> {
@@ -172,11 +175,11 @@ export class ProductService {
     const qty = product.quantity ? product.quantity : 1;
     const items = cartItem ? cartItem : product;
     const stock = this.calculateStockCounts(items, qty);
-    
-    if(!stock) return false
+
+    if (!stock) return false
 
     if (cartItem) {
-        cartItem.quantity += qty    
+      cartItem.quantity += qty
     } else {
       state.cart.push({
         ...product,
@@ -204,12 +207,12 @@ export class ProductService {
     })
   }
 
-    // Calculate Stock Counts
+  // Calculate Stock Counts
   public calculateStockCounts(product, quantity) {
     const qty = product.quantity + quantity
     const stock = product.stock
     if (stock < qty || stock == 0) {
-      this.toastrService.error('You can not add more items than available. In stock '+ stock +' items.');
+      this.toastrService.error('You can not add more items than available. In stock ' + stock + ' items.');
       return false
     }
     return true
@@ -228,17 +231,15 @@ export class ProductService {
     return this.cartItems.pipe(map((products: Product[]) => {
       return products.reduce((totalAmount, product: Product) => {
         let price = product.originalPrice;
-        
+
         // if (product.discountPrice) {
         //   price = product.originalPrice - (product.originalPrice * product.discountPrice / 100);
         // }
-        
+
         return (totalAmount + price * product.quantity) * this.Currency.price;
       }, 0);
     }));
   }
-  
- 
 
   /*
     ---------------------------------------------
@@ -252,9 +253,9 @@ export class ProductService {
       map((product) => {
         // Check if product is an array, if not, convert it to an array
         const productArray = Array.isArray(product) ? product : [product];
-  
+
         return productArray.filter((item: Product) => {
-          console.log(item , "filter")
+          console.log(item, "filter")
           if (!filter.length) return true;
           const Tags = filter.some((prev) => { // Match Tags
             if (item.tags) {
@@ -268,12 +269,11 @@ export class ProductService {
       })
     );
   }
-  
 
   // Sorting Filter
   public sortProducts(products: Product[], payload: string): any {
 
-    if(payload === 'ascending') {
+    if (payload === 'ascending') {
       return products.sort((a, b) => {
         if (a._id < b._id) {
           return -1;
@@ -318,7 +318,7 @@ export class ProductService {
         }
         return 0;
       })
-    } 
+    }
   }
 
   /*
@@ -326,6 +326,7 @@ export class ProductService {
     ------------- Product Pagination  -----------
     ---------------------------------------------
   */
+
   public getPager(totalItems: number, currentPage: number = 1, pageSize: number = 16) {
     // calculate total pages
     let totalPages = Math.ceil(totalItems / pageSize);
@@ -334,22 +335,23 @@ export class ProductService {
     let paginateRange = 3;
 
     // ensure current page isn't out of range
-    if (currentPage < 1) { 
-      currentPage = 1; 
-    } else if (currentPage > totalPages) { 
-      currentPage = totalPages; 
+    if (currentPage < 1) {
+      currentPage = 1;
+    } else if (currentPage > totalPages) {
+      currentPage = totalPages;
     }
-    
+
     let startPage: number, endPage: number;
+
     if (totalPages <= 5) {
       startPage = 1;
       endPage = totalPages;
-    } else if(currentPage < paginateRange - 1){
+    } else if (currentPage < paginateRange - 1) {
       startPage = 1;
       endPage = startPage + paginateRange - 1;
     } else {
       startPage = currentPage - 1;
-      endPage =  currentPage + 1;
+      endPage = currentPage + 1;
     }
 
     // calculate start and end item indexes
@@ -373,16 +375,14 @@ export class ProductService {
     };
   }
 
-
   search(searchTerm: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/product/search/${searchTerm}`);
-    
+
   }
-  irfan(id:any): Observable<any[]> {
+
+  irfan(id: any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/product/get-products-by-category/${id}`);
-    
+
   }
-
-
 
 }

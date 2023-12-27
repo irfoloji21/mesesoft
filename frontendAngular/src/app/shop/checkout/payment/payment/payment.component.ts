@@ -27,7 +27,7 @@ export class PaymentComponent implements OnInit {
   public amount: any;
   orderDetails: any;
   public result: any;
-  
+
   constructor(
     private fb: UntypedFormBuilder,
     public productService: ProductService,
@@ -74,7 +74,6 @@ export class PaymentComponent implements OnInit {
       this.amount = total;
     });
   }
-  
 
   public get getTotal(): Observable<number> {
     return this.productService.cartTotalAmount();
@@ -88,6 +87,8 @@ export class PaymentComponent implements OnInit {
       const expirationMonth = this.checkoutForm.get("expirationMonth")?.value;
       const expirationYear = this.checkoutForm.get("expirationYear")?.value;
       const cvv = this.checkoutForm.get("cvv")?.value;
+      const stripeApiKey = environment.stripe_token;
+      const stripe = new Stripe(stripeApiKey);
 
       const cardDetails = {
         number: cardNumber,
@@ -95,9 +96,6 @@ export class PaymentComponent implements OnInit {
         exp_year: expirationYear,
         cvc: cvv,
       };
-
-      const stripeApiKey = environment.stripe_token;
-      const stripe = new Stripe(stripeApiKey);
 
       const tokenizeCard = async () => {
         try {

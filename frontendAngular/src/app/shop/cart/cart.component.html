@@ -23,9 +23,7 @@
           <tbody *ngFor="let product of products">
             <tr>
               <td>
-                <a
-                  [routerLink]="['/shop/product/', product?.slug]"
-                >
+                <a [routerLink]="['/shop/product/', product?.slug]">
                   <img
                     [src]="product.images[0].url"
                     [alt]="product.images[0].alt"
@@ -33,10 +31,9 @@
                 </a>
               </td>
               <td>
-                <a
-                  [routerLink]="['/shop/product/', product?.slug]"
-                  >{{ product.name | titlecase }}</a
-                >
+                <a [routerLink]="['/shop/product/', product?.slug]">{{
+                  product.name | titlecase
+                }}</a>
                 <div class="mobile-cart-content row">
                   <div class="col">
                     <div class="qty-box">
@@ -74,7 +71,7 @@
                   </div>
                   <div class="col">
                     <h2 class="td-color">
-                        {{product.originalPrice * product.quantity | currency}}
+                      {{ product.originalPrice * product.quantity | currency }}
                     </h2>
                   </div>
                   <div class="col">
@@ -88,7 +85,7 @@
               </td>
               <td>
                 <h2>
-                  {{product.originalPrice | currency}}
+                  {{ product.originalPrice | currency }}
                 </h2>
               </td>
               <td>
@@ -136,7 +133,7 @@
               </td>
               <td>
                 <h2 class="td-color">
-                    {{product.originalPrice * product.quantity | currency}}
+                  {{ product.originalPrice * product.quantity | currency }}
                 </h2>
               </td>
             </tr>
@@ -156,9 +153,7 @@
     </div>
     <div class="row cart-buttons" *ngIf="products.length">
       <div class="col-6">
-        <a
-          [routerLink]="['/shop/collection']"
-          class="btn btn-solid"
+        <a [routerLink]="['/shop/collection']" class="btn btn-solid"
           >continue shopping</a
         >
       </div>

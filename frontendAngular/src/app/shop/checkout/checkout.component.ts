@@ -16,7 +16,6 @@ import { ShippingService } from 'src/app/shared/services/shipping.service';
 })
 
 export class CheckoutComponent implements OnInit {
-
   public checkoutForm: UntypedFormGroup;
   public products: Product[] = [];
   public payPalConfig?: any;
@@ -37,7 +36,7 @@ export class CheckoutComponent implements OnInit {
     { productName: 'Ürün 1', quantity: 2, totalPrice: 49.99 },
     { productName: 'Ürün 2', quantity: 1, totalPrice: 29.99 },
   ];
-  
+
   constructor(
     private fb: UntypedFormBuilder,
     public productService: ProductService,

@@ -6,11 +6,12 @@ import { CouponCode } from '../classes/coupon';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CouponService {
 
-  private baseUrl = 'http://localhost:8000/api/v2'; 
+  private baseUrl = 'http://localhost:8000/api/v2';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createCouponCode(couponData: any): Observable<CouponCode> {
     return this.http.post<CouponCode>(`${this.baseUrl}/coupon/create-coupon-code`, couponData);
@@ -30,7 +31,7 @@ export class CouponService {
   getCouponValueByName(couponName: any): Observable<any> {
     return this.http.get<CouponCode>(`${this.baseUrl}/coupon/get-coupon-value/${couponName}`);
   }
-  
+
   private appliedCouponSubject = new BehaviorSubject<any>(null);
   appliedCoupon$ = this.appliedCouponSubject.asObservable();
 

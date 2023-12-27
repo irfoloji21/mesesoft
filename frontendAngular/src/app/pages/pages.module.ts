@@ -60,7 +60,7 @@ import { SavedCardComponent } from './account/saved-card/saved-card.component';
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,
-    ProfileComponent, 
+    ProfileComponent,
     ContactComponent,
     CheckoutComponent,
     AboutUsComponent,
@@ -99,7 +99,7 @@ import { SavedCardComponent } from './account/saved-card/saved-card.component';
     GalleryModule,
     LightboxModule,
     SharedModule,
-    PagesRoutingModule, 
+    PagesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
   ]

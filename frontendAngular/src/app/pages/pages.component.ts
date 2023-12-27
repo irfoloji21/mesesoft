@@ -8,13 +8,13 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class PagesComponent implements OnInit {
 
-  public url : any; 
+  public url: any;
 
-  constructor(private router: Router) {  
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
-          if (event instanceof NavigationEnd) {
-            this.url = event.url;
-          }
+      if (event instanceof NavigationEnd) {
+        this.url = event.url;
+      }
     });
   }
 

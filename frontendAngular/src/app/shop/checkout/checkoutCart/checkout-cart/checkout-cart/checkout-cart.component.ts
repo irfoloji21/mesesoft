@@ -16,7 +16,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class CheckoutCartComponent {
 
   appliedCoupon: any;
-  user:any;
+  user: any;
   subscription: Subscription;
   public products: Product[] = [];
   couponForm: FormGroup;
@@ -55,7 +55,7 @@ export class CheckoutCartComponent {
 
     this.couponService.appliedCoupon$.subscribe((coupon) => {
       if (coupon) {
-        console.log(coupon , "CouponShel")
+        console.log(coupon, "CouponShel")
         this.updateDiscountedTotal(coupon);
       }
     });
@@ -72,7 +72,8 @@ export class CheckoutCartComponent {
     event.preventDefault();
     const user = this.authService.getUser();
     this.couponCode = this.couponForm.get('couponCode').value;
-  
+    const couponCheck$ = this.couponService.getCouponValueByName(this.couponCode).pipe();
+
     const isCouponAlreadyUsed = user.user.coupons.some(appliedCoupon => appliedCoupon.name === this.couponCode);
     if (isCouponAlreadyUsed) {
       this.toastr.error('Bu kupon daha önce kullanıldı', 'Hata');
@@ -81,21 +82,19 @@ export class CheckoutCartComponent {
       this.couponForm.reset();
       return;
     }
-  
-    const couponCheck$ = this.couponService.getCouponValueByName(this.couponCode).pipe();
-  
+
     couponCheck$.subscribe(
       (response) => {
         if (response && response.couponCode && response.couponCode.name === this.couponCode) {
           const currentDate = new Date();
           const startDate = new Date(response.couponCode.start_date.year, response.couponCode.start_date.month - 1);
           const endDate = new Date(response.couponCode.end_date.year, response.couponCode.end_date.month - 1);
-  
+
           if (currentDate >= startDate && currentDate <= endDate) {
             this.isCouponValid = true;
             this.toastr.success('Kupon kodu başarıyla uygulandı', 'Başarılı');
             this.couponForm.reset();
-  
+
             // Minimum alışveriş tutarı kontrlü
             if (this.totalAmount >= response.couponCode.min) {
               const newAppliedCoupon = {
@@ -103,20 +102,20 @@ export class CheckoutCartComponent {
                 name: this.couponCode,
                 quantity: response.couponCode.quantity,
               };
-  
+
               user.user.coupons.push(newAppliedCoupon);
               this.authService.updateUser(user);
               this.showDiscountedTotal = true;
-  
+
               if (user.user.quantity > 0) {
                 user.user.quantity--;
               }
-  
+
               this.couponService.applyCoupon(response.couponCode);
             } else {
               this.toastr.error(`Minimum alışveriş tutarı ${response.couponCode.min} TL'yi karşılamıyor`, 'Hata');
               this.showDiscountedTotal = false;
-  
+
               if (user.user.quantity > 0) {
                 user.user.quantity--;
               }
@@ -125,7 +124,7 @@ export class CheckoutCartComponent {
             this.toastr.error('Bu kuponun süresi doldu', 'Hata');
             this.isCouponValid = false;
             this.showDiscountedTotal = false;
-  
+
             if (user.user.quantity > 0) {
               user.user.quantity--;
             }
@@ -134,20 +133,17 @@ export class CheckoutCartComponent {
           this.toastr.error('Kupon kodu geçerli değil', 'Hata');
           this.isCouponValid = false;
           this.showDiscountedTotal = false;
-  
+
           if (user.user.quantity > 0) {
             user.user.quantity--;
           }
         }
-  
+
         this.updateDiscountedTotal(response.couponCode);
         this.authService.getUser();
       }
     );
   }
-  
-  
-  
 
   updateDiscountedTotal(couponCode: any) {
     if (this.isCouponValid && this.totalAmount >= couponCode.min) {

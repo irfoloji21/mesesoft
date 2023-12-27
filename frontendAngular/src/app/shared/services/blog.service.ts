@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class BlogService {
   private apiUrl = 'http://localhost:8000/api/v2/blog';
 
@@ -47,5 +48,5 @@ export class BlogService {
     const url = `${this.apiUrl}/unlike-blog/${blogId}`;
     return this.http.put<any>(url, { user });
   }
-  
+
 }

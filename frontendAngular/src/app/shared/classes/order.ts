@@ -7,5 +7,5 @@ export interface Order {
     orderId?: any;
     amount?: any;
     orderDate: Date;
-    totalAmount?:any;
+    totalAmount?: any;
 }

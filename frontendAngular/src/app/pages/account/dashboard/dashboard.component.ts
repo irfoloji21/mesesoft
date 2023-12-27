@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { AddressComponent } from '../address/address/address.component';
-
 import { CouponComponent } from '../coupon/coupon.component';
 import { OrderComponent } from '../order/order.component';
 import { OrderService } from 'src/app/shared/services/order.service';
@@ -23,7 +22,11 @@ export class DashboardComponent implements OnInit {
   userInitials: string;
   public openDashboard: boolean = false;
 
-  constructor(private serviceAuth: AuthService, private router: Router, private orderService: OrderService) { }
+  constructor(
+    private serviceAuth: AuthService, 
+    private router: Router, 
+    private orderService: OrderService
+  ) { }
 
   menuItems = [
     { label: 'My Account', component: ProfileComponent },

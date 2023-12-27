@@ -8,11 +8,13 @@ import { ProductService } from 'src/app/shared/services/product.service';
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.scss']
 })
+
 export class WishlistComponent implements OnInit {
 
   public products: Product[] = [];
 
-  constructor(private router: Router, 
+  constructor(
+    private router: Router, 
     public productService: ProductService
   ) {
       this.productService.wishlistItems.subscribe(response => this.products = response);

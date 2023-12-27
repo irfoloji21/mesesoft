@@ -6,11 +6,12 @@ import { Product } from '../classes/product';
 @Injectable({
   providedIn: 'root'
 })
+
 export class BrandsColorSizeService {
 
   private filterUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getFilterData(): Observable<Product> {
     return this.http.get<Product>(this.filterUrl);

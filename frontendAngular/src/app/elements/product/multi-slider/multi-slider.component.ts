@@ -8,10 +8,10 @@ import { ProductService } from '../../../shared/services/product.service';
   templateUrl: './multi-slider.component.html',
   styleUrls: ['./multi-slider.component.scss']
 })
+
 export class MultiSliderComponent implements OnInit {
 
   public products: Product[] = [];
-
   public ProductSliderOneConfig: any = ProductOneSlider;
 
   constructor(public productService: ProductService) { 
@@ -20,7 +20,6 @@ export class MultiSliderComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

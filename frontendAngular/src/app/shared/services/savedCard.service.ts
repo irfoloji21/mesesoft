@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SavedCardService {
   private apiUrl = 'assets/data/savedCard.json';
 
@@ -14,7 +15,7 @@ export class SavedCardService {
   addNewCard(newCard: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/addNewCard`, newCard);
   }
-  
+
   getSavedCards(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }

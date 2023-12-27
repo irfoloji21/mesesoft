@@ -5,8 +5,9 @@ import { Observable } from 'rxjs'; // Koleksiyon modelinize uygun yol
 @Injectable({
   providedIn: 'root'
 })
+
 export class KoleksiyonService {
-    public apiUrl = "http://localhost:8000/api/v2"
+  public apiUrl = "http://localhost:8000/api/v2"
 
   constructor(private http: HttpClient) { }
 

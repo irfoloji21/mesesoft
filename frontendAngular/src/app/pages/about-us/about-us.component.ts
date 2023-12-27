@@ -8,8 +8,11 @@ import { AboutUsData } from 'src/app/shared/classes/about-us';
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.scss']
 })
+
 export class AboutUsComponent implements OnInit {
 
+  public TeamSliderConfig: any = TeamSlider;
+  public TestimonialSliderConfig: any = TestimonialSlider;
   aboutUsData: AboutUsData;
 
   constructor(private aboutUsService: AboutUsService) { }
@@ -18,12 +21,9 @@ export class AboutUsComponent implements OnInit {
     this.aboutUsService.getAboutUsData().subscribe(data => {
       this.aboutUsData = data;
       console.log(this.aboutUsData.aboutSection);
-      
+
     });
   }
-
-  public TeamSliderConfig: any = TeamSlider;
-  public TestimonialSliderConfig: any = TestimonialSlider;
 
   // Testimonial Carousel
   public testimonial = [{
@@ -64,6 +64,6 @@ export class AboutUsComponent implements OnInit {
     image: 'assets/images/team/3.jpg',
     name: 'John Shipmen',
     designation: 'Lead Developer'
- }]
+  }]
 
 }

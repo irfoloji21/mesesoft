@@ -12,26 +12,26 @@ import { ShippingService } from 'src/app/shared/services/shipping.service';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  public orderDetails: Order = { orderDate: new Date()  };
-  selectedAddress: any 
+  public orderDetails: Order = { orderDate: new Date() };
+  selectedAddress: any
   orderId;
   selectedShipping: any;
-  
+
   constructor(
-    public productService: ProductService, 
+    public productService: ProductService,
     private route: ActivatedRoute,
     private orderService: OrderService,
     private shippingService: ShippingService
-  ) { 
-      this.orderId = this.route.snapshot.params['orderId'];
-    }
+  ) {
+    this.orderId = this.route.snapshot.params['orderId'];
+  }
 
   ngOnInit(): void {
     this.orderService.checkoutItems.subscribe(response => {
-      console.log(response , "order")
+      console.log(response, "order")
       this.orderDetails = response;
-      console.log( "image")
-      this.orderDetails.orderDate = new Date(); 
+      console.log("image")
+      this.orderDetails.orderDate = new Date();
       console.log(this.orderDetails.shippingDetails.address)
       console.log('Order ID:', this.orderDetails.orderId);
     });
@@ -42,9 +42,10 @@ export class OrderSuccessComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       // 'orderId' parametresini URL'den al ve decode et
       this.orderId = decodeURIComponent(params.get('orderId'));
-      
+
       // Şimdi 'orderId' değerini kullanabilirsiniz.
       console.log('Decoded Order ID:', this.orderId);
-  })
+    })
 
-  }}
+  }
+}

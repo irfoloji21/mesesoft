@@ -43,13 +43,13 @@ import { AddressComponent } from './account/address/address/address.component';
 // import { BlogNoSidebarComponent } from './blog/blog-no-sidebar/blog-no-sidebar.component';
 
 const routes: Routes = [
-  { 
-    path: 'cart', 
-    component: CartComponent 
+  {
+    path: 'cart',
+    component: CartComponent
   },
-  { 
-    path: 'dashboard', 
-    component: DashboardComponent ,
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
     children: [
       { path: 'my-account', component: ProfileComponent },
       { path: 'address-book', component: AddressComponent },
@@ -58,33 +58,33 @@ const routes: Routes = [
       { path: 'saved-card', component: SavedCardComponent },
       { path: 'change-password', component: ChangePasswordComponent },
       { path: 'coupon', component: CouponComponent },
-      { path: '', redirectTo: 'my-account', pathMatch: 'full' }, 
+      { path: '', redirectTo: 'my-account', pathMatch: 'full' },
     ],
   },
-  { 
-    path: 'login', 
+  {
+    path: 'login',
     component: LoginComponent,
     // canActivate: [AuthGuard],
   },
-  { 
-    path: 'register', 
+  {
+    path: 'register',
     component: RegisterComponent,
     // canActivate: [AuthGuard],
   },
-  { 
-    path: 'forget/password', 
-    component: ForgetPasswordComponent 
+  {
+    path: 'forget/password',
+    component: ForgetPasswordComponent
   },
   {
     path: 'account-info',
     component: AccountInfoComponent,
   },
-  { 
-    path: 'contact', 
-    component: ContactComponent 
+  {
+    path: 'contact',
+    component: ContactComponent
   },
-  { 
-    path: 'checkout', 
+  {
+    path: 'checkout',
     component: CheckoutComponent,
     // children: [
     //   { path: 'checkout/address', component: AddressComponent, data: { step: 'adres' } },
@@ -93,45 +93,45 @@ const routes: Routes = [
     //   { path: '', redirectTo: 'checkout/address', pathMatch: 'full' },
     // ],
   },
-  { 
-    path: 'aboutus', 
-    component: AboutUsComponent 
+  {
+    path: 'aboutus',
+    component: AboutUsComponent
   },
-  { 
-    path: 'search', 
-    component: SearchComponent 
+  {
+    path: 'search',
+    component: SearchComponent
   },
-  { 
-    path: 'review', 
-    component: ReviewComponent 
+  {
+    path: 'review',
+    component: ReviewComponent
   },
-  { 
-    path: 'order/success', 
+  {
+    path: 'order/success',
     component: OrderSuccessComponent,
     // canActivate: [AuthGuard],
   },
 
-  { 
-    path: 'collection', 
-    component: CollectionComponent 
+  {
+    path: 'collection',
+    component: CollectionComponent
   },
 
-  { 
-    path: '404', 
-    component: ErrorComponent 
+  {
+    path: '404',
+    component: ErrorComponent
   },
 
-  { 
-    path: 'faq', 
-    component: FaqComponent 
+  {
+    path: 'faq',
+    component: FaqComponent
   },
-  { 
-    path: 'blog', 
-    component: BlogLeftSidebarComponent 
+  {
+    path: 'blog',
+    component: BlogLeftSidebarComponent
   },
-  { 
-    path: 'blog/details/:slug', 
-    component: BlogDetailsComponent 
+  {
+    path: 'blog/details/:slug',
+    component: BlogDetailsComponent
   },
   // { 
   //   path: 'portfolio/grid/two', 
@@ -161,11 +161,11 @@ const routes: Routes = [
   //   path: 'portfolio/masonry/full-width', 
   //   component: MasonryFullWidthComponent 
   // },
-    // { 
+  // { 
   //   path: 'account/wishlist', 
   //   component: WishlistComponent 
   // },
-    // { 
+  // { 
   //   path: 'blog/right/sidebar', 
   //   component: BlogRightSidebarComponent 
   // },
@@ -173,11 +173,11 @@ const routes: Routes = [
   //   path: 'blog/no/sidebar', 
   //   component: BlogNoSidebarComponent 
   // },
-    // { 
+  // { 
   //   path: 'typography', 
   //   component: TypographyComponent 
   // },
-    // {
+  // {
   //   path: 'change/password',
   //   component: ChangePasswordComponent
   // },
@@ -185,11 +185,11 @@ const routes: Routes = [
   //   path: 'profile', 
   //   component: ProfileComponent 
   // },
-    // { 
+  // { 
   //   path: 'address', 
   //   component: AddressComponent 
   // },
-    // { 
+  // { 
   //   path: 'compare/one', 
   //   component: CompareOneComponent 
   // },
@@ -197,11 +197,11 @@ const routes: Routes = [
   //   path: 'compare/two', 
   //   component: CompareTwoComponent 
   // },
-    // { 
+  // { 
   //   path: 'comingsoon', 
   //   component: ComingSoonComponent 
   // },
-    // { 
+  // { 
   //   path: 'lookbook', 
   //   component: LookbookComponent 
   // },

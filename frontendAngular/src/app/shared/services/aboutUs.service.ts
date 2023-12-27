@@ -6,10 +6,11 @@ import { AboutUsData } from '../classes/about-us';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AboutUsService {
 
   private apiUrl = 'assets/data/aboutUs.json'; // JSON dosyasının yolu
-    
+
   constructor(private http: HttpClient) { }
 
   getAboutUsData(): Observable<AboutUsData> {

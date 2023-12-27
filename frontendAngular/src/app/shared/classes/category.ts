@@ -15,7 +15,7 @@ export interface Category {
   rating?: number;
   subcategories?: Subcategory[];
   showMegaMenu: boolean;
-  isShow?:boolean;
+  isShow?: boolean;
 }
 
 export interface Categories {
@@ -35,7 +35,7 @@ export interface Subcategory {
   name?: string;
   description?: string;
   images?: Images[];
-  subcategories?: Subcategory[]; 
+  subcategories?: Subcategory[];
   showMegaMenu: boolean;
 }
 export interface CategoryDetails {

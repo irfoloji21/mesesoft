@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
   constructor(
@@ -39,7 +40,6 @@ export class LoginComponent implements OnInit {
       headers,
       withCredentials: true,
     };
-
 
     this.authService.login(formData.email, formData.password)
       .subscribe(response => {

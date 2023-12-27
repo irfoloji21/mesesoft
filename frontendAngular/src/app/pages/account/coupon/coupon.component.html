@@ -63,7 +63,7 @@
           </div>
         </div>
         <section class="couponWrapper" style="background-color: #f2f2f2">
-          <div *ngIf="!coupons || (coupons && coupons.length === 0)" >
+          <div *ngIf="!coupons || (coupons && coupons.length === 0)">
             <h5 style="text-align: center">No coupons available</h5>
           </div>
         </section>
@@ -75,7 +75,7 @@
       </a>
       <ng-template ngbNavContent>
         <section class="couponWrapper" style="background-color: #f2f2f2">
-          <div *ngIf="coupons && coupons.length > 0" >
+          <div *ngIf="coupons && coupons.length > 0">
             <div
               class="coupon-box row no-gutters bg-white p-1 h-entry"
               *ngFor="let coupon of coupons"

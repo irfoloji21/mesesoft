@@ -8,18 +8,20 @@ import { ProductService } from 'src/app/shared/services/product.service';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']
 })
+
 export class ServicesComponent implements OnInit {
 
-  constructor(private router: Router, private productService : ProductService, private toast:ToastrService) { }
+  constructor(
+    private router: Router, 
+    private productService : ProductService, 
+    private toast:ToastrService
+  ) { }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
   onlinePayment(){
     this.productService.cartItems.subscribe(res => {
       if(res.length>0) {
-
         this.router.navigate(['shop/checkout']);
       }
       else {

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HomeSlider } from '../../../shared/data/slider';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { KoleksiyonService } from 'src/app/shared/services/collection.service';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -11,8 +10,8 @@ import { ProductService } from 'src/app/shared/services/product.service';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
+
 export class SliderComponent implements OnInit {
-  
   @Input() sliders: any[];
   @Input() class: string;
   @Input() textClass: string;
@@ -21,11 +20,15 @@ export class SliderComponent implements OnInit {
   @Input() buttonClass: string;
   @Input() products: any  =[]
   slider : any =[]
-  constructor(public productService: ProductService, public categoryService: CategoryService, public collectionService: KoleksiyonService,
-    private router: Router,private route: ActivatedRoute) {}
+  constructor(
+    public productService: ProductService, 
+    public categoryService: CategoryService, 
+    public collectionService: KoleksiyonService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   shopNow(slider: any) {
     this.collectionService.getKoleksiyons().subscribe(res => {
@@ -42,6 +45,7 @@ export class SliderComponent implements OnInit {
     this.productService.getProducts.subscribe((response: any) => {
       this.products = response.products;
     });
+
     const productsArray = Array.isArray(this.products) ? this.products : [this.products];
     const filteredProducts = productsArray.filter((product) => product.ratings >= 3 && product.ratings <= 5);
     const productIdss = filteredProducts.map((product) => product._id);
@@ -55,6 +59,7 @@ export class SliderComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
   }
+  
   shopNowNewProducts() {
     this.productService.getProducts.subscribe((response: any) => {
       this.products = response.products;

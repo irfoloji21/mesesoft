@@ -12,7 +12,10 @@ export class ForgetPasswordComponent implements OnInit {
   email: string;
   forgotPasswordForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authService: AuthService
+  ) {
     this.forgotPasswordForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
