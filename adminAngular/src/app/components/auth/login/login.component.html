@@ -2,7 +2,7 @@
   <div class="authentication-box">
     <div class="container">
       <div class="row">
-        <div class="col-md-5 p-0 card-left">
+        <div class="col-md-5 p-0 card-left  d-none d-md-block">
           <div class="card bg-primary">
             <div class="svg-icon">
               <a [routerLink]="['/dashboard/default']">
@@ -202,7 +202,7 @@
                             Login
                           </button>
                         </div>
-                        <div class="form-footer">
+                        <!-- <div class="form-footer">
                           <span>Or Login up with social platforms</span>
                           <ul class="social">
                             <li>
@@ -230,12 +230,12 @@
                               ></a>
                             </li>
                           </ul>
-                        </div>
+                        </div> -->
                       </form>
                     </div>
                   </ng-template>
                 </li>
-                <li [ngbNavItem]="2">
+                <!-- <li [ngbNavItem]="2">
                   <a ngbNavLink>Register</a>
                   <ng-template ngbNavContent>
                     <form
@@ -321,7 +321,7 @@
                           </button>
                         </a>
                       </div>
-                      <!-- <div class="form-footer">
+                      <div class="form-footer">
                                               <span>Or Sign up with social platforms</span>
                                               <ul class="social">
                                                 <li><a href="javascript:void(0)"><i class="icon-facebook"></i></a></li>
@@ -329,10 +329,10 @@
                                                 <li><a href="javascript:void(0)"><i class="icon-instagram"></i></a></li>
                                                 <li><a href="javascript:void(0)"><i class="icon-pinterest"></i></a></li>
                                               </ul>
-                                            </div> -->
+                                            </div>
                     </form>
                   </ng-template>
-                </li>
+                </li> -->
               </ul>
               <div [ngbNavOutlet]="nav" class="mt-2"></div>
             </div>

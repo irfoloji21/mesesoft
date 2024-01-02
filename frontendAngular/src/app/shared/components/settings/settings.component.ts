@@ -49,7 +49,7 @@ export class SettingsComponent implements OnInit {
   ]
 
   constructor(
-    @Inject(PLATFORM_ID) 
+    @Inject(PLATFORM_ID)
     private platformId: Object,
     private translate: TranslateService,
     public productService: ProductService,
@@ -58,18 +58,18 @@ export class SettingsComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       search: [''],
     });
-    this.productService.cartItems.subscribe(response => {
-      // console.log(response, "search")
-      this.products = response});
   }
 
   ngOnInit(): void {
+    this.productService.cartItems.subscribe(response => {
+      this.products = response
+    });
+    
     this.getSearch();
   }
 
   getSearch() {
     const productSearch = this.searchForm.value.search;
-    // console.log(productSearch)
   }
 
   searchToggle() {
@@ -82,7 +82,6 @@ export class SettingsComponent implements OnInit {
       this.noProductsFound = response.length === 0;
     });
   }
-
 
   changeLanguage(code) {
     if (isPlatformBrowser(this.platformId)) {
