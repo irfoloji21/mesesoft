@@ -8,7 +8,7 @@ import { RegisterComponent } from './account/register/register.component';
 import { ForgetPasswordComponent } from './account/forget-password/forget-password.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { ContactComponent } from './account/contact/contact.component';
-import { CheckoutComponent } from './account/checkout/checkout.component';
+import { CheckoutComponent } from '../shop/checkout/checkout.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SearchComponent } from './search/search.component';
 import { ReviewComponent } from './review/review.component';
@@ -24,6 +24,8 @@ import { SavedCardComponent } from './account/saved-card/saved-card.component';
 import { CouponComponent } from './account/coupon/coupon.component';
 import { ChangePasswordComponent } from './account/change-password/change-password.component';
 import { AddressComponent } from './account/address/address/address.component';
+import { CheckoutGuard } from './checkoutRoute.guard';
+import { AuthGuard } from './route.guard';
 // import { CompareOneComponent } from './compare/compare-one/compare-one.component';
 // import { CompareTwoComponent } from './compare/compare-two/compare-two.component';
 // import { LookbookComponent } from './lookbook/lookbook.component';
@@ -86,6 +88,7 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+    canActivate: [CheckoutGuard],
     // children: [
     //   { path: 'checkout/address', component: AddressComponent, data: { step: 'adres' } },
     //   { path: 'checkout/checkout', component: CheckoutCartComponent, data: { step: 'checkout' } },
@@ -108,7 +111,7 @@ const routes: Routes = [
   {
     path: 'order/success',
     component: OrderSuccessComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 
   {

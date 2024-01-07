@@ -60,7 +60,6 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.cartItems.subscribe(response => {
-      console.log(response, "checkout")
       this.products = response
     });
     this.orderService.getSelectedAddress();

@@ -7,6 +7,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 import { Resolver } from '../shared/services/resolver.service';
+import { CheckoutGuard } from '../pages/checkoutRoute.guard';
 // import { ThreeColumnComponent } from './product/three-column/three-column.component';
 // import { FourImageComponent } from './product/four-image/four-image.component';
 // import { BundleProductComponent } from './product/bundle-product/bundle-product.component';
@@ -40,7 +41,8 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
-    component: CheckoutComponent
+    component: CheckoutComponent,
+    canActivate: [CheckoutGuard]
   },
   {
     path: 'checkout/success/:id',

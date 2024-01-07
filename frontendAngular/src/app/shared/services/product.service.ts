@@ -54,6 +54,7 @@ export class ProductService {
   public getProductBySlug(slug: string): Observable<Product> {
     return this.http.get(`${this.apiUrl}/product/${slug}`).pipe(map(data => data))
   }
+
   //creaateNewReview
   createNewReview(comment: Comment): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -241,6 +242,12 @@ export class ProductService {
     }));
   }
 
+  // Get Cart Items Length
+  getCartItems(): boolean {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    return Array.isArray(cartItems) && cartItems.length > 0;
+  }
+
   /*
     ---------------------------------------------
     ------------  Filter Product  ---------------
@@ -272,7 +279,6 @@ export class ProductService {
 
   // Sorting Filter
   public sortProducts(products: Product[], payload: string): any {
-
     if (payload === 'ascending') {
       return products.sort((a, b) => {
         if (a._id < b._id) {
@@ -377,12 +383,10 @@ export class ProductService {
 
   search(searchTerm: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/product/search/${searchTerm}`);
-
   }
 
   irfan(id: any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/product/get-products-by-category/${id}`);
-
   }
 
 }
