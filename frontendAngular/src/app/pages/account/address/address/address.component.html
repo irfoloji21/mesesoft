@@ -8,7 +8,7 @@
   <div class="address-book-section">
     <div class="row g-4">
       <ng-container *ngIf="!isAddingNew; else addingNewTemplate">
-        <div *ngIf="!userAddresses.length">
+        <div *ngIf="!loading && (!userAddresses || userAddresses.length === 0)">
           <div class="col-md-12 text-center">
             <h3>
               <strong>No Address Found</strong>

@@ -17,6 +17,7 @@ export class AddressComponent implements OnInit {
   isModalOpen: boolean = false;
   isEditing: boolean = false;
   editedAddresses: any[] = [];
+  public loading: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -35,12 +36,16 @@ export class AddressComponent implements OnInit {
   }
 
   loadUserAddresses() {
+    this.loading = true;
     this.authService.loadUser().subscribe(
       (res) => {
         this.userAddresses = res.user.addresses;
       },
       (error) => {
         console.error(error);
+      },
+      () => {
+        this.loading = false; // Yükleme tamamlandığında durumu kapat
       }
     );
   }
