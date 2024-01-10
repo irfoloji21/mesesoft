@@ -63,7 +63,11 @@
           </div>
         </div>
         <section class="couponWrapper" style="background-color: #f2f2f2">
-          <div *ngIf="!coupons || (coupons && coupons.length === 0)">
+          <div *ngIf="loading">
+            <!-- Burada istediğiniz bir yükleniyor göstergesi ekleyebilirsiniz -->
+            Loading...
+          </div>
+          <div *ngIf="!loading && (!coupons || coupons.length === 0)">
             <h5 style="text-align: center">No coupons available</h5>
           </div>
         </section>
