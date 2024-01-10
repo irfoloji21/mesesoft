@@ -222,14 +222,6 @@
             <div class="row">
               <div class="col-sm-12 col-lg-12">
                 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-                  <!-- <li [ngbNavItem]="1">
-                    <a ngbNavLink>Description</a>
-                    <ng-template ngbNavContent>
-                      <div
-                        [innerHTML]="sanitizeHtml(product.description)"
-                      ></div>
-                    </ng-template>
-                  </li> -->
                   <li [ngbNavItem]="1">
                     <a ngbNavLink>Comments</a>
                     <ng-template ngbNavContent>
@@ -269,17 +261,17 @@
                                   <div
                                     class="d-flex justify-content-between align-items-center"
                                   >
-                                  <div>
-                                    <h4>
-                                      {{ item.name }}
-                                    </h4>
-                                    <div class="review-rating">
-                                      <bar-rating
-                                        [rate]="item.rating"
-                                        [readOnly]="true"
-                                      ></bar-rating>
+                                    <div>
+                                      <h4>
+                                        {{ item.name }}
+                                      </h4>
+                                      <div class="review-rating">
+                                        <bar-rating
+                                          [rate]="item.rating"
+                                          [readOnly]="true"
+                                        ></bar-rating>
+                                      </div>
                                     </div>
-                                  </div>
                                     <span class="review-date float-right">
                                       {{
                                         item.createdAt | date : "MMM dd, yyyy"
@@ -396,6 +388,14 @@
                           </div>
                         </div>
                       </form>
+                    </ng-template>
+                  </li>
+                  <li [ngbNavItem]="3">
+                    <a ngbNavLink>Technicial Specifications</a>
+                    <ng-template ngbNavContent>
+                      <div
+                        [innerHTML]="sanitizeHtml(product.description)"
+                      ></div>
                     </ng-template>
                   </li>
                 </ul>
