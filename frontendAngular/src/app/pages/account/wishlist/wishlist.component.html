@@ -102,7 +102,7 @@
         <a [routerLink]="['/shop/checkout']" class="btn btn-solid">check out</a>
       </div>
     </div>
-    <div class="col-md-12 empty-cart-cls text-center" *ngIf="!products.length">
+    <div class="col-md-12 empty-cart-cls text-center" *ngIf="!loading && !products.length">
       <img
         src="assets/images/empty-wishlist.png"
         alt="Empty cart"

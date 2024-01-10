@@ -12,15 +12,25 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class WishlistComponent implements OnInit {
 
   public products: Product[] = [];
+  public loading: boolean = true;
 
   constructor(
     private router: Router, 
     public productService: ProductService
-  ) {
-      this.productService.wishlistItems.subscribe(response => this.products = response);
-     }
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.loadWishlist();
+   }
+
+   async loadWishlist() {
+    this.loading = true; 
+  
+    this.productService.wishlistItems.subscribe(response => {
+      this.products = response;
+      this.loading = false;
+    });
+  }
   
   async addToCart(product: any) {
     const status = await this.productService.addToCart(product);
