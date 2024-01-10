@@ -96,9 +96,7 @@
   }
 }
 
-
 // wishlist İcon 
-
 .product-icon {
   .wishlist-btn {
     background-color: transparent;
@@ -120,11 +118,11 @@
     }
 
     &.is-in-wishlist {
-      background-color: #FF4C3B; 
-      border-color: #FF4C3B; 
+      background-color: #ff4c3b80; 
+      border-color: #ff4c3b80; 
       
       i {
-        color: white; 
+        color: #FF2800; 
       }
     }
   }
