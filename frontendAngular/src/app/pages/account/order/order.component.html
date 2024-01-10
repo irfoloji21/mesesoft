@@ -10,7 +10,7 @@
               </div>
               <div
                 class="col-sm-12 empty-cart-cls text-center"
-                *ngIf="!filteredOrders.length"
+                *ngIf="!loading && (!filteredOrders || filteredOrders.length === 0)"
               >
                 <img
                   src="assets/images/icon-empty-cart.png"
@@ -22,7 +22,10 @@
                 </h3>
                 <h4>Explore more shortlist some items.</h4>
               </div>
-              <div class="table-responsive-xl" *ngIf="filteredOrders.length">
+              <div
+                class="table-responsive-xl"
+                *ngIf="filteredOrders && filteredOrders.length > 0"
+              >
                 <table class="table cart-table order-table">
                   <thead>
                     <tr class="table-head">

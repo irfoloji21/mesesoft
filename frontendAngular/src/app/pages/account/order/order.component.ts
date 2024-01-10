@@ -16,6 +16,7 @@ export class OrderComponent implements OnInit {
   public orderDetails: any;
   public ImageSrc: string;
   isModalOpen: boolean = false;
+  public loading: boolean = true;
 
   constructor(
     private authService: AuthService,
@@ -29,6 +30,7 @@ export class OrderComponent implements OnInit {
   }
 
   loadUserOrders(userId: string) {
+    this.loading = true;
     this.orderService.getOrders(userId).subscribe(
       (res) => {
         this.filteredOrders = res.orders;
@@ -37,6 +39,9 @@ export class OrderComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+      },
+      () => {
+        this.loading = false; // Yükleme tamamlandığında durumu kapat
       }
     );
   }
