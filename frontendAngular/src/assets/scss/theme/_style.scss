@@ -7596,10 +7596,10 @@ ngx-loading-bar {
       background-color: transparent;
       border: none;
       i {
-        border-left: 1px solid $round-border;
+        // border-left: 1px solid $round-border;
         font-size: 18px;
-        padding-left: 10px;
-        margin-left: 5px;
+        // padding-left: 10px;
+        // margin-left: 5px;
         transition: all 0.5s ease;
       }
       span {
@@ -8284,28 +8284,41 @@ ngx-loading-bar {
   }
 }
 
-.stripe-section {
-  text-transform: uppercase;
-  background-color: #f9f9f9;
-  padding: 15px;
-  border: 1px solid #dddddd;
-  h5 {
-    font-weight: 700;
-  }
-  .content {
-    h5 {
-      color: #4f4f4f;
-      font-weight: 400;
+.saved-cart-section {
+  .page-title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .btn {
+      background-color: $color-red;
+      border-color: $color-red;
+      color: $white-dark;
     }
-    table {
-      width: 100%;
-      tr {
-        border-bottom: 1px solid #f1f1f1;
-        td {
-          padding: 8px 0;
-          color: #9a9a9a;
-          &:last-child {
-            text-align: right;
+  }
+  .stripe-section {
+    text-transform: uppercase;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    h5 {
+      font-weight: 700;
+    }
+    .content {
+      h5 {
+        color: #4f4f4f;
+        font-weight: 400;
+      }
+      table {
+        width: 100%;
+        tr {
+          border-bottom: 1px solid #f1f1f1;
+          td {
+            padding: 8px 0;
+            color: #9a9a9a;
+            &:last-child {
+              text-align: right;
+            }
           }
         }
       }

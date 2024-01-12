@@ -28,6 +28,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   reviewForm: FormGroup;
   selectedRating: number;
   public userId: string;
+  public doubleDipping: boolean = false;
   filteredOrders: any[] = [];
   comment: any = {}
   isInWishlist: boolean = false;
@@ -81,13 +82,20 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.orderService.getOrders(userId).subscribe(
       (res) => {
         this.filteredOrders = res.orders;
-        for (const order of this.filteredOrders) {
-          for (const product of order.cart) {
-            if (product._id === this.product._id) {
-              this.showReviewForm = true;
-            }
-          }
-        }
+        const user = this.authService.getUser();
+        this.showReviewForm = this.filteredOrders.some(order =>
+          order.cart.some(product => product._id === this.product._id)
+        );
+        this.doubleDipping = this.product.reviews.some(review => review.user._id === user.user._id)
+        console.log(this.doubleDipping);
+        
+        // for (const order of this.filteredOrders) {
+        //   for (const product of order.cart) {
+        //     if (product._id === this.product._id) {
+        //       this.showReviewForm = true;
+        //     }
+        //   }
+        // }
       },
       (error) => {
         console.error(error);

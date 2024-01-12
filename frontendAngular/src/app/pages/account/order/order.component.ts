@@ -16,7 +16,7 @@ export class OrderComponent implements OnInit {
   public orderDetails: any;
   public ImageSrc: string;
   isModalOpen: boolean = false;
-  public loading: boolean = true;
+  public loading: boolean = false;
 
   constructor(
     private authService: AuthService,

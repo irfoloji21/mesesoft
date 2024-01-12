@@ -228,7 +228,7 @@
                       <div class="row section-b-space">
                         <div class="col-sm-12">
                           <h4>User Reviews</h4>
-                          <ul>
+                          <ul class="list-unstyled">
                             <li
                               class="no-reviews"
                               *ngIf="
@@ -308,13 +308,23 @@
                         class="alert alert-warning"
                         role="alert"
                       >
-                        <span
-                          >You cannot leave a review without purchasing the
-                          product !</span
-                        >
+                        <span>
+                          You cannot leave a review without purchasing the
+                          product !
+                        </span>
                       </div>
+                      <div
+                        *ngIf="!doubleDipping"
+                        class="alert alert-warning"
+                        role="alert"
+                      >
+                        <span>
+                          You can only comment once
+                        </span>
+                      </div>
+
                       <form
-                        *ngIf="showReviewForm"
+                        *ngIf="showReviewForm && doubleDipping"
                         class="theme-form"
                         [formGroup]="reviewForm"
                         (ngSubmit)="submitReview()"
