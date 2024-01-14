@@ -16,17 +16,14 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-lg-6">
-            <form class="form-inline subscribe-form"
-              action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda"
-              target="_blank" method="post">
+          <div class="col-lg-6">
+            <form [formGroup]="subscribeForm" class="form-inline subscribe-form" (ngSubmit)="subscribe()">
               <div class="form-group mx-sm-3">
-                <input type="email" #name name="EMAIL" id="mce-EMAIL" class="form-control"
-                  placeholder="Enter your email" />
+                <input formControlName="email" id="mce-EMAIL" class="form-control" placeholder="Enter your email" />
               </div>
-              <button type="submit" class="btn btn-solid">subscribe</button>
+              <button type="submit" class="btn btn-solid">Subscribe</button>
             </form>
-          </div> -->
+          </div>
         </div>
       </section>
     </div>
@@ -40,10 +37,7 @@
           </div>
           <div class="footer-contant">
             <div class="footer-logo">
-              <img
-                src="../../../../assets/images/icon/MeseSoft Logo2.jpg"
-                alt="logo"
-              />
+              <img src="../../../../assets/images/icon/MeseSoft Logo2.jpg" alt="logo" />
             </div>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -53,39 +47,25 @@
             <div class="footer-social">
               <ul>
                 <li>
-                  <a href="{{ socialMediaLinks?.facebook }}"
-                    ><i class="fa fa-facebook" aria-hidden="true"></i
-                  ></a>
+                  <a href="{{ socialMediaLinks?.facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                  <a href="{{ socialMediaLinks?.googlePlus }}"
-                    ><i class="fa fa-google-plus" aria-hidden="true"></i
-                  ></a>
+                  <a href="{{ socialMediaLinks?.googlePlus }}"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                  <a href="{{ socialMediaLinks?.twitter }}"
-                    ><i class="fa fa-twitter" aria-hidden="true"></i
-                  ></a>
+                  <a href="{{ socialMediaLinks?.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                  <a href="{{ socialMediaLinks?.instagram }}"
-                    ><i class="fa fa-instagram" aria-hidden="true"></i
-                  ></a>
+                  <a href="{{ socialMediaLinks?.instagram }}"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                  <a href="{{ socialMediaLinks?.rss }}"
-                    ><i class="fa fa-rss" aria-hidden="true"></i
-                  ></a>
+                  <a href="{{ socialMediaLinks?.rss }}"><i class="fa fa-rss" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                  <a href="{{ socialMediaLinks?.youtube }}"
-                    ><i class="fa fa-youtube" aria-hidden="true"></i
-                  ></a>
+                  <a href="{{ socialMediaLinks?.youtube }}"><i class="fa fa-youtube" aria-hidden="true"></i></a>
                 </li>
                 <li>
-                  <a href="{{ socialMediaLinks?.phoneNumber }}"
-                    ><i class="fa fa-phone" aria-hidden="true"></i
-                  ></a>
+                  <a href="{{ socialMediaLinks?.phoneNumber }}"><i class="fa fa-phone" aria-hidden="true"></i></a>
                 </li>
               </ul>
             </div>
@@ -96,11 +76,7 @@
             <div class="footer-title">
               <h4>Categories</h4>
             </div>
-            <div
-              class="footer-contant"
-              *ngFor="let categorie of categories"
-              style="cursor: pointer"
-            >
+            <div class="footer-contant" *ngFor="let categorie of categories" style="cursor: pointer">
               <ul *ngIf="categorie.isShow">
                 <li (click)="toggletNavActive(categorie)">
                   {{ categorie.name }}
@@ -175,9 +151,7 @@
                 <a><img src="assets/images/icon/paypal.png" alt="" /></a>
               </li>
               <li>
-                <a
-                  ><img src="assets/images/icon/american-express.png" alt=""
-                /></a>
+                <a><img src="assets/images/icon/american-express.png" alt="" /></a>
               </li>
               <li>
                 <a><img src="assets/images/icon/discover.png" alt="" /></a>

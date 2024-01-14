@@ -3,6 +3,8 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
 import { SocialMediaService } from '../../services/social-media.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SubscribeService } from '../../services/subscribe.service';
 
 @Component({
   selector: 'app-footer-one',
@@ -19,12 +21,19 @@ export class FooterOneComponent implements OnInit {
   categories: Category[] = []
   socialMediaLinks: any;
   public today: number = Date.now();
+  subscribeForm: FormGroup;
 
   constructor(
     private categoryService: CategoryService,
     private socialMediaService: SocialMediaService,
-    private router: Router, private route: ActivatedRoute
-  ) { }
+    private router: Router, private route: ActivatedRoute,
+    private fb: FormBuilder, private subscribeService: SubscribeService
+  ) {
+
+    this.subscribeForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data: any) => {
@@ -36,6 +45,21 @@ export class FooterOneComponent implements OnInit {
     this.socialMediaService.getSocialMediaLinks().subscribe(links => {
       this.socialMediaLinks = links;
     });
+  }
+
+  subscribe() {
+    if (this.subscribeForm.valid) {
+      const email = this.subscribeForm.value.email;
+
+      this.subscribeService.subscribe(email).subscribe(
+        (response) => {
+          console.log('Abonelik başarılı:', response);
+        },
+        (error) => {
+          console.error('Abonelik hatası:', error);
+        }
+      );
+    }
   }
 
   toggletNavActive(item) {
