@@ -18,18 +18,18 @@
             </li>
             <li class="mobile-wishlist">
               <a [routerLink]="['/shop/wishlist']"><i class="fa fa-heart" aria-hidden="true">
-                 <!-- wishlist içerisindeki ürün sayısını belirtiyor -->
-                <!-- <span *ngIf="wishlistCount" class="wishlist-round-icon">{{ wishlistCount }}</span> -->
-              </i>
-              Wishlist
+                  <!-- wishlist içerisindeki ürün sayısını belirtiyor -->
+                  <!-- <span *ngIf="wishlistCount" class="wishlist-round-icon">{{ wishlistCount }}</span> -->
+                </i>
+                Wishlist
               </a>
             </li>
             <li class="onhover-dropdown mobile-account ">
-              <span  *ngIf="!isLoggedIn">
-                <i class="fa fa-user" aria-hidden="true"  ></i> My Account
-              </span>      
+              <span *ngIf="!isLoggedIn">
+                <i class="fa fa-user" aria-hidden="true"></i> My Account
+              </span>
               <span class="round-icon" *ngIf="isLoggedIn" (click)="profile()">
-               {{userInitials }}
+                {{userInitials }}
               </span>
               <ul class="onhover-show-div">
                 <li *ngIf="isLoggedIn; else loginLink">
@@ -73,12 +73,12 @@
                   <li>
                     <a data-lng="es" [routerLink]="['/register']">
                       Register
-                    </a> 
+                    </a>
                   </li>
                 </ng-template>
               </ul>
             </li>
-            
+
           </ul>
         </div>
       </div>

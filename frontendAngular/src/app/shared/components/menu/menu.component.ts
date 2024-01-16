@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
 import { ProductService } from '../../services/product.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-menu',
@@ -27,7 +28,8 @@ export class MenuComponent implements OnInit {
     public navServices: NavService,
     public categoryService: CategoryService,
     private route: ActivatedRoute,
-    private product: ProductService
+    private product: ProductService,
+    private translationService: TranslationService
   ) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
@@ -149,6 +151,13 @@ export class MenuComponent implements OnInit {
       console.error("Ürün bulunamadı.");
     }
   }
+
+  selectedLanguage: string = 'en';
+
+onLanguageChange(): void {
+    this.translationService.changeLanguage(this.selectedLanguage);
+  }
+  
 }
 
 
