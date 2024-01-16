@@ -68,6 +68,11 @@ export class SettingsComponent implements OnInit {
     this.getSearch();
   }
 
+  changeLanguage(code) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.translate.use(code)
+    }
+  }
   getSearch() {
     const productSearch = this.searchForm.value.search;
   }
@@ -83,11 +88,7 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  changeLanguage(code) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.translate.use(code)
-    }
-  }
+ 
 
   get getTotal(): Observable<number> {
     return this.productService.cartTotalAmount();

@@ -5,28 +5,17 @@
         <img src="assets/images/icon/search.png" class="img-fluid" alt="" />
         <i class="ti-search"></i>
       </div>
-      <div
-        id="search-overlay"
-        class="search-overlay"
-        [ngStyle]="{ display: search ? 'block' : 'none' }"
-      >
+      <div id="search-overlay" class="search-overlay" [ngStyle]="{ display: search ? 'block' : 'none' }">
         <div>
-          <span class="closebtn" title="Close Overlay" (click)="searchToggle()"
-            >×</span
-          >
+          <span class="closebtn" title="Close Overlay" (click)="searchToggle()">×</span>
           <div class="overlay-content">
             <div class="container">
               <div class="row">
                 <div class="col-xl-12">
                   <form [formGroup]="searchForm" (ngSubmit)="searchProduct()">
                     <div class="form-group">
-                      <input
-                        formControlName="search"
-                        type="text"
-                        class="form-control"
-                        id="exampleInputPassword1"
-                        placeholder="Search"
-                      />
+                      <input formControlName="search" type="text" class="form-control" id="exampleInputPassword1"
+                        placeholder="Search" />
                     </div>
                     <button type="submit" class="btn btn-primary">
                       <i class="fa fa-search"></i>
@@ -37,15 +26,8 @@
                 <div class="col-xl-12 mt-4">
                   <div class="row" *ngIf="!noProductsFound && products">
                     <div class="col-xl-3" *ngFor="let item of products">
-                      <div
-                        class="card"
-                        [routerLink]="['/shop/product/', item.slug]"
-                      >
-                        <img
-                          src="{{ item.images[0].url }}"
-                          class="card-img-top"
-                          alt="Ürün Resmi 1"
-                        />
+                      <div class="card" [routerLink]="['/shop/product/', item.slug]">
+                        <img src="{{ item.images[0].url }}" class="card-img-top" alt="Ürün Resmi 1" />
                         <div class="card-body">
                           <h5 class="card-title">{{ item.name }}</h5>
                           <p class="card-text">
@@ -65,22 +47,14 @@
     </li>
     <li class="onhover-div mobile-setting">
       <div style="width: 35px; height: 35px">
-        <img
-          src="assets/images/icon/language2.png"
-          class="img-fluid"
-          alt="settong"
-        />
+        <img src="assets/images/icon/language2.png" class="img-fluid" alt="settong" />
         <i class="ti-settings"></i>
       </div>
       <div class="show-div setting">
         <h6>language</h6>
         <ul>
           <li *ngFor="let language of languages">
-            <a
-              href="javascript:void(0)"
-              (click)="changeLanguage(language.code)"
-              >{{ language.name }}</a
-            >
+            <a href="javascript:void(0)" (click)="changeLanguage(language.code)">{{ language.name }}</a>
           </li>
         </ul>
         <h6>currency</h6>
@@ -88,7 +62,7 @@
           <li *ngFor="let currency of currencies">
             <a href="javascript:void(0)" (click)="changeCurrency(currency)">{{
               currency.name
-            }}</a>
+              }}</a>
           </li>
         </ul>
       </div>
@@ -104,18 +78,11 @@
       <ul class="show-div shopping-cart" *ngIf="!products.length">
         <h5>Your cart is currently empty.</h5>
       </ul>
-      <ul 
-        class="show-div shopping-cart" 
-        *ngIf="products.length"
-      >
+      <ul class="show-div shopping-cart" *ngIf="products.length">
         <li *ngFor="let product of products">
           <div class="media">
             <a [routerLink]="['/shop/product/', product.name]">
-              <img
-                class="me-3"
-                [src]="product?.images[0].url"
-                [alt]="product?.images[0].url"
-              />
+              <img class="me-3" [src]="product?.images[0].url" [alt]="product?.images[0].url" />
             </a>
             <div class="media-body">
               <a [routerLink]="['/shop/product/', product.name]">
@@ -130,9 +97,7 @@
             </div>
           </div>
           <div class="close-circle" (click)="removeItem(product)">
-            <a href="javascript:void(0)"
-              ><i class="fa fa-times" aria-hidden="true"></i
-            ></a>
+            <a href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
           </div>
         </li>
         <li>
