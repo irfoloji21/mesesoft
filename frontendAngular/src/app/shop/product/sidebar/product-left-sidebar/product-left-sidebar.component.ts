@@ -72,10 +72,12 @@ export class ProductLeftSidebarComponent implements OnInit {
     });
   }
 
-  openSharePopup() {
+  openSharePopup(shareUrl: string) {
     const productUrl = encodeURIComponent(window.location.href);
     // Burada bir popup veya paylaşım penceresi açabilir veya sadece URL'yi konsola yazdırabilirsiniz
-    console.log(productUrl);
+    window.open(shareUrl, '_blank');
+    console.log(shareUrl);
+    
   }
 
   loadUserOrders(userId: string) {

@@ -29,15 +29,13 @@ export class SocialComponent implements OnInit {
       case 'twitter':
         shareUrl = `https://twitter.com/intent/tweet?url=${productUrl}`;
         break;
-      case 'instagram':
-        shareUrl = `https://www.instagram.com/share?url=${productUrl}`;
-        break;
       case 'whatsapp':
         shareUrl = `https://api.whatsapp.com/send?text=${productUrl}`;
         break;
       default:
         break;
     }
+    
 
     this.shareClicked.emit(shareUrl);
 
