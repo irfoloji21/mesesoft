@@ -83,14 +83,22 @@
   "dashboard": "Tableau de bord",
   "FAQ": "FAQ",
   "blog-details": "détails du blog",
-  "menuItems": {
-    "womens": "Çevrilmek istenen metin 1"
-  },
+  
+
+
+
+  
   "special-offer": "Offre spéciale",
   "top-collection": "Collection supérieure",
 
-    "ecommerce-angular": "E-commerce Angular"
-
+    "ecommerce-angular": "E-commerce angulaire",
+    "recent_story": "Dernière histoire",
+    "from_the_blog": "DU BLOG",
+    "online_payment": "Paiement en Ligne",
+  "contrary_to_popular_belief": "Contrairement à la croyance populaire",
+  "categories": "Catégories",
+  "why_we_choose": "Pourquoi nous choisir",
+  "store_information": "Informations sur le magasin"
   
   
 }

@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../classes/product";
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { GoogletranslateService } from '../../services/googletranslate.service';
+import { GoogleObj } from '../../classes/solution';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
+  private translateBtn: any;
   searchForm: FormGroup;
   public products: Product[] = [];
   public search: boolean = false;
@@ -67,7 +69,8 @@ export class SettingsComponent implements OnInit {
     private platformId: Object,
     private translate: TranslateService,
     public productService: ProductService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private google: GoogletranslateService
   ) {
     this.searchForm = this.formBuilder.group({
       search: [''],
@@ -80,6 +83,12 @@ export class SettingsComponent implements OnInit {
     });
     
     this.getSearch();
+    
+  this.translateBtn = document.getElementById('translatebtn');
+  if (!this.translateBtn) {
+    console.error('translateBtn is null!');
+    return;
+  }
   }
 
   changeLanguage(code) {
@@ -88,6 +97,8 @@ export class SettingsComponent implements OnInit {
        // Flag 
        this.selectedLanguage = this.languages.find(lang => lang.code === code);
     }
+
+    
   }
   getSearch() {
     const productSearch = this.searchForm.value.search;
@@ -118,4 +129,41 @@ export class SettingsComponent implements OnInit {
     this.productService.Currency = currency
   }
 
+
+
+
+
+
+
+  send() {
+    const translateBtn = document.getElementById('translatebtn') as HTMLButtonElement;
+  
+    if (!translateBtn) {
+      console.error('translateBtn is null!');
+      return;
+    }
+  
+    const googleObj: GoogleObj = {
+      q: 'hello',
+      target: 'es'
+    };
+  
+    translateBtn.disabled = true;
+  
+    this.google.translate(googleObj).subscribe(
+      (res: any) => {
+        translateBtn.disabled = false;
+        console.log(res.data.translations[0].translatedText);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  
+
+
+
+
+  
 }

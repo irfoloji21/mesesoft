@@ -1,6 +1,13 @@
 {
     "special-offer": "Özel teklif",
     "top-collection": "En iyi koleksiyon",
-    "ecommerce-angular": "Eticaret Angular",
-    "call-us": "Bizi Ara"
+    "ecommerce-angular": "E-ticaret Angular",
+    "call-us": "Bizi Ara",
+    "recent_story": "SON HABER",
+    "from_the_blog": "BLOG'DAN",
+    "online_payment": "Online Ödeme",
+    "contrary_to_popular_belief": "Yaygın İnanışın Aksine",
+    "categories": "Kategoriler",
+    "why_we_choose": "Neden Biz",
+    "store_information": "Mağaza Bilgisi"
 }

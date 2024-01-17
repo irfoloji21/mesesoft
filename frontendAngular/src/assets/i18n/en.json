@@ -83,16 +83,24 @@
   "dashboard": "Dashboard",
   "FAQ": "FAQ",
   "blog-details": "blog details",
-  "menuItems": {
-    "womens": "Çevrilmek "
-  },
+ 
+
+
+
+
+
+
   "special-offer": "Special offer",
   "top-collection": "Top Collection",
 
-  "ecommerce-angular": "Ecommerce Angular"
+  "ecommerce-angular": "E-commerce Angular",
 
+  "recent_story": "Recent Story",
+  "from_the_blog": "FROM THE BLOG",
+  "online_payment": "Online Payment",
+  "contrary_to_popular_belief": "Contrary to Popular Belief",
   
-  
-  
-  
+  "categories": "Categories",
+  "why_we_choose": "Why We Choose",
+  "store_information": "Store Information"
 }
