@@ -46,23 +46,26 @@
       </div>
     </li>
     <li class="onhover-div mobile-setting">
-      <div style="width: 35px; height: 35px">
-        <img src="assets/images/icon/language2.png" class="img-fluid" alt="settong" />
+      <div >
+        <img [src]="getFlagForCurrentLanguage()" class="img-fluid flag-icon" alt="setting" />
         <i class="ti-settings"></i>
       </div>
       <div class="show-div setting">
-        <h6>language</h6>
+        <h4 style="text-align: center;">language</h4>
         <ul>
           <li *ngFor="let language of languages">
-            <a href="javascript:void(0)" (click)="changeLanguage(language.code)">{{ language.name }}</a>
+            <a href="javascript:void(0)" (click)="changeLanguage(language.code)">
+              <img [src]="language.flag" class="img-fluid flag-icon" alt="{{ language.name }}" />
+              {{ language.name }}
+            </a>
           </li>
         </ul>
         <h6>currency</h6>
         <ul class="list-inline">
           <li *ngFor="let currency of currencies">
-            <a href="javascript:void(0)" (click)="changeCurrency(currency)">{{
-              currency.name
-              }}</a>
+            <a href="javascript:void(0)" (click)="changeCurrency(currency)">
+              {{ currency.name }}
+            </a>
           </li>
         </ul>
       </div>

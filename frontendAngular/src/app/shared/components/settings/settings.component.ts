@@ -17,20 +17,30 @@ export class SettingsComponent implements OnInit {
   public products: Product[] = [];
   public search: boolean = false;
   public noProductsFound: boolean = false;
-
+ 
   public languages = [
     {
       name: 'English',
-      code: 'en'
+      code: 'en',
+      flag: 'assets/images/icon/England.jpg'
     }, {
       name: 'French',
-      code: 'fr'
+      code: 'fr',
+      flag: 'assets/images/icon/France.jpeg'
     }
     , {
       name: 'Turkish',
-      code: 'tr'
+      code: 'tr',
+      flag: 'assets/images/icon/turkish.gif'
     }
   ];
+  public selectedLanguage: any = this.languages[0]; 
+
+  getFlagForCurrentLanguage(): string {
+    return this.selectedLanguage.flag;
+  }
+
+ 
 
   public currencies = [
     {
@@ -75,6 +85,8 @@ export class SettingsComponent implements OnInit {
   changeLanguage(code) {
     if (isPlatformBrowser(this.platformId)) {
       this.translate.use(code)
+       // Flag 
+       this.selectedLanguage = this.languages.find(lang => lang.code === code);
     }
   }
   getSearch() {
