@@ -1,9 +1,5 @@
 <div class="main-navbar">
-  <div
-    id="mainnav"
-    [class.opennav]="navServices?.mainMenuToggle"
-    class="mainnav-container"
-  >
+  <div id="mainnav" [class.opennav]="navServices?.mainMenuToggle" class="mainnav-container">
     <!-- <div class="toggle-nav" (click)="mainMenuToggle()">
       <i class="fa fa-bars sidebar-bar"></i>
     </div> -->
@@ -15,21 +11,13 @@
         </div>
       </li>
 
-      <li
-        *ngFor="let menuItem of menuItems"
-        [class.mega-menu]="menuItem.megaMenu"
-      >
+      <li *ngFor="let menuItem of menuItems" [class.mega-menu]="menuItem.megaMenu">
         <!-- Sub -->
-        <a
-          *ngIf="menuItem.isShow"
-          href="javascript:void(0)"
-          class="nav-link"
-          (click)="toggletNavActive(menuItem)"
-        >
+        <a *ngIf="menuItem.isShow" href="javascript:void(0)" class="nav-link" (click)="toggletNavActive(menuItem)">
           {{ menuItem.name | translate }}
-          <div class="lable-nav" *ngIf="menuItem.badge">
+          <!-- <div class="lable-nav" *ngIf="menuItem.badge">
             {{ menuItem.badgeText | translate }}
-          </div>
+          </div> -->
           <span class="sub-arrow" *ngIf="menuItem.subcategories"></span>
         </a>
         <!-- Link -->
@@ -39,49 +27,35 @@
         <!-- External Tab Link -->
         <!-- (click)="navigateWithQueryParams(menuItem.name, childrenItem.name)" -->
 
-        <div
-          class="mega-menu-container"
-          *ngIf="menuItem.megaMenu && menuItem.subcategories"
-          [class.mega-menu]="menuItem.megaMenu"
-        >
+        <div class="mega-menu-container" *ngIf="menuItem.megaMenu && menuItem.subcategories"
+          [class.mega-menu]="menuItem.megaMenu">
           <div class="container">
             <div class="row">
-              <div
-                class="col mega-box"
-                *ngFor="let childrenItem of menuItem.subcategories"
-              >
+              <div class="col mega-box" *ngFor="let childrenItem of menuItem.subcategories">
                 <div class="link-section">
                   <div class="menu-title">
                     <h5>
                       {{ childrenItem.name | translate }}
-                      <span
-                        class="sub-arrow"
-                        *ngIf="childrenItem.subcategories"
-                      ></span>
+                      <span class="sub-arrow" *ngIf="childrenItem.subcategories"></span>
                     </h5>
                   </div>
                   <div class="menu-content opensubmegamenu">
                     <ul *ngIf="childrenItem.subcategories">
-                      <li
-                        *ngFor="
+                      <li *ngFor="
                           let childrenSubItem of childrenItem.subcategories
-                        "
-                      >
+                        ">
                         <!-- Sub -->
-                        <a
-                          href="javascript:void(0)"
-                          (click)="
+                        <a href="javascript:void(0)" (click)="
                             navigateWithQueryParams(
                               menuItem.name,
                               childrenItem.name,
                               childrenSubItem
                             )
-                          "
-                        >
+                          ">
                           {{ childrenSubItem.name | translate }}
                           <span class="new-tag" *ngIf="childrenSubItem.badge">{{
                             childrenSubItem.badgeText | translate
-                          }}</span>
+                            }}</span>
                         </a>
                         <!-- Link -->
                         <!-- External Link -->

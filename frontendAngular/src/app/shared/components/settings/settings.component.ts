@@ -26,6 +26,10 @@ export class SettingsComponent implements OnInit {
       name: 'French',
       code: 'fr'
     }
+    , {
+      name: 'Turkish',
+      code: 'tr'
+    }
   ];
 
   public currencies = [

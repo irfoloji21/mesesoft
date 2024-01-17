@@ -82,5 +82,10 @@
   "coming-soon": "Bientôt disponible",
   "dashboard": "Tableau de bord",
   "FAQ": "FAQ",
-  "blog-details": "détails du blog"
+  "blog-details": "détails du blog",
+  "menuItems": {
+    "womens": "Çevrilmek istenen metin 1"
+  },
+  "special-offer": "Offre spéciale",
+  "top-collection": "Collection supérieure"
 }

@@ -5,7 +5,7 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../classes/category';
 import { ProductService } from '../../services/product.service';
 import { TranslationService } from '../../services/translation.service';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -29,7 +29,8 @@ export class MenuComponent implements OnInit {
     public categoryService: CategoryService,
     private route: ActivatedRoute,
     private product: ProductService,
-    private translationService: TranslationService
+    private translationService: TranslationService,
+    private translate: TranslateService
   ) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
@@ -42,6 +43,9 @@ export class MenuComponent implements OnInit {
     // this.router.events.subscribe((event) => {
     //   this.navServices.mainMenuToggle = false;
     // });
+
+ 
+    
   }
 
   loadSubcategories(categories: any[]) {
@@ -69,6 +73,8 @@ export class MenuComponent implements OnInit {
 
     this.menuItems = categories;
   }
+
+  
 
   // Click Toggle menu (Mobile) (Main menu)
   toggletNavActive(item) {
@@ -100,6 +106,22 @@ export class MenuComponent implements OnInit {
           }
         });
       }
+    });
+    this.translationService.currentLang$.subscribe(lang => {
+      // Dil değiştiğinde yapılacak işlemler
+      console.log('Current Language:', lang);
+      // Diğer işlemler...
+    });
+
+    this.translationService.currentLang$.subscribe(lang => {
+      console.log('Current Language:', lang);
+    
+      // Çevirilen metinleri kontrol etmek için
+      this.translate.get('menuItems.item1').subscribe((translation: string) => {
+        console.log('Translated Text for item1:', translation);
+        console.log('Translated Text for item1:', this.translate.instant('menuItems.item1'));
+
+      });
     });
   }
 
@@ -154,9 +176,7 @@ export class MenuComponent implements OnInit {
 
   selectedLanguage: string = 'en';
 
-onLanguageChange(): void {
-    this.translationService.changeLanguage(this.selectedLanguage);
-  }
+
   
 }
 

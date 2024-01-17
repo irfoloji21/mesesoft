@@ -82,5 +82,10 @@
   "coming-soon": "coming soon",
   "dashboard": "Dashboard",
   "FAQ": "FAQ",
-  "blog-details": "blog details"
+  "blog-details": "blog details",
+  "menuItems": {
+    "womens": "Çevrilmek "
+  },
+  "special-offer": "Special offer",
+  "top-collection": "Top Collection"
 }
