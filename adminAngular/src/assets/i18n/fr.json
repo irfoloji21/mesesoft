@@ -1,4 +1,35 @@
 {
+    "Dashboard": "Tableau de bord",
+    "Products": "Produits",
+    "ProductList": "Liste des produits",
+    "ProductAdd": "Ajouter un produit",
+    "Categories": "Catégories",
+    "MainCategory": "Catégorie principale",
+    "SubCategory": "Sous-catégorie",
+    "Collection": "Collection",
+    "Sales": "Ventes",
+    "Orders": "Commandes",
+    "Refunds": "Remboursements",
+    "Coupons": "Coupons",
+    "ListCoupons": "Liste des coupons",
+    "CreateCoupons": "Créer des coupons",
+    "Pages": "Pages",
+    "ListPage": "Liste des pages",
+    "CreatePage": "Créer une page",
+    "Users": "Utilisateurs",
+    "ListUser": "Liste des utilisateurs",
+    "CreateUser": "Créer un utilisateur",
+    "Blogs": "Blogs",
+    "BlogLists": "Liste des blogs",
+    "AddBlog": "Créer un blog",
+    "Settings": "Paramètres",
+    "Profile": "Profil",
+    "Login": "Connexion",
+
+
+    
+
+
     "MeseSoft Crafting Tomorrow's Solutions Today": "MeseSoft élabore aujourd'hui les solutions de demain"
 
 }

@@ -1,4 +1,31 @@
 {
+    
+    "Dashboard": "Anasayfa",
+    "Products": "Ürünler",
+    "Product List": "Ürün Listesi",
+    "Product Add": "Ürün Ekle",
+    "Categories": "Kategoriler",
+    "Main Category": "Ana Kategori",
+    "Sub Category": "Alt Kategori",
+    "Collection": "Koleksiyon",
+    "Sales": "Satışlar",
+    "Orders": "Siparişler",
+    "Refunds": "İadeler",
+    "Coupons": "Kuponlar",
+    "List Coupons": "Kupon Listesi",
+    "Create Coupons": "Kupon Oluştur",
+    "Pages": "Sayfalar",
+    "List Page": "Sayfa Listesi",
+    "Create Page": "Sayfa Oluştur",
+    "Users": "Kullanıcılar",
+    "User List": "Kullanıcı Listesi",
+    "Create User": "Kullanıcı Oluştur",
+    "Blogs": "Bloglar",
+    "Blog Lists": "Blog Listesi",
+    "Create Blog": "Blog Oluştur",
+    "Settings": "Ayarlar",
+    "Profile": "Profil",
+    "Login": "Giriş Yap",
     "MeseSoft Crafting Tomorrow's Solutions Today": "MeseSoft Yarının Çözümlerini Şekillendiriyor"
 
 }

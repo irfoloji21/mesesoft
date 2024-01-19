@@ -48,7 +48,7 @@ export class NavService {
 		},
 		{
 			title: 'Categories', icon: 'folder', type: 'sub', children: [
-				{ path: '/products/digital/digital-category', title: 'Main category', type: 'link' },
+				{ path: '/products/digital/digital-category', title: 'Main Category', type: 'link' },
 				{ path: '/products/digital/digital-sub-category', title: 'Sub Category', type: 'link' },
 			]
 		},

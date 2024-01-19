@@ -30,8 +30,7 @@
       >
         <app-feather-icons [icon]="menuItem.icon"></app-feather-icons
         ><span
-          >{{ menuItem.title
-          }}<span
+          >{{ menuItem.title | translate }}<span
             class="badge badge-{{ menuItem.badgeType }} ms-3"
             *ngIf="menuItem.badgeType"
             >{{ menuItem.badgeValue }}</span
@@ -48,7 +47,7 @@
       >
         <app-feather-icons [icon]="menuItem.icon"></app-feather-icons
         ><span
-          >{{ menuItem.title
+          >{{ menuItem.title | translate
           }}<span
             class="badge badge-{{ menuItem.badgeType }} ms-3"
             *ngIf="menuItem.badgeType"
@@ -65,7 +64,7 @@
       >
         <app-feather-icons [icon]="menuItem.icon"></app-feather-icons
         ><span
-          >{{ menuItem.title
+          >{{ menuItem.title 
           }}<span
             class="badge badge-{{ menuItem.badgeType }} ms-3"
             *ngIf="menuItem.badgeType"
@@ -83,7 +82,7 @@
       >
         <app-feather-icons [icon]="menuItem.icon"></app-feather-icons
         ><span
-          >{{ menuItem.title
+          > {{ menuItem.title 
           }}<span
             class="badge badge-{{ menuItem.badgeType }} ms-3"
             *ngIf="menuItem.badgeType"
@@ -113,7 +112,7 @@
           >
             <i class="fa fa-circle"></i
             ><span>
-              {{ childrenItem.title }}
+              {{ childrenItem.title  }}
               <span
                 class="badge badge-{{ childrenItem.badgeType }} pull-right"
                 *ngIf="childrenItem.badgeType"
@@ -134,7 +133,7 @@
           >
             <i class="fa fa-circle"></i
             ><span
-              >{{ childrenItem.title }}
+              > F {{ childrenItem.title | translate }}
               <span
                 class="badge badge-{{ childrenItem.badgeType }} pull-right"
                 *ngIf="childrenItem.badgeType"

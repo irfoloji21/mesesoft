@@ -1,4 +1,31 @@
 {
+    
+    "Dashboard": "Dashboard",
+    "Products": "Products",
+    "Product List": "Product List",
+    "Product Add": "Product Add",
+    "Categories": "Categories",
+    "Main Category": "Main Category",
+    "SubCategory": "Sub Category",
+    "Collection": "Collection",
+    "Sales": "Sales",
+    "Orders": "Orders",
+    "Refunds": "Refunds",
+    "Coupons": "Coupons",
+    "List Coupons": "List Coupons",
+    "Create Coupons": "Create Coupons",
+    "Pages": "Pages",
+    "List Page": "List Page",
+    "Create Page": "Create Page",
+    "Users": "Users",
+    "User List": "User List",
+    "Create User": "Create User",
+    "Blogs": "Blogs",
+    "BlogLists": "Blog Lists",
+    "Create Blog": "Create Blog",
+    "Settings": "Settings",
+    "Profile": "Profile",
+    "Login": "Login",
     "MeseSoft Crafting Tomorrow's Solutions Today": "MeseSoft Crafting Tomorrow's Solutions Today"
 
 }
