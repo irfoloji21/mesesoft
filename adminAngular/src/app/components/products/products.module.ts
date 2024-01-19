@@ -20,6 +20,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 // search module
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgxDropzoneModule,
     SharedModule,
     NgMultiSelectDropDownModule.forRoot(),
+    TranslateModule
   ],
   exports: [SubCategoryComponent],
   bootstrap: [SubCategoryComponent],

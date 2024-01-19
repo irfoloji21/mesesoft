@@ -10,8 +10,8 @@
                                 <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
                             </div>
                         </div>
-                        <div class="media-body col-8"><span class="m-0">Earnings</span>
-                            <h3 class="mb-0">$ <span class="counter">{{shop.availableBalance}}</span><small> This Month</small></h3>
+                        <div class="media-body col-8"><span class="m-0">{{'Earnings' | translate}}</span>
+                            <h3 class="mb-0">$ <span class="counter">{{shop.availableBalance}}</span><small> {{'This Month' | translate}}</small></h3>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                                 <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
                             </div>
                         </div>
-                        <div class="media-body col-8"><span class="m-0">Products</span>
+                        <div class="media-body col-8"><span class="m-0">{{'Products' | translate}}</span>
                             <h3 class="mb-0"> <span class="counter">{{productCount}}</span><small> </small></h3>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                 <app-feather-icons [icon]="'users'" class="font-danger"></app-feather-icons>
                             </div>
                         </div>
-                        <div class="media-body col-8"><span class="m-0">All Orders</span>
+                        <div class="media-body col-8"><span class="m-0">{{'All Orders' | translate }}</span>
                             <h3 class="mb-0"><span class="counter">{{orders.length}}</span><small></small></h3>
                         </div>
                     </div>
@@ -81,17 +81,17 @@
         <div class="col-xl-6 xl-100">
             <div class="card height-equal">
                 <div class="card-header">
-                    <h5>Latest Orders</h5>
+                    <h5>{{'Latest Orders' | translate}}</h5>
                 </div>
                 <div class="card-body">
                     <div class="user-status table-responsive latest-order-table">
                         <table class="table table-bordernone">
                             <thead>
                                 <tr>
-                                    <th scope="col">Order ID</th>
-                                    <th scope="col">Order Total</th>
-                                    <th scope="col">Payment Date</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">{{'Order ID' | translate}}</th>
+                                    <th scope="col">{{'Order Total' | translate}}</th>
+                                    <th scope="col">{{'Payment Date' | translate}}</th>
+                                    <th scope="col">{{'Status' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,11 +99,11 @@
                                     <td>{{ order._id }}</td>
                                     <td class="digits">{{order.totalPrice}}</td>
                                     <td class="font-danger">{{order.paidAt}}</td>
-                                    <td class="digits">{{order.status}}</td>
+                                    <td class="digits">{{order.status | translate}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <a [routerLink]="'/sales/orders'">  <button class="btn btn-primary" type="submit">View All Orders</button></a>
+                        <a [routerLink]="'/sales/orders'">  <button class="btn btn-primary" type="submit">{{'View All Orders' |translate}}</button></a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
         <div class="col-xl-3 col-md-6 xl-50">
             <div class="card order-graph sales-carousel">
                 <div class="card-header">
-                    <h6>Total Sales</h6>
+                    <h6>{{'Total Sales' | translate}}</h6>
                     <div class="row">
                         <div class="col-6">
                             <div class="small-chartjs">
@@ -132,10 +132,10 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start">
                         <div class="media-body">
-                            <span>Sales Last Month</span>
+                            <span>{{'Sales Last Month' | translate}}</span>
                             <h2 class="mb-0">9054</h2>
                             <p>0.25% <span><i class="fa fa-angle-up"></i></span></p>
-                            <h5 class="f-w-600">Gross sales of August</h5>
+                            <h5 class="f-w-600">{{'Gross sales of August' | translate}}</h5>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
                         </div>
                         <div class="bg-primary b-r-8">
@@ -150,7 +150,7 @@
         <div class="col-xl-3 col-md-6 xl-50">
             <div class="card order-graph sales-carousel">
                 <div class="card-header">
-                    <h6>Total purchase</h6>
+                    <h6>{{'Total purchase' |translate}}</h6>
                     <div class="row">
                         <div class="col-6">
                             <div class="small-chartjs">
@@ -172,10 +172,10 @@
                 <div class="card-body">
                     <div class="d-flex align-items-start">
                         <div class="media-body">
-                            <span>Monthly purchase</span>
+                            <span>{{'Monthly purchase'| translate}}</span>
                             <h2 class="mb-0">2154</h2>
                             <p>0.13% <span><i class="fa fa-angle-up"></i></span></p>
-                            <h5 class="f-w-600">Avg Gross purchase</h5>
+                            <h5 class="f-w-600">{{'Avg Gross purchase' | translate}}</h5>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
                         </div>
                         <div class="bg-secondary b-r-8">

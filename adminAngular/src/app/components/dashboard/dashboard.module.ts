@@ -8,6 +8,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartistModule } from 'ng-chartist';
 import { SharedModule } from '../../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -18,7 +19,8 @@ import { SharedModule } from '../../shared/shared.module';
     NgChartsModule,
     Ng2GoogleChartsModule,
     NgxChartsModule,
-    ChartistModule
+    ChartistModule,
+    TranslateModule
   ]
 })
 export class DashboardModule { }

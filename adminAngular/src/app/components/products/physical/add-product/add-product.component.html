@@ -4,7 +4,7 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5>Add Product</h5>
+          <h5>{{'Add Product' | translate}}</h5>
         </div>
         <div class="card-body">
           <div class="row product-adding">
@@ -53,7 +53,7 @@
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
                       <label for="validationCustom01" class="mb-0"
-                        >Title :</label
+                        >{{'Title' |translate}} :</label
                       >
                     </div>
                     <div class="col-xl-8 col-sm-7">
@@ -71,14 +71,14 @@
                         "
                         class="text text-danger"
                       >
-                        Title Name is required.
+                        {{'Title Name is required.' | translate}}
                       </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
                       <label for="validationCustom01" class="mb-0"
-                        >Slug :</label
+                        >{{'Slug' | translate}} :</label
                       >
                     </div>
                     <div class="col-xl-8 col-sm-7">
@@ -96,14 +96,14 @@
                         "
                         class="text text-danger"
                       >
-                        slug is required.
+                        {{'slug is required.' | translate}}
                       </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
                       <label for="validationCustom02" class="mb-0"
-                        >Price :</label
+                        >{{'Price' | translate}} :</label
                       >
                     </div>
                     <div class="col-xl-8 col-sm-7">
@@ -122,13 +122,13 @@
                       "
                       class="text text-danger"
                     >
-                      Product Price is required.
+                      {{'Product Price is required.' | translate}}
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
                       <label for="validationCustom02" class="mb-0"
-                        >Discount Price :</label
+                        >{{'Discount Price' | translate}} :</label
                       >
                     </div>
                     <div class="col-xl-8 col-sm-7">
@@ -147,13 +147,13 @@
                       "
                       class="text text-danger"
                     >
-                      Product Price is required.
+                      {{'Product Price is required.' | translate}}
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
                       <label for="validationCustom03" class="mb-0"
-                        >Product Tags :</label
+                        >{{'Product Tags' | translate}} :</label
                       >
                     </div>
                     <div class="col-xl-8 col-sm-7">
@@ -172,13 +172,13 @@
                       "
                       class="text text-danger"
                     >
-                      Product tags are required.
+                      {{'Product tags are required.' | translate}}
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
                       <label for="exampleFormControlSelect1" class="mb-0"
-                        >Select Category :</label
+                        >{{'Select Category' | translate}} :</label
                       >
                     </div>
                     <div class="col-xl-8 col-sm-7">
@@ -200,7 +200,7 @@
 
                     <div class="col-xl-3 col-sm-4">
                       <label for="exampleFormControlSelect1" class="mb-0"
-                        >Select Gender :</label
+                        >{{'Select Gender' | translate}} :</label
                       >
                     </div>
                     <div class="col-xl-8 col-sm-7">
@@ -219,7 +219,7 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
-                      <label class="mb-0">Total Stock :</label>
+                      <label class="mb-0">{{'Total Stock' | translate}} :</label>
                     </div>
                     <div class="col-xl-8 col-sm-7">
                       <div class="qty-box1">
@@ -245,7 +245,7 @@
                   </div>
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
-                      <label>Add Description :</label>
+                      <label>{{'Add Description' | translate}} :</label>
                     </div>
                     <div class="col-xl-8 col-sm-7">
                       <div class="ps-0 description-sm">
@@ -267,9 +267,9 @@
                       class="btn btn-primary me-1"
                       (click)="performAction()"
                     >
-                      {{ buttonText }}
+                      {{ buttonText | translate }}
                     </button>
-                    <button type="button" class="btn btn-light">Discard</button>
+                    <button type="button" class="btn btn-light">{{'Discard' |translate}}</button>
                   </div>
                 </div>
               </div>

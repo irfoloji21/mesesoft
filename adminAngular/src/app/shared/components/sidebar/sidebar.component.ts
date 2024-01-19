@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   public fileurl: any;
   userInitials: string;
 
-  constructor(
+  constructor( 
     private router: Router,
     public navServices: NavService,
     private authService: AuthService

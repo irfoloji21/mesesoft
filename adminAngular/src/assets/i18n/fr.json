@@ -25,11 +25,40 @@
     "Settings": "Paramètres",
     "Profile": "Profil",
     "Login": "Connexion",
-
-
-    
-
-
+    "Latest Orders": "Dernières commandes",
+    "Order ID": "Identifiant de commande",
+    "Order Total": "Total de la commande",
+    "Payment Date": "Date de paiement",
+    "Status": "Statut",
+    "Refund Success": "Remboursement réussi",
+    "On the way": "En cours",
+    "View All Orders": "VOIR TOUTES LES COMMANDES",
+    "Earnings": "Gains",
+    "All Orders": "Toutes les commandes",
+    "This Month": "Ce Mois-ci",
+    "Total Sales": "Ventes Totales",
+    "Total purchase": "Achat Total",
+    "Sales Last Month": "Ventes du Mois Dernier",
+    "Monthly purchase": "Achat Mensuel",
+    "Avg Gross purchase": "Achat brut moyen",
+    "Gross sales of August": "Ventes brutes d'août",
+    "MeseSoft Admin Panel": "Panneau d'administration MeseSoft",
+    "Title": "Titre",
+    "Title Name is required.": "Le nom du titre est requis.",
+    "Slug": "Slug",
+    "Price": "Prix",
+    "Discount Price": "Prix réduit",
+    "Product Tags": "Étiquettes de produit",
+    "Select Category": "Sélectionner une catégorie",
+    "Select Gender": "Sélectionner le genre",
+    "Total Stock": "Stock total",
+    "Add Description": "Ajouter une description",
+    "Product Price is required.": "Le prix du produit est requis.",
+    "Product tags are required.": "Les étiquettes de produit sont requises.",
+    "slug is required.": "Slug est requis.",
+    "Add": "AJOUTER",
+    "Discard": "ABANDONNER",
+    "Add Product": "Ajouter un Produit",
     "MeseSoft Crafting Tomorrow's Solutions Today": "MeseSoft élabore aujourd'hui les solutions de demain"
 
 }

@@ -108,6 +108,7 @@ export class HeaderComponent implements OnInit {
     return this.selectedLanguage.flag;
   }
   changeLanguage(code) {
+    // SEÇİLEN DİLİ LOCAlSTORAGEYE YAZ 
     if (isPlatformBrowser(this.platformId)) {
       this.translate.use(code)
        // Flag 
