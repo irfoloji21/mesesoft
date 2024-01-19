@@ -29,6 +29,8 @@
     "@ckeditor/ckeditor5-build-classic": "^34.0.0",
     "@ks89/angular-modal-gallery": "^10.0.1",
     "@ng-bootstrap/ng-bootstrap": "^15.0.1",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "@popperjs/core": "^2.11.6",
     "@swimlane/ngx-charts": "^20.1.0",
     "@types/chartist": "^0.11.1",

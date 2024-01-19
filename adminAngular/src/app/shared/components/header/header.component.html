@@ -53,6 +53,25 @@
             </li>
           </ul>
         </li> -->
+        
+        <li class="onhover-dropdown">
+          <div >
+            <img [src]="getFlagForCurrentLanguage()" class="img-fluid flag-icon" alt="setting" />
+            <i class="ti-settings"></i>
+          </div>
+          <ul class="language-dropdown onhover-show-div p-20">
+            <h4 style="text-align: center;">language</h4>
+            <li *ngFor="let language of languages">
+              <a  id="translatebtn" href="javascript:void(0)" (click)="changeLanguage(language.code)">
+                <img [ngStyle]="{'background-image': 'url(' + language.flag + ')'}" class="flag-icon"/>
+                {{ language.name }}
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+
+
         <!-- <li class="onhover-dropdown">
           <span class="badge badge-pill badge-primary pull-right notification-badge">3</span>
           <app-feather-icons [icon]="'bell'"></app-feather-icons><span class="dot"></span>
