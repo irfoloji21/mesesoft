@@ -2,24 +2,25 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h5>User Details</h5>
+            <h5>{{'UserDetails' | translate}}</h5>
         </div>
         <div class="card-body">
             <div class="btn-popup pull-right">
-                <a class="btn btn-primary" [routerLink]="'/users/create-user'">Create User</a>
+                <a class="btn btn-primary" [routerLink]="'/users/create-user'">{{'CreateUser' | translate}}</a>
             </div>
             <div id="batchDelete" class="category-table custom-datatable transcation-datatable user-image">
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col" >Actions</th>
-                                <th scope="col" sortable="avatar" (sort)="onSort($event)">Avtar</th>
-                                <th scope="col" sortable="fName" (sort)="onSort($event)">First Name</th>
-                                <th scope="col" sortable="lName" (sort)="onSort($event)">Last Name</th>
-                                <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+                                <th scope="col">{{'Actions'| translate}}</th>
+                                <th scope="col" sortable="avatar" (sort)="onSort($event)">{{'Avatar' | translate}}</th>
+                                <th scope="col" sortable="fName" (sort)="onSort($event)">{{'FirstName' | translate}}
+                                </th>
+                                <th scope="col" sortable="lName" (sort)="onSort($event)">{{'LastName' | translate}}</th>
+                                <th scope="col" sortable="email" (sort)="onSort($event)">{{'Email' | translate}}</th>
                                 <!-- <th scope="col" sortable="last_login" (sort)="onSort($event)">Last Login</th> -->
-                                <th scope="col" sortable="role" (sort)="onSort($event)">Role</th>
+                                <th scope="col" sortable="role" (sort)="onSort($event)">{{'Role' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,10 +41,10 @@
                                 <td>{{item.role}}</td>
                             </tr>
                         </tbody>
-                    </table> 
+                    </table>
                     <div class="d-flex justify-content-center p-2">
-                        <ngb-pagination
-                          [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+                        <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
+                            [pageSize]="service.pageSize">
                         </ngb-pagination>
                     </div>
                 </div>

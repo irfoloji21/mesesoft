@@ -10,6 +10,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ListUserComponent, CreateUserComponent],
@@ -18,7 +19,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     NgbModule,
     SharedModule,
     ReactiveFormsModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    TranslateModule
   ]
 })
 export class UsersModule { }

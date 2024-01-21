@@ -8,6 +8,7 @@ import { SettingRoutingModule } from './setting-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     SettingRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class SettingModule { }

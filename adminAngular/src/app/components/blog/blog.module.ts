@@ -6,6 +6,7 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { ListBlogComponent } from './list-blog/list-blog.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ListBlogComponent, AddBlogComponent],
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     NgbModule,
     ReactiveFormsModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class BlogModule { }

@@ -6,6 +6,7 @@ import { CouponsRoutingModule } from './coupons-routing.module';
 import { ListCouponComponent } from './list-coupon/list-coupon.component';
 import { CreateCouponComponent } from './create-coupon/create-coupon.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ListCouponComponent, CreateCouponComponent],
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     NgbModule,
     ReactiveFormsModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class CouponsModule { }

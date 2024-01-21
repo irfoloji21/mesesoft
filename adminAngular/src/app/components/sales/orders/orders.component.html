@@ -13,12 +13,8 @@
                 <h5 class="modal-title f-w-600" id="exampleModalLabel">
                   {{ "OrderDetails" | translate }}
                 </h5>
-                <button
-                  type="button"
-                  class="close btn btn-primary w-fit-content align-self-end ml-auto"
-                  aria-label="Close"
-                  (click)="modal.dismiss('Cross click')"
-                >
+                <button type="button" class="close btn btn-primary w-fit-content align-self-end ml-auto"
+                  aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -27,58 +23,28 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th
-                          scope="col"
-                          sortable="order_id"
-                          (sort)="onSort($event)"
-                          style="width: 150px"
-                        >
+                        <th scope="col" sortable="order_id" (sort)="onSort($event)" style="width: 150px">
                           {{ "Order ID" | translate }}
                         </th>
-                        <th
-                          scope="col"
-                          sortable="product"
-                          (sort)="onSort($event)"
-                          style="width: 200px"
-                        >
+                        <th scope="col" sortable="product" (sort)="onSort($event)" style="width: 200px">
                           {{ "Image" | translate }}
                         </th>
-                        <th
-                          scope="col"
-                          sortable="payment_status"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="payment_status" (sort)="onSort($event)">
                           {{ "PaymentStatus" | translate }}
                         </th>
-                        <th
-                          scope="col"
-                          sortable="paymeny_method"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="paymeny_method" (sort)="onSort($event)">
                           {{ "PaymentMethod" | translate }}
                         </th>
-                        <th
-                          scope="col"
-                          sortable="order_status"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="order_status" (sort)="onSort($event)">
                           {{ "OrderStatus" | translate }}
                         </th>
                         <th scope="col" sortable="date" (sort)="onSort($event)">
                           {{ "Date" | translate }}
                         </th>
-                        <th
-                          scope="col"
-                          sortable="total"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="total" (sort)="onSort($event)">
                           {{ "Total" | translate }}
                         </th>
-                        <th
-                          scope="col"
-                          sortable="adress"
-                          (sort)="onSort($event)"
-                        >
+                        <th scope="col" sortable="adress" (sort)="onSort($event)">
                           {{ "ShippingAddress" | translate }}
                         </th>
                         <th scope="col" sortable="update_status">
@@ -90,16 +56,14 @@
                       <tr>
                         <th scope="row">{{ selectedOrder._id }}</th>
                         <td>
-                          <span
-                            *ngFor="let image of selectedOrder.cart[0].images"
-                          >
+                          <span *ngFor="let image of selectedOrder.cart[0].images">
                             <img [src]="image.url" class="img-30 me-2" />
                           </span>
                         </td>
                         <td>
                           <span class="badge badge-success">{{
                             selectedOrder.paymentInfo?.status
-                          }}</span>
+                            }}</span>
                         </td>
                         <td>{{ selectedOrder.payment_method }}</td>
                         <td>
@@ -138,10 +102,7 @@
                             </option>
                             <!-- Diğer durumları buraya ekleyin -->
                           </select>
-                          <button
-                            type="submit"
-                            (click)="updateOrderStatus(selectedOrder._id)"
-                          >
+                          <button type="submit" (click)="updateOrderStatus(selectedOrder._id)">
                             {{ "Update" | translate }}
                           </button>
                         </td>
@@ -156,20 +117,11 @@
           <div class="custom-datatable">
             <div class="searchArea mx-2 d-flex">
               <div>
-                <input
-                  type="text"
-                  class="filter-ngx form-control mx-2"
-                  placeholder="{{ 'Search...' | translate }}"
-                  [(ngModel)]="searchText"
-                  (ngModelChange)="onSearchTextChange()"
-                />
+                <input type="text" class="filter-ngx form-control mx-2" placeholder="{{ 'Search...' | translate }}"
+                  [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange()" />
               </div>
               <div>
-                <button
-                  type="submit"
-                  (click)="search()"
-                  class="btn btn-primary"
-                >
+                <button type="submit" (click)="search()" class="btn btn-primary">
                   {{ "Find" | translate }}
                 </button>
               </div>
@@ -185,25 +137,13 @@
                   </th> -->
                   </th>
 
-                  <th
-                    scope="col"
-                    sortable="payment_status"
-                    (sort)="onSort($event)"
-                  >
+                  <th scope="col" sortable="payment_status" (sort)="onSort($event)">
                     {{ "PaymentStatus" | translate }}
                   </th>
-                  <th
-                    scope="col"
-                    sortable="paymeny_method"
-                    (sort)="onSort($event)"
-                  >
+                  <th scope="col" sortable="paymeny_method" (sort)="onSort($event)">
                     {{ "PaymentMethod" | translate }}
                   </th>
-                  <th
-                    scope="col"
-                    sortable="order_status"
-                    (sort)="onSort($event)"
-                  >
+                  <th scope="col" sortable="order_status" (sort)="onSort($event)">
                     {{ "OrderStatus" | translate }}
                   </th>
                   <th scope="col" sortable="date" (sort)="onSort($event)">
@@ -228,7 +168,7 @@
                   <td>
                     <span class="badge badge-success">{{
                       item.paymentInfo?.status
-                    }}</span>
+                      }}</span>
                   </td>
                   <td>{{ item.payment_method }}</td>
                   <td>
@@ -237,15 +177,8 @@
                   <td>{{ item.paidAt | date : "longDate" }}</td>
                   <td>{{ item.totalPrice | currency }}</td>
                   <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-original-title="test"
-                      data-target="#exampleModal"
-                      (click)="irfan(item)"
-                      (click)="open(content)"
-                    >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+                      data-target="#exampleModal" (click)="irfan(item)" (click)="open(content)">
                       {{ "GoOrder" | translate }}
                     </button>
                   </td>

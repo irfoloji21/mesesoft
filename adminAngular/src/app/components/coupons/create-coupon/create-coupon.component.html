@@ -9,7 +9,7 @@
                 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
                     <!-- General Form -->
                     <li [ngbNavItem]="1">
-                      <a ngbNavLink>General</a>
+                      <a ngbNavLink>{{'General' | translate}}</a>
                       <ng-template ngbNavContent>
                         <h4>General</h4>
                         <div class="row">
@@ -17,7 +17,7 @@
                                 <div class="form-group row">
                                     <div class="col-xl-3 col-md-4">
                                         <label for="validationCustom0"><span>*</span>
-                                            Coupan Title</label>
+                                            {{'CouponTitle' | translate}}</label>
                                     </div>
                                     <div class="col-md-7">
                                         <input class="form-control" formControlName="name"
@@ -27,7 +27,7 @@
                                 <div class="form-group row">
                                     <div class="col-xl-3 col-md-4">
                                         <label for="validationCustom1"><span>*</span>
-                                            Coupan Code</label>
+                                            {{'CouponCode' | translate}}</label>
                                     </div>
                                     <div class="col-md-7">
                                         <input class="form-control" formControlName="code"
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-xl-3 col-md-4">
-                                        <label>Start Date</label>
+                                        <label>{{'StartDate'  | translate}}</label>
                                     </div>
                                     <div class="col-md-7 ">
                                         <div class="input-group input-grp-p">
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-xl-3 col-md-4">
-                                        <label>End Date</label>
+                                        <label>{{'EndDate' | translate}}</label>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="input-group input-grp-p">
@@ -67,25 +67,25 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-xl-3 col-md-4">
-                                        <label>Free Shipping</label>
+                                        <label>{{'FreeShipping' | translate}}</label>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox-primary-1" type="checkbox"
                                                 formControlName="free_shipping" data-original-title="" title="">
-                                            <label for="checkbox-primary-1">Allow Free Shipping</label>
+                                            <label for="checkbox-primary-1">{{'AllowFreeShipping'  | translate}}</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4"><label>Quantity</label></div>
+                                    <div class="col-xl-3 col-md-4"><label>{{'Quantity' | translate}}</label></div>
                                     <div class="col-md-7">
                                         <input class="form-control" formControlName="quantity" type="number"
                                         required="">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4"><label>Discount Type</label></div>
+                                    <div class="col-xl-3 col-md-4"><label>{{'DiscountType' | translate}}</label></div>
                                     <div class="col-md-7">
                                         <select class="custom-select form-select" required="" formControlName="discount_type">
                                             <option value="">--Select--</option>
@@ -96,13 +96,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-xl-3 col-md-4">
-                                        <label>Status</label>
+                                        <label>{{'Status' | translate}}</label>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="checkbox checkbox-primary">
                                             <input id="checkbox-primary-2" formControlName="status" type="checkbox"
                                                 data-original-title="" title="">
-                                            <label for="checkbox-primary-2">Enable the Coupon</label>
+                                            <label for="checkbox-primary-2">{{'EnableTheCoupon' | translate}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -111,9 +111,9 @@
                   </ng-template>
                 </li>
                 <li [ngbNavItem]="2">
-                  <a ngbNavLink>Restriction</a>
+                  <a ngbNavLink>{{'Restriction' | translate}}</a>
                   <ng-template ngbNavContent>
-                        <h4>Restriction</h4>
+                        <h4>{{'Restriction' | translate}}</h4>
                         <div class="form-group row">
                             <div class="col-xl-3 col-md-4"><label for="validationCustom3">Products</label></div>
                             <div class="col-md-7">
@@ -127,7 +127,7 @@
                             <div class="valid-feedback">Please Provide a Product Name.</div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-xl-3 col-md-4"><label>Category</label></div>
+                            <div class="col-xl-3 col-md-4"><label>{{'Category' | translate}}</label></div>
                             <div class="col-md-7">
                                 <select class="custom-select form-select" formControlName="category" required="" multiple>
                                     <option value="1">--Select--</option>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-xl-3 col-md-4">
-                                <label for="validationCustom5">Maximum Spend</label>
+                                <label for="validationCustom5">{{'MaximumSpend' | translate}}</label>
                             </div>
                             <div class="col-md-7">
                                 <input class="form-control" formControlName="max" id="validationCustom5"
@@ -154,17 +154,17 @@
                   </ng-template>
                 </li>
                 <li [ngbNavItem]="3">
-                    <a ngbNavLink>Usage</a>
+                    <a ngbNavLink>{{'Usage' | translate}}</a>
                     <ng-template ngbNavContent>
-                            <h4>Usage Limits</h4>
+                            <h4>{{'UsageLimits' | translate}}</h4>
                             <div class="form-group row">
-                                <div class="col-xl-3 col-md-4"><label for="validationCustom6">Per Limit</label></div>
+                                <div class="col-xl-3 col-md-4"><label for="validationCustom6">{{'PerLimit' | translate}}</label></div>
                                 <div class="col-md-7"><input class="form-control" formControlName="limit" id="validationCustom6"
                                     type="number">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-xl-3 col-md-4"><label for="validationCustom7">Per Customer</label></div>
+                                <div class="col-xl-3 col-md-4"><label for="validationCustom7">{{'PerCustomer' | translate}}</label></div>
                                 <div class="col-md-7"><input class="form-control" formControlName="customer" id="validationCustom7"
                                     type="number">
                                 </div>
@@ -174,7 +174,7 @@
             </ul>
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
             <div class="pull-right">
-                <button type="button" class="btn btn-primary" (click)="submitCombinedForm()">Save</button>
+                <button type="button" class="btn btn-primary" (click)="submitCombinedForm()">{{'Save' | translate}}</button>
             </div>
         </form>
     </div>
