@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RefundsComponent } from './refunds/refunds.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
 
@@ -17,7 +18,8 @@ import { RefundsComponent } from './refunds/refunds.component';
     NgbModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class SalesModule { }

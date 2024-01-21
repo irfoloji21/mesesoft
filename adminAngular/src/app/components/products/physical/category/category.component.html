@@ -4,25 +4,25 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
-          <h5>Collection</h5>
+          <h5>{{'Collection' | translate}}</h5>
         </div>
         <div class="card-body">
           <div class="btn-popup">
             <div class="searchArea">
-              <input type="text" class="filter-ngx form-control mx-2" placeholder="Search..." [(ngModel)]="searchText"
+              <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}" [(ngModel)]="searchText"
                 (ngModelChange)="onSearchTextChange()" />
               <button type="submit" (click)="search()" class="btn btn-primary">
-                Find
+                {{'Find' | translate}}
               </button>
             </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
               data-target="#exampleModal" (click)="open(content)">
-              Add Collection
+              {{'AddCollection'| translate}}
             </button>
             <ng-template #content let-modal>
               <div class="modal-header">
                 <h5 class="modal-title f-w-600" id="exampleModalLabel">
-                  Add Collection
+                  {{'AddCollection' | translate}}
                 </h5>
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">&times;</span>
@@ -32,19 +32,19 @@
                 <form (ngSubmit)="onSubmit()" class="needs-validation" [formGroup]="myForm1">
                   <div class="form">
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1">Collection Name :</label>
+                      <label for="validationCustom01" class="mb-1">{{'CollectionName' | translate}} :</label>
                       <input class="form-control" id="validationCustom01" type="text" formControlName="name" />
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1">Collection Save Percentage :</label>
+                      <label for="validationCustom01" class="mb-1">{{'CollectionSavePercentage' | translate}} :</label>
                       <input class="form-control" id="validationCustom01" type="number" formControlName="saving" />
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom01" class="mb-1">Collection Description :</label>
+                      <label for="validationCustom01" class="mb-1">{{'CollectionDescription' | translate}} :</label>
                       <textarea class="form-control" id="validationCustom01" formControlName="description"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="validationCustom02" class="mb-1">Collection Image :</label>
+                      <label for="validationCustom02" class="mb-1">{{'CollectionImage' | translate}} :</label>
                       <input class="form-control" formControlName="images" id="validationCustom02" type="file" multiple
                         (change)="onFileChange($event)" />
                     </div>
@@ -52,17 +52,17 @@
                       <div class="checkbox checkbox-primary">
                         <input id="checkbox-primary-2" formControlName="isShow" type="checkbox" data-original-title=""
                           title="" />
-                        <label for="checkbox-primary-2">Add to Slider</label>
+                        <label for="checkbox-primary-2">{{'AddToSlider' | translate}}</label>
                       </div>
                     </div>
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
-                      {{ buttonText }}
+                      {{ buttonText| translate }}
                     </button>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal"
                       (click)="modal.dismiss('Cross click')">
-                      Close
+                      {{'Close' |  translate}}
                     </button>
                   </div>
                 </form>
@@ -74,16 +74,16 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">Product Id</th>
+                    <th scope="col">{{'ProductId'| translate}}</th>
                     <th scope="col" sortable="product_name" (sort)="onSort($event)">
-                      Name
+                      {{'Name' | translate}}
                     </th>
-                    <th scope="col">Image</th>
-                    <th scope="col">saving percentage</th>
+                    <th scope="col">{{'Image' | translate}}</th>
+                    <th scope="col">{{'SavingPercentage' | translate}}</th>
                     <!-- <th scope="col" sortable="category" (sort)="onSort($event)">
                       productIds
                     </th> -->
-                    <th scope="col">Actions</th>
+                    <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
