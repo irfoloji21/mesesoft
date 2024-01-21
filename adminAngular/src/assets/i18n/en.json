@@ -7,6 +7,7 @@
     "Categories": "Categories",
     "Main Category": "Main Category",
     "SubCategory": "Sub Category",
+    "subCategory": "Sub Category",
     "Collection": "Collection",
     "Sales": "Sales",
     "Orders": "Orders",
@@ -60,9 +61,25 @@
     "Add": "ADD",
     "Discard": "DISCARD",
     "Add Product": "Add Product",
-
-
-    
+    "AddCategory": "Add Category",
+    "CategoryName": "Category Name",
+    "CategoryText": "Category Text",
+    "CategoryImage": "Category Image",
+    "Save": "Save",
+    "Close": "Close",
+    "Find": "Find",
+    "Search...": "Search",
+    "Name": "Name",
+    "Image": "Image",
+    "Actions": "Actions",
+    "EditMainCategory": "Edit Main Category",
+    "EditSubCategory": "EditSubCategory",
+    "Update": "Update",
+    "isShow" : "isShow",
+    "Yes": "Yes",
+    "No":"No",
+    "AddSubCategory":"Add Sub Category",
     "MeseSoft Crafting Tomorrow's Solutions Today": "MeseSoft Crafting Tomorrow's Solutions Today"
 
+   
 }
