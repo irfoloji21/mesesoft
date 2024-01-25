@@ -23,7 +23,11 @@ export class OrderSuccessComponent implements OnInit {
     private orderService: OrderService,
     private shippingService: ShippingService
   ) {
-    this.orderId = this.route.snapshot.params['orderId'];
+    // this.orderId = this.route.snapshot.params['orderId'];
+    this.route.paramMap.subscribe(params => {
+      this.orderId = decodeURIComponent(params.get('orderId'));
+      console.log('Decoded Order ID:', this.orderId);
+    })
   }
 
   ngOnInit(): void {

@@ -207,8 +207,8 @@ export class ProductLeftSidebarComponent implements OnInit {
   async addToCart(product: any) {
     product.quantity = this.counter || 1;
     const status = await this.productService.addToCart(product);
-    if (status)
-      this.router.navigate(['/shop/cart']);
+    // if (status)
+    //   this.router.navigate(['/shop/cart']);
   }
 
   // Buy Now
