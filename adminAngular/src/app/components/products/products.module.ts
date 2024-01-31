@@ -21,6 +21,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TranslateModule } from '@ngx-translate/core';
+import { ProductssComponent } from './physical/productss/productss/productss.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
     DigitalCategoryComponent, 
     DigitalSubCategoryComponent, 
     DigitalAddComponent, 
-    ProductDetailComponent
+    ProductDetailComponent, ProductssComponent
   ],
   imports: [
     CommonModule,
