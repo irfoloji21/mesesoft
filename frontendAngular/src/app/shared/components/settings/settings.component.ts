@@ -24,16 +24,16 @@ export class SettingsComponent implements OnInit {
     {
       name: 'English',
       code: 'en',
-      flag: 'assets/images/icon/England.jpg'
+      flag: 'assets/images/icon/LanguageEn.png'
     }, {
       name: 'French',
       code: 'fr',
-      flag: 'assets/images/icon/France.jpeg'
+      flag: 'assets/images/icon/LanguageFr.png'
     }
     , {
       name: 'Turkish',
       code: 'tr',
-      flag: 'assets/images/icon/turkish.gif'
+      flag: 'assets/images/icon/LanguageTr.png'
     }
   ];
   public selectedLanguage: any = this.languages[0]; 

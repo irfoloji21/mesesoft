@@ -90,16 +90,16 @@ export class HeaderComponent implements OnInit {
     {
       name: 'English',
       code: 'en',
-      flag: 'assets/images/languageFlag/England.jpg'
+      flag: 'assets/images/languageFlag/LanguageEn.png'
     }, {
       name: 'French',
       code: 'fr',
-      flag: 'assets/images/languageFlag/France.jpeg'
+      flag: 'assets/images/languageFlag/LanguageFr.png'
     }
     , {
       name: 'Turkish',
       code: 'tr',
-      flag: 'assets/images/languageFlag/turkish.gif'
+      flag: 'assets/images/languageFlag/LanguageTr.png'
     }
   ];
   public selectedLanguage: any = this.languages[0]; 
