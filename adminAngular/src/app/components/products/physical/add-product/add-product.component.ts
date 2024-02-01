@@ -153,9 +153,9 @@ export class AddProductComponent implements OnInit {
   }
 
   performAction() {
-    if (this.buttonText === 'Add') {
+    if (this.buttonText == 'Add') {
       this.submitForm();
-    } else if (this.buttonText === 'Edit') {
+    } else if (this.buttonText == 'Edit') {
       this.editProduct();
     }
   }
@@ -182,6 +182,8 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  goBack(){}
+
   editProduct() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
@@ -204,5 +206,11 @@ export class AddProductComponent implements OnInit {
 
   selectImage(image: any) {
     this.selectedProductImage = image;
+  }
+
+  isDropdownVisible: { [key: number]: boolean } = {};
+
+  toggleDropdown(index: number) {
+    this.isDropdownVisible[index] = !this.isDropdownVisible[index];
   }
 }

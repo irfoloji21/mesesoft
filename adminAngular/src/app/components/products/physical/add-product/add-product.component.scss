@@ -1,0 +1,36 @@
+.row {
+    .dropdown {
+      width: 100%;
+      text-align: left;
+      padding: 1rem;
+      .btn {
+        width: 100%;
+        background-color: transparent; 
+        border: none; 
+        color: inherit; 
+        display: flex;
+        align-items: center; 
+        justify-content: space-between; 
+        padding: 1rem;
+        .dropdown-icon {
+          margin-left: 5px; 
+        }
+      }
+  
+      .dropdown-content {
+        width: 100%;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 2rem;
+        z-index: 1;
+      }
+  
+    }
+  }
+  
+  .custom-hr {
+    height: 1px;
+    background-color: #ccc; 
+    margin: 0 0;
+  }
+  
+  

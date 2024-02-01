@@ -52,10 +52,10 @@ export class ProductssComponent {
   //   );
   // }
 
-  // editProduct(id) {
-  //   console.log(id)
-  //   this.router.navigate(['/products/physical/edit-product', id]);
-  // }
+  editProduct(id) {
+    console.log(id)
+    this.router.navigate(['/products/physical/edit-product', id]);
+  }
 
   detailProduct(product: Product): void {
     this.productDetail = product;
