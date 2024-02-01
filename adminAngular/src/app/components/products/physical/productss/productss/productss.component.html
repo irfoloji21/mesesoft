@@ -1,110 +1,157 @@
-
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-header">
-            <h5>{{ "Products" | translate }}</h5>
-          </div>
-          <div class="card-body">
-            <div class="custom-datatable" >
-              <div class="searchArea mx-2 d-flex">
-                <div>
-                  <input type="text" class="filter-ngx form-control mx-2" placeholder="{{ 'Search...' | translate }}"
-                     />
-                </div>
-                <div>
-                  <button type="submit"  class="btn btn-primary">
-                    {{ "Find" | translate }}
-                  </button>
-                </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>{{ "Products" | translate }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="custom-datatable">
+            <div class="searchArea mx-2 d-flex">
+              <div>
+                <input type="text" class="filter-ngx form-control mx-2" placeholder="{{ 'Search...' | translate }}" />
               </div>
-              <br>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col" class="text-center">
-                        Select
-                    </th>
-                    <th scope="col" sortable="index"  >
-                        {{ "ID" | translate }}
-                      </th>
-                    <!-- <th scope="col" sortable="product_id" class="text-center">
+              <div>
+                <button type="submit" class="btn btn-primary">
+                  {{ "Find" | translate }}
+                </button>
+              </div>
+            </div>
+            <br>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">
+                    Select
+                  </th>
+                  <th scope="col" sortable="index">
+                    {{ "ID" | translate }}
+                  </th>
+                  <!-- <th scope="col" sortable="product_id" class="text-center">
                       {{ "Product id" | translate }}
                     </th> -->
-                    <th scope="col" sortable="product" >
-                      Image
-                    </th>
-                    <th scope="col" sortable="price" >
-                      {{ "Price" | translate }}
-                    </th>
-                    <th scope="col" sortable="stock"  >
-                      {{ "Stock" | translate }}
-                    </th>
-                    <th scope="col" sortable="product_status" >
-                      {{ "Status" | translate }}
-                    </th>
-                    <!-- <th scope="col" sortable="date" >
+                  <th scope="col" sortable="product">
+                    Image
+                  </th>
+                  <th scope="col" sortable="price">
+                    {{ "Price" | translate }}
+                  </th>
+                  <th scope="col" sortable="stock">
+                    {{ "Stock" | translate }}
+                  </th>
+                  <th scope="col" sortable="product_status">
+                    {{ "Status" | translate }}
+                  </th>
+                  <!-- <th scope="col" sortable="date" >
                       {{ "Date" | translate }}
                     </th>
                     <th scope="col" sortable="total" >
                       {{ "Total" | translate }}
                     </th> -->
-                    <th scope="col" sortable="total" >
-                      {{ "Action" | translate }}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr  *ngFor="let product of product_list ; let i = index">
-                    <td class="text-center align-middle">
-                        <input type="checkbox" (change)="toggleSelection(product)" [checked]="product.selected" />
-                      </td>
-                    <td >
-                        {{ i + 1 }}
-                    </td>
-                    <!-- <td scope="row " class=" text-center justify-content-center"> 
+                  <th scope="col" sortable="total">
+                    {{ "Action" | translate }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of product_list ; let i = index">
+                  <td class="text-center align-middle">
+                    <input type="checkbox" (change)="toggleSelection(product)" [checked]="product.selected" />
+                  </td>
+                  <td>
+                    {{ i + 1 }}
+                  </td>
+                  <!-- <td scope="row " class=" text-center justify-content-center"> 
                         {{product._id.slice(-3) }}
                     </td> -->
-                     <td>
-                        <img
-                  [src]="[product.images[0].url]"
-                  class="img-fluid blur-up lazyload bg-img "
-                  style="width: 4rem; height: 4rem;"
-                  alt=""
-              />
-                    </td>
-                    <td>
-                        <span  style=" color: rgb(34, 139, 34);">
-                            {{ product.originalPrice | currency }}
-                          </span>                          
-                    </td>
-                    <td >
-                         {{product.stock }} <span>in stock</span>         
-                    </td>
-                    <td>
-                      <span class="badge badge-secondary"> status </span>
-                    </td>
-                    <!-- <td>
+                  <!-- <td >
+                    <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img "
+                      style="width: 4rem; height: 4rem;" alt="" />
+                    <i style="cursor: pointer;" class="fa fa-eye text-theme " (click)="detailProduct(product)"></i>
+                  </td> -->
+
+                  <td>
+                    <div class="img-container position-relative">
+                      <a href="javascript:void(0)" class="d-block position-relative">
+                        <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img"
+                          style="width: 4rem; height: 4rem;" />
+                        <div class="product-hover position-absolute top-0 start-0 w-100 h-100">
+                          <button class="btn btn-transparent" type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                            data-original-title="" title="">
+                            <i class="fa fa-eye text-theme" (click)="detailProduct(product)"></i>
+                          </button>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
+                  
+                   
+                  <td>
+                    <span style=" color: rgb(34, 139, 34);">
+                      {{ product.originalPrice | currency }}
+                    </span>
+                  </td>
+                  <td>
+                    {{product.stock }} <span>in stock</span>
+                  </td>
+                  <td>
+                    <span class="badge badge-secondary"> status </span>
+                  </td>
+                  <!-- <td>
                          item.paidAt
                      </td>
                     <td>
                     item.totalPrice 
                    </td> -->
-                    <td>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
-                        data-target="#exampleModal" >
-                        {{ "Edit" | translate }}
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                  <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+                      data-target="#exampleModal">
+                      {{ "Edit" | translate }}
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- //Product Detail Open Modal -->
+
+<div class="custom-container">
+  <div class="modal" [ngClass]="{ show: isModalOpen }">
+    <div class="modal-content col-12 col-md-8 col-lg-6">
+      <button class="close-button" (click)="closeModal()">X</button>
+      <div class=" text-center" *ngIf="productDetail">
+        <h3>{{ productDetail.name }}</h3>
+      </div>
+      <div class="container-fluid">
+        <div class="card">
+          <div class="row product-page-main card-body">
+            <div class="container-fluid">
+              <div class="card">
+                <div class="row product-page-main card-body" style="border: 1px solid gray;">
+                  <div class="col-xl-2"></div>
+                  <div class="col-xl-8">
+                    <section>
+                      <ks-carousel [id]="101" [images]="imagesRect"> </ks-carousel>
+                    </section>
+                  </div>
+                  <div class="col-xl-2"></div>
+                  <hr>
+                  <a routerLink="/details" class="btn btn-primary">Go to Details Page</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div> 
-
-
+  </div>
+</div>

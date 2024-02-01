@@ -5,55 +5,25 @@
         <div class="card-body product-box">
           <div class="img-wrapper">
             <div class="front">
-              <a href="javascript:void(0)"
-                ><img
-                  [src]="[product.images[0].url]"
-                  class="img-fluid blur-up lazyload bg-img"
-                  alt=""
-              /></a>
+              <a href="javascript:void(0)"><img [src]="[product.images[0].url]"
+                  class="img-fluid blur-up lazyload bg-img" alt="" /></a>
               <div class="product-hover">
                 <ul>
                   <li>
-                    <button
-                      class="btn"
-                      type="button"
-                      data-original-title=""
-                      title=""
-                    >
-                      <i
-                        class="icon-pencil-alt"
-                        (click)="editProduct(product._id)"
-                      ></i>
+                    <button class="btn" type="button" data-original-title="" title="">
+                      <i class="icon-pencil-alt" (click)="editProduct(product._id)"></i>
                     </button>
                   </li>
                   <li>
-                    <button
-                      class="btn"
-                      type="button"
-                      data-toggle="modal"
-                      data-target="#exampleModalCenter"
-                      data-original-title=""
-                      title=""
-                    >
-                      <i
-                        class="icon-trash"
-                        (click)="deleteProduct(product._id)"
-                      ></i>
+                    <button class="btn" type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                      data-original-title="" title="">
+                      <i class="icon-trash" (click)="deleteProduct(product._id)"></i>
                     </button>
                   </li>
                   <li>
-                    <button
-                      class="btn"
-                      type="button"
-                      data-toggle="modal"
-                      data-target="#exampleModalCenter"
-                      data-original-title=""
-                      title=""
-                    >
-                      <i
-                        class="fa fa-eye text-theme"
-                        (click)="detailProduct(product._id)"
-                      ></i>
+                    <button class="btn" type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                      data-original-title="" title="">
+                      <i class="fa fa-eye text-theme" (click)="detailProduct(product._id)"></i>
                     </button>
                   </li>
                 </ul>
@@ -70,7 +40,8 @@
               <h6>{{ product.name }}</h6>
             </a>
             <h4>
-              {{ product.discountPrice | currency }} <del>{{ product.originalPrice | currency }}</del>
+              {{ product.discountPrice | currency }}
+              <del>{{ product.originalPrice | currency }}</del>
             </h4>
             <ul class="color-variant">
               <li class="bg-light0"></li>

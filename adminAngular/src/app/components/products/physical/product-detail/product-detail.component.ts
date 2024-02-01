@@ -32,37 +32,37 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    config: NgbRatingConfig
+    config: NgbRatingConfig,
   ) {
     config.max = 5;
     config.readonly = false;
   }
 
-  open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
+  // open(content) {
+  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return `with: ${reason}`;
+  //   }
+  // }
 
-  increment() {
-    this.counter += 1;
-  }
+  // increment() {
+  //   this.counter += 1;
+  // }
 
-  decrement() {
-    this.counter -= 1;
-  }
+  // decrement() {
+  //   this.counter -= 1;
+  // }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -93,14 +93,14 @@ export class ProductDetailComponent implements OnInit {
       }
     );
 
-    setInterval(() => {
-      const now = new Date();
-      const difference = now.getTime() - this.createdAt.getTime();
+    // setInterval(() => {
+    //   const now = new Date();
+    //   const difference = now.getTime() - this.createdAt.getTime();
 
-      this.elapsedTime.days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      this.elapsedTime.hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      this.elapsedTime.minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      this.elapsedTime.seconds = Math.floor((difference % (1000 * 60)) / 1000);
-    }, 1000);
+    //   this.elapsedTime.days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    //   this.elapsedTime.hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //   this.elapsedTime.minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    //   this.elapsedTime.seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    // }, 1000);
   }
 }
