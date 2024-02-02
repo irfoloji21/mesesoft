@@ -92,7 +92,12 @@ export class ProductssComponent {
     );
   }
 
+  // actions
+  selectedAction: string = '';
 
+  onActionChange(event: any) {
+    this.selectedAction = event.target.value;
+  }
 
   
 }

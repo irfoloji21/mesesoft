@@ -2,9 +2,17 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="card">
-        <div class="card-header">
-          <h5>{{ "Products" | translate }}</h5>
+        <div class="d-flex justify-content-between">
+          <div class="card-header">
+            <h5>{{ "Products" | translate }}</h5>
+          </div>
+          <div class="card-header">
+            <button type="submit" class="btn btn-primary">
+              {{ "Add product +" | translate }}
+            </button>
+          </div>
         </div>
+        
         <div class="card-body">
           <div class="custom-datatable">
             <div class="searchArea mx-2 d-flex">
@@ -16,7 +24,26 @@
                   {{ "Find" | translate }}
                 </button>
               </div>
+             
             </div>
+             <!-- actions start -->
+             <div class="actions m-3">
+              <div class="select-wrapper">
+                <select class="custom-select" id="actions" (change)="onActionChange($event)">
+                  <option value="" disabled selected>Select an action</option>
+                  <optgroup label="Delete">
+                    <option value="delete">Delete selected item(s)</option>
+                  </optgroup>
+                  <optgroup label="Change status">
+                    <option value="disable">Disable selected item(s)</option>
+                    <option value="enable">Enable selected item(s)</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+            
+            
+            <!-- actions End -->
             <br>
             <table class="table table-striped">
               <thead>
@@ -104,8 +131,8 @@
                     item.totalPrice 
                    </td> -->
                   <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
-                      data-target="#exampleModal">
+                    <button  type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+                      data-target="#exampleModal"  >
                       <i class="icon-pencil-alt" (click)="editProduct(product._id)"></i>
                     </button>
                   </td>
@@ -136,7 +163,7 @@
           <div class="row product-page-main card-body">
             <div class="container-fluid">
               <div class="card">
-                <div class="row product-page-main card-body" style="border: 1px solid gray;">
+                <div class="row product-page-main card-body" style="border: 1px solid gray;" >
                   <div class="col-xl-2"></div>
                   <div class="col-xl-8">
                     <section>
@@ -145,7 +172,7 @@
                   </div>
                   <div class="col-xl-2"></div>
                   <hr>
-                  <a routerLink="/details" class="btn btn-primary">Go to Details Page</a>
+                    <a (click)="editProduct(productDetail._id)"  class="btn btn-primary" >Go to Details Page</a>
                 </div>
               </div>
             </div>

@@ -95,3 +95,21 @@ $arkaplan-renk: #ededed;
     cursor: pointer;
   }
   
+  
+
+.select-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.custom-select {
+  padding: 8px; 
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-select option {
+  padding: 8px; 
+}
+
+

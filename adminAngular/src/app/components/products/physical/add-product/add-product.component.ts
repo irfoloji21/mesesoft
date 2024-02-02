@@ -172,7 +172,7 @@ export class AddProductComponent implements OnInit {
 
       this.productService.createProduct(formData).subscribe(
         (response) => {
-          this.router.navigate(['/products/physical/product-list']);
+          this.router.navigate(['/products/physical/productss']);
           console.log('Ürün başarıyla oluşturuldu:', response);
         },
         (error) => {
@@ -194,7 +194,7 @@ export class AddProductComponent implements OnInit {
       
       this.productService.updateProduct(this.id, formData).subscribe(
         (response) => {
-          this.router.navigate(['/products/physical/product-list']);
+          this.router.navigate(['/products/physical/productss']);
           console.log('Ürün başarıyla güncellendi:', response);
         },
         (error) => {
