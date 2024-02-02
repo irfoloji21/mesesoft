@@ -113,3 +113,30 @@ $arkaplan-renk: #ededed;
 }
 
 
+
+
+// style table start
+
+
+.styled-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px; 
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.styled-table th {
+  background-color: #f2f2f2;
+}
+
+.styled-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+// style table end

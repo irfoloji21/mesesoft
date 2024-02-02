@@ -7,7 +7,7 @@
             <h5>{{ "Products" | translate }}</h5>
           </div>
           <div class="card-header">
-            <button routerLink="/physical/add-product" type="submit" class="btn btn-primary">
+            <button (click)="addProduct()" type="submit" class="btn btn-primary">
               {{ "Add product +" | translate }}
             </button>
           </div>
@@ -43,7 +43,7 @@
 
             <!-- actions End -->
             <br />
-            <table class="table table-striped">
+            <table class="table table-striped styled-table" >
               <thead>
                 <tr>
                   <th scope="col" class="text-center">Select</th>
@@ -53,7 +53,8 @@
                   <!-- <th scope="col" sortable="product_id" class="text-center">
                       {{ "Product id" | translate }}
                     </th> -->
-                  <th scope="col" sortable="product">Image</th>
+                  <th class="text-center" scope="col" sortable="product">Image</th>
+                  <th scope="col" sortable="name">Name</th>
                   <th scope="col" sortable="price">
                     {{ "Price" | translate }}
                   </th>
@@ -69,7 +70,7 @@
                     <th scope="col" sortable="total" >
                       {{ "Total" | translate }}
                     </th> -->
-                  <th scope="col" sortable="total">
+                  <th class="text-center" scope="col" sortable="total">
                     {{ "Action" | translate }}
                   </th>
                 </tr>
@@ -77,7 +78,7 @@
               <tbody>
                 <tr *ngFor="let product of product_list; let i = index">
                   <td class="text-center align-middle">
-                    <input type="checkbox" (change)="toggleSelection(product)" [checked]="product.selected" />
+                    <input type="checkbox" (change)="toggleSelection(product) ;" [checked]="product.selected" />
                   </td>
                   <td>
                     {{ i + 1 }}
@@ -92,7 +93,7 @@
                   </td> -->
 
                   <td>
-                    <div class="img-container position-relative">
+                    <div class="img-container position-relative text-center">
                       <a href="javascript:void(0)" class="d-block position-relative">
                         <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img"
                           style="width: 4rem; height: 4rem" />
@@ -105,6 +106,10 @@
                       </a>
                     </div>
                   </td>
+                  <td>
+                    {{ product.name.slice(0, 15) }}
+                  </td>
+                  
 
                   <td>
                     <span style="color: rgb(34, 139, 34)">
@@ -121,10 +126,10 @@
                     <td>
                     item.totalPrice 
                    </td> -->
-                  <td>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-original-title="test"
                       data-target="#exampleModal">
-                      <i class="icon-pencil-alt" (click)="editProduct(product._id)"></i>
+                      <i class="icon-pencil-alt " (click)="editProduct(product._id)"></i>
                     </button>
                   </td>
                 </tr>

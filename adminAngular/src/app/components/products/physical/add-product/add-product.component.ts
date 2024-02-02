@@ -213,4 +213,6 @@ export class AddProductComponent implements OnInit {
   toggleDropdown(index: number) {
     this.isDropdownVisible[index] = !this.isDropdownVisible[index];
   }
+
+  
 }

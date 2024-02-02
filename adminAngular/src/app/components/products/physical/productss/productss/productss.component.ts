@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/shared/service/product.service';
 import { Image } from '@ks89/angular-modal-gallery';
 import {  Product } from 'src/app/shared/tables/product';
 import {  DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { id } from '@swimlane/ngx-charts';
 @Component({
   selector: 'app-productss',
   templateUrl: './productss.component.html',
@@ -30,9 +31,10 @@ export class ProductssComponent {
     private route: ActivatedRoute,
   ) { }
 
-  toggleSelection(product: any) {
-    product.selected = !product.selected;
-  }
+  // toggleSelection(product: any) {
+  //   product.selected = !product.selected;
+  //   console.log(product._id , "toggleSelection")
+  // }
   closeModal() {
     this.isModalOpen = false;
   }
@@ -41,20 +43,15 @@ export class ProductssComponent {
     this.isModalOpen = true;
   }
 
-  // deleteProduct(id) {
-  //   this.productService.deleteProduct(id).subscribe(
-  //     (response) => {
-  //       this.ngOnInit()
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
+
 
   editProduct(id) {
     console.log(id)
     this.router.navigate(['/products/physical/edit-product', id]);
+  }
+
+  addProduct(){
+    this.router.navigate(['/products/physical/add-product']);
   }
 
   detailProduct(product: Product): void {
@@ -92,12 +89,55 @@ export class ProductssComponent {
     );
   }
 
-  // actions
+  // // actions delete start
   selectedAction: string = '';
+  selectedProducts: Product[] = [];
 
-  onActionChange(event: any) {
-    this.selectedAction = event.target.value;
+  deleteProduct(id) {
+    this.productService.deleteProduct(id).subscribe(
+      (response) => {
+        this.ngOnInit()
+        this.product_list;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
+toggleSelection(product: any): void {
+  product.selected = !product.selected;
+  this.updateSelectedProducts();
+}
+
+updateSelectedProducts(): void {
+  this.selectedProducts = this.product_list.filter(product => product.selected);
+}
+
+deleteSelectedProducts(): void {
+  if (this.selectedProducts.length === 0) {
+    return;
+  }
+
+  this.selectedProducts.forEach(product => {
+    this.deleteProduct(product._id);
+  });
+}
+
+onActionChange(event: any): void {
+  this.selectedAction = event.target.value;
+  if (this.selectedAction === 'delete') {
+    this.deleteSelectedProducts();
+  }
+}
+// // actions delete end
+
+
+
+
+
+
+
+  
   
 }

@@ -8,7 +8,7 @@
             <!-- <h5>{{buttonText | translate}}</h5> -->
           </div>
           <div class="form-group row mb-0 ">
-            <div class="col-sm-8 ">
+            <div class=" col-sm-8 ">
               <div class="product-buttons d-flex mx-4">
                 <button routerLink="/products/physical/productss" type="button" class="btn btn-light me-2"
                   (click)="goBack()">
@@ -25,30 +25,19 @@
 
         <div class="card-body">
           <div class="row product-adding">
-            <div class="col-xl-5">
-              <div class="add-product">
-                <div class="row">
-                  <div class="col-xl-9 xl-50 col-sm-6 col-9">
-                    <img [src]="selectedProductImage.url || selectedProductImage[0].url" alt=""
-                      class="img-fluid image_zoom_1" />
-                  </div>
-                  <div class="col-xl-3 xl-50 col-sm-6 col-3">
-                    <ul class="file-upload-product">
-                      <li *ngFor="let image of selectedProductImage;  let i = index">
-                        <div class="box-input-file">
-                          <input class="upload" type="file" (change)="onFileChange($event, i)" />
-                          <img class="imgUpload" alt="" [src]="image.url" (click)="selectImage(image)" />
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-7">
+            
+            <div class="  offset-2 col-xl-8 offset-2">
               <form class="needs-validation" [formGroup]="productForm" novalidate>
                 <div class="add-product-form">
                   <div class="form-group row">
+ 
+
+                    <!-- <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                    </div> -->
+
+                    
                     <div class="col-xl-3 col-sm-4">
                       <label for="validationCustom01" class="mb-0">{{'Title' |translate}} :</label>
                     </div>
@@ -195,15 +184,34 @@
           </div>
         </div>
         <div class="custom-hr"></div>
-
+     
         <div class="row">
           <div class="dropdown col">
             <button (click)="toggleDropdown(2)" class="btn btn-block">
-              Toggle Dropdown ⮟
+              IMAGES ⮟
               <i class="bi bi-caret-down dropdown-icon"></i>
             </button>
             <div *ngIf="isDropdownVisible[2]" class="dropdown-content">
-              Hello, World!
+              <div class="offset-2 col-xl-8 offset-2">
+                <div class="add-product">
+                  <div class="row">
+                    <div class="col-xl-9 xl-50 col-sm-6 col-9">
+                      <img [src]="selectedProductImage.url || selectedProductImage[0].url" alt=""
+                        class="img-fluid image_zoom_1" />
+                    </div>
+                    <div class="col-xl-3 xl-50 col-sm-6 col-3">
+                      <ul class="file-upload-product">
+                        <li *ngFor="let image of selectedProductImage;  let i = index">
+                          <div class="box-input-file">
+                            <input class="upload" type="file" (change)="onFileChange($event, i)" />
+                            <img class="imgUpload" alt="" [src]="image.url" (click)="selectImage(image)" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

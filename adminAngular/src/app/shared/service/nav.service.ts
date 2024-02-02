@@ -42,8 +42,8 @@ export class NavService {
 		},
 		{
 			title: 'CATALOG', icon: 'folder', type: 'sub', children: [
-				{ path: '/products/physical/product-list', title: 'Product List', type: 'link' },
-				{ path: '/products/physical/add-product', title: 'Product Add ' , type: 'link' },
+				// { path: '/products/physical/product-list', title: 'Product List', type: 'link' },
+				// { path: '/products/physical/add-product', title: 'Product Add ' , type: 'link' },
 				{ path: '/products/physical/productss', title: 'Products ' , type: 'link' },
 			]
 		},
