@@ -7,12 +7,12 @@
             <h5>{{ "Products" | translate }}</h5>
           </div>
           <div class="card-header">
-            <button type="submit" class="btn btn-primary">
+            <button routerLink="/physical/add-product" type="submit" class="btn btn-primary">
               {{ "Add product +" | translate }}
             </button>
           </div>
         </div>
-        
+
         <div class="card-body">
           <div class="custom-datatable">
             <div class="searchArea mx-2 d-flex">
@@ -24,10 +24,9 @@
                   {{ "Find" | translate }}
                 </button>
               </div>
-             
             </div>
-             <!-- actions start -->
-             <div class="actions m-3">
+            <!-- actions start -->
+            <div class="actions m-3">
               <div class="select-wrapper">
                 <select class="custom-select" id="actions" (change)="onActionChange($event)">
                   <option value="" disabled selected>Select an action</option>
@@ -41,25 +40,20 @@
                 </select>
               </div>
             </div>
-            
-            
+
             <!-- actions End -->
-            <br>
+            <br />
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col" class="text-center">
-                    Select
-                  </th>
+                  <th scope="col" class="text-center">Select</th>
                   <th scope="col" sortable="index">
                     {{ "ID" | translate }}
                   </th>
                   <!-- <th scope="col" sortable="product_id" class="text-center">
                       {{ "Product id" | translate }}
                     </th> -->
-                  <th scope="col" sortable="product">
-                    Image
-                  </th>
+                  <th scope="col" sortable="product">Image</th>
                   <th scope="col" sortable="price">
                     {{ "Price" | translate }}
                   </th>
@@ -81,7 +75,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let product of product_list ; let i = index">
+                <tr *ngFor="let product of product_list; let i = index">
                   <td class="text-center align-middle">
                     <input type="checkbox" (change)="toggleSelection(product)" [checked]="product.selected" />
                   </td>
@@ -101,26 +95,23 @@
                     <div class="img-container position-relative">
                       <a href="javascript:void(0)" class="d-block position-relative">
                         <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img"
-                          style="width: 4rem; height: 4rem;" />
+                          style="width: 4rem; height: 4rem" />
                         <div class="product-hover position-absolute top-0 start-0 w-100 h-100">
-                          <button class="btn btn-transparent" type="button" data-toggle="modal" data-target="#exampleModalCenter"
-                            data-original-title="" title="">
+                          <button class="btn btn-transparent" type="button" data-toggle="modal"
+                            data-target="#exampleModalCenter" data-original-title="" title="">
                             <i class="fa fa-eye text-theme" (click)="detailProduct(product)"></i>
                           </button>
                         </div>
                       </a>
                     </div>
                   </td>
-                  
-                   
+
                   <td>
-                    <span style=" color: rgb(34, 139, 34);">
+                    <span style="color: rgb(34, 139, 34)">
                       {{ product.originalPrice | currency }}
                     </span>
                   </td>
-                  <td>
-                    {{product.stock }} <span>in stock</span>
-                  </td>
+                  <td>{{ product.stock }} <span>in stock</span></td>
                   <td>
                     <span class="badge badge-secondary"> status </span>
                   </td>
@@ -131,8 +122,8 @@
                     item.totalPrice 
                    </td> -->
                   <td>
-                    <button  type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
-                      data-target="#exampleModal"  >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test"
+                      data-target="#exampleModal">
                       <i class="icon-pencil-alt" (click)="editProduct(product._id)"></i>
                     </button>
                   </td>
@@ -146,16 +137,13 @@
   </div>
 </div>
 
-
-
-
 <!-- //Product Detail Open Modal -->
 
 <div class="custom-container">
   <div class="modal" [ngClass]="{ show: isModalOpen }">
     <div class="modal-content col-12 col-md-8 col-lg-6">
       <button class="close-button" (click)="closeModal()">X</button>
-      <div class=" text-center" *ngIf="productDetail">
+      <div class="text-center" *ngIf="productDetail">
         <h3>{{ productDetail.name }}</h3>
       </div>
       <div class="container-fluid">
@@ -163,16 +151,17 @@
           <div class="row product-page-main card-body">
             <div class="container-fluid">
               <div class="card">
-                <div class="row product-page-main card-body" style="border: 1px solid gray;" >
+                <div class="row product-page-main card-body" style="border: 1px solid gray">
                   <div class="col-xl-2"></div>
                   <div class="col-xl-8">
                     <section>
-                      <ks-carousel [id]="101" [images]="imagesRect"> </ks-carousel>
+                      <ks-carousel [id]="101" [images]="imagesRect">
+                      </ks-carousel>
                     </section>
                   </div>
                   <div class="col-xl-2"></div>
-                  <hr>
-                    <a (click)="editProduct(productDetail._id)"  class="btn btn-primary" >Go to Details Page</a>
+                  <hr />
+                  <a (click)="editProduct(productDetail._id)" class="btn btn-primary">Go to Details Page</a>
                 </div>
               </div>
             </div>

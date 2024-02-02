@@ -9,10 +9,11 @@
           </div>
           <div class="form-group row mb-0 ">
             <div class="col-sm-8 ">
-              <div class="product-buttons d-flex mx-4"> 
-                <button routerLink="/products/physical/productss" type="button" class="btn btn-light me-2" (click)="goBack()">         
-                  ◄Back  <i class="bi bi-arrow-left"></i>
-                </button>                
+              <div class="product-buttons d-flex mx-4">
+                <button routerLink="/products/physical/productss" type="button" class="btn btn-light me-2"
+                  (click)="goBack()">
+                  ◄Back <i class="bi bi-arrow-left"></i>
+                </button>
                 <button type="button" class="btn btn-light">{{'Discard' |translate}}</button>
                 <button type="button" class="btn btn-primary me-1" (click)="performAction()">
                   {{ buttonText | translate }}
@@ -21,7 +22,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="card-body">
           <div class="row product-adding">
             <div class="col-xl-5">
@@ -165,13 +166,13 @@
                   </div>
                 </div>
               </form>
-               
-              
+
+
 
             </div>
           </div>
-        </div> 
-    <!-- Dropdown Start -->
+        </div>
+        <!-- Dropdown Start -->
         <div class="row">
           <div class="dropdown col">
             <button (click)="toggleDropdown(1)" class="btn btn-block">
@@ -194,12 +195,12 @@
           </div>
         </div>
         <div class="custom-hr"></div>
-        
+
         <div class="row">
           <div class="dropdown col">
             <button (click)="toggleDropdown(2)" class="btn btn-block">
               Toggle Dropdown ⮟
-             <i class="bi bi-caret-down dropdown-icon"></i>
+              <i class="bi bi-caret-down dropdown-icon"></i>
             </button>
             <div *ngIf="isDropdownVisible[2]" class="dropdown-content">
               Hello, World!
@@ -211,15 +212,11 @@
       </div>
     </div>
 
-  
-  
-    
 
-    
+
+
+
+
   </div>
 </div>
 <!-- Container-fluid Ends-->
-
-
-
-
