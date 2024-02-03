@@ -1,0 +1,43 @@
+<table class="table table-striped styled-table">
+    <thead>
+        <tr>
+            <th scope="col">
+                ID
+            </th>
+            <th scope="col">
+                Created
+            </th>
+            <th scope="col">
+                Select
+            </th>
+            <th scope="col">
+                Select
+            </th>
+            <th scope="col">
+                Select
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of product_list let i = index">
+            <td>
+                {{i+1}}
+            </td>
+            <td >
+                <div *ngFor="let review of product.reviews" >
+                    <p>Yorum Tarihi: {{ review.createdAt }}</p>
+                  </div>
+
+            </td>
+            <td>
+                {{product.name}}
+            </td>
+            <td>
+                {{product.name}}
+            </td>
+            <td>
+                {{product.name}}
+            </td>
+        </tr>
+    </tbody>
+</table>

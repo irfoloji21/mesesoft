@@ -22,6 +22,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductssComponent } from './physical/productss/productss/productss.component';
+import { ProductReviewsComponent } from './physical/product-reviews/product-reviews/product-reviews.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ProductssComponent } from './physical/productss/productss/productss.com
     DigitalCategoryComponent, 
     DigitalSubCategoryComponent, 
     DigitalAddComponent, 
-    ProductDetailComponent, ProductssComponent
+    ProductDetailComponent, ProductssComponent, ProductReviewsComponent
   ],
   imports: [
     CommonModule,

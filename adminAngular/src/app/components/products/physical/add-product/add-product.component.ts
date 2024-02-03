@@ -182,7 +182,7 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  goBack(){}
+  goBack() { }
 
   editProduct() {
     if (this.productForm.valid) {
@@ -191,7 +191,7 @@ export class AddProductComponent implements OnInit {
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
-      
+
       this.productService.updateProduct(this.id, formData).subscribe(
         (response) => {
           this.router.navigate(['/products/physical/productss']);
@@ -214,5 +214,5 @@ export class AddProductComponent implements OnInit {
     this.isDropdownVisible[index] = !this.isDropdownVisible[index];
   }
 
-  
+
 }
