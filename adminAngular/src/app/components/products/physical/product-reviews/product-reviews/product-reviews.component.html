@@ -1,43 +1,40 @@
-<table class="table table-striped styled-table">
-    <thead>
-        <tr>
-            <th scope="col">
-                ID
-            </th>
-            <th scope="col">
-                Created
-            </th>
-            <th scope="col">
-                Select
-            </th>
-            <th scope="col">
-                Select
-            </th>
-            <th scope="col">
-                Select
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of product_list let i = index">
-            <td>
-                {{i+1}}
-            </td>
-            <td >
-                <div *ngFor="let review of product.reviews" >
-                    <p>Yorum Tarihi: {{ review.createdAt }}</p>
-                  </div>
+<ng-container *ngIf="comments.length > 0; else noComments">
+    <table class="table table-striped styled-table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Created</th>
+                <th scope="col">Title</th>
+                <th scope="col">Review</th>
+                <th scope="col">Email</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of comments; let i=index">
+                <td>{{i+1}}</td>
+                <td>{{ product.createdAt | date: 'dd.MM.yyyy HH:mm:ss' }}</td>
+                <td>{{ product.reviewTitle }}</td>
+                <td>
+                    <div *ngIf="!product.showFullComment && product.comment.length > 70">
+                        {{ product.comment | slice:0:70 }}
+                        <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)">Show more</a>
+                    </div>
+                    <div *ngIf="product.showFullComment || product.comment.length <= 70">
+                        {{ product.comment }}
+                        <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)"
+                            *ngIf="product.showFullComment"> Hide more</a>
+                    </div>
+                </td>
+                <td>{{ product.email }}</td>
+                <td>{{ product.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
 
-            </td>
-            <td>
-                {{product.name}}
-            </td>
-            <td>
-                {{product.name}}
-            </td>
-            <td>
-                {{product.name}}
-            </td>
-        </tr>
-    </tbody>
-</table>
+<ng-template #noComments>
+    <div *ngIf="comments.length === 0" class="no-comments-message">
+        No comments available for this product.
+    </div>
+</ng-template>
