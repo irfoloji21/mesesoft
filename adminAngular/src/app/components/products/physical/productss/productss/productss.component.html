@@ -15,16 +15,19 @@
 
         <div class="card-body">
           <div class="custom-datatable">
-            <div class="searchArea mx-2 d-flex">
+            <div class="searchArea mx-2 d-flex" [formGroup]="searchForm">
               <div>
-                <input type="text" class="filter-ngx form-control mx-2" placeholder="{{ 'Search...' | translate }}" />
+                <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}" formControlName="searchText" />
               </div>
               <div>
-                <button type="submit" class="btn btn-primary">
+                <button (click)="buttonClick()" type="button" class="btn btn-primary">
                   {{ "Find" | translate }}
                 </button>
               </div>
             </div>
+            
+            
+            
             <!-- actions start -->
             <div class="actions m-3">
               <div class="select-wrapper">

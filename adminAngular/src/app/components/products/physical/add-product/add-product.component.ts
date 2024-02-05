@@ -24,7 +24,7 @@ export class AddProductComponent implements OnInit {
   public counter: number = 1;
   selectedProduct: Product[] = [];
   selectedProductImage: any;
-
+  
   public url = [
     {
       img: "assets/images/user.png",
@@ -63,8 +63,10 @@ export class AddProductComponent implements OnInit {
       category: [''],
       gender: [''],
       stockStatus: this.fb.group({
-        stockStatusValue: ['']
-      })
+        stockStatusValue: ['Out Of Stock'], 
+      }),
+      enableProduct: [true],
+      sale: [true]
     })
   }
 
@@ -87,8 +89,6 @@ export class AddProductComponent implements OnInit {
             this.selectedCategory = response.product.category;
             this.selectedProduct = response.product;
             this.selectedProductImage = Object.keys(response.product.images).map(key => response.product.images[key]);
-            this.selectedOption = response.product.stockStatus?.stockStatusValue || 'Out Of Stock';
-            this.productForm.get('stockStatus')?.get('stockStatusValue')?.setValue(this.selectedOption);
             this.buttonText = 'Edit';
           },
           (error) => {
@@ -171,58 +171,55 @@ export class AddProductComponent implements OnInit {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
       const shop = this.authService.getShop();
-
+  
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
-
-      this.productService.createProduct(formData).subscribe(
+  
+      // stockStatus'u Json start
+      const jsonRequestBody = {
+        ...formData,
+        stockStatus: { stockStatusValue: formData.stockStatus.stockStatusValue },
+      };
+  
+      console.log(jsonRequestBody , "JsonStockStatus")
+      // stockStatus'u Json start
+      this.productService.createProduct(jsonRequestBody).subscribe(
         (response) => {
           this.router.navigate(['/products/physical/productss']);
           console.log('Ürün başarıyla oluşturuldu:', response);
         },
         (error) => {
           console.error('Ürün oluşturulurken hata oluştu:', error);
-        }
-      );
+        });
     }
   }
+  
+  
+  
+  
+  
 
   goBack() { }
 
   editProduct() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
-    
+      console.log(formData , "Content edit")
       // Diğer form değerlerini alırken olduğu gibi al
       const shop = this.authService.getShop();
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
-    
-      // StockStatus'u JSON nesnesi olarak oluştur
-      const stockStatusData = {
-        stockStatusValue: formData.stockStatus.stockStatusValue,
-      };
-    
-      // StockStatus JSON nesnesini formData'ya ekle
-      formData.stockStatus = stockStatusData;
-    
-      console.log('FormData:', formData);
-    
-      // Backend ile iletişime geçmeden önce stockStatus'u response içine ekleyelim
-      const mockResponse = {
-        success: true,
-        product: {
-          ...formData,
-          stockStatus: stockStatusData,
-        },
-      };
-      this.router.navigate(['/products/physical/productss']);
-      //       console.log('Ürün başarıyla güncellendi:', response);
-      console.log(mockResponse, "mockresponse")
-    }
+  
+      this.productService.updateProduct(this.id, formData).subscribe((response) => {
+        this.router.navigate(['/products/physical/productss']);
+        console.log('Ürün başarıyla güncellendi:', response);
+      }
+      )
+       
   }
+}
   
   
 
@@ -238,21 +235,16 @@ export class AddProductComponent implements OnInit {
 
   // Dropdown Json
 
-  selectedOption: string = "Out Of Stock";
-  isSaleActive: boolean = true;
+  selectedOption: any = "In Stock" ;
   selectOption(option: string): void {
     this.selectedOption = option;
-    const stockStatusControl = this.productForm.get('stockStatus');
-    if (stockStatusControl) {
-      stockStatusControl.setValue({ stockStatusValue: option });
-    } else {
-      console.error('stockStatus control not found.');
-    }
+    this.productForm.get('stockStatus')?.get('stockStatusValue')?.setValue(option);
   }
   
   
-  updateSaleStatus() {
-    this.isSaleActive = !this.isSaleActive;
-  }
+  // isSaleActive: boolean = true;
+  // updateSaleStatus() {
+  //   this.isSaleActive = !this.isSaleActive;
+  // }
   
 }

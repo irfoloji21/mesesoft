@@ -38,11 +38,12 @@
                       </div>
                       <div class="col-xl-8 col-sm-7">
                         <div class="form-check form-switch">
-                          <input class="form-check-input form-switch-custom-size" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                          <input [formControl]="productForm.controls['enableProduct']" class="form-check-input form-switch-custom-size" type="checkbox" role="switch"
+                            id="flexSwitchCheckChecked" checked>
                         </div>
                       </div>
                     </div>
-                    
+
 
 
                     <div class="col-xl-3 col-sm-4">
@@ -131,7 +132,7 @@
                         </option>
                       </select>
                     </div>
-                      <br><br> <br>
+                    <br><br> <br>
                     <div class="col-xl-3 col-sm-4">
                       <label for="exampleFormControlSelect1" class="mb-0">{{'Select Gender' | translate}} :</label>
                     </div>
@@ -160,17 +161,20 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
                       <label for="validationCustom01" class="mb-0">{{'Sale' | translate}} :</label>
                     </div>
                     <div class="col-xl-8 col-sm-7">
                       <div class="form-check form-switch">
-                        <input class="form-check-input form-switch-custom-size" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                        <input [formControl]="productForm.controls['sale']" class="form-check-input form-switch-custom-size" type="checkbox" role="switch"
+                          id="flexSwitchCheckChecked" checked>
                       </div>
                     </div>
                   </div>
+
+
 
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
@@ -178,23 +182,20 @@
                     </div>
                     <div class="col-xl-3 col-sm-8" style="margin-left: -1rem;">
                       <div class="dropdown">
-                        <a style="border: 1px solid gray;" class="btn btn-transparent dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a style="border: 1px solid gray;" class="btn btn-transparent dropdown-toggle" href="#"
+                          role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                           {{ selectedOption || 'Dropdown link' }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <li><a style="cursor: pointer;" class="dropdown-item" (click)="selectOption('In Stock')">In Stock</a></li>
-                          <li><a style="cursor: pointer;" class="dropdown-item" (click)="selectOption('Out Of Stock')">Out Of Stock</a></li>
+                          <li><a style="cursor: pointer;" class="dropdown-item" (click)="selectOption('In Stock')">In
+                              Stock</a></li>
+                          <li><a style="cursor: pointer;" class="dropdown-item"
+                              (click)="selectOption('Out Of Stock')">Out Of Stock</a></li>
                         </ul>
                       </div>
+
                     </div>
                   </div>
-                  
-
-              
-                  
-         
-
-
 
 
                 </div>
