@@ -62,6 +62,9 @@ export class AddProductComponent implements OnInit {
       images: [''],
       category: [''],
       gender: [''],
+      stockStatus: this.fb.group({
+        stockStatusValue: ['']
+      })
     })
   }
 
@@ -74,7 +77,7 @@ export class AddProductComponent implements OnInit {
         console.error(error);
       }
     );
-
+  
     this.route.params.subscribe(params => {
       this.id = params['id'];
       if (this.id) {
@@ -84,6 +87,8 @@ export class AddProductComponent implements OnInit {
             this.selectedCategory = response.product.category;
             this.selectedProduct = response.product;
             this.selectedProductImage = Object.keys(response.product.images).map(key => response.product.images[key]);
+            this.selectedOption = response.product.stockStatus?.stockStatusValue || 'Out Of Stock';
+            this.productForm.get('stockStatus')?.get('stockStatusValue')?.setValue(this.selectedOption);
             this.buttonText = 'Edit';
           },
           (error) => {
@@ -101,8 +106,9 @@ export class AddProductComponent implements OnInit {
         this.buttonText = 'Add';
       }
     });
-
   }
+  
+  
 
   increment() {
     this.counter += 1;
@@ -187,22 +193,38 @@ export class AddProductComponent implements OnInit {
   editProduct() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
+    
+      // Diğer form değerlerini alırken olduğu gibi al
       const shop = this.authService.getShop();
       formData.shopId = shop.seller._id;
       formData.shop = shop;
       formData.category = this.selectedCategory;
-
-      this.productService.updateProduct(this.id, formData).subscribe(
-        (response) => {
-          this.router.navigate(['/products/physical/productss']);
-          console.log('Ürün başarıyla güncellendi:', response);
+    
+      // StockStatus'u JSON nesnesi olarak oluştur
+      const stockStatusData = {
+        stockStatusValue: formData.stockStatus.stockStatusValue,
+      };
+    
+      // StockStatus JSON nesnesini formData'ya ekle
+      formData.stockStatus = stockStatusData;
+    
+      console.log('FormData:', formData);
+    
+      // Backend ile iletişime geçmeden önce stockStatus'u response içine ekleyelim
+      const mockResponse = {
+        success: true,
+        product: {
+          ...formData,
+          stockStatus: stockStatusData,
         },
-        (error) => {
-          console.error('Ürün güncellenirken hata oluştu:', error);
-        }
-      );
+      };
+      this.router.navigate(['/products/physical/productss']);
+      //       console.log('Ürün başarıyla güncellendi:', response);
+      console.log(mockResponse, "mockresponse")
     }
   }
+  
+  
 
   selectImage(image: any) {
     this.selectedProductImage = image;
@@ -214,14 +236,23 @@ export class AddProductComponent implements OnInit {
     this.isDropdownVisible[index] = !this.isDropdownVisible[index];
   }
 
-  selectedOption: string = 'Out Of Stock';
+  // Dropdown Json
 
+  selectedOption: string = "Out Of Stock";
+  isSaleActive: boolean = true;
   selectOption(option: string): void {
     this.selectedOption = option;
+    const stockStatusControl = this.productForm.get('stockStatus');
+    if (stockStatusControl) {
+      stockStatusControl.setValue({ stockStatusValue: option });
+    } else {
+      console.error('stockStatus control not found.');
+    }
   }
-
-  isSaleActive: boolean = true;
+  
+  
   updateSaleStatus() {
     this.isSaleActive = !this.isSaleActive;
   }
+  
 }
