@@ -214,5 +214,14 @@ export class AddProductComponent implements OnInit {
     this.isDropdownVisible[index] = !this.isDropdownVisible[index];
   }
 
+  selectedOption: string = 'Out Of Stock';
 
+  selectOption(option: string): void {
+    this.selectedOption = option;
+  }
+
+  isSaleActive: boolean = true;
+  updateSaleStatus() {
+    this.isSaleActive = !this.isSaleActive;
+  }
 }

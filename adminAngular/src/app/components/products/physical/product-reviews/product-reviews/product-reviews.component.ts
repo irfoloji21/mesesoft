@@ -11,7 +11,6 @@ export class ProductReviewsComponent implements OnInit {
 
   public product_list: any = []
   yorumIcerenUrunler:any = []
-  noComments: any;
   comments : any = []
   constructor(
     private productService: ProductService,
