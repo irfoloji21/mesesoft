@@ -37,7 +37,7 @@ export class ProductssComponent {
     private sanitizer: DomSanitizer,
     private router: Router,
     private fb: FormBuilder,
-    private cdRef: ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {
     this.searchForm = this.fb.group({
       searchText: ['']
@@ -151,34 +151,51 @@ export class ProductssComponent {
   // // actions delete end
 
 
-  // Search Area start 
+  // Search Area start
+
   search() {
-    const searchText = this.searchForm.get('searchText').value;
-    if (!searchText) {
+    const searchText = this.searchForm.get('searchText').value.trim().toLowerCase();
+  
+    if (searchText === '') {
       this.product_list = [...this.originalProductList];
+      this.filteredProducts = []; 
     } else {
-      this.filteredProducts = this.product_list.filter(category => {
-        const nameMatch = (category.name as string).toLowerCase().includes(searchText.toLowerCase());
+      this.filteredProducts = this.originalProductList.filter(product => {
+        const nameMatch = (product.name as string).toLowerCase().includes(searchText);
         return nameMatch;
       });
-
-      this.product_list = this.filteredProducts.length > 0 ? this.filteredProducts : this.originalProductList;
+  
+      if (this.filteredProducts.length > 0) {
+        this.product_list = this.filteredProducts;
+      } else {
+        this.product_list = [];
+      }
     }
+    this.isFilterApplied = true;
+    this.cdr.detectChanges();
   }
-
+  
   buttonClick() {
-    const searchText = this.searchForm.get('searchText').value;
-    document.getElementById('searchTextSpan').textContent = searchText;
+    const searchText = this.searchForm.get('searchText').value.trim().toLowerCase();
+    if (searchText === '') {
+      this.clearAll(); 
+      return; 
+    }
+  
+    this.isFilterApplied = true;
     this.isButtonClicked = true;
-    this.search();
-    this.isButtonClicked = false;
+    this.search(); 
+    this.isButtonClicked = false; 
+    document.getElementById('searchTextSpan').textContent = searchText; 
   }
-
+  
   clearAll() {
     this.searchForm.get('searchText').setValue('');
     this.product_list = [...this.originalProductList];
+    this.isFilterApplied = false;
   }
-  // Search Area End 
+// Search Area End
+
 
 
 }

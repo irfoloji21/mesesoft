@@ -9,16 +9,19 @@ import { ProductService } from 'src/app/shared/service/product.service';
 })
 export class ProductReviewsComponent implements OnInit {
 
-  public product_list: any = []
-  yorumIcerenUrunler:any = []
-  comments : any = []
+  public product_list: any = [];
+  public comments: any = [];
+  public loading: boolean = true;
+
   constructor(
     private productService: ProductService,
     private authService: AuthService,
   ){}
+
   ngOnInit(): void {
-   this.productList();
+    this.productList();
   }
+
   productList() {
     this.authService.loadShop().subscribe(
       (shop) => {
@@ -26,11 +29,11 @@ export class ProductReviewsComponent implements OnInit {
           const id = shop.seller._id
           this.productService.getShopProduct(id).subscribe(
             (response) => {
-              this.product_list = response.products
+              this.product_list = response.products;
               console.log(this.product_list);
-  
+
               this.comments = [];
-  
+
               if (Array.isArray(this.product_list) && this.product_list.length > 0) {
                 for (const product of this.product_list) {
                   if (Array.isArray(product.reviews) && product.reviews.length > 0) {
@@ -45,15 +48,16 @@ export class ProductReviewsComponent implements OnInit {
                   }
                 }
               }
+
+              // Yorumlar başarıyla yüklendiğinde loading durumunu false olarak ayarlayın
+              this.loading = false;
             },
           );
         }
       }
     );
   }
-  
 
-  
   toggleComment(product: any) {
     product.showFullComment = !product.showFullComment;
   }

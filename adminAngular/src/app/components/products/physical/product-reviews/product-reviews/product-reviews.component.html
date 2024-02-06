@@ -1,4 +1,11 @@
-<ng-container *ngIf="comments.length > 0; else noComments">
+<ng-container *ngIf="loading; else tableContent">
+    <div class="text-center">
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <p>Loading...</p>
+    </div>
+</ng-container>
+
+<ng-template #tableContent>
     <table class="table table-striped styled-table">
         <thead>
             <tr>
@@ -11,30 +18,33 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let product of comments; let i=index">
-                <td>{{i+1}}</td>
-                <td>{{ product.createdAt | date: 'dd.MM.yyyy HH:mm:ss' }}</td>
-                <td>{{ product.reviewTitle }}</td>
-                <td>
-                    <div *ngIf="!product.showFullComment && product.comment.length > 70">
-                        {{ product.comment | slice:0:70 }}
-                        <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)">Show more</a>
-                    </div>
-                    <div *ngIf="product.showFullComment || product.comment.length <= 70">
-                        {{ product.comment }}
-                        <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)"
-                            *ngIf="product.showFullComment"> Hide more</a>
-                    </div>
-                </td>
-                <td>{{ product.email }}</td>
-                <td>{{ product.name }}</td>
-            </tr>
+            <ng-container *ngIf="comments.length > 0; else noCommentsContent">
+                <tr *ngFor="let product of comments; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{ product.createdAt | date: 'dd.MM.yyyy HH:mm:ss' }}</td>
+                    <td>{{ product.reviewTitle }}</td>
+                    <td>
+                        <div *ngIf="!product.showFullComment && product.comment.length > 70">
+                            {{ product.comment | slice:0:70 }}
+                            <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)">Show more</a>
+                        </div>
+                        <div *ngIf="product.showFullComment || product.comment.length <= 70">
+                            {{ product.comment }}
+                            <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)"
+                                *ngIf="product.showFullComment"> Hide more</a>
+                        </div>
+                    </td>
+                    <td>{{ product.email }}</td>
+                    <td>{{ product.name }}</td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
-</ng-container>
-
-<ng-template #noComments>
-    <div *ngIf="comments.length === 0" class="no-comments-message">
-        No comments available for this product.
-    </div>
+    <ng-container #noCommentsContent>
+        <div class="no-comments-message d-flex justify-content-center">
+            No comments available for this product.
+        </div>
+    </ng-container>
 </ng-template>
+
+

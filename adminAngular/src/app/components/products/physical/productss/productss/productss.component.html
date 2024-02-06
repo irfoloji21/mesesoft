@@ -13,8 +13,7 @@
           </div>
         </div>
 
-
-        <div class="admin-filters"  >
+        <div class="admin-filters" *ngIf="isFilterApplied">
           <div class="content">
             <div class="d-flex">
               <span class="Active-Filters">Active-Filters:</span>
@@ -52,7 +51,8 @@
 
             <div class="searchArea mx-2 d-flex" [formGroup]="searchForm">
               <div>
-                <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}" formControlName="searchText" />
+                <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}"
+                 formControlName="searchText" (keyup.enter)="buttonClick()" />
               </div>
               <div>
                 <button (click)="buttonClick()" type="button" class="btn btn-primary">

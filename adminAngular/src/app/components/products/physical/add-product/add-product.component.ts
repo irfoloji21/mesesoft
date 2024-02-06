@@ -24,7 +24,7 @@ export class AddProductComponent implements OnInit {
   public counter: number = 1;
   selectedProduct: Product[] = [];
   selectedProductImage: any;
-  
+  isEditMode: boolean = false;
   public url = [
     {
       img: "assets/images/user.png",
@@ -83,6 +83,7 @@ export class AddProductComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       if (this.id) {
+        this.isEditMode = true;
         this.productService.getProductById(this.id).subscribe(
           (response) => {
             this.productForm.patchValue(response.product);
@@ -246,5 +247,6 @@ export class AddProductComponent implements OnInit {
   // updateSaleStatus() {
   //   this.isSaleActive = !this.isSaleActive;
   // }
+  
   
 }

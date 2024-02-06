@@ -262,7 +262,7 @@
         </div>
         <div class="custom-hr"></div>
 
-        <div class="row">
+        <div class="row" *ngIf="isEditMode">
           <div class="dropdown col">
             <button (click)="toggleDropdown(3)" class="btn btn-block">
               PRODUCT REVİEWS ⮟
