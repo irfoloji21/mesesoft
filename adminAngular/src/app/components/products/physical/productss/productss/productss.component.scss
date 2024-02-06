@@ -1,8 +1,6 @@
-
 // Open modal start
-$ana-renk: #FF8084;
+$ana-renk: #ff8084;
 $arkaplan-renk: #ededed;
-
 
 .modal {
   display: none;
@@ -21,8 +19,8 @@ $arkaplan-renk: #ededed;
   }
 
   .modal-content {
-    width: 100%; 
-    max-width: 800px; 
+    width: 100%;
+    max-width: 800px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -65,7 +63,8 @@ $arkaplan-renk: #ededed;
     }
   }
 }
-.close{
+
+.close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -79,23 +78,17 @@ $arkaplan-renk: #ededed;
 
 // Open modal end
 
-
-  
-
-
 .img-container:hover .product-hover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .btn-transparent {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
 .select-wrapper {
   display: inline-block;
@@ -103,25 +96,21 @@ $arkaplan-renk: #ededed;
 }
 
 .custom-select {
-  padding: 8px; 
+  padding: 8px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .custom-select option {
-  padding: 8px; 
+  padding: 8px;
 }
 
-
-
-
 // style table start
-
 
 .styled-table {
   border-collapse: collapse;
   width: 100%;
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 
 .styled-table th,
@@ -140,3 +129,70 @@ $arkaplan-renk: #ededed;
 }
 
 // style table end
+
+// clearAllFilter start
+
+.admin-filters {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .content {
+    display: flex;
+    align-items: center;
+
+    .d-flex {
+      display: flex;
+      align-items: center;
+    }
+
+    .keywords {
+      font-weight: bold;
+      margin-inline: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+
+        span {
+          padding: 0;
+        }
+
+        button.action-remove {
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .clearAll {
+    margin-left: 10px;
+
+    a {
+      color: #e74c3c;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// clearAllFilter End

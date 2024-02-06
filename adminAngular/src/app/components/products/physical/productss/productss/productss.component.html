@@ -13,8 +13,43 @@
           </div>
         </div>
 
+
+        <div class="admin-filters"  >
+          <div class="content">
+            <div class="d-flex">
+              <span class="Active-Filters">Active-Filters:</span>
+              <div>
+                <span class="keywords">Keywords:</span>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <span id="searchTextSpan">{{ searchText }}</span>
+                    <button class="action-remove" type="button" (click)="clearAll()">
+                      <span>X</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="admin-keywords-title">
+            </div>
+          </div>
+          <div class="clearAll">
+            <a (click)="clearAll()" type="button">Clear all</a>
+          </div>
+        </div>
+        
+        
+
+
+
+
         <div class="card-body">
           <div class="custom-datatable">
+
+           
+
             <div class="searchArea mx-2 d-flex" [formGroup]="searchForm">
               <div>
                 <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}" formControlName="searchText" />

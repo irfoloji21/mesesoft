@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { ProductService } from 'src/app/shared/service/product.service';
 import { Image } from '@ks89/angular-modal-gallery';
-import {  Product } from 'src/app/shared/tables/product';
-import {  DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Product } from 'src/app/shared/tables/product';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { id } from '@swimlane/ngx-charts';
 import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
@@ -20,12 +20,14 @@ export class ProductssComponent {
   productId: string;
   productDetail: Product;
   productImages: any[] = [];
+  elems: any[] = [];
+  isFilterApplied: boolean = false;
   imagesRect: Image[] = [
-    new Image(0, { img: 'assets/images/furniture/6.jpg'}),
+    new Image(0, { img: 'assets/images/furniture/6.jpg' }),
   ]
   public product_list = []
   public isModalOpen: boolean = false;
-  public filteredProducts : any[] = [];
+  public filteredProducts: any[] = [];
   isButtonClicked: boolean = false;
   originalProductList: any[] = [];
   searchText;
@@ -36,11 +38,11 @@ export class ProductssComponent {
     private router: Router,
     private fb: FormBuilder,
     private cdRef: ChangeDetectorRef
-  ) { 
+  ) {
     this.searchForm = this.fb.group({
       searchText: ['']
     });
-  
+
     this.searchForm.get('searchText').valueChanges.subscribe(value => {
       if (this.isButtonClicked) {
         this.search();
@@ -67,7 +69,7 @@ export class ProductssComponent {
     this.router.navigate(['/products/physical/edit-product', id]);
   }
 
-  addProduct(){
+  addProduct() {
     this.router.navigate(['/products/physical/add-product']);
   }
 
@@ -91,7 +93,7 @@ export class ProductssComponent {
           this.productService.getShopProduct(id).subscribe(
             (response) => {
               this.product_list = response.products;
-              this.originalProductList = [...this.product_list]; 
+              this.originalProductList = [...this.product_list];
             },
             (error) => {
               console.error(error);
@@ -121,64 +123,68 @@ export class ProductssComponent {
     );
   }
 
-toggleSelection(product: any): void {
-  product.selected = !product.selected;
-  this.updateSelectedProducts();
-}
-
-updateSelectedProducts(): void {
-  this.selectedProducts = this.product_list.filter(product => product.selected);
-}
-
-deleteSelectedProducts(): void {
-  if (this.selectedProducts.length === 0) {
-    return;
+  toggleSelection(product: any): void {
+    product.selected = !product.selected;
+    this.updateSelectedProducts();
   }
 
-  this.selectedProducts.forEach(product => {
-    this.deleteProduct(product._id);
-  });
-}
-
-onActionChange(event: any): void {
-  this.selectedAction = event.target.value;
-  if (this.selectedAction === 'delete') {
-    this.deleteSelectedProducts();
+  updateSelectedProducts(): void {
+    this.selectedProducts = this.product_list.filter(product => product.selected);
   }
-}
-// // actions delete end
 
+  deleteSelectedProducts(): void {
+    if (this.selectedProducts.length === 0) {
+      return;
+    }
 
-// Search Area start 
-
-search() {
-  const searchText = this.searchForm.get('searchText').value;
-
-  if (!searchText) {
-    this.product_list = [...this.originalProductList]; 
-  } else {
-    this.filteredProducts = this.product_list.filter(category => {
-      const nameMatch = (category.name as string).toLowerCase().includes(searchText.toLowerCase());
-      return nameMatch;
+    this.selectedProducts.forEach(product => {
+      this.deleteProduct(product._id);
     });
-
-    this.product_list = this.filteredProducts.length > 0 ? this.filteredProducts : this.originalProductList;
   }
+
+  onActionChange(event: any): void {
+    this.selectedAction = event.target.value;
+    if (this.selectedAction === 'delete') {
+      this.deleteSelectedProducts();
+    }
+  }
+  // // actions delete end
+
+
+  // Search Area start 
+  search() {
+    const searchText = this.searchForm.get('searchText').value;
+    if (!searchText) {
+      this.product_list = [...this.originalProductList];
+    } else {
+      this.filteredProducts = this.product_list.filter(category => {
+        const nameMatch = (category.name as string).toLowerCase().includes(searchText.toLowerCase());
+        return nameMatch;
+      });
+
+      this.product_list = this.filteredProducts.length > 0 ? this.filteredProducts : this.originalProductList;
+    }
+  }
+
+  buttonClick() {
+    const searchText = this.searchForm.get('searchText').value;
+    document.getElementById('searchTextSpan').textContent = searchText;
+    this.isButtonClicked = true;
+    this.search();
+    this.isButtonClicked = false;
+  }
+
+  clearAll() {
+    this.searchForm.get('searchText').setValue('');
+    this.product_list = [...this.originalProductList];
+  }
+  // Search Area End 
+
+
 }
 
-buttonClick() {
-  this.isButtonClicked = true;
-  this.search();
-  this.isButtonClicked = false; 
-}
-
-// Search Area End 
-
-
-}
 
 
 
 
-  
 
