@@ -25,6 +25,7 @@ export class AddProductComponent implements OnInit {
   selectedProduct: Product[] = [];
   selectedProductImage: any;
   isEditMode: boolean = false;
+  selectedCategories: string[] = [];
   public url = [
     {
       img: "assets/images/user.png",
@@ -247,6 +248,39 @@ export class AddProductComponent implements OnInit {
   // updateSaleStatus() {
   //   this.isSaleActive = !this.isSaleActive;
   // }
+
+
+
+
   
+  onCategoryChange(categoryName: string) {
+    if (!this.selectedCategories.includes(categoryName)) {
+      this.selectedCategories.push(categoryName);
+    }
+  }
   
+  removeCategory(category: string) {
+    const index = this.selectedCategories.indexOf(category);
+    if (index !== -1) {
+      this.selectedCategories.splice(index, 1);
+    }
+  }
+  
+
+  selectedOptions: string[] = [];
+  dropdownOpen: boolean = false; 
+
+  toggleDropdown2() {
+    this.dropdownOpen = !this.dropdownOpen; 
+  }
+
+
+  toggleCategorySelection(category: any) {
+    const index = this.selectedOptions.indexOf(category.name);
+    if (index === -1) {
+        this.selectedOptions.push(category.name);
+    } else {
+        this.selectedOptions.splice(index, 1);
+    }
+}
 }
