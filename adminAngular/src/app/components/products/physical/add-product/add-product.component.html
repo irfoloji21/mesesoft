@@ -85,7 +85,7 @@
                         [formControl]="productForm.controls['originalPrice']" required="" />
                     </div>
                     <div *ngIf="
-                        productForm.controls.originalPrice.touched &&
+                        productForm.controls.originalPrice.touched && 
                         productForm.controls.originalPrice.errors?.required
                       " class="text text-danger">
                       {{'Product Price is required.' | translate}}
@@ -140,24 +140,47 @@
 
                   <div class="form-group row">
                     <div class="col-xl-3 col-sm-4">
-                      <label class="mb-0">{{'Select Category(s)' | translate}} :</label>
+                        <label class="mb-0">{{ 'Select Category(s)' | translate }} :</label>
                     </div>
                     <div class="col-xl-8 col-sm-7">
-                      <div class="dropdown" style="border: 1px solid grey;">
-                        <button class="btn btn-transparent dropdown-toggle" type="button" (click)="toggleDropdown2()" aria-haspopup="true" aria-expanded="false">
-                          {{ selectedOptions.length > 0 ? selectedOptions.join(', ') : 'Select Category' }}
-                        </button>
-                        <div class="dropdown-menu w-100" [class.show]="dropdownOpen" aria-labelledby="dropdownMenuButton">
-                          <div class="selected-options">
-                            <span *ngFor="let option of selectedOptions" class="selected-option">{{ option }}x </span>
-                          </div>
-                          <a class="dropdown-item" *ngFor="let category of categories" (click)="toggleCategorySelection(category)">
-                            {{ category.name }}
-                          </a>
+                        <div class="dropdown" style="border: 1px solid grey;">
+                          <div class="d-flex justify-content-end">
+                            <div class="flex-grow-1">
+                                <input [formControl]="productForm.controls['categories']" type="text" class="form-control" [placeholder]="selectedOptions.length > 0 ? selectedOptions.join(', ') : 'Select Category'" readonly>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-transparent dropdown-toggle" type="button" (click)="toggleDropdown2()" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                            </div>
+                        </div>                        
+                                
+                            <div class="dropdown-menu w-100" [class.show]="dropdownOpen" aria-labelledby="dropdownMenuButton">
+                                <!-- search -->
+                                <div class="searchArea mx-2 d-flex">
+                                    <div class="flex-grow-1">
+                                        <input [formControl]="productForm.controls['searchText']" type="text"
+                                            class="filter-ngx form-control" placeholder="Search..." (ngModelChange)="search()" />
+                                    </div>
+                                </div>
+                                <!-- search -->
+                                <div class="selected-options">
+                                    <div *ngFor="let option of selectedOptions" class="selected-option justify-content-center ms-3">
+                                        <span>{{ option }}</span>
+                                        <a class="remove" (click)="removeCategory(option)">X</a>
+                                    </div>
+                                </div>
+                                <a style="cursor: pointer;" class="dropdown-item" *ngFor="let category of categories"
+                                    (click)="toggleCategorySelection(category)">
+                                    {{ category.name }}
+                                </a>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
+                </div>
+                
+                  
+                  
                   
                   
                   
@@ -281,19 +304,19 @@
         </div>
         <!-- Dropdown Start -->
         <div class="row">
-          <div class="dropdown col">
+          <div class="dropdown col m-3">
             <button (click)="toggleDropdown(1)" class="btn btn-block">
               CONTENT ⮟
               <i class="bi bi-caret-down-fill dropdown-icon"></i>
             </button>
-            <div *ngIf="isDropdownVisible[1]" class="dropdown-content">
+            <div *ngIf="isDropdownVisible[1]" class="dropdown-content m-3">
               <div class="form-group row">
-                <div class="col-xl-3 col-sm-4">
+                <div class="col-xl-3 col-sm-4 mx-3">
                   <label style="font-weight: bold;">{{'Description' | translate}} :</label>
                 </div>
-                <div class="col-xl-8 col-sm-7">
-                  <div class="ps-0 description-sm">
-                    <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"
+                <div class="col-xl-8 col-sm-7 ">
+                  <div class="ps-0 description-sm m-3 p-3  ">
+                    <ckeditor  class="" [editor]="Editor" data="<p>Hello, world!</p>"
                       [formControl]="productForm.controls['description']"></ckeditor>
                   </div>
                 </div>
@@ -304,12 +327,12 @@
         <div class="custom-hr"></div>
 
         <div class="row">
-          <div class="dropdown col">
+          <div class="dropdown col m-3">
             <button (click)="toggleDropdown(2)" class="btn btn-block">
               IMAGES ⮟
               <i class="bi bi-caret-down dropdown-icon"></i>
             </button>
-            <div *ngIf="isDropdownVisible[2]" class="dropdown-content">
+            <div *ngIf="isDropdownVisible[2]" class="dropdown-content m-3">
               <div class="offset-2 col-xl-8 offset-2">
                 <div class="add-product">
                   <div class="row">
@@ -336,12 +359,12 @@
         <div class="custom-hr"></div>
 
         <div class="row" *ngIf="isEditMode">
-          <div class="dropdown col">
+          <div class="dropdown col m-3">
             <button (click)="toggleDropdown(3)" class="btn btn-block">
               PRODUCT REVİEWS ⮟
               <i class="bi bi-caret-down-fill dropdown-icon"></i>
             </button>
-            <div *ngIf="isDropdownVisible[3]" class="dropdown-content">
+            <div *ngIf="isDropdownVisible[3]" class="dropdown-content m-3">
               <div class="form-group row">
                 <app-product-reviews></app-product-reviews>
               </div>

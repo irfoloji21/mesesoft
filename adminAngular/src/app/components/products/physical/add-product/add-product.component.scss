@@ -10,32 +10,21 @@
         display: flex;
         align-items: center; 
         justify-content: space-between; 
-        // padding: 1rem;
-        .dropdown-icon {
-          margin-left: 15px; 
-        }
+      }
+  
+      .dropdown-content {
+        width: 100%;
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
       }
   
     }
   }
-  .dropdown-menu {
-    overflow-y: auto;
-    max-height: 200px; 
-}
   
   .custom-hr {
      height: 1px;
     background-color: #ccc; 
     margin: 0 0;
   }
-  
-
-  
-  .dropdown-menu {
-    max-height: 200px; /* Drop-down menüsünün maksimum yüksekliği */
-    overflow-y: auto; /* Eğer menü içeriği belirtilen yüksekliği aşarsa, kaydırma çubuğu ekleyin */
-  }
-  
   
   
 
@@ -46,7 +35,7 @@
   }
   
 
-
+  
   .border-category {
     padding: 5px; 
     display: flex; 
@@ -71,11 +60,21 @@
     padding: 2px; 
   }
   
+  .remove {
+    cursor: pointer; 
+    border-radius: 50%; 
+    color: #ff8084; 
+    padding: 2px;
+    text-decoration: none; 
+    background-color: #f0f0f0; 
+    margin-left: 5px; 
+  }
+  
+  
 
   .selected-options {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 5px;
   }
   
   .selected-option {
@@ -83,9 +82,17 @@
     background-color: #f0f0f0;
     padding: 5px;
     border-radius: 5px;
+    margin: 5px;
   }
   
 
 
+
+  // scrool
+  .dropdown-menu {
+    max-height: 200px; 
+    overflow-y: auto;
+  }
+  
 
   

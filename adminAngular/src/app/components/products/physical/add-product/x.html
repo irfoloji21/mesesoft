@@ -1,29 +1,387 @@
-<div class="form-group row">
-  <div class="col-xl-3 col-sm-4">
-    <label for="exampleFormControlSelect1" class="mb-0">{{'Select Category' | translate}} :</label>
-  </div>
-  <div class="col-xl-8 col-sm-7">
-    <select class="form-control digits" id="category" name="category" (change)="onCategoryChange($event.target.value)"
-      multiple [formControl]="productForm.controls['category']">
-      <option *ngFor="let category of categories" [value]="category.name">
-        {{ category.name }}
-      </option>
-    </select>
-  </div>
-</div>
-
-<div class="form-group row">
-  <div class="col-xl-3 col-sm-4">
-    <label class="mb-0">Selected Categories:</label>
-  </div>
-  <div class="col-xl-8 col-sm-7">
-    <div class="border-category d-flex flex-wrap m-1" >
-      <span *ngFor="let category of selectedCategories" class="category-item">
-        <div  style="border: 1px solid rgb(109, 104, 104);  margin: 4px; padding: 2px;">
-          <span>{{ category }} </span>
-        <span  class="remove" (click)="removeCategory(category)">x</span>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <div>
+            <!-- <h5>{{buttonText | translate}}</h5> -->
+          </div>
+          <div class="form-group row mb-0 ">
+            <div class=" col-sm-8 ">
+              <div class="product-buttons d-flex mx-4">
+                <button routerLink="/products/physical/productss" type="button" class="btn btn-light me-2"
+                  (click)="goBack()">
+                  ◄Back <i class="bi bi-arrow-left"></i>
+                </button>
+                <button type="button" class="btn btn-light">{{'Discard' |translate}}</button>
+                <button type="button" class="btn btn-primary me-1" (click)="performAction()">
+                  {{ buttonText | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-    </span>
+
+        <div class="card-body">
+          <div class="row product-adding">
+
+            <div class="  offset-2 col-xl-8 offset-2">
+              <form class="needs-validation" [formGroup]="productForm" novalidate>
+                <div class="add-product-form">
+                  <div class="form-group row">
+
+
+                    <div class="form-group row">
+                      <div class="col-xl-3 col-sm-4">
+                        <label for="validationCustom01" class="mb-0">{{'Enable product' | translate}} :</label>
+                      </div>
+                      <div class="col-xl-8 col-sm-7">
+                        <div class="form-check form-switch">
+                          <input [formControl]="productForm.controls['enableProduct']"
+                            class="form-check-input form-switch-custom-size" type="checkbox" role="switch"
+                            id="flexSwitchCheckChecked" checked>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="col-xl-3 col-sm-4">
+                      <label for="validationCustom01" class="mb-0">{{'Title' |translate}} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <input class="form-control" id="validationCustom01" type="text"
+                        [formControl]="productForm.controls['name']" required />
+                      <div *ngIf="
+                          productForm.controls.name.touched &&
+                          productForm.controls.name.errors?.required
+                        " class="text text-danger">
+                        {{'Title Name is required.' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label for="validationCustom01" class="mb-0">{{'Slug' | translate}} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <input class="form-control" id="validationCustom01" type="text"
+                        [formControl]="productForm.controls['slug']" required />
+                      <div *ngIf="
+                          productForm.controls.slug.touched &&
+                          productForm.controls.slug.errors?.required
+                        " class="text text-danger">
+                        {{'slug is required.' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label for="validationCustom02" class="mb-0">{{'Price' | translate}} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <input class="form-control" id="validationCustom02" type="number"
+                        [formControl]="productForm.controls['originalPrice']" required="" />
+                    </div>
+                    <div *ngIf="
+                        productForm.controls.originalPrice.touched && 
+                        productForm.controls.originalPrice.errors?.required
+                      " class="text text-danger">
+                      {{'Product Price is required.' | translate}}
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label for="validationCustom02" class="mb-0">{{'Discount Price' | translate}} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <input class="form-control" id="validationCustom02" type="number"
+                        [formControl]="productForm.controls['discountPrice']" required="" />
+                    </div>
+                    <div *ngIf="
+                        productForm.controls.discountPrice.touched &&
+                        productForm.controls.discountPrice.errors?.required
+                      " class="text text-danger">
+                      {{'Product Price is required.' | translate}}
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label for="validationCustom03" class="mb-0">{{'Product Tags' | translate}} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <input class="form-control" id="validationCustom03" type="text"
+                        [formControl]="productForm.controls['tags']" required="" />
+                    </div>
+                    <div *ngIf="
+                        productForm.controls.tags.touched &&
+                        productForm.controls.tags.errors?.required
+                      " class="text text-danger">
+                      {{'Product tags are required.' | translate}}
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
+
+                  
+
+
+
+
+
+
+
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                        <label class="mb-0">{{ 'Select Category(s)' | translate }} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                        <div class="dropdown" style="border: 1px solid grey;">
+                          <div class="d-flex justify-content-end">
+                            <div class="flex-grow-1">
+                                <input [formControl]="productForm.controls['categories']" type="text" class="form-control" placeholder="Select Category" readonly>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-transparent dropdown-toggle" type="button" (click)="toggleDropdown2()" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                                
+                            <div class="dropdown-menu w-100" [class.show]="dropdownOpen" aria-labelledby="dropdownMenuButton">
+                                <!-- search -->
+                                <div class="searchArea mx-2 d-flex">
+                                    <div class="flex-grow-1">
+                                        <input [formControl]="productForm.controls['searchText']" type="text"
+                                            class="filter-ngx form-control" placeholder="Search..." (ngModelChange)="search()" />
+                                    </div>
+                                </div>
+                                <!-- search -->
+                                <div class="selected-options">
+                                    <div *ngFor="let option of selectedOptions" class="selected-option justify-content-center ms-3">
+                                        <span>{{ option }}</span>
+                                        <a class="remove" (click)="removeCategory(option)">X</a>
+                                    </div>
+                                </div>
+                                <a style="cursor: pointer;" class="dropdown-item" *ngFor="let category of categories"
+                                    (click)="toggleCategorySelection(category)">
+                                    {{ category.name }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                  
+                  
+                  
+                  
+                  
+                  <!-- <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label class="mb-0">Selected Categories:</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <div class="border-category d-flex flex-wrap m-1" >
+                        <span *ngFor="let category of selectedCategories" class="category-item">
+                          <div  style="border: 1px solid rgb(109, 104, 104);  margin: 4px; padding: 2px;">
+                            <span>{{ category }} </span>
+                          <span  class="remove" (click)="removeCategory(category)">x</span>
+                          </div>
+                      </span>
+                      </div>
+                    </div>
+                  </div>
+                   -->
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                 
+                  
+                  
+                  
+                  
+                  
+                  
+
+
+
+
+
+
+
+
+
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label class="mb-0">{{'Total Stock' | translate}} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <div class="qty-box1">
+                        <div class="input-group">
+                          <i class="fa fa-minus btnGtr1" (click)="decrement()"></i>
+                          <input class="touchspin1 text-center" name="counter" [value]="counter" type="text"
+                            [formControl]="productForm.controls['stock']" />
+                          <i class="fa fa-plus btnLess1" (click)="increment()"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label for="validationCustom01" class="mb-0">{{'Sale' | translate}} :</label>
+                    </div>
+                    <div class="col-xl-8 col-sm-7">
+                      <div class="form-check form-switch">
+                        <input [formControl]="productForm.controls['sale']"
+                          class="form-check-input form-switch-custom-size" type="checkbox" role="switch"
+                          id="flexSwitchCheckChecked" checked>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-sm-4">
+                      <label class="mb-0">{{'Stock Status' | translate}} :</label>
+                    </div>
+                    <div class="col-xl-3 col-sm-8" style="margin-left: -1rem;">
+                      <div class="dropdown">
+                        <a style="border: 1px solid gray;" class="btn btn-transparent dropdown-toggle" href="#"
+                          role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ selectedOption || 'Dropdown link' }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <li><a style="cursor: pointer;" class="dropdown-item" (click)="selectOption('In Stock')">In
+                              Stock</a></li>
+                          <li><a style="cursor: pointer;" class="dropdown-item"
+                              (click)="selectOption('Out Of Stock')">Out Of Stock</a></li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                </div>
+              </form>
+
+
+
+            </div>
+          </div>
+        </div>
+        <!-- Dropdown Start -->
+        <div class="row">
+          <div class="dropdown col m-3">
+            <button (click)="toggleDropdown(1)" class="btn btn-block">
+              CONTENT ⮟
+              <i class="bi bi-caret-down-fill dropdown-icon"></i>
+            </button>
+            <div *ngIf="isDropdownVisible[1]" class="dropdown-content m-3">
+              <div class="form-group row">
+                <div class="col-xl-3 col-sm-4 mx-3">
+                  <label style="font-weight: bold;">{{'Description' | translate}} :</label>
+                </div>
+                <div class="col-xl-8 col-sm-7 ">
+                  <div class="ps-0 description-sm m-3 p-3  ">
+                    <ckeditor  class="" [editor]="Editor" data="<p>Hello, world!</p>"
+                      [formControl]="productForm.controls['description']"></ckeditor>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-hr"></div>
+
+        <div class="row">
+          <div class="dropdown col m-3">
+            <button (click)="toggleDropdown(2)" class="btn btn-block">
+              IMAGES ⮟
+              <i class="bi bi-caret-down dropdown-icon"></i>
+            </button>
+            <div *ngIf="isDropdownVisible[2]" class="dropdown-content m-3">
+              <div class="offset-2 col-xl-8 offset-2">
+                <div class="add-product">
+                  <div class="row">
+                    <div class="col-xl-9 xl-50 col-sm-6 col-9">
+                      <img [src]="selectedProductImage.url || selectedProductImage[0].url" alt=""
+                        class="img-fluid image_zoom_1" />
+                    </div>
+                    <div class="col-xl-3 xl-50 col-sm-6 col-3">
+                      <ul class="file-upload-product">
+                        <li *ngFor="let image of selectedProductImage;  let i = index">
+                          <div class="box-input-file">
+                            <input class="upload" type="file" (change)="onFileChange($event, i)" />
+                            <img class="imgUpload" alt="" [src]="image.url" (click)="selectImage(image)" />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-hr"></div>
+
+        <div class="row" *ngIf="isEditMode">
+          <div class="dropdown col m-3">
+            <button (click)="toggleDropdown(3)" class="btn btn-block">
+              PRODUCT REVİEWS ⮟
+              <i class="bi bi-caret-down-fill dropdown-icon"></i>
+            </button>
+            <div *ngIf="isDropdownVisible[3]" class="dropdown-content m-3">
+              <div class="form-group row">
+                <app-product-reviews></app-product-reviews>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom-hr"></div>
+        <!-- Dropdown End -->
+      </div>
     </div>
+
+
+
+
+
+
   </div>
 </div>
+<!-- Container-fluid Ends-->

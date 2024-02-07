@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, FormsModule } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { UntypedFormGroup, UntypedFormBuilder, FormsModule, FormControl } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ProductService } from '../../../../shared/service/product.service';
 import { AuthService } from 'src/app/shared/service/auth.service';
@@ -7,6 +7,7 @@ import { CategoryService } from 'src/app/shared/service/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/shared/tables/product';
 import { Category } from 'src/app/shared/tables/category';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-product',
@@ -22,6 +23,8 @@ export class AddProductComponent implements OnInit {
   public productForm: UntypedFormGroup;
   public Editor = ClassicEditor;
   public counter: number = 1;
+  // public searchText;
+  public filteredCategory : any = []
   selectedProduct: Product[] = [];
   selectedProductImage: any;
   isEditMode: boolean = false;
@@ -50,8 +53,13 @@ export class AddProductComponent implements OnInit {
     private authService: AuthService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
+    
+
+    
+
     this.productForm = this.fb.group({
       name: [''],
       slug: [''],
@@ -61,17 +69,22 @@ export class AddProductComponent implements OnInit {
       stock: [''],
       description: [''],
       images: [''],
-      category: [''],
+      // category: [''],
+      categories:[''],
       gender: [''],
       stockStatus: this.fb.group({
         stockStatusValue: ['Out Of Stock'], 
       }),
       enableProduct: [true],
-      sale: [true]
+      sale: [true],
+      searchText: [''] ,
+
+      
     })
   }
 
   ngOnInit() {
+    
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = response.categories;
@@ -108,6 +121,8 @@ export class AddProductComponent implements OnInit {
         this.buttonText = 'Add';
       }
     });
+    
+    
   }
   
   
@@ -182,6 +197,7 @@ export class AddProductComponent implements OnInit {
       const jsonRequestBody = {
         ...formData,
         stockStatus: { stockStatusValue: formData.stockStatus.stockStatusValue },
+        categories: this.selectedOptions, 
       };
   
       console.log(jsonRequestBody , "JsonStockStatus")
@@ -193,7 +209,11 @@ export class AddProductComponent implements OnInit {
         },
         (error) => {
           console.error('Ürün oluşturulurken hata oluştu:', error);
-        });
+          if (error instanceof HttpErrorResponse) {
+            console.error('Sunucudan gelen hata:', error.error);
+          }
+        }
+      );
     }
   }
   
@@ -235,7 +255,7 @@ export class AddProductComponent implements OnInit {
     this.isDropdownVisible[index] = !this.isDropdownVisible[index];
   }
 
-  // Dropdown Json
+  // Dropdown Json categoryy start
 
   selectedOption: any = "In Stock" ;
   selectOption(option: string): void {
@@ -243,44 +263,61 @@ export class AddProductComponent implements OnInit {
     this.productForm.get('stockStatus')?.get('stockStatusValue')?.setValue(option);
   }
   
-  
-  // isSaleActive: boolean = true;
-  // updateSaleStatus() {
-  //   this.isSaleActive = !this.isSaleActive;
-  // }
-
-
-
-
-  
   onCategoryChange(categoryName: string) {
-    if (!this.selectedCategories.includes(categoryName)) {
-      this.selectedCategories.push(categoryName);
+    if (!this.selectedOptions.includes(categoryName)) {
+      this.selectedOptions.push(categoryName);
     }
   }
   
   removeCategory(category: string) {
-    const index = this.selectedCategories.indexOf(category);
+    const index = this.selectedOptions.indexOf(category);
     if (index !== -1) {
-      this.selectedCategories.splice(index, 1);
+      this.selectedOptions.splice(index, 1);
     }
   }
   
-
   selectedOptions: string[] = [];
-  dropdownOpen: boolean = false; 
-
+  dropdownOpen: boolean = false;
+  
   toggleDropdown2() {
-    this.dropdownOpen = !this.dropdownOpen; 
+    this.dropdownOpen = !this.dropdownOpen;
   }
-
+  
+selectedCategoriesControl = new FormControl();
 
   toggleCategorySelection(category: any) {
     const index = this.selectedOptions.indexOf(category.name);
     if (index === -1) {
-        this.selectedOptions.push(category.name);
+      this.selectedOptions.push(category.name);
     } else {
-        this.selectedOptions.splice(index, 1);
+      this.selectedOptions.splice(index, 1);
     }
+    
+    // Seçili kategoriyi form kontrolüne ekleyin
+    this.productForm.get('category').setValue(this.selectedOptions.join(','));
+    console.log("Seçili kategoriler:", this.selectedOptions);
+  }
+  // Dropdown Json categoryy end
+
+  
+// search Area
+
+search() {
+  const searchText = this.productForm.controls['searchText'].value.trim().toLowerCase();
+  console.log(searchText,"search")
+  if (searchText == '') {
+  this.categoryService.getCategory().subscribe((res=> {
+    this.categories = res.categories;
+  }))
+  } else {
+    this.filteredCategory = this.categories.filter((res: any) => {
+      return (res.name as string).toLowerCase().includes(searchText);
+    });
+  }
+  this.categories = this.filteredCategory;
+  this.cdr.detectChanges();
 }
+
+  // search Area
+
 }

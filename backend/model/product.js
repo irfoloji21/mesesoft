@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: [true, "Please enter your product category!"],
+    // required: [true, "Please enter your product category!"],
   },
   collectionName: {
     type: Object,

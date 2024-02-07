@@ -1,100 +1,339 @@
-// editProduct() {
-//     if (this.productForm.valid) {
-//       const formData = this.productForm.value;
+// import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+// import { UntypedFormGroup, UntypedFormBuilder, FormsModule, FormControl } from '@angular/forms';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import { ProductService } from '../../../../shared/service/product.service';
+// import { AuthService } from 'src/app/shared/service/auth.service';
+// import { CategoryService } from 'src/app/shared/service/category.service';
+// import { ActivatedRoute, Router } from '@angular/router';
+// import { Product } from 'src/app/shared/tables/product';
+// import { Category } from 'src/app/shared/tables/category';
+// import { HttpErrorResponse } from '@angular/common/http';
+
+// @Component({
+//   selector: 'app-add-product',
+//   templateUrl: './add-product.component.html',
+//   styleUrls: ['./add-product.component.scss']
+// })
+// export class AddProductComponent implements OnInit {
+
+//   id: string;
+//   categories: Category[] = [];
+//   selectedCategory: string = '';
+//   buttonText: string = 'Add';
+//   public productForm: UntypedFormGroup;
+//   public Editor = ClassicEditor;
+//   public counter: number = 1;
+//   // public searchText;
+//   public filteredCategory : any = []
+//   selectedProduct: Product[] = [];
+//   selectedProductImage: any;
+//   isEditMode: boolean = false;
+//   selectedCategories: string[] = [];
+//   public url = [
+//     {
+//       img: "assets/images/user.png",
+//     },
+//     {
+//       img: "assets/images/user.png",
+//     },
+//     {
+//       img: "assets/images/user.png",
+//     },
+//     {
+//       img: "assets/images/user.png",
+//     },
+//     {
+//       img: "assets/images/user.png",
+//     }
+//   ]
+
+//   constructor(
+//     private fb: UntypedFormBuilder,
+//     private productService: ProductService,
+//     private authService: AuthService,
+//     private categoryService: CategoryService,
+//     private route: ActivatedRoute,
+//     private router: Router,
+//     private cdr: ChangeDetectorRef
+//   ) {
+    
+
+    
+
+//     this.productForm = this.fb.group({
+//       name: [''],
+//       slug: [''],
+//       originalPrice: [''],
+//       discountPrice: [''],
+//       tags: [''],
+//       stock: [''],
+//       description: [''],
+//       images: [''],
+//       // category: [''],
+//       categories:[''],
+//       gender: [''],
+//       stockStatus: this.fb.group({
+//         stockStatusValue: ['Out Of Stock'], 
+//       }),
+//       enableProduct: [true],
+//       sale: [true],
+//       searchText: [''] ,
+
+      
+//     })
+//   }
+
+//   ngOnInit() {
+    
+//     this.categoryService.getCategory().subscribe(
+//       (response) => {
+//         this.categories = response.categories;
+//         // this.filteredCategory = [...this.categories];
+//         // console.log(this.filteredCategory,"filteredCategoryngonit")
+//       },
+//       (error) => {
+//         console.error(error);
+//       }
+//     );
   
-//       // Diğer form değerlerini alırken olduğu gibi al
-//       const shop = this.authService.getShop();
-//       formData.shopId = shop.seller._id;
-//       formData.shop = shop;
-//       formData.category = this.selectedCategory;
+//     this.route.params.subscribe(params => {
+//       this.id = params['id'];
+//       if (this.id) {
+//         this.isEditMode = true;
+//         this.productService.getProductById(this.id).subscribe(
+//           (response) => {
+//             this.productForm.patchValue(response.product);
+//             this.selectedCategory = response.product.category;
+//             this.selectedProduct = response.product;
+//             this.selectedProductImage = Object.keys(response.product.images).map(key => response.product.images[key]);
+//             this.buttonText = 'Edit';
+//           },
+//           (error) => {
+//             console.error(error);
+//           }
+//         );
+//       } else {
+//         this.selectedProductImage = [
+//           { url: "assets/images/user.png" },
+//           { url: "assets/images/user.png" },
+//           { url: "assets/images/user.png" },
+//           { url: "assets/images/user.png" },
+//           { url: "assets/images/user.png" },
+//         ];
+//         this.buttonText = 'Add';
+//       }
+//     });
+    
+    
+//   }
   
-//       // StockStatus'u JSON nesnesi olarak oluştur
-//       const stockStatusData = {
-//         stockStatus: formData.stockStatus,
-//       };
   
-//       // StockStatus JSON nesnesini formData'ya ekle
-//       formData.stockStatus = stockStatusData;
-  
-//       console.log('FormData:', formData);
-  
-//       // Backend ile iletişime geçmeden önce stockStatus'u response içine ekleyelim
-//       const mockResponse = {
-//         success: true,
-//         product: {
-//           ...formData,
-//           stockStatus: stockStatusData,
-//         },
-//       };
-  
-//       // Simüle edilmiş mockResponse'u kullanarak işlemi devam ettirin
-//       this.handleResponse(mockResponse);
+
+//   increment() {
+//     this.counter += 1;
+//   }
+
+//   decrement() {
+//     this.counter -= 1;
+//   }
+
+//   //FileUpload
+//   readUrl(event: any, i) {
+//     if (event.target.files.length === 0)
+//       return;
+//     //Image upload validation
+//     var mimeType = event.target.files[0].type;
+//     if (mimeType.match(/image\/*/) == null) {
+//       return;
+//     }
+//     // Image upload
+//     var reader = new FileReader();
+//     reader.readAsDataURL(event.target.files[0]);
+//     reader.onload = (_event) => {
+//       this.url[i].img = reader.result.toString();
 //     }
 //   }
-  
-//   updateStockStatus(value: string) {
-//     this.productForm.get('stockStatus').setValue(value);
-//   }
-//   handleResponse(response) {
-//     console.log('Response:', response);
-  
-//     this.ngZone.run(() => {
-//       if (response.product && response.product.stockStatus) {
-//         this.productForm.get('stockStatus').setValue(response.product.stockStatus.stockStatus);
-//         console.log('Stock Status Updated:', response.product.stockStatus.stockStatus);
-//       } else {
-//         console.error('Response içinde stockStatus bulunamadı veya tanımsız:', response);
+
+//   onFileChange(event: any, i: number) {
+//     if (event.target.files && event.target.files.length > 0) {
+//       const files: FileList = event.target.files;
+
+//       // Dosya okuma işlemi
+//       for (let j = 0; j < files.length; j++) {
+//         const file = files[j];
+//         const reader = new FileReader();
+
+//         reader.onload = (e: any) => {
+//           // Tek tek her dosyayı images dizisine ekleyin
+//           const imageUrls = this.productForm.get('images').value || [];
+//           imageUrls.push(e.target.result);
+
+//           // images alanını güncelleyin
+//           this.productForm.get('images').setValue(imageUrls);
+//         };
+
+//         reader.readAsDataURL(file);
 //       }
-  
-//       this.router.navigate(['/products/physical/productss']);
-//       console.log('Ürün başarıyla güncellendi:', response);
-//     });
+//     }
 //   }
 
+//   performAction() {
+//     if (this.buttonText == 'Add') {
+//       this.submitForm();
+//     } else if (this.buttonText == 'Edit') {
+//       this.editProduct();
+//     }
+//   }
 
+//   //Submit form
 //   submitForm() {
 //     if (this.productForm.valid) {
 //       const formData = this.productForm.value;
-
-//       // Diğer form değerlerini alırken olduğu gibi al
 //       const shop = this.authService.getShop();
+  
 //       formData.shopId = shop.seller._id;
 //       formData.shop = shop;
 //       formData.category = this.selectedCategory;
-
-//       // stockStatus'u JSON nesnesi olarak oluştur
-//       const stockStatusData = {
-//         stockStatus: formData.stockStatus,
+  
+//       // stockStatus'u Json start
+//       const jsonRequestBody = {
+//         ...formData,
+//         stockStatus: { stockStatusValue: formData.stockStatus.stockStatusValue },
+//         categories: this.selectedOptions, 
 //       };
-
-//       // stockStatus JSON nesnesini formData'ya ekle
-//       formData.stockStatus = stockStatusData;
-
-//       console.log('FormData:', formData);
-
-//       this.productService.createProduct(formData).subscribe(
+  
+//       console.log(jsonRequestBody , "JsonStockStatus")
+//       // stockStatus'u Json start
+//       this.productService.createProduct(jsonRequestBody).subscribe(
 //         (response) => {
-//           console.log('Backend Response:', response);
 //           this.router.navigate(['/products/physical/productss']);
 //           console.log('Ürün başarıyla oluşturuldu:', response);
 //         },
 //         (error) => {
 //           console.error('Ürün oluşturulurken hata oluştu:', error);
+//           if (error instanceof HttpErrorResponse) {
+//             console.error('Sunucudan gelen hata:', error.error);
+//           }
 //         }
 //       );
 //     }
 //   }
+  
+  
+  
+  
+  
 
+//   goBack() { }
 
-//   prepareFormData(): void {
-//     const formValue = this.productForm.value;
-
-//     // StockStatus değerine göre JSON oluşturuluyor
-//     const jsonToSend = {
-//       // Diğer form alanları buraya eklenir
-//       stockStatus: formValue.stockStatus === 'In Stock' ? true : false,
-//     };
-
-//     // JSON'u istediğiniz şekilde kullanabilir veya gönderebilirsiniz
-//     console.log(jsonToSend);
+//   editProduct() {
+//     if (this.productForm.valid) {
+//       const formData = this.productForm.value;
+//       console.log(formData , "Content edit")
+//       // Diğer form değerlerini alırken olduğu gibi al
+//       const shop = this.authService.getShop();
+//       formData.shopId = shop.seller._id;
+//       formData.shop = shop;
+//       formData.category = this.selectedCategory;
+  
+//       this.productService.updateProduct(this.id, formData).subscribe((response) => {
+//         this.router.navigate(['/products/physical/productss']);
+//         console.log('Ürün başarıyla güncellendi:', response);
+//       }
+//       )
+       
 //   }
+// }
+  
+  
+
+//   selectImage(image: any) {
+//     this.selectedProductImage = image;
+//   }
+
+//   isDropdownVisible: { [key: number]: boolean } = {};
+
+//   toggleDropdown(index: number) {
+//     this.isDropdownVisible[index] = !this.isDropdownVisible[index];
+//   }
+
+//   // Dropdown Json
+
+//   selectedOption: any = "In Stock" ;
+//   selectOption(option: string): void {
+//     this.selectedOption = option;
+//     this.productForm.get('stockStatus')?.get('stockStatusValue')?.setValue(option);
+//   }
+  
+  
+//   // isSaleActive: boolean = true;
+//   // updateSaleStatus() {
+//   //   this.isSaleActive = !this.isSaleActive;
+//   // }
+
+
+
+
+  
+//   onCategoryChange(categoryName: string) {
+//     if (!this.selectedOptions.includes(categoryName)) {
+//       this.selectedOptions.push(categoryName);
+//     }
+//   }
+  
+//   removeCategory(category: string) {
+//     const index = this.selectedOptions.indexOf(category);
+//     if (index !== -1) {
+//       this.selectedOptions.splice(index, 1);
+//     }
+//   }
+  
+//   selectedOptions: string[] = [];
+//   dropdownOpen: boolean = false;
+  
+//   toggleDropdown2() {
+//     this.dropdownOpen = !this.dropdownOpen;
+//   }
+  
+// selectedCategoriesControl = new FormControl();
+
+//   toggleCategorySelection(category: any) {
+//     const index = this.selectedOptions.indexOf(category.name);
+//     if (index === -1) {
+//       this.selectedOptions.push(category.name);
+//     } else {
+//       this.selectedOptions.splice(index, 1);
+//     }
+    
+//     // Seçili kategoriyi form kontrolüne ekleyin
+//     this.productForm.get('category').setValue(this.selectedOptions.join(','));
+    
+//     console.log("Seçili kategoriler:", this.selectedOptions);
+//   }
+  
+
+// // search Area
+
+// search() {
+//   const searchText = this.productForm.controls['searchText'].value.trim().toLowerCase();
+//   console.log(searchText,"search")
+//   if (searchText == '') {
+//   this.categoryService.getCategory().subscribe((res=> {
+//     this.categories = res.categories;
+//   }))
+//   } else {
+//     this.filteredCategory = this.categories.filter((res: any) => {
+//       return (res.name as string).toLowerCase().includes(searchText);
+//     });
+//   }
+//   this.categories = this.filteredCategory;
+//   this.cdr.detectChanges();
+// }
+
+
+
+
+
+
+//   // search Area
+// }
