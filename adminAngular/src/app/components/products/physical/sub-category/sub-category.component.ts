@@ -61,7 +61,6 @@ export class SubCategoryComponent {
   }
   search() {
     if (!this.searchText) {
-      console.log(this.searchText);
     }
   }
 }

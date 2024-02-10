@@ -32,7 +32,6 @@ export class HeaderFourComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.data.subscribe(response => {
-      //  console.log(response , "headerFour")
       this.form = this.formBuilder.group({
         search: [''],
       });
@@ -42,25 +41,21 @@ export class HeaderFourComponent implements OnInit {
   
   submitSearch() {
     const searchValue = this.form.get('search').value;
-    // console.log(searchValue , "searchValue")
+
     const queryParams = {
       search: searchValue
     };
 
     this.router.navigate(['/shop/collection'], {
       queryParams,
-      queryParamsHandling: 'merge' // Bu, mevcut sorgu parametreleri ile birleştirir
+      queryParamsHandling: 'merge'
     });
   }
 
-  // resetForm() {
-  //   this.form.reset();
-  // }
 
   ngOnInit(): void {
     this.serviceAuth.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
-      // console.log('Oturum Durumu Değişti', loggedIn);
     });
 
     this.serviceAuth.loadUser().subscribe(res => {
@@ -69,7 +64,6 @@ export class HeaderFourComponent implements OnInit {
     })
 
     this.productService.getWishlistCountObservable().subscribe((count) => {
-      // console.log(count)
       this.wishlistCount = count;
     });
   }

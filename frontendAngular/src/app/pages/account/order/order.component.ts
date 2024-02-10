@@ -34,7 +34,6 @@ export class OrderComponent implements OnInit {
     this.orderService.getOrders(userId).subscribe(
       (res) => {
         this.filteredOrders = res.orders;
-        console.log(this.filteredOrders, "filteredOrders");
         
       },
       (error) => {
@@ -49,22 +48,16 @@ export class OrderComponent implements OnInit {
   refundOrder(orderId: string) {
     this.orderService.refundOrder(orderId).subscribe(
       (res) => {
-        console.log(res);
-        // İade işlemi başarılı olduğunda, isteğe bağlı olarak kullanıcıya bildirim veya başka bir geri bildirim sağlayabilirsiniz.
-        // Ardından siparişleri güncellemek için:
         this.loadUserOrders(this.userId);
       },
       (error) => {
         console.error(error);
-        // İade işlemi başarısız olduğunda kullanıcıya hata bildirimi veya başka bir geri bildirim sağlayabilirsiniz.
       }
     );
   }
 
   openModal(order: any): void {
     this.orderDetails = order[0];
-    console.log(this.orderDetails, "orderDetails");
-
     this.isModalOpen = true;
   }
 

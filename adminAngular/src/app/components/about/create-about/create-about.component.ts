@@ -55,7 +55,6 @@ export class CreateAboutComponent implements OnInit {
 
   submitForm() {
     if (this.aboutForm.valid) {
-      console.log('Form is valid:', this.aboutForm.value)
       const formData = this.aboutForm.value;
       const shop = this.authService.getShop();
 
@@ -65,10 +64,8 @@ export class CreateAboutComponent implements OnInit {
       this.aboutService.createAbout(formData).subscribe(
         (response) => {
           this.router.navigate(['/about/about-list']);
-          console.log('Ürün başarıyla oluşturuldu:', response);
         },
         (error) => {
-          console.error('Ürün oluşturulurken hata oluştu:', error);
         }
       );
     }
@@ -78,7 +75,6 @@ export class CreateAboutComponent implements OnInit {
     if (this.buttonText === 'Add') {
       this.submitForm();
     } else if (this.buttonText === 'Edit') {
-      console.log("else")
     }
   }
 

@@ -23,32 +23,22 @@ export class OrderSuccessComponent implements OnInit {
     private orderService: OrderService,
     private shippingService: ShippingService
   ) {
-    // this.orderId = this.route.snapshot.params['orderId'];
     this.route.paramMap.subscribe(params => {
       this.orderId = decodeURIComponent(params.get('orderId'));
-      console.log('Decoded Order ID:', this.orderId);
     })
   }
 
   ngOnInit(): void {
     this.orderService.checkoutItems.subscribe(response => {
-      console.log(response, "order")
       this.orderDetails = response;
-      console.log("image")
       this.orderDetails.orderDate = new Date();
-      console.log(this.orderDetails.shippingDetails.address)
-      console.log('Order ID:', this.orderDetails.orderId);
     });
     this.selectedAddress = this.orderService.getSelectedAddress();
     this.selectedShipping = this.shippingService.getSelectedShipping();
 
-    // ActivatedRoute'in paramMap'ını kullanarak 'orderId' parametresini dinle
     this.route.paramMap.subscribe(params => {
-      // 'orderId' parametresini URL'den al ve decode et
       this.orderId = decodeURIComponent(params.get('orderId'));
 
-      // Şimdi 'orderId' değerini kullanabilirsiniz.
-      console.log('Decoded Order ID:', this.orderId);
     })
 
   }

@@ -52,14 +52,11 @@ export class MenuComponent implements OnInit {
     for (const category of categories) {
       if (category.subcategories) {
         category.megaMenu = true;
-        // category.active=false
         for (const subcategory of category.subcategories) {
           if (subcategory._id) {
             const subcategoryId = subcategory._id;
 
             this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-              // console.log(subCategoryData , "subCategoryData")
-              // Alt kategori ile yerini değiştirin
 
               const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
               if (index >= 0) {
@@ -98,7 +95,6 @@ export class MenuComponent implements OnInit {
     this.menuItems.forEach((menuItem) => {
       if (menuItem.subcategories) {
         menuItem.subcategories.forEach((childrenItem) => {
-          // console.log(childrenItem._id, "childrenItem._id")
 
           if (childrenItem._id) {
             const subcategoryId = childrenItem._id;
@@ -108,28 +104,19 @@ export class MenuComponent implements OnInit {
       }
     });
     this.translationService.currentLang$.subscribe(lang => {
-      // Dil değiştiğinde yapılacak işlemler
-      console.log('Current Language:', lang);
-      // Diğer işlemler...
     });
 
     this.translationService.currentLang$.subscribe(lang => {
-      console.log('Current Language:', lang);
     
       // Çevirilen metinleri kontrol etmek için
       this.translate.get('menuItems.item1').subscribe((translation: string) => {
-        console.log('Translated Text for item1:', translation);
-        console.log('Translated Text for item1:', this.translate.instant('menuItems.item1'));
-
       });
     });
   }
 
   getSubcategoriesByItemId(itemId: any, childrenItem: any) {
     this.categoryService.getCategoryById(itemId).subscribe((subcategories) => {
-      console.log(subcategories, "subcategoriesMenu")
       childrenItem.subcategories = subcategories; // Her alt kategoriye ait alt kategorileri güncelle
-      // console.log(childrenItem.subcategories, "childrenItem.subcategories")
     });
   }
 
@@ -140,7 +127,6 @@ export class MenuComponent implements OnInit {
   getSubcategories(id) {
     this.categoryService.getCategoryById(id).subscribe((data) => {
       this.irfosub = data.category.subcategories;
-      // console.log(data, "data");
     });
   }
 
@@ -152,7 +138,6 @@ export class MenuComponent implements OnInit {
   }
 
   handleSubCategoryResponse(menuItem: string, subItem: string, res: any) {
-    // console.log(res, "emsal");
     if (res.products && res.products.length > 0) {
       const productIds = res.products.map(product => product._id);
 
@@ -162,7 +147,7 @@ export class MenuComponent implements OnInit {
         childrenSubItem: productIds,
       };
 
-      console.log(queryParams, "mehmet");
+
 
       this.router.navigate(['/shop/collection'], {
         relativeTo: this.route,

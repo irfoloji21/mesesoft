@@ -60,7 +60,6 @@ export class DigitalCategoryComponent implements OnInit {
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = [response.categories[0]];
-        console.log("catgory", this.categories)
         this.getMainCategoryList();
       },
       (error) => {
@@ -110,7 +109,6 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
   editCategoryMain(selectedCategory: any) {
-    console.log('Düzenlenecek id bilgileri Enver:', selectedCategory);
     this.selectedCategoryId = selectedCategory
     this.myFormEdit.patchValue({
       name: selectedCategory.name,
@@ -126,7 +124,6 @@ export class DigitalCategoryComponent implements OnInit {
 
     this.categoryService.updateCategory(categoryId, formValues).subscribe(
       (response) => {
-        console.log('Kategori güncelendi:', response);
         this.isEditing = false;
         this.closeModal();
         this.getMainCategoryList();
@@ -146,8 +143,6 @@ export class DigitalCategoryComponent implements OnInit {
     });
     this.service.sortColumn = column;
     this.service.sortDirection = direction;
-    console.log(this.service.sortColumn)
-    console.log(this.service.sortDirection)
   }
 
   open(content: any) {
@@ -155,17 +150,15 @@ export class DigitalCategoryComponent implements OnInit {
     this.modalRef.result.then(
       (result) => {
         // Modal kapatıldığında yapılacak işlemler
-        console.log(`Closed with: ${result}`);
       },
       (reason) => {
         // Modal reddedildiğinde yapılacak işlemler
-        console.log(`Dismissed ${this.getDismissReason(reason)}`);
+
       }
     );
   }
 
   closeModalForAdd() {
-    console.log('Modal will be closed.');
     if (this.modalRef) {
       this.modalRef.close(); // Modal kapatma işlemi
     }
@@ -182,16 +175,12 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("form submitted");
     if (this.myForm.valid) {
       const formData = this.myForm.value;
-      //  console.log(this.myForm.value);
       formData.subcategories = this.subcategories;
 
-      console.log('formData:', formData);
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
-          console.log('Kategori başarıyla oluşturuldu:', response);
           this.router.navigate(['/products/digital/digital-category']);
           this.getMainCategoryList();
           this.closeModalForAdd();
@@ -229,9 +218,6 @@ export class DigitalCategoryComponent implements OnInit {
 
           imageUrls.push(e.target.result);
           this.myForm.get('images').setValue(imageUrls);
-
-          console.log('imageUrls:', imageUrls);
-          console.log(this.myForm.value.images);
         };
 
         reader.readAsDataURL(file);
@@ -242,7 +228,6 @@ export class DigitalCategoryComponent implements OnInit {
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {
-        console.log('Kategori başarıyla silindi:', response);
         this.router.navigate(['/products/digital/digital-category']);
         this.getMainCategoryList();
       },

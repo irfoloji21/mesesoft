@@ -76,7 +76,6 @@ export class ProductLeftSidebarComponent implements OnInit {
     const productUrl = encodeURIComponent(window.location.href);
     // Burada bir popup veya paylaşım penceresi açabilir veya sadece URL'yi konsola yazdırabilirsiniz
     window.open(shareUrl, '_blank');
-    console.log(shareUrl);
     
   }
 
@@ -89,7 +88,6 @@ export class ProductLeftSidebarComponent implements OnInit {
           order.cart.some(product => product._id === this.product._id)
         );
         this.doubleDipping = this.product.reviews.some(review => review.user._id === user.user._id)
-        console.log(this.doubleDipping);
         
         // for (const order of this.filteredOrders) {
         //   for (const product of order.cart) {
@@ -126,7 +124,6 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   showMoreReviews() {
     this.visibleReviews += 3;
-    console.log(this.visibleReviews, "visibleReviews")
   }
 
   // aynı kullanıcı birden fazla yorum yapınca "Cannot read properties of undefined (reading '_id')" hatası veriyor.
@@ -145,7 +142,6 @@ export class ProductLeftSidebarComponent implements OnInit {
       };
       this.productService.createNewReview(this.comment).subscribe({
         next: (response) => {
-          console.log('Backend Cevap', response);
           this.toastr.success(' The evaluation was sent successfully', 'Successfully');
         },
         error: (error) => {

@@ -50,17 +50,11 @@ export class OrderService {
       localStorage.setItem('checkoutItems', JSON.stringify(item));
       localStorage.removeItem('cartItems');
 
-      console.log(item.shippingDetails, "details PaymentData")
-      console.log(item.product, "amount PaymentData")
-      console.log(item.orderId, "details PaymentData")
-      console.log(item.totalAmount, "details PaymentData")
-
       this.router.navigate(['/order/success', orderId]);
 
       return new Observable((observer) => {
         observer.next({ message: 'Ödeme başarılı' });
         observer.complete();
-        console.log(orderId, "orderId")
       });
 
     } else {

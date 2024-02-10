@@ -153,10 +153,8 @@ export class SettingsComponent implements OnInit {
     this.google.translate(googleObj).subscribe(
       (res: any) => {
         translateBtn.disabled = false;
-        console.log(res.data.translations[0].translatedText);
       },
       err => {
-        console.log(err);
       }
     );
   }

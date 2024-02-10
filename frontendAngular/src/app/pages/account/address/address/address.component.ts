@@ -112,7 +112,6 @@ export class AddressComponent implements OnInit {
   }
 
   editAddress(address: any) {
-    console.log('Düzenlenecek adres bilgileri:', address);
     this.editedAddresses.push(address);
     const user = this.authService.getUser();
     this.editForm.patchValue({
@@ -135,7 +134,6 @@ export class AddressComponent implements OnInit {
 
       if (user) {
         const userId = user.user._id;
-        console.log('Kullanıcı kimliği:', userId);
 
         const addressData = this.editForm.value;
         addressData._id = addressIdToUpdate;
@@ -146,7 +144,6 @@ export class AddressComponent implements OnInit {
             this.loadUserAddresses();
             this.editForm.reset();
             this.closeModal();
-            console.log('Adres güncellendi', response);
             this.isEditing = false;
           },
           (error) => {
@@ -164,7 +161,6 @@ export class AddressComponent implements OnInit {
   deleteAddress(addressId: string) {
     this.authService.deleteUserAddress(addressId).subscribe(
       (response) => {
-        console.log(response, "delete")
         this.toastr.success('Address deleted successfully', 'Success');
         this.loadUserAddresses();
       },

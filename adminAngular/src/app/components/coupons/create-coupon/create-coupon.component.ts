@@ -69,16 +69,12 @@ export class CreateCouponComponent implements OnInit {
       const formData = this.combinedForm.value;
       const shop = this.authService.getShop();
 
-      console.log(shop, "shopirfo")
       formData.shopId = shop.seller._id;
-      console.log('Form değerleri:', this.combinedForm.value)
       this.couponService.createCoupoun(formData).subscribe(
         (response) => {
-          console.log('Ürün başarıyla oluşturuldu:', response);
           this.router.navigate(['/coupons/list-coupons']);
         },
         (error) => {
-          console.error('Ürün oluşturulurken hata oluştu:', error);
         }
       );
     }
@@ -96,11 +92,9 @@ export class CreateCouponComponent implements OnInit {
         this.categories = response.categories;
 
         const shop = this.authService.getShop();
-        console.log(shop, "shop")
         this.productService.getShopProduct(shop.seller._id).subscribe(
           (response) => {
             this.products = response.products;
-            console.log('Ürünler:', response);
           },
           (error) => {
             console.error(error);

@@ -29,7 +29,6 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactService.getMessages().subscribe(res => {
-      console.log(res, "contact")
     })
   }
 
@@ -38,7 +37,6 @@ export class ContactComponent implements OnInit {
 
     this.contactService.addMessage(message).subscribe(
       updatedMessages => {
-        console.log('Message send successfully:', updatedMessages);
         this.contactForm.reset();
         this.toastr.success('Message send successfully', 'Success');
       },

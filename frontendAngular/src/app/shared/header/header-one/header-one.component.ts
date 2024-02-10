@@ -25,7 +25,6 @@ export class HeaderOneComponent implements OnInit {
   ngOnInit(): void {
     this.serviceAuth.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
-      // console.log('Oturum Durumu Değişti', loggedIn);
     });
 
     this.serviceAuth.loadUser().subscribe(res => {
@@ -34,7 +33,6 @@ export class HeaderOneComponent implements OnInit {
     })
 
     this.productService.getWishlistCountObservable().subscribe((count) => {
-      console.log(count)
       this.wishlistCount = count;
     });
     

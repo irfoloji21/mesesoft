@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     if (this.registerForm.valid) {
       const formData = this.registerForm.value;
-      console.log(formData, "formData");
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -61,7 +60,6 @@ export class RegisterComponent implements OnInit {
       this.authService.register(formData.firstName, formData.lastName, formData.email, formData.password).subscribe(
         (user) => {
           if (user.success) {
-            console.log("register success", user);
             this.authService.setUserId(user._id);
             this.toasts.success(' mailinize gelen doğrulamayı yapın.', 'Kayıt başarılı',
 

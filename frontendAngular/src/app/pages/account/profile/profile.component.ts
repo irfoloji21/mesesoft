@@ -39,7 +39,6 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     const formData = this.updateForm.value;
-    console.log(formData , "formData")
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -52,7 +51,6 @@ export class ProfileComponent implements OnInit {
     this.serviceAuth.updateUser(formData).subscribe(
       (user) => {
         if(user.success) {
-          console.log("update success", user);
         }
         else {
           console.error("error");

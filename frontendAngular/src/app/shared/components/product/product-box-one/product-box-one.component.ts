@@ -43,20 +43,17 @@ export class ProductBoxOneComponent implements OnInit {
       this.sortedProducts = filteredProductsBest.sort((a, b) => b.sold_out - a.sold_out);
       const topCollectionIds = this.sortedProducts.map(product => product._id);
       this.showTopCollection = productArray.map(product => topCollectionIds.includes(product._id));
-      // console.log(this.showTopCollection , "topCollectionIds ençok satan")
     });
-    // console.log(this.sortedProducts, "sortedProducts");
   }
 
   private loadData(): void {
     let productsArray = Array.isArray(this.product) ? this.product : [this.product];
-    // console.log(productsArray, "productsArray");
 
     this.filteredProducts = productsArray
       .filter(product => product.discountPrice > 0)
       .map(product => {
         let discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
-        // console.log(discountPercentage, "discountPercentage");
+
         this.discountPercentages.push(discountPercentage);
         return product._id;
       });
@@ -100,7 +97,7 @@ export class ProductBoxOneComponent implements OnInit {
 
   addToCart(product: any) {
     this.productService.addToCart(product);
-    console.log(product, "add to  cart")
+
   }
 
   addToWishlist(product: any) {

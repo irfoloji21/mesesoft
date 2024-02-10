@@ -55,7 +55,6 @@ export class CategoriesComponent implements OnInit {
   
   navigateWithQueryParams( childrenSubItem: any) {
     this.product.irfan(childrenSubItem._id).subscribe(res => {
-       console.log(res , "besyo")
     });
   }
 }

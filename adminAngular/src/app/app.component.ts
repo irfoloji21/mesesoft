@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.loadShop().subscribe(
       (shop) => {
-        console.log(shop);
         if (shop) {
           this.authService.setShop(shop);
         }

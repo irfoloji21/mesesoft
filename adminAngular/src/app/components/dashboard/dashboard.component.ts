@@ -103,7 +103,6 @@ export class DashboardComponent implements OnInit {
         this.productCount = this.products.length;
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -114,7 +113,6 @@ export class DashboardComponent implements OnInit {
         this.orders = res.orders;
       },
       (error) => {
-        console.log(error);
       }
     );
   }

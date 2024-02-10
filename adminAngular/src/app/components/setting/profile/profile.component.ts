@@ -47,12 +47,10 @@ export class ProfileComponent implements OnInit {
     
     const formData = this.profileForm.value;
     formData._id = this.shop._id;
-    console.log('Form değerleri:', formData)
   
     
     this.shopService.updateShop(formData).subscribe(
       (response) => {
-        console.log('Shop güncellendi:', response);
       },
       (error) => {
         console.error('Shop güncelleme hatası:', error);

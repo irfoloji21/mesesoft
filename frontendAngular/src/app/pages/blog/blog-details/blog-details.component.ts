@@ -37,7 +37,6 @@ export class BlogDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const slug = params['slug'];
       this.blogService.getBlogDetails(slug).subscribe((data) => {
-        console.log("data", data.blog);
         this.blog = data.blog;
         this.BlogId = data.blog
         this.loadUser();
@@ -63,7 +62,6 @@ export class BlogDetailsComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       const user = this.authService.getUser();
-      console.log(user, "user")
       const commentData = {
         name: this.form.value.name,
         email: this.form.value.email,
@@ -74,7 +72,6 @@ export class BlogDetailsComponent implements OnInit {
 
       this.blogService.createReview(commentData).subscribe({
         next: (response) => {
-          console.log('Backend ', response);
           this.toastr.success('The comment was added successfully', 'Successfully');
           this.form.reset();
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -100,7 +97,6 @@ export class BlogDetailsComponent implements OnInit {
   likeBlog(blog: any, user: any) {
     this.blogService.likeBlog(blog._id, user).subscribe({
       next: (response) => {
-        console.log(response, "likeBlog");
         this.toastr.success('You liked this blog', 'Successfully');
         this.likedBlogs.push(blog._id);
         blog.likes = (blog.likes || 0) + 1;

@@ -30,7 +30,6 @@ export class ProductReviewsComponent implements OnInit {
           this.productService.getShopProduct(id).subscribe(
             (response) => {
               this.product_list = response.products;
-              console.log(this.product_list);
 
               this.comments = [];
 
@@ -41,15 +40,11 @@ export class ProductReviewsComponent implements OnInit {
                     if (yorumIcerenUrunler.length > 0) {
                       yorumIcerenUrunler.forEach(review => {
                         this.comments.push(review);  
-                        console.log(review, "reviews");
-                        console.log(this.comments , "comments");
                       });
                     }
                   }
                 }
               }
-
-              // Yorumlar başarıyla yüklendiğinde loading durumunu false olarak ayarlayın
               this.loading = false;
             },
           );

@@ -53,7 +53,6 @@ export class FooterOneComponent implements OnInit {
 
       this.subscribeService.subscribe(email).subscribe(
         (response) => {
-          console.log('Abonelik başarılı:', response);
         },
         (error) => {
           console.error('Abonelik hatası:', error);

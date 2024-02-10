@@ -54,8 +54,6 @@ export class DigitalAddComponent implements OnInit {
         reader.onload = (e: any) => {
           imageUrls.push(e.target.result);
           this.myForm.get('images').setValue(imageUrls);
-          console.log('imageUrls:', imageUrls);
-          console.log(this.myForm.value.images);
         };
         reader.readAsDataURL(file);
       }
@@ -63,34 +61,25 @@ export class DigitalAddComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("form submitted");
     if (this.myForm.valid) {
       const formData = this.myForm.value;
-      console.log(this.myForm.value);
-      console.log('formData:', formData);
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
-          console.log('Kategori başarıyla oluşturuldu:', response);
           this.router.navigate(['/products/digital/digital-category']);
         },
         (error) => {
-          console.error('Kategori oluşturulurken hata oluştu:', error);
         }
       );
     }
   }
 
   editCategory() {
-    console.log("editform submitted")
     if (this.myForm.valid) {
       const formData = this.myForm.value;
-      console.log(this.id, "id")
       this.categoryService.updateCategory(this.id, formData).subscribe(
         (response) => {
-          console.log('kategori başarıyla güncellendi:', response);
         },
         (error) => {
-          console.error('kategori güncellenirken hata oluştu:', error);
         }
       );
     }
@@ -99,11 +88,9 @@ export class DigitalAddComponent implements OnInit {
   ngOnInit() {
     this.categoryService.getCategory().subscribe(
       (response) => {
-        console.log('Kategoriler', response);
         this.categories = response.categories;
       },
       (error) => {
-        console.error(error);
       }
     );
 
@@ -111,11 +98,9 @@ export class DigitalAddComponent implements OnInit {
       this.id = params['id'];
       this.categoryService.getCategoryById(this.id).subscribe(
         (response) => {
-          console.log('Kategori', response);
           this.myForm.patchValue(response.category);
         },
         (error) => {
-          console.error(error);
         }
       );
     });

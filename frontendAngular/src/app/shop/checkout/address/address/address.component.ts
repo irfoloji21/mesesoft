@@ -134,7 +134,6 @@ export class AddressComponent implements OnInit {
         const userId = user._id;
         this.authService.updateUserAddress(userId, formData).subscribe(
           (response) => {
-            console.log('Address add response', response);
             
             this.toastr.success('Address added successfully', 'Success');
             this.loadUserAddresses();
@@ -154,7 +153,6 @@ export class AddressComponent implements OnInit {
   }
 
   editAddress(address: any) {
-    console.log('Düzenlenecek adres bilgileri:', address);
     this.editedAddresses.push(address);
     const user = this.authService.getUser();
     this.editForm.patchValue({
@@ -177,7 +175,6 @@ export class AddressComponent implements OnInit {
 
       if (user) {
         const userId = user.user._id;
-        console.log('Kullanıcı kimliği:', userId);
 
         const addressData = this.editForm.value;
         addressData._id = addressIdToUpdate;
@@ -188,7 +185,6 @@ export class AddressComponent implements OnInit {
             this.loadUserAddresses();
             this.editForm.reset();
             this.closeEditForm();
-            console.log('Adres güncellendi', response);
             this.isEditing = false;
           },
           (error) => {
@@ -206,7 +202,6 @@ export class AddressComponent implements OnInit {
   deleteAddress(addressId: string) {
     this.authService.deleteUserAddress(addressId).subscribe(
       (response) => {
-        console.log(response, "delete")
         this.toastr.success('Address deleted successfully', 'Success');
         this.loadUserAddresses();
       },
@@ -237,20 +232,17 @@ export class AddressComponent implements OnInit {
   selectAddress(selectedAddress: any, index: number) {
     this.orderService.setSelectedAddress(selectedAddress);
     this.selectedAddressIndex = index;
-    console.log('Seçilen adres:', selectedAddress);
   }
 
   selectShipping(selectedShipping: any, index: number) {
     this.shippingService.setSelectedShipping(selectedShipping);
     this.selectedShippingIndex = index;
     this.selectedShippingMethodIndex = index;
-    console.log('Seçilen kargo:', selectedShipping);
   }
 
   selectBillingAddress(billingAddress: any, index: number) {
     this.billingAddressService.setSelectedBillingAddress(billingAddress);
     this.selectedBillingIndex = index;
-    console.log('Seçilen fatura adresi:', billingAddress);
   }
 }
 

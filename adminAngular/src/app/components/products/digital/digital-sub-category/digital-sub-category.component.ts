@@ -67,18 +67,13 @@ export class DigitalSubCategoryComponent implements OnInit {
     this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
     this.modalRef.result.then(
       (result) => {
-        // Modal kapatıldığında yapılacak işlemler
-        console.log(`Closed with: ${result}`);
       },
       (reason) => {
-        // Modal reddedildiğinde yapılacak işlemler
-        console.log(`Dismissed ${this.getDismissReason(reason)}`);
       }
     );
   }
 
   closeModalForAddSubCat() {
-    console.log('Modal will be closed.');
     if (this.modalRef) {
       this.modalRef.close();
     }
@@ -95,26 +90,16 @@ export class DigitalSubCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("form submitted");
     if (this.myForm.valid) {
       const formData = this.myForm.value;
-      const selectedSupercategories = formData.supercategory; // Seçilen tüm üst kategorileri alın
-      // formData içindeki diğer verileri burada işleyebilirsiniz.  
-      // Yeni kategoriyi oluşturun
+      const selectedSupercategories = formData.supercategory; 
       this.categoryService.createCategory(formData).subscribe(
         (newCategory) => {
-          console.log('Yeni Kategori Başarıyla Oluşturuldu:', newCategory);
           const irfan = newCategory.category
-          console.log(irfan)
-          // Her bir üst kategori için işlem yapın
           selectedSupercategories.forEach((selectedSupercategory) => {
-            const supercategoryId = selectedSupercategory._id; // Üst kategori ID'si
-            console.log('Üst Kategori ID:', supercategoryId);
-            // Subcategories'i güncelleyin
+            const supercategoryId = selectedSupercategory._id; 
             this.categoryService.addSubCategory(supercategoryId, irfan).subscribe(
               (response) => {
-                console.log(response)
-                console.log('Üst Kategori Subcategories Güncellendi');
                 this.getSubCategoryList();
                 this.closeModalForAddSubCat();
                 this.myForm.reset();
@@ -141,8 +126,6 @@ export class DigitalSubCategoryComponent implements OnInit {
         reader.onload = (e: any) => {
           imageUrls.push(e.target.result);
           this.myForm.get('images').setValue(imageUrls);
-          console.log('imageUrls:', imageUrls);
-          console.log(this.myForm.value.images);
         };
         reader.readAsDataURL(file);
       }
@@ -173,7 +156,6 @@ export class DigitalSubCategoryComponent implements OnInit {
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {
-        console.log('Kategori başarıyla silindi:', response);
         this.getSubCategoryList();
       },
       (error) => {
@@ -194,7 +176,6 @@ export class DigitalSubCategoryComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
-    // Şimdi nesneyi kullanabilirsiniz
     this.dropdownSettings = dropdownSettings;
   }
 
@@ -231,7 +212,6 @@ export class DigitalSubCategoryComponent implements OnInit {
 
   editSubCategory(selectedCategory: any) {
     this.selectedSubCategoryId = selectedCategory
-    console.log(this.selectedSubCategoryId, "emsall")
     this.myFormEdit.patchValue({
       name: selectedCategory.name,
       description: selectedCategory.description,
@@ -245,7 +225,6 @@ export class DigitalSubCategoryComponent implements OnInit {
 
     this.categoryService.updateCategory(categoryId, formValues).subscribe(
       (response) => {
-        console.log('Kategori güncelendi:', response);
         this.isEditing = false;
         this.closeModal();
         this.getSubCategoryList();

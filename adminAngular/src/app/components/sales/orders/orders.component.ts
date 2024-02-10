@@ -67,19 +67,17 @@ export class OrdersComponent implements OnInit {
 
   irfan(item: any) {
     this.selectedOrder = item;
-    console.log("slcted", this.selectedOrder)
   }
 
   updateOrderStatus(orderId: string) {
     const formData = this.myForm.value;
-    console.log(orderId, formData)
     this.orderService.updateOrderStatus(orderId, formData).subscribe(
       (res) => {
         this.getShopOrders();
         this.modalService.dismissAll();
       },
       (error) => {
-        console.log(error);
+  
       }
     );
   }
@@ -118,7 +116,6 @@ export class OrdersComponent implements OnInit {
         this.search();
       },
       (error) => {
-        console.log(error);
       }
     );
   }

@@ -67,21 +67,16 @@ export class RefundsComponent implements OnInit {
 
   irfan(item: any) {
     this.selectedRefund = item;
-    console.log(this.selectedRefund.cart[0].images[0].url)
   }
 
   updateRefundStatus(refundId: string) {
-    // const newStatus = this.myForm.get('status').value;
     const formData = this.myForm.value;
-    console.log(refundId, formData);
     this.refundService.updateRefundStatus(refundId, formData).subscribe(
       (res) => {
         this.getShopRefunds();
         this.modalService.dismissAll();
-        console.log(res)
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -111,14 +106,12 @@ export class RefundsComponent implements OnInit {
   getShopRefunds() {
     this.refundService.getShopOrders(this.shop._id).subscribe(
       (res) => {
-        console.log(res.orders)
         this.refunds = res.orders.filter(order => {
           return order.status === "Processing Refund" || order.status === "Refund Success" || order.status === "Processing";
         });
         this.search();
       },
       (error) => {
-        console.log(error);
       }
     );
   }

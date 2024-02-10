@@ -50,7 +50,6 @@ export class CollectionLeftSidebarComponent implements OnInit {
         ? params.filteredIds.split(",")
         : [];
       this.theMostLiked = params.theMostLiked ? params.theMostLiked : [];
-      console.log(this.theMostLiked, "theMostLiked");
       this.searchQuery = params.search ? params.search : "";
       this.brands = params.brand ? params.brand.split(",") : [];
       this.colors = params.color ? params.color.split(",") : [];
@@ -60,9 +59,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.tags = [...this.brands, ...this.colors, ...this.size]; // All Tags Array
 
       this.ParentCategory = params.MainMenu ? params.MainMenu : null;
-      console.log(params.MainMenu, "main menu");
       this.Megamenu = params.childrenSubItem ? params.childrenSubItem : null;
-      console.log(this.Megamenu, "megaMenu");
       this.category = params.categoryId ? params.categoryId : null;
       this.categoryEs = params.description ? params.description : null;
       this.Image = params.images ? params.images : null;
@@ -72,7 +69,6 @@ export class CollectionLeftSidebarComponent implements OnInit {
       this.productService
         .filterProducts(this.tags)
         .subscribe((response: any) => {
-          // console.log(response[0].products , "Collection")
 
           // Main Menu
           if (this.ParentCategory) {

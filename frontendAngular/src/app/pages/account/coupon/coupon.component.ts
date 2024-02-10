@@ -41,23 +41,11 @@ export class CouponComponent {
     } catch (error) {
       console.error(error);
     } finally {
-      this.loading = false; // İşlem tamamlandığında loading durumunu false yap
+      this.loading = false; 
     }
   }
   
 
-  // getCouponss() {
-  //   this.authService.loadUser().subscribe((res) => {
-  //     for (let a = 0; a < res.user.coupons.length; a++) {
-  //       this.couponService
-  //         .getCouponById(res.user.coupons[a].couponID)
-  //         .subscribe((res) => {
-  //           console.log(res, "enver1")
-  //           this.coupons[a] = res.couponCode;
-  //         });
-  //     }
-  //   });
-  // }
 
   openModal(coupon: any) {
     this.isModalOpen = true;

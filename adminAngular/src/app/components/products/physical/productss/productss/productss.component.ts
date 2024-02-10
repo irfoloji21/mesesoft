@@ -50,10 +50,6 @@ export class ProductssComponent {
     });
   }
 
-  // toggleSelection(product: any) {
-  //   product.selected = !product.selected;
-  //   console.log(product._id , "toggleSelection")
-  // }
   closeModal() {
     this.isModalOpen = false;
   }
@@ -65,7 +61,6 @@ export class ProductssComponent {
 
 
   editProduct(id) {
-    console.log(id)
     this.router.navigate(['/products/physical/edit-product', id]);
   }
 

@@ -37,7 +37,6 @@ export class CheckoutCartComponent {
   ) {
     this.productService.cartItems.subscribe((response) => {
       this.products = response
-      console.log(this.products, "checkoutCart")
     });
     this.couponForm = this.fb.group({
       couponCode: ['']
@@ -49,13 +48,11 @@ export class CheckoutCartComponent {
 
   ngOnInit(): void {
     this.getTotal.subscribe((total) => {
-      console.log(total, "totalAmount")
       this.totalAmount = total;
     });
 
     this.couponService.appliedCoupon$.subscribe((coupon) => {
       if (coupon) {
-        console.log(coupon, "CouponShel")
         this.updateDiscountedTotal(coupon);
       }
     });

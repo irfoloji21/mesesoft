@@ -15,7 +15,6 @@ export class StockInventoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts.subscribe(res => {
-      console.log(res, "stockDeneme");
 
       if (!Array.isArray(this.product)) {
         res = [this.product];

@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]], // E-posta alanı
       password: ['', Validators.required], // Şifre alanı
     });
-    console.log(this.loginForm);
   }
 
   createRegisterForm() {
@@ -101,7 +100,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(formData.email, formData.password)
       .subscribe(response => {
         if (response.success) {
-          console.log("success", response);
           this.authService.setUserId(response.user._id)
           this.toasts.success('Giriş başarılı', '',
             {

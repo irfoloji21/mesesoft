@@ -262,7 +262,6 @@ export class ProductService {
         const productArray = Array.isArray(product) ? product : [product];
 
         return productArray.filter((item: Product) => {
-          console.log(item, "filter")
           if (!filter.length) return true;
           const Tags = filter.some((prev) => { // Match Tags
             if (item.tags) {

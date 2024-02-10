@@ -23,7 +23,6 @@ export class ActivationComponent implements OnInit {
       if (activation_token) {
         this.authService.activateUser(activation_token).subscribe(
           (response: any) => {
-            console.log(response);
           },
           (error: any) => {
             this.error = true;

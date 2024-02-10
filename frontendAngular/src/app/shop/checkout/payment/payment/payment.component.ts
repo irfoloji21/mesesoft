@@ -46,13 +46,10 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.cartItems.subscribe((response) => {
-      console.log(response, "checkout");
       this.products = response;
     });
     const selectedAddress = this.orderService.getSelectedAddress();
-    console.log("Seçilen Adres Payment:", selectedAddress);
     const selectedCargo = this.shippingService.getSelectedShipping();
-    console.log("Seçilen Kargo Payment:", selectedCargo);
     const savedCart = localStorage.getItem('selectedCard');
     if (savedCart) {
       // savedCart varsa, JSON'dan çözümlenir
@@ -70,7 +67,6 @@ export class PaymentComponent implements OnInit {
       this.toasts.warning('Seçili kartınız yok!', 'Uyarı', { positionClass: 'toast-top-right' });
     }
     this.getTotal.subscribe((total) => {
-      console.log(total, "totalAmount");
       this.amount = total;
     });
   }
@@ -101,7 +97,6 @@ export class PaymentComponent implements OnInit {
         try {
           this.result = await stripe.tokens.create({ card: cardDetails });
           const orderId = this.result.id;
-          console.log("Stripe API isteği ve Yanıt:", cardDetails, this.result)
           this.toasts.success("Ödeme başarılı");
 
           this.processPayment(orderId, this.amount, selectedAddress, selectedCargo);
@@ -143,13 +138,7 @@ export class PaymentComponent implements OnInit {
       selectedCargo
     ).subscribe(
       (response) => {
-        console.log("Ödeme başarılı:", response);
         this.productService.clearCart();
-
-        console.log(paymentData.amount, "amount PaymentData")
-        console.log(paymentData.product, "product PaymentData")
-        console.log(selectedAddress, "selectedAddress")
-        console.log(selectedCargo, "selectedCargo")
       },
       (error) => {
         console.error("Ödeme işlemi sırasında hata oluştu:", error);

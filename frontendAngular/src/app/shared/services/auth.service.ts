@@ -79,11 +79,9 @@ export class AuthService {
 
   setUserId(userId: string) {
     this.userId = userId;
-    console.log("user id setUserId", userId);
   }
 
   getUserId(): string | null {
-    console.log("user id getUserId", this.userId);
     return this.userId;
   }
 

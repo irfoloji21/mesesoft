@@ -20,7 +20,6 @@ export class AboutUsComponent implements OnInit {
   ngOnInit(): void {
     this.aboutUsService.getAboutUsData().subscribe(data => {
       this.aboutUsData = data;
-      console.log(this.aboutUsData.aboutSection);
 
     });
   }

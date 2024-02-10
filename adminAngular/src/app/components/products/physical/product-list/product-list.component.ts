@@ -30,12 +30,10 @@ export class ProductListComponent implements OnInit {
   }
 
   editProduct(id) {
-    console.log(id)
     this.router.navigate(['/products/physical/edit-product', id]);
   }
 
   detailProduct(id) {
-    console.log(id)
     this.router.navigate(['/products/physical/product-detail', id]);
   }
 
@@ -47,7 +45,6 @@ export class ProductListComponent implements OnInit {
           this.productService.getShopProduct(id).subscribe(
             (response) => {
               this.product_list = response.products
-              console.log(this.product_list);
               
             },
             (error) => {

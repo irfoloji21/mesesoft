@@ -74,7 +74,7 @@ export class ListCouponComponent implements OnInit {
   }
 
   editListCoupon(SelectedCoupon: any) {
-    console.log('Düzenlenecek Coupon bilgileri :', SelectedCoupon);
+
     this.selectedCouponId = SelectedCoupon
     const formattedEndDate = `${SelectedCoupon.end_date.year}-${SelectedCoupon.end_date.month}`;
     this.EditCouponForm.patchValue({
@@ -105,7 +105,6 @@ export class ListCouponComponent implements OnInit {
       this.selectedItems.map(itemId => this.couponService.deleteCoupoun(itemId))
     ).pipe(
       concatMap((results: any[]) => {
-        console.log('Tüm öğeler silindi:', results);
         this.selectedItems = [];
         // Sayfayı yenilemek için bir Observable döndürmek yerine "of" kullanabiliriz
         return of(undefined);
@@ -129,7 +128,6 @@ export class ListCouponComponent implements OnInit {
               this.coupons = this.filteredCoupons.slice();
             },
             (error) => {
-              console.log(error);
             }
           );
         }

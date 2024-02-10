@@ -48,8 +48,7 @@ export class LeftMenuComponent implements OnInit {
 
   getSubcategoriesByItemId(itemId: any, childrenItem: any) {
     this.categoryService.getCategoryById(itemId).subscribe((subcategories) => {
-      console.log(subcategories, "subcategoriesMenu")
-      childrenItem.subcategories = subcategories; // Her alt kategoriye ait alt kategorileri güncelle
+      childrenItem.subcategories = subcategories; 
     });
   }
 

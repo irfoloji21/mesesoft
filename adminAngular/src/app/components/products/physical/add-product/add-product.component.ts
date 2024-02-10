@@ -201,11 +201,10 @@ export class AddProductComponent implements OnInit {
       };
   
       console.log(jsonRequestBody , "JsonStockStatus")
-      // stockStatus'u Json start
+      // stockStatus'u Json end
       this.productService.createProduct(jsonRequestBody).subscribe(
         (response) => {
           this.router.navigate(['/products/physical/productss']);
-          console.log('Ürün başarıyla oluşturuldu:', response);
         },
         (error) => {
           console.error('Ürün oluşturulurken hata oluştu:', error);
@@ -227,7 +226,6 @@ export class AddProductComponent implements OnInit {
   editProduct() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
-      console.log(formData , "Content edit")
       // Diğer form değerlerini alırken olduğu gibi al
       const shop = this.authService.getShop();
       formData.shopId = shop.seller._id;
@@ -236,7 +234,6 @@ export class AddProductComponent implements OnInit {
   
       this.productService.updateProduct(this.id, formData).subscribe((response) => {
         this.router.navigate(['/products/physical/productss']);
-        console.log('Ürün başarıyla güncellendi:', response);
       }
       )
        
@@ -295,7 +292,6 @@ selectedCategoriesControl = new FormControl();
     
     // Seçili kategoriyi form kontrolüne ekleyin
     this.productForm.get('category').setValue(this.selectedOptions.join(','));
-    console.log("Seçili kategoriler:", this.selectedOptions);
   }
   // Dropdown Json categoryy end
 
@@ -304,7 +300,6 @@ selectedCategoriesControl = new FormControl();
 
 search() {
   const searchText = this.productForm.controls['searchText'].value.trim().toLowerCase();
-  console.log(searchText,"search")
   if (searchText == '') {
   this.categoryService.getCategory().subscribe((res=> {
     this.categories = res.categories;

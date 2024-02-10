@@ -86,7 +86,6 @@ export class FashionOneComponent implements OnInit {
         .filter(product => product.discountPrice > 0)
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
-          console.log(discountPercentage, "discountPercentage");
           return discountPercentage <= 50;
         });
 
@@ -112,7 +111,6 @@ export class FashionOneComponent implements OnInit {
         .filter(product => product.discountPrice > 0)
         .filter(product => {
           const discountPercentage = ((product.originalPrice - product.discountPrice) / product.originalPrice) * 100;
-          console.log(discountPercentage, "discountPercentage");
           return discountPercentage <= 50;
         });
 
