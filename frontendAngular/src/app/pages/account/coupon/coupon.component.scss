@@ -1,5 +1,6 @@
 $ana-renk: #ff5733;
 $arkaplan-renk: #ededed;
+
 .couponWrapper {
   padding: 32px;
   border-radius: 0 0 4px 4px;
@@ -11,41 +12,6 @@ $arkaplan-renk: #ededed;
     padding: 16px;
   }
 }
-
-//   .couponListSection {
-//     .couponCard.used {
-//       margin-bottom: 1rem;
-
-//       .couponCard__positioning {
-//         display: flex;
-//         flex-direction: column;
-
-//         .coupon {
-//           .couponCard__bg-gray {
-//             padding: 1rem;
-//             background-color: #f2f2f2;
-//             border: 1px solid #ccc;
-//             margin: 1rem;
-
-//             p.title {
-//               font-size: 18px;
-//               color: #333;
-//             }
-
-//             ul {
-//               list-style: none;
-//               padding: 0;
-
-//               li {
-//                 font-size: 16px;
-//                 color: #666;
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
 
 .modal {
   display: none;

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -14,8 +13,7 @@ export class AccountInfoComponent implements OnInit {
   userInitials: string;
 
   constructor(
-    private serviceAuth: AuthService,
-    private router: Router
+    private serviceAuth: AuthService
   ) { }
 
   ngOnInit(): void {

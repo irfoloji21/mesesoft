@@ -1,128 +1,216 @@
-.user-reviews {
-  margin-top: 20px;
-  text-align: left;
+// .user-reviews {
+//   margin-top: 20px;
+//   text-align: left;
 
-  h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+//   h4 {
+//     font-size: 1.5rem;
+//     margin-bottom: 10px;
+//   }
+
+//   .no-reviews {
+//     color: #999;
+//     font-size: 1rem;
+//     margin-top: 10px;
+//   }
+
+//   .review {
+//     display: flex;
+//     margin-bottom: 20px;
+
+//     .user-avatar {
+//       width: 60px;
+//       height: 60px;
+//       border-radius: 50%;
+//       overflow: hidden;
+//       margin-right: 10px;
+
+//       img {
+//         width: 100%;
+//         height: 100%;
+//         object-fit: cover;
+//       }
+//     }
+
+//     .review-content {
+//       h5 {
+//         font-size: 1.2rem;
+//         margin-bottom: 5px;
+//       }
+
+//       span {
+//         font-size: 1rem;
+//         color: #666;
+//       }
+
+//       .review-meta {
+//         display: flex;
+//         justify-content: space-between;
+
+//         .review-date {
+//           font-size: 1rem;
+//           color: #666;
+//           text-align: right;
+//         }
+
+//         .review-rating {
+//           font-size: 1rem;
+//           color: #666;
+//           text-align: right;
+//         }
+//       }
+
+//       p {
+//         font-size: 1rem;
+//         color: #666;
+//       }
+//     }
+//   }
+// }
+
+// .lenghtt {
+//   text-align: right;
+
+//   a {
+//     color: rgb(48, 48, 194);
+//     font-size: 1rem;
+//     cursor: pointer;
+//     transition: background-color 0.3s;
+//     margin-top: 10px;
+//     display: inline-block;
+//     padding: 5px 10px;
+//     border: 1px solid rgb(48, 48, 194);
+//     border-radius: 5px;
+//     text-decoration: none;
+
+//     &:hover {
+//       background-color: rgb(48, 48, 194);
+//       color: #fff;
+//     }
+//   }
+// }
+
+// @media (max-width: 767px) {
+//   .product-rating {
+//     display: flex;
+//     justify-content: center;
+//   }
+// }
+
+// // wishlist İcon
+// .product-icon {
+//   .wishlist-btn {
+//     background-color: transparent;
+//     border: 2px solid #FF4C3B;
+//     margin-left: 1rem;
+//     border-radius: 10px;
+//     padding: 8px 12px;
+//     cursor: pointer;
+//     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+//     &:hover {
+//       transform: scale(1.1);
+//       background-color: #FF4C3B;
+//       border-color: #FF4C3B;
+
+//       i {
+//         color: white;
+//       }
+//     }
+
+//     &.is-in-wishlist {
+//       background-color: #ff4c3b80;
+//       border-color: #ff4c3b80;
+
+//       i {
+//         color: #FF2800;
+//       }
+//     }
+//   }
+// }
+
+.media {
+  display: flex;
+  @media (max-width: 480px) {
+    display: block;
+    text-align: center;
   }
+}
 
-  .no-reviews {
-    color: #999;
-    font-size: 1rem;
-    margin-top: 10px;
-  }
+.comment-section {
+  border-bottom: none !important;
 
-  .review {
-    display: flex;
-    margin-bottom: 20px;
-
-    .user-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-right: 10px;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+  li {
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-top: 1px solid #dddddd;
+    @media (max-width: 480px) {
+      padding-top: 30px;
+      padding-bottom: 30px;
     }
-
-    .review-content {
-      h5 {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
+    h6 {
+      color: #444444;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 5px;
+      @media (max-width: 480px) {
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
-
       span {
-        font-size: 1rem;
-        color: #666;
-      }
-
-      .review-meta {
-        display: flex;
-        justify-content: space-between;
-
-        .review-date {
-          font-size: 1rem;
-          color: #666;
-          text-align: right;
-        }
-
-        .review-rating {
-          font-size: 1rem;
-          color: #666;
-          text-align: right;
+        font-size: 13px;
+        font-weight: 500;
+        text-transform: capitalize;
+        color: #777777;
+        margin-left: 20px;
+        @media (max-width: 480px) {
+          display: inherit;
+          margin-left: 0;
         }
       }
-
-      p {
-        font-size: 1rem;
-        color: #666;
+    }
+    p {
+      line-height: 1.8;
+      margin-bottom: -4px;
+      letter-spacing: 0.09em;
+      @media (max-width: 480px) {
+        p {
+          line-height: 1.5;
+        }
+      }
+    }
+    img.avatar {
+      height: 65px;
+      width: 65px;
+      margin-right: 20px;
+      border-radius: 100%;
+      @media (max-width: 480px) {
+        margin-right: 0;
       }
     }
   }
-}
-
-.lenghtt {
-  text-align: right;
-
-  a {
-    color: rgb(48, 48, 194);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-    display: inline-block;
-    padding: 5px 10px;
-    border: 1px solid rgb(48, 48, 194);
-    border-radius: 5px;
-    text-decoration: none;
-
-    &:hover {
-      background-color: rgb(48, 48, 194);
-      color: #fff;
+  li {
+    &:first-child {
+      border-top: none;
+      padding-top: 10px;
+    }
+    &:last-child {
+      padding-bottom: 0;
     }
   }
 }
-
-@media (max-width: 767px) {
-  .product-rating {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-// wishlist İcon 
-.product-icon {
-  .wishlist-btn {
-    background-color: transparent;
-    border: 2px solid #FF4C3B; 
-    margin-left: 1rem;
-    border-radius: 10px; 
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-    
-    &:hover {
-      transform: scale(1.1);
-      background-color: #FF4C3B; 
-      border-color: #FF4C3B; 
-      
+.comnt-sec {
+  margin-top: 10px;
+  li {
+    margin-right: 15px;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+    a {
+      color: #777777;
+      font-size: 16px;
       i {
-        color: white; 
-      }
-    }
-
-    &.is-in-wishlist {
-      background-color: #ff4c3b80; 
-      border-color: #ff4c3b80; 
-      
-      i {
-        color: #FF2800; 
+        margin-right: 5px;
       }
     }
   }

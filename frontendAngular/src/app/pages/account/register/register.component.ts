@@ -15,9 +15,9 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private authService: AuthService, 
-    private router: Router, 
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
     private toasts: ToastrService
   ) { }
 
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
         headers,
         withCredentials: true,
       };
-      
+
       this.authService.register(formData.firstName, formData.lastName, formData.email, formData.password).subscribe(
         (user) => {
           if (user.success) {

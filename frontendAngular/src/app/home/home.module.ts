@@ -14,7 +14,6 @@ import { CollectionComponent } from './widgets/collection/collection.component';
 @NgModule({
   declarations: [
     FashionOneComponent,
-    // Widgest Components
     SliderComponent,
     BlogComponent,
     LogoComponent,

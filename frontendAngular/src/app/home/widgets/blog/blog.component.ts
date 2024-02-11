@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BlogSlider } from '../../../shared/data/slider';
 import { BlogService } from 'src/app/shared/services/blog.service';
-import Blog from 'src/app/shared/classes/blog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class BlogComponent implements OnInit {
 
+  public BlogSliderConfig: any = BlogSlider;
   @Input() blogs: any[] = [];
 
   constructor(
@@ -28,7 +28,4 @@ export class BlogComponent implements OnInit {
   onBlogClick(blog: any) {
     this.router.navigate(['/blog/details', blog.slug]);
   }
-
-  public BlogSliderConfig: any = BlogSlider;
-
 }

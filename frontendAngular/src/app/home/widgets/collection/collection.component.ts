@@ -9,6 +9,7 @@ import { CollectionSlider } from '../../../shared/data/slider';
 
 export class CollectionComponent implements OnInit {
 
+  public CollectionSliderConfig: any = CollectionSlider;
   @Input() categories: any[];
   @Input() category: string;
   @Input() class: string;
@@ -16,7 +17,4 @@ export class CollectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
-
-   public CollectionSliderConfig: any = CollectionSlider;
-
 }

@@ -15,26 +15,26 @@ export class WishlistComponent implements OnInit {
   public loading: boolean = true;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     public productService: ProductService
   ) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.loadWishlist();
-   }
+  }
 
-   async loadWishlist() {
-    this.loading = true; 
-  
+  async loadWishlist() {
+    this.loading = true;
+
     this.productService.wishlistItems.subscribe(response => {
       this.products = response;
       this.loading = false;
     });
   }
-  
+
   async addToCart(product: any) {
     const status = await this.productService.addToCart(product);
-    if(status) {
+    if (status) {
       this.router.navigate(['/shop/cart']);
       this.removeItem(product);
     }

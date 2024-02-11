@@ -26,23 +26,14 @@
           <tbody *ngFor="let product of products">
             <tr>
               <td>
-                <a
-                  [routerLink]="[
-                    '/shop/product/',
-                    product.name.replace(' ', '-')
-                  ]"
-                >
+                <a [routerLink]="['/shop/product/', product.slug]">
                   <img [src]="product.images[0].url" [alt]="'picture'" />
                 </a>
               </td>
               <td>
-                <a
-                  [routerLink]="[
-                    '/shop/product/',
-                    product.name.replace(' ', '-')
-                  ]"
-                  >{{ product.name | titlecase }}</a
-                >
+                <a [routerLink]="['/shop/product/', product.slug]">{{
+                  product.name | titlecase
+                }}</a>
                 <div class="mobile-cart-content row">
                   <div class="col">
                     <p>{{ product.stock > 0 ? "in stock" : "out of stock" }}</p>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { AddressComponent } from '../address/address/address.component';
+import { AddressComponent } from '../address/address.component';
 import { CouponComponent } from '../coupon/coupon.component';
 import { OrderComponent } from '../order/order.component';
 import { OrderService } from 'src/app/shared/services/order.service';

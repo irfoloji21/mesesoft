@@ -5,15 +5,14 @@ import { ProductService } from '../../../shared/services/product.service';
 import { Category } from 'src/app/shared/classes/category';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { KoleksiyonService } from 'src/app/shared/services/collection.service';
-import { Collection } from 'src/app/shared/classes/koleksiyon';
-
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fashion-one',
   templateUrl: './fashion-one.component.html',
   styleUrls: ['./fashion-one.component.scss']
 })
+
 export class FashionOneComponent implements OnInit {
 
   @Input() blog: any[] = [];
@@ -31,7 +30,6 @@ export class FashionOneComponent implements OnInit {
     public categoryService: CategoryService,
     public collectionService: KoleksiyonService,
     private router: Router,
-    private route: ActivatedRoute
   ) {
     this.collectionService.getKoleksiyons().subscribe((response: any) => {
       this.collections = response.koleksiyons;
