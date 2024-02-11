@@ -7,11 +7,11 @@ import { Category } from "src/app/shared/classes/category";
 import { CategoryService } from "src/app/shared/services/category.service";
 
 @Component({
-  selector: "app-collection-left-sidebar",
-  templateUrl: "./collection-left-sidebar.component.html",
-  styleUrls: ["./collection-left-sidebar.component.scss"],
+  selector: "app-collection-sidebar",
+  templateUrl: "./collection-sidebar.component.html",
+  styleUrls: ["./collection-sidebar.component.scss"],
 })
-export class CollectionLeftSidebarComponent implements OnInit {
+export class CollectionSidebarComponent implements OnInit {
   public grid: string = "col-xl-3 col-md-6";
   public layoutView: string = "grid-view";
   public products: Product[] = [];
@@ -152,7 +152,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // Append filter value to Url
   updateFilter(tags: any) {

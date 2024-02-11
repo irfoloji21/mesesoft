@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ShopRoutingModule } from './shop-routing.module';
 
 // Product Details Components
-import { ProductLeftSidebarComponent } from './product/product-sidebar/product-left-sidebar.component';
+import { ProductSidebarComponent } from './product/product-sidebar/product-sidebar.component';
 // import { FourImageComponent } from './product/four-image/four-image.component';
 // import { BundleProductComponent } from './product/bundle-product/bundle-product.component';
 // import { ImageOutsideComponent } from './product/image-outside/image-outside.component';
@@ -19,10 +19,7 @@ import { StockInventoryComponent } from './product/widgets/stock-inventory/stock
 import { RelatedProductComponent } from './product/widgets/related-product/related-product.component';
 
 // Collection Components
-import { CollectionLeftSidebarComponent } from './collection/collection-left-sidebar/collection-left-sidebar.component';
-// import { CollectionRightSidebarComponent } from './collection/collection-right-sidebar/collection-right-sidebar.component';
-// import { CollectionNoSidebarComponent } from './collection/collection-no-sidebar/collection-no-sidebar.component';
-// import { CollectionInfinitescrollComponent } from './collection/collection-infinitescroll/collection-infinitescroll.component';
+import { CollectionSidebarComponent } from './collection/collection-sidebar/collection-sidebar.component';
 
 // Collection Widgets
 import { GridComponent } from './collection/widgets/grid/grid.component';
@@ -39,14 +36,14 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 
 import { RouterModule } from '@angular/router';
-import { AddressComponent } from './checkout/address/address/address.component';
-import { ConfirmationComponent } from './checkout/confirmation/confirmation/confirmation.component';
-import { PaymentComponent } from './checkout/payment/payment/payment.component';
-import { CheckoutCartComponent } from './checkout/checkoutCart/checkout-cart/checkout-cart/checkout-cart.component';
+import { AddressComponent } from './checkout/address/address.component';
+import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
+import { PaymentComponent } from './checkout/payment/payment.component';
+import { CheckoutCartComponent } from './checkout/checkoutCart/checkout-cart.component';
 
 @NgModule({
   declarations: [
-    ProductLeftSidebarComponent,
+    ProductSidebarComponent,
     // FourImageComponent,
     // BundleProductComponent,
     // ImageOutsideComponent,
@@ -55,10 +52,7 @@ import { CheckoutCartComponent } from './checkout/checkoutCart/checkout-cart/che
     SocialComponent,
     StockInventoryComponent,
     RelatedProductComponent,
-    CollectionLeftSidebarComponent,
-    // CollectionRightSidebarComponent,
-    // CollectionNoSidebarComponent,
-    // CollectionInfinitescrollComponent,
+    CollectionSidebarComponent,
     GridComponent,
     PaginationComponent,
     BrandsComponent,

@@ -12,12 +12,12 @@ import { OrderService } from 'src/app/shared/services/order.service';
 import { SocialMediaService } from 'src/app/shared/services/social-media.service';
 
 @Component({
-  selector: 'app-product-left-sidebar',
-  templateUrl: './product-left-sidebar.component.html',
-  styleUrls: ['./product-left-sidebar.component.scss'],
+  selector: 'app-product-sidebar',
+  templateUrl: './product-sidebar.component.html',
+  styleUrls: ['./product-sidebar.component.scss'],
 })
 
-export class ProductLeftSidebarComponent implements OnInit {
+export class ProductSidebarComponent implements OnInit {
   public product: Product = {};
   public counter: number = 1;
   public activeSlide: any = 0;

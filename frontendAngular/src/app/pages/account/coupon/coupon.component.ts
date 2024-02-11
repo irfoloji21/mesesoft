@@ -45,8 +45,6 @@ export class CouponComponent {
     }
   }
   
-
-
   openModal(coupon: any) {
     this.isModalOpen = true;
     this.selectedCoupon = coupon;

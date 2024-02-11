@@ -22,8 +22,8 @@ import { AddressComponent } from './account/address/address.component';
 import { CheckoutGuard } from './checkoutRoute.guard';
 import { AuthGuard } from './route.guard';
 // import { AuthGuard } from './route.guard';
-// import { CheckoutCartComponent } from '../shop/checkout/checkoutCart/checkout-cart/checkout-cart/checkout-cart.component';
-// import { PaymentComponent } from '../shop/checkout/payment/payment/payment.component';
+// import { CheckoutCartComponent } from '../shop/checkout/checkoutCart/checkout-cart.component';
+// import { PaymentComponent } from '../shop/checkout/payment/payment.component';
 
 const routes: Routes = [
   {
