@@ -10,14 +10,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { TranslateModule } from '@ngx-translate/core';
 
 // Header and Footer Components
-import { HeaderOneComponent } from './header/header-one/header-one.component';
-import { FooterOneComponent } from './footer/footer-one/footer-one.component';
-import { HeaderTwoComponent } from './header/header-two/header-two.component';
-import { FooterTwoComponent } from './footer/footer-two/footer-two.component';
-import { HeaderThreeComponent } from './header/header-three/header-three.component';
-import { FooterThreeComponent } from './footer/footer-three/footer-three.component';
-import { HeaderFourComponent } from './header/header-four/header-four.component';
-import { FooterFourComponent } from './footer/footer-four/footer-four.component';
+import { FooterOneComponent } from './footer/footer-one.component';
+import { HeaderFourComponent } from './header/header-four.component';
 
 // Components
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
@@ -57,14 +51,8 @@ import { OrderQuickViewComponent } from './components/modal/order-quick-view/ord
 
 @NgModule({
   declarations: [
-    HeaderOneComponent,
     FooterOneComponent,
-    HeaderTwoComponent,
-    FooterTwoComponent,
-    HeaderThreeComponent,
-    FooterThreeComponent,
     HeaderFourComponent,
-    FooterFourComponent,
     LeftMenuComponent,
     MenuComponent,
     SettingsComponent,
@@ -112,14 +100,8 @@ import { OrderQuickViewComponent } from './components/modal/order-quick-view/ord
     LazyLoadImageModule,
     NgxSkeletonLoaderModule,
     TranslateModule,
-    HeaderOneComponent,
     FooterOneComponent,
-    HeaderTwoComponent,
-    FooterTwoComponent,
-    HeaderThreeComponent,
-    FooterThreeComponent,
     HeaderFourComponent,
-    FooterFourComponent,
     BreadcrumbComponent,
     CategoriesComponent,
     ProductBoxOneComponent,

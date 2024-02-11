@@ -7,7 +7,7 @@ import { ViewportScroller } from '@angular/common';
   styleUrls: ['./tap-to-top.component.scss']
 })
 export class TapToTopComponent implements OnInit {
-  
+
   public show: boolean = false;
 
   constructor(private viewScroller: ViewportScroller) { }
@@ -19,15 +19,15 @@ export class TapToTopComponent implements OnInit {
   @HostListener("window:scroll", [])
   onWindowScroll() {
     let number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  	if (number > 600) { 
-  	  this.show = true;
-  	} else {
-  	  this.show = false;
-  	}
+    if (number > 600) {
+      this.show = true;
+    } else {
+      this.show = false;
+    }
   }
 
   tapToTop() {
-  	this.viewScroller.scrollToPosition([0, 0]);
+    this.viewScroller.scrollToPosition([0, 0]);
   }
 
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../classes/category';
-import { SocialMediaService } from '../../services/social-media.service';
+import { CategoryService } from '../services/category.service';
+import { Category } from '../classes/category';
+import { SocialMediaService } from '../services/social-media.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SubscribeService } from '../../services/subscribe.service';
+import { SubscribeService } from '../services/subscribe.service';
 
 @Component({
   selector: 'app-footer-one',

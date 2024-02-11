@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { ProductService } from '../../services/product.service';
+import { AuthService } from '../services/auth.service';
+import { ProductService } from '../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -38,7 +38,7 @@ export class HeaderFourComponent implements OnInit {
     });
 
   }
-  
+
   submitSearch() {
     const searchValue = this.form.get('search').value;
 

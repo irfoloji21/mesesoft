@@ -17,16 +17,12 @@ import { ChangePasswordComponent } from './account/change-password/change-passwo
 import { ProfileComponent } from './account/profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { SearchComponent } from './search/search.component';
-import { ReviewComponent } from './review/review.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ErrorComponent } from './error/error.component';
 import { FaqComponent } from './faq/faq.component';
 
 // Blog Components
 import { BlogDetailsComponent } from './blog/blog-details.component';
-// import { TypographyComponent } from './typography/typography.component';
-// import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 // // Portfolio Components
 import { ActivationComponent } from './account/activation/activation.component';
@@ -46,12 +42,8 @@ import { SavedCardComponent } from './account/saved-card/saved-card.component';
     ProfileComponent,
     ContactComponent,
     AboutUsComponent,
-    SearchComponent,
-    // TypographyComponent,
-    ReviewComponent,
     OrderSuccessComponent,
     ErrorComponent,
-    // ComingSoonComponent,
     FaqComponent,
     BlogDetailsComponent,
     ActivationComponent,

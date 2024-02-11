@@ -7,8 +7,11 @@
         <div class="col-lg-6">
           <div class="header-contact">
             <ul>
-              <li>{{'ecommerce-angular' | translate}}</li>
-              <li><i  class="fa fa-phone" aria-hidden="true"></i>{{'call-us' | translate}}: 123 - 456 - 7890</li>
+              <li>{{ "ecommerce-angular" | translate }}</li>
+              <li>
+                <i class="fa fa-phone" aria-hidden="true"></i
+                >{{ "call-us" | translate }}: 123 - 456 - 789000000
+              </li>
             </ul>
           </div>
         </div>
@@ -43,28 +46,6 @@
                     <li>
                       <a [routerLink]="['/dashboard']">Account Info</a>
                     </li>
-                    <!-- <li>
-                        <a>Address Book</a>
-                      </li>
-                      <li>
-                        <a >My Orders</a>
-                      </li>
-                      <li>
-                        <a  >My Wishlist</a>
-                      </li>
-                      <li>
-                        <a  >Newsletter</a>
-                      </li>
-                      <li>
-                        <a >My Account</a>
-                      </li>
-                      <li>
-                        <a >Change Password</a>
-                      </li>
-                      <li>
-                        <a  >Profile</a>
-                      </li> 
-                      <hr>-->
                     <li>
                       <a (click)="logout()" style="cursor: pointer">Log out</a>
                     </li>

@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
   public products: Product[] = [];
   public search: boolean = false;
   public noProductsFound: boolean = false;
- 
+
   public languages = [
     {
       name: 'English',
@@ -36,13 +36,13 @@ export class SettingsComponent implements OnInit {
       flag: 'assets/images/icon/LanguageTr.png'
     }
   ];
-  public selectedLanguage: any = this.languages[0]; 
+  public selectedLanguage: any = this.languages[0];
 
   getFlagForCurrentLanguage(): string {
     return this.selectedLanguage.flag;
   }
 
- 
+
 
   public currencies = [
     {
@@ -81,24 +81,24 @@ export class SettingsComponent implements OnInit {
     this.productService.cartItems.subscribe(response => {
       this.products = response
     });
-    
+
     this.getSearch();
-    
-  this.translateBtn = document.getElementById('translatebtn');
-  if (!this.translateBtn) {
-    console.error('translateBtn is null!');
-    return;
-  }
+
+    this.translateBtn = document.getElementById('translatebtn');
+    if (!this.translateBtn) {
+      console.error('translateBtn is null!');
+      return;
+    }
   }
 
   changeLanguage(code) {
     if (isPlatformBrowser(this.platformId)) {
       this.translate.use(code)
-       // Flag 
-       this.selectedLanguage = this.languages.find(lang => lang.code === code);
+      // Flag 
+      this.selectedLanguage = this.languages.find(lang => lang.code === code);
     }
 
-    
+
   }
   getSearch() {
     const productSearch = this.searchForm.value.search;
@@ -115,7 +115,7 @@ export class SettingsComponent implements OnInit {
     });
   }
 
- 
+
 
   get getTotal(): Observable<number> {
     return this.productService.cartTotalAmount();
@@ -137,19 +137,19 @@ export class SettingsComponent implements OnInit {
 
   send() {
     const translateBtn = document.getElementById('translatebtn') as HTMLButtonElement;
-  
+
     if (!translateBtn) {
       console.error('translateBtn is null!');
       return;
     }
-  
+
     const googleObj: GoogleObj = {
       q: 'hello',
       target: 'es'
     };
-  
+
     translateBtn.disabled = true;
-  
+
     this.google.translate(googleObj).subscribe(
       (res: any) => {
         translateBtn.disabled = false;
@@ -158,10 +158,10 @@ export class SettingsComponent implements OnInit {
       }
     );
   }
-  
 
 
 
 
-  
+
+
 }

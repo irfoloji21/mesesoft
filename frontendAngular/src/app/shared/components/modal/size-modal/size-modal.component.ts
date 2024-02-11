@@ -1,5 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input,
-  Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input,
+  Injectable, PLATFORM_ID, Inject
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from "../../../classes/product";
@@ -9,8 +11,8 @@ import { Product } from "../../../classes/product";
   templateUrl: './size-modal.component.html',
   styleUrls: ['./size-modal.component.scss']
 })
-export class SizeModalComponent implements OnInit, OnDestroy  {
-  
+export class SizeModalComponent implements OnInit, OnDestroy {
+
   @Input() product: Product;
 
   @ViewChild("sizeChart", { static: false }) SizeChart: TemplateRef<any>;
@@ -27,11 +29,11 @@ export class SizeModalComponent implements OnInit, OnDestroy  {
   openModal() {
     this.modalOpen = true;
     if (isPlatformBrowser(this.platformId)) { // For SSR 
-      this.modalService.open(this.SizeChart, { 
+      this.modalService.open(this.SizeChart, {
         size: 'md',
         ariaLabelledBy: 'size-modal',
         centered: true,
-        windowClass: 'SizeChart' 
+        windowClass: 'SizeChart'
       }).result.then((result) => {
         `Result ${result}`
       }, (reason) => {
@@ -51,7 +53,7 @@ export class SizeModalComponent implements OnInit, OnDestroy  {
   }
 
   ngOnDestroy() {
-    if(this.modalOpen){
+    if (this.modalOpen) {
       this.modalService.dismissAll();
     }
   }

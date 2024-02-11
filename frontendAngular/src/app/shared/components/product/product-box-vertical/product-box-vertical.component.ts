@@ -8,11 +8,11 @@ import { Product } from "../../../classes/product";
 })
 export class ProductBoxVerticalComponent implements OnInit {
 
-  @Input() product : Product;
-  @Input() currency : any;
+  @Input() product: Product;
+  @Input() currency: any;
 
-  public ImageSrc : string
-  
+  public ImageSrc: string
+
   constructor() { }
 
   ngOnInit(): void {

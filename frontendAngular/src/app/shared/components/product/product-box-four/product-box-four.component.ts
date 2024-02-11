@@ -15,11 +15,11 @@ export class ProductBoxFourComponent implements OnInit {
   @Input() currency: any = this.productService.Currency; // Default Currency 
   @Input() onHowerChangeImage: boolean = false; // Default False
   @Input() cartModal: boolean = false; // Default False
-  
+
   @ViewChild("quickView") QuickView: QuickViewComponent;
   @ViewChild("cartModal") CartModal: CartModalComponent;
 
-  public ImageSrc : string
+  public ImageSrc: string
 
   constructor(private productService: ProductService) { }
 

@@ -9,8 +9,6 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { CheckoutComponent } from '../shop/checkout/checkout.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { SearchComponent } from './search/search.component';
-import { ReviewComponent } from './review/review.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ErrorComponent } from './error/error.component';
 import { FaqComponent } from './faq/faq.component';
@@ -23,11 +21,9 @@ import { ChangePasswordComponent } from './account/change-password/change-passwo
 import { AddressComponent } from './account/address/address.component';
 import { CheckoutGuard } from './checkoutRoute.guard';
 import { AuthGuard } from './route.guard';
-// import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 // import { AuthGuard } from './route.guard';
 // import { CheckoutCartComponent } from '../shop/checkout/checkoutCart/checkout-cart/checkout-cart/checkout-cart.component';
 // import { PaymentComponent } from '../shop/checkout/payment/payment/payment.component';
-// import { TypographyComponent } from './typography/typography.component';
 
 const routes: Routes = [
   {
@@ -82,14 +78,6 @@ const routes: Routes = [
     component: AboutUsComponent
   },
   {
-    path: 'search',
-    component: SearchComponent
-  },
-  {
-    path: 'review',
-    component: ReviewComponent
-  },
-  {
     path: 'order/success',
     component: OrderSuccessComponent,
     canActivate: [AuthGuard],
@@ -112,10 +100,6 @@ const routes: Routes = [
   //   path: 'account/wishlist', 
   //   component: WishlistComponent 
   // },
-  // { 
-  //   path: 'typography', 
-  //   component: TypographyComponent 
-  // },
   // {
   //   path: 'change/password',
   //   component: ChangePasswordComponent
@@ -127,10 +111,6 @@ const routes: Routes = [
   // { 
   //   path: 'address', 
   //   component: AddressComponent 
-  // },
-  // { 
-  //   path: 'comingsoon', 
-  //   component: ComingSoonComponent 
   // },
 ];
 

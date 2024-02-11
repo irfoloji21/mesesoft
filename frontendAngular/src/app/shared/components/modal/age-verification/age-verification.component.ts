@@ -1,5 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input, AfterViewInit,
-    Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input, AfterViewInit,
+  Injectable, PLATFORM_ID, Inject
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
@@ -14,14 +16,14 @@ export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestro
   @ViewChild("ageVerification") AgeVerificationModal: TemplateRef<any>;
 
   public closeResult: string;
-  public ageVerificationForm:  UntypedFormGroup;
+  public ageVerificationForm: UntypedFormGroup;
   public currdate: any;
   public setDate: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
     private modalService: NgbModal,
-  	private fb: UntypedFormBuilder) { 
-  	this.ageVerificationForm = this.fb.group({
+    private fb: UntypedFormBuilder) {
+    this.ageVerificationForm = this.fb.group({
       day: ['', Validators.required],
       month: ['', Validators.required],
       year: ['', Validators.required],
@@ -32,13 +34,13 @@ export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngAfterViewInit(): void {
-  	if(localStorage.getItem("ageVerification") !== 'true')
-       this.openModal();
+    if (localStorage.getItem("ageVerification") !== 'true')
+      this.openModal();
   }
 
   openModal() {
     if (isPlatformBrowser(this.platformId)) { // For SSR 
-      this.modalService.open(this.AgeVerificationModal, { 
+      this.modalService.open(this.AgeVerificationModal, {
         size: 'md',
         backdrop: 'static',
         keyboard: false,
@@ -58,15 +60,15 @@ export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestro
     var year = this.ageVerificationForm.value.year;
     var age = 18;
     var mydate = new Date();
-    mydate.setFullYear(year, month-1, day);
+    mydate.setFullYear(year, month - 1, day);
 
     var currdate = new Date();
     this.currdate = currdate;
-    var setDate = new Date();         
-    this.setDate = setDate.setFullYear(mydate.getFullYear() + age, month-1, day);
+    var setDate = new Date();
+    this.setDate = setDate.setFullYear(mydate.getFullYear() + age, month - 1, day);
 
-    if ((this.currdate - this.setDate) > 0){
-      localStorage.setItem('ageVerification','true')
+    if ((this.currdate - this.setDate) > 0) {
+      localStorage.setItem('ageVerification', 'true')
       this.modalService.dismissAll();
     } else {
       window.location.href = "https://www.google.com/";
@@ -84,7 +86,7 @@ export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   ngOnDestroy() {
-    
+
   }
 
 }

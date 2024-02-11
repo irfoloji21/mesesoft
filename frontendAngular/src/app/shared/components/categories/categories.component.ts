@@ -14,7 +14,7 @@ export class CategoriesComponent implements OnInit {
   public categories: Category[] = [];
   public collapse: boolean = true;
   public SelectCategory: string | null = null;
-  constructor(public categoryService: CategoryService, private router: Router, private product :ProductService) { 
+  constructor(public categoryService: CategoryService, private router: Router, private product: ProductService) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         this.categories = data.categories;
@@ -22,18 +22,16 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  
-
   ngOnInit(): void {
   }
 
   get filterbyCategory() {
     const categoryNames = this.categories
-    .filter(category => category.isShow === true) 
-    .map(category => ({
-       name: category.name, 
-        _id: category._id ,
-        images:category.images[0].url,
+      .filter(category => category.isShow === true)
+      .map(category => ({
+        name: category.name,
+        _id: category._id,
+        images: category.images[0].url,
         description: category.description
       }));
     return [...new Set(categoryNames)];
@@ -47,13 +45,13 @@ export class CategoriesComponent implements OnInit {
     if (category.description) {
       queryParams['description'] = category.description;
     }
-    if (category.images) { 
-      queryParams['images'] = category.images ;
+    if (category.images) {
+      queryParams['images'] = category.images;
     }
     this.router.navigate(['/shop/collection'], { queryParams });
   }
-  
-  navigateWithQueryParams( childrenSubItem: any) {
+
+  navigateWithQueryParams(childrenSubItem: any) {
     this.product.irfan(childrenSubItem._id).subscribe(res => {
     });
   }

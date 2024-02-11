@@ -6,6 +6,7 @@ import { Category } from '../../classes/category';
 import { ProductService } from '../../services/product.service';
 import { TranslationService } from '../../services/translation.service';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -43,9 +44,6 @@ export class MenuComponent implements OnInit {
     // this.router.events.subscribe((event) => {
     //   this.navServices.mainMenuToggle = false;
     // });
-
- 
-    
   }
 
   loadSubcategories(categories: any[]) {
@@ -70,8 +68,6 @@ export class MenuComponent implements OnInit {
 
     this.menuItems = categories;
   }
-
-  
 
   // Click Toggle menu (Mobile) (Main menu)
   toggletNavActive(item) {
@@ -107,7 +103,7 @@ export class MenuComponent implements OnInit {
     });
 
     this.translationService.currentLang$.subscribe(lang => {
-    
+
       // Çevirilen metinleri kontrol etmek için
       this.translate.get('menuItems.item1').subscribe((translation: string) => {
       });
@@ -161,8 +157,6 @@ export class MenuComponent implements OnInit {
 
   selectedLanguage: string = 'en';
 
-
-  
 }
 
 

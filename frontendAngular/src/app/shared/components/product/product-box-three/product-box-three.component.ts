@@ -14,7 +14,7 @@ export class ProductBoxThreeComponent implements OnInit {
   @Input() product: Product;
   @Input() currency: any = this.productService.Currency; // Default Currency
   @Input() cartModal: boolean = false; // Default False
-  
+
   @ViewChild("quickView") QuickView: QuickViewComponent;
   @ViewChild("cartModal") CartModal: CartModalComponent;
 
