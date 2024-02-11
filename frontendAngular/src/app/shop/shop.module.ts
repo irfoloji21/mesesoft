@@ -6,11 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ShopRoutingModule } from './shop-routing.module';
 
 // Product Details Components
-import { ProductLeftSidebarComponent } from './product/sidebar/product-left-sidebar/product-left-sidebar.component';
-// import { ProductRightSidebarComponent } from './product/sidebar/product-right-sidebar/product-right-sidebar.component';
-// import { ProductNoSidebarComponent } from './product/sidebar/product-no-sidebar/product-no-sidebar.component';
+import { ProductLeftSidebarComponent } from './product/product-sidebar/product-left-sidebar.component';
 // import { FourImageComponent } from './product/four-image/four-image.component';
-// import { ThreeColumnComponent } from './product/three-column/three-column.component';
 // import { BundleProductComponent } from './product/bundle-product/bundle-product.component';
 // import { ImageOutsideComponent } from './product/image-outside/image-outside.component';
 
@@ -50,9 +47,6 @@ import { CheckoutCartComponent } from './checkout/checkoutCart/checkout-cart/che
 @NgModule({
   declarations: [
     ProductLeftSidebarComponent,
-    // ProductRightSidebarComponent,
-    // ProductNoSidebarComponent,
-    // ThreeColumnComponent,
     // FourImageComponent,
     // BundleProductComponent,
     // ImageOutsideComponent,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FashionOneComponent } from './fashion/fashion-one/fashion-one.component';
+import { FashionOneComponent } from './fashion/fashion-one.component';
 
 
 const routes: Routes = [

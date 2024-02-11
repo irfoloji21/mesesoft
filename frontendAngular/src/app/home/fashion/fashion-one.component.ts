@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductSlider } from '../../../shared/data/slider';
-import { Product } from '../../../shared/classes/product';
-import { ProductService } from '../../../shared/services/product.service';
+import { ProductSlider } from '../../shared/data/slider';
+import { Product } from '../../shared/classes/product';
+import { ProductService } from '../../shared/services/product.service';
 import { Category } from 'src/app/shared/classes/category';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { KoleksiyonService } from 'src/app/shared/services/collection.service';

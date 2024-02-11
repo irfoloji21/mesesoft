@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../../shared/data/slider';
-import { Product } from '../../../../shared/classes/product';
-import { ProductService } from '../../../../shared/services/product.service';
-import { AuthService } from '../../../../shared/services/auth.service';
-import { SizeModalComponent } from "../../../../shared/components/modal/size-modal/size-modal.component";
+import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../shared/data/slider';
+import { Product } from '../../../shared/classes/product';
+import { ProductService } from '../../../shared/services/product.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { SizeModalComponent } from "../../../shared/components/modal/size-modal/size-modal.component";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
