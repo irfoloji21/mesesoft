@@ -7,21 +7,17 @@
       <ng-template ngbNavContent>
         <div *ngIf="coupons && coupons.length > 0">
           <div class="coupon-box row no-gutters bg-white p-1 h-entry" *ngFor="let coupon of coupons">
-            <span style="display: flex; justify-content: flex-end">
+            <div class="expiration-date">
               <h5>
                 Expiration date:
-                <span style="font-size: 1.2rem">
-                  {{ getMonthName(coupon.end_date.month) }} -
-                  {{ coupon.end_date.year }}
-                </span>
+                <span class="expiration-month">{{ getMonthName(coupon.end_date.month) }}</span> -
+                <span class="expiration-year">{{ coupon.end_date.year }}</span>
               </h5>
-            </span>
+            </div>
             <div class="col-4 col-md-3 align-self-center">
               <div class="store-image border-right">
                 <a>
-                  <img style="border-radius: 20%" width="150" height="100"
-                    src="../../../../assets/images/icon/CoponLogo MeseSoft2.png" class="img-fluid" alt="logo"
-                    decoding="async" />
+                  <img src="../../../../assets/images/icon/CoponLogo MeseSoft2.png" class="img-fluid" alt="logo" />
                 </a>
               </div>
             </div>
@@ -40,47 +36,42 @@
               <a (click)="openModal(coupon)" rel="nofollow"
                 class="coupon-code-link btn promotion code btn-secondary tn btn-block coupon-button"
                 title="Click to open the discount coupon">
-                <span class="d-lg-inline" style="color: #fff">
-                  Show the coupon</span></a>
+                <span class="d-lg-inline">Show the coupon</span>
+              </a>
             </div>
             <hr />
           </div>
         </div>
-        <section class="couponWrapper" style="background-color: #f2f2f2">
-          <div *ngIf="loading">
-            <!-- Burada istediğiniz bir yükleniyor göstergesi ekleyebilirsiniz -->
+        <section class="coupon-wrapper">
+          <div *ngIf="loading" class="loading-text">
             Loading...
           </div>
-          <div *ngIf="!loading && (!coupons || coupons.length === 0)">
-            <h5 style="text-align: center">No coupons available</h5>
+          <div *ngIf="!loading && (!coupons || coupons.length === 0)" class="no-coupons-text">
+            <h5>No coupons available</h5>
           </div>
         </section>
       </ng-template>
+      
     </li>
     <li [ngbNavItem]="2">
       <a ngbNavLink>
         <h5>Used Coupons</h5>
       </a>
       <ng-template ngbNavContent>
-        <section class="couponWrapper" style="background-color: #f2f2f2">
+        <section class="coupon-wrapper">
           <div *ngIf="coupons && coupons.length > 0">
             <div class="coupon-box row no-gutters bg-white p-1 h-entry" *ngFor="let coupon of coupons">
-              <span style="display: flex; justify-content: flex-end">
+              <div class="coupon-name">
                 <h5>
                   Coupon Name:
-                  <span style="font-size: 1.2rem">
-                    {{ coupon.name }}
-                  </span>
+                  <span class="coupon-name-text">{{ coupon.name }}</span>
                 </h5>
-              </span>
+              </div>
               <hr />
-              <span style="display: flex; justify-content: flex-end"> </span>
               <div class="col-4 col-md-3 align-self-center">
                 <div class="store-image border-right">
                   <a>
-                    <img style="border-radius: 20%" width="150" height="100"
-                      src="../../../../assets/images/icon/CoponLogo MeseSoft2.png" class="img-fluid" alt="logo"
-                      decoding="async" />
+                    <img src="../../../../assets/images/icon/CoponLogo MeseSoft2.png" class="img-fluid" alt="logo" />
                   </a>
                 </div>
               </div>
@@ -93,30 +84,23 @@
                     Do you want to use discount coupons for all products ?
                     Special discount for online order...
                   </p>
-                  <h5 style="
-                      background-color: #6c757d;
-                      color: #fff;
-                      padding: 5px;
-                      text-align: center;
-                      justify-content: center;
-                    ">
-                    Coupon usage date:
-                    <span style="font-size: 1.2rem">
-                      {{ getMonthName(coupon.end_date.month) }} -
-                      {{ coupon.end_date.year }}
-                    </span>
-                  </h5>
+                  <div class="coupon-usage-date">
+                    <h5>
+                      Coupon usage date:
+                      <span class="coupon-usage-date-text">{{ getMonthName(coupon.end_date.month) }} - {{ coupon.end_date.year }}</span>
+                    </h5>
+                  </div>
                 </div>
               </div>
-              <div class="col-12 col-md-3 align-self-center text-right"></div>
               <hr />
             </div>
           </div>
           <div *ngIf="!coupons || (coupons && coupons.length === 0)">
-            <h5 style="text-align: center">No Used Coupons</h5>
+            <h5 class="no-coupons-text">No Used Coupons</h5>
           </div>
         </section>
       </ng-template>
+      
     </li>
   </ul>
   <div [ngbNavOutlet]="nav" class="mt-2"></div>
