@@ -5,20 +5,13 @@
       <div class="col-lg-12 pd-0">
         <div class="col-md-12 col-sm-12">
           <div class="checkout-content">
-            <div
-              class="checkout-address c-content-area js-tab-content addresses cf active"
-            >
+            <div class="checkout-address c-content-area js-tab-content addresses cf active">
               <div class="col-12 pd-0 address-options">
                 <div class="address-header">
                   <div class="address-title">DELIVERY ADDRESS</div>
                   <div class="form-check">
-                    <input
-                      [(ngModel)]="isBillingAddressSame"
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
+                    <input [(ngModel)]="isBillingAddressSame" class="form-check-input" type="checkbox" value=""
+                      id="flexCheckDefault" />
                     <label class="form-check-label" for="flexCheckDefault">
                       My billing address is the same
                     </label>
@@ -27,14 +20,10 @@
               </div>
               <!-- Adress cart -->
               <div class="col-12 pd-0 options-area js-set-options">
-                <div
-                  class="js-options-detail options-detail js-default default js-default-option"
-                >
+                <div class="js-options-detail options-detail js-default default js-default-option">
                   <div class="checkout__address-list">
                     <div class="alert-message">
-                      <p
-                        class="js-message-delivery-option checkout-message-alert"
-                      >
+                      <p class="js-message-delivery-option checkout-message-alert">
                         Please select a delivery address.
                       </p>
                     </div>
@@ -42,24 +31,15 @@
                       <div class="card-body">
                         <div class="address-book-section">
                           <div class="row g-4">
-                            <div
-                              *ngFor="
+                            <div *ngFor="
                                 let address of userAddresses;
                                 let i = index
-                              "
-                              class="select-box col-xl-4 col-md-6"
-                              data-type="address"
-                            >
-                              <div
-                                class="address-box"
-                                [class.selectedAddress]="
+                              " class="select-box col-xl-4 col-md-6" data-type="address">
+                              <div class="address-box" [class.selectedAddress]="
                                   i === selectedAddressIndex
-                                "
-                              >
+                                ">
                                 <div class="top">
-                                  <h6
-                                    class="d-flex align-items-center justify-content-between"
-                                  >
+                                  <h6 class="d-flex align-items-center justify-content-between">
                                     {{ address.address }}
                                     <span>{{ address.addressType }}</span>
                                   </h6>
@@ -83,29 +63,15 @@
                                   </div>
                                 </div>
                                 <div class="bottom">
-                                  <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="selectedAddress"
-                                    (click)="selectAddress(address, i)"
-                                    required
-                                  />
-                                  <a
-                                    (click)="
+                                  <input class="form-check-input" type="radio" name="selectedAddress"
+                                    (click)="selectAddress(address, i)" required />
+                                  <a (click)="
                                       editAddress(address); openEditForm()
-                                    "
-                                    data-bs-target="#edit-address"
-                                    data-bs-toggle="modal"
-                                    data-type="address"
-                                    class="bottom_btn"
-                                    >Edit
+                                    " data-bs-target="#edit-address" data-bs-toggle="modal" data-type="address"
+                                    class="bottom_btn">Edit
                                   </a>
-                                  <a
-                                    (click)="deleteAddress(address._id)"
-                                    class="bottom_btn delete-button"
-                                    data-type="address"
-                                    >Delete</a
-                                  >
+                                  <a (click)="deleteAddress(address._id)" class="bottom_btn delete-button"
+                                    data-type="address">Delete</a>
                                 </div>
                                 <div class="clear"></div>
                               </div>
@@ -115,10 +81,7 @@
                       </div>
                       <div class="c-address-grid">
                         <div class="c-address-content js-new-address-occ">
-                          <button
-                            class="btn btn-sm btn-solid"
-                            (click)="openCreateForm()"
-                          >
+                          <button class="btn btn-sm btn-solid" (click)="openCreateForm()">
                             <span class="icon-plus"></span>
                             CREATE NEW ADDRESS
                           </button>
@@ -127,10 +90,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="js-bill-address-list address-list"
-                  *ngIf="!isBillingAddressSame"
-                >
+                <div class="js-bill-address-list address-list" *ngIf="!isBillingAddressSame">
                   <div class="alert-message">
                     <p class="js-message-bill-address checkout-message-alert">
                       Please select a billing address.
@@ -139,24 +99,15 @@
                   <div class="card-body">
                     <div class="address-book-section">
                       <div class="row g-4">
-                        <div
-                          *ngFor="
+                        <div *ngFor="
                             let billingAddress of billingAddresses;
                             let i = index
-                          "
-                          class="select-box col-xl-4 col-md-6"
-                          data-type="billingAddress"
-                        >
-                          <div
-                            class="address-box"
-                            [class.selectedBillingAddress]="
+                          " class="select-box col-xl-4 col-md-6" data-type="billingAddress">
+                          <div class="address-box" [class.selectedBillingAddress]="
                               i === selectedBillingIndex
-                            "
-                          >
+                            ">
                             <div class="top">
-                              <h6
-                                class="d-flex align-items-center justify-content-between"
-                              >
+                              <h6 class="d-flex align-items-center justify-content-between">
                                 {{ billingAddress.address }}
                                 <span>{{ billingAddress.addressType }}</span>
                               </h6>
@@ -180,29 +131,15 @@
                               </div>
                             </div>
                             <div class="bottom">
-                              <input
-                                type="radio"
-                                name="selectedBillingAddress"
-                                (click)="
+                              <input type="radio" name="selectedBillingAddress" (click)="
                                   selectBillingAddress(billingAddress, i)
-                                "
-                                required
-                              />
-                              <a
-                                (click)="
+                                " required />
+                              <a (click)="
                                   editAddress(billingAddress); openEditForm()
-                                "
-                                data-bs-target="#edit-address"
-                                data-bs-toggle="modal"
-                                data-type="billingAddress"
-                                class="bottom_btn"
-                                >Edit
+                                " data-bs-target="#edit-address" data-bs-toggle="modal" data-type="billingAddress"
+                                class="bottom_btn">Edit
                               </a>
-                              <a
-                                class="bottom_btn delete-button"
-                                data-type="billingAddress"
-                                >Delete</a
-                              >
+                              <a class="bottom_btn delete-button" data-type="billingAddress">Delete</a>
                             </div>
                             <div class="clear"></div>
                           </div>
@@ -213,10 +150,7 @@
                   <!-- fatura adresi jsondan çekildiği için yeni fatura adresi eklenmedi  -->
                   <div class="c-address-grid">
                     <div class="c-address-content js-new-address-occ">
-                      <button
-                        class="btn btn-sm btn-solid"
-                        (click)="openCreateForm()"
-                      >
+                      <button class="btn btn-sm btn-solid" (click)="openCreateForm()">
                         <span class="icon-plus"></span>
                         CREATE NEW ADDRESS
                       </button>
@@ -224,30 +158,18 @@
                   </div>
                 </div>
                 <!------------- SHIPPING OPTIONS ------------->
-                <div
-                  class="js-options-detail options-detail js-shipping-list-form"
-                >
+                <div class="js-options-detail options-detail js-shipping-list-form">
                   <form method="post">
                     <div class="address-title">SHIPPING OPTIONS</div>
                     <div class="checkout__cargos-list">
-                      <div
-                        class="checkout-shipping-list-wrapper"
-                        *ngFor="let shipping of shippingData; let i = index"
-                        [class.selected-shipping]="i === selectedShippingIndex"
-                      >
+                      <div class="checkout-shipping-list-wrapper" *ngFor="let shipping of shippingData; let i = index"
+                        [class.selected-shipping]="i === selectedShippingIndex">
                         <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="shippingOption"
-                            [id]="'shipping-' + shipping.id"
-                            [checked]="i === selectedShippingIndex"
-                            (change)="selectShipping(shipping, i)"
-                          />
-                          <label
-                            class="form-check-label checkout-cargo-wrapper js-checkout-cargo-item cf"
-                            [for]="'shipping-' + shipping.id"
-                          >
+                          <input class="form-check-input" type="radio" name="shippingOption"
+                            [id]="'shipping-' + shipping.id" [checked]="i === selectedShippingIndex"
+                            (change)="selectShipping(shipping, i)" />
+                          <label class="form-check-label checkout-cargo-wrapper js-checkout-cargo-item cf"
+                            [for]="'shipping-' + shipping.id">
                             <div class="checkout-cargo-header">
                               <div class="checkout-cargo-title">
                                 <b>{{ shipping.title }}</b>
@@ -282,56 +204,28 @@
   <div class="modal" [ngClass]="{ show: isCreateFormOpen }">
     <div class="modal-content col-12 col-md-8 col-lg-6">
       <button class="close-button" (click)="closeCreateForm()">X</button>
-      <form
-        class="theme-form"
-        [formGroup]="addForm"
-        (ngSubmit)="addressSubmit()"
-      >
+      <form class="theme-form" [formGroup]="addForm" (ngSubmit)="addressSubmit()">
         <h3 class="text-center">Create New Address</h3>
         <div class="row">
           <div class="col-md-6">
             <label for="review">Address Type</label>
-            <input
-              formControlName="addressType"
-              type="text"
-              class="form-control"
-              id="addressType"
-              placeholder="Address Type"
-              required
-            />
+            <input formControlName="addressType" type="text" class="form-control" id="addressType"
+              placeholder="Address Type" required />
           </div>
           <div class="col-md-6">
             <label for="name">Flat / Plot</label>
-            <input
-              formControlName="flatPlot"
-              type="text"
-              class="form-control"
-              id="home-ploat"
-              placeholder="Flat / Plot"
-              required
-            />
+            <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat" placeholder="Flat / Plot"
+              required />
           </div>
           <div class="col-md-6">
             <label for="name">Address *</label>
-            <input
-              formControlName="address"
-              type="text"
-              class="form-control"
-              id="address-two"
-              placeholder="Address"
-              required
-            />
+            <input formControlName="address" type="text" class="form-control" id="address-two" placeholder="Address"
+              required />
           </div>
           <div class="col-md-6">
             <label for="email">Zip Code *</label>
-            <input
-              formControlName="zipCode"
-              type="text"
-              class="form-control"
-              id="zip-code"
-              placeholder="Zip Code"
-              required
-            />
+            <input formControlName="zipCode" type="text" class="form-control" id="zip-code" placeholder="Zip Code"
+              required />
           </div>
           <div class="col-md-6 select_input">
             <label for="country">Country *</label>
@@ -348,25 +242,12 @@
           </div>
           <div class="col-md-6">
             <label for="review">City *</label>
-            <input
-              formControlName="city"
-              type="text"
-              class="form-control"
-              id="city"
-              placeholder="City"
-              required
-            />
+            <input formControlName="city" type="text" class="form-control" id="city" placeholder="City" required />
           </div>
           <div class="col-md-6">
             <label for="review">Region/State *</label>
-            <input
-              formControlName="regionState"
-              type="text"
-              class="form-control"
-              id="region-state"
-              placeholder="Region/State"
-              required
-            />
+            <input formControlName="regionState" type="text" class="form-control" id="region-state"
+              placeholder="Region/State" required />
           </div>
           <div class="col-md-12">
             <button class="btn btn-sm btn-solid" type="submit">
@@ -384,56 +265,28 @@
   <div class="modal" [ngClass]="{ show: isEditFormOpen }">
     <div class="modal-content col-12 col-md-8 col-lg-6">
       <button class="close-button" (click)="closeEditForm()">X</button>
-      <form
-        class="theme-form"
-        [formGroup]="editForm"
-        (submit)="updateAddress()"
-      >
+      <form class="theme-form" [formGroup]="editForm" (submit)="updateAddress()">
         <h3 class="text-center">Update Address</h3>
         <div class="row">
           <div class="col-md-6">
             <label for="review">Address Type</label>
-            <input
-              formControlName="addressType"
-              type="text"
-              class="form-control"
-              id="addressType"
-              placeholder="Address Type"
-              required
-            />
+            <input formControlName="addressType" type="text" class="form-control" id="addressType"
+              placeholder="Address Type" required />
           </div>
           <div class="col-md-6">
             <label for="name">Flat / Plot</label>
-            <input
-              formControlName="flatPlot"
-              type="text"
-              class="form-control"
-              id="home-ploat"
-              placeholder="Flat / Plot"
-              required
-            />
+            <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat" placeholder="Flat / Plot"
+              required />
           </div>
           <div class="col-md-6">
             <label for="name">Address *</label>
-            <input
-              formControlName="address"
-              type="text"
-              class="form-control"
-              id="address-two"
-              placeholder="Address"
-              required
-            />
+            <input formControlName="address" type="text" class="form-control" id="address-two" placeholder="Address"
+              required />
           </div>
           <div class="col-md-6">
             <label for="email">Zip Code *</label>
-            <input
-              formControlName="zipCode"
-              type="text"
-              class="form-control"
-              id="zip-code"
-              placeholder="Zip Code"
-              required
-            />
+            <input formControlName="zipCode" type="text" class="form-control" id="zip-code" placeholder="Zip Code"
+              required />
           </div>
           <div class="col-md-6 select_input">
             <label for="country">Country *</label>
@@ -450,25 +303,12 @@
           </div>
           <div class="col-md-6">
             <label for="review">City *</label>
-            <input
-              formControlName="city"
-              type="text"
-              class="form-control"
-              id="city"
-              placeholder="City"
-              required
-            />
+            <input formControlName="city" type="text" class="form-control" id="city" placeholder="City" required />
           </div>
           <div class="col-md-6">
             <label for="review">Region/State *</label>
-            <input
-              formControlName="regionState"
-              type="text"
-              class="form-control"
-              id="region-state"
-              placeholder="Region/State"
-              required
-            />
+            <input formControlName="regionState" type="text" class="form-control" id="region-state"
+              placeholder="Region/State" required />
           </div>
           <div class="col-md-12">
             <button class="btn btn-sm btn-solid" type="submit">

@@ -4,17 +4,8 @@
       <i class="fa fa-bars sidebar-bar" aria-hidden="true"></i>
     </div>
   </a>
-  <div
-    id="mySidenav"
-    class="sidenav"
-    [class.openSide]="navServices?.leftMenuToggle"
-  >
-    <a
-      href="javascript:void(0)"
-      class="sidebar-overlay"
-      (click)="leftMenuToggle()"
-      (mouseover)="onHover(false)"
-    ></a>
+  <div id="mySidenav" class="sidenav" [class.openSide]="navServices?.leftMenuToggle">
+    <a href="javascript:void(0)" class="sidebar-overlay" (click)="leftMenuToggle()" (mouseover)="onHover(false)"></a>
     <nav id="unset">
       <div (click)="leftMenuToggle()">
         <div class="sidebar-back text-start">
@@ -22,26 +13,16 @@
         </div>
       </div>
       <ul id="sub-menu" class="sidebar-menu">
-        <li
-          *ngFor="let menuItem of menuItems"
-          (mouseover)="onHover(menuItem.subcategories ? true : false)"
-        >
+        <li *ngFor="let menuItem of menuItems" (mouseover)="onHover(menuItem.subcategories ? true : false)">
           <!-- Sub -->
-          <a
-            *ngIf="menuItem.isShow"
-            href="javascript:void(0)"
-            (click)="toggletNavActive(menuItem)"
-          >
+          <a *ngIf="menuItem.isShow" href="javascript:void(0)" (click)="toggletNavActive(menuItem)">
             {{ menuItem.name }}
             <span class="sub-arrow" *ngIf="menuItem.subcategories"></span>
           </a>
 
           <!-- 2nd Level Menu -->
-          <ul
-            [class]="menuItem.megaMenu ? 'mega-menu clothing-menu' : ''"
-            [class.opensub1]="menuItem.active"
-            *ngIf="menuItem.subcategories"
-          >
+          <ul [class]="menuItem.megaMenu ? 'mega-menu clothing-menu' : ''" [class.opensub1]="menuItem.active"
+            *ngIf="menuItem.subcategories">
             <!-- Simple Menu Start-->
             <ng-container *ngIf="!menuItem.megaMenu">
               <li *ngFor="let childrenItem of menuItem.subcategories">
@@ -57,43 +38,30 @@
             <ng-container *ngIf="menuItem.megaMenu && menuItem.subcategories">
               <li>
                 <div class="row m-0">
-                  <div
-                    class="col-xl-4"
-                    *ngFor="let childrenItem of menuItem.subcategories"
-                  >
+                  <div class="col-xl-4" *ngFor="let childrenItem of menuItem.subcategories">
                     <div class="link-section">
                       <h5>{{ childrenItem.name | translate }}</h5>
                       <ul>
-                        <li
-                          *ngFor="
+                        <li *ngFor="
                             let childrenSubItem of childrenItem.subcategories
-                          "
-                        >
-                          <a
-                            href="javascript:void(0)"
-                            (click)="
+                          ">
+                          <a href="javascript:void(0)" (click)="
                               navigateWithQueryParams(
                                 menuItem.name,
                                 childrenItem.name,
                                 childrenSubItem
                               )
-                            "
-                          >
+                            ">
                             {{ childrenSubItem.name | translate }}
-                            <span
-                              class="new-tag"
-                              *ngIf="childrenSubItem.badge"
-                              >{{ childrenSubItem.badgeText | translate }}</span
-                            >
+                            <span class="new-tag" *ngIf="childrenSubItem.badge">{{ childrenSubItem.badgeText | translate
+                              }}</span>
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-xl-4">
-                    <a [routerLink]="['/home/one']" class="mega-menu-banner"
-                      ><img src="" alt="" class="img-fluid"
-                    /></a>
+                    <a [routerLink]="['/home/one']" class="mega-menu-banner"><img src="" alt="" class="img-fluid" /></a>
                   </div>
                 </div>
               </li>

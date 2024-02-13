@@ -1,21 +1,13 @@
 <ng-template class="theme-modal" #quickView let-modal>
   <div class="modal-content quick-view-modal">
     <div class="modal-body">
-      <button
-        type="button"
-        class="close float-end border-0"
-        (click)="modal.dismiss('Cross click')"
-      >
+      <button type="button" class="close float-end border-0" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
       <div class="row">
         <div class="col-lg-6 col-xs-12">
           <div class="quick-view-img">
-            <img
-              [src]="ImageSrc ? ImageSrc : product.images[0].url"
-              [alt]="product.images[0].alt"
-              class="img-fluid"
-            />
+            <img [src]="ImageSrc ? ImageSrc : product.images[0].url" [alt]="product.images[0].alt" class="img-fluid" />
           </div>
         </div>
         <div class="col-lg-6 rtl-text">
@@ -23,11 +15,9 @@
             <h2>{{ product.name | titlecase }}</h2>
             <h3>
               {{ product.discountPrice | currency }}
-              <del *ngIf="product?.discountPrice"
-                ><span class="money">{{
+              <del *ngIf="product?.discountPrice"><span class="money">{{
                   product.originalPrice | currency
-                }}</span></del
-              >
+                  }}</span></del>
             </h3>
             <!-- <ul class="color-variant" *ngIf="Color(product.variants).length">
                             <li [class]="color" *ngFor="let color of Color(product.variants)"
@@ -56,29 +46,13 @@
               <div class="qty-box">
                 <div class="input-group">
                   <span class="input-group-prepend">
-                    <button
-                      type="button"
-                      class="btn quantity-left-minus"
-                      data-type="minus"
-                      (click)="decrement()"
-                    >
+                    <button type="button" class="btn quantity-left-minus" data-type="minus" (click)="decrement()">
                       <i class="ti-angle-left"></i>
                     </button>
                   </span>
-                  <input
-                    type="text"
-                    name="quantity"
-                    class="form-control input-number"
-                    [value]="counter"
-                    disabled
-                  />
+                  <input type="text" name="quantity" class="form-control input-number" [value]="counter" disabled />
                   <span class="input-group-prepend">
-                    <button
-                      type="button"
-                      class="btn quantity-right-plus"
-                      data-type="plus"
-                      (click)="increment()"
-                    >
+                    <button type="button" class="btn quantity-right-plus" data-type="plus" (click)="increment()">
                       <i class="ti-angle-right"></i>
                     </button>
                   </span>
@@ -86,18 +60,9 @@
               </div>
             </div>
             <div class="product-buttons">
-              <a
-                href="javascript:void(0)"
-                class="btn btn-solid"
-                [class.disabled]="counter > product.stock"
-                (click)="addToCart(product)"
-                >add to cart</a
-              >
-              <a
-                [routerLink]="['/shop/product/', product.slug]"
-                class="btn btn-solid"
-                >view detail</a
-              >
+              <a href="javascript:void(0)" class="btn btn-solid" [class.disabled]="counter > product.stock"
+                (click)="addToCart(product)">add to cart</a>
+              <a [routerLink]="['/shop/product/', product.slug]" class="btn btn-solid">view detail</a>
             </div>
           </div>
         </div>

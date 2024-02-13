@@ -6,74 +6,42 @@
       <div class="col-lg-12">
         <h3>create account</h3>
         <div class="theme-card">
-          <form
-            class="theme-form"
-            [formGroup]="registerForm"
-            (ngSubmit)="onSubmit()"
-          >
+          <form class="theme-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-md-6">
                 <label for="fname">First Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="fname"
-                  placeholder="First Name"
-                  formControlName="firstName"
-                />
+                <input type="text" class="form-control" id="fname" placeholder="First Name"
+                  formControlName="firstName" />
               </div>
               <div class="col-md-6">
                 <label for="lname">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lname"
-                  placeholder="Last Name"
-                  formControlName="lastName"
-                />
+                <input type="text" class="form-control" id="lname" placeholder="Last Name" formControlName="lastName" />
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <label for="email">Email</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="email"
-                  placeholder="Email"
-                  formControlName="email"
-                />
+                <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email" />
               </div>
               <div class="col-md-6">
                 <label for="password">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Enter your password"
-                  formControlName="password"
-                />
+                <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                  formControlName="password" />
                 <div>
-                  <small
-                    class="text-info"
-                    *ngIf="
+                  <small class="text-info" *ngIf="
                       registerForm
                         .get('password')
                         .hasError('passwordInvalid') &&
                       registerForm.get('password').touched
-                    "
-                  >
+                    ">
                     Password must contain at least one uppercase letter, one
                     special character, and be at least 8 characters long.
                   </small>
                   <br />
-                  <small
-                    class="text-danger"
-                    *ngIf="
+                  <small class="text-danger" *ngIf="
                       registerForm.get('password').hasError('minlength') &&
                       registerForm.get('password').touched
-                    "
-                  >
+                    ">
                     Password must contain at least one uppercase letter. <br />
                     Password must contain at least one special character.
                   </small>

@@ -65,21 +65,12 @@
             <div class="checkout-details">
               <div class="credit-card-form">
                 <label for="card-number">Card Number</label>
-                <input
-                  formControlName="cardNumber"
-                  type="text"
-                  id="card-number"
-                  placeholder="1234 5678 9012 3456"
-                  required
-                />
+                <input formControlName="cardNumber" type="text" id="card-number" placeholder="1234 5678 9012 3456"
+                  required />
 
                 <label for="expiration-date">Expiration Date</label>
                 <div class="expiration-date">
-                  <select
-                    id="card-month"
-                    formControlName="expirationMonth"
-                    required
-                  >
+                  <select id="card-month" formControlName="expirationMonth" required>
                     <option value="" disabled>Month</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -114,40 +105,21 @@
                 </div>
 
                 <label for="cvv">CVV</label>
-                <input
-                  formControlName="cvv"
-                  type="text"
-                  id="cvv"
-                  placeholder="123"
-                  required
-                />
+                <input formControlName="cvv" type="text" id="cvv" placeholder="123" required />
 
                 <div class="terms-and-conditions">
-                  <input
-                    formControlName="termsCheckbox"
-                    type="checkbox"
-                    id="terms-checkbox"
-                  />
-                  <label for="terms-checkbox"
-                    >I have read and accept the
-                    <a href="#">Terms and Conditions</a></label
-                  >
+                  <input formControlName="termsCheckbox" type="checkbox" id="terms-checkbox" />
+                  <label for="terms-checkbox">I have read and accept the
+                    <a href="#">Terms and Conditions</a></label>
                 </div>
               </div>
 
               <div class="order-image">
-                <img
-                  src="../../../../../assets/images/stripe.jpg"
-                  alt="photo"
-                />
+                <img src="../../../../../assets/images/stripe.jpg" alt="photo" />
               </div>
 
               <div class="text-end">
-                <button
-                  type="submit"
-                  class="btn-solid btn"
-                  (click)="stripeCheckout()"
-                >
+                <button type="submit" class="btn-solid btn" (click)="stripeCheckout()">
                   Place Order
                 </button>
                 <!-- <ngx-paypal [config]="payPalConfig" *ngIf="payment == 'Paypal'"></ngx-paypal> -->

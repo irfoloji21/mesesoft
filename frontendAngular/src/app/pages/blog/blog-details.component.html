@@ -5,15 +5,11 @@
     <div class="row">
       <div class="col-sm-12 blog-detail">
         <div class="image-container">
-          <img
-            [src]="
+          <img [src]="
               blog.images.length > 0
                 ? blog.images[0].url
                 : '../../../../../assets/images/example2.jpg'
-            "
-            class="img-fluid"
-            alt=""
-          />
+            " class="img-fluid" alt="" />
         </div>
         <h3>
           Also the leap into electronic typesetting, remaining essentially
@@ -25,11 +21,7 @@
             Posted By : {{ blog.shop.name }}
           </li> -->
           <li>
-            <i
-              class="fa fa-heart"
-              [ngClass]="{ liked: likedBlogs.includes(blog._id) }"
-              (click)="toggleLikeBlog(blog)"
-            >
+            <i class="fa fa-heart" [ngClass]="{ liked: likedBlogs.includes(blog._id) }" (click)="toggleLikeBlog(blog)">
             </i>
             {{ blog.likes || 0 }} Hits
           </li>
@@ -75,18 +67,10 @@
     </div>
     <div class="row section-b-space blog-advance">
       <div class="col-lg-6">
-        <img
-          src="../../../../../assets/images/testimonial/1.jpg"
-          class="img-fluid"
-          alt=""
-        />
+        <img src="../../../../../assets/images/testimonial/1.jpg" class="img-fluid" alt="" />
       </div>
       <div class="col-lg-6">
-        <img
-          src="../../../../../assets/images/testimonial/3.jpg"
-          class="img-fluid"
-          alt=""
-        />
+        <img src="../../../../../assets/images/testimonial/3.jpg" class="img-fluid" alt="" />
       </div>
       <div class="col-lg-6">
         <ul>
@@ -149,16 +133,11 @@
         <ul class="comment-section">
           <li *ngFor="let review of blog.reviews">
             <div class="media">
-              <img
-                src="assets/images/review/1.jpg"
-                alt="Generic placeholder image"
-              />
+              <img src="assets/images/review/1.jpg" alt="Generic placeholder image" />
               <div class="media-body">
                 <h6>
                   {{ review.name }}
-                  <span
-                    >( {{ review.createdAt | date : "dd MMMM yyyy" }} )</span
-                  >
+                  <span>( {{ review.createdAt | date : "dd MMMM yyyy" }} )</span>
                 </h6>
                 <p>{{ review.comment }}</p>
               </div>
@@ -174,35 +153,18 @@
           <div class="row">
             <div class="col-md-12">
               <label for="name">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Enter Your name"
-                required=""
-                formControlName="name"
-              />
+              <input type="text" class="form-control" id="name" placeholder="Enter Your name" required=""
+                formControlName="name" />
             </div>
             <div class="col-md-12">
               <label for="email">Email</label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                placeholder="Email"
-                required=""
-                formControlName="email"
-              />
+              <input type="text" class="form-control" id="email" placeholder="Email" required=""
+                formControlName="email" />
             </div>
             <div class="col-md-12">
               <label for="exampleFormControlTextarea1">Comment</label>
-              <textarea
-                class="form-control"
-                placeholder="Write Your Comment"
-                id="exampleFormControlTextarea1"
-                rows="6"
-                formControlName="comment"
-              ></textarea>
+              <textarea class="form-control" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6"
+                formControlName="comment"></textarea>
             </div>
             <div class="col-md-12">
               <button class="btn btn-solid" type="submit">Post Comment</button>

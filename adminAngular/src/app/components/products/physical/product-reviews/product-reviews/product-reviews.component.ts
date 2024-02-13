@@ -36,9 +36,9 @@ export class ProductReviewsComponent implements OnInit {
               if (Array.isArray(this.product_list) && this.product_list.length > 0) {
                 for (const product of this.product_list) {
                   if (Array.isArray(product.reviews) && product.reviews.length > 0) {
-                    const yorumIcerenUrunler = product.reviews.filter(review => review);
-                    if (yorumIcerenUrunler.length > 0) {
-                      yorumIcerenUrunler.forEach(review => {
+                    const ProductsWithComments = product.reviews.filter(review => review);
+                    if (ProductsWithComments.length > 0) {
+                      ProductsWithComments.forEach(review => {
                         this.comments.push(review);  
                       });
                     }

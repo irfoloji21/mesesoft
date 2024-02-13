@@ -3,11 +3,7 @@
   <div class="js-tab-box">
     <div class="checkout-tabs container">
       <img loading="lazy" class="tick js-address-step-address" src="" alt="" />
-      <div
-        class="checkout-tab js-tab"
-        [ngClass]="{ active: currentStep === 'adres' }"
-        data-type="checkout-address"
-      >
+      <div class="checkout-tab js-tab" [ngClass]="{ active: currentStep === 'adres' }" data-type="checkout-address">
         <div class="checkout-tab-title">
           <span class="desktop-tab">
             1. ADDRESS & SHIPPING INFORMATION
@@ -21,11 +17,7 @@
       </div>
       <div class="visible-xs divider"></div>
       <img loading="lazy" class="tick js-payment-step-payment" src="" alt="" />
-      <div
-        class="checkout-tab js-tab"
-        [ngClass]="{ active: currentStep === 'checkout' }"
-        data-type="checkout-payment"
-      >
+      <div class="checkout-tab js-tab" [ngClass]="{ active: currentStep === 'checkout' }" data-type="checkout-payment">
         <div class="checkout-tab-title">
           <span class="desktop-tab">
             2. CHECK-OUT
@@ -39,11 +31,7 @@
       </div>
       <div class="visible-xs divider"></div>
       <img loading="lazy" class="tick js-all-step-completed" src="" alt="" />
-      <div
-        class="checkout-tab"
-        [ngClass]="{ active: currentStep === 'odeme' }"
-        data-type="checkout-completed"
-      >
+      <div class="checkout-tab" [ngClass]="{ active: currentStep === 'odeme' }" data-type="checkout-completed">
         <div class="checkout-tab-title">
           <span class="desktop-tab"> 3. PAYMENT OPTIONS </span>
           <span class="mobile-tab">
@@ -54,11 +42,7 @@
       </div>
     </div>
   </div>
-  <button
-    (click)="goToPreviousStep()"
-    class="btn-solid btn"
-    *ngIf="currentStep !== 'adres'"
-  >
+  <button (click)="goToPreviousStep()" class="btn-solid btn" *ngIf="currentStep !== 'adres'">
     <i class="fa fa-angle-left"></i> &nbsp; Back
   </button>
 
@@ -70,11 +54,7 @@
 
   <div class="cta-area ml-auto text-right mr-3">
     <form class="js-proceed-form" method="post">
-      <button
-        (click)="proceedToNextStep()"
-        class="complete-btn checkout-save-btn"
-        *ngIf="showPaymentButton"
-      >
+      <button (click)="proceedToNextStep()" class="complete-btn checkout-save-btn" *ngIf="showPaymentButton">
         {{ buttonText }}
       </button>
     </form>

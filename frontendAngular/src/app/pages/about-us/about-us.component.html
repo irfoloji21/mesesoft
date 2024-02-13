@@ -5,11 +5,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="banner-section">
-          <img
-            [src]="aboutUsData.aboutSection.image"
-            class="img-fluid"
-            alt="about-us"
-          />
+          <img [src]="aboutUsData.aboutSection.image" class="img-fluid" alt="about-us" />
         </div>
       </div>
       <div class="col-sm-12">
@@ -25,13 +21,8 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <owl-carousel-o
-          class="slide-2 testimonial-slider no-arrow"
-          [options]="TestimonialSliderConfig"
-        >
-          <ng-container
-            *ngFor="let ts of aboutUsData.testimonialSection.testimonials"
-          >
+        <owl-carousel-o class="slide-2 testimonial-slider no-arrow" [options]="TestimonialSliderConfig">
+          <ng-container *ngFor="let ts of aboutUsData.testimonialSection.testimonials">
             <ng-template carouselSlide>
               <div>
                 <div class="media">
@@ -61,9 +52,7 @@
         <h2>Our Team</h2>
         <div class="team-4">
           <owl-carousel-o class="team-4" [options]="TeamSliderConfig">
-            <ng-container
-              *ngFor="let tm of aboutUsData.teamSection.teamMembers"
-            >
+            <ng-container *ngFor="let tm of aboutUsData.teamSection.teamMembers">
               <ng-template carouselSlide>
                 <div>
                   <img [src]="tm.image" class="img-fluid" alt="image" />
@@ -83,10 +72,7 @@
 <div class="container about-cls section-b-space">
   <section class="service border-section small-section">
     <div class="row">
-      <div
-        class="col-md-4 service-block"
-        *ngFor="let service of aboutUsData.serviceSection.services"
-      >
+      <div class="col-md-4 service-block" *ngFor="let service of aboutUsData.serviceSection.services">
         <div class="media">
           <img [src]="service.icon" style="width: 60px" alt="icon" />
           <div class="media-body">

@@ -5,59 +5,27 @@
     <div class="row">
       <div class="col-sm-12">
         <h3>PERSONAL DETAIL</h3>
-        <form
-          class="theme-form"
-          (ngSubmit)="onSubmit()"
-          [formGroup]="updateForm"
-        >
+        <form class="theme-form" (ngSubmit)="onSubmit()" [formGroup]="updateForm">
           <div class="row">
             <div class="col-md-6">
               <label for="firstName">First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="firstName"
-                placeholder="Enter Your name"
-                formControlName="firstName"
-                required=""
-                [(ngModel)]="userInf.firstName"
-              />
+              <input type="text" class="form-control" id="firstName" placeholder="Enter Your name"
+                formControlName="firstName" required="" [(ngModel)]="userInf.firstName" />
             </div>
             <div class="col-md-6">
               <label for="lastName">Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="lastName"
-                placeholder="lastName"
-                formControlName="lastName"
-                required=""
-                [(ngModel)]="userInf.lastName"
-              />
+              <input type="text" class="form-control" id="lastName" placeholder="lastName" formControlName="lastName"
+                required="" [(ngModel)]="userInf.lastName" />
             </div>
             <div class="col-md-6">
               <label for="phoneNumber">Phone number</label>
-              <input
-                type="text"
-                class="form-control"
-                id="phoneNumber"
-                placeholder="Enter your number"
-                formControlName="phoneNumber"
-                required=""
-                [(ngModel)]="userInf.phoneNumber"
-              />
+              <input type="text" class="form-control" id="phoneNumber" placeholder="Enter your number"
+                formControlName="phoneNumber" required="" [(ngModel)]="userInf.phoneNumber" />
             </div>
             <div class="col-md-6">
               <label for="email">Email</label>
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                placeholder="Email"
-                formControlName="email"
-                required=""
-                [(ngModel)]="userInf.email"
-              />
+              <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email" required=""
+                [(ngModel)]="userInf.email" />
             </div>
             <div class="col-md-12">
               <button class="btn btn-sm btn-solid" type="submit">

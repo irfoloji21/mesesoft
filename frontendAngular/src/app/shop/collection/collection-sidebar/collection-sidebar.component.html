@@ -8,10 +8,7 @@
           <div class="collection-filter" [class.openFilterbar]="mobileSidebar">
             <!-- side-bar colleps block stat -->
             <div class="collection-filter-block">
-              <div
-                class="collection-mobile-back"
-                (click)="toggleMobileSidebar()"
-              >
+              <div class="collection-mobile-back" (click)="toggleMobileSidebar()">
                 <span class="filter-back">
                   <i class="fa fa-angle-left" aria-hidden="true"></i> back
                 </span>
@@ -32,11 +29,7 @@
               <!-- <app-size [products]="products" [size]="size" (sizeFilter)="updateFilter($event)">
                             </app-size> -->
               <!-- price filter start here -->
-              <app-price
-                [min]="minPrice"
-                [max]="maxPrice"
-                (priceFilter)="updateFilter($event)"
-              >
+              <app-price [min]="minPrice" [max]="maxPrice" (priceFilter)="updateFilter($event)">
               </app-price>
             </div>
             <!-- silde-bar colleps block end here -->
@@ -47,11 +40,7 @@
             <!-- side-bar banner start here -->
             <div class="collection-sidebar-banner">
               <a [routerLink]="['/shop/collection']">
-                <img
-                  src="assets/images/collection-sidebar-banner.png"
-                  class="img-fluid"
-                  alt="banner"
-                />
+                <img src="assets/images/collection-sidebar-banner.png" class="img-fluid" alt="banner" />
               </a>
             </div>
             <!-- side-bar banner end here -->
@@ -63,12 +52,7 @@
               <div class="col-sm-12">
                 <div class="top-banner-wrapper">
                   <a [routerLink]="['/shop/collection']">
-                    <img
-                      [src]="Image"
-                      class="img-fluid"
-                      alt="Category photo"
-                      *ngIf="Image"
-                    />
+                    <img [src]="Image" class="img-fluid" alt="Category photo" *ngIf="Image" />
                   </a>
                   <!-- <div class="top-banner-content small-section" >
                                         <h4>{{categoryEs}}</h4>
@@ -83,10 +67,7 @@
                 </div>
                 <div class="row">
                   <div class="col-xl-12">
-                    <div
-                      class="filter-main-btn"
-                      (click)="toggleMobileSidebar()"
-                    >
+                    <div class="filter-main-btn" (click)="toggleMobileSidebar()">
                       <span class="filter-btn btn btn-theme">
                         <i class="fa fa-filter" aria-hidden="true"></i> Filter
                       </span>
@@ -101,52 +82,27 @@
                     </a>
                   </li>
                   <li class="clear_filter" *ngIf="tags.length > 0">
-                    <a
-                      href="javascript:void(0)"
-                      class="clear_filter"
-                      (click)="removeAllTags()"
-                    >
+                    <a href="javascript:void(0)" class="clear_filter" (click)="removeAllTags()">
                       Clear all
                     </a>
                   </li>
                 </ul>
                 <div class="collection-product-wrapper" id="products">
-                  <app-grid
-                    [products]="products"
-                    [paginate]="paginate"
-                    [layoutView]="layoutView"
-                    [sortBy]="sortBy"
-                    (setGrid)="updateGridLayout($event)"
-                    (setLayout)="updateLayoutView($event)"
-                    (sortedBy)="sortByFilter($event)"
-                  >
+                  <app-grid [products]="products" [paginate]="paginate" [layoutView]="layoutView" [sortBy]="sortBy"
+                    (setGrid)="updateGridLayout($event)" (setLayout)="updateLayoutView($event)"
+                    (sortedBy)="sortByFilter($event)">
                   </app-grid>
                   <div class="product-wrapper-grid" [ngClass]="layoutView">
                     <div class="row">
-                      <div
-                        class="col-grid-box"
-                        [ngClass]="grid"
-                        *ngFor="let product of products"
-                      >
+                      <div class="col-grid-box" [ngClass]="grid" *ngFor="let product of products">
                         <div class="product-box">
-                          <app-product-box-one
-                            [product]="product"
-                            [currency]="productService?.Currency"
-                            [thumbnail]="false"
-                            [cartModal]="true"
-                            [loader]="true"
-                          >
+                          <app-product-box-one [product]="product" [currency]="productService?.Currency"
+                            [thumbnail]="false" [cartModal]="true" [loader]="true">
                           </app-product-box-one>
                         </div>
                       </div>
-                      <div
-                        class="col-sm-12 text-center section-b-space mt-5 no-found"
-                        *ngIf="!products.length"
-                      >
-                        <img
-                          src="assets/images/empty-search.jpg"
-                          class="img-fluid mb-4"
-                        />
+                      <div class="col-sm-12 text-center section-b-space mt-5 no-found" *ngIf="!products.length">
+                        <img src="assets/images/empty-search.jpg" class="img-fluid mb-4" />
                         <h3>
                           Sorry! Couldn't find the product you were looking
                           For!!!
@@ -155,19 +111,11 @@
                           Please check if you have misspelt something or try
                           searching with other words.
                         </p>
-                        <a
-                          [routerLink]="['/shop/collection']"
-                          class="btn btn-solid"
-                          >continue shopping</a
-                        >
+                        <a [routerLink]="['/shop/collection']" class="btn btn-solid">continue shopping</a>
                       </div>
                     </div>
                   </div>
-                  <app-pagination
-                    [products]="products"
-                    [paginate]="paginate"
-                    (setPage)="setPage($event)"
-                  >
+                  <app-pagination [products]="products" [paginate]="paginate" (setPage)="setPage($event)">
                   </app-pagination>
                 </div>
               </div>

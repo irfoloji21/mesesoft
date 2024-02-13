@@ -7,11 +7,7 @@
             <img [src]="categories.image" class="img-fluid w-auto" alt="" />
             <h4>{{ categories.title }}</h4>
             <ul class="category-link" [innerHTML]="categories.text"></ul>
-            <a
-              [routerLink]="['/shop/collection']"
-              [queryParams]="{ category: categories }"
-              class="btn btn-outline"
-            >
+            <a [routerLink]="['/shop/collection']" [queryParams]="{ category: categories }" class="btn btn-outline">
               view more
             </a>
           </div>
