@@ -21,8 +21,7 @@ import { ProductService } from 'src/app/shared/service/product.service';
 export class CategoryComponent implements OnInit {
   products: any[] = [];
   buttonText: string = 'Add';
-  myForm1: FormGroup;
-  myForm2: FormGroup;
+  catalogForm: FormGroup;
   collections: any[] = [];
   public filteredKoleksiyons: any[] = [];
   public selectedKoleksiyon: any;
@@ -46,7 +45,7 @@ export class CategoryComponent implements OnInit {
     this.total$ = service.total$;
     this.service.setUserData(CATEGORY)
 
-    this.myForm1 = this.fb.group({
+    this.catalogForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       saving: ['', Validators.required],
@@ -145,8 +144,8 @@ export class CategoryComponent implements OnInit {
   }
 
   updateCollection(id: string) {
-    if (this.myForm1.valid) {
-      const formData = this.myForm1.value;
+    if (this.catalogForm.valid) {
+      const formData = this.catalogForm.value;
       this.koleksiyonService.updateKoleksiyon(id, formData).subscribe(
         (response) => {
           this.router.navigate(['/physical/collection']);
@@ -161,8 +160,8 @@ export class CategoryComponent implements OnInit {
   onSubmit() {
     if (this.buttonText === 'Add') {
       const shop = this.authService.getShop();
-      if (this.myForm1.valid) {
-        const formData = this.myForm1.value;
+      if (this.catalogForm.valid) {
+        const formData = this.catalogForm.value;
         formData.shopId = shop.seller._id;
         formData.shop = shop;
         this.koleksiyonService.createKoleksiyon(formData).subscribe(
@@ -189,7 +188,7 @@ export class CategoryComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           imageUrls.push(e.target.result);
-          this.myForm1.get('images').setValue(imageUrls);
+          this.catalogForm.get('images').setValue(imageUrls);
         };
         reader.readAsDataURL(file);
       }
@@ -200,9 +199,9 @@ export class CategoryComponent implements OnInit {
     this.koleksiyonService.getCollectionById(id).subscribe(
       (koleksiyon) => {
         this.selectedKoleksiyon = koleksiyon;
-        this.myForm1.reset();
+        this.catalogForm.reset();
 
-        this.myForm1.patchValue({
+        this.catalogForm.patchValue({
           name: this.selectedKoleksiyon.koleksiyon.name,
           saving: this.selectedKoleksiyon.koleksiyon.saving,
           description: this.selectedKoleksiyon.koleksiyon.description,

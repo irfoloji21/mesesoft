@@ -31,3 +31,27 @@
     padding: 10px;
   }
   
+
+  tbody {
+    tr {
+      td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        
+        .comment-preview {
+          display: block;
+          overflow: hidden;
+        }
+        
+        .comment-toggle-link {
+          color: blue;
+          cursor: pointer;
+        }
+        
+        .full-comment {
+          display: block;
+        }
+      }
+    }
+  }
+  

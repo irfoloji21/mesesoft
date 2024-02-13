@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/shared/service/product.service';
 })
 
 export class DigitalAddComponent implements OnInit {
-  myForm: FormGroup;
+  catalogForm: FormGroup;
   id: string;
   categories: any[] = [];
   public Editor = ClassicEditor;
@@ -25,7 +25,7 @@ export class DigitalAddComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: UntypedFormBuilder,
   ) {
-    this.myForm = this.fb.group({
+    this.catalogForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
@@ -53,7 +53,7 @@ export class DigitalAddComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           imageUrls.push(e.target.result);
-          this.myForm.get('images').setValue(imageUrls);
+          this.catalogForm.get('images').setValue(imageUrls);
         };
         reader.readAsDataURL(file);
       }
@@ -61,8 +61,8 @@ export class DigitalAddComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.myForm.valid) {
-      const formData = this.myForm.value;
+    if (this.catalogForm.valid) {
+      const formData = this.catalogForm.value;
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
           this.router.navigate(['/products/digital/digital-category']);
@@ -74,8 +74,8 @@ export class DigitalAddComponent implements OnInit {
   }
 
   editCategory() {
-    if (this.myForm.valid) {
-      const formData = this.myForm.value;
+    if (this.catalogForm.valid) {
+      const formData = this.catalogForm.value;
       this.categoryService.updateCategory(this.id, formData).subscribe(
         (response) => {
         },
@@ -98,7 +98,7 @@ export class DigitalAddComponent implements OnInit {
       this.id = params['id'];
       this.categoryService.getCategoryById(this.id).subscribe(
         (response) => {
-          this.myForm.patchValue(response.category);
+          this.catalogForm.patchValue(response.category);
         },
         (error) => {
         }

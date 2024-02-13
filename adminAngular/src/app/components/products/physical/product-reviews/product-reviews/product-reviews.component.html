@@ -5,39 +5,42 @@
     </div>
 </ng-container>
 
-<ng-template #tableContent>
-    <table class="table table-striped styled-table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Created</th>
-                <th scope="col">Title</th>
-                <th scope="col">Review</th>
-                <th scope="col">Email</th>
-                <th scope="col">Name</th>
-            </tr>
-        </thead>
-        <tbody *ngIf="comments.length > 0; else noCommentsContent">
-            <tr *ngFor="let product of comments; let i=index">
-                <td>{{i+1}}</td>
-                <td>{{ product.createdAt | date: 'dd.MM.yyyy HH:mm:ss' }}</td>
-                <td>{{ product.reviewTitle }}</td>
-                <td>
-                    <div *ngIf="!product.showFullComment && product.comment.length > 70">
-                        {{ product.comment | slice:0:70 }}
-                        <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)">Show more</a>
-                    </div>
-                    <div *ngIf="product.showFullComment || product.comment.length <= 70">
-                        {{ product.comment }}
-                        <a style="color: blue; cursor: pointer;" (click)="toggleComment(product)"
-                            *ngIf="product.showFullComment"> Hide more</a>
-                    </div>
-                </td>
-                <td>{{ product.email }}</td>
-                <td>{{ product.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+<ng-template #tableContent >
+    <div class="d-flex justify-content-center mx-2">
+        <table class="table table-striped styled-table ">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Review</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="comments.length > 0; else noCommentsContent">
+                <tr *ngFor="let product of comments; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{ product.createdAt | date: 'dd.MM.yyyy HH:mm:ss' }}</td>
+                    <td>{{ product.reviewTitle }}</td>
+                    <td>
+                        <div *ngIf="!product.showFullComment && product.comment.length > 70" class="comment-preview">
+                            {{ product.comment | slice:0:70 }}
+                            <a class="comment-toggle-link" (click)="toggleComment(product)">Show more</a>
+                        </div>
+                        <div *ngIf="product.showFullComment || product.comment.length <= 70" class="full-comment">
+                            {{ product.comment }}
+                            <a class="comment-toggle-link" (click)="toggleComment(product)" *ngIf="product.showFullComment">Hide more</a>
+                        </div>
+                    </td>
+                    <td>{{ product.email }}</td>
+                    <td>{{ product.name }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+    
 </ng-template>
 
 <ng-template #noCommentsContent>
@@ -45,4 +48,3 @@
         No comments available for this product.
     </div>
 </ng-template>
-

@@ -13,7 +13,7 @@ import { BlogService } from 'src/app/shared/services/blog.service';
 
 export class BlogDetailsComponent implements OnInit {
 
-  form: FormGroup;
+  blogForm: FormGroup;
   blog: any = [];
   BlogId: any;
   user: any;
@@ -26,7 +26,7 @@ export class BlogDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
-    this.form = this.formBuilder.group({
+    this.blogForm= this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       comment: ['', Validators.required],
@@ -60,12 +60,12 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) {
+    if (this.blogForm.valid) {
       const user = this.authService.getUser();
       const commentData = {
-        name: this.form.value.name,
-        email: this.form.value.email,
-        comment: this.form.value.comment,
+        name: this.blogForm.value.name,
+        email: this.blogForm.value.email,
+        comment: this.blogForm.value.comment,
         user: user,
         blogId: this.blog._id
       };
@@ -73,7 +73,7 @@ export class BlogDetailsComponent implements OnInit {
       this.blogService.createReview(commentData).subscribe({
         next: (response) => {
           this.toastr.success('The comment was added successfully', 'Successfully');
-          this.form.reset();
+          this.blogForm.reset();
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.navigated = false;
           this.router.navigate([this.router.url]);

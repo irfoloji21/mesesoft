@@ -9,8 +9,8 @@
         <div class="card-body">
           <div class="btn-popup">
             <div class="searchArea ">
-              <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}" [(ngModel)]="searchText"
-                (ngModelChange)="onSearchTextChange()" />
+              <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}"
+                [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange()" />
               <button type="submit " (click)="search()" class="btn btn-primary">
                 {{'Find' |translate}}
               </button>
@@ -29,7 +29,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form (ngSubmit)="onSubmit()" class="needs-validation" [formGroup]="myForm">
+                <form (ngSubmit)="onSubmit()" class="needs-validation" [formGroup]="catalogForm">
                   <div class="form">
                     <div class="form-group">
                       <label for="validationCustom01" class="mb-1">{{'CategoryName' | translate}} :</label>
@@ -87,10 +87,10 @@
                 <tbody>
                   <tr *ngFor="let catgory of categories">
                     <th scope="row">{{ catgory._id }}</th>
-                    <td>{{ catgory.name  }}</td>
+                    <td>{{ catgory.name }}</td>
                     <td>
                       <!-- .url sildim ekleyeceğim -->
-                      <img [src]="[catgory.images[0].url]" class="imgTable" style="width: 20px" />
+                      <img [src]="[catgory.images[0].url]" class="imgTable"  />
                     </td>
                     <td>{{ catgory.isShow | translate }}</td>
                     <td>
@@ -124,7 +124,7 @@
     <div class="modal-content col-12 col-md-8 col-lg-6">
       <button class="close-button" (click)="closeModal()">X</button>
       <h3 class="text-center">{{'EditMainCategory' | translate}}</h3>
-      <form class="needs-validation" (submit)="updateMainCategory()" [formGroup]="myFormEdit">
+      <form class="needs-validation" (submit)="updateMainCategory()" [formGroup]="catalogFormEdit">
         <div class="form">
           <div class="form-group">
             <label for="validationCustom01" class="mb-1">{{'CategoryName' |translate }} :</label>

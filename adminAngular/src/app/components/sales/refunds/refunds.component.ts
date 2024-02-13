@@ -19,7 +19,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class RefundsComponent implements OnInit {
 
-  myForm: FormGroup;
+  refundsForm: FormGroup;
   public shop: any;
   public refunds: any[] = [];
   public searchText: string = '';
@@ -40,7 +40,7 @@ export class RefundsComponent implements OnInit {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(ORDERDB)
-    this.myForm = this.fb.group({
+    this.refundsForm = this.fb.group({
       status: ['Processing Refund']
     });
   }
@@ -70,7 +70,7 @@ export class RefundsComponent implements OnInit {
   }
 
   updateRefundStatus(refundId: string) {
-    const formData = this.myForm.value;
+    const formData = this.refundsForm.value;
     this.refundService.updateRefundStatus(refundId, formData).subscribe(
       (res) => {
         this.getShopRefunds();

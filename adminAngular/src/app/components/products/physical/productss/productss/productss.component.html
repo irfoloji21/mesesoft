@@ -116,62 +116,37 @@
               <tbody>
                 <tr *ngFor="let product of product_list; let i = index">
                   <td class="text-center align-middle">
-                    <input type="checkbox" (change)="toggleSelection(product) ;" [checked]="product.selected" />
+                    <input type="checkbox" (change)="toggleSelection(product);" [checked]="product.selected" />
                   </td>
-                  <td>
-                    {{ i + 1 }}
-                  </td>
-                  <!-- <td scope="row " class=" text-center justify-content-center"> 
-                        {{product._id.slice(-3) }}
-                    </td> -->
-                  <!-- <td >
-                    <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img "
-                      style="width: 4rem; height: 4rem;" alt="" />
-                    <i style="cursor: pointer;" class="fa fa-eye text-theme " (click)="detailProduct(product)"></i>
-                  </td> -->
-
+                  <td>{{ i + 1 }}</td>
                   <td>
                     <div class="img-container position-relative text-center">
                       <a href="javascript:void(0)" class="d-block position-relative">
-                        <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img"
-                          style="width: 4rem; height: 4rem" />
+                        <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img" />
                         <div class="product-hover position-absolute top-0 start-0 w-100 h-100">
-                          <button class="btn btn-transparent" type="button" data-toggle="modal"
-                            data-target="#exampleModalCenter" data-original-title="" title="">
+                          <button class="btn btn-transparent" type="button" data-toggle="modal" data-target="#exampleModalCenter">
                             <i class="fa fa-eye text-theme" (click)="detailProduct(product)"></i>
                           </button>
                         </div>
                       </a>
                     </div>
                   </td>
+                  <td>{{ product.name.slice(0, 15) }}</td>
                   <td>
-                    {{ product.name.slice(0, 15) }}
-                  </td>
-
-
-                  <td>
-                    <span style="color: rgb(34, 139, 34)">
-                      {{ product.originalPrice | currency }}
-                    </span>
+                    <span class="product-price">{{ product.originalPrice | currency }}</span>
                   </td>
                   <td>{{ product.stock }} <span>in stock</span></td>
                   <td>
-                    <span class="badge badge-secondary"> status </span>
+                    <span class="badge badge-secondary">status</span>
                   </td>
-                  <!-- <td>
-                         item.paidAt
-                     </td>
-                    <td>
-                    item.totalPrice 
-                   </td> -->
                   <td class="text-center">
-                    <button type="button" class="btn btn-primary " data-toggle="modal" data-original-title="test"
-                      data-target="#exampleModal">
-                      <i class="icon-pencil-alt " (click)="editProduct(product._id)"></i>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      <i class="icon-pencil-alt" (click)="editProduct(product._id)"></i>
                     </button>
                   </td>
                 </tr>
               </tbody>
+              
             </table>
           </div>
         </div>
@@ -194,12 +169,11 @@
           <div class="row product-page-main card-body">
             <div class="container-fluid">
               <div class="card">
-                <div class="row product-page-main card-body" style="border: 1px solid gray">
+                <div class="row product-page-main card-body border-gray">
                   <div class="col-xl-2"></div>
                   <div class="col-xl-8">
                     <section>
-                      <ks-carousel [id]="101" [images]="imagesRect">
-                      </ks-carousel>
+                      <ks-carousel [id]="101" [images]="imagesRect"></ks-carousel>
                     </section>
                   </div>
                   <div class="col-xl-2"></div>
@@ -211,6 +185,7 @@
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </div>

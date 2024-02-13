@@ -19,7 +19,7 @@ import { Category } from 'src/app/shared/tables/category';
 })
 
 export class DigitalSubCategoryComponent implements OnInit {
-  myForm: FormGroup;
+  catalogForm: FormGroup;
   selectedItems = [];
   dropdownSettings = {};
   public closeResult: string;
@@ -29,7 +29,7 @@ export class DigitalSubCategoryComponent implements OnInit {
   public supercategory = []
   isModalOpen: boolean = false;
   selectedSubCategoryId: any;
-  myFormEdit: FormGroup;
+  catalogFormEdit: FormGroup;
   isEditing: boolean = false;
   private modalRef: NgbModalRef | undefined;
   public searchText: string = '';
@@ -42,7 +42,7 @@ export class DigitalSubCategoryComponent implements OnInit {
   ) {
     this.tableItem$ = service.tableItem$;
     this.service.setUserData(DIGITALCATEGORY)
-    this.myForm = this.fb.group({
+    this.catalogForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
@@ -90,8 +90,8 @@ export class DigitalSubCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.myForm.valid) {
-      const formData = this.myForm.value;
+    if (this.catalogForm.valid) {
+      const formData = this.catalogForm.value;
       const selectedSupercategories = formData.supercategory; 
       this.categoryService.createCategory(formData).subscribe(
         (newCategory) => {
@@ -102,7 +102,7 @@ export class DigitalSubCategoryComponent implements OnInit {
               (response) => {
                 this.getSubCategoryList();
                 this.closeModalForAddSubCat();
-                this.myForm.reset();
+                this.catalogForm.reset();
               },
               (error) => {
                 console.error('Üst Kategori Subcategories Güncellenirken Hata:', error);
@@ -125,7 +125,7 @@ export class DigitalSubCategoryComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           imageUrls.push(e.target.result);
-          this.myForm.get('images').setValue(imageUrls);
+          this.catalogForm.get('images').setValue(imageUrls);
         };
         reader.readAsDataURL(file);
       }
@@ -201,7 +201,7 @@ export class DigitalSubCategoryComponent implements OnInit {
 
   initEditForm(): void {
     const user = this.categories
-    this.myFormEdit = this.fb.group({
+    this.catalogFormEdit = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
@@ -212,7 +212,7 @@ export class DigitalSubCategoryComponent implements OnInit {
 
   editSubCategory(selectedCategory: any) {
     this.selectedSubCategoryId = selectedCategory
-    this.myFormEdit.patchValue({
+    this.catalogFormEdit.patchValue({
       name: selectedCategory.name,
       description: selectedCategory.description,
     });
@@ -220,7 +220,7 @@ export class DigitalSubCategoryComponent implements OnInit {
   }
 
   updateSubCategory() {
-    const formValues = this.myFormEdit.value;
+    const formValues = this.catalogFormEdit.value;
     const categoryId = this.selectedSubCategoryId._id;
 
     this.categoryService.updateCategory(categoryId, formValues).subscribe(

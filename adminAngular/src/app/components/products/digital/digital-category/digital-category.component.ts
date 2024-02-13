@@ -19,10 +19,10 @@ import { Category } from 'src/app/shared/tables/category';
   styleUrls: ['./digital-category.component.scss'],
   providers: [TableService, DecimalPipe],
 })
-
+// catalogFormEdit
 export class DigitalCategoryComponent implements OnInit {
-  myForm: FormGroup;
-  myFormEdit: FormGroup;
+  catalogForm: FormGroup;
+  catalogFormEdit: FormGroup;
   id: string;
   selectedItems: any;
   dropdownSettings = {};
@@ -48,7 +48,7 @@ export class DigitalCategoryComponent implements OnInit {
   ) {
     this.tableItem$ = service.tableItem$;
     this.service.setUserData(DIGITALCATEGORY)
-    this.myForm = this.fb.group({
+    this.catalogForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
@@ -63,7 +63,7 @@ export class DigitalCategoryComponent implements OnInit {
         this.getMainCategoryList();
       },
       (error) => {
-        console.error('Kategoriler alınamadı:', error);
+        console.error('Category error:', error);
       }
     );
   }
@@ -99,7 +99,7 @@ export class DigitalCategoryComponent implements OnInit {
 
   initEditForm(): void {
     const user = this.categories
-    this.myFormEdit = this.fb.group({
+    this.catalogFormEdit = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       images: ['', Validators.required],
@@ -110,7 +110,7 @@ export class DigitalCategoryComponent implements OnInit {
 
   editCategoryMain(selectedCategory: any) {
     this.selectedCategoryId = selectedCategory
-    this.myFormEdit.patchValue({
+    this.catalogFormEdit.patchValue({
       name: selectedCategory.name,
       description: selectedCategory.description,
       isShow: selectedCategory.isShow,
@@ -119,7 +119,7 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
   updateMainCategory() {
-    const formValues = this.myFormEdit.value;
+    const formValues = this.catalogFormEdit.value;
     const categoryId = this.selectedCategoryId._id;
 
     this.categoryService.updateCategory(categoryId, formValues).subscribe(
@@ -175,8 +175,8 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.myForm.valid) {
-      const formData = this.myForm.value;
+    if (this.catalogForm.valid) {
+      const formData = this.catalogForm.value;
       formData.subcategories = this.subcategories;
 
       this.categoryService.createCategory(formData).subscribe(
@@ -184,7 +184,7 @@ export class DigitalCategoryComponent implements OnInit {
           this.router.navigate(['/products/digital/digital-category']);
           this.getMainCategoryList();
           this.closeModalForAdd();
-          this.myForm.reset();
+          this.catalogForm.reset();
 
         },
         (error) => {
@@ -217,7 +217,7 @@ export class DigitalCategoryComponent implements OnInit {
         reader.onload = (e: any) => {
 
           imageUrls.push(e.target.result);
-          this.myForm.get('images').setValue(imageUrls);
+          this.catalogForm.get('images').setValue(imageUrls);
         };
 
         reader.readAsDataURL(file);

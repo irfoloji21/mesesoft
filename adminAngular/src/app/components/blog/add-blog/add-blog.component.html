@@ -6,7 +6,7 @@
           <h5>{{'CreateBlog' | translate}}</h5>
         </div>
         <div class="card-body">
-          <form (ngSubmit)="editBlog()" class="needs-validation" [formGroup]="myForm">
+          <form (ngSubmit)="editBlog()" class="needs-validation" [formGroup]="blogForm">
             <div class="form">
               <div class="form-group">
                 <label for="validationCustom01" class="mb-1">{{'BlogTitle' | translate}} :</label>
@@ -22,11 +22,11 @@
                 </div>
                 <div class="col-xl-8 col-sm-7">
                   <input class="form-control" id="validationCustom03" type="text"
-                    [formControl]="myForm.controls['tags']" required="" />
+                    [formControl]="blogForm.controls['tags']" required="" />
                 </div>
                 <div *ngIf="
-                    myForm.controls.tags.touched &&
-                    myForm.controls.tags.errors?.required
+                    blogForm.controls.tags.touched &&
+                    blogForm.controls.tags.errors?.required
                   " class="text text-danger">
                   Product tags are required.
                 </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-xl-8 col-sm-7">
                   <select class="form-control digits" id="category" name="category" [(ngModel)]="selectedCategory"
-                    [formControl]="myForm.controls['category']">
+                    [formControl]="blogForm.controls['category']">
                     <option *ngFor="let category of categories" [value]="category._id">
                       {{ category.name }}
                     </option>

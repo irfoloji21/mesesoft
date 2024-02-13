@@ -19,7 +19,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form class="needs-validation" [formGroup]="myForm" novalidate>
+                <form class="needs-validation" [formGroup]="ordersForm" novalidate>
                   <table class="table table-striped">
                     <thead>
                       <tr>
@@ -81,7 +81,7 @@
                           {{ selectedOrder.shippingAddress.country }}
                         </td>
                         <td>
-                          <select [formControl]="myForm.controls['status']">
+                          <select [formControl]="ordersForm.controls['status']">
                             <option value="Processing">
                               {{ "Processing" | translate }}
                             </option>

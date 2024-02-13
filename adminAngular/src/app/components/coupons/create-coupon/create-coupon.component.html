@@ -9,175 +9,187 @@
                 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
                     <!-- General Form -->
                     <li [ngbNavItem]="1">
-                      <a ngbNavLink>{{'General' | translate}}</a>
-                      <ng-template ngbNavContent>
-                        <h4>General</h4>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4">
-                                        <label for="validationCustom0"><span>*</span>
-                                            {{'CouponTitle' | translate}}</label>
+                        <a ngbNavLink>{{'General' | translate}}</a>
+                        <ng-template ngbNavContent>
+                            <h4>General</h4>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <label for="validationCustom0"><span>*</span>
+                                                {{'CouponTitle' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input class="form-control" formControlName="name" id="validationCustom0"
+                                                type="text" required="">
+                                        </div>
                                     </div>
-                                    <div class="col-md-7">
-                                        <input class="form-control" formControlName="name"
-                                        id="validationCustom0" type="text" required="">
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <label for="validationCustom1"><span>*</span>
+                                                {{'CouponCode' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input class="form-control" formControlName="code" id="validationCustom1"
+                                                type="text" required="">
+                                        </div>
+                                        <div class="valid-feedback">Please Provide a Valid Coupon Code.</div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4">
-                                        <label for="validationCustom1"><span>*</span>
-                                            {{'CouponCode' | translate}}</label>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <input class="form-control" formControlName="code"
-                                        id="validationCustom1" type="text" required="">
-                                    </div>
-                                    <div class="valid-feedback">Please Provide a Valid Coupon Code.</div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4">
-                                        <label>{{'StartDate'  | translate}}</label>
-                                    </div>
-                                    <div class="col-md-7 ">
-                                        <div class="input-group input-grp-p">
-                                            <input class="datepicker-here form-control digits" ngbDatepicker
-                                                formControlName="start_date" #f="ngbDatepicker">
-                                            <div class="input-group-append">
-                                                <button class="btn calendar" (click)="f.toggle()" type="button"><i
-                                                        class="fa fa-calendar"></i></button>
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <label>{{'StartDate' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-7 ">
+                                            <div class="input-group input-grp-p">
+                                                <input class="datepicker-here form-control digits" ngbDatepicker
+                                                    formControlName="start_date" #f="ngbDatepicker">
+                                                <div class="input-group-append">
+                                                    <button class="btn calendar" (click)="f.toggle()" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4">
-                                        <label>{{'EndDate' | translate}}</label>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="input-group input-grp-p">
-                                            <input class="datepicker-here form-control digits" ngbDatepicker
-                                                formControlName="end_date" #c="ngbDatepicker">
-                                            <div class="input-group-append">
-                                                <button class="btn calendar" (click)="c.toggle()" type="button"><i
-                                                        class="fa fa-calendar"></i></button>
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <label>{{'EndDate' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="input-group input-grp-p">
+                                                <input class="datepicker-here form-control digits" ngbDatepicker
+                                                    formControlName="end_date" #c="ngbDatepicker">
+                                                <div class="input-group-append">
+                                                    <button class="btn calendar" (click)="c.toggle()" type="button"><i
+                                                            class="fa fa-calendar"></i></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4">
-                                        <label>{{'FreeShipping' | translate}}</label>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="checkbox-primary-1" type="checkbox"
-                                                formControlName="free_shipping" data-original-title="" title="">
-                                            <label for="checkbox-primary-1">{{'AllowFreeShipping'  | translate}}</label>
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <label>{{'FreeShipping' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="checkbox checkbox-primary">
+                                                <input id="checkbox-primary-1" type="checkbox"
+                                                    formControlName="free_shipping" data-original-title="" title="">
+                                                <label for="checkbox-primary-1">{{'AllowFreeShipping' |
+                                                    translate}}</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4"><label>{{'Quantity' | translate}}</label></div>
-                                    <div class="col-md-7">
-                                        <input class="form-control" formControlName="quantity" type="number"
-                                        required="">
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4"><label>{{'Quantity' | translate}}</label></div>
+                                        <div class="col-md-7">
+                                            <input class="form-control" formControlName="quantity" type="number"
+                                                required="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4"><label>{{'DiscountType' | translate}}</label></div>
-                                    <div class="col-md-7">
-                                        <select class="custom-select form-select" required="" formControlName="discount_type">
-                                            <option value="">--Select--</option>
-                                            <option value="percentage">Percent</option>
-                                            <option value="fixed">Fixed</option>
-                                        </select>
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4"><label>{{'DiscountType' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select class="custom-select form-select" required=""
+                                                formControlName="discount_type">
+                                                <option value="">--Select--</option>
+                                                <option value="percentage">Percent</option>
+                                                <option value="fixed">Fixed</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-xl-3 col-md-4">
-                                        <label>{{'Status' | translate}}</label>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="checkbox checkbox-primary">
-                                            <input id="checkbox-primary-2" formControlName="status" type="checkbox"
-                                                data-original-title="" title="">
-                                            <label for="checkbox-primary-2">{{'EnableTheCoupon' | translate}}</label>
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-md-4">
+                                            <label>{{'Status' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="checkbox checkbox-primary">
+                                                <input id="checkbox-primary-2" formControlName="status" type="checkbox"
+                                                    data-original-title="" title="">
+                                                <label for="checkbox-primary-2">{{'EnableTheCoupon' |
+                                                    translate}}</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                  </ng-template>
-                </li>
-                <li [ngbNavItem]="2">
-                  <a ngbNavLink>{{'Restriction' | translate}}</a>
-                  <ng-template ngbNavContent>
-                        <h4>{{'Restriction' | translate}}</h4>
-                        <div class="form-group row">
-                            <div class="col-xl-3 col-md-4"><label for="validationCustom3">Products</label></div>
-                            <div class="col-md-7">
-                                
+                        </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                        <a ngbNavLink>{{'Restriction' | translate}}</a>
+                        <ng-template ngbNavContent>
+                            <h4>{{'Restriction' | translate}}</h4>
+                            <div class="form-group row">
+                                <div class="col-xl-3 col-md-4"><label for="validationCustom3">Products</label></div>
+                                <div class="col-md-7">
 
-                                <select class="custom-select form-select" formControlName="products" required="" multiple>
-                                    <option value="1">--Select--</option>
-                                    <option *ngFor="let product of products" [value]="product._id">{{product.name}}</option>
-                                </select>
+
+                                    <select class="custom-select form-select" formControlName="products" required=""
+                                        multiple>
+                                        <option value="1">--Select--</option>
+                                        <option *ngFor="let product of products" [value]="product._id">{{product.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="valid-feedback">Please Provide a Product Name.</div>
                             </div>
-                            <div class="valid-feedback">Please Provide a Product Name.</div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-xl-3 col-md-4"><label>{{'Category' | translate}}</label></div>
-                            <div class="col-md-7">
-                                <select class="custom-select form-select" formControlName="category" required="" multiple>
-                                    <option value="1">--Select--</option>
-                                    <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
-                                </select>
+                            <div class="form-group row">
+                                <div class="col-xl-3 col-md-4"><label>{{'Category' | translate}}</label></div>
+                                <div class="col-md-7">
+                                    <select class="custom-select form-select" formControlName="category" required=""
+                                        multiple>
+                                        <option value="1">--Select--</option>
+                                        <option *ngFor="let category of categories" [value]="category._id">
+                                            {{category.name}}</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-xl-3 col-md-4"><label for="validationCustom4">Minimum Spend</label></div>
-                            <div class="col-md-7">
-                                <input class="form-control" formControlName="min" id="validationCustom4"
-                                type="number">
+                            <div class="form-group row">
+                                <div class="col-xl-3 col-md-4"><label for="validationCustom4">Minimum Spend</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input class="form-control" formControlName="min" id="validationCustom4"
+                                        type="number">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-xl-3 col-md-4">
-                                <label for="validationCustom5">{{'MaximumSpend' | translate}}</label>
+                            <div class="form-group row">
+                                <div class="col-xl-3 col-md-4">
+                                    <label for="validationCustom5">{{'MaximumSpend' | translate}}</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input class="form-control" formControlName="max" id="validationCustom5"
+                                        type="number">
+                                </div>
                             </div>
-                            <div class="col-md-7">
-                                <input class="form-control" formControlName="max" id="validationCustom5"
-                                type="number">
-                            </div>
-                        </div>
-                  </ng-template>
-                </li>
-                <li [ngbNavItem]="3">
-                    <a ngbNavLink>{{'Usage' | translate}}</a>
-                    <ng-template ngbNavContent>
+                        </ng-template>
+                    </li>
+                    <li [ngbNavItem]="3">
+                        <a ngbNavLink>{{'Usage' | translate}}</a>
+                        <ng-template ngbNavContent>
                             <h4>{{'UsageLimits' | translate}}</h4>
                             <div class="form-group row">
-                                <div class="col-xl-3 col-md-4"><label for="validationCustom6">{{'PerLimit' | translate}}</label></div>
-                                <div class="col-md-7"><input class="form-control" formControlName="limit" id="validationCustom6"
-                                    type="number">
+                                <div class="col-xl-3 col-md-4"><label for="validationCustom6">{{'PerLimit' |
+                                        translate}}</label></div>
+                                <div class="col-md-7"><input class="form-control" formControlName="limit"
+                                        id="validationCustom6" type="number">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-xl-3 col-md-4"><label for="validationCustom7">{{'PerCustomer' | translate}}</label></div>
-                                <div class="col-md-7"><input class="form-control" formControlName="customer" id="validationCustom7"
-                                    type="number">
+                                <div class="col-xl-3 col-md-4"><label for="validationCustom7">{{'PerCustomer' |
+                                        translate}}</label></div>
+                                <div class="col-md-7"><input class="form-control" formControlName="customer"
+                                        id="validationCustom7" type="number">
                                 </div>
                             </div>
-                    </ng-template>
-                </li>
-            </ul>
-            <div [ngbNavOutlet]="nav" class="mt-2"></div>
-            <div class="pull-right">
-                <button type="button" class="btn btn-primary" (click)="submitCombinedForm()">{{'Save' | translate}}</button>
-            </div>
-        </form>
+                        </ng-template>
+                    </li>
+                </ul>
+                <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" (click)="submitCombinedForm()">{{'Save' |
+                        translate}}</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 <!-- Container-fluid Ends-->

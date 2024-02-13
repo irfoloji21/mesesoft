@@ -19,7 +19,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class OrdersComponent implements OnInit {
 
-  myForm: FormGroup;
+  ordersForm: FormGroup;
   public shop: any;
   public orders: any[] = [];
   public searchText: string = '';
@@ -40,7 +40,7 @@ export class OrdersComponent implements OnInit {
     this.tableItem$ = service.tableItem$;
     this.total$ = service.total$;
     this.service.setUserData(ORDERDB)
-    this.myForm = this.fb.group({
+    this.ordersForm = this.fb.group({
       status: ['Processing']
     });
   }
@@ -70,7 +70,7 @@ export class OrdersComponent implements OnInit {
   }
 
   updateOrderStatus(orderId: string) {
-    const formData = this.myForm.value;
+    const formData = this.ordersForm.value;
     this.orderService.updateOrderStatus(orderId, formData).subscribe(
       (res) => {
         this.getShopOrders();
@@ -104,7 +104,7 @@ export class OrdersComponent implements OnInit {
     );
 
     // Varsayılan olarak seçilen durumu ayarla
-    this.myForm.get('status').setValue('Processing');
+    this.ordersForm.get('status').setValue('Processing');
   }
 
   getShopOrders() {

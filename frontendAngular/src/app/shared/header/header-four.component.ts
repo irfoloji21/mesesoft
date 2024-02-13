@@ -22,7 +22,7 @@ export class HeaderFourComponent implements OnInit {
   public userInf;
   wishlistCount: number;
   userInitials: string;
-  form: FormGroup;
+  headerForm: FormGroup;
 
   constructor(
     private serviceAuth: AuthService,
@@ -32,7 +32,7 @@ export class HeaderFourComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.data.subscribe(response => {
-      this.form = this.formBuilder.group({
+      this.headerForm = this.formBuilder.group({
         search: [''],
       });
     });
@@ -40,7 +40,7 @@ export class HeaderFourComponent implements OnInit {
   }
 
   submitSearch() {
-    const searchValue = this.form.get('search').value;
+    const searchValue = this.headerForm.get('search').value;
 
     const queryParams = {
       search: searchValue

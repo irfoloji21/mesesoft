@@ -276,7 +276,7 @@ export class AddProductComponent implements OnInit {
   selectedOptions: string[] = [];
   dropdownOpen: boolean = false;
   
-  toggleDropdown2() {
+  toggleDropdownAdd() {
     this.dropdownOpen = !this.dropdownOpen;
   }
   
