@@ -8,6 +8,7 @@ import { FashionOneComponent } from './fashion/fashion-one.component';
 import { SliderComponent } from './widgets/slider/slider.component';
 import { BlogComponent } from './widgets/blog/blog.component';
 import { LogoComponent } from './widgets/logo/logo.component';
+import { DiscountComponent } from './widgets/discount/discount.component';
 import { ServicesComponent } from './widgets/services/services.component';
 import { CollectionComponent } from './widgets/collection/collection.component';
 
@@ -17,6 +18,7 @@ import { CollectionComponent } from './widgets/collection/collection.component';
     SliderComponent,
     BlogComponent,
     LogoComponent,
+    DiscountComponent,
     ServicesComponent,
     CollectionComponent
   ],

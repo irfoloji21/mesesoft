@@ -14,8 +14,8 @@
       <section class="pb-0" style="cursor: pointer">
         <div class="container">
           <div class="row partition2 d-flex flex-wrap">
-            <div class="col-md-6 d-flex">
-              <a (click)="loadDataMen()">
+           <!-- <div class="col-md-6 d-flex">
+               <a (click)="loadDataMen()">
                 <div class="collection-banner p-right text-center flex-grow-1">
                   <img style="height: 351px; width: 664px" src="../../../../assets/images/man0.webp" class="img-fluid"
                     alt="collection-banner" />
@@ -24,12 +24,14 @@
                       <h4>discounts of up to 50%</h4>
                       <h2>Men</h2>
                     </div>
-                  </div>
+                  </div> 
+
                 </div>
               </a>
-            </div>
-
-            <div class="col-md-6 d-flex">
+              
+            </div>-->
+                  <app-discount [discounts]="discount"></app-discount>
+            <!-- <div class="col-md-6 d-flex">
               <a (click)="loadDataWoman()">
                 <div class="collection-banner p-right text-center flex-grow-1">
                   <img style="height: 351px; width: 664px" src="../../../../assets/images/Women0.jpg" class="img-fluid"
@@ -42,7 +44,7 @@
                   </div>
                 </div>
               </a>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
@@ -57,6 +59,7 @@
   <h4>{{ "special-offer" | translate }}</h4>
   <h2 class="title-inner1">{{ "top-collection" | translate }}</h2>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
@@ -70,6 +73,7 @@
     </div>
   </div>
 </div>
+
 <section class="section-b-space p-t-0">
   <div class="container">
     <div class="row">

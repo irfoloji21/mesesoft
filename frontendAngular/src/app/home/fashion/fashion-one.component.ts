@@ -63,6 +63,18 @@ export class FashionOneComponent implements OnInit {
     image: 'assets/images/logos/8.png',
   }];
 
+  public discount = [{
+    variant: 'Men',
+    image: 'assets/images/man0.webp',
+    alt: 'collection-banner',
+    save: 'discounts of up to 50% off',
+  }, {
+    variant: 'Woman',
+    image: 'assets/images/Women0.jpg',
+    alt: 'collection-banner',
+    save: 'discounts of up to 50% off',
+  }];
+
   ngOnInit(): void {
     this.topCollection();
   }
