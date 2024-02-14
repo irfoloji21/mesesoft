@@ -102,5 +102,83 @@
   
   "categories": "Categories",
   "why_we_choose": "Why We Choose",
-  "store_information": "Store Information"
+  "store_information": "Store Information",
+
+
+
+
+
+
+
+
+
+
+
+  
+    "Wishlist": "Wishlist",
+    "My-Account": "My Account",
+    "Address-book": "Address Book",
+    "My-orders": "My Orders",
+    "My-wishlist": "My Wishlist",
+    "Saved-card": "Saved Card",
+    "Change-password": "Change Password",
+    "Coupon": "Coupon",
+    "Log-out": "Log Out",
+    "First-name": "First Name",
+    "Last-name": "Last Name",
+    "Phone-number": "Phone Number",
+    "E-mail": "E-mail",
+    "Password": "Password",
+    "Save-setting": "Save Settings",
+    "Enter-your-email": "Enter Your Email",
+    "subscribe": "Subscribe",
+    "About-us": "About Us",
+    "Contacts": "Contacts",
+    "Faq": "FAQ",
+    "Login": "Login",
+    "e-mail": "E-mail",
+    "password": "Password",
+    "new-customer": "New Customer",
+    "create-an-account": "Create an Account",
+    "discount-of-up-to-50%-off": "Discount of Up to 50% Off",
+    "Men": "Men",
+    "Woman": "Woman",
+    "Fashion-trends": "Fashion Trends",
+    "İmage": "Image",
+    "Product-name": "Product Name",
+    "Price": "Price",
+    "Availibity": "Availability",
+    "Action": "Action",
+    "Continue-shopping": "Continue Shopping",
+    "Check-out": "Check Out",
+    "Sorting-items": "Sorting Items",
+    "Alphabetical-order": "Alphabetical Order",
+    "Price-order": "Price Order",
+    "Low-to-high": "Low to High",
+    "High-to-low": "High to Low",
+    "Showing-products": "Showing Products",
+    "Results": "Results",
+    "Subtotal": "Subtotal",
+    "View-cart": "View Cart",
+    "Off": "Off",
+    "İn-stock": "In Stock",
+    "Add-to-cart": "Add to Cart",
+    "Product-details": "Product Details",
+    "Share-it": "Share It",
+    "Comments": "Comments",
+    "Write-review": "Write Review",
+    "Technical-specifications": "Technical Specifications",
+    "Delivery-address": "Delivery Address",
+    "My-billing-address-is-the-same": "My Billing Address is the Same",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Please-select-a-delivery-address": "Please Select a Delivery Address",
+    "Zip-code": "Zip Code",
+    "Country/City": "Country/City",
+    "Region/State": "Region/State",
+    "Flat/Plot": "Flat/Plot",
+    "Shipping-options": "Shipping Options",
+    "Save-and-continue": "Save and Continue"
+
+
 }

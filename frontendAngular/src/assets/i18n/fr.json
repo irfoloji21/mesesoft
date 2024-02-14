@@ -98,7 +98,88 @@
   "contrary_to_popular_belief": "Contrairement à la croyance populaire",
   "categories": "Catégories",
   "why_we_choose": "Pourquoi nous choisir",
-  "store_information": "Informations sur le magasin"
+  "store_information": "Informations sur le magasin",
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    "Wishlist": "Liste de souhaits",
+    "My-Account": "Mon compte",
+    "Address-book": "Carnet d'adresses",
+    "My-orders": "Mes commandes",
+    "My-wishlist": "Ma liste de souhaits",
+    "Saved-card": "Carte enregistrée",
+    "Change-password": "Changer de mot de passe",
+    "Coupon": "Coupon",
+    "Log-out": "Se déconnecter",
+    "First-name": "Prénom",
+    "Last-name": "Nom de famille",
+    "Phone-number": "Numéro de téléphone",
+    "E-mail": "E-mail",
+    "Password": "Mot de passe",
+    "Save-setting": "Enregistrer les paramètres",
+    "Enter-your-email": "Entrez votre e-mail",
+    "subscribe": "S'abonner",
+    "About-us": "À propos de nous",
+    "Contacts": "Contacts",
+    "Faq": "FAQ",
+    "Login": "Se connecter",
+    "e-mail": "E-mail",
+    "password": "Mot de passe",
+    "new-customer": "Nouveau client",
+    "create-an-account": "Créer un compte",
+    "discount-of-up-to-50%-off": "Réduction jusqu'à 50%",
+    "Men": "Hommes",
+    "Woman": "Femme",
+    "Fashion-trends": "Tendances de la mode",
+    "İmage": "Image",
+    "Product-name": "Nom du produit",
+    "Price": "Prix",
+    "Availibity": "Disponibilité",
+    "Action": "Action",
+    "Continue-shopping": "Continuer vos achats",
+    "Check-out": "Passer à la caisse",
+    "Sorting-items": "Trier les articles",
+    "Alphabetical-order": "Ordre alphabétique",
+    "Price-order": "Ordre de prix",
+    "Low-to-high": "Du plus bas au plus haut",
+    "High-to-low": "Du plus haut au plus bas",
+    "Showing-products": "Affichage des produits",
+    "Results": "Résultats",
+    "Subtotal": "Sous-total",
+    "View-cart": "Voir le panier",
+    "Off": "Remise",
+    "İn-stock": "En stock",
+    "Add-to-cart": "Ajouter au panier",
+    "Product-details": "Détails du produit",
+    "Share-it": "Partager",
+    "Comments": "Commentaires",
+    "Write-review": "Écrire un avis",
+    "Technical-specifications": "Spécifications techniques",
+    "Delivery-address": "Adresse de livraison",
+    "My-billing-address-is-the-same": "Mon adresse de facturation est la même",
+    "Edit": "Modifier",
+    "Delete": "Supprimer",
+    "Please-select-a-delivery-address": "Veuillez sélectionner une adresse de livraison",
+    "Zip-code": "Code postal",
+    "Country/City": "Pays/Ville",
+    "Region/State": "Région/État",
+    "Flat/Plot": "Appartement/Parcelle",
+    "Shipping-options": "Options de livraison",
+    "Save-and-continue": "Enregistrer et continuer"
+
+
   
 }

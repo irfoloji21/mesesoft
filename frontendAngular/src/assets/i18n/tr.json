@@ -1,13 +1,100 @@
 {
-    "special-offer": "Özel teklif",
-    "top-collection": "En iyi koleksiyon",
-    "ecommerce-angular": "E-ticaret Angular",
-    "call-us": "Bizi Ara",
-    "recent_story": "SON HABER",
-    "from_the_blog": "BLOG'DAN",
-    "online_payment": "Online Ödeme",
-    "contrary_to_popular_belief": "Yaygın İnanışın Aksine",
-    "categories": "Kategoriler",
-    "why_we_choose": "Neden Biz",
-    "store_information": "Mağaza Bilgisi"
+  "special-offer": "Özel teklif",
+  "top-collection": "En iyi koleksiyon",
+  "ecommerce-angular": "E-ticaret Angular",
+  "call-us": "Bizi Ara",
+  "recent_story": "SON HABER",
+  "from_the_blog": "BLOG'DAN",
+  "online_payment": "Online Ödeme",
+  "contrary_to_popular_belief": "Yaygın İnanışın Aksine",
+  "categories": "Kategoriler",
+  "why_we_choose": "Neden Biz",
+  "store_information": "Mağaza Bilgisi",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  "Wishlist": "Dilek Listesi",
+  "My-Account": "Hesabım",
+  "Address-book": "Adres Defteri",
+  "My-orders": "Siparişlerim",
+  "My-wishlist": "Dilek Listem",
+  "Saved-card": "Kayıtlı Kart",
+  "Change-password": "Şifre Değiştir",
+  "Coupon": "Kupon",
+  "Log-out": "Çıkış Yap",
+  "First-name": "Ad",
+  "Last-name": "Soyad",
+  "Phone-number": "Telefon Numarası",
+  "E-mail": "E-posta",
+  "Password": "Şifre",
+  "Save-setting": "Ayarları Kaydet",
+  "Enter-your-email": "E-postanızı Girin",
+  "subscribe": "Abone Ol",
+  "About-us": "Hakkımızda",
+  "Contacts": "İletişim",
+  "Faq": "SSS",
+  "Login": "Giriş Yap",
+  "e-mail": "E-posta",
+  "password": "Şifre",
+  "new-customer": "Yeni Müşteri",
+  "create-an-account": "Hesap Oluştur",
+  "discount-of-up-to-50%-off": "%50'ye Varan İndirim",
+  "Men": "Erkek",
+  "Woman": "Kadın",
+  "Fashion-trends": "Moda Trendleri",
+  "İmage": "Görüntü",
+  "Product-name": "Ürün Adı",
+  "Price": "Fiyat",
+  "Availibity": "Stok Durumu",
+  "Action": "Aksiyon",
+  "Continue-shopping": "Alışverişe Devam Et",
+  "Check-out": "Ödeme Yap",
+  "Sorting-items": "Ürünleri Sıralama",
+
+  "Alphabetical-order": "Alfabetik Sıralama",
+  "Price-order": "Fiyat Sıralaması",
+  "Low-to-high": "Düşükten Yükseğe",
+  "High-to-low": "Yüksekten Düşüğe",
+  "Showing-products": "Ürünleri Gösterme",
+  "Results": "Sonuçlar",
+  "Subtotal": "Ara Toplam",
+  "View-cart": "Sepeti Görüntüle",
+  "Off": "İndirim",
+  "İn-stock": "Stokta",
+  "Add-to-cart": "Sepete Ekle",
+  "Product-details": "Ürün Detayları",
+  "Share-it": "Paylaş",
+  "Comments": "Yorumlar",
+  "Write-review": "İnceleme Yaz",
+  "Technical-specifications": "Teknik Özellikler",
+  "Delivery-address": "Teslimat Adresi",
+  "My-billing-address-is-the-same": "Fatura Adresim Aynı",
+  "Edit": "Düzenle",
+  "Delete": "Sil",
+  "Please-select-a-delivery-address": "Lütfen bir teslimat adresi seçin",
+  "Zip-code": "Posta Kodu",
+  "Country/City": "Ülke/Şehir",
+  "Region/State": "Bölge/İl",
+  "Flat/Plot": "Daire/Arsa",
+  "Shipping-options": "Kargo Seçenekleri",
+  "Save-and-continue": "Kaydet ve Devam Et"
 }
