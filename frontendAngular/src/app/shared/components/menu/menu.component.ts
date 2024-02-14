@@ -35,15 +35,10 @@ export class MenuComponent implements OnInit {
   ) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
-        // Tüm kategorileri alın
         const categories = data.categories;
-        // Kategori listesini döngüye alarak alt kategorileri yükleyin
         this.loadSubcategories(categories);
       }
     });
-    // this.router.events.subscribe((event) => {
-    //   this.navServices.mainMenuToggle = false;
-    // });
   }
 
   loadSubcategories(categories: any[]) {
@@ -74,10 +69,9 @@ export class MenuComponent implements OnInit {
     const subCategoryIds = item.subcategories.map(subcategory => subcategory._id);
 
     const queryParams = {
-      MainMenu: subCategoryIds.join(',') // Alt kategori ID'lerini virgülle birleştirip string olarak ekledik
+      MainMenu: subCategoryIds.join(',') 
     };
 
-    // Navigasyonu gerçekleştir
     this.router.navigate(['/shop/collection'], {
       relativeTo: this.route,
       queryParams: queryParams,
@@ -104,7 +98,6 @@ export class MenuComponent implements OnInit {
 
     this.translationService.currentLang$.subscribe(lang => {
 
-      // Çevirilen metinleri kontrol etmek için
       this.translate.get('menuItems.item1').subscribe((translation: string) => {
       });
     });
@@ -112,7 +105,7 @@ export class MenuComponent implements OnInit {
 
   getSubcategoriesByItemId(itemId: any, childrenItem: any) {
     this.categoryService.getCategoryById(itemId).subscribe((subcategories) => {
-      childrenItem.subcategories = subcategories; // Her alt kategoriye ait alt kategorileri güncelle
+      childrenItem.subcategories = subcategories;
     });
   }
 
@@ -126,7 +119,7 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  //MenuQueryParamsAlanı
+  //MenuQueryParamsArea
   navigateWithQueryParams(menuItem: string, subItem: string, childrenSubItem: any) {
     this.product.irfan(childrenSubItem._id).subscribe(res => {
       this.handleSubCategoryResponse(menuItem, subItem, res);

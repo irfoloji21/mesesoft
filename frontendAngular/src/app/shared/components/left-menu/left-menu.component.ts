@@ -23,15 +23,10 @@ export class LeftMenuComponent implements OnInit {
     , private product: ProductService) {
     this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
-        // Tüm kategorileri alın
         const categories = data.categories;
-        // Kategori listesini döngüye alarak alt kategorileri yükleyin
         this.loadSubcategories(categories);
       }
     });
-    // this.router.events.subscribe((event) => {
-    //   this.navServices.mainMenuToggle = false;
-    // });
   }
   ngOnInit(): void {
     this.menuItems.forEach((menuItem) => {
@@ -56,12 +51,10 @@ export class LeftMenuComponent implements OnInit {
     for (const category of categories) {
       if (category.subcategories) {
         category.megaMenu = true;
-        // category.active=false
         for (const subcategory of category.subcategories) {
           if (subcategory._id) {
             const subcategoryId = subcategory._id;
             this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-              // Alt kategori ile yerini değiştirin
               const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
               if (index >= 0) {
                 category.subcategories[index] = subCategoryData.category;

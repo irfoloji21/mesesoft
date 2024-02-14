@@ -32,17 +32,11 @@ export class AuthService {
         if (user.success) {
           localStorage.setItem('isLoggedIn', 'true');
           this.isLoggedInSubject.next(true);
-
-          // Server'ın kullanıcının kupon bilgisini gönderdiğini varsayalım
           const userCoupon = user.coupon;
 
           if (userCoupon && !this.usedCoupons.has(userCoupon)) {
-            // Kullanıcı başarıyla giriş yaptı ve geçerli bir kuponu var
-            // Kuponun tekrar kullanılmasını önlemek için kullanılan kuponları set'e ekleyin
             this.usedCoupons.add(userCoupon);
           } else {
-            // Kullanıcının ya kuponu yok ya da kupon zaten kullanılmış
-            // Buna göre işlem yapabilirsiniz
           }
         } else {
           this.isLoggedInSubject.next(false);
@@ -118,7 +112,6 @@ export class AuthService {
   }
 
   updateUser(userInfo: any,): Observable<any> {
-    // Kullanıcı bilgilerini güncellemek için API'ye istek gönder
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.put<any>(`${this.apiUrl}/user/update-user-info`, userInfo, { headers, withCredentials: true });
   }

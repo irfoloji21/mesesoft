@@ -74,7 +74,6 @@ export class ProductSidebarComponent implements OnInit {
 
   openSharePopup(shareUrl: string) {
     const productUrl = encodeURIComponent(window.location.href);
-    // Burada bir popup veya paylaşım penceresi açabilir veya sadece URL'yi konsola yazdırabilirsiniz
     window.open(shareUrl, '_blank');
     
   }
@@ -89,13 +88,6 @@ export class ProductSidebarComponent implements OnInit {
         );
         this.doubleDipping = this.product.reviews.some(review => review.user._id === user.user._id)
         
-        // for (const order of this.filteredOrders) {
-        //   for (const product of order.cart) {
-        //     if (product._id === this.product._id) {
-        //       this.showReviewForm = true;
-        //     }
-        //   }
-        // }
       },
       (error) => {
         console.error(error);
@@ -126,8 +118,7 @@ export class ProductSidebarComponent implements OnInit {
     this.visibleReviews += 3;
   }
 
-  // aynı kullanıcı birden fazla yorum yapınca "Cannot read properties of undefined (reading '_id')" hatası veriyor.
-  // onun yerine zaten yorumun var uyarısı versin ya da yorum yapılmışsa yorum kısmı uçsun. öpüldünüz...
+
   submitReview() {
     if (this.reviewForm.valid) {
       const user = this.authService.getUser();

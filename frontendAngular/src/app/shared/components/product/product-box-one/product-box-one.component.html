@@ -7,7 +7,6 @@
     <div class="front">
       <a [routerLink]="['/shop/product/', product?.slug]">
         <div style="position: relative; display: inline-block">
-          <!-- En çok satan etiketi -->
 
           <div *ngFor="let item of sortedProducts">
             <div *ngIf="showTopCollection">
@@ -16,11 +15,9 @@
             </div>
           </div>
 
-          <!-- Ürün resmi -->
           <img [defaultImage]="
               ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'
             " [lazyLoad]="ImageSrc ? ImageSrc : product.images[0].url" class="img-fluid lazy-loading" alt="resim" />
-          <!-- İndirim etiketleri -->
           <div *ngFor="let percentage of discountPercentages" class="discount-label">
             -%{{ percentage | number : "1.0-0" }} <br />
           </div>
@@ -81,11 +78,6 @@
         </h4>
       </div>
 
-      <!-- <ul class="color-variant" *ngIf="Color(product?.variants).length">
-        <li [class]="color" *ngFor="let color of Color(product?.variants)" [ngStyle]="{'background-color': color}"
-          (click)="ChangeVariants(color, product)">
-        </li>
-      </ul> -->
     </div>
   </div>
 </div>

@@ -60,11 +60,3 @@ export class CartComponent implements OnInit {
   }
 }
 
-// 1-Kuponun Varlığını Kontrol Etme   +++
-// 2-Kupon Kodunun Kullanım Durumunu Kontrol Etme  +++  percentage mi fixed mi?
-// 3-Kupon Kodunun Geçerlilik Süresini Kontrol Etme +++ date kontrolü
-// 4-Minimum alışveriş Tutarı +++
-// 5-İndirim Hesaplama  +++
-// 6-Kupon Kullanımını İşaretleme +++
-// 7-Kullanıcıya İndirimli Fiyatı Gösterme +++
-// 8-usera gönderme */ backendte yok

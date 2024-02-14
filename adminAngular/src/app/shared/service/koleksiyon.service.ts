@@ -26,10 +26,6 @@ export class KoleksiyonService {
   updateKoleksiyon(id, formData): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/koleksiyon/koleksiyons/${id}`, formData);
   }
-
-  // deleteCategory(id): Observable<any> {
-  //   return this.http.delete<any>(`${this.apiUrl}/category/delete-category/${id}`);
-  // }
   
 
 }

@@ -35,12 +35,6 @@
             <li class="bg-light2"></li>
           </ul>
           <hr />
-          <!-- <h6 class="product-title size-text">
-            select size
-            <span class="pull-right">
-              <a data-toggle="modal" (click)="open(content)" class="font-primary">size chart</a>
-            </span>
-          </h6> -->
           <ng-template #content let-modal>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
@@ -62,24 +56,7 @@
               <li><a href="javascript:void(0)">xl</a></li>
             </ul>
           </div>
-          <!-- <div class="add-product-form">
-            <h6 class="product-title">quantity</h6>
-            <div class="qty-box1">
-              <div class="input-group">
-                <i class="fa fa-minus btnGtr1" (click)="counter > 0 ? decrement() : null"></i>
-                <input class="touchspin1 text-center" name="counter" [value]="counter" type="text" />
-                <i class="fa fa-plus btnLess1" (click)="counter < productDetail.stock ? increment() : null"></i>
-              </div>
-            </div>
-          </div> -->
           <hr />
-
-          <!-- <div class="m-t-15">
-            <button class="btn btn-primary m-r-10" type="button">
-              Add To Cart
-            </button>
-            <button class="btn btn-secondary" type="button">Buy Now</button>
-          </div> -->
         </div>
       </div>
     </div>

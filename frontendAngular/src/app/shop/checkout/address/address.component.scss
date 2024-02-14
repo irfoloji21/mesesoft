@@ -5,7 +5,6 @@ a {
   cursor: pointer;
 }
 
-// Buton stilleri
 .buton {
   background-color: $ana-renk;
   color: white;
@@ -18,12 +17,12 @@ a {
   }
 }
 
-// Sayfa arka planı
+
 body {
   background-color: $arkaplan-renk;
 }
 
-// Teslimat adresi başlığı
+
 .address-title {
   font-size: 20px;
   font-weight: bold;
@@ -36,51 +35,44 @@ body {
   border-radius: 0.25rem;
 }
 
-// Adres seçeneklerinin kutuları
+
 .c-address-grid {
   margin: 10px 0;
   padding: 10px 0;
-  // border: 1px solid #ccc;
-  // background-color: #fff;
-  // border-radius: 5px;
 
   input[type="radio"] {
     cursor: pointer;
   }
 }
 
-// Her bir kargo seçeneği kutusu
+
 .checkout-cargo-wrapper {
-  // Seçili kargo seçeneği
+
   &.js-checkout-cargo-item.checked {
     background-color: $ana-renk;
     color: white;
   }
 
-  // Kargo başlığı
   .checkout-cargo-title {
     font-weight: bold;
   }
 
-  // Kargo açıklaması
   .checkout-cargo-desc {
     margin-top: 5px;
   }
 
-  // Kargo fiyatı
+
   .checkout-cargo-amount {
     margin-top: 10px;
   }
 }
 
-// Responsive stiller
 @media (max-width: 768px) {
   .checkout-cargo-wrapper {
     padding: 15px;
   }
 }
 
-//   KARGO SEÇENEKLERİ
 .checkout__cargos-list {
   display: flex;
   flex-direction: column;
@@ -88,7 +80,7 @@ body {
     background-color: rgba(
       $ana-renk,
       0.25
-    ); /* İstediğiniz arka plan rengini burada belirleyebilirsiniz */
+    ); 
   }
 
   .checkout-shipping-list-wrapper {
@@ -97,16 +89,13 @@ body {
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 10px 0; // Labelleri daha fazla uzaklaştır
-    // &:hover {
-      // background-color: darken($ana-renk, 1%);
-    // }
+    margin: 10px 0; 
+
     .checkout-cargo-wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      // Mobil görünüm
       @media (max-width: 767px) {
         .checkout-cargo-title {
           font-weight: bold;
@@ -142,8 +131,8 @@ body {
   }
 
   .modal-content {
-    width: 100%; /* Genişliği 100% yapın */
-    max-width: 800px; /* Maksimum genişlik ayarı */
+    width: 100%; 
+    max-width: 800px; 
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -288,11 +277,11 @@ body {
             }
 
             .form-check-input {
-              border-radius: 0; /* Köşeli hale getirir */
+              border-radius: 0; 
             }
 
             .form-check-input:checked {
-              background-color: $ana-renk; /* Seçiliyken farklı bir renk */
+              background-color: $ana-renk; 
               border-color: $ana-renk;
             }
 

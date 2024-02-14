@@ -52,10 +52,8 @@ export class PaymentComponent implements OnInit {
     const selectedCargo = this.shippingService.getSelectedShipping();
     const savedCart = localStorage.getItem('selectedCard');
     if (savedCart) {
-      // savedCart varsa, JSON'dan çözümlenir
       const cartData = JSON.parse(savedCart);
 
-      // Form değerleri yerleştirilir
       this.checkoutForm.patchValue({
         cardNumber: cartData.cardNumber || '',
         expirationMonth: cartData.expirationMonth || '',

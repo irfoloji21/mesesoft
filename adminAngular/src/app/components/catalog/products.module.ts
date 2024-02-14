@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsRoutingModule } from './products-routing.module';
 
-// import { DigitalListComponent } from './digital/digital-list/digital-list.component';
 
 import { GalleryModule } from '@ks89/angular-modal-gallery';
 import 'hammerjs';

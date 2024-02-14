@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class CouponService {
 
-  private apiUrl = 'http://localhost:8000/api/v2'; // apiUrl burada tanımlandı
+  private apiUrl = 'http://localhost:8000/api/v2'; 
 
   constructor(private http: HttpClient) { }
 

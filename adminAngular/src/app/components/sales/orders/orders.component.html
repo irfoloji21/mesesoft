@@ -100,7 +100,6 @@
                             <option value="Delivered">
                               {{ "Delivered" | translate }}
                             </option>
-                            <!-- Diğer durumları buraya ekleyin -->
                           </select>
                           <button type="submit" (click)="updateOrderStatus(selectedOrder._id)">
                             {{ "Update" | translate }}
@@ -131,10 +130,6 @@
                 <tr>
                   <th scope="col" sortable="order_id" (sort)="onSort($event)">
                     {{ "Order ID" | translate }}
-                    <!-- </th>
-                  <th scope="col" sortable="product" (sort)="onSort($event)">
-                    Image
-                  </th> -->
                   </th>
 
                   <th scope="col" sortable="payment_status" (sort)="onSort($event)">
@@ -160,11 +155,6 @@
               <tbody>
                 <tr *ngFor="let item of filteredOrders">
                   <th scope="row">{{ item._id }}</th>
-                  <!-- <td>
-                    <span *ngFor="let image of item.cart[0].images">
-                      <img [src]="image.url" class="img-30 me-2" />
-                    </span>
-                  </td> -->
                   <td>
                     <span class="badge badge-success">{{
                       item.paymentInfo?.status
@@ -185,26 +175,6 @@
                 </tr>
               </tbody>
             </table>
-            <!-- <div class="d-flex justify-content-between p-2">
-              <ngb-pagination
-                [collectionSize]="(total$ | async)!"
-                [(page)]="service.page"
-                [pageSize]="service.pageSize"
-              >
-              </ngb-pagination>
-              <select
-                class="form-select"
-                style="width: auto"
-                name="pageSize"
-                [(ngModel)]="service.pageSize"
-              >
-                <option [selected]="true" [ngValue]="2">
-                  2 items per page
-                </option>
-                <option [ngValue]="4">4 items per page</option>
-                <option [ngValue]="6">6 items per page</option>
-              </select>
-            </div> -->
           </div>
         </div>
       </div>

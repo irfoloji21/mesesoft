@@ -103,7 +103,7 @@ export class OrdersComponent implements OnInit {
       }
     );
 
-    // Varsayılan olarak seçilen durumu ayarla
+
     this.ordersForm.get('status').setValue('Processing');
   }
 

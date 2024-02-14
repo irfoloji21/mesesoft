@@ -2,12 +2,12 @@ $ana-renk: #ff5733;
 $arkaplan-renk: #ededed;
 $ana-renk2: rgb(4, 70, 4);
 
-// Sayfa arka planı
+
 body {
   background-color: $arkaplan-renk;
 }
 
-// Genel tab menüsüü
+
 .checkout-tabs.container {
   display: flex;
   justify-content: space-between;
@@ -17,7 +17,7 @@ body {
   border-radius: 5px;
 }
 
-// Her bir sekme için
+
 .checkout-tab {
   flex: 1;
   padding: 7px;
@@ -37,7 +37,7 @@ body {
     color: white;
   }
 
-  //mobile
+
   .mobile-tab {
     display: none;
   }
@@ -56,7 +56,7 @@ body {
   margin: 10px 0 0;
 }
 
-// Ayırıcı çizgi için
+
 .visible-xs.divider {
   display: none;
 
@@ -66,7 +66,7 @@ body {
   }
 }
 
-// Genel form
+
 .js-options-detail.options-detail {
   background-color: $arkaplan-renk;
   border: 1px solid #ccc;
@@ -74,21 +74,21 @@ body {
   padding: 20px;
 }
 
-// Kargo seçenekleri başlığı
+
 .address-title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-// Kargo seçenekleri listesi
+
 .checkout__cargos-list {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
 }
 
-//Kargo seçenekleri grup başlığı
+
 .unified-group__title {
   font-weight: bold;
   margin-bottom: 10px;
@@ -98,7 +98,7 @@ body {
   }
 }
 
-// Her bir kargo seçeneği kutusu
+
 .checkout-cargo-wrapper {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -107,7 +107,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
 
-  // Seçili kargo seçeneği için stiller
+
   &.js-checkout-cargo-item.checked {
     background-color: $ana-renk;
     color: white;
@@ -117,17 +117,17 @@ body {
     background-color: darken($ana-renk, 1%);
   }
 
-  // Kargo başlığı için stiller
+
   .checkout-cargo-title {
     font-weight: bold;
   }
 
-  // Kargo açıklaması
+
   .checkout-cargo-desc {
     margin-top: 5px;
   }
 
-  // Kargo fiyatı
+
   .checkout-cargo-amount {
     margin-top: 10px;
   }
@@ -139,7 +139,7 @@ body {
   }
 }
 
-// kaydet ve devam et
+
 .cta-area {
   display: flex;
   justify-content: flex-end;

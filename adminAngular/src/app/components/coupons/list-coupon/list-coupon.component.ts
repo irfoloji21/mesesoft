@@ -92,10 +92,8 @@ export class ListCouponComponent implements OnInit {
 
   onSelect(itemId: string) {
     if (this.selectedItems.includes(itemId)) {
-      // Öğe zaten seçili, bu nedenle kaldırın
       this.selectedItems = this.selectedItems.filter(id => id !== itemId);
     } else {
-      // Öğe seçilmedi, bu nedenle ekleyin
       this.selectedItems.push(itemId);
     }
   }
@@ -106,11 +104,9 @@ export class ListCouponComponent implements OnInit {
     ).pipe(
       concatMap((results: any[]) => {
         this.selectedItems = [];
-        // Sayfayı yenilemek için bir Observable döndürmek yerine "of" kullanabiliriz
         return of(undefined);
       })
     ).subscribe(() => {
-      // İşlem tamamlandığında sayfa yeniden yüklenir
       location.reload();
     });
   }

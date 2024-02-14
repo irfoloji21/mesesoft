@@ -23,7 +23,6 @@ export class AddProductComponent implements OnInit {
   public productForm: UntypedFormGroup;
   public Editor = ClassicEditor;
   public counter: number = 1;
-  // public searchText;
   public filteredCategory : any = []
   selectedProduct: Product[] = [];
   selectedProductImage: any;
@@ -156,17 +155,13 @@ export class AddProductComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       const files: FileList = event.target.files;
 
-      // Dosya okuma işlemi
       for (let j = 0; j < files.length; j++) {
         const file = files[j];
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-          // Tek tek her dosyayı images dizisine ekleyin
           const imageUrls = this.productForm.get('images').value || [];
           imageUrls.push(e.target.result);
-
-          // images alanını güncelleyin
           this.productForm.get('images').setValue(imageUrls);
         };
 
@@ -226,7 +221,6 @@ export class AddProductComponent implements OnInit {
   editProduct() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
-      // Diğer form değerlerini alırken olduğu gibi al
       const shop = this.authService.getShop();
       formData.shopId = shop.seller._id;
       formData.shop = shop;
@@ -290,7 +284,6 @@ selectedCategoriesControl = new FormControl();
       this.selectedOptions.splice(index, 1);
     }
     
-    // Seçili kategoriyi form kontrolüne ekleyin
     this.productForm.get('category').setValue(this.selectedOptions.join(','));
   }
   // Dropdown Json categoryy end

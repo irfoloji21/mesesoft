@@ -19,7 +19,6 @@ import { Category } from 'src/app/shared/tables/category';
   styleUrls: ['./digital-category.component.scss'],
   providers: [TableService, DecimalPipe],
 })
-// catalogFormEdit
 export class DigitalCategoryComponent implements OnInit {
   catalogForm: FormGroup;
   catalogFormEdit: FormGroup;
@@ -56,7 +55,6 @@ export class DigitalCategoryComponent implements OnInit {
       isShow: [false]
     });
 
-    // Kategorileri al
     this.categoryService.getCategory().subscribe(
       (response) => {
         this.categories = [response.categories[0]];
@@ -84,7 +82,6 @@ export class DigitalCategoryComponent implements OnInit {
       itemsShowLimit: 5,
       allowSearchFilter: true
     };
-    // Şimdi nesneyi kullanabilirsiniz
     this.dropdownSettings = dropdownSettings;
 
   }
@@ -135,7 +132,6 @@ export class DigitalCategoryComponent implements OnInit {
   }
 
   onSort({ column, direction }: SortEvent) {
-    // resetting other headers
     this.headers.forEach((header) => {
       if (header.sortable !== column) {
         header.direction = '';
@@ -149,10 +145,8 @@ export class DigitalCategoryComponent implements OnInit {
     this.modalRef = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
     this.modalRef.result.then(
       (result) => {
-        // Modal kapatıldığında yapılacak işlemler
       },
       (reason) => {
-        // Modal reddedildiğinde yapılacak işlemler
 
       }
     );
@@ -160,7 +154,7 @@ export class DigitalCategoryComponent implements OnInit {
 
   closeModalForAdd() {
     if (this.modalRef) {
-      this.modalRef.close(); // Modal kapatma işlemi
+      this.modalRef.close(); 
     }
   }
 

@@ -33,7 +33,6 @@ export class AddBlogComponent implements OnInit {
       slug: ['', Validators.required],
       description: ['', Validators.required],
       shortDescription: ['', Validators.required],
-      // images: ['', Validators.required],
       category: [''],
       tags: [''],
     });
@@ -124,7 +123,6 @@ export class AddBlogComponent implements OnInit {
     );
 
     this.route.params.subscribe(params => {
-      // this.buttonText = 'Edit';
       this.id = params['id'];
       this.blogService.getBlogById(this.id).subscribe(
         (response) => {

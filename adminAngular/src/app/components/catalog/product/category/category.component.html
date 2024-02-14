@@ -94,13 +94,6 @@
                       <img [src]="koleksiyon.images[0].url" class="imgTable" />
                     </td>
                     <td>{{ koleksiyon.saving }}</td>
-                    <!-- <td>
-                      <ul>
-                        <li *ngFor="let productId of koleksiyon.productIds">
-                          {{ productId }}
-                        </li>
-                      </ul>
-                    </td> -->
                     <td>
                       <button href="javascript:void(0)" (click)="editCategory(koleksiyon._id, content)">
                         <i class="fa fa-edit f-12"></i></button>&nbsp;
@@ -111,11 +104,6 @@
                 </tbody>
               </table>
 
-              <!-- <div class="d-flex justify-content-center p-2">
-                <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
-                  [pageSize]="service.pageSize">
-                </ngb-pagination>
-              </div> -->
             </div>
           </div>
         </div>

@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]], // E-posta alanı
-      password: ['', Validators.required], // Şifre alanı
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required], 
     });
   }
 
@@ -71,12 +71,9 @@ export class LoginComponent implements OnInit {
   private checkUserLoginStatus() {
     this.authService.loadShop().subscribe(
       (response) => {
-        // Backend tarafından dönen cevaba göre kullanıcı giriş yapmışsa true, yapmamışsa false olacak
         this.isUserLoggedIn = response.success;
-
-        // Eğer kullanıcı giriş yapmışsa, başka bir sayfaya yönlendir
         if (this.isUserLoggedIn) {
-          this.router.navigate(['/dashboard/default']); // Örnek bir sayfa yönlendirmesi
+          this.router.navigate(['/dashboard/default']); 
         }
       },
       (error) => {

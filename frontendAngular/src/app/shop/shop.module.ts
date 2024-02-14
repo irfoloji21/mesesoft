@@ -7,9 +7,6 @@ import { ShopRoutingModule } from './shop-routing.module';
 
 // Product Details Components
 import { ProductSidebarComponent } from './product/product-sidebar/product-sidebar.component';
-// import { FourImageComponent } from './product/four-image/four-image.component';
-// import { BundleProductComponent } from './product/bundle-product/bundle-product.component';
-// import { ImageOutsideComponent } from './product/image-outside/image-outside.component';
 
 // Product Details Widgest Components
 import { ServicesComponent } from './product/widgets/services/services.component';
@@ -44,9 +41,7 @@ import { CheckoutCartComponent } from './checkout/checkoutCart/checkout-cart.com
 @NgModule({
   declarations: [
     ProductSidebarComponent,
-    // FourImageComponent,
-    // BundleProductComponent,
-    // ImageOutsideComponent,
+
     ServicesComponent,
     CountdownComponent,
     SocialComponent,

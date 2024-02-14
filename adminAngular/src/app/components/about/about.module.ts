@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
 import { AboutRoutingModule } from './about-routing.module';
 import { ListAboutComponent } from './list-about/list-about.component';
 import { CreateAboutComponent } from './create-about/create-about.component';

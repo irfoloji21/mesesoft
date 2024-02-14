@@ -73,7 +73,7 @@ export class OrderService {
   }
 
   public refundOrder(orderId: string): Observable<any> {
-    const refundData = { status: 'Refund Success' }; // İade başarılı olduğunda gönderilen durum
+    const refundData = { status: 'Refund Success' };
     return this.http.put<any>(`${this.apiUrl}/order/order-refund-success/${orderId}`, refundData);
   }
 

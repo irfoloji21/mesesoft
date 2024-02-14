@@ -45,7 +45,7 @@ export class AddressComponent implements OnInit {
         console.error(error);
       },
       () => {
-        this.loading = false; // Yükleme tamamlandığında durumu kapat
+        this.loading = false;
       }
     );
   }

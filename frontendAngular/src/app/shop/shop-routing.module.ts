@@ -8,10 +8,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 import { Resolver } from '../shared/services/resolver.service';
 import { CheckoutGuard } from '../pages/checkoutRoute.guard';
-// import { FourImageComponent } from './product/four-image/four-image.component';
-// import { BundleProductComponent } from './product/bundle-product/bundle-product.component';
-// import { ImageOutsideComponent } from './product/image-outside/image-outside.component';
-// import { CompareComponent } from './compare/compare.component';
+
 
 const routes: Routes = [
   {
@@ -42,31 +39,6 @@ const routes: Routes = [
     path: 'checkout/success/:id',
     component: SuccessComponent
   },
-  // {
-  //   path: 'product/four/image/:slug',
-  //   component: FourImageComponent,
-  //   resolve: {
-  //     data: Resolver
-  //   }
-  // },
-  // {
-  //   path: 'product/bundle/:slug',
-  //   component: BundleProductComponent,
-  //   resolve: {
-  //     data: Resolver
-  //   }
-  // },
-  // {
-  //   path: 'product/image/outside/:slug',
-  //   component: ImageOutsideComponent,
-  //   resolve: {
-  //     data: Resolver
-  //   }
-  // },
-  // {
-  //   path: 'compare',
-  //   component: CompareComponent
-  // }
 ];
 
 @NgModule({

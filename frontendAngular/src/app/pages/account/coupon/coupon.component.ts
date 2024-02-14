@@ -28,7 +28,7 @@ export class CouponComponent {
 
   async getCouponss() {
     try {
-      this.loading = true; // İşlem başladığında loading durumunu true yap
+      this.loading = true;
   
       const res = await this.authService.loadUser().toPromise();
   

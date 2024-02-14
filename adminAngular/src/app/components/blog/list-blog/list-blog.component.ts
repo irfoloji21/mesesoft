@@ -37,7 +37,7 @@ export class ListBlogComponent implements OnInit {
       (response) => {
         if (response.success) {
           this.selectedBlogList = response.blog;
-          this.isEditing = true; // Düzenleme modunu aktif et
+          this.isEditing = true; 
           this.openModal();
         } else {
           console.error(response.message);
@@ -55,7 +55,7 @@ export class ListBlogComponent implements OnInit {
 
   closeModal() {
     this.isModalOpen = false;
-    this.isEditing = false; // Düzenleme modunu sıfırla
+    this.isEditing = false; 
     this.selectedBlogList = null; 
   }
 
@@ -75,7 +75,6 @@ export class ListBlogComponent implements OnInit {
         }
       },
       (error) => {
-        // HTTP hatası, ağ hatası vb.
         console.error(error);
       }
     );

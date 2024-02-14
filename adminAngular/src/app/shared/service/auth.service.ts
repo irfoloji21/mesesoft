@@ -26,8 +26,8 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post<any>(`${this.apiUrl}/shop/login-shop`, body, { headers, withCredentials: true })
       .pipe(tap(shop => {
-        console.log('Login Response:', shop); // shop değerini konsola yazdırın
-        console.log('routerYOL'); // "routerYOL" ifadesini konsola yazdırın
+        console.log('Login Response:', shop);
+        console.log('routerYOL'); 
         if (shop.success) {
           localStorage.setItem('isLoggedIn', 'true');
           this.isLoggedInSubject.next(true);

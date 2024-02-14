@@ -50,7 +50,6 @@ export class CategoryComponent implements OnInit {
       description: ['', Validators.required],
       saving: ['', Validators.required],
       images: ['', Validators.required],
-      // products: [''],
       isShow: [false],
     });
   }
@@ -138,7 +137,6 @@ export class CategoryComponent implements OnInit {
     if (this.buttonText === 'Add') {
       this.onSubmit();
     } else if (this.buttonText === 'Update Collection') {
-      // Koleksiyonu güncelleme işlemi
       this.updateCollection(this.selectedKoleksiyon._id);
     }
   }
