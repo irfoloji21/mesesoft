@@ -3,15 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsRoutingModule } from './products-routing.module';
-import { CategoryComponent } from './physical/category/category.component';
-import { SubCategoryComponent } from './physical/sub-category/sub-category.component';
-import { ProductListComponent } from './physical/product-list/product-list.component';
-import { AddProductComponent } from './physical/add-product/add-product.component';
-import { DigitalCategoryComponent } from './digital/digital-category/digital-category.component';
-import { DigitalSubCategoryComponent } from './digital/digital-sub-category/digital-sub-category.component';
+
 // import { DigitalListComponent } from './digital/digital-list/digital-list.component';
-import { DigitalAddComponent } from './digital/digital-add/digital-add.component';
-import { ProductDetailComponent } from './physical/product-detail/product-detail.component';
+
 import { GalleryModule } from '@ks89/angular-modal-gallery';
 import 'hammerjs';
 import 'mousetrap';
@@ -21,8 +15,17 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TranslateModule } from '@ngx-translate/core';
-import { ProductssComponent } from './physical/productss/productss/productss.component';
-import { ProductReviewsComponent } from './physical/product-reviews/product-reviews/product-reviews.component';
+import { DigitalAddComponent } from './category/category-add/digital-add.component';
+import { DigitalCategoryComponent } from './category/category-main/digital-category.component';
+import { DigitalSubCategoryComponent } from './category/category-sub/digital-sub-category.component';
+import { CategoryComponent } from './product/category/category.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { AddProductComponent } from './product/products-add/add-product.component';
+import { ProductListComponent } from './product/products-list/product-list.component';
+import { ProductssComponent } from './product/products-main-page/productss/productss.component';
+import { ProductReviewsComponent } from './product/products-reviews/product-reviews/product-reviews.component';
+import { SubCategoryComponent } from './product/sub-category/sub-category.component';
+
 
 @NgModule({
   declarations: [

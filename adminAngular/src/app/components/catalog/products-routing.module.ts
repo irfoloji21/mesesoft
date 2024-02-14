@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CategoryComponent } from './physical/category/category.component';
-import { SubCategoryComponent } from './physical/sub-category/sub-category.component';
-import { ProductListComponent } from './physical/product-list/product-list.component';
-import { AddProductComponent } from './physical/add-product/add-product.component';
-import { DigitalCategoryComponent } from './digital/digital-category/digital-category.component';
-import { DigitalSubCategoryComponent } from './digital/digital-sub-category/digital-sub-category.component';
-import { DigitalAddComponent } from './digital/digital-add/digital-add.component';
-import { ProductDetailComponent } from './physical/product-detail/product-detail.component';
-import { ProductssComponent } from './physical/productss/productss/productss.component';
+import { CategoryComponent } from './product/category/category.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { SubCategoryComponent } from './product/sub-category/sub-category.component';
+import { DigitalAddComponent } from './category/category-add/digital-add.component';
+import { DigitalCategoryComponent } from './category/category-main/digital-category.component';
+import { DigitalSubCategoryComponent } from './category/category-sub/digital-sub-category.component';
+import { AddProductComponent } from './product/products-add/add-product.component';
+import { ProductListComponent } from './product/products-list/product-list.component';
+import { ProductssComponent } from './product/products-main-page/productss/productss.component';
+
 
 const routes: Routes = [
   {
