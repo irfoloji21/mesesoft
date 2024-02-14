@@ -181,7 +181,7 @@ export class DigitalCategoryComponent implements OnInit {
 
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
-          this.router.navigate(['/products/digital/digital-category']);
+          this.router.navigate(['/products/category/main-category']);
           this.getMainCategoryList();
           this.closeModalForAdd();
           this.catalogForm.reset();
@@ -228,7 +228,7 @@ export class DigitalCategoryComponent implements OnInit {
   deleteCategory(id: string) {
     this.categoryService.deleteCategory(id).subscribe(
       (response) => {
-        this.router.navigate(['/products/digital/digital-category']);
+        this.router.navigate(['/products/category/main-category']);
         this.getMainCategoryList();
       },
       (error) => {

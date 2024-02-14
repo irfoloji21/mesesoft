@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'physical/collection',
+        path: 'catalog/collection',
         component: CategoryComponent,
         data: {
           title: "Collection",
@@ -24,7 +24,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'physical/sub-category',
+        path: 'catalog/sub-category',
         component: SubCategoryComponent,
         data: {
           title: "Sub Category",
@@ -32,7 +32,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'physical/product-list',
+        path: 'catalog/product-list',
         component: ProductListComponent,
         data: {
           title: "Product List",
@@ -40,7 +40,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'physical/product-detail/:id',
+        path: 'catalog/product-detail/:id',
         component: ProductDetailComponent,
         data: {
           title: "Product Detail",
@@ -48,7 +48,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'physical/add-product',
+        path: 'catalog/add-product',
         component: AddProductComponent,
         data: {
           title: "Add Products",
@@ -56,7 +56,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'physical/productss',
+        path: 'catalog/productss',
         component: ProductssComponent,
         data: {
           title: "Add Products",
@@ -64,7 +64,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'physical/edit-product/:id',
+        path: 'catalog/edit-product/:id',
         component: AddProductComponent,
         data: {
           title: "Edit Products",
@@ -72,7 +72,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'digital/digital-category',
+        path: 'category/main-category',
         component: DigitalCategoryComponent,
         data: {
           title: "Category",
@@ -80,7 +80,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'digital/edit-category/:id',
+        path: 'category/edit-category/:id',
         component: DigitalAddComponent,
         data: {
           title: "Category",
@@ -88,7 +88,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'digital/digital-sub-category',
+        path: 'category/sub-sub-category',
         component: DigitalSubCategoryComponent,
         data: {
           title: "Sub Category",
@@ -97,7 +97,7 @@ const routes: Routes = [
       },
      
       {
-        path: 'digital/digital-add-product',
+        path: 'category/digital-add-product',
         component: DigitalAddComponent,
         data: {
           title: "Add Products",

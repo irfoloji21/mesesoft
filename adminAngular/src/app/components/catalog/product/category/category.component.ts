@@ -148,7 +148,7 @@ export class CategoryComponent implements OnInit {
       const formData = this.catalogForm.value;
       this.koleksiyonService.updateKoleksiyon(id, formData).subscribe(
         (response) => {
-          this.router.navigate(['/physical/collection']);
+          this.router.navigate(['/catalog/collection']);
         },
         (error) => {
           console.error('Koleksiyon güncellenirken hata oluştu:', error);
@@ -166,7 +166,7 @@ export class CategoryComponent implements OnInit {
         formData.shop = shop;
         this.koleksiyonService.createKoleksiyon(formData).subscribe(
           (response) => {
-            this.router.navigate(['/physical/category']);
+            this.router.navigate(['/catalog/category']);
           },
           (error) => {
             console.error('Kategori oluşturulurken hata oluştu:', error);

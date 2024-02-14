@@ -61,11 +61,11 @@ export class ProductssComponent {
 
 
   editProduct(id) {
-    this.router.navigate(['/products/physical/edit-product', id]);
+    this.router.navigate(['/products/catalog/edit-product', id]);
   }
 
   addProduct() {
-    this.router.navigate(['/products/physical/add-product']);
+    this.router.navigate(['/products/catalog/add-product']);
   }
 
   detailProduct(product: Product): void {

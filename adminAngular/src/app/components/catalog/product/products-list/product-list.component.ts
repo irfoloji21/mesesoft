@@ -30,11 +30,11 @@ export class ProductListComponent implements OnInit {
   }
 
   editProduct(id) {
-    this.router.navigate(['/products/physical/edit-product', id]);
+    this.router.navigate(['/products/catalog/edit-product', id]);
   }
 
   detailProduct(id) {
-    this.router.navigate(['/products/physical/product-detail', id]);
+    this.router.navigate(['/products/catalog/product-detail', id]);
   }
 
   ngOnInit() {

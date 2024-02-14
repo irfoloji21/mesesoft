@@ -204,7 +204,7 @@ export class AddProductComponent implements OnInit {
       // stockStatus'u Json end
       this.productService.createProduct(jsonRequestBody).subscribe(
         (response) => {
-          this.router.navigate(['/products/physical/productss']);
+          this.router.navigate(['/products/catalog/productss']);
         },
         (error) => {
           console.error('Ürün oluşturulurken hata oluştu:', error);
@@ -233,7 +233,7 @@ export class AddProductComponent implements OnInit {
       formData.category = this.selectedCategory;
   
       this.productService.updateProduct(this.id, formData).subscribe((response) => {
-        this.router.navigate(['/products/physical/productss']);
+        this.router.navigate(['/products/catalog/productss']);
       }
       )
        

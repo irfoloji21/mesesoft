@@ -65,7 +65,7 @@ export class DigitalAddComponent implements OnInit {
       const formData = this.catalogForm.value;
       this.categoryService.createCategory(formData).subscribe(
         (response) => {
-          this.router.navigate(['/products/digital/digital-category']);
+          this.router.navigate(['/products/category/main-category']);
         },
         (error) => {
         }

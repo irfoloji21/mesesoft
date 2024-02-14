@@ -44,13 +44,13 @@ export class NavService {
 			title: 'Catalog', icon: 'folder', type: 'sub', children: [
 				// { path: '/products/physical/product-list', title: 'Product List', type: 'link' },
 				// { path: '/products/physical/add-product', title: 'Product Add ' , type: 'link' },
-				{ path: '/products/physical/productss', title: 'Products ' , type: 'link' },
+				{ path: '/products/catalog/productss', title: 'Products ' , type: 'link' },
 			]
 		},
 		{
 			title: 'Categories', icon: 'folder', type: 'sub', children: [
-				{ path: '/products/digital/digital-category', title: 'Main Category', type: 'link' },
-				{ path: '/products/digital/digital-sub-category', title: 'Sub Category', type: 'link' },
+				{ path: '/products/category/main-category', title: 'Main Category', type: 'link' },
+				{ path: '/products/category/sub-sub-category', title: 'Sub Category', type: 'link' },
 			]
 		},
 		{
