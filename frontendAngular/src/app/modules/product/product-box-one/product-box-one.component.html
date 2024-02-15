@@ -1,0 +1,86 @@
+<div *ngIf="!loader">
+  <div class="img-wrapper">
+    <div class="lable-block">
+      <!-- <span class="lable3" *ngIf="product.new">new</span>
+      <span class="lable4" *ngIf="product.sale">on sale</span> -->
+    </div>
+    <div class="front">
+      <a [routerLink]="['/shop/product/', product?.slug]">
+        <div style="position: relative; display: inline-block">
+
+          <div *ngFor="let item of sortedProducts">
+            <div *ngIf="showTopCollection">
+              <img *ngIf="item._id == product._id" loading="lazy" class="product-stamp ul ca"
+                src="https://cdn.dsmcdn.com//marketing/datascience/automation/2020/12/9/EnCokSatan_202012091129.png" />
+            </div>
+          </div>
+
+          <img [defaultImage]="
+              ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'
+            " [lazyLoad]="ImageSrc ? ImageSrc : product.images[0].url" class="img-fluid lazy-loading" alt="resim" />
+          <div *ngFor="let percentage of discountPercentages" class="discount-label">
+            -%{{ percentage | number : "1.0-0" }} <br />
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="back" *ngIf="onHowerChangeImage">
+      <a [routerLink]="['/shop/product/', product?.slug]">
+        <img [src]="ImageSrc ? ImageSrc : product.images[1].url" class="img-fluid lazy-loading" alt="resim" />
+      </a>
+    </div>
+    <ul class="product-thumb-list" *ngIf="thumbnail">
+      <li class="grid_thumb_img" [class.active]="ImageSrc == image.url" *ngFor="let image of product.images">
+        <a href="javascript:void(0)" (mouseover)="ChangeVariantsImage(image.url)">
+          <img [lazyLoad]="image.url" />
+        </a>
+      </li>
+    </ul>
+    <div class="cart-info cart-wrap">
+      <a href="javascript:void(0)" title="Add to cart" (click)="CartModal.openModal(product)" *ngIf="cartModal">
+        <i class="ti-shopping-cart"></i>
+      </a>
+      <a href="javascript:void(0)" title="Add to cart" (click)="addToCart(product)" *ngIf="!cartModal">
+        <i class="ti-shopping-cart"></i>
+      </a>
+      <a href="javascript:void(0)" title="Add to Wishlist" (click)="addToWishlist(product)">
+        <i class="ti-heart" aria-hidden="true"></i>
+      </a>
+      <a href="javascript:void(0)" title="Quick View" (click)="QuickView.openModal()">
+        <i class="ti-search" aria-hidden="true"></i>
+      </a>
+      <a href="javascript:void(0)" title="Compare" (click)="addToCompare(product)">
+        <i class="ti-reload" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <div class="product-detail">
+    <div>
+      <bar-rating [rate]="product.ratings" [readOnly]="true"></bar-rating>
+      <a [routerLink]="['/shop/product/', product?.slug]">
+        <h6>{{ truncateProductName(product?.name, 20) | titlecase }}</h6>
+      </a>
+      <p>{{ product?.description }}</p>
+      <div class="product-price">
+        <h4>
+          <ng-container *ngIf="product?.discountPrice">
+            <del>{{ product?.originalPrice | currency }}</del>
+            <span class="money mx-2">{{
+              product?.discountPrice | currency
+              }}</span>
+          </ng-container>
+          <ng-container *ngIf="!product?.discountPrice">
+            <span>
+              {{ product?.originalPrice | currency }}
+            </span>
+          </ng-container>
+        </h4>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-skeleton-product-box *ngIf="loader"></app-skeleton-product-box>
+<app-quick-view #quickView [product]="product" [currency]="currency"></app-quick-view>
+<app-cart-modal #cartModal [product]="product" [currency]="currency" *ngIf="cartModal"></app-cart-modal>

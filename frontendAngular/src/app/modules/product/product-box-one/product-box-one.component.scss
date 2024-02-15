@@ -1,0 +1,49 @@
+.front {
+  position: relative;
+  display: inline-block;
+
+  .product-stamp {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .img-fluid {
+    max-width: 100%;
+    aspect-ratio: 0/1;
+    height: 300px;
+    mix-blend-mode: normal;
+    object-fit: cover;
+  }
+
+  .discount-label {
+    background-color: #ff4c3b;
+    color: #fff;
+    padding: 8px 8px;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    border-radius: 25%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 12px;
+    transition: transform 0.2s ease-in-out;
+    width: 3rem;
+  }
+
+  .discount-label:hover {
+    transform: scale(1.1);
+  }
+
+  .discount-price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ff4c3b;
+    color: #fff;
+    padding: 8px;
+    border-top-left-radius: 10px;
+  }
+}

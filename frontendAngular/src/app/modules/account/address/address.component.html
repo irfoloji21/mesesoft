@@ -1,0 +1,174 @@
+<div class="card-body">
+  <div class="top-sec">
+    <h3>Address Book</h3>
+    <a class="btn btn-sm btn-solid" (click)="toggleAddingNew()">
+      {{ isAddingNew ? "Back" : "New Address" }}</a>
+  </div>
+  <div class="address-book-section">
+    <div class="row g-4">
+      <ng-container *ngIf="!isAddingNew; else addingNewTemplate">
+        <div *ngIf="!loading && (!userAddresses || userAddresses.length === 0)">
+          <div class="col-md-12 text-center">
+            <h3>
+              <strong>No Address Found</strong>
+            </h3>
+            <p>Add a new address from the new address button.</p>
+          </div>
+        </div>
+        <div *ngFor="let address of userAddresses" class="select-box active col-xl-4 col-md-6">
+          <div class="address-box">
+            <div class="top">
+              <h6>
+                {{ address.address }} <span>{{ address.addressType }}</span>
+              </h6>
+            </div>
+            <div class="middle">
+              <div class="address">
+                <p>Zip Code: {{ address.zipCode }}</p>
+                <p>Country/City: {{ address.country }}, {{ address.city }}</p>
+                <p>Region/State: {{ address.regionState }}</p>
+              </div>
+              <div class="number">
+                <p>
+                  Flat/Plot: <span>{{ address.flatPlot }}</span>
+                </p>
+              </div>
+            </div>
+            <div class="bottom">
+              <a (click)="editAddress(address); openModal()" data-bs-target="#edit-address" data-bs-toggle="modal"
+                class="bottom_btn">Edit
+              </a>
+              <a (click)="deleteAddress(address._id)" class="bottom_btn delete-button">Delete</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #addingNewTemplate>
+        <section class="contact-page register-page section-b-space">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3>SHIPPING ADDRESS</h3>
+                <form class="theme-form" [formGroup]="addForm" (ngSubmit)="addressSubmit()">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="review">Address Type</label>
+                      <input formControlName="addressType" type="text" class="form-control" id="addressType"
+                        placeholder="Address Type" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="name">Flat / Plot</label>
+                      <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat"
+                        placeholder="Flat / Plot" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="name">Address *</label>
+                      <input formControlName="address" type="text" class="form-control" id="address-two"
+                        placeholder="Address" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email">Zip Code *</label>
+                      <input formControlName="zipCode" type="text" class="form-control" id="zip-code"
+                        placeholder="Zip Code" required />
+                    </div>
+                    <div class="col-md-6 select_input">
+                      <label for="country">Country *</label>
+                      <select formControlName="country" class="form-control" size="1">
+                        <option value="" disabled selected>
+                          Select a Country
+                        </option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="US">United States</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="France">France</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="review">City *</label>
+                      <input formControlName="city" type="text" class="form-control" id="city" placeholder="City"
+                        required />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="review">Region/State *</label>
+                      <input formControlName="regionState" type="text" class="form-control" id="region-state"
+                        placeholder="Region/State" required />
+                    </div>
+                    <div class="col-md-12">
+                      <button class="btn btn-sm btn-solid" type="submit">
+                        Save Setting
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div class="custom-container">
+  <div class="modal" [ngClass]="{ show: isModalOpen }">
+    <div class="modal-content col-12 col-md-8 col-lg-6">
+      <button class="close-button" (click)="closeModal()">X</button>
+      <form class="theme-form" [formGroup]="editForm" (ngSubmit)="updateAddress()">
+        <h3 class="text-center">Update Address</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="review">Address Type</label>
+            <input formControlName="addressType" type="text" class="form-control" id="addressType"
+              placeholder="Address Type" required />
+          </div>
+          <div class="col-md-6">
+            <label for="name">Flat / Plot</label>
+            <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat" placeholder="Flat / Plot"
+              required />
+          </div>
+          <div class="col-md-6">
+            <label for="name">Address *</label>
+            <input formControlName="address" type="text" class="form-control" id="address-two" placeholder="Address"
+              required />
+          </div>
+          <div class="col-md-6">
+            <label for="email">Zip Code *</label>
+            <input formControlName="zipCode" type="text" class="form-control" id="zip-code" placeholder="Zip Code"
+              required />
+          </div>
+          <div class="col-md-6 select_input">
+            <label for="country">Country *</label>
+            <select formControlName="country" class="form-control" size="1">
+              <option value="" disabled selected>Select a Country</option>
+              <option value="UK">United Kingdom</option>
+              <option value="US">United States</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="France">France</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="review">City *</label>
+            <input formControlName="city" type="text" class="form-control" id="city" placeholder="City" required />
+          </div>
+          <div class="col-md-6">
+            <label for="review">Region/State *</label>
+            <input formControlName="regionState" type="text" class="form-control" id="region-state"
+              placeholder="Region/State" required />
+          </div>
+          <div class="col-md-12">
+            <button class="btn btn-sm btn-solid" type="submit">
+              Update Setting
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

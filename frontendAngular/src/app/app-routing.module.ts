@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ShopComponent } from './shop/shop.component';
-import { PagesComponent } from './pages/pages.component';
+
 import { ElementsComponent } from './elements/elements.component';
-import { ActivationComponent } from './pages/account/activation/activation.component';
+import { ActivationComponent } from './modules/activation/activation.component';
+import { PagesComponent } from './modules/pages.component';
+
 
 const routes: Routes = [
   {
@@ -14,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('../app/modules/home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'shop',
@@ -24,7 +26,7 @@ const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
-    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
+    loadChildren: () => import('./modules/pages.module').then(m => m.PagesModule)
   },
   {
     path: 'elements',

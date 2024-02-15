@@ -1,0 +1,8 @@
+<div class="container">
+  <ng-container *ngIf="error; else success">
+    <p>Your token is expired!</p>
+  </ng-container>
+  <ng-template #success>
+    <p>Your account has been created successfully!</p>
+  </ng-template>
+</div>
