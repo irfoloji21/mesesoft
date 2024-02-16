@@ -15,12 +15,12 @@
           </div>
           <div class="block-content">
             <ul>
-              <li *ngFor="let item of menuItems" class="nav-item">
+              <li *ngFor="let item of menuItems$ | async" class="nav-item">
                 <a [routerLink]="[item.label.toLowerCase().replace(' ', '-')]" class="nav-link"
-                  (click)="selectMenuItem(item)" style="cursor: pointer">{{ item.label }}</a>
+                  (click)="selectMenuItem(item)" >{{ item.label }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="logout()" style="cursor: pointer">Log Out</a>
+                <a class="nav-link" (click)="logout()">Log Out</a>
               </li>
             </ul>
           </div>

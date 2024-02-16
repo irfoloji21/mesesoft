@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -6,15 +6,15 @@ import { BillingAddressService } from 'src/app/shared/services/billingAddress.se
 import { OrderService } from 'src/app/shared/services/order.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { ShippingService } from 'src/app/shared/services/shipping.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss']
 })
-
-export class AddressComponent implements OnInit {
-  public orderDetails = [] 
+export class AddressComponent implements OnInit, OnDestroy {
+  public orderDetails = [];
   addForm: FormGroup;
   editForm: FormGroup;
   isAddingNew: boolean = false;
@@ -33,6 +33,10 @@ export class AddressComponent implements OnInit {
   selectedAddressIndex: number;
   selectedBillingIndex: number;
   selectedShippingMethodIndex: number | null = null;
+  private billingAddressSubscription: Subscription;
+  private productSubscription: Subscription;
+  private userAddressSubscription: Subscription;
+  private shippingDataSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +48,7 @@ export class AddressComponent implements OnInit {
     private billingAddressService: BillingAddressService
   ) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.loadUserAddresses();
     this.loadShippingData();
     this.loadBillingAddress();
@@ -53,8 +57,23 @@ export class AddressComponent implements OnInit {
     this.initEditForm();
   }
 
+  ngOnDestroy(): void {
+    if (this.billingAddressSubscription) {
+      this.billingAddressSubscription.unsubscribe();
+    }
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe();
+    }
+    if (this.userAddressSubscription) {
+      this.userAddressSubscription.unsubscribe();
+    }
+    if (this.shippingDataSubscription) {
+      this.shippingDataSubscription.unsubscribe();
+    }
+  }
+
   loadBillingAddress() {
-    this.billingAddressService.getBillingAddressData().subscribe(
+    this.billingAddressSubscription = this.billingAddressService.getBillingAddressData().subscribe(
       (res) => {
         this.billingAddresses = res;
       },
@@ -65,9 +84,9 @@ export class AddressComponent implements OnInit {
   }
 
   productDetails() {
-    this.productService.cartItems.subscribe(res => {
+    this.productSubscription = this.productService.cartItems.subscribe(res => {
       this.orderDetails = res;
-     });
+    });
   }
 
   toggleAddingNew() {
@@ -75,7 +94,7 @@ export class AddressComponent implements OnInit {
   }
 
   loadShippingData() {
-    this.shippingService.getShipData().subscribe(
+    this.shippingDataSubscription = this.shippingService.getShipData().subscribe(
       (res) => {
         this.shippingData = res;
       },
@@ -86,7 +105,7 @@ export class AddressComponent implements OnInit {
   }
 
   loadUserAddresses() {
-    this.authService.loadUser().subscribe(
+    this.userAddressSubscription = this.authService.loadUser().subscribe(
       (res) => {
         this.userAddresses = res.user.addresses;
         this.userInfo = res.user.phoneNumber;
@@ -134,7 +153,7 @@ export class AddressComponent implements OnInit {
         const userId = user._id;
         this.authService.updateUserAddress(userId, formData).subscribe(
           (response) => {
-            
+
             this.toastr.success('Address added successfully', 'Success');
             this.loadUserAddresses();
             this.isAddingNew = false;
@@ -245,4 +264,3 @@ export class AddressComponent implements OnInit {
     this.selectedBillingIndex = index;
   }
 }
-

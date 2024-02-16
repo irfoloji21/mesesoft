@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { ProductService } from "../../shared/services/product.service";
 import { Product } from "../../shared/classes/product";
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./cart.component.scss']
 })
 
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
   public products: Product[] = [];
   couponForm: FormGroup;
@@ -24,23 +24,32 @@ export class CartComponent implements OnInit {
   couponCode: string;
   discount_type;
   discountedTotalType: any;
+  private cartItemsSubscription: Subscription;
+  private cartTotalSubscription: Subscription;
 
   constructor(
     public productService: ProductService,
     private fb: FormBuilder,
-    private couponService: CouponService,
-    private toastr: ToastrService
   ) {
-    this.productService.cartItems.subscribe((response) => (this.products = response));
+    this.cartItemsSubscription = this.productService.cartItems.subscribe((response) => (this.products = response));
     this.couponForm = this.fb.group({
       couponCode: ['']
     });
   }
 
   ngOnInit(): void {
-    this.getTotal.subscribe((total) => {
+    this.cartTotalSubscription = this.getTotal.subscribe((total) => {
       this.totalAmount = total;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartItemsSubscription) {
+      this.cartItemsSubscription.unsubscribe();
+    }
+    if (this.cartTotalSubscription) {
+      this.cartTotalSubscription.unsubscribe();
+    }
   }
 
   public get getTotal(): Observable<number> {
@@ -59,4 +68,3 @@ export class CartComponent implements OnInit {
     this.productService.removeCartItem(product);
   }
 }
-

@@ -1,28 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../classes/category';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from '../../services/product.service';
+import { Subscription } from 'rxjs';
+import { Category } from 'src/app/shared/classes/category';
+import { CategoryService } from 'src/app/shared/services/category.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
 
   public categories: Category[] = [];
   public collapse: boolean = true;
   public SelectCategory: string | null = null;
-  constructor(public categoryService: CategoryService, private router: Router, private product: ProductService) {
-    this.categoryService.getCategories().subscribe((data: any) => {
+  private categorySubscription: Subscription | undefined;
+
+  constructor(public categoryService: CategoryService, private router: Router, private product: ProductService) {}
+
+  ngOnInit(): void {
+    this.categorySubscription = this.categoryService.getCategories().subscribe((data: any) => {
       if (data.success) {
         this.categories = data.categories;
       }
     });
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    if (this.categorySubscription) {
+      this.categorySubscription.unsubscribe();
+    }
   }
 
   get filterbyCategory() {
@@ -52,9 +60,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   navigateWithQueryParams(childrenSubItem: any) {
-    this.product.irfan(childrenSubItem._id).subscribe(res => {
+    this.product.ProductsByCategory(childrenSubItem._id).subscribe(res => {
     });
   }
 }
-
-

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class ChangePasswordComponent implements OnInit {
 
   passwordForm: FormGroup;
-
+  private authSubscription: Subscription | undefined;
   constructor(
     private authService: AuthService, 
     private fb: FormBuilder, 
@@ -56,10 +57,10 @@ export class ChangePasswordComponent implements OnInit {
       const confirmPassword = this.passwordForm.get('confirmPassword').value;
 
       if (newPassword === confirmPassword) {
-        this.authService.updateUserPassword(oldPassword, newPassword, confirmPassword)
+        this.authSubscription = this.authService.updateUserPassword(oldPassword, newPassword, confirmPassword)
           .subscribe(
             (response) => {
-              this.toasts.success('Şifreniz başarıyla değiştirildi.', '',
+              this.toasts.success('Your password has been changed successfully.', '',
                 {
                   positionClass: 'toast-top-right',
                   timeOut: 2500,
@@ -69,7 +70,7 @@ export class ChangePasswordComponent implements OnInit {
                 })
             },
             (error) => {
-              this.toasts.error('Şifreniz değiştirilemedi.', '',
+              this.toasts.error('Your password could not be changed.', '',
                 {
                   positionClass: 'toast-top-left',
                   timeOut: 2500,
@@ -87,7 +88,14 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
 
+
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 
 }

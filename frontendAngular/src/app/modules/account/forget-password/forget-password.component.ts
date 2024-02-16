@@ -14,7 +14,6 @@ export class ForgetPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private authService: AuthService
   ) {
     this.forgotPasswordForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
@@ -26,7 +25,7 @@ export class ForgetPasswordComponent implements OnInit {
 
   resetPassword() {
     if (this.forgotPasswordForm.valid) {
-      const email = this.forgotPasswordForm.get('email').value;
+      const email = this.forgotPasswordForm.get('#email').value;
       
     }
   }

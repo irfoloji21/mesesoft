@@ -6,9 +6,9 @@ import { ProfileComponent } from '../profile/profile.component';
 import { AddressComponent } from '../address/address.component';
 import { CouponComponent } from '../coupon/coupon.component';
 import { OrderComponent } from '../order/order.component';
-import { OrderService } from 'src/app/shared/services/order.service';
 import { SavedCardComponent } from '../saved-card/saved-card.component';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +17,7 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 })
 
 export class DashboardComponent implements OnInit {
-
+  menuItems$: Observable<any[]>;
   public userInf;
   userInitials: string;
   public openDashboard: boolean = false;
@@ -25,7 +25,6 @@ export class DashboardComponent implements OnInit {
   constructor(
     private serviceAuth: AuthService, 
     private router: Router, 
-    private orderService: OrderService
   ) { }
 
   menuItems = [
@@ -41,6 +40,7 @@ export class DashboardComponent implements OnInit {
   selectedMenuItem: any;
 
   ngOnInit(): void {
+    this.menuItems$ = of(this.menuItems);
     this.serviceAuth.loadUser().subscribe(res => {
       this.userInf = res.user;
       this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);

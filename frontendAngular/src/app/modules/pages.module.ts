@@ -63,7 +63,8 @@ import { ToastrModule } from 'ngx-toastr';
     PagesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule
+    ToastrModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

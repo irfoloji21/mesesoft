@@ -121,7 +121,7 @@ export class MenuComponent implements OnInit {
 
   //MenuQueryParamsArea
   navigateWithQueryParams(menuItem: string, subItem: string, childrenSubItem: any) {
-    this.product.irfan(childrenSubItem._id).subscribe(res => {
+    this.product.ProductsByCategory(childrenSubItem._id).subscribe(res => {
       this.handleSubCategoryResponse(menuItem, subItem, res);
     });
   }
