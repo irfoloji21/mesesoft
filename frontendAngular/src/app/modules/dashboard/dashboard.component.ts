@@ -9,6 +9,7 @@ import { OrderComponent } from '../order/order.component';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { SavedCardComponent } from '../saved-card/saved-card.component';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,25 +29,27 @@ export class DashboardComponent implements OnInit {
     private orderService: OrderService
   ) { }
 
-  menuItems = [
-    { label: 'My Account', component: ProfileComponent },
-    { label: 'Address Book', component: AddressComponent },
-    { label: 'My Orders', component: OrderComponent },
-    { label: 'My Wishlist', component: WishlistComponent },
-    { label: 'Saved Card', component: SavedCardComponent },
-    { label: 'Change Password', component: ChangePasswordComponent },
-    { label: 'Coupon', component: CouponComponent }
-  ]
-
-  selectedMenuItem: any;
+  menuItems$: Observable<any>;
 
   ngOnInit(): void {
-    this.serviceAuth.loadUser().subscribe(res => {
-      this.userInf = res.user;
-      this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);
-    })
-    this.selectedMenuItem = this.menuItems[0];
+    this.menuItems$ = this.serviceAuth.loadUser().pipe(
+      map(res => {
+        this.userInf = res.user;
+        this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);
+        return [
+          { label: 'My Account', component: ProfileComponent },
+          { label: 'Address Book', component: AddressComponent },
+          { label: 'My Orders', component: OrderComponent },
+          { label: 'My Wishlist', component: WishlistComponent },
+          { label: 'Saved Card', component: SavedCardComponent },
+          { label: 'Change Password', component: ChangePasswordComponent },
+          { label: 'Coupon', component: CouponComponent }
+        ];
+      })
+    );
   }
+
+  selectedMenuItem: any;
 
   selectMenuItem(item: any): void {
     this.selectedMenuItem = item;

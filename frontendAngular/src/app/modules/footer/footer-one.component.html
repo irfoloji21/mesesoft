@@ -76,7 +76,7 @@
             <div class="footer-title">
               <h4>{{ 'categories' | translate }}</h4>
             </div>
-            <div class="footer-contant" *ngFor="let categorie of categories" style="cursor: pointer">
+            <div class="footer-contant" *ngFor="let categorie of categories$ | async" style="cursor: pointer">
               <ul *ngIf="categorie.isShow">
                 <li (click)="toggletNavActive(categorie)">
                   {{ categorie.name }}

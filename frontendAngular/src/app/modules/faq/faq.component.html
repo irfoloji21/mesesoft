@@ -4,16 +4,8 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <ngb-accordion
-          [closeOthers]="true"
-          class="accordion theme-accordion"
-          id="accordionExample"
-        >
-          <ngb-panel
-            *ngFor="let item of faqData"
-            [id]="item.id"
-            [title]="item.title"
-          >
+        <ngb-accordion [closeOthers]="true" class="accordion theme-accordion" id="accordionExample">
+          <ngb-panel *ngFor="let item of faqData$ | async" [id]="item.id" [title]="item.title">
             <ng-template ngbPanelContent>
               <p class="mb-0">{{ item.content }}</p>
             </ng-template>

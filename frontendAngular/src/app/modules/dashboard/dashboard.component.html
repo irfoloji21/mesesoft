@@ -14,15 +14,17 @@
             </span>
           </div>
           <div class="block-content">
-            <ul>
-              <li *ngFor="let item of menuItems" class="nav-item">
-                <a [routerLink]="[item.label.toLowerCase().replace(' ', '-')]" class="nav-link"
-                  (click)="selectMenuItem(item)" style="cursor: pointer">{{ item.label }}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" (click)="logout()" style="cursor: pointer">Log Out</a>
-              </li>
-            </ul>
+            <ng-container *ngIf="menuItems$ | async as menuItems">
+              <ul>
+                <li *ngFor="let item of menuItems" class="nav-item">
+                  <a [routerLink]="[item.label.toLowerCase().replace(' ', '-')]" class="nav-link"
+                    (click)="selectMenuItem(item)" style="cursor: pointer">{{ item.label }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="logout()" style="cursor: pointer">Log Out</a>
+                </li>
+              </ul>
+            </ng-container>
           </div>
         </div>
       </div>

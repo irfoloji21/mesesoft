@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from 'src/app/shared/services/contact.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -9,9 +10,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./contact.component.scss']
 })
 
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
 
   contactForm: FormGroup;
+  messageSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -28,8 +30,14 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contactService.getMessages().subscribe(res => {
+    this.messageSubscription = this.contactService.getMessages().subscribe(res => {
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
   }
 
   onSubmit() {
@@ -38,7 +46,7 @@ export class ContactComponent implements OnInit {
     this.contactService.addMessage(message).subscribe(
       updatedMessages => {
         this.contactForm.reset();
-        this.toastr.success('Message send successfully', 'Success');
+        this.toastr.success('Message sent successfully', 'Success');
       },
       error => {
         console.error('Error sending message:', error);

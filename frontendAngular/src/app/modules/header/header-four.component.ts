@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { ProductService } from '../services/product.service';
+import { Component, OnInit, Input, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-header-four',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./header-four.component.scss']
 })
 
-export class HeaderFourComponent implements OnInit {
+export class HeaderFourComponent implements OnInit, OnDestroy {
 
   @Input() class: string = 'header-2 header-6';
   @Input() themeLogo: string = 'assets/images/icon/logo.png'; // Default Logo
@@ -23,6 +24,9 @@ export class HeaderFourComponent implements OnInit {
   wishlistCount: number;
   userInitials: string;
   headerForm: FormGroup;
+  authSubscription: Subscription;
+  userSubscription: Subscription;
+  wishlistSubscription: Subscription;
 
   constructor(
     private serviceAuth: AuthService,
@@ -54,18 +58,30 @@ export class HeaderFourComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.serviceAuth.isLoggedIn$.subscribe((loggedIn) => {
+    this.authSubscription = this.serviceAuth.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
     });
 
-    this.serviceAuth.loadUser().subscribe(res => {
+    this.userSubscription = this.serviceAuth.loadUser().subscribe(res => {
       this.userInf = res.user;
       this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName);
     })
 
-    this.productService.getWishlistCountObservable().subscribe((count) => {
+    this.wishlistSubscription = this.productService.getWishlistCountObservable().subscribe((count) => {
       this.wishlistCount = count;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.wishlistSubscription) {
+      this.wishlistSubscription.unsubscribe();
+    }
   }
 
   profile(): void {

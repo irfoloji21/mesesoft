@@ -9,8 +9,7 @@
             <ul>
               <li>{{ "ecommerce-angular" | translate }}</li>
               <li>
-                <i class="fa fa-phone" aria-hidden="true"></i
-                >{{ "call-us" | translate }}: 123 - 456 - 789000000
+                <i class="fa fa-phone" aria-hidden="true"></i>{{ "call-us" | translate }}: 123 - 456 - 789000000
               </li>
             </ul>
           </div>
@@ -21,8 +20,7 @@
                 <a [routerLink]="['/shop/compare']"><i class="fa fa-random" aria-hidden="true"></i>Compare</a>
               </li> -->
             <li class="mobile-wishlist mx-4">
-              <a [routerLink]="['/shop/wishlist']"
-                ><i class="fa fa-heart" aria-hidden="true">
+              <a [routerLink]="['/shop/wishlist']"><i class="fa fa-heart" aria-hidden="true">
                   <!-- <span *ngIf="wishlistCount" class="wishlist-round-icon">{{ wishlistCount }}</span> -->
                 </i>
                 Wishlist
@@ -32,11 +30,7 @@
               <span *ngIf="!isLoggedIn">
                 <i class="fa fa-user" aria-hidden="true"></i> My Account
               </span>
-              <span
-                class="round-icon rounded-circle"
-                *ngIf="isLoggedIn"
-                (click)="profile()"
-              >
+              <span class="round-icon rounded-circle" *ngIf="isLoggedIn" (click)="profile()">
                 {{ userInitials }}
               </span>
               <ul class="onhover-show-div">
@@ -71,27 +65,13 @@
         <div class="main-menu border-section border-top-0">
           <div class="brand-logo layout2-logo">
             <a [routerLink]="['/home/fashion']">
-              <img
-                src="../../../../assets/images/icon/MeseSoft Logo2.jpg"
-                class="img-fluid"
-                alt="logo"
-              />
+              <img src="../../../../assets/images/icon/MeseSoft Logo2.jpg" class="img-fluid" alt="logo" />
             </a>
           </div>
           <div>
-            <form
-              class="form_search"
-              role="form"
-              [formGroup]="headerForm"
-              (ngSubmit)="submitSearch()"
-            >
-              <input
-                id="query search-autocomplete"
-                formControlName="search"
-                placeholder="Find the best for your..."
-                class="nav-search nav-search-field"
-                aria-expanded="true"
-              />
+            <form class="form_search" role="form" [formGroup]="headerForm" (ngSubmit)="submitSearch()">
+              <input id="query search-autocomplete" formControlName="search" placeholder="Find the best for your..."
+                class="nav-search nav-search-field" aria-expanded="true" />
               <button type="submit" name="nav-submit-button" class="btn-search">
                 <i class="ti-search"></i>
               </button>
