@@ -31,6 +31,7 @@ import { AddressComponent } from './account/address/address.component';
 import { CouponComponent } from './account/coupon/coupon.component';
 import { OrderComponent } from './account/order/order.component';
 import { SavedCardComponent } from './account/saved-card/saved-card.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { SavedCardComponent } from './account/saved-card/saved-card.component';
     PagesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule
   ]
 })
 export class PagesModule { }

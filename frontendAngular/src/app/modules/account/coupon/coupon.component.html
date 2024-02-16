@@ -9,9 +9,9 @@
           <div class="coupon-box row no-gutters bg-white p-1 h-entry" *ngFor="let coupon of coupons">
             <div class="expiration-date">
               <h5>
-                Expiration date:
-                <span class="expiration-month">{{ getMonthName(coupon.end_date.month) }}</span> -
-                <span class="expiration-year">{{ coupon.end_date.year }}</span>
+                Expiration date: 2025
+                <!-- <span class="expiration-month">{{ getMonthName(coupon.end_date.month) }}</span> -
+                <span class="expiration-year">{{ coupon.end_date.year }}</span> -->
               </h5>
             </div>
             <div class="col-4 col-md-3 align-self-center">
@@ -53,7 +53,7 @@
       </ng-template>
       
     </li>
-    <li [ngbNavItem]="2">
+    <!-- <li [ngbNavItem]="2">
       <a ngbNavLink>
         <h5>Used Coupons</h5>
       </a>
@@ -101,7 +101,7 @@
         </section>
       </ng-template>
       
-    </li>
+    </li> -->
   </ul>
   <div [ngbNavOutlet]="nav" class="mt-2"></div>
 

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CouponService } from 'src/app/shared/services/coupon.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-coupon",
@@ -9,12 +10,13 @@ import { CouponService } from 'src/app/shared/services/coupon.service';
   styleUrls: ["./coupon.component.scss"],
 })
 
-export class CouponComponent {
+export class CouponComponent implements OnDestroy {
   coupons: any = [];
   public active = 1;
   isModalOpen: boolean = false;
   selectedCoupon: any;
   public loading: boolean = true;
+  private userSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -23,25 +25,31 @@ export class CouponComponent {
   ) { }
 
   ngOnInit(): void {
-    this.getCouponss();
+    this.loadUserCoupons();
   }
 
-  async getCouponss() {
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
+
+  async loadUserCoupons() {
     try {
       this.loading = true;
   
-      const res = await this.authService.loadUser().toPromise();
-  
-      for (let a = 0; a < res.user.coupons.length; a++) {
-        const couponRes = await this.couponService
-          .getCouponById(res.user.coupons[a].couponID)
-          .toPromise();
-        this.coupons[a] = couponRes.couponCode;
-      }
+      this.userSubscription = this.authService.loadUser().subscribe(async res => {
+        for (let a = 0; a < res.user.coupons.length; a++) {
+          const couponRes = await this.couponService
+            .getCouponById(res.user.coupons[a].couponID)
+            .toPromise();
+          this.coupons[a] = couponRes.couponCode;
+        }
+        this.loading = false;
+      });
     } catch (error) {
       console.error(error);
-    } finally {
-      this.loading = false; 
+      this.loading = false;
     }
   }
   

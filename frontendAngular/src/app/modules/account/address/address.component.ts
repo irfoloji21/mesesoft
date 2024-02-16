@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class AddressComponent implements OnInit {
   isEditing: boolean = false;
   editedAddresses: any[] = [];
   public loading: boolean = true;
-
+  private userSubscription: Subscription;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -35,19 +36,31 @@ export class AddressComponent implements OnInit {
     this.isAddingNew = !this.isAddingNew;
   }
 
-  loadUserAddresses() {
+  async loadUserAddresses() {
     this.loading = true;
-    this.authService.loadUser().subscribe(
-      (res) => {
-        this.userAddresses = res.user.addresses;
-      },
-      (error) => {
-        console.error(error);
-      },
-      () => {
-        this.loading = false;
-      }
-    );
+    try {
+      // Abonelik oluşturuluyor ve bu değişkene atanıyor
+      this.userSubscription = this.authService.loadUser().subscribe(
+        (res) => {
+          this.userAddresses = res.user.addresses;
+        },
+        (error) => {
+          console.error(error);
+        },
+        () => {
+          this.loading = false;
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      this.loading = false;
+    }
+  }
+  
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   initAddForm(): void {

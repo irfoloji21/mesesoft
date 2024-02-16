@@ -49,38 +49,32 @@ export class ChangePasswordComponent implements OnInit {
     };
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.passwordForm.valid) {
       const oldPassword = this.passwordForm.get('oldPassword').value;
       const newPassword = this.passwordForm.get('newPassword').value;
       const confirmPassword = this.passwordForm.get('confirmPassword').value;
 
       if (newPassword === confirmPassword) {
-        this.authService.updateUserPassword(oldPassword, newPassword, confirmPassword)
-          .subscribe(
-            (response) => {
-              this.toasts.success('Şifreniz başarıyla değiştirildi.', '',
-                {
-                  positionClass: 'toast-top-right',
-                  timeOut: 2500,
-                  closeButton: true,
-                  newestOnTop: false,
-                  progressBar: true,
-                })
-            },
-            (error) => {
-              this.toasts.error('Şifreniz değiştirilemedi.', '',
-                {
-                  positionClass: 'toast-top-left',
-                  timeOut: 2500,
-                  closeButton: true,
-                  newestOnTop: false,
-                  progressBar: true,
-                }
-              )
-            }
-          );
-        this.router.navigate(['/dashboard']);
+        try {
+          await this.authService.updateUserPassword(oldPassword, newPassword, confirmPassword).toPromise();
+          this.toasts.success('Your password has been changed successfully.', '', {
+            positionClass: 'toast-top-right',
+            timeOut: 2500,
+            closeButton: true,
+            newestOnTop: false,
+            progressBar: true,
+          });
+          this.router.navigate(['/dashboard']);
+        } catch (error) {
+          this.toasts.error('Your password has not been changed.', '', {
+            positionClass: 'toast-top-left',
+            timeOut: 2500,
+            closeButton: true,
+            newestOnTop: false,
+            progressBar: true,
+          });
+        }
       } else {
         this.passwordForm.setErrors({ passwordMismatch: true });
       }
@@ -89,5 +83,4 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

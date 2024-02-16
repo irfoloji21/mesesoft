@@ -1,29 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-account-info',
   templateUrl: './account-info.component.html',
   styleUrls: ['./account-info.component.scss']
 })
+export class AccountInfoComponent implements OnInit, OnDestroy {
 
-export class AccountInfoComponent implements OnInit {
-
-  public userInf;
+  public userInfo: any;
   userInitials: string;
+  private userSubscription: Subscription;
 
   constructor(
-    private serviceAuth: AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.serviceAuth.loadUser().subscribe(res => {
-      this.userInf = res.user;
-      this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName, this.userInf.email, this.userInf.phoneNumber);
-    })
+    this.userSubscription = this.authService.loadUser().subscribe(res => {
+      this.userInfo = res.user;
+      this.userInitials = this.getInitials(this.userInfo.firstName, this.userInfo.lastName, this.userInfo.email, this.userInfo.phoneNumber);
+    });
   }
 
-  getInitials(firstName: string, lastName: string, email: string, phoneNumber: number): string {
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
+
+  getInitials(firstName: string, lastName: string, email: string, phoneNumber: string): string {
     return `${firstName} ${lastName} ${email} ${phoneNumber}`;
   }
 }
