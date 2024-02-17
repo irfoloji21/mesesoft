@@ -1,10 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CategoryService } from '../services/category.service';
-import { Category } from '../classes/category';
-import { SocialMediaService } from '../services/social-media.service';
+
+
+;
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SubscribeService } from '../services/subscribe.service';
+
+import { SocialMediaService } from 'src/app/shared/services/social-media.service';
+import { SubscribeService } from 'src/app/shared/services/subscribe.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
+import { Category } from 'src/app/shared/classes/category';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-footer-one',
@@ -23,6 +28,9 @@ export class FooterOneComponent implements OnInit {
   public today: number = Date.now();
   subscribeForm: FormGroup;
 
+  categories$: Observable<Category[]>;
+  socialMediaLinks$: Observable<any>;
+
   constructor(
     private categoryService: CategoryService,
     private socialMediaService: SocialMediaService,
@@ -36,15 +44,9 @@ export class FooterOneComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe((data: any) => {
-      if (data.success) {
-        this.categories = data.categories;
 
-      }
-    });
-    this.socialMediaService.getSocialMediaLinks().subscribe(links => {
-      this.socialMediaLinks = links;
-    });
+    this.categories$ = this.categoryService.getCategories();
+    this.socialMediaLinks$ = this.socialMediaService.getSocialMediaLinks();
   }
 
   subscribe() {
