@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/classes/product';
 import { ProductSlider } from 'src/app/shared/data/slider';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-fashion-one',
@@ -15,7 +16,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 
 export class FashionOneComponent implements OnInit {
-
+  public sortedProducts$: Observable<Product[]>;
   @Input() blog: any[] = [];
   public products: Product[] = [];
   public productCollections: any[] = [];
@@ -23,7 +24,7 @@ export class FashionOneComponent implements OnInit {
   public collections: any = [];
   public sliders: any[] = [];
   public active;
-  public sortedProducts: any = []
+  // public sortedProducts: any = []
   public ProductSliderConfig: any = ProductSlider;
 
   constructor(
@@ -32,7 +33,7 @@ export class FashionOneComponent implements OnInit {
     public collectionService: KoleksiyonService,
     private router: Router,
   ) {
-    this.collectionService.getKoleksiyons().subscribe((response: any) => {
+    this.collectionService.getColections().subscribe((response: any) => {
       this.collections = response.koleksiyons;
       this.sliders = this.collections
         .filter(collection => collection.isShow === true)
@@ -81,12 +82,14 @@ export class FashionOneComponent implements OnInit {
   }
 
   topCollection() {
-    this.productService.getProducts.subscribe((products: any) => {
-      const productArray = Array.isArray(products.products) ? products.products : [];
-      this.sortedProducts = productArray
-        .filter(product => product.sold_out > 0)
-        .sort((a, b) => b.sold_out - a.sold_out);
-    });
+    this.sortedProducts$ = this.productService.getProducts.pipe(
+      map((products: any) => {
+        const productArray = Array.isArray(products.products) ? products.products : [];
+        return productArray
+          .filter(product => product.sold_out > 0)
+          .sort((a, b) => b.sold_out - a.sold_out);
+      })
+    );
   }
 
   loadDataMen(): void {

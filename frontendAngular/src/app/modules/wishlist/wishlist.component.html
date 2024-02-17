@@ -16,7 +16,7 @@
               <th scope="col">action</th>
             </tr>
           </thead>
-          <tbody *ngFor="let product of products">
+          <tbody *ngFor="let product of products$ | async">
             <tr>
               <td>
                 <a [routerLink]="['/shop/product/', product.slug]">

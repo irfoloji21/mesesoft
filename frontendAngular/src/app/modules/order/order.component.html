@@ -28,7 +28,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let order of filteredOrders">
+                    <ng-container *ngFor="let order of filteredOrders| async">
                       <tr>
                         <td>
                           <img [src]="order.cart[0].images[0].url" class="blur-up lazyloaded" alt="" />

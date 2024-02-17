@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.userSubscription = this.authService.login(formData.email, formData.password).subscribe(response => {
         if (response.success) {
           this.authService.setUserId(response.user._id);
-          this.toasts.success('Giriş başarılı', '',
+          this.toasts.success('Login successful', '',
             {
               positionClass: 'toast-top-right',
               timeOut: 2500,
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['/home/fashion'], { state: formData });
         } else {
           console.error("error");
-          this.toasts.error('Giriş başarısız', '',
+          this.toasts.error('Login failed', '',
             {
               positionClass: 'toast-top-right',
               timeOut: 2500,

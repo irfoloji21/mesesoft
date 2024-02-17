@@ -31,7 +31,7 @@ export class SliderComponent implements OnInit {
   ngOnInit(): void { }
 
   shopNow(slider: any) {
-    this.collectionService.getKoleksiyons().subscribe(res => {
+    this.collectionService.getColections().subscribe(res => {
       this.slider=res;
     })
     if (slider.subTitle==="The most liked products") {

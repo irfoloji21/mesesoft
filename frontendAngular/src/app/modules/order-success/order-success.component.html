@@ -1,9 +1,5 @@
 <!-- breadcrumb start -->
-<app-breadcrumb
-  [title]="'404 page'"
-  [breadcrumb]="'404 page'"
-  *ngIf="!orderDetails"
-></app-breadcrumb>
+<app-breadcrumb [title]="'404 page'" [breadcrumb]="'404 page'" *ngIf="!orderDetails"></app-breadcrumb>
 <!-- breadcrumb End -->
 
 <!-- section start -->
@@ -14,9 +10,7 @@
         <div class="error-section">
           <h1>404</h1>
           <h2>page not found</h2>
-          <a [routerLink]="'/home/fashion'" class="btn btn-solid"
-            >back to home</a
-          >
+          <a [routerLink]="'/home/fashion'" class="btn btn-solid">back to home</a>
         </div>
       </div>
     </div>
@@ -48,16 +42,9 @@
       <div class="col-lg-6">
         <div class="product-order">
           <h3>your order details</h3>
-          <div
-            class="row product-order-detail"
-            *ngFor="let product of orderDetails.product"
-          >
+          <div class="row product-order-detail" *ngFor="let product of orderDetails.product">
             <div class="col-3">
-              <img
-                [src]="product.images[0].url"
-                alt="{{ product.name }}"
-                class="img-fluid"
-              />
+              <img [src]="product.images[0].url" alt="{{ product.name }}" class="img-fluid" />
             </div>
             <div class="col-3 order_detail">
               <div>
@@ -94,7 +81,7 @@
               total
               <span>{{
                 orderDetails.totalAmount + selectedShipping.price | currency
-              }}</span>
+                }}</span>
             </h3>
           </div>
         </div>
@@ -111,10 +98,7 @@
               <li>Order Total: {{ orderDetails.totalAmount | currency }}</li>
             </ul>
           </div>
-          <div
-            class="col-sm-6"
-            *ngIf="orderDetails && orderDetails.shippingDetails"
-          >
+          <div class="col-sm-6" *ngIf="orderDetails && orderDetails.shippingDetails">
             <h4>shipping address</h4>
             <ul class="order-detail">
               <li>{{ orderDetails.shippingDetails.address }}</li>

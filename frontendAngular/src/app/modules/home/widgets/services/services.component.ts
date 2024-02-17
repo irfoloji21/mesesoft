@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 
 export class ServicesComponent implements OnInit {
-
+  private cartItemsSubscription: Subscription;
   constructor(
     private router: Router, 
     private productService : ProductService, 
@@ -19,8 +20,14 @@ export class ServicesComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  ngOnDestroy(): void {
+    if (this.cartItemsSubscription) {
+      this.cartItemsSubscription.unsubscribe();
+    }
+  }
+
   onlinePayment(){
-    this.productService.cartItems.subscribe(res => {
+    this.cartItemsSubscription = this.productService.cartItems.subscribe(res => {
       if(res.length>0) {
         this.router.navigate(['shop/checkout']);
       }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order',
@@ -8,15 +9,16 @@ import { OrderService } from 'src/app/shared/services/order.service';
   styleUrls: ['./order.component.scss']
 })
 
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
 
   public userId: string;
   public orderId: string;
-  public filteredOrders: any[] = [];
+  public filteredOrders$: Observable<any[]>; 
   public orderDetails: any;
   public ImageSrc: string;
   isModalOpen: boolean = false;
   public loading: boolean = false;
+  private ordersSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -29,31 +31,32 @@ export class OrderComponent implements OnInit {
     this.loadUserOrders(this.userId);
   }
 
+  ngOnDestroy(): void {
+    if (this.ordersSubscription) {
+      this.ordersSubscription.unsubscribe();
+    }
+  }
+
   loadUserOrders(userId: string) {
     this.loading = true;
-    this.orderService.getOrders(userId).subscribe(
+    this.ordersSubscription = this.orderService.getOrders(userId).subscribe(
       (res) => {
-        this.filteredOrders = res.orders;
-        
+        this.filteredOrders$ = res.orders;
+        this.loading = false;
       },
       (error) => {
         console.error(error);
-      },
-      () => {
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }
 
   refundOrder(orderId: string) {
-    this.orderService.refundOrder(orderId).subscribe(
-      (res) => {
-        this.loadUserOrders(this.userId);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.orderService.refundOrder(orderId).subscribe(() => {
+      this.loadUserOrders(this.userId);
+    }, (error) => {
+      console.error(error);
+    });
   }
 
   openModal(order: any): void {

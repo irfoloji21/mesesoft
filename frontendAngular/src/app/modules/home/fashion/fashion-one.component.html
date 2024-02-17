@@ -79,7 +79,7 @@
     <div class="row">
       <div class="col">
         <owl-carousel-o class="product-m no-arrow" [options]="ProductSliderConfig">
-          <ng-container *ngFor="let product of sortedProducts | slice : 0 : 10">
+          <ng-container *ngFor="let product of sortedProducts$ | async | slice : 0 : 10">
             <ng-template carouselSlide>
               <div class="product-box">
                 <app-product-box-one [product]="product" [loader]="true" [currency]="productService?.Currency"

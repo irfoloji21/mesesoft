@@ -11,7 +11,7 @@ export class KoleksiyonService {
 
   constructor(private http: HttpClient) { }
 
-  getKoleksiyons(): Observable<any> {
+  getColections(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/koleksiyon/koleksiyons`);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/shared/classes/product';
 import { ProductService } from 'src/app/shared/services/product.service';
 
@@ -11,7 +12,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 
 export class WishlistComponent implements OnInit {
 
-  public products: Product[] = [];
+  public products$: Observable<Product[]>;
   public loading: boolean = true;
 
   constructor(
@@ -23,11 +24,11 @@ export class WishlistComponent implements OnInit {
     this.loadWishlist();
   }
 
-  async loadWishlist() {
+  loadWishlist() {
     this.loading = true;
 
-    this.productService.wishlistItems.subscribe(response => {
-      this.products = response;
+    this.products$ = this.productService.wishlistItems;
+    this.products$.subscribe(() => {
       this.loading = false;
     });
   }
