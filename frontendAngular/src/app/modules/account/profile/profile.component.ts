@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -9,11 +10,12 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   public userInf;
   userInitials: string;
   updateForm: FormGroup;
+  private userSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,16 +23,22 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.serviceAuth.loadUser().subscribe(res => {
+    this.userSubscription = this.serviceAuth.loadUser().subscribe(res => {
       this.userInf = res.user;
       this.userInitials = this.getInitials(this.userInf.firstName, this.userInf.lastName, this.userInf.email, this.userInf.phoneNumber);
-    })
+    });
     this.updateForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required]
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   getInitials(firstName: string, lastName: string, email: string, phoneNumber: number): string {
@@ -51,6 +59,7 @@ export class ProfileComponent implements OnInit {
     this.serviceAuth.updateUser(formData).subscribe(
       (user) => {
         if (user.success) {
+
         }
         else {
           console.error("error");

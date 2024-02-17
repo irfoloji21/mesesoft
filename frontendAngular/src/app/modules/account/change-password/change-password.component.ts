@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class ChangePasswordComponent implements OnInit {
 
   passwordForm: FormGroup;
-
+  private authSubscription: Subscription | undefined;
   constructor(
     private authService: AuthService, 
     private fb: FormBuilder, 
@@ -49,38 +50,52 @@ export class ChangePasswordComponent implements OnInit {
     };
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.passwordForm.valid) {
       const oldPassword = this.passwordForm.get('oldPassword').value;
       const newPassword = this.passwordForm.get('newPassword').value;
       const confirmPassword = this.passwordForm.get('confirmPassword').value;
 
       if (newPassword === confirmPassword) {
-        try {
-          await this.authService.updateUserPassword(oldPassword, newPassword, confirmPassword).toPromise();
-          this.toasts.success('Your password has been changed successfully.', '', {
-            positionClass: 'toast-top-right',
-            timeOut: 2500,
-            closeButton: true,
-            newestOnTop: false,
-            progressBar: true,
-          });
-          this.router.navigate(['/dashboard']);
-        } catch (error) {
-          this.toasts.error('Your password has not been changed.', '', {
-            positionClass: 'toast-top-left',
-            timeOut: 2500,
-            closeButton: true,
-            newestOnTop: false,
-            progressBar: true,
-          });
-        }
+        this.authSubscription = this.authService.updateUserPassword(oldPassword, newPassword, confirmPassword)
+          .subscribe(
+            (response) => {
+              this.toasts.success('Your password has been changed successfully.', '',
+                {
+                  positionClass: 'toast-top-right',
+                  timeOut: 2500,
+                  closeButton: true,
+                  newestOnTop: false,
+                  progressBar: true,
+                })
+            },
+            (error) => {
+              this.toasts.error('Your password could not be changed.', '',
+                {
+                  positionClass: 'toast-top-left',
+                  timeOut: 2500,
+                  closeButton: true,
+                  newestOnTop: false,
+                  progressBar: true,
+                }
+              )
+            }
+          );
+        this.router.navigate(['/dashboard']);
       } else {
         this.passwordForm.setErrors({ passwordMismatch: true });
       }
     }
   }
 
+
   ngOnInit(): void {
   }
+
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
 }
