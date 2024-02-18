@@ -29,6 +29,7 @@ $arkaplan-renk: #ededed;
       .select-box {
         flex: 1 0 calc(50% - 1rem);
         min-width: 0;
+
         @media (max-width: 768px) {
           flex: 1 0 calc(100% - 1rem);
         }
@@ -49,6 +50,7 @@ $arkaplan-renk: #ededed;
               text-transform: capitalize;
               color: #222;
               font-weight: 600;
+
               span {
                 font-size: 1rem;
                 color: #00a8e8;
@@ -64,6 +66,7 @@ $arkaplan-renk: #ededed;
 
           .middle {
             margin-top: 15px;
+
             .address {
               p {
                 margin: 0;
@@ -72,8 +75,10 @@ $arkaplan-renk: #ededed;
 
             .number {
               margin-top: 15px;
+
               p {
                 margin: 0;
+
                 span {
                   color: #00a8e8;
                   font-weight: bold;
@@ -136,8 +141,10 @@ $arkaplan-renk: #ededed;
   }
 
   .modal-content {
-    width: 100%; /* Genişliği 100% yapın */
-    max-width: 800px; /* Maksimum genişlik ayarı */
+    width: 100%;
+    /* Genişliği 100% yapın */
+    max-width: 800px;
+    /* Maksimum genişlik ayarı */
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;

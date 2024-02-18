@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LogoSlider } from 'src/app/shared/data/slider';
 
-
 @Component({
   selector: 'app-logo',
   templateUrl: './logo.component.html',
@@ -16,4 +15,5 @@ export class LogoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
+  
 }

@@ -18,25 +18,25 @@ export class SliderComponent implements OnInit {
   @Input() category: string;
   @Input() buttonText: string;
   @Input() buttonClass: string;
-  @Input() products: any  =[]
-  slider : any =[]
+  @Input() products: any = []
+  slider: any = []
   constructor(
-    public productService: ProductService, 
-    public categoryService: CategoryService, 
+    public productService: ProductService,
+    public categoryService: CategoryService,
     public collectionService: KoleksiyonService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void { }
 
   shopNow(slider: any) {
     this.collectionService.getColections().subscribe(res => {
-      this.slider=res;
+      this.slider = res;
     })
-    if (slider.subTitle==="The most liked products") {
+    if (slider.subTitle === "The most liked products") {
       this.shopNowMostLiked();
-    } else if (slider.subTitle==="Recently added products") {
+    } else if (slider.subTitle === "Recently added products") {
       this.shopNowNewProducts();
     }
   }
@@ -59,7 +59,7 @@ export class SliderComponent implements OnInit {
       queryParamsHandling: 'merge',
     });
   }
-  
+
   shopNowNewProducts() {
     this.productService.getProducts.subscribe((response: any) => {
       this.products = response.products;

@@ -10,10 +10,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { ShopComponent } from './shop/shop.component';
-
 import { ElementsComponent } from './elements/elements.component';
 import { PagesComponent } from './modules/pages.component';
 

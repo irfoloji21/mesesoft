@@ -26,7 +26,7 @@ export class BlogDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
-    this.blogForm= this.formBuilder.group({
+    this.blogForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       comment: ['', Validators.required],

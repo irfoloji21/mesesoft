@@ -1,10 +1,10 @@
 {
-    "facebook": "https://www.facebook.com/",
-    "googlePlus": "https://plus.google.com/",
-    "twitter": "https://twitter.com/",
-    "instagram": "https://www.instagram.com/",
-    "rss": "https://example.com/rss",
-    "youtube": "https://www.youtube.com/",
-    "phone": "tel:+1-202-555-0104",
-    "whatsapp": "+905558809868"
+  "facebook": "https://www.facebook.com/",
+  "googlePlus": "https://plus.google.com/",
+  "twitter": "https://twitter.com/",
+  "instagram": "https://www.instagram.com/",
+  "rss": "https://example.com/rss",
+  "youtube": "https://www.youtube.com/",
+  "phone": "tel:+1-202-555-0104",
+  "whatsapp": "+905558809868"
 }

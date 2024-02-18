@@ -17,7 +17,7 @@ export class SuccessComponent implements OnInit, AfterViewInit {
   totalAmount: number;
   selectedAddress: any;
   selectedCargo: any;
-  
+
   constructor(
     public productService: ProductService,
     private route: ActivatedRoute,

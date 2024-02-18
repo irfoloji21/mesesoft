@@ -23,27 +23,19 @@
             <tr>
               <td>
                 <a [routerLink]="['/shop/product/', product?.slug]">
-                  <img
-                    [src]="product.images[0].url"
-                    [alt]="product.images[0].alt"
-                  />
+                  <img [src]="product.images[0].url" [alt]="product.images[0].alt" />
                 </a>
               </td>
               <td>
                 <a [routerLink]="['/shop/product/', product?.slug]">{{
                   product.name | titlecase
-                }}</a>
+                  }}</a>
                 <div class="mobile-cart-content row">
                   <div class="col">
                     <div class="qty-box">
                       <div class="input-group">
-                        <input
-                          type="text"
-                          name="quantity"
-                          class="form-control input-number"
-                          disabled
-                          [(ngModel)]="product.quantity"
-                        />
+                        <input type="text" name="quantity" class="form-control input-number" disabled
+                          [(ngModel)]="product.quantity" />
                       </div>
                     </div>
                   </div>
@@ -70,29 +62,16 @@
                 <div class="qty-box">
                   <div class="input-group">
                     <span class="input-group-prepend">
-                      <button
-                        type="button"
-                        class="btn quantity-left-minus"
-                        data-type="minus"
-                        (click)="decrement(product)"
-                      >
+                      <button type="button" class="btn quantity-left-minus" data-type="minus"
+                        (click)="decrement(product)">
                         <i class="ti-angle-left"></i>
                       </button>
                     </span>
-                    <input
-                      type="text"
-                      name="quantity"
-                      class="form-control input-number"
-                      disabled
-                      [(ngModel)]="product.quantity"
-                    />
+                    <input type="text" name="quantity" class="form-control input-number" disabled
+                      [(ngModel)]="product.quantity" />
                     <span class="input-group-prepend">
-                      <button
-                        type="button"
-                        class="btn quantity-right-plus"
-                        data-type="plus"
-                        (click)="increment(product)"
-                      >
+                      <button type="button" class="btn quantity-right-plus" data-type="plus"
+                        (click)="increment(product)">
                         <i class="ti-angle-right"></i>
                       </button>
                     </span>
@@ -100,11 +79,7 @@
                 </div>
               </td>
               <td>
-                <a
-                  href="javascript:void(0)"
-                  (click)="removeItem(product)"
-                  class="icon"
-                >
+                <a href="javascript:void(0)" (click)="removeItem(product)" class="icon">
                   <i class="ti-close"></i>
                 </a>
               </td>
@@ -118,9 +93,7 @@
         </table>
         <div class="row cart-buttons" *ngIf="products.length">
           <div class="col-3">
-            <a [routerLink]="['/shop/collection']" class="btn btn-solid"
-              >continue shopping</a
-            >
+            <a [routerLink]="['/shop/collection']" class="btn btn-solid">continue shopping</a>
           </div>
         </div>
         <hr />
@@ -129,13 +102,11 @@
             <tr>
               <td>Total Price:</td>
               <td>
-                <h2
-                  [ngStyle]="{
+                <h2 [ngStyle]="{
                     'text-decoration': showDiscountedTotal
                       ? 'line-through'
                       : 'none'
-                  }"
-                >
+                  }">
                   {{ getTotal | async | currency }}
                 </h2>
               </td>
@@ -144,21 +115,14 @@
               <td>Coupon Code:</td>
               <td>
                 <form [formGroup]="couponForm" class="coupon-form">
-                  <input
-                    type="text"
-                    formControlName="couponCode"
-                    placeholder="Coupon Code"
-                  />
+                  <input type="text" formControlName="couponCode" placeholder="Coupon Code" />
                   <button (click)="applyCoupon()">Apply</button>
                 </form>
               </td>
             </tr>
             <tr *ngIf="showDiscountedTotal">
               <td>Discounted Price:</td>
-              <td
-                class="DiscountedPrice"
-                [ngClass]="{ discounted: discountedTotal !== totalAmount }"
-              >
+              <td class="DiscountedPrice" [ngClass]="{ discounted: discountedTotal !== totalAmount }">
                 <div>
                   {{ discountedTotalType }}
                 </div>

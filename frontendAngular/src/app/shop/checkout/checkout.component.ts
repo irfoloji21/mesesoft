@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-// import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { environment } from '../../../environments/environment';
 import { Product } from "../../shared/classes/product";
 import { ProductService } from "../../shared/services/product.service";
@@ -25,14 +24,14 @@ export class CheckoutComponent implements OnInit {
   currentStep: string = 'adres';
   buttonText: string = 'Save and Continue';
   showPaymentButton: boolean = true;
-  paymentInfoVisible: boolean = false; 
+  paymentInfoVisible: boolean = false;
 
-  paymentOptions: any[] = [  
+  paymentOptions: any[] = [
     { name: 'Kredi Kartı', price: 0 },
     { name: 'PayPal', price: 2.99 },
   ];
 
-  cartItems: any[] = [ 
+  cartItems: any[] = [
     { productName: 'Ürün 1', quantity: 2, totalPrice: 49.99 },
     { productName: 'Ürün 2', quantity: 1, totalPrice: 29.99 },
   ];
@@ -145,7 +144,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   showPaymentInfo() {
-    this.paymentInfoVisible = true; 
+    this.paymentInfoVisible = true;
   }
 
   proceedToNextStep() {
@@ -154,11 +153,11 @@ export class CheckoutComponent implements OnInit {
       if (deliverySuccess) {
         if (!this.orderService.getSelectedAddress()) {
           this.toasts.error('Lütfen bir teslimat adresi seçin.');
-          return; 
+          return;
         }
         if (!this.shippingService.getSelectedShipping()) {
           this.toasts.error('Lütfen bir teslimat yöntemi seçin.');
-          return; 
+          return;
         }
         this.currentStep = 'checkout';
         this.buttonText = 'Save and Continue';

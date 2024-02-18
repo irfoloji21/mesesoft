@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { HomeRoutingModule } from './home-routing.module';
-
 
 // Widgest Components
 import { SliderComponent } from './widgets/slider/slider.component';

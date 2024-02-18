@@ -34,13 +34,13 @@ export class OrderComponent implements OnInit {
     this.orderService.getOrders(userId).subscribe(
       (res) => {
         this.filteredOrders = res.orders;
-        
+
       },
       (error) => {
         console.error(error);
       },
       () => {
-        this.loading = false; 
+        this.loading = false;
       }
     );
   }

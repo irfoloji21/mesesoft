@@ -23,8 +23,8 @@ export class DashboardComponent implements OnInit {
   public openDashboard: boolean = false;
 
   constructor(
-    private serviceAuth: AuthService, 
-    private router: Router, 
+    private serviceAuth: AuthService,
+    private router: Router,
   ) { }
 
   menuItems = [

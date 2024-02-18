@@ -19,8 +19,10 @@ $arkaplan-renk: #ededed;
   }
 
   .modal-content {
-    width: 100%; /* Genişliği 100% yapın */
-    max-width: 800px; /* Maksimum genişlik ayarı */
+    width: 100%;
+    /* Genişliği 100% yapın */
+    max-width: 800px;
+    /* Maksimum genişlik ayarı */
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -43,6 +45,7 @@ $arkaplan-renk: #ededed;
     .form-row {
       display: flex;
       justify-content: space-between;
+
       @media (max-width: 768px) {
         flex-direction: column;
       }

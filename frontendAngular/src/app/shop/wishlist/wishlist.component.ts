@@ -14,8 +14,10 @@ export class WishlistComponent implements OnInit, OnDestroy {
   public products: Product[] = [];
   private wishlistSubscription: Subscription | undefined;
 
-  constructor(private router: Router,
-              public productService: ProductService) { }
+  constructor(
+    private router: Router,
+    public productService: ProductService
+  ) { }
 
   ngOnInit(): void {
     this.wishlistSubscription = this.productService.wishlistItems.subscribe(response => this.products = response);

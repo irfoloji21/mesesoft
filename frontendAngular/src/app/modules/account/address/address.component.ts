@@ -56,7 +56,7 @@ export class AddressComponent implements OnInit {
       this.loading = false;
     }
   }
-  
+
   ngOnDestroy(): void {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();

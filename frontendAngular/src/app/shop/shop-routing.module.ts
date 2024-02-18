@@ -9,8 +9,6 @@ import { SuccessComponent } from './checkout/success/success.component';
 import { Resolver } from '../shared/services/resolver.service';
 import { CheckoutGuard } from '../modules/checkoutRoute.guard';
 
-
-
 const routes: Routes = [
   {
     path: 'product/:slug',

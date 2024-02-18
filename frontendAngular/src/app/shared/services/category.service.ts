@@ -1,18 +1,16 @@
 // category.service.ts
-import { Injectable, HostListener } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map, startWith } from 'rxjs';
-import { Category } from '../classes/category';
-
+import { Injectable, HostListener } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject, Observable, map, startWith } from "rxjs";
+import { Category } from "../classes/category";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class CategoryService {
-  private apiUrl = 'http://localhost:8000/api/v2/category';
+  private apiUrl = "http://localhost:8000/api/v2/category";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public screenWidth: any;
   public leftMenuToggle: boolean = false;
@@ -20,7 +18,7 @@ export class CategoryService {
   private Categories: Observable<Category[]>;
 
   // Windows width
-  @HostListener('window:resize', ['$event'])
+  @HostListener("window:resize", ["$event"])
   onResize(event?) {
     this.screenWidth = window.innerWidth;
   }
@@ -36,17 +34,22 @@ export class CategoryService {
 
   // createCategory
   createCategory(categoryData: Category): Observable<Category> {
-    return this.http.post<Category>(`${this.apiUrl}/create-category`, categoryData);
+    return this.http.post<Category>(
+      `${this.apiUrl}/create-category`,
+      categoryData
+    );
   }
 
   // updateCategory
   updateCategory(id: number, updatedData: Category): Observable<Category> {
-    return this.http.put<Category>(`${this.apiUrl}/update-category/${id}`, updatedData);
+    return this.http.put<Category>(
+      `${this.apiUrl}/update-category/${id}`,
+      updatedData
+    );
   }
 
   // deleteCategory
   deleteCategory(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete-category/${id}`);
   }
-
 }

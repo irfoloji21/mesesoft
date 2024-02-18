@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
@@ -57,7 +57,6 @@ export class CheckoutCartComponent {
       }
     });
   }
-
 
   applyCoupon() {
     event.preventDefault();
@@ -171,4 +170,3 @@ export class CheckoutCartComponent {
     this.subscription.unsubscribe();
   }
 }
-

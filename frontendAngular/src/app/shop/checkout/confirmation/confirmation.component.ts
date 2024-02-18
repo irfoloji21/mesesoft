@@ -26,5 +26,5 @@ export class ConfirmationComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() { }
-  
+
 }

@@ -1,21 +1,22 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { Observable } from "rxjs";
 import { ProductService } from "../../../services/product.service";
 import { Product } from "../../../classes/product";
 
 @Component({
-  selector: 'app-cart-variation',
-  templateUrl: './cart-variation.component.html',
-  styleUrls: ['./cart-variation.component.scss']
+  selector: "app-cart-variation",
+  templateUrl: "./cart-variation.component.html",
+  styleUrls: ["./cart-variation.component.scss"],
 })
 export class CartVariationComponent implements OnInit, OnDestroy {
-
-  @Input() direction: string = 'right'; // Default Direction Right
+  @Input() direction: string = "right"; // Default Direction Right
 
   public products: Product[] = [];
 
   constructor(public productService: ProductService) {
-    this.productService.cartItems.subscribe(response => this.products = response);
+    this.productService.cartItems.subscribe(
+      (response) => (this.products = response)
+    );
   }
 
   ngOnInit(): void {
@@ -37,5 +38,4 @@ export class CartVariationComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.closeCart();
   }
-
 }

@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { ShopComponent } from './shop/shop.component';
-
 import { ElementsComponent } from './elements/elements.component';
-
 import { PagesComponent } from './modules/pages.component';
 import { ActivationComponent } from './modules/account/activation/activation.component';
-
 
 const routes: Routes = [
   {

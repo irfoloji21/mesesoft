@@ -1,13 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-social',
-  templateUrl: './social.component.html',
-  styleUrls: ['./social.component.scss']
+  selector: "app-social",
+  templateUrl: "./social.component.html",
+  styleUrls: ["./social.component.scss"],
 })
-
 export class SocialComponent implements OnInit {
-
   @Output() shareClicked = new EventEmitter<string>();
 
   constructor() { }
@@ -15,29 +13,26 @@ export class SocialComponent implements OnInit {
   ngOnInit(): void { }
 
   onShareClick(platform: string) {
-    
     const productUrl = encodeURIComponent(window.location.href);
-    let shareUrl = '';
+    let shareUrl = "";
 
     switch (platform) {
-      case 'facebook':
+      case "facebook":
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${productUrl}`;
         break;
-      case 'google-plus':
+      case "google-plus":
         shareUrl = `https://plus.google.com/share?url=${productUrl}`;
         break;
-      case 'twitter':
+      case "twitter":
         shareUrl = `https://twitter.com/intent/tweet?url=${productUrl}`;
         break;
-      case 'whatsapp':
+      case "whatsapp":
         shareUrl = `https://api.whatsapp.com/send?text=${productUrl}`;
         break;
       default:
         break;
     }
-    
 
     this.shareClicked.emit(shareUrl);
-
   }
 }

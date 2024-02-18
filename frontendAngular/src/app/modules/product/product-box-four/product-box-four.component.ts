@@ -4,7 +4,6 @@ import { CartModalComponent } from 'src/app/shared/components/modal/cart-modal/c
 import { QuickViewComponent } from 'src/app/shared/components/modal/quick-view/quick-view.component';
 import { ProductService } from 'src/app/shared/services/product.service';
 
-
 @Component({
   selector: 'app-product-box-four',
   templateUrl: './product-box-four.component.html',
@@ -24,8 +23,7 @@ export class ProductBoxFourComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   // Get Product Color
   Color(variants) {

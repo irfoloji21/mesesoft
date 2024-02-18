@@ -33,5 +33,3 @@ export interface Shop {
   resetPasswordToken: string | null;
   role: string;
 }
-
-

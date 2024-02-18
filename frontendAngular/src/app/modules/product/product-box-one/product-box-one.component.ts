@@ -4,7 +4,6 @@ import { CartModalComponent } from 'src/app/shared/components/modal/cart-modal/c
 import { QuickViewComponent } from 'src/app/shared/components/modal/quick-view/quick-view.component';
 import { ProductService } from 'src/app/shared/services/product.service';
 
-
 @Component({
   selector: 'app-product-box-one',
   templateUrl: './product-box-one.component.html',
@@ -12,6 +11,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 
 export class ProductBoxOneComponent implements OnInit {
+
   @Input() product: Product;
   @Input() currency: any = this.productService.Currency; // Default Currency 
   @Input() thumbnail: boolean = false; // Default False 

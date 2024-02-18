@@ -13,9 +13,9 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class ServicesComponent implements OnInit {
   private cartItemsSubscription: Subscription;
   constructor(
-    private router: Router, 
-    private productService : ProductService, 
-    private toast:ToastrService
+    private router: Router,
+    private productService: ProductService,
+    private toast: ToastrService
   ) { }
 
   ngOnInit(): void { }
@@ -26,13 +26,13 @@ export class ServicesComponent implements OnInit {
     }
   }
 
-  onlinePayment(){
+  onlinePayment() {
     this.cartItemsSubscription = this.productService.cartItems.subscribe(res => {
-      if(res.length>0) {
+      if (res.length > 0) {
         this.router.navigate(['shop/checkout']);
       }
       else {
-         this.toast.error('Unable to proceed with the transaction. Please add items to your cart.','Your cart is empty')
+        this.toast.error('Unable to proceed with the transaction. Please add items to your cart.', 'Your cart is empty')
       }
     });
   }

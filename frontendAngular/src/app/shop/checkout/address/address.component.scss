@@ -17,11 +17,9 @@ a {
   }
 }
 
-
 body {
   background-color: $arkaplan-renk;
 }
-
 
 .address-title {
   font-size: 20px;
@@ -35,7 +33,6 @@ body {
   border-radius: 0.25rem;
 }
 
-
 .c-address-grid {
   margin: 10px 0;
   padding: 10px 0;
@@ -44,7 +41,6 @@ body {
     cursor: pointer;
   }
 }
-
 
 .checkout-cargo-wrapper {
 
@@ -76,11 +72,10 @@ body {
 .checkout__cargos-list {
   display: flex;
   flex-direction: column;
+
   .selected-shipping {
-    background-color: rgba(
-      $ana-renk,
-      0.25
-    ); 
+    background-color: rgba($ana-renk,
+        0.25);
   }
 
   .checkout-shipping-list-wrapper {
@@ -89,7 +84,7 @@ body {
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 10px 0; 
+    margin: 10px 0;
 
     .checkout-cargo-wrapper {
       display: flex;
@@ -131,8 +126,8 @@ body {
   }
 
   .modal-content {
-    width: 100%; 
-    max-width: 800px; 
+    width: 100%;
+    max-width: 800px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -197,6 +192,7 @@ body {
       .select-box {
         flex: 1 0 calc(50% - 1rem);
         min-width: 0;
+
         @media (max-width: 768px) {
           flex: 1 0 calc(100% - 1rem);
         }
@@ -213,6 +209,7 @@ body {
               text-transform: capitalize;
               color: #222;
               font-weight: 600;
+
               span {
                 font-size: 1rem;
                 color: #00a8e8;
@@ -228,6 +225,7 @@ body {
 
           .middle {
             margin-top: 15px;
+
             .address {
               p {
                 margin: 0;
@@ -236,8 +234,10 @@ body {
 
             .number {
               margin-top: 15px;
+
               p {
                 margin: 0;
+
                 span {
                   color: #00a8e8;
                   font-weight: bold;
@@ -277,11 +277,11 @@ body {
             }
 
             .form-check-input {
-              border-radius: 0; 
+              border-radius: 0;
             }
 
             .form-check-input:checked {
-              background-color: $ana-renk; 
+              background-color: $ana-renk;
               border-color: $ana-renk;
             }
 

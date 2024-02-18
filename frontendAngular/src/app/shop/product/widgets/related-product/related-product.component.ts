@@ -8,13 +8,13 @@ import { ProductService } from '../../../../shared/services/product.service';
   styleUrls: ['./related-product.component.scss']
 })
 export class RelatedProductComponent implements OnInit {
-  
+
   @Input() type: string
 
   public products: Product[] = [];
 
-  constructor(public productService: ProductService) { 
-    this.productService.getProducts.subscribe(response => 
+  constructor(public productService: ProductService) {
+    this.productService.getProducts.subscribe(response =>
       this.products = response.filter(item => item.type == this.type)
     );
   }

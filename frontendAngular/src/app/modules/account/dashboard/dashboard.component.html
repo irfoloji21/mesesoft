@@ -17,7 +17,7 @@
             <ul>
               <li *ngFor="let item of menuItems$ | async" class="nav-item">
                 <a [routerLink]="[item.label.toLowerCase().replace(' ', '-')]" class="nav-link"
-                  (click)="selectMenuItem(item)" >{{ item.label }}</a>
+                  (click)="selectMenuItem(item)">{{ item.label }}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" (click)="logout()">Log Out</a>

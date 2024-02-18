@@ -15,45 +15,16 @@
                 </h4>
                 <form id="demoForm">
                   <div>
-                    <input
-                      type="number"
-                      name="day"
-                      id="birthDay"
-                      [formControl]="ageVerificationForm.controls['day']"
-                      value=""
-                      class="form-control"
-                      placeholder="DD"
-                      min="1"
-                      max="2"
-                    />
-                    <input
-                      type="number"
-                      name="month"
-                      id="birthMonth"
-                      value=""
-                      [formControl]="ageVerificationForm.controls['month']"
-                      class="form-control"
-                      placeholder="MM"
-                      min="1"
-                      max="2"
-                    />
-                    <input
-                      type="number"
-                      name="year"
-                      id="birthYear"
-                      value=""
-                      [formControl]="ageVerificationForm.controls['year']"
-                      class="form-control"
-                      placeholder="YY"
-                      min="1"
-                      max="4"
-                    />
+                    <input type="number" name="day" id="birthDay" [formControl]="ageVerificationForm.controls['day']"
+                      value="" class="form-control" placeholder="DD" min="1" max="2" />
+                    <input type="number" name="month" id="birthMonth" value=""
+                      [formControl]="ageVerificationForm.controls['month']" class="form-control" placeholder="MM"
+                      min="1" max="2" />
+                    <input type="number" name="year" id="birthYear" value=""
+                      [formControl]="ageVerificationForm.controls['year']" class="form-control" placeholder="YY" min="1"
+                      max="4" />
                   </div>
-                  <button
-                    type="submit"
-                    (click)="ageForm()"
-                    class="btn btn-solid"
-                  >
+                  <button type="submit" (click)="ageForm()" class="btn btn-solid">
                     submit
                   </button>
                 </form>

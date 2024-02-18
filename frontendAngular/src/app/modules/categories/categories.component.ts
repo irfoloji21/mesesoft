@@ -17,7 +17,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   public SelectCategory: string | null = null;
   private categorySubscription: Subscription | undefined;
 
-  constructor(public categoryService: CategoryService, private router: Router, private product: ProductService) {}
+  constructor(public categoryService: CategoryService, private router: Router, private product: ProductService) { }
 
   ngOnInit(): void {
     this.categorySubscription = this.categoryService.getCategories().subscribe((data: any) => {

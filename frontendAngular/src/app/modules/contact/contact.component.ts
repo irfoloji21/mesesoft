@@ -16,8 +16,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   messageSubscription: Subscription;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private contactService: ContactService, 
+    private formBuilder: FormBuilder,
+    private contactService: ContactService,
     private toastr: ToastrService
   ) {
     this.contactForm = this.formBuilder.group({

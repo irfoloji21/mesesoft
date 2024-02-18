@@ -4,45 +4,24 @@
   </div>
   <div class="front">
     <a [routerLink]="['/shop/product/', product.title.replace(' ', '-')]">
-      <img
-        [defaultImage]="'assets/images/product/placeholder.jpg'"
-        [lazyLoad]="product.images[0].src"
-        class="img-fluid"
-        alt="{{ product.images[0].alt }}"
-      />
+      <img [defaultImage]="'assets/images/product/placeholder.jpg'" [lazyLoad]="product.images[0].src" class="img-fluid"
+        alt="{{ product.images[0].alt }}" />
     </a>
   </div>
   <div class="cart-box">
-    <button
-      title="Add to cart"
-      (click)="CartModal.openModal(product)"
-      *ngIf="cartModal"
-    >
+    <button title="Add to cart" (click)="CartModal.openModal(product)" *ngIf="cartModal">
       <i class="ti-shopping-cart"></i>
     </button>
     <button title="Add to cart" (click)="addToCart(product)" *ngIf="!cartModal">
       <i class="ti-shopping-cart"></i>
     </button>
-    <a
-      href="javascript:void(0)"
-      (click)="addToWishlist(product)"
-      title="Add to Wishlist"
-    >
+    <a href="javascript:void(0)" (click)="addToWishlist(product)" title="Add to Wishlist">
       <i class="ti-heart" aria-hidden="true"></i>
     </a>
-    <a
-      href="javascript:void(0)"
-      class="mobile-quick-view"
-      (click)="QuickView.openModal()"
-      title="Quick View"
-    >
+    <a href="javascript:void(0)" class="mobile-quick-view" (click)="QuickView.openModal()" title="Quick View">
       <i class="ti-search" aria-hidden="true"></i>
     </a>
-    <a
-      href="javascript:void(0)"
-      (click)="addToCompare(product)"
-      title="Compare"
-    >
+    <a href="javascript:void(0)" (click)="addToCompare(product)" title="Compare">
       <i class="ti-reload" aria-hidden="true"></i>
     </a>
   </div>
@@ -59,21 +38,12 @@
   </a>
   <h4>
     {{
-      product?.price * currency?.price
-        | discount : product
-        | currency : currency?.currency : "symbol"
+    product?.price * currency?.price
+    | discount : product
+    | currency : currency?.currency : "symbol"
     }}
   </h4>
 </div>
 
-<app-quick-view
-  #quickView
-  [product]="product"
-  [currency]="currency"
-></app-quick-view>
-<app-cart-modal
-  #cartModal
-  [product]="product"
-  [currency]="currency"
-  *ngIf="cartModal"
-></app-cart-modal>
+<app-quick-view #quickView [product]="product" [currency]="currency"></app-quick-view>
+<app-cart-modal #cartModal [product]="product" [currency]="currency" *ngIf="cartModal"></app-cart-modal>

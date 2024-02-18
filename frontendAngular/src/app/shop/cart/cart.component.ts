@@ -3,9 +3,6 @@ import { Observable, Subscription } from 'rxjs';
 import { ProductService } from "../../shared/services/product.service";
 import { Product } from "../../shared/classes/product";
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CouponService } from 'src/app/shared/services/coupon.service';
-import { CouponCode } from 'src/app/shared/classes/coupon';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',

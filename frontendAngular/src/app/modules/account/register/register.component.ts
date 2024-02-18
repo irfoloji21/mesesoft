@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       const hasSpecialCharacter = /[!@#$%^&*()_+[\]{};':"\\|,.<>/?-]/.test(newPassword);
 
       if (hasUppercase && hasSpecialCharacter) {
-        return null; 
+        return null;
       } else {
         return { passwordInvalid: true };
       }

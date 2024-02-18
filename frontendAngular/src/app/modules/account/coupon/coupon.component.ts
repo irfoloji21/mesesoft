@@ -37,7 +37,7 @@ export class CouponComponent implements OnDestroy {
   async loadUserCoupons() {
     try {
       this.loading = true;
-  
+
       this.userSubscription = this.authService.loadUser().subscribe(async res => {
         for (let a = 0; a < res.user.coupons.length; a++) {
           const couponRes = await this.couponService
@@ -52,7 +52,7 @@ export class CouponComponent implements OnDestroy {
       this.loading = false;
     }
   }
-  
+
   openModal(coupon: any) {
     this.isModalOpen = true;
     this.selectedCoupon = coupon;
@@ -97,5 +97,4 @@ export class CouponComponent implements OnDestroy {
 
     return monthName || '';
   }
-
 }

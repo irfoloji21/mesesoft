@@ -75,7 +75,7 @@ export class ProductSidebarComponent implements OnInit {
   openSharePopup(shareUrl: string) {
     const productUrl = encodeURIComponent(window.location.href);
     window.open(shareUrl, '_blank');
-    
+
   }
 
   loadUserOrders(userId: string) {
@@ -87,7 +87,7 @@ export class ProductSidebarComponent implements OnInit {
           order.cart.some(product => product._id === this.product._id)
         );
         this.doubleDipping = this.product.reviews.some(review => review.user._id === user.user._id)
-        
+
       },
       (error) => {
         console.error(error);

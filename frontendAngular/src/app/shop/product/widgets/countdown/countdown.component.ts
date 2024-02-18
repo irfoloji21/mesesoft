@@ -6,13 +6,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./countdown.component.scss']
 })
 export class CountdownComponent implements OnInit {
-  
+
   @Input() date: string;
 
   public timerdate;
   public now;
 
-  constructor() { 
+  constructor() {
     window.setInterval(() => {
       this.now = Math.trunc(new Date().getTime() / 1000)
     }, 1000)

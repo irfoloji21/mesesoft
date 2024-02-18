@@ -1,25 +1,24 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs";
 
 const state = {
-  checkoutItems: JSON.parse(localStorage['checkoutItems'] || '[]')
-}
+  checkoutItems: JSON.parse(localStorage["checkoutItems"] || "[]"),
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class OrderService {
   selectedAddress: any;
-  public apiUrl = "http://localhost:8000/api/v2"
+  public apiUrl = "http://localhost:8000/api/v2";
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) {}
 
   // Get Checkout Items
   public get checkoutItems(): Observable<any> {
-    const itemsStream = new Observable(observer => {
+    const itemsStream = new Observable((observer) => {
       observer.next(state.checkoutItems);
       observer.complete();
     });
@@ -34,7 +33,6 @@ export class OrderService {
     selectedAddress: any,
     selectedCargo: any
   ): Observable<any> {
-
     if (orderId) {
       var item = {
         shippingDetails: details,
@@ -47,16 +45,15 @@ export class OrderService {
 
       state.checkoutItems = item;
 
-      localStorage.setItem('checkoutItems', JSON.stringify(item));
-      localStorage.removeItem('cartItems');
+      localStorage.setItem("checkoutItems", JSON.stringify(item));
+      localStorage.removeItem("cartItems");
 
-      this.router.navigate(['/order/success', orderId]);
+      this.router.navigate(["/order/success", orderId]);
 
       return new Observable((observer) => {
-        observer.next({ message: 'Ödeme başarılı' });
+        observer.next({ message: "Ödeme başarılı" });
         observer.complete();
       });
-
     } else {
       console.error("orderId geçerli bir değere sahip değil.");
     }
@@ -73,8 +70,11 @@ export class OrderService {
   }
 
   public refundOrder(orderId: string): Observable<any> {
-    const refundData = { status: 'Refund Success' };
-    return this.http.put<any>(`${this.apiUrl}/order/order-refund-success/${orderId}`, refundData);
+    const refundData = { status: "Refund Success" };
+    return this.http.put<any>(
+      `${this.apiUrl}/order/order-refund-success/${orderId}`,
+      refundData
+    );
   }
 
   setSelectedAddress(address: any) {
@@ -84,5 +84,4 @@ export class OrderService {
   getSelectedAddress() {
     return this.selectedAddress;
   }
-
 }

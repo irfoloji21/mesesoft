@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class SavedCardService {
-  private apiUrl = 'assets/data/savedCard.json';
+  private apiUrl = "assets/data/savedCard.json";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   addNewCard(newCard: any): Observable<any> {
     const updatedCards = this.getSavedCardsSync();
@@ -26,11 +25,10 @@ export class SavedCardService {
   }
 
   private getSavedCardsSync(): any {
-    return JSON.parse(localStorage.getItem('savedCards')) || { cards: [] };
+    return JSON.parse(localStorage.getItem("savedCards")) || { cards: [] };
   }
 
   private updateSavedCardsFile(updatedCards: any): void {
-    localStorage.setItem('savedCards', JSON.stringify(updatedCards));
+    localStorage.setItem("savedCards", JSON.stringify(updatedCards));
   }
-
 }

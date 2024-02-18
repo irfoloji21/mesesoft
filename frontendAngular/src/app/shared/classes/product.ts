@@ -29,6 +29,7 @@ export interface Product {
   brands?: any;
   colors?: any;
   sizes?: any;
+  createdAt?: string;
 }
 
 export interface Shop {

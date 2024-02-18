@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CollectionSlider } from 'src/app/shared/data/slider';
 
-
 @Component({
   selector: 'app-discount',
   templateUrl: './discount.component.html',
@@ -16,4 +15,5 @@ export class DiscountComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
+  
 }

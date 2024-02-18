@@ -16,9 +16,9 @@ export class ChangePasswordComponent implements OnInit {
   passwordForm: FormGroup;
   private authSubscription: Subscription | undefined;
   constructor(
-    private authService: AuthService, 
-    private fb: FormBuilder, 
-    private toasts: ToastrService, 
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private toasts: ToastrService,
     private router: Router
   ) {
     this.passwordForm = this.fb.group({
@@ -45,7 +45,7 @@ export class ChangePasswordComponent implements OnInit {
       if (hasUppercase && hasSpecialCharacter) {
         return null;
       } else {
-        return { passwordInvalid: true }; 
+        return { passwordInvalid: true };
       }
     };
   }

@@ -37,7 +37,6 @@ import { SizeModalComponent } from './components/modal/size-modal/size-modal.com
 import { AgeVerificationComponent } from './components/modal/age-verification/age-verification.component';
 
 // Skeleton Loader Components
-import { SkeletonProductBoxComponent } from './components/skeleton/skeleton-product-box/skeleton-product-box.component';
 
 // Layout Box
 import { LayoutBoxComponent } from './components/layout-box/layout-box.component';
@@ -48,6 +47,7 @@ import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component'
 // Pipes
 import { DiscountPipe } from './pipes/discount.pipe';
 import { OrderQuickViewComponent } from './components/modal/order-quick-view/order-quick-view.component';
+import { SkeletonProductBoxComponent } from './components/skeleton/skeleton-product-box.component';
 
 @NgModule({
   declarations: [

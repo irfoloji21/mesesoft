@@ -20,15 +20,15 @@ export interface Product {
     variants?: Variants[];
     images?: Images[];
     sold_out?: string;
-    originalPrice?:number;
-    discountPrice? : number;
-    ratings?:any;
-    reviews?:any;
+    originalPrice?: number;
+    discountPrice?: number;
+    ratings?: any;
+    reviews?: any;
     shop?:Shop;
-    gender?:any;
-    brands?:any;
-    colors?:any;
-    sizes?:any;
+    gender?: any;
+    brands?: any;
+    colors?: any;
+    sizes?: any;
 }
 
 export interface Shop {
@@ -61,5 +61,5 @@ export interface Images {
     alt?: string;
     src?: string;
     variant_id?: any[];
-    url?:string;
+    url?: string;
 }

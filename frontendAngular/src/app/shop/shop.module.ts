@@ -25,13 +25,11 @@ import { BrandsComponent } from './collection/widgets/brands/brands.component';
 import { ColorsComponent } from './collection/widgets/colors/colors.component';
 import { SizeComponent } from './collection/widgets/size/size.component';
 import { PriceComponent } from './collection/widgets/price/price.component';
-
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 // import { CompareComponent } from './compare/compare.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
-
 import { RouterModule } from '@angular/router';
 import { AddressComponent } from './checkout/address/address.component';
 import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
@@ -41,7 +39,6 @@ import { CheckoutCartComponent } from './checkout/checkoutCart/checkout-cart.com
 @NgModule({
   declarations: [
     ProductSidebarComponent,
-
     ServicesComponent,
     CountdownComponent,
     SocialComponent,

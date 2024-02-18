@@ -1,17 +1,29 @@
 import {
-  Component, OnInit, OnDestroy, ViewChild, TemplateRef, Input, AfterViewInit,
-  Injectable, PLATFORM_ID, Inject
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  TemplateRef,
+  AfterViewInit,
+  PLATFORM_ID,
+  Inject,
+} from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import {
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  Validators,
+} from "@angular/forms";
 
 @Component({
-  selector: 'app-age-verification',
-  templateUrl: './age-verification.component.html',
-  styleUrls: ['./age-verification.component.scss']
+  selector: "app-age-verification",
+  templateUrl: "./age-verification.component.html",
+  styleUrls: ["./age-verification.component.scss"],
 })
-export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestroy {
+
+export class AgeVerificationComponent
+  implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild("ageVerification") AgeVerificationModal: TemplateRef<any>;
 
@@ -20,37 +32,43 @@ export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestro
   public currdate: any;
   public setDate: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private modalService: NgbModal,
-    private fb: UntypedFormBuilder) {
+    private fb: UntypedFormBuilder
+  ) {
     this.ageVerificationForm = this.fb.group({
-      day: ['', Validators.required],
-      month: ['', Validators.required],
-      year: ['', Validators.required],
-    })
+      day: ["", Validators.required],
+      month: ["", Validators.required],
+      year: ["", Validators.required],
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    if (localStorage.getItem("ageVerification") !== 'true')
-      this.openModal();
+    if (localStorage.getItem("ageVerification") !== "true") this.openModal();
   }
 
   openModal() {
-    if (isPlatformBrowser(this.platformId)) { // For SSR 
-      this.modalService.open(this.AgeVerificationModal, {
-        size: 'md',
-        backdrop: 'static',
-        keyboard: false,
-        centered: true,
-        windowClass: 'bd-example-modal-md theme-modal agem'
-      }).result.then((result) => {
-        `Result ${result}`
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+    if (isPlatformBrowser(this.platformId)) {
+      // For SSR
+      this.modalService
+        .open(this.AgeVerificationModal, {
+          size: "md",
+          backdrop: "static",
+          keyboard: false,
+          centered: true,
+          windowClass: "bd-example-modal-md theme-modal agem",
+        })
+        .result.then(
+          (result) => {
+            `Result ${result}`;
+          },
+          (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          }
+        );
     }
   }
 
@@ -65,10 +83,14 @@ export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestro
     var currdate = new Date();
     this.currdate = currdate;
     var setDate = new Date();
-    this.setDate = setDate.setFullYear(mydate.getFullYear() + age, month - 1, day);
+    this.setDate = setDate.setFullYear(
+      mydate.getFullYear() + age,
+      month - 1,
+      day
+    );
 
-    if ((this.currdate - this.setDate) > 0) {
-      localStorage.setItem('ageVerification', 'true')
+    if (this.currdate - this.setDate > 0) {
+      localStorage.setItem("ageVerification", "true");
       this.modalService.dismissAll();
     } else {
       window.location.href = "https://www.google.com/";
@@ -77,16 +99,13 @@ export class AgeVerificationComponent implements OnInit, AfterViewInit, OnDestro
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
+      return "by pressing ESC";
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
+      return "by clicking on a backdrop";
     } else {
       return `with: ${reason}`;
     }
   }
 
-  ngOnDestroy() {
-
-  }
-
+  ngOnDestroy() { }
 }

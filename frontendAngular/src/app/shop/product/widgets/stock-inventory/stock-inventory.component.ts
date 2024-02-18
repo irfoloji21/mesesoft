@@ -11,7 +11,7 @@ export class StockInventoryComponent implements OnInit {
 
   @Input() stock: any;
   public product: Product = {};
-  constructor(private productService : ProductService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.productService.getProducts.subscribe(res => {
@@ -22,7 +22,7 @@ export class StockInventoryComponent implements OnInit {
 
       res.forEach(item => {
         if (item && typeof item === 'object' && 'stock' in item) {
-         this.stock = item.stock
+          this.stock = item.stock
         }
       });
     });

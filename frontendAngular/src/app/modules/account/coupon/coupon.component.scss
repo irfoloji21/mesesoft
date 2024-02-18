@@ -55,10 +55,12 @@ $arkaplan-renk: #ededed;
 .ngbNavContent {
   .coupon-box {
     margin-bottom: 10px;
+
     .expiration-date {
       display: flex;
       justify-content: flex-end;
     }
+
     .store-image {
       img {
         border-radius: 20%;
@@ -66,37 +68,42 @@ $arkaplan-renk: #ededed;
         height: 100px;
       }
     }
+
     .coupon-button {
       background-color: #000;
       color: #fff;
     }
   }
+
   .coupon-wrapper {
     background-color: #f2f2f2;
+
     .loading-text {
       text-align: center;
     }
+
     .no-coupons-text {
       text-align: center;
     }
   }
 }
 
-
-
-
 .ngbNavContent {
   .coupon-wrapper {
     background-color: #f2f2f2;
+
     .coupon-box {
       margin-bottom: 10px;
+
       .coupon-name {
         display: flex;
         justify-content: flex-end;
+
         .coupon-name-text {
           font-size: 1.2rem;
         }
       }
+
       .store-image {
         img {
           border-radius: 20%;
@@ -104,6 +111,7 @@ $arkaplan-renk: #ededed;
           height: 100px;
         }
       }
+
       .coupon-desc {
         .coupon-usage-date {
           background-color: #6c757d;
@@ -111,6 +119,7 @@ $arkaplan-renk: #ededed;
           padding: 5px;
           text-align: center;
           justify-content: center;
+
           .coupon-usage-date-text {
             font-size: 1.2rem;
           }

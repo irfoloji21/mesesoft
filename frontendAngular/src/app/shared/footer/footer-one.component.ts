@@ -1,10 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-
-;
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { SocialMediaService } from 'src/app/shared/services/social-media.service';
 import { SubscribeService } from 'src/app/shared/services/subscribe.service';
 import { CategoryService } from 'src/app/shared/services/category.service';
@@ -44,7 +40,6 @@ export class FooterOneComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.categories$ = this.categoryService.getCategories();
     this.socialMediaLinks$ = this.socialMediaService.getSocialMediaLinks();
   }

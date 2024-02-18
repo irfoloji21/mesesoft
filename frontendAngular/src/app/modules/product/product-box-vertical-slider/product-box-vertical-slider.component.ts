@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NewProductSlider } from '../../../data/slider';
-import { Product } from '../../../classes/product';
-import { ProductService } from '../../../services/product.service';
+import { Product } from 'src/app/shared/classes/product';
+import { NewProductSlider } from 'src/app/shared/data/slider';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-product-box-vertical-slider',

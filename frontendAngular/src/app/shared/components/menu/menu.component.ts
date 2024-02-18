@@ -1,28 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { NavService } from '../../services/nav.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../classes/category';
-import { ProductService } from '../../services/product.service';
-import { TranslationService } from '../../services/translation.service';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit } from "@angular/core";
+import { NavService } from "../../services/nav.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { CategoryService } from "../../services/category.service";
+import { Category } from "../../classes/category";
+import { ProductService } from "../../services/product.service";
+import { TranslationService } from "../../services/translation.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: "app-menu",
+  templateUrl: "./menu.component.html",
+  styleUrls: ["./menu.component.scss"],
 })
-
 export class MenuComponent implements OnInit {
   public gorunecekKategoriler = [];
-  mainMenu: any = []
+  mainMenu: any = [];
   public menuItems: Category[] = [];
   public subCategoryData: any[] = [];
   public irfosub: any[] = [];
-  public subCategoryy: any = []
-  ParentCategory: any = []
+  public subCategoryy: any = [];
+  ParentCategory: any = [];
   megaMenu;
-  active: any
+  active: any;
 
   constructor(
     private router: Router,
@@ -49,13 +48,16 @@ export class MenuComponent implements OnInit {
           if (subcategory._id) {
             const subcategoryId = subcategory._id;
 
-            this.categoryService.getCategoryById(subcategoryId).subscribe((subCategoryData) => {
-
-              const index = category.subcategories.findIndex(sub => sub._id === subCategoryData.category._id);
-              if (index >= 0) {
-                category.subcategories[index] = subCategoryData.category;
-              }
-            });
+            this.categoryService
+              .getCategoryById(subcategoryId)
+              .subscribe((subCategoryData) => {
+                const index = category.subcategories.findIndex(
+                  (sub) => sub._id === subCategoryData.category._id
+                );
+                if (index >= 0) {
+                  category.subcategories[index] = subCategoryData.category;
+                }
+              });
           }
         }
       }
@@ -66,16 +68,18 @@ export class MenuComponent implements OnInit {
 
   // Click Toggle menu (Mobile) (Main menu)
   toggletNavActive(item) {
-    const subCategoryIds = item.subcategories.map(subcategory => subcategory._id);
+    const subCategoryIds = item.subcategories.map(
+      (subcategory) => subcategory._id
+    );
 
     const queryParams = {
-      MainMenu: subCategoryIds.join(',') 
+      MainMenu: subCategoryIds.join(","),
     };
 
-    this.router.navigate(['/shop/collection'], {
+    this.router.navigate(["/shop/collection"], {
       relativeTo: this.route,
       queryParams: queryParams,
-      queryParamsHandling: 'merge'
+      queryParamsHandling: "merge",
     });
 
     item.active = !item.active;
@@ -85,7 +89,6 @@ export class MenuComponent implements OnInit {
     this.menuItems.forEach((menuItem) => {
       if (menuItem.subcategories) {
         menuItem.subcategories.forEach((childrenItem) => {
-
           if (childrenItem._id) {
             const subcategoryId = childrenItem._id;
             this.getSubcategoriesByItemId(subcategoryId, childrenItem);
@@ -93,13 +96,12 @@ export class MenuComponent implements OnInit {
         });
       }
     });
-    this.translationService.currentLang$.subscribe(lang => {
-    });
+    this.translationService.currentLang$.subscribe((lang) => {});
 
-    this.translationService.currentLang$.subscribe(lang => {
-
-      this.translate.get('menuItems.item1').subscribe((translation: string) => {
-      });
+    this.translationService.currentLang$.subscribe((lang) => {
+      this.translate
+        .get("menuItems.item1")
+        .subscribe((translation: string) => {});
     });
   }
 
@@ -120,15 +122,19 @@ export class MenuComponent implements OnInit {
   }
 
   //MenuQueryParamsArea
-  navigateWithQueryParams(menuItem: string, subItem: string, childrenSubItem: any) {
-    this.product.ProductsByCategory(childrenSubItem._id).subscribe(res => {
+  navigateWithQueryParams(
+    menuItem: string,
+    subItem: string,
+    childrenSubItem: any
+  ) {
+    this.product.ProductsByCategory(childrenSubItem._id).subscribe((res) => {
       this.handleSubCategoryResponse(menuItem, subItem, res);
     });
   }
 
   handleSubCategoryResponse(menuItem: string, subItem: string, res: any) {
     if (res.products && res.products.length > 0) {
-      const productIds = res.products.map(product => product._id);
+      const productIds = res.products.map((product) => product._id);
 
       const queryParams = {
         category: menuItem,
@@ -136,25 +142,14 @@ export class MenuComponent implements OnInit {
         childrenSubItem: productIds,
       };
 
-
-
-      this.router.navigate(['/shop/collection'], {
+      this.router.navigate(["/shop/collection"], {
         relativeTo: this.route,
         queryParams,
-
       });
     } else {
       console.error("Ürün bulunamadı.");
     }
   }
 
-  selectedLanguage: string = 'en';
-
+  selectedLanguage: string = "en";
 }
-
-
-
-
-
-
-

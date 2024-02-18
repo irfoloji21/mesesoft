@@ -13,14 +13,14 @@ export class BrandsComponent implements OnInit {
   @Input() brands: any[] = [];
 
   @Output() brandsFilter: EventEmitter<any> = new EventEmitter<any>();
-  
+
   public collapse: boolean = true;
 
-  constructor(private serivce : BrandsColorSizeService) { 
+  constructor(private serivce: BrandsColorSizeService) {
   }
 
   ngOnInit(): void {
-    this.serivce.getBrands().subscribe(res =>{
+    this.serivce.getBrands().subscribe(res => {
     })
     this.filterbyBrand
   }
@@ -38,18 +38,18 @@ export class BrandsComponent implements OnInit {
 
   appliedFilter(event) {
     let index = this.brands.indexOf(event.target.value);  // checked and unchecked value
-    if (event.target.checked)   
+    if (event.target.checked)
       this.brands.push(event.target.value); // push in array cheked value
-    else 
-      this.brands.splice(index,1);  // removed in array unchecked value  
-    
+    else
+      this.brands.splice(index, 1);  // removed in array unchecked value  
+
     let brands = this.brands.length ? { brand: this.brands.join(",") } : { brand: null };
     this.brandsFilter.emit(brands);
   }
 
   // check if the item are selected
-  checked(item){
-    if(this.brands.indexOf(item) != -1){
+  checked(item) {
+    if (this.brands.indexOf(item) != -1) {
       return true;
     }
   }
