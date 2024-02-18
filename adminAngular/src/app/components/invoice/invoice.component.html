@@ -14,18 +14,18 @@
                                     <tr>
                                         <th scope="col" sortable="no">No</th>
                                         <th scope="col" sortable="invoice">Invoice</th>
-                                        <th scope="col" sortable="name" >Date</th>
-                                        <th scope="col" sortable="name" >Shipping</th>
-                                        <th scope="col" sortable="name" >Amount</th>
-                                        <th scope="col" sortable="name" >Tax</th>
-                                        <th scope="col" sortable="name" >Total</th>
-                                        <th scope="col" sortable="name" >Actions</th>
+                                        <th scope="col" sortable="name">Date</th>
+                                        <th scope="col" sortable="name">Shipping</th>
+                                        <th scope="col" sortable="name">Amount</th>
+                                        <th scope="col" sortable="name">Tax</th>
+                                        <th scope="col" sortable="name">Total</th>
+                                        <th scope="col" sortable="name">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of tableItem$ | async ">
                                         <td scope="row">
-                                           <span>{{item.no}}</span> 
+                                            <span>{{item.no}}</span>
                                         </td>
                                         <td>
                                             {{item.invoice}}
@@ -43,8 +43,8 @@
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-center p-2">
-                                <ngb-pagination
-                                  [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+                                <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
+                                    [pageSize]="service.pageSize">
                                 </ngb-pagination>
                             </div>
                         </div>

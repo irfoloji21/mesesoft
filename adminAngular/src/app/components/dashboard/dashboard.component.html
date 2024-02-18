@@ -11,7 +11,8 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">{{'Earnings' | translate}}</span>
-                            <h3 class="mb-0">$ <span class="counter">{{shop.availableBalance}}</span><small> {{'This Month' | translate}}</small></h3>
+                            <h3 class="mb-0">$ <span class="counter">{{shop.availableBalance}}</span><small> {{'This
+                                    Month' | translate}}</small></h3>
                         </div>
                     </div>
                 </div>
@@ -74,7 +75,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a [routerLink]="'/sales/orders'">  <button class="btn btn-primary" type="submit">{{'View All Orders' |translate}}</button></a>
+                        <a [routerLink]="'/sales/orders'"> <button class="btn btn-primary" type="submit">{{'View All
+                                Orders' |translate}}</button></a>
                     </div>
                 </div>
             </div>
@@ -88,9 +90,9 @@
                             <div class="small-chartjs">
                                 <canvas baseChart id="small-graph-1" height="600" width="400"
                                     [datasets]="smallLineChartData" [labels]="smallLineChartLabels"
-                                    [options]="smallLineChartOptions" 
-                                    [legend]="smallLineChartLegend" [type]="smallLineChartType"
-                                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                    [options]="smallLineChartOptions" [legend]="smallLineChartLegend"
+                                    [type]="smallLineChartType" (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"></canvas>
                             </div>
                         </div>
                         <div class="col-6">
@@ -128,9 +130,9 @@
 
                                 <canvas baseChart id="small-graph-2" height="60vw" width="140vw"
                                     [datasets]="smallLine2ChartData" [labels]="smallLine2ChartLabels"
-                                    [options]="smallLine2ChartOptions" 
-                                    [legend]="smallLine2ChartLegend" [type]="smallLine2ChartType"
-                                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                                    [options]="smallLine2ChartOptions" [legend]="smallLine2ChartLegend"
+                                    [type]="smallLine2ChartType" (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)"></canvas>
                             </div>
                         </div>
                         <div class="col-6">
@@ -159,7 +161,7 @@
             </div>
         </div>
 
-       
+
     </div>
 </div>
 <!-- Container-fluid Ends-->
