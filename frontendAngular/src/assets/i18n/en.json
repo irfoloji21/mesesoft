@@ -67,7 +67,7 @@
   "about-us": "about us",
   "lookbook": "lookbook",
   "login": "login",
-  "register": "register",
+  "register": "Register",
   "logout": "Logout",
   "search": "search",
   "wishlist": "wishlist",
@@ -114,7 +114,7 @@
 
 
 
-  
+    "Account-Info":"Account Info",
     "Wishlist": "Wishlist",
     "My-Account": "My Account",
     "Address-book": "Address Book",
@@ -139,6 +139,7 @@
     "e-mail": "E-mail",
     "password": "Password",
     "new-customer": "New Customer",
+    "New-Customer-Description": "Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.",
     "create-an-account": "Create an Account",
     "discount-of-up-to-50%-off": "Discount of Up to 50% Off",
     "Men": "Men",

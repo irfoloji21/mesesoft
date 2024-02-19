@@ -53,9 +53,11 @@
   "Contacts": "İletişim",
   "Faq": "SSS",
   "Login": "Giriş Yap",
+  "register" : "Kayıt ol",
   "e-mail": "E-posta",
   "password": "Şifre",
   "new-customer": "Yeni Müşteri",
+  "New-Customer-Description":"Mağazamızda ücretsiz bir hesap oluşturun. Kayıt işlemi hızlı ve kolaydır. Size mağazamızdan sipariş verebilme imkanı sağlar. Alışverişe başlamak için kaydolun",
   "create-an-account": "Hesap Oluştur",
   "discount-of-up-to-50%-off": "%50'ye Varan İndirim",
   "Men": "Erkek",
@@ -96,5 +98,6 @@
   "Region/State": "Bölge/İl",
   "Flat/Plot": "Daire/Arsa",
   "Shipping-options": "Kargo Seçenekleri",
-  "Save-and-continue": "Kaydet ve Devam Et"
+  "Save-and-continue": "Kaydet ve Devam Et",
+  "Account-Info":"Hesap Bilgileri"
 }

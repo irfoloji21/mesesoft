@@ -4,34 +4,32 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <h3>Login</h3>
+        <h3>{{'Login' | translate}}</h3>
         <div class="theme-card">
           <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="theme-form">
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="text" class="form-control" id="email" placeholder="Email" required=""
+              <label for="email">{{'E-mail' | translate}}</label>
+              <input type="text" class="form-control" id="email" placeholder="{{'E-mail' | translate}}" required=""
                 formControlName="email" />
             </div>
             <div class="form-group">
-              <label for="review">Password</label>
-              <input type="password" class="form-control" id="review" placeholder="Enter your password" required=""
+              <label for="review">{{'Password' | translate}}</label>
+              <input type="password" class="form-control" id="review" placeholder="{{'Password' | translate}}" required=""
                 formControlName="password" />
             </div>
-            <button class="btn btn-solid">Login</button>
+            <button class="btn btn-solid">{{'Login' | translate}}</button>
           </form>
         </div>
       </div>
       <div class="col-lg-6 right-login">
-        <h3>New Customer</h3>
+        <h3>{{'new-customer' |translate}}</h3>
         <div class="theme-card authentication-right">
-          <h6 class="title-font">Create A Account</h6>
+          <h6 class="title-font">{{'create-an-account' | translate}}</h6>
           <p>
-            Sign up for a free account at our store. Registration is quick and
-            easy. It allows you to be able to order from our shop. To start
-            shopping click register.
+           {{'New-Customer-Description' | translate}}
           </p>
           <button [routerLink]="['/register']" class="btn btn-solid">
-            Create an Account
+            {{'create-an-account' | translate}}
           </button>
         </div>
       </div>

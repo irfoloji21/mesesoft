@@ -139,6 +139,7 @@
     "e-mail": "E-mail",
     "password": "Mot de passe",
     "new-customer": "Nouveau client",
+    "New-Customer-Description":"Inscrivez-vous gratuitement sur notre boutique en ligne. L'inscription est rapide et facile. Cela vous permet de commander dans notre magasin. Pour commencer vos achats, cliquez sur s'inscrire.",
     "create-an-account": "Créer un compte",
     "discount-of-up-to-50%-off": "Réduction jusqu'à 50%",
     "Men": "Hommes",
@@ -178,8 +179,8 @@
     "Region/State": "Région/État",
     "Flat/Plot": "Appartement/Parcelle",
     "Shipping-options": "Options de livraison",
-    "Save-and-continue": "Enregistrer et continuer"
-
+    "Save-and-continue": "Enregistrer et continuer",
+    "Account-Info" :"Informations du compte"
 
   
 }

@@ -23,12 +23,12 @@
               <a [routerLink]="['/shop/wishlist']"><i class="fa fa-heart" aria-hidden="true">
                   <!-- <span *ngIf="wishlistCount" class="wishlist-round-icon">{{ wishlistCount }}</span> -->
                 </i>
-                Wishlist
+                {{'Wishlist' | translate}}
               </a>
             </li>
             <li class="onhover-dropdown mobile-account">
               <span *ngIf="!isLoggedIn">
-                <i class="fa fa-user" aria-hidden="true"></i> My Account
+                <i class="fa fa-user" aria-hidden="true"></i> {{'My-Account' | translate}}
               </span>
               <span class="round-icon rounded-circle" *ngIf="isLoggedIn" (click)="profile()">
                 {{ userInitials }}
@@ -37,19 +37,19 @@
                 <li *ngIf="isLoggedIn; else loginLink">
                   <ul>
                     <li>
-                      <a [routerLink]="['/dashboard']">Account Info</a>
+                      <a [routerLink]="['/dashboard']">{{'Account-Info' | translate}}</a>
                     </li>
                     <li>
-                      <a (click)="logout()" style="cursor: pointer">Log out</a>
+                      <a (click)="logout()" style="cursor: pointer">{{'Log-out' | translate}}</a>
                     </li>
                   </ul>
                 </li>
                 <ng-template #loginLink>
                   <li>
-                    <a data-lng="en" [routerLink]="['/login']"> Login </a>
+                    <a data-lng="en" [routerLink]="['/login']">{{'Login' | translate}}</a>
                   </li>
                   <li>
-                    <a data-lng="es" [routerLink]="['/register']"> Register </a>
+                    <a data-lng="es" [routerLink]="['/register']"> {{'register' | translate}} </a>
                   </li>
                 </ng-template>
               </ul>
