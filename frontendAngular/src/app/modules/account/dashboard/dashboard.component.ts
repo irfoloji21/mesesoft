@@ -28,12 +28,12 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   menuItems = [
-    { label: 'My Account', component: ProfileComponent },
-    { label: 'Address Book', component: AddressComponent },
-    { label: 'My Orders', component: OrderComponent },
-    { label: 'My Wishlist', component: WishlistComponent },
-    { label: 'Saved Card', component: SavedCardComponent },
-    { label: 'Change Password', component: ChangePasswordComponent },
+    { label: 'My-Account', component: ProfileComponent },
+    { label: 'Address-book', component: AddressComponent },
+    { label: 'My-orders', component: OrderComponent },
+    { label: 'My-wishlist', component: WishlistComponent },
+    { label: 'Saved-card', component: SavedCardComponent },
+    { label: 'Change-password', component: ChangePasswordComponent },
     { label: 'Coupon', component: CouponComponent }
   ]
 

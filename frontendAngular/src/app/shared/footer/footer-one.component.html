@@ -71,7 +71,7 @@
             </div>
           </div>
         </div>
-        <div class="col offset-xl-1">
+        <!-- <div class="col offset-xl-1">
           <div class="sub-title">
             <div class="footer-title">
               <h4>{{ 'categories' | translate }}</h4>
@@ -84,8 +84,8 @@
               </ul>
             </div>
           </div>
-        </div>
-        <div class="col">
+        </div> -->
+        <div class="col offset-xl-1">
           <div class="sub-title">
             <div class="footer-title">
               <h4>{{ 'why_we_choose' | translate }}</h4>
@@ -95,9 +95,9 @@
                 <!-- <li><a href="javascript:void(0)">shipping & return</a></li>
                 <li><a href="javascript:void(0)">secure shopping</a></li>
                 <li><a href="javascript:void(0)">gallary</a></li> -->
-                <li><a [routerLink]="['/aboutus']">about-us</a></li>
-                <li><a [routerLink]="['/contact']">contacts</a></li>
-                <li><a [routerLink]="['/faq']">FAQ</a></li>
+                <li><a [routerLink]="['/aboutus']">{{'About-us' | translate }}</a></li>
+                <li><a [routerLink]="['/contact']">{{'Contacts' | translate}}</a></li>
+                <li><a [routerLink]="['/faq']">{{'Faq' | translate}}</a></li>
               </ul>
             </div>
           </div>
@@ -133,8 +133,7 @@
           <div class="footer-end">
             <p>
               <i class="fa fa-copyright" aria-hidden="true"></i>
-              {{ today | date : "y" }} MeseSoft Crafting Tomorrow's Solutions
-              Today
+              {{ today | date : "y" }}{{ "MeseSoft Crafting Tomorrow's Solutions Today" | translate }}
             </p>
           </div>
         </div>

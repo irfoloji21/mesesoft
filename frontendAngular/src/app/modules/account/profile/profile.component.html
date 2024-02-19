@@ -4,32 +4,32 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h3>PERSONAL DETAIL</h3>
+        <h3>{{'PERSONAL-DETAIL' | translate}}</h3>
         <form class="theme-form" (ngSubmit)="onSubmit()" [formGroup]="updateForm">
           <div class="row">
             <div class="col-md-6">
-              <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="Enter Your name"
+              <label for="firstName">{{'First-name' | translate}}</label>
+              <input type="text" class="form-control" id="firstName" placeholder="{{'First-name' | translate}}"
                 formControlName="firstName" required="" [(ngModel)]="userInf.firstName" />
             </div>
             <div class="col-md-6">
-              <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="lastName" formControlName="lastName"
+              <label for="lastName">{{'Last-name' | translate}}</label>
+              <input type="text" class="form-control" id="lastName" placeholder="{{'Last-name' | translate}}" formControlName="lastName"
                 required="" [(ngModel)]="userInf.lastName" />
             </div>
             <div class="col-md-6">
-              <label for="phoneNumber">Phone number</label>
-              <input type="text" class="form-control" id="phoneNumber" placeholder="Enter your number"
+              <label for="phoneNumber">{{'Phone-number' | translate}}</label>
+              <input type="text" class="form-control" id="phoneNumber" placeholder="{{'Phone-number' | translate}}"
                 formControlName="phoneNumber" required="" [(ngModel)]="userInf.phoneNumber" />
             </div>
             <div class="col-md-6">
-              <label for="email">Email</label>
-              <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email" required=""
+              <label for="email">{{'E-mail' | translate}}</label>
+              <input type="text" class="form-control" id="email" placeholder="{{'E-mail' | translate}}" formControlName="email" required=""
                 [(ngModel)]="userInf.email" />
             </div>
             <div class="col-md-12">
               <button class="btn btn-sm btn-solid" type="submit">
-                Save setting
+                {{'Save-setting' | translate}}
               </button>
             </div>
           </div>

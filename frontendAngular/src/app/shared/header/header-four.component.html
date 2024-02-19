@@ -70,7 +70,7 @@
           </div>
           <div>
             <form class="form_search" role="form" [formGroup]="headerForm" (ngSubmit)="submitSearch()">
-              <input id="query search-autocomplete" formControlName="search" placeholder="Find the best for your..."
+              <input id="query search-autocomplete" formControlName="search" placeholder="{{'Find-the-best-for-your' | translate}}"
                 class="nav-search nav-search-field" aria-expanded="true" />
               <button type="submit" name="nav-submit-button" class="btn-search">
                 <i class="ti-search"></i>

@@ -5,22 +5,22 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="account-sidebar" (click)="ToggleDashboard()">
-          <a class="popup-btn"> my account </a>
+          <a class="popup-btn"> {{'My-Account ' | translate}}</a>
         </div>
         <div class="dashboard-left" [class.open]="openDashboard">
           <div class="collection-mobile-back" (click)="ToggleDashboard()">
             <span class="filter-back">
-              <i class="fa fa-angle-left" aria-hidden="true"></i> back
+              <i class="fa fa-angle-left" aria-hidden="true"></i> {{'back' | translate}}
             </span>
           </div>
           <div class="block-content">
             <ul>
               <li *ngFor="let item of menuItems$ | async" class="nav-item">
                 <a [routerLink]="[item.label.toLowerCase().replace(' ', '-')]" class="nav-link"
-                  (click)="selectMenuItem(item)">{{ item.label }}</a>
+                  (click)="selectMenuItem(item)">{{ item.label | translate }}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="logout()">Log Out</a>
+                <a class="nav-link" (click)="logout()">{{'Log-out' | translate}}</a>
               </li>
             </ul>
           </div>

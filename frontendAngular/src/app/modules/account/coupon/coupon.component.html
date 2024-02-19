@@ -2,14 +2,14 @@
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1">
       <a ngbNavLink>
-        <h5>Available Coupons</h5>
+        <h5>{{'Available Coupons' | translate}}</h5>
       </a>
       <ng-template ngbNavContent>
         <div *ngIf="coupons && coupons.length > 0">
           <div class="coupon-box row no-gutters bg-white p-1 h-entry" *ngFor="let coupon of coupons">
             <div class="expiration-date">
               <h5>
-                Expiration date: 2025
+                {{'Expiration date' | translate}}: 2025
                 <!-- <span class="expiration-month">{{ getMonthName(coupon.end_date.month) }}</span> -
                 <span class="expiration-year">{{ coupon.end_date.year }}</span> -->
               </h5>
@@ -24,11 +24,10 @@
             <div class="col-8 col-md-6 align-self-center px-3 px-md-3">
               <div class="coupon-desc">
                 <h3 class="h5 entry-title">
-                  <a class="title-coupon-code-popup coupon-code-link text-dark">Special discounts for all products</a>
+                  <a class="title-coupon-code-popup coupon-code-link text-dark">{{'Special discounts for all products' | translate}}</a>
                 </h3>
                 <p class="small">
-                  Do you want to use discount coupons for all products ? Special
-                  discount for online order...
+                  {{'Do you want to use discount coupons for all products ? Special discount for online order...' | translate }}
                 </p>
               </div>
             </div>
@@ -36,7 +35,7 @@
               <a (click)="openModal(coupon)" rel="nofollow"
                 class="coupon-code-link btn promotion code btn-secondary tn btn-block coupon-button"
                 title="Click to open the discount coupon">
-                <span class="d-lg-inline">Show the coupon</span>
+                <span class="d-lg-inline">{{'Show the coupon' | translate}}</span>
               </a>
             </div>
             <hr />
@@ -44,10 +43,10 @@
         </div>
         <section class="coupon-wrapper">
           <div *ngIf="loading" class="loading-text">
-            Loading...
+            {{'Loading...' | translate}}
           </div>
           <div *ngIf="!loading && (!coupons || coupons.length === 0)" class="no-coupons-text">
-            <h5>No coupons available</h5>
+            <h5>{{'No coupons available' |translate}}</h5>
           </div>
         </section>
       </ng-template>
@@ -113,8 +112,7 @@
         <div class="modal-content col-12 col-md-8 col-lg-6">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalCenterTitle">
-              <a class="popup-store text-dark" rel="tag">MeseSoft</a> Discount
-              Coupon
+              <a class="popup-store text-dark" rel="tag">MeseSoft</a> {{'Discount Coupon' | translate}}
             </h5>
             <button class="close-button" (click)="closeModal()">X</button>
           </div>
@@ -125,12 +123,11 @@
               <!-- <input id="coupon_copy" class="coupon-code border-0 font-weight-bold" [value]="formatDate(selectedCoupon?.end_date) | date:'shortDate'" readonly=""> -->
             </div>
             <small class="form-text text-muted">
-              This discount code is free of charge and can be used by pasting it
-              in the corresponding field on the cart page.</small>
+              {{'This discount code is free of charge and can be used by pasting it in the corresponding field on the cart page.' | translate}}</small>
           </div>
           <div class="modal-footer">
             <button type="button" id="copy-button" class="btn btn-secondary" (click)="copyCouponCode()">
-              Copy
+              {{'Copy' | translate}}
             </button>
           </div>
         </div>
