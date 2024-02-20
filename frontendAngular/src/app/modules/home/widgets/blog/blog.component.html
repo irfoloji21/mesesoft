@@ -13,7 +13,7 @@
           </div>
         </a>
         <div class="blog-details">
-          <h4>{{ blog.createdAt | date : "dd MMMM yyyy" }}</h4>
+          <h4>{{ blog.createdAt | date : "dd MMMM yyyy"  | translate}}</h4>
 
           <a [routerLink]="'/blog/details/' + blog.slug">
             <p>
@@ -28,11 +28,11 @@
           <ul class="post-social">
             <li>
               <i class="fa fa-heart"></i>
-              {{ blog.likes || 0 }} Hits
+              {{ blog.likes || 0 }} {{'Hits' | translate}}
             </li>
             <li>
               <i class="fa fa-comments"></i>
-              {{ blog.reviews.length || 0 }} Comment(s)
+              {{ blog.reviews.length || 0 }} {{'Comment(s)' | translate}}
             </li>
           </ul>
         </div>

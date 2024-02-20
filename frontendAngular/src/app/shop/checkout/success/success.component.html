@@ -9,7 +9,7 @@
       <div class="col-sm-12">
         <div class="error-section">
           <h1>404</h1>
-          <h2>page not found</h2>
+          <h2>{{'page not found' | translate}}</h2>
           <a [routerLink]="'/home/fashion'" class="btn btn-solid">back to home</a>
         </div>
       </div>
@@ -25,9 +25,9 @@
       <div class="col-md-12">
         <div class="success-text">
           <i class="fa fa-check-circle" aria-hidden="true"></i>
-          <h2>thank you</h2>
-          <p>Payment is has been received Order Placed Successfully</p>
-          <p>Transaction ID:{{ orderDetails.orderId }}</p>
+          <h2>{{'thank you' | translate}}</h2>
+          <p>{{'Payment is has been received Order Placed Successfully' | translate}}</p>
+          <p>{{'Transaction ID' | translate}}:{{ orderDetails.orderId }}</p>
         </div>
       </div>
     </div>
@@ -41,26 +41,26 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="product-order">
-          <h3>your order details</h3>
+          <h3>{{'your order details' | translate}}</h3>
           <div class="row product-order-detail" *ngFor="let product of orderDetails.product">
             <div class="col-3">
               <img [src]="product.images[0].url" alt="" class="img-fluid" />
             </div>
             <div class="col-3 order_detail">
               <div>
-                <h4>product name</h4>
+                <h4>{{'product name' | translate}}</h4>
                 <h5>{{ product.name }}</h5>
               </div>
             </div>
             <div class="col-3 order_detail">
               <div>
-                <h4>quantity</h4>
+                <h4>{{'quantity' | translate}}</h4>
                 <h5>{{ product.quantity }}</h5>
               </div>
             </div>
             <div class="col-3 order_detail">
               <div>
-                <h4>price</h4>
+                <h4>{{'price' | translate}}</h4>
                 <h5>{{ product?.originalPrice | currency }}</h5>
               </div>
             </div>
@@ -68,15 +68,15 @@
           <div class="total-sec">
             <ul>
               <li>
-                Subtotal <span>{{ orderDetails.amount | currency }}</span>
+                {{'Subtotal' | translate}} <span>{{ orderDetails.amount | currency }}</span>
               </li>
-              <li>Shipping <span>$00.00</span></li>
-              <li>Tax <span>$00.00</span></li>
+              <li>{{'Shipping' | translate}} <span>$00.00</span></li>
+              <li>{{'Tax' | translate}} <span>$00.00</span></li>
             </ul>
           </div>
           <div class="final-total">
             <h3>
-              total <span>{{ orderDetails.amount | currency }}</span>
+              {{'total' | translate}} <span>{{ orderDetails.amount | currency }}</span>
             </h3>
           </div>
         </div>
@@ -84,17 +84,17 @@
       <div class="col-lg-6">
         <div class="row order-success-sec">
           <div class="col-sm-6">
-            <h4>summery</h4>
+            <h4>{{'summery' | translate}}</h4>
             <ul class="order-detail">
-              <li>order ID: {{ orderDetails.orderId }}</li>
+              <li>{{'order ID' | translate}}: {{ orderDetails.orderId }}</li>
               <li>
-                Order Date: {{ orderDetails.orderDate | date : "longDate" }}
+                {{'Order Date' | translate}}: {{ orderDetails.orderDate | date : "longDate" }}
               </li>
-              <li>Order Total: {{ orderDetails.amount | currency }}</li>
+              <li>{{'Order Total' | translate}}: {{ orderDetails.amount | currency }}</li>
             </ul>
           </div>
           <div class="col-sm-6">
-            <h4>shipping address</h4>
+            <h4>{{'shipping address' | translate}}</h4>
             <ul class="order-detail">
               <li>{{ orderDetails.shippingDetails.address }}</li>
               <li>{{ orderDetails.shippingDetails.state }}</li>
@@ -102,12 +102,12 @@
                 {{ orderDetails.shippingDetails.country }},
                 {{ orderDetails.shippingDetails.postalcode }}
               </li>
-              <li>Contact No. {{ orderDetails.shippingDetails.phone }}</li>
+              <li>{{'Contact No' | translate}}. {{ orderDetails.shippingDetails.phone }}</li>
             </ul>
           </div>
 
           <div class="col-sm-12 payment-mode">
-            <h4>payment method</h4>
+            <h4>{{'payment method' | translate}}</h4>
             <p>
               Pay on Delivery (Cash/Card). Cash on delivery (COD) available.
               Card/Net banking acceptance subject to device availability.
@@ -115,7 +115,7 @@
           </div>
           <div class="col-md-12">
             <div class="delivery-sec">
-              <h3>expected date of delivery</h3>
+              <h3>{{'expected date of delivery' | translate}}</h3>
               <h2>{{ orderDetails.orderDate | date : "longDate" }}</h2>
             </div>
           </div>

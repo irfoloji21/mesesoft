@@ -5,9 +5,9 @@
     <div class="row">
       <div class="col-sm-12">
         <ngb-accordion [closeOthers]="true" class="accordion theme-accordion" id="accordionExample">
-          <ngb-panel *ngFor="let item of faqData$ | async" [id]="item.id" [title]="item.title">
+          <ngb-panel *ngFor="let item of faqData$ | async" [id]="item.id" [title]="item.title | translate">
             <ng-template ngbPanelContent>
-              <p class="mb-0">{{ item.content }}</p>
+              <p class="mb-0">{{ item.content | translate}}</p>
             </ng-template>
           </ngb-panel>
         </ngb-accordion>

@@ -64,14 +64,14 @@
           <div class="col-lg-12 col-sm-12 col-xs-12">
             <div class="checkout-details">
               <div class="credit-card-form">
-                <label for="card-number">Card Number</label>
+                <label for="card-number">{{'Card Number' | translate}}</label>
                 <input formControlName="cardNumber" type="text" id="card-number" placeholder="1234 5678 9012 3456"
                   required />
 
-                <label for="expiration-date">Expiration Date</label>
+                <label for="expiration-date">{{'Expiration Date' | translate}}</label>
                 <div class="expiration-date">
                   <select id="card-month" formControlName="expirationMonth" required>
-                    <option value="" disabled>Month</option>
+                    <option value="" disabled>{{'Month' | translate}}</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -86,7 +86,7 @@
                     <option value="12">12</option>
                   </select>
                   <select id="card-year" formControlName="expirationYear">
-                    <option value="" disabled>Year</option>
+                    <option value="" disabled>{{'Year' | translate}}</option>
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
@@ -107,8 +107,8 @@
 
                 <div class="terms-and-conditions">
                   <input formControlName="termsCheckbox" type="checkbox" id="terms-checkbox" />
-                  <label for="terms-checkbox">I have read and accept the
-                    <a href="#">Terms and Conditions</a></label>
+                  <label for="terms-checkbox">{{'I have read and accept the' | translate}}
+                    <a href="#">{{'Terms and Conditions' | translate}}</a></label>
                 </div>
               </div>
 
@@ -118,7 +118,7 @@
 
               <div class="text-end">
                 <button type="submit" class="btn-solid btn" (click)="stripeCheckout()">
-                  Place Order
+                  {{'Place Order' | translate}}
                 </button>
                 <!-- <ngx-paypal [config]="payPalConfig" *ngIf="payment == 'Paypal'"></ngx-paypal> -->
               </div>

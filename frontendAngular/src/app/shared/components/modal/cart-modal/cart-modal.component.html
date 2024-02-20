@@ -15,15 +15,15 @@
               <div class="media-body align-self-center text-center">
                 <a [routerLink]="['/shop/product/', product.slug]">
                   <h6>
-                    <i class="fa fa-check"></i>Item
+                    <i class="fa fa-check"></i>{{'Item' | translate}}
                     <span>{{ product.name | titlecase }}</span>
-                    <span> successfully added to your Cart</span>
+                    <span> {{'successfully added to your Cart' | translate}}</span>
                   </h6>
                 </a>
                 <div class="buttons">
-                  <a [routerLink]="['/shop/cart']" class="view-cart btn btn-solid">Your cart</a>
-                  <a [routerLink]="['/shop/checkout']" class="checkout btn btn-solid">Check out</a>
-                  <a [routerLink]="['/shop/collection']" class="continue btn btn-solid">Continue shopping</a>
+                  <a [routerLink]="['/shop/cart']" class="view-cart btn btn-solid">{{'Your cart' | translate}}</a>
+                  <a [routerLink]="['/shop/checkout']" class="checkout btn btn-solid">{{'Check out' | translate}}</a>
+                  <a [routerLink]="['/shop/collection']" class="continue btn btn-solid">{{'Continue shopping' | translate}}</a>
                 </div>
 
                 <div class="upsell_payment">
@@ -34,7 +34,7 @@
 
             <div class="product-section">
               <div class="col-12 product-upsell text-center">
-                <h4>Customers who bought this item also.</h4>
+                <h4>{{'Customers who bought this item also' | translate}}.</h4>
               </div>
               <div class="row" id="upsell_product">
                 <ng-container *ngFor="let product of products | slice : 0 : 4">

@@ -21,7 +21,6 @@ export class WishlistComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.wishlistSubscription = this.productService.wishlistItems.subscribe(response => this.products = response);
-    console.log(this.products);
   }
 
   async addToCart(product: any) {

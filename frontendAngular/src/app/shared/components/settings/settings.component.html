@@ -91,7 +91,7 @@
       </div>
       <span class="cart_qty_cls">{{ products.length }}</span>
       <ul class="show-div shopping-cart" *ngIf="!products.length">
-        <h5>Your cart is currently empty.</h5>
+        <h5>{{'Your cart is currently empty' | translate}}.</h5>
       </ul>
       <ul class="show-div shopping-cart" *ngIf="products.length">
         <li *ngFor="let product of products">
@@ -118,14 +118,14 @@
         <li>
           <div class="total">
             <h5>
-              subtotal : <span>{{ getTotal | async | currency }}</span>
+              {{'subtotal' | translate}} : <span>{{ getTotal | async | currency }}</span>
             </h5>
           </div>
         </li>
         <li>
           <div class="buttons">
-            <a [routerLink]="['/shop/cart']" class="view-cart">view cart</a>
-            <a [routerLink]="['/shop/checkout']" class="checkout">checkout</a>
+            <a [routerLink]="['/shop/cart']" class="view-cart">{{'view cart' | translate}}</a>
+            <a [routerLink]="['/shop/checkout']" class="checkout">{{'checkout' | translate}}</a>
           </div>
         </li>
       </ul>

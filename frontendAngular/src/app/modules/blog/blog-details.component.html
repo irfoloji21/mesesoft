@@ -12,22 +12,21 @@
             " class="img-fluid" alt="" />
         </div>
         <h3>
-          Also the leap into electronic typesetting, remaining essentially
-          unchanged.
+          {{'Also the leap into electronic typesetting, remaining essentially unchanged.' | translate}}
         </h3>
         <ul class="post-social">
-          <li>{{ blog.createdAt | date : "dd MMMM yyyy" }}</li>
+          <li>{{ blog.createdAt | date : "dd MMMM yyyy" | translate }}</li>
           <!-- <li>
             Posted By : {{ blog.shop.name }}
           </li> -->
           <li>
             <i class="fa fa-heart" [ngClass]="{ liked: likedBlogs.includes(blog._id) }" (click)="toggleLikeBlog(blog)">
             </i>
-            {{ blog.likes || 0 }} Hits
+            {{ blog.likes || 0 }} {{'Hits' | translate}}
           </li>
           <li>
             <i class="fa fa-comments"></i>
-            {{ blog.reviews.length || 0 }} Comment(s)
+            {{ blog.reviews.length || 0 }} {{'Comment(s)' | translate}}
           </li>
         </ul>
 
@@ -137,9 +136,9 @@
               <div class="media-body">
                 <h6>
                   {{ review.name }}
-                  <span>( {{ review.createdAt | date : "dd MMMM yyyy" }} )</span>
+                  <span>( {{ review.createdAt | date : "dd MMMM yyyy"  | translate}} )</span>
                 </h6>
-                <p>{{ review.comment }}</p>
+                <p>{{ review.comment  }}</p>
               </div>
             </div>
           </li>
@@ -148,26 +147,26 @@
     </div>
     <div class="row blog-contact">
       <div class="col-sm-12">
-        <h2>Leave Your Comment</h2>
+        <h2>{{'Leave Your Comment' | translate}}</h2>
         <form class="theme-form" [formGroup]="blogForm" (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-md-12">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" placeholder="Enter Your name" required=""
+              <label for="name">{{'Name' | translate}}</label>
+              <input type="text" class="form-control" id="name" placeholder="{{'Enter Your name' | translate}}" required=""
                 formControlName="name" />
             </div>
             <div class="col-md-12">
-              <label for="email">Email</label>
-              <input type="text" class="form-control" id="email" placeholder="Email" required=""
+              <label for="email">{{'Email' | translate}}</label>
+              <input type="text" class="form-control" id="email" placeholder="{{'Email' | translate}}" required=""
                 formControlName="email" />
             </div>
             <div class="col-md-12">
-              <label for="exampleFormControlTextarea1">Comment</label>
-              <textarea class="form-control" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6"
+              <label for="exampleFormControlTextarea1">{{'Comment' | translate}}</label>
+              <textarea class="form-control" placeholder="{{'Write Your Comment' | translate}}" id="exampleFormControlTextarea1" rows="6"
                 formControlName="comment"></textarea>
             </div>
             <div class="col-md-12">
-              <button class="btn btn-solid" type="submit">Post Comment</button>
+              <button class="btn btn-solid" type="submit">{{'Post Comment' | translate}}</button>
             </div>
           </div>
         </form>

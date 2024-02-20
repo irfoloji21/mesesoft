@@ -19,9 +19,9 @@
           <div class="col-lg-6">
             <form [formGroup]="subscribeForm" class="form-inline subscribe-form" (ngSubmit)="subscribe()">
               <div class="form-group mx-sm-3">
-                <input formControlName="email" id="mce-EMAIL" class="form-control" placeholder="Enter your email" />
+                <input formControlName="email" id="mce-EMAIL" class="form-control" placeholder="{{'Enter your email' | translate}}" />
               </div>
-              <button type="submit" class="btn btn-solid">Subscribe</button>
+              <button type="submit" class="btn btn-solid">{{'Subscribe' | translate}}</button>
             </form>
           </div>
         </div>

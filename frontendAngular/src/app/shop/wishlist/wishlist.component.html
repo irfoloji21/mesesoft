@@ -5,18 +5,18 @@
     <div class="col-md-12 empty-cart-cls text-center" *ngIf="!products.length">
       <img src="assets/images/empty-wishlist.png" alt="Empty cart" title="Emprt cart" />
       <h3 class="mt-4"><b>Wishlist is Empty</b></h3>
-      <h4>Explore more shortlist some items.</h4>
+      <h4>{{'Explore more shortlist some items' | translate}}.</h4>
     </div>
     <div class="row" *ngIf="products.length">
       <div class="col-sm-12">
         <table class="table cart-table table-responsive-xs">
           <thead>
             <tr class="table-head">
-              <th scope="col">image</th>
-              <th scope="col">product name</th>
-              <th scope="col">price</th>
-              <th scope="col">availability</th>
-              <th scope="col">action</th>
+              <th scope="col">{{'image' | translate}}</th>
+              <th scope="col">{{'product name' | translate}}</th>
+              <th scope="col">{{'price' | translate}}</th>
+              <th scope="col">{{'availability' | translate}}</th>
+              <th scope="col">{{'action' | translate}}</th>
             </tr>
           </thead>
           <tbody *ngFor="let product of products">
@@ -74,8 +74,8 @@
     </div>
     <div class="row wishlist-buttons" *ngIf="products.length">
       <div class="col-12">
-        <a [routerLink]="['/shop/collection']" class="btn btn-solid">continue shopping</a>
-        <a [routerLink]="['/shop/checkout']" class="btn btn-solid">check out</a>
+        <a [routerLink]="['/shop/collection']" class="btn btn-solid">{{'continue shopping' | translate}}</a>
+        <a [routerLink]="['/shop/checkout']" class="btn btn-solid">{{'check out' | translate}}</a>
       </div>
     </div>
   </div>

@@ -8,12 +8,12 @@
             <div class="checkout-address c-content-area js-tab-content addresses cf active">
               <div class="col-12 pd-0 address-options">
                 <div class="address-header">
-                  <div class="address-title">DELIVERY ADDRESS</div>
+                  <div class="address-title">{{'DELIVERY ADDRESS' | translate}}</div>
                   <div class="form-check">
                     <input [(ngModel)]="isBillingAddressSame" class="form-check-input" type="checkbox" value=""
                       id="flexCheckDefault" />
                     <label class="form-check-label" for="flexCheckDefault">
-                      My billing address is the same
+                      {{'My billing address is the same' | translate}}
                     </label>
                   </div>
                 </div>
@@ -24,7 +24,7 @@
                   <div class="checkout__address-list">
                     <div class="alert-message">
                       <p class="js-message-delivery-option checkout-message-alert">
-                        Please select a delivery address.
+                        {{'Please select a delivery address' | translate}}.
                       </p>
                     </div>
                     <div class="js-address-list address-list">
@@ -46,18 +46,18 @@
                                 </div>
                                 <div class="middle">
                                   <div class="address">
-                                    <p>Zip Code: {{ address.zipCode }}</p>
+                                    <p>{{'Zip Code' | translate}}: {{ address.zipCode }}</p>
                                     <p>
-                                      Country/City: {{ address.country }},
+                                      {{'Country/City' | translate}}: {{ address.country }},
                                       {{ address.city }}
                                     </p>
                                     <p>
-                                      Region/State: {{ address.regionState }}
+                                      {{'Region/State' | translate}}: {{ address.regionState }}
                                     </p>
                                   </div>
                                   <div class="number">
                                     <p>
-                                      Flat/Plot:
+                                      {{'Flat/Plot' | translate}}:
                                       <span>{{ address.flatPlot }}</span>
                                     </p>
                                   </div>
@@ -68,10 +68,10 @@
                                   <a (click)="
                                       editAddress(address); openEditForm()
                                     " data-bs-target="#edit-address" data-bs-toggle="modal" data-type="address"
-                                    class="bottom_btn">Edit
+                                    class="bottom_btn">{{'Edit' | translate}}
                                   </a>
                                   <a (click)="deleteAddress(address._id)" class="bottom_btn delete-button"
-                                    data-type="address">Delete</a>
+                                    data-type="address">{{'Delete' | translate}}</a>
                                 </div>
                                 <div class="clear"></div>
                               </div>
@@ -83,7 +83,7 @@
                         <div class="c-address-content js-new-address-occ">
                           <button class="btn btn-sm btn-solid" (click)="openCreateForm()">
                             <span class="icon-plus"></span>
-                            CREATE NEW ADDRESS
+                            {{'CREATE NEW ADDRESS' | translate}}
                           </button>
                         </div>
                       </div>
@@ -93,7 +93,7 @@
                 <div class="js-bill-address-list address-list" *ngIf="!isBillingAddressSame">
                   <div class="alert-message">
                     <p class="js-message-bill-address checkout-message-alert">
-                      Please select a billing address.
+                      {{'Please select a billing address' | translate}}.
                     </p>
                   </div>
                   <div class="card-body">
@@ -114,18 +114,18 @@
                             </div>
                             <div class="middle">
                               <div class="address">
-                                <p>Zip Code: {{ billingAddress.zipCode }}</p>
+                                <p>{{'Zip Code' | translate}}: {{ billingAddress.zipCode }}</p>
                                 <p>
-                                  Country/City: {{ billingAddress.country }},
+                                  {{'Country/City' | translate}}: {{ billingAddress.country }},
                                   {{ billingAddress.city }}
                                 </p>
                                 <p>
-                                  Region/State: {{ billingAddress.regionState }}
+                                  {{'Region/State' | translate}}: {{ billingAddress.regionState }}
                                 </p>
                               </div>
                               <div class="number">
                                 <p>
-                                  Flat/Plot:
+                                  {{'Flat/Plot' | translate}}:
                                   <span>{{ billingAddress.flatPlot }}</span>
                                 </p>
                               </div>
@@ -137,7 +137,7 @@
                               <a (click)="
                                   editAddress(billingAddress); openEditForm()
                                 " data-bs-target="#edit-address" data-bs-toggle="modal" data-type="billingAddress"
-                                class="bottom_btn">Edit
+                                class="bottom_btn">{{'Edit' | translate}}
                               </a>
                               <a class="bottom_btn delete-button" data-type="billingAddress">Delete</a>
                             </div>
@@ -151,7 +151,7 @@
                     <div class="c-address-content js-new-address-occ">
                       <button class="btn btn-sm btn-solid" (click)="openCreateForm()">
                         <span class="icon-plus"></span>
-                        CREATE NEW ADDRESS
+                        {{'CREATE NEW ADDRESS' | translate}}
                       </button>
                     </div>
                   </div>
@@ -159,7 +159,7 @@
                 <!------------- SHIPPING OPTIONS ------------->
                 <div class="js-options-detail options-detail js-shipping-list-form">
                   <form method="post">
-                    <div class="address-title">SHIPPING OPTIONS</div>
+                    <div class="address-title">{{'SHIPPING OPTIONS' | translate}}</div>
                     <div class="checkout__cargos-list">
                       <div class="checkout-shipping-list-wrapper" *ngFor="let shipping of shippingData; let i = index"
                         [class.selected-shipping]="i === selectedShippingIndex">
@@ -204,32 +204,32 @@
     <div class="modal-content col-12 col-md-8 col-lg-6">
       <button class="close-button" (click)="closeCreateForm()">X</button>
       <form class="theme-form" [formGroup]="addForm" (ngSubmit)="addressSubmit()">
-        <h3 class="text-center">Create New Address</h3>
+        <h3 class="text-center">{{'Create New Address' | translate}}</h3>
         <div class="row">
           <div class="col-md-6">
-            <label for="review">Address Type</label>
+            <label for="review">{{'Address Type' | translate}}</label>
             <input formControlName="addressType" type="text" class="form-control" id="addressType"
               placeholder="Address Type" required />
           </div>
           <div class="col-md-6">
-            <label for="name">Flat / Plot</label>
-            <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat" placeholder="Flat / Plot"
+            <label for="name">{{'Flat/Plot' | translate}}</label>
+            <input formControlName="flatPlot" type="text" class="form-control" id="home-ploat" placeholder="{{'Flat/Plot' | translate}}"
               required />
           </div>
           <div class="col-md-6">
-            <label for="name">Address *</label>
-            <input formControlName="address" type="text" class="form-control" id="address-two" placeholder="Address"
+            <label for="name">{{'Address' | translate}} *</label>
+            <input formControlName="address" type="text" class="form-control" id="address-two" placeholder="{{'Address' | translate}}"
               required />
           </div>
           <div class="col-md-6">
-            <label for="email">Zip Code *</label>
-            <input formControlName="zipCode" type="text" class="form-control" id="zip-code" placeholder="Zip Code"
+            <label for="email">{{'Zip Code' | translate}} *</label>
+            <input formControlName="zipCode" type="text" class="form-control" id="zip-code" placeholder="{{'Zip Code' | translate}}"
               required />
           </div>
           <div class="col-md-6 select_input">
-            <label for="country">Country *</label>
+            <label for="country">{{'Country' | translate}} *</label>
             <select formControlName="country" class="form-control" size="1">
-              <option value="" disabled selected>Select a Country</option>
+              <option value="" disabled selected>{{'Select a Country' | translate}}</option>
               <option value="UK">United Kingdom</option>
               <option value="US">United States</option>
               <option value="Netherlands">Netherlands</option>
@@ -240,17 +240,17 @@
             </select>
           </div>
           <div class="col-md-6">
-            <label for="review">City *</label>
-            <input formControlName="city" type="text" class="form-control" id="city" placeholder="City" required />
+            <label for="review">{{'City' | translate}} *</label>
+            <input formControlName="city" type="text" class="form-control" id="city" placeholder="{{'City' | translate}}" required />
           </div>
           <div class="col-md-6">
-            <label for="review">Region/State *</label>
+            <label for="review">{{'Region/State' | translate}} *</label>
             <input formControlName="regionState" type="text" class="form-control" id="region-state"
-              placeholder="Region/State" required />
+              placeholder="{{'Region/State' | translate}}" required />
           </div>
           <div class="col-md-12">
             <button class="btn btn-sm btn-solid" type="submit">
-              Create Address
+              {{'Create Address' | translate}}
             </button>
           </div>
         </div>

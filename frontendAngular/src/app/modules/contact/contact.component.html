@@ -24,7 +24,7 @@
             <li>
               <div class="contact-icon">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <h6>Address</h6>
+                <h6>{{'Address' | translate}}</h6>
               </div>
               <div class="media-body">
                 <p>ABC Complex,Near xyz, New York</p>
@@ -34,7 +34,7 @@
             <li>
               <div class="contact-icon">
                 <img src="assets/images/icon/email.png" alt="Generic placeholder image" />
-                <h6>Address</h6>
+                <h6>{{'Address' | translate}}</h6>
               </div>
               <div class="media-body">
                 <p>Support@Shopcart.com</p>
@@ -60,33 +60,33 @@
         <form class="theme-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="row">
             <div class="col-md-6">
-              <label for="name">First Name</label>
+              <label for="name">{{'First Name' | translate}}</label>
               <input formControlName="firstName" type="text" class="form-control" id="name"
-                placeholder="Enter Your name" required="" />
+                placeholder="{{'Enter Your name' | translate}}" required="" />
             </div>
             <div class="col-md-6">
-              <label for="email">Last Name</label>
-              <input formControlName="lastName" type="text" class="form-control" id="last-name" placeholder="Email"
+              <label for="email">{{'Last Name' | translate}}</label>
+              <input formControlName="lastName" type="text" class="form-control" id="last-name" placeholder="{{'Last Name' | translate}}"
                 required="" />
             </div>
             <div class="col-md-6">
-              <label for="review">Phone number</label>
+              <label for="review">{{'Phone number' | translate}}</label>
               <input formControlName="phoneNumber" type="text" class="form-control" id="review"
-                placeholder="Enter your number" required="" />
+                placeholder="{{'Enter your number' | translate}}" required="" />
             </div>
             <div class="col-md-6">
-              <label for="email">Email</label>
-              <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email"
+              <label for="email">{{'Email' | translate}}</label>
+              <input formControlName="email" type="text" class="form-control" id="email" placeholder="{{'Email' | translate}}"
                 required="" />
             </div>
             <div class="col-md-12">
-              <label for="review">Write Your Message</label>
-              <textarea formControlName="message" class="form-control" placeholder="Write Your Message"
+              <label for="review">{{'Write Your Message' | translate}}</label>
+              <textarea formControlName="message" class="form-control" placeholder="{{'Write Your Message' | translate}}"
                 id="exampleFormControlTextarea1" rows="6"></textarea>
             </div>
             <div class="col-md-12">
               <button class="btn btn-solid" type="submit">
-                Send Your Message
+                {{'Send Your Message' | translate}}
               </button>
             </div>
           </div>
