@@ -9,6 +9,8 @@ import { DigitalSubCategoryComponent } from './category/category-sub/digital-sub
 import { AddProductComponent } from './product/products-add/add-product.component';
 import { ProductListComponent } from './product/products-list/product-list.component';
 import { ProductssComponent } from './product/products-main-page/productss/productss.component';
+import { CategoriesComponent } from './category/category/categories/categories.component';
+
 
 
 const routes: Routes = [
@@ -63,6 +65,7 @@ const routes: Routes = [
           breadcrumb: "Add Product"
         }
       },
+
       {
         path: 'catalog/edit-product/:id',
         component: AddProductComponent,
@@ -79,6 +82,15 @@ const routes: Routes = [
           breadcrumb: "Category"
         }
       },
+      {
+        path: 'category/categories',
+        component: CategoriesComponent,
+        data: {
+          title: "Category",
+          breadcrumb: "Category"
+        }
+      },
+
       {
         path: 'category/edit-category/:id',
         component: DigitalAddComponent,

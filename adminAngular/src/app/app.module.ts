@@ -31,9 +31,12 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { InboxComponent } from './components/inbox/inbox.component';
+// import { InboxComponent } from './components/inbox/inbox.component';
 import { AboutModule } from './components/about/about.module';
 import { ToastrModule } from 'ngx-toastr';
+import { CustomersComponent } from './components/customers/customers.component';
+import { CustomersModule } from './components/customers/customers.module';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -44,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    InboxComponent,
+   
+    // InboxComponent,
     
   ],
   imports: [
@@ -61,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     LocalizationModule,
     ProductsModule,
     SalesModule,
+    CustomersModule,
     VendorsModule,
     CouponsModule,
     BlogModule,

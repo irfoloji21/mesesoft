@@ -24,6 +24,7 @@ import { ProductListComponent } from './product/products-list/product-list.compo
 import { ProductssComponent } from './product/products-main-page/productss/productss.component';
 import { ProductReviewsComponent } from './product/products-reviews/product-reviews/product-reviews.component';
 import { SubCategoryComponent } from './product/sub-category/sub-category.component';
+import { CategoriesComponent } from './category/category/categories/categories.component';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { SubCategoryComponent } from './product/sub-category/sub-category.compon
     DigitalCategoryComponent, 
     DigitalSubCategoryComponent, 
     DigitalAddComponent, 
-    ProductDetailComponent, ProductssComponent, ProductReviewsComponent
+    ProductDetailComponent, ProductssComponent, ProductReviewsComponent, CategoriesComponent
   ],
   imports: [
     CommonModule,

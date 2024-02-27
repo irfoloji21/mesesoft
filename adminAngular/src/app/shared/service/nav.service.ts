@@ -51,6 +51,7 @@ export class NavService {
 			title: 'Categories', icon: 'folder', type: 'sub', children: [
 				{ path: '/products/category/main-category', title: 'Main Category', type: 'link' },
 				{ path: '/products/category/sub-sub-category', title: 'Sub Category', type: 'link' },
+				// { path: '/products/category/categories', title: 'Categories', type: 'link' },
 			]
 		},
 		{
@@ -96,6 +97,13 @@ export class NavService {
 			title: 'Users', icon: 'user-plus', type: 'sub', active: false, children: [
 				{ path: '/users/list-user', title: 'User List', type: 'link' },
 				{ path: '/users/create-user', title: 'Create User', type: 'link' },
+
+			]
+		},
+		{
+			title: 'Customers', icon: 'user-plus', type: 'sub', active: false, children: [
+				{ path: 'customers', title: 'All Customers', type: 'link' },
+
 			]
 		},
 		// {
