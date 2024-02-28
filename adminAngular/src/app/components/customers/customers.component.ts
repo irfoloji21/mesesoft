@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -14,6 +15,7 @@ export class CustomersComponent  {
   isButtonClicked: boolean = false;
   constructor(
     private fb: FormBuilder,
+    private router: Router
   ){
     this.searchForm = this.fb.group({
       searchText: ['']
@@ -26,7 +28,9 @@ export class CustomersComponent  {
     });
 
   }
-  addCustomer() {}
+  addCustomer() {
+    this.router.navigate(['/customers/add-customer']);
+  }
   clearAll() {}
   buttonSearch(){}
   onActionChange(event: any): void { }

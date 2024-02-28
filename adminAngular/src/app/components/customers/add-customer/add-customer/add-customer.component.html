@@ -1,0 +1,251 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div></div>
+                    <div class="form-group row mb-0">
+                        <div class="col-sm-8">
+                            <div class="product-buttons d-flex mx-4">
+                                <button routerLink="/customers" type="button" class="btn btn-light me-2"
+                                    (click)="goBack()">
+                                    ◄Back <i class="bi bi-arrow-left"></i>
+                                </button>
+                                <button type="button" class="btn btn-primary me-1" (click)="performAction()">
+                                    {{ "Save" | translate }}
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row product-adding">
+                                    <div class="offset-2 col-xl-8 offset-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row mb-0">
+                    <div class="col-sm-12">
+                        <div class="card-body">
+                            <div class="row product-adding">
+                                <div class="offset-2 col-xl-8 offset-2">
+                                    <form class="needs-validation">
+                                        <div class="add-product-form">
+
+
+                                                <div class="form-group row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label class="mb-0">{{ " Associate to Website" | translate }} :</label>
+                                                    </div>
+                                                    <div class="col-xl-3 col-sm-8" >
+                                                        <div class="dropdown">
+                                                            <a style="border: 1px solid gray"
+                                                                class="btn btn-transparent dropdown-toggle" href="#"
+                                                                role="button" id="dropdownMenuLink"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                {{ "Main Website" }}
+                                                            </a>
+                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <li>
+                                                                    <a style="cursor: pointer" class="dropdown-item">Main 
+                                                                        Website</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label class="mb-0">{{ "Group" | translate }} :</label>
+                                                    </div>
+                                                    <div class="col-xl-3 col-sm-8" >
+                                                        <div class="dropdown">
+                                                            <a style="border: 1px solid gray"
+                                                                class="btn btn-transparent dropdown-toggle" href="#"
+                                                                role="button" id="dropdownMenuLink"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                {{ "General" | translate}}
+                                                            </a>
+                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <li>
+                                                                    <a style="cursor: pointer" class="dropdown-item"> 
+                                                                        General</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a style="cursor: pointer" class="dropdown-item"> 
+                                                                        Retailer</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a style="cursor: pointer" class="dropdown-item"> 
+                                                                        Wholesale</a>
+                                                                </li>
+                                                            </ul>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class=" offset-3 col-xl-8 col-sm-7 ">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input form-switch-custom-size"
+                                                                type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                                                checked />
+                                                                <span>Disable Automatic Group Change Based on VAT ID</span>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                
+
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ " Name Prefix" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="text" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ " First Name" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ " Middle Name/Initial" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ " Last Name" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ "  Name Suffix" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom02" class="mb-0">{{ "Email" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom02" type="number" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ " Date of Birth" | translate }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="date" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ " Tax/VAT Number" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="text" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label class="mb-0">{{ "Gender" | translate }} :</label>
+                                                </div>
+                                                <div class="col-xl-3 col-sm-8" >
+                                                    <div class="dropdown">
+                                                        <a style="border: 1px solid gray"
+                                                            class="btn btn-transparent dropdown-toggle" href="#"
+                                                            role="button" id="dropdownMenuLink"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            {{ "selectedOption"  }}
+                                                        </a>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                            <li>
+                                                                <a style="cursor: pointer" class="dropdown-item">
+                                                                    Male</a>
+                                                            </li>
+                                                            <li>
+                                                                <a style="cursor: pointer" class="dropdown-item">Out Of
+                                                                    Female  </a>
+                                                            </li>
+                                                            <li>
+                                                                <a style="cursor: pointer" class="dropdown-item">
+                                                                    Not Specified</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label class="mb-0">{{ "Stock Status" | translate }} :</label>
+                                                </div>
+                                                <div class="col-xl-3 col-sm-8" >
+                                                    <div class="dropdown">
+                                                        <a style="border: 1px solid gray"
+                                                            class="btn btn-transparent dropdown-toggle" href="#"
+                                                            role="button" id="dropdownMenuLink"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            {{ "selectedOption"  }}
+                                                        </a>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                            <li>
+                                                                <a style="cursor: pointer" class="dropdown-item">In
+                                                                    Stock</a>
+                                                            </li>
+                                                            <li>
+                                                                <a style="cursor: pointer" class="dropdown-item">Out Of
+                                                                    Stock</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xl-3 col-sm-4">
+                                                    <label for="validationCustom01" class="mb-0">{{ " Vertex Customer Code" | translate
+                                                        }} :</label>
+                                                </div>
+                                                <div class="col-xl-8 col-sm-7">
+                                                    <input class="form-control" id="validationCustom01" type="text" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

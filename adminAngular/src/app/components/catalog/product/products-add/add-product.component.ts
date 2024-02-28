@@ -55,10 +55,6 @@ export class AddProductComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {
-    
-
-    
-
     this.productForm = this.fb.group({
       name: [''],
       slug: [''],
