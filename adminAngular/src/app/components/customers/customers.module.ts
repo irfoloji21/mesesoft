@@ -10,6 +10,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartistModule } from 'ng-chartist';
 import { NgChartsModule } from 'ng2-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CustomersComponent],
@@ -21,7 +22,8 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     Ng2GoogleChartsModule,
     NgxChartsModule,
     ChartistModule,
-    TranslateModule
+    TranslateModule,
+    ReactiveFormsModule 
   ]
 })
 export class CustomersModule { }

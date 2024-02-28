@@ -1,1 +1,179 @@
-<p>customers works!</p>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="d-flex justify-content-between">
+            <div class="card-header">
+              <h5>{{ "Products" | translate }}</h5>
+            </div>
+            <div class="card-header">
+              <button (click)="addCustomer()" type="submit" class="btn btn-primary">
+                {{ "Add product +" | translate }}
+              </button>
+            </div>
+          </div>
+  
+          <div class="admin-filters" *ngIf="isFilterCustomer">
+            <div class="content">
+              <div class="d-flex">
+                <span class="Active-Filters">Active-Filters:</span>
+                <div>
+                  <span class="keywords">Keywords:</span>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      <span id="searchTextSpan">{{ searchText }}</span>
+                      <button class="action-remove" type="button" (click)="clearAll()">
+                        <span>X</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="admin-keywords-title">
+              </div>
+            </div>
+            <div class="clearAll">
+              <a (click)="clearAll()" type="button">Clear all</a>
+            </div>
+          </div>
+          
+          
+  
+  
+  
+  
+          <div class="card-body">
+            <div class="custom-datatable">
+  
+             
+  
+              <div class="searchArea mx-2 d-flex" [formGroup]="searchForm">
+                <div >
+                  <input type="text" class="filter-ngx form-control mx-2" placeholder="{{'Search...' | translate}}"
+                   formControlName="searchText" (keyup.enter)="buttonSearch()" />
+                </div>
+                <div>
+                  <button (click)="buttonSearch()" type="button" class="btn btn-primary">
+                    {{ "Find" | translate }}
+                  </button>
+                </div>
+              </div>
+              
+              
+              
+              <!-- actions start -->
+              <div class="actions m-3">
+                <div class="select-wrapper">
+                  <select class="custom-select" id="actions" (change)="onActionChange($event)">
+                    <option value="" disabled selected>Select an action</option>
+                    <optgroup label="Delete">
+                      <option value="delete">Delete selected item(s)</option>
+                    </optgroup>
+                    <optgroup label="Change status">
+                      <option value="disable">Disable selected item(s)</option>
+                      <option value="enable">Enable selected item(s)</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+  
+              <!-- actions End -->
+              <br />
+              <table class="table table-striped styled-table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Select</th>
+                    <th scope="col" sortable="index">
+                      {{ "ID" | translate }}
+                    </th>
+                    <!-- <th scope="col" sortable="product_id" class="text-center">
+                        {{ "Product id" | translate }}
+                      </th> -->
+                    <th class="text-center" scope="col" sortable="product">{{"Name" | translate}}</th>
+                    <th scope="col" sortable="name">{{"Email" | translate}}</th>
+                    <th scope="col" sortable="price">
+                      {{ "Group" | translate }}
+                    </th>
+                    <th scope="col" sortable="stock">
+                      {{ "Phone" | translate }}
+                    </th>
+                    <th scope="col" sortable="product_status">
+                      {{ "ZIP" | translate }}
+                    </th>
+                    <th scope="col" sortable="product_status">
+                        {{ "Country" | translate }}
+                      </th>
+                      <th scope="col" sortable="product_status">
+                        {{ "State/Province" | translate }}
+                      </th>
+                      <th scope="col" sortable="product_status">
+                        {{ "Web Site" | translate }}
+                      </th>
+                      <th scope="col" sortable="product_status">
+                        {{ "Confirmed email" | translate }}
+                      </th>
+                      <th scope="col" sortable="product_status">
+                        {{ "Account Created in" | translate }}
+                      </th>
+                      <th scope="col" sortable="product_status">
+                        {{ "Date of Birth" | translate }}
+                      </th>
+                      <th scope="col" sortable="product_status">
+                        {{ "Gender" | translate }}
+                      </th>
+                    <!-- <th scope="col" sortable="date" >
+                        {{ "Date" | translate }}
+                      </th>
+                      <th scope="col" sortable="total" >
+                        {{ "Total" | translate }}
+                      </th> -->
+                    <th class="text-center" scope="col" sortable="total">
+                      {{ "Action" | translate }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of customer_list; let i = index">
+                    <td class="text-center align-middle">
+                      <input type="checkbox" (change)="toggleSelection(product);" [checked]="product.selected" />
+                    </td>
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <div class="img-container position-relative text-center">
+                        <a href="javascript:void(0)" class="d-block position-relative">
+                          <img [src]="[product.images[0].url]" class="img-fluid blur-up lazyload bg-img" />
+                          <div class="product-hover position-absolute top-0 start-0 w-100 h-100">
+                            <button class="btn btn-transparent" type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                              <i class="fa fa-eye text-theme" (click)="detailProduct(product)"></i>
+                            </button>
+                          </div>
+                        </a>
+                      </div>
+                    </td>
+                    <td>{{ product.name.slice(0, 15) }}</td>
+                    <td>
+                      <span class="product-price">{{ product.originalPrice | currency }}</span>
+                    </td>
+                    <td>{{ product.stock }} <span>in stock</span></td>
+                    <td>
+                      <span class="badge badge-secondary">status</span>
+                    </td>
+                    <td class="text-center">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <i class="icon-pencil-alt" (click)="editProduct(product._id)"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 
