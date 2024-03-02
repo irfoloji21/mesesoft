@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { CustomerService } from 'src/app/shared/service/customer.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -9,13 +9,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddCustomerComponent implements OnInit {
   buttonText;
-  addCustomerForm: FormGroup
-  selectedOptionGender: string = 'Not Specified';
-  selectedOptionEmailForm: string = 'Main Website';
-
+  addCustomerForm: FormGroup;
+  selectedOptionGender: string;
+  selectedOptionEmailForm: string;
+  selectedOptionAssociateToWebsite: string;
+  selectedGroup: string;
+  
   constructor(
     private fb: FormBuilder,
-  ){}
+    private customerService: CustomerService
+  ) {}
 
   ngOnInit(): void {
      this.CustomerForm();
@@ -23,37 +26,54 @@ export class AddCustomerComponent implements OnInit {
 
   CustomerForm(){
     this.addCustomerForm = this.fb.group({
-      AssociateToWebsite:[''],
-      NamePrefix:    [''],
-      FirstName:     [''],
-      MiddleName:    [''],
-      LastName:      [''],
-      NameSuffix:    [''],
-      Email:         [''],
-      Date:          [''],
-      TaxVatNumber:  [''],
-      VertexCustomer:[''],
-      Gender: ['Not Specified'],
-      EmailForm:['Main Website'],
-
-
+      AssociateToWebsite: ['Main Website'],
+      Group:              ['General'],
+      NamePrefix:         [''],
+      FirstName:          [''],
+      MiddleName:         [''],
+      LastName:           [''],
+      NameSuffix:         [''],
+      Email:              [''],
+      Date:               [''],
+      TaxVatNumber:       [''],
+      Gender:             ['Not Specified'],
+      EmailForm:          ['Default Store Wiew'],
+      VertexCustomer:     [''],
     });
   }
+
   saveForm(): void {
     const formData = this.addCustomerForm.value;
-    console.log('saveForm:', formData);
+    console.log(formData)
+    this.customerService.addCustomer(formData).subscribe(
+      response => {
+        console.log('Success', response);
+      },
+      error => {
+        console.error('error', error);
+      }
+    );
+  }
+
+  updateSelectedAssociateToWebsite(option: string): void {
+    this.selectedOptionAssociateToWebsite = option;
+    this.addCustomerForm.controls['AssociateToWebsite'].setValue(option);
   }
 
   updateSelectedGender(option: string): void {
     this.selectedOptionGender = option;
-    this.addCustomerForm.controls['Not Specified'].setValue(option); 
+    this.addCustomerForm.controls['Gender'].setValue(option); 
   }
 
   updateSelectedEmailForm(option: string): void {
     this.selectedOptionEmailForm = option;
-    this.addCustomerForm.controls['Main Website'].setValue(option); 
+    this.addCustomerForm.controls['EmailForm'].setValue(option); 
   }
-  
+
+  updateSelectedGroup(option: string): void {
+    this.selectedGroup = option;
+    this.addCustomerForm.controls['Group'].setValue(option);
+  }
   
   goBack(){}
 }

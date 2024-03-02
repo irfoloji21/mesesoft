@@ -59,36 +59,23 @@
 
                                                 <div class="form-group row">
                                                     <div class="col-xl-3 col-sm-4">
-                                                        <label class="mb-0">{{ "Group" | translate }} :</label>
+                                                      <label class="mb-0">{{ "Group" | translate }} :</label>
                                                     </div>
-                                                    <div class="col-xl-3 col-sm-8" >
-                                                        <div class="dropdown">
-                                                            <a style="border: 1px solid gray"
-                                                                class="btn btn-transparent dropdown-toggle" href="#"
-                                                                role="button" id="dropdownMenuLink"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                                {{ "General" | translate}}
-                                                            </a>
-                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                                <li>
-                                                                    <a style="cursor: pointer" class="dropdown-item"> 
-                                                                        General</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a style="cursor: pointer" class="dropdown-item"> 
-                                                                        Retailer</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a style="cursor: pointer" class="dropdown-item"> 
-                                                                        Wholesale</a>
-                                                                </li>
-                                                            </ul>
-                                                           
-                                                        </div>
+                                                    <div class="col-xl-3 col-sm-8">
+                                                      <div class="dropdown">
+                                                        <a class="btn btn-transparent dropdown-toggle" href="#" role="button" id="groupDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                          {{ addCustomerForm.get('Group').value }}
+                                                        </a>
+                                                        <ul class="dropdown-menu" aria-labelledby="groupDropdown">
+                                                          <li><a class="dropdown-item" (click)="updateSelectedGroup('General')">General</a></li>
+                                                          <li><a class="dropdown-item" (click)="updateSelectedGroup('Retailer')">Retailer</a></li>
+                                                          <li><a class="dropdown-item" (click)="updateSelectedGroup('Wholesale')">Wholesale</a></li>
+                                                        </ul>
+                                                      </div>
                                                     </div>
-                                                </div>
+                                                  </div>
 
-                                                <div class="form-group row">
+                                                <!-- <div class="form-group row">
                                                     <div class=" offset-3 col-xl-8 col-sm-7 ">
                                                         <div class="form-check form-switch">
                                                             <input class="form-check-input form-switch-custom-size"
@@ -97,7 +84,7 @@
                                                                 <span>Disable Automatic Group Change Based on VAT ID</span>
                                                         </div>
                                                     </div>
-                                                    </div>
+                                                    </div> -->
                                                 
 
                                             <div class="form-group row">
@@ -204,8 +191,7 @@
                                                             {{ selectedOptionEmailForm }}
                                                         </a>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            <li><a class="dropdown-item" (click)="updateSelectedEmailForm('Main Website')">Main Website</a></li>
-                                                            <li><a class="dropdown-item" (click)="updateSelectedEmailForm('Default Website')"> Default Website</a></li>
+                                                            <li><a class="dropdown-item" (click)="updateSelectedEmailForm('Default Store Wiew')">Default Store Wiew</a></li>
                                                         
                                                         </ul>
                                                     </div>
