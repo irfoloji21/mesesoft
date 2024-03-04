@@ -1,0 +1,68 @@
+{
+  "customers": [
+    {
+      "AssociateToWebsite": "Main Website",
+      "Group": "Retailer",
+      "NamePrefix": "asdasd1",
+      "FirstName": "asdasd2",
+      "MiddleName": "asdasd3",
+      "LastName": "asd4",
+      "NameSuffix": "asd5",
+      "Email": "asdsadqasd@sad6",
+      "Date": "2024-03-12",
+      "TaxVatNumber": 3242348,
+      "Gender": "Male",
+      "EmailForm": "Default Store Wiew",
+      "VertexCustomer": "asdasd11",
+      "id": 3
+    },
+    {
+      "AssociateToWebsite": "Main Website",
+      "Group": "General",
+      "NamePrefix": "asdasd12",
+      "FirstName": "qwe",
+      "MiddleName": "asd",
+      "LastName": "tyuı",
+      "NameSuffix": "uıo",
+      "Email": "678987@sad6",
+      "Date": "2024-03-22",
+      "TaxVatNumber": 345647567,
+      "Gender": "Female",
+      "EmailForm": "Default Store Wiew",
+      "VertexCustomer": "asdasd11",
+      "id": 4
+    },
+    {
+      "AssociateToWebsite": "Main Website",
+      "Group": "General",
+      "NamePrefix": "uıopıopıoıop",
+      "FirstName": "qwe",
+      "MiddleName": "asd",
+      "LastName": "tyuı",
+      "NameSuffix": "uıo",
+      "Email": "678987@sad6",
+      "Date": "2024-03-22",
+      "TaxVatNumber": 345647567,
+      "Gender": "Not Specified",
+      "EmailForm": "Default Store Wiew",
+      "VertexCustomer": "asdasd11",
+      "id": 5
+    },
+    {
+      "AssociateToWebsite": "Main Website",
+      "Group": "Retailer",
+      "NamePrefix": "Enver",
+      "FirstName": "Deneme",
+      "MiddleName": "asdasds",
+      "LastName": "435345",
+      "NameSuffix": "456",
+      "Email": "example@axample.com",
+      "Date": "2024-03-07",
+      "TaxVatNumber": 12345678,
+      "Gender": "Female",
+      "EmailForm": "Default Store Wiew",
+      "VertexCustomer": "21212121",
+      "id": 6
+    }
+  ]
+}

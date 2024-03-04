@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CustomerService } from 'src/app/shared/service/customer.service';
 
+
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.component.html',
   styleUrls: ['./add-customer.component.scss']
 })
 export class AddCustomerComponent implements OnInit {
-  buttonText;
+  buttonText: string = ''; 
   addCustomerForm: FormGroup;
-  selectedOptionGender: string;
-  selectedOptionEmailForm: string;
-  selectedOptionAssociateToWebsite: string;
-  selectedGroup: string;
+  selectedOptionGender: string = ''; 
+  selectedOptionEmailForm: string = ''; 
+  selectedOptionAssociateToWebsite: string = ''; 
+  selectedGroup: string = '';
   
   constructor(
     private fb: FormBuilder,
@@ -21,36 +22,36 @@ export class AddCustomerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-     this.CustomerForm();
+    this.CustomerForm();
   }
 
-  CustomerForm(){
+  CustomerForm(): void { 
     this.addCustomerForm = this.fb.group({
       AssociateToWebsite: ['Main Website'],
-      Group:              ['General'],
-      NamePrefix:         [''],
-      FirstName:          [''],
-      MiddleName:         [''],
-      LastName:           [''],
-      NameSuffix:         [''],
-      Email:              [''],
-      Date:               [''],
-      TaxVatNumber:       [''],
-      Gender:             ['Not Specified'],
-      EmailForm:          ['Default Store Wiew'],
-      VertexCustomer:     [''],
+      Group: ['General'],
+      NamePrefix: [''],
+      FirstName: [''],
+      MiddleName: [''],
+      LastName: [''],
+      NameSuffix: [''],
+      Email: [''],
+      Date: [''],
+      TaxVatNumber: [''],
+      Gender: ['Not Specified'],
+      EmailForm: ['Default Store View'], 
+      VertexCustomer: [''],
     });
   }
 
   saveForm(): void {
     const formData = this.addCustomerForm.value;
-    console.log(formData)
+    console.log(formData);
     this.customerService.addCustomer(formData).subscribe(
       response => {
         console.log('Success', response);
       },
       error => {
-        console.error('error', error);
+        console.error('Error', error); 
       }
     );
   }
@@ -75,5 +76,5 @@ export class AddCustomerComponent implements OnInit {
     this.addCustomerForm.controls['Group'].setValue(option);
   }
   
-  goBack(){}
+  goBack(): void {} 
 }
