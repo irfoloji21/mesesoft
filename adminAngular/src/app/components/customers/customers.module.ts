@@ -12,9 +12,10 @@ import { NgChartsModule } from 'ng2-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddCustomerComponent } from './add-customer/add-customer/add-customer.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer/edit-customer.component';
 
 @NgModule({
-  declarations: [CustomersComponent, AddCustomerComponent],
+  declarations: [CustomersComponent, AddCustomerComponent, EditCustomerComponent],
   imports: [
     CommonModule,
     CustomersRoutingModule,
@@ -24,7 +25,7 @@ import { AddCustomerComponent } from './add-customer/add-customer/add-customer.c
     NgxChartsModule,
     ChartistModule,
     TranslateModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ]
 })
 export class CustomersModule { }

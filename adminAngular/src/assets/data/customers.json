@@ -14,7 +14,7 @@
       "Gender": "Male",
       "EmailForm": "Default Store Wiew",
       "VertexCustomer": "asdasd11",
-      "id": 3
+      "id": 1
     },
     {
       "AssociateToWebsite": "Main Website",
@@ -30,7 +30,7 @@
       "Gender": "Female",
       "EmailForm": "Default Store Wiew",
       "VertexCustomer": "asdasd11",
-      "id": 4
+      "id": 2
     },
     {
       "AssociateToWebsite": "Main Website",
@@ -46,7 +46,7 @@
       "Gender": "Not Specified",
       "EmailForm": "Default Store Wiew",
       "VertexCustomer": "asdasd11",
-      "id": 5
+      "id": 3
     },
     {
       "AssociateToWebsite": "Main Website",
@@ -62,7 +62,23 @@
       "Gender": "Female",
       "EmailForm": "Default Store Wiew",
       "VertexCustomer": "21212121",
-      "id": 6
+      "id": 4
+    },
+    {
+      "AssociateToWebsite": "Main Website",
+      "Group": "Retailer",
+      "NamePrefix": "Example",
+      "FirstName": "abc",
+      "MiddleName": "def",
+      "LastName": "ghj",
+      "NameSuffix": "jkl",
+      "Email": "enver@gmail.com",
+      "Date": "2024-03-23",
+      "TaxVatNumber": 123456,
+      "Gender": "Female",
+      "EmailForm": "Default Store Wiew",
+      "VertexCustomer": "21070",
+      "id": 5
     }
   ]
 }
