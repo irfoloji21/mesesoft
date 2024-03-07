@@ -68,7 +68,7 @@
               </td>
               <td>
                 <h2>
-                  {{ product.originalPrice | currency }}
+                  {{ (product.discountPrice ? product.discountPrice : product.originalPrice) | currency }}
                 </h2>
               </td>
               <td>

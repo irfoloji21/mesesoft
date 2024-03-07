@@ -251,9 +251,9 @@ export class ProductService {
         return products.reduce((totalAmount, product: Product) => {
           let price = product.originalPrice;
 
-          // if (product.discountPrice) {
-          //   price = product.originalPrice - (product.originalPrice * product.discountPrice / 100);
-          // }
+          if (product.discountPrice) {
+            price = product.discountPrice;
+          }
 
           return (totalAmount + price * product.quantity) * this.Currency.price;
         }, 0);

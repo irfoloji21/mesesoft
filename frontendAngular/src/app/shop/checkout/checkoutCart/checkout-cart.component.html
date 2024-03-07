@@ -55,7 +55,13 @@
               </td>
               <td>
                 <h2>
-                  {{ product.originalPrice | currency }}
+                  <ng-container *ngIf="product?.discountPrice; else originalPriceOnly">
+                        <del>{{ product?.originalPrice | currency }}</del>
+                        <span class="money mx-2">{{ product?.discountPrice | currency }}</span>
+                      </ng-container>
+                      <ng-template #originalPriceOnly>
+                        <span class="money">{{ product?.originalPrice | currency }}</span>
+                      </ng-template>
                 </h2>
               </td>
               <td>
@@ -85,7 +91,8 @@
               </td>
               <td>
                 <h2 class="td-color">
-                  {{ product.originalPrice * product.quantity | currency }}
+                  {{  (product.discountPrice ? product.discountPrice : product.originalPrice) 
+                  * product.quantity | currency }}
                 </h2>
               </td>
             </tr>
