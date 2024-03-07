@@ -138,10 +138,16 @@
                     </div>
                     <div class="product-icon">
                       <form class="d-inline-block">
-                        <button class="wishlist-btn" (click)="addToWishlist(product)"
-                          [ngClass]="{ 'is-in-wishlist': isInWishlist }">
-                          <i class="fa fa-heart"></i>
-                        </button>
+                        <button class="wishlist-btn d-flex align-items-center justify-content-center mt-2"
+                        (click)="addToWishlist(product)"
+                        [ngClass]="{ 'is-in-wishlist': isInWishlist }">
+                        <div class="button-content">
+                            <i class="fa fa-heart" [ngClass]="{ 'heart-red': isInWishlist, 'heart-white': !isInWishlist }"></i>
+                        </div>
+                    </button>
+                                        
+                    
+                      
                       </form>
                     </div>
                   </div>
