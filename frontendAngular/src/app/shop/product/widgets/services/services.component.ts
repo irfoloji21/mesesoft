@@ -19,16 +19,6 @@ export class ServicesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onlinePayment() {
-    this.productService.cartItems.subscribe(res => {
-      if (res.length > 0) {
 
-        this.router.navigate(['shop/checkout']);
-      }
-      else {
-        this.toast.error('Unable to proceed with the transaction. Please add items to your cart.', 'Your cart is empty')
-      }
-    });
-  }
 
 }

@@ -79,6 +79,22 @@
       "EmailForm": "Default Store Wiew",
       "VertexCustomer": "21070",
       "id": 5
+    },
+    {
+      "AssociateToWebsite": "Main Website",
+      "Group": "Retailer",
+      "NamePrefix": "Example21212121212121",
+      "FirstName": "abc",
+      "MiddleName": "def",
+      "LastName": "ghj",
+      "NameSuffix": "jkl",
+      "Email": "enver@gmail.com",
+      "Date": "2024-03-20",
+      "TaxVatNumber": 123456,
+      "Gender": "Male",
+      "EmailForm": "Default Store Wiew",
+      "VertexCustomer": "21070",
+      "id": 6
     }
   ]
 }
