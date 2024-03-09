@@ -1,41 +1,68 @@
-<!-- <app-breadcrumb [title]="'Profile'" [breadcrumb]="'Profile'"></app-breadcrumb> -->
 <!-- personal deatail section start -->
-<section class="contact-page register-page" *ngIf="userInf">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h3>{{'PERSONAL-DETAIL' | translate}}</h3>
-        <form class="theme-form" (ngSubmit)="onSubmit()" [formGroup]="updateForm">
-          <div class="row">
-            <div class="col-md-6">
-              <label for="firstName">{{'First-name' | translate}}</label>
-              <input type="text" class="form-control" id="firstName" placeholder="{{'First-name' | translate}}"
-                formControlName="firstName" required="" [(ngModel)]="userInf.firstName" />
-            </div>
-            <div class="col-md-6">
-              <label for="lastName">{{'Last-name' | translate}}</label>
-              <input type="text" class="form-control" id="lastName" placeholder="{{'Last-name' | translate}}" formControlName="lastName"
-                required="" [(ngModel)]="userInf.lastName" />
-            </div>
-            <div class="col-md-6">
-              <label for="phoneNumber">{{'Phone-number' | translate}}</label>
-              <input type="text" class="form-control" id="phoneNumber" placeholder="{{'Phone-number' | translate}}"
-                formControlName="phoneNumber" required="" [(ngModel)]="userInf.phoneNumber" />
-            </div>
-            <div class="col-md-6">
-              <label for="email">{{'E-mail' | translate}}</label>
-              <input type="text" class="form-control" id="email" placeholder="{{'E-mail' | translate}}" formControlName="email" required=""
-                [(ngModel)]="userInf.email" />
-            </div>
-            <div class="col-md-12">
-              <button class="btn btn-sm btn-solid" type="submit">
-                {{'Save-setting' | translate}}
-              </button>
-            </div>
-          </div>
-        </form>
+<ng-container *ngIf="!isAddingNew; else editTemplate">
+  <section class="contact-page register-page" *ngIf="userInf">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>{{'PERSONAL-DETAIL' | translate}}</h3>
+          <ul>
+            <li>
+              First Name :<span>{{ userInf.firstName }}</span>
+              Last Name :<span>{{ userInf.lastName }}</span>
+              Phone Number :<span>{{ userInf.phoneNumber }}</span>
+              Email :<span>{{ userInf.email }}</span>
+            </li>
+          </ul>
+          <button class="btn btn-sm btn-solid" (click)="toggleAddingNew()">
+            {{ 'Edit' | translate }}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</ng-container>
+
+<ng-template #editTemplate>
+  <section class="contact-page register-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>{{'PERSONAL-DETAIL' | translate}}</h3>
+          <form class="theme-form" (ngSubmit)="onSubmit()" [formGroup]="updateForm">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="firstName">{{'First-name' | translate}}</label>
+                <input type="text" class="form-control" id="firstName" placeholder="{{'First-name' | translate}}"
+                  formControlName="firstName" required="" [(ngModel)]="userInf.firstName" />
+              </div>
+              <div class="col-md-6">
+                <label for="lastName">{{'Last-name' | translate}}</label>
+                <input type="text" class="form-control" id="lastName" placeholder="{{'Last-name' | translate}}" formControlName="lastName"
+                  required="" [(ngModel)]="userInf.lastName" />
+              </div>
+              <div class="col-md-6">
+                <label for="phoneNumber">{{'Phone-number' | translate}}</label>
+                <input type="text" class="form-control" id="phoneNumber" placeholder="{{'Phone-number' | translate}}"
+                  formControlName="phoneNumber" required="" [(ngModel)]="userInf.phoneNumber" />
+              </div>
+              <div class="col-md-6">
+                <label for="email">{{'E-mail' | translate}}</label>
+                <input type="text" class="form-control" id="email" placeholder="{{'E-mail' | translate}}" formControlName="email" required=""
+                  [(ngModel)]="userInf.email" />
+              </div>
+              <div class="col-md-12">
+                <button class="btn btn-sm btn-solid" type="submit">
+                  {{'Save-setting' | translate}}
+                </button>
+                <button class="btn btn-sm btn-solid" type="button" (click)="toggleAddingNew()">
+                  {{'Cancel' | translate}}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
 <!-- Section ends -->

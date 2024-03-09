@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 
 export class ProfileComponent implements OnInit, OnDestroy {
-
+  isAddingNew:boolean=false;
   public userInf;
   userInitials: string;
   updateForm: FormGroup;
@@ -39,6 +39,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
+  }
+
+  toggleAddingNew() {
+    this.isAddingNew = !this.isAddingNew;
   }
 
   getInitials(firstName: string, lastName: string, email: string, phoneNumber: number): string {
