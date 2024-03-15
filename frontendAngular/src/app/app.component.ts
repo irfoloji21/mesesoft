@@ -4,6 +4,7 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
 import { map, delay, withLatestFrom } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './shared/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit {
     private platformId: Object,
     private loader: LoadingBarService,
     translate: TranslateService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toasts : ToastrService
   ) {
     if (isPlatformBrowser(this.platformId)) {
       translate.setDefaultLang('en');
@@ -37,6 +39,16 @@ export class AppComponent implements OnInit {
       (user) => {
         if (user) {
           this.authService.setUser(user);
+        }
+        else {
+          this.toasts.error('Login failed', '',
+          {
+            positionClass: 'toast-top-right',
+            timeOut: 2500,
+            closeButton: true,
+            newestOnTop: false,
+            progressBar: true,
+          });
         }
       },
       (error) => {

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { BehaviorSubject, Observable, tap } from "rxjs";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
   providedIn: "root",
@@ -14,7 +15,7 @@ export class AuthService {
 
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient , private toast : ToastrService ) {
     // Check if the user is already logged in and update the isLoggedInSubject
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     this.isLoggedInSubject.next(isLoggedIn);
@@ -50,6 +51,8 @@ export class AuthService {
           } else {
             // If login is unsuccessful, update isLoggedInSubject
             this.isLoggedInSubject.next(false);
+            this.toast.error('error')
+            
           }
         })
       );
