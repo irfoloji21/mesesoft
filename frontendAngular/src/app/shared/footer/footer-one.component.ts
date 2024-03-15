@@ -14,6 +14,9 @@ import { Observable } from 'rxjs';
 })
 
 export class FooterOneComponent implements OnInit {
+  phoneNumber: string = '123-456-7898';
+  faxNumber: string = '123456';
+  emailAddress: string = 'example@example.com';
 
   @Input() class: string = 'footer-light' // Default class 
   @Input() themeLogo: string = 'assets/images/icon/logo.png' // Default Logo
@@ -42,6 +45,24 @@ export class FooterOneComponent implements OnInit {
   ngOnInit(): void {
     this.categories$ = this.categoryService.getCategories();
     this.socialMediaLinks$ = this.socialMediaService.getSocialMediaLinks();
+  }
+  
+  callUs() {
+    window.location.href = 'number:' + this.phoneNumber;
+  }
+  
+
+  emailUs() {
+    window.location.href = 'mailto:' + this.emailAddress;
+  }
+
+  goToDemoStore() {
+    window.location.href = 'http://localhost:4200/'; 
+  }
+
+
+  faxUs() {
+    window.location.href = 'fax:' + this.faxNumber;
   }
 
   subscribe() {

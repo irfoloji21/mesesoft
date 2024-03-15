@@ -8,8 +8,8 @@
           <div class="header-contact">
             <ul>
               <li>{{ "ecommerce-angular" | translate }}</li>
-              <li>
-                <i class="fa fa-phone" aria-hidden="true"></i>{{ "call-us" | translate }}: 123 - 456 - 789000000
+              <li (click)="callUs()">
+                <i  class="fa fa-phone" aria-hidden="true"></i>{{ "call-us" | translate }}
               </li>
             </ul>
           </div>

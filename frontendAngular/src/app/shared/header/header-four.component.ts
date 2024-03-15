@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 
 export class HeaderFourComponent implements OnInit, OnDestroy {
-
+  phoneNumber: string = '123-456-7898';
   @Input() class: string = 'header-2 header-6';
   @Input() themeLogo: string = 'assets/images/icon/logo.png'; // Default Logo
   @Input() topbar: boolean = true; // Default True
@@ -106,5 +106,9 @@ export class HeaderFourComponent implements OnInit, OnDestroy {
 
   getInitials(firstName: string, lastName: string): string {
     return (firstName.charAt(0) + lastName.charAt(0)).toUpperCase();
+  }
+
+  callUs() {
+    window.location.href = 'number:' + this.phoneNumber;
   }
 }
