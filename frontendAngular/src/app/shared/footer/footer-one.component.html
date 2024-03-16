@@ -19,7 +19,8 @@
           <div class="col-lg-6">
             <form [formGroup]="subscribeForm" class="form-inline subscribe-form" (ngSubmit)="subscribe()">
               <div class="form-group mx-sm-3">
-                <input formControlName="email" id="mce-EMAIL" class="form-control" placeholder="{{'Enter your email' | translate}}" />
+                <input formControlName="email" id="mce-EMAIL" class="form-control"
+                  placeholder="{{'Enter your email' | translate}}" />
               </div>
               <button type="submit" class="btn btn-solid">{{'Subscribe' | translate}}</button>
             </form>
@@ -112,7 +113,7 @@
                 <li (click)="goToDemoStore()">
                   <i class="fa fa-map-marker"></i>
                   Demo Store
-              </li>              
+                </li>
                 <li (click)="callUs()"><i class="fa fa-phone"></i>Call Us</li>
                 <li (click)="emailUs()"><i class="fa fa-envelope-o"></i>Email Us</li>
                 <li (click)="faxUs()"><i class="fa fa-fax"></i>Fax</li>
