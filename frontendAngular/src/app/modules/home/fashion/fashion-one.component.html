@@ -2,7 +2,13 @@
 
 <!-- Home slider start-->
 <section class="p-0">
-  <app-slider [sliders]="sliders" [textClass]="'text-center'" [category]="'fashion'" [buttonText]="'shop now'">
+  <app-slider
+    [sliders]="sliders"
+    [textClass]="'text-center'"
+    [category]="'fashion'"
+    [buttonText]="'shop now'"
+  >
+  
   </app-slider>
 </section>
 <!-- Home slider End -->
@@ -14,37 +20,44 @@
       <section class="pb-0" style="cursor: pointer">
         <div class="container">
           <div class="row partition2 d-flex flex-wrap">
-            <!-- <div class="col-md-6 d-flex">
-               <a (click)="loadDataMen()">
+            <div class="col-md-6 d-flex">
+              <a (click)="loadDataMen()">
                 <div class="collection-banner p-right text-center flex-grow-1">
-                  <img style="height: 351px; width: 664px" src="../../../../assets/images/man0.webp" class="img-fluid"
-                    alt="collection-banner" />
+                  <img
+                    style="height: 351px; width: 664px"
+                    src="../../../../assets/images/man0.webp"
+                    class="img-fluid"
+                    alt="collection-banner"
+                  />
                   <div class="contain-banner">
                     <div>
                       <h4>discounts of up to 50%</h4>
                       <h2>Men</h2>
                     </div>
-                  </div> 
-
+                  </div>
                 </div>
               </a>
-              
-            </div>-->
-            <app-discount [discounts]="discount"></app-discount>
-            <!-- <div class="col-md-6 d-flex">
+            </div>
+            <!-- <app-discount [discounts]="discount"></app-discount> -->
+            <div class="col-md-6 d-flex">
               <a (click)="loadDataWoman()">
                 <div class="collection-banner p-right text-center flex-grow-1">
-                  <img style="height: 351px; width: 664px" src="../../../../assets/images/Women0.jpg" class="img-fluid"
-                    alt="collection-banner" />
+                  <img
+                    style="height: 351px; width: 664px"
+                    src="../../../../assets/images/Women0.jpg"
+                    class="img-fluid"
+                    alt="collection-banner"
+                  />
                   <div class="contain-banner">
                     <div>
                       <h4>discounts of up to 50%</h4>
                       <h2>Women</h2>
                     </div>
+                    
                   </div>
                 </div>
               </a>
-            </div> -->
+            </div>
           </div>
         </div>
       </section>
@@ -78,12 +91,22 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <owl-carousel-o class="product-m no-arrow" [options]="ProductSliderConfig">
-          <ng-container *ngFor="let product of sortedProducts$ | async | slice : 0 : 10">
+        <owl-carousel-o
+          class="product-m no-arrow"
+          [options]="ProductSliderConfig"
+        >
+          <ng-container
+            *ngFor="let product of sortedProducts$ | async | slice : 0 : 10"
+          >
             <ng-template carouselSlide>
               <div class="product-box">
-                <app-product-box-one [product]="product" [loader]="true" [currency]="productService?.Currency"
-                  [thumbnail]="true" [cartModal]="true">
+                <app-product-box-one
+                  [product]="product"
+                  [loader]="true"
+                  [currency]="productService?.Currency"
+                  [thumbnail]="true"
+                  [cartModal]="true"
+                >
                 </app-product-box-one>
               </div>
             </ng-template>
@@ -97,8 +120,11 @@
 
 <!-- Parallax banner start-->
 <section class="p-0">
-  <div style="cursor: pointer" class="full-banner parallax-banner1 parallax text-center p-left"
-    [ngStyle]="{ 'background-image': 'url(assets/images/TrendPhoto.jpeg)' }">
+  <div
+    style="cursor: pointer"
+    class="full-banner parallax-banner1 parallax text-center p-left"
+    [ngStyle]="{ 'background-image': 'url(assets/images/TrendPhoto.jpeg)' }"
+  >
     <div class="container">
       <div class="row">
         <div class="col">

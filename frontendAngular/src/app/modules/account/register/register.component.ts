@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
         (user) => {
           if (user.success) {
             this.authService.setUserId(user._id);
-            this.toasts.success(' mailinize gelen doğrulamayı yapın.', 'Kayıt başarılı',
+            this.toasts.success('Do the verification sent to your e-mail.', 'Registration successful',
 
               {
                 positionClass: 'toast-top-right',
@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
           }
           else {
             console.error("error");
-            this.toasts.error('Kayıt başarısız', '',
+            this.toasts.error('Registration failed', '',
               {
                 positionClass: 'toast-top-right',
                 timeOut: 2500,
