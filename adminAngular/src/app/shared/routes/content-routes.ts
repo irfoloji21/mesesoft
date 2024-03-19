@@ -73,6 +73,13 @@ export const content: Routes = [
     }
   },
   {
+    path: 'social-media',
+    loadChildren: () => import('../../components/social-media/social-media/social-media.module').then(m => m.SocialMediaModule),
+    data: {
+      breadcrumb: "Customers"
+    }
+  },
+  {
     path: 'vendors',
     loadChildren: () => import('../../components/vendors/vendors.module').then(m => m.VendorsModule),
     data: {

@@ -36,6 +36,8 @@ import { AboutModule } from './components/about/about.module';
 import { ToastrModule } from 'ngx-toastr';
 import { CustomersComponent } from './components/customers/customers.component';
 import { CustomersModule } from './components/customers/customers.module';
+import { SocialMediaComponent } from './components/social-media/social-media/social-media.component';
+import { AddSocialMediaComponent } from './components/social-media/social-media/add-social-media/add-social-media/add-social-media.component';
 
 
 // AoT requires an exported function for factories
@@ -47,6 +49,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
+    SocialMediaComponent,
+    AddSocialMediaComponent,
    
     // InboxComponent,
     
