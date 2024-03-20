@@ -1,0 +1,22 @@
+{
+  "social-media": [
+    {
+      "SocialMediaName": "Twitter",
+      "SocialMediaUrl": "https://twitter.com",
+      "SocialMediaIcon": "C:\\fakepath\\example.png",
+      "id": 1
+    },
+    {
+      "SocialMediaName": "Facebook",
+      "SocialMediaUrl": "https://www.facebook.com/",
+      "SocialMediaIcon": "C:\\fakepath\\example.png",
+      "id": 2
+    },
+    {
+      "SocialMediaName": "Instagram",
+      "SocialMediaUrl": "https://www.instagram.com/",
+      "SocialMediaIcon": "C:\\fakepath\\example.png",
+      "id": 3
+    }
+  ]
+}

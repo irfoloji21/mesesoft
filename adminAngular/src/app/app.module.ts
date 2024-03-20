@@ -49,8 +49,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    SocialMediaComponent,
-    AddSocialMediaComponent,
    
     // InboxComponent,
     
