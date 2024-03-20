@@ -106,6 +106,12 @@ export class NavService {
 
 			]
 		},
+		{
+			title: 'Social Media', icon: 'user-plus', type: 'sub', active: false, children: [
+				{ path: 'social-media', title: 'Social media', type: 'link' },
+
+			]
+		},
 		// {
 		// 	title: 'Vendors', icon: 'users', type: 'sub', active: false, children: [
 		// 		{ path: '/vendors/list-vendors', title: 'Vendor List', type: 'link' },

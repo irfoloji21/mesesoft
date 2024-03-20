@@ -13,10 +13,10 @@ const routes: Routes = [
       breadcrumb: "social-media"
     }
   },
-  // {
-  //   path: 'add-social-media',
-  //   component: AddSocialMediaComponent 
-  // },
+  {
+    path: 'add-social-media',
+    component: AddSocialMediaComponent 
+  },
 
 ];
 

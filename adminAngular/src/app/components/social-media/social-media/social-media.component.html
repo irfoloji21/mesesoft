@@ -1,1 +1,54 @@
-<p>social-media works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="d-flex justify-content-between">
+                    <div class="card-header">
+                        <h5>{{ "Social-Media" | translate }}</h5>
+                    </div>
+                    <div class="card-header">
+                        <button (click)="addSocialMedia()" type="submit" class="btn btn-primary">
+                            {{ "Add New Social Media" | translate }}
+                        </button>
+                    </div>
+                </div>
+  
+                <div class="card-body">
+                    <div class="custom-datatable">
+                        <div class="searchArea mx-2 d-flex" >
+                            <div>
+                                <input type="text" class="filter-ngx form-control mx-2"
+                                    placeholder="{{ 'Search...' | translate }}" 
+                                   />
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary">
+                                    {{ "Find" | translate }}
+                                </button>
+                            </div>
+                        </div>
+  
+                        <table class="table table-striped styled-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">{{ "Social Media Name" | translate }}</th>
+                                    <th scope="col">{{ "Social Media Url" | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr >
+
+                                    <td>{{"Name" }}</td>
+                                    <td>{{"Url" }}</td>
+         
+                                </tr>
+                            </tbody>
+                        </table>
+  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
