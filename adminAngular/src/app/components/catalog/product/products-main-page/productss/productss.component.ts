@@ -5,8 +5,8 @@ import { ProductService } from 'src/app/shared/service/product.service';
 import { Image } from '@ks89/angular-modal-gallery';
 import { Product } from 'src/app/shared/tables/product';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { id } from '@swimlane/ngx-charts';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-productss',
   templateUrl: './productss.component.html',
@@ -25,12 +25,18 @@ export class ProductssComponent {
   imagesRect: Image[] = [
     new Image(0, { img: 'assets/images/furniture/6.jpg' }),
   ]
-  public product_list = []
+  public product_list = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  totalPages: number = 0;
+  pages: number[] = [];
   public isModalOpen: boolean = false;
   public filteredProducts: any[] = [];
   isButtonClicked: boolean = false;
   originalProductList: any[] = [];
   searchText;
+  displayedProducts: Product[] = []; 
+
   constructor(
     private productService: ProductService,
     private authService: AuthService,
@@ -58,8 +64,6 @@ export class ProductssComponent {
     this.isModalOpen = true;
   }
 
-
-
   editProduct(id) {
     this.router.navigate(['/products/catalog/edit-product', id]);
   }
@@ -77,9 +81,11 @@ export class ProductssComponent {
 
     this.openModal();
   }
+
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
+
   ngOnInit() {
     this.authService.loadShop().subscribe(
       (shop) => {
@@ -89,6 +95,9 @@ export class ProductssComponent {
             (response) => {
               this.product_list = response.products;
               this.originalProductList = [...this.product_list];
+              this.totalPages = Math.ceil(this.product_list.length / this.itemsPerPage);
+              this.pages = Array.from({length: this.totalPages}, (_, i) => i + 1);
+              this.updateDisplayedProducts(); 
             },
             (error) => {
               console.error(error);
@@ -109,7 +118,7 @@ export class ProductssComponent {
   deleteProduct(id) {
     this.productService.deleteProduct(id).subscribe(
       (response) => {
-        this.ngOnInit()
+        this.ngOnInit();
         this.product_list;
       },
       (error) => {
@@ -145,9 +154,7 @@ export class ProductssComponent {
   }
   // // actions delete end
 
-
   // Search Area start
-
   search() {
     const searchText = this.searchForm.get('searchText').value.trim().toLowerCase();
   
@@ -167,6 +174,7 @@ export class ProductssComponent {
       }
     }
     this.isFilterApplied = true;
+    this.updateDisplayedProducts(); 
     this.cdr.detectChanges();
   }
   
@@ -188,15 +196,19 @@ export class ProductssComponent {
     this.searchForm.get('searchText').setValue('');
     this.product_list = [...this.originalProductList];
     this.isFilterApplied = false;
+    this.updateDisplayedProducts(); 
   }
-// Search Area End
-
-
-
+ // Search Area End
+ goToPage(page: number): void {
+  if (page >= 1 && page <= this.totalPages) {
+    this.currentPage = page;
+    this.updateDisplayedProducts();
+  }
 }
 
-
-
-
-
-
+updateDisplayedProducts(): void {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  const endIndex = Math.min(startIndex + this.itemsPerPage, this.product_list.length);
+  this.displayedProducts = this.product_list.slice(startIndex, endIndex);
+}
+}

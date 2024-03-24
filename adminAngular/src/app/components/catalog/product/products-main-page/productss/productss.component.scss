@@ -257,3 +257,22 @@ tbody {
   }
 }
 
+
+//Pagination design start//
+
+.pagination .page-item a.page-link {
+  background-color: transparent;
+  border: none;
+  color: rgb(255, 128, 132); 
+}
+
+.pagination .page-item a.page-link.active {
+  background-color: rgb(255, 128, 132); 
+  color: #ffffff; 
+}
+
+.pagination .page-item a.page-link:hover {
+  background-color: #ffffff; 
+  color: rgb(255, 128, 132); 
+}
+//Pagination design end//
